@@ -1,0 +1,11 @@
+{
+  "globalDependencies": {
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "jquery": "registry:dt/jquery#1.10.0+20160704162008",
+    "lodash": "registry:dt/lodash#4.14.0+20160802150749",
+    "react": "registry:dt/react#0.14.0+20160805125551",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "react-redux": "registry:dt/react-redux#4.4.0+20160724070751",
+    "redux": "registry:dt/redux#3.5.2+20160703092728"
+  }
+}

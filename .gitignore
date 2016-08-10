@@ -72,3 +72,5 @@ bundles
 */bundles/**/*.js
 *.css
 
+node_modules
+Alpha.AccountInfo.Site/assets/scripts/**/*.js
