@@ -74,3 +74,4 @@ bundles
 
 node_modules
 Alpha.AccountInfo.Site/assets/scripts/**/*.js
+*/assets/scripts/**/*.js.map
