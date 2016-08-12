@@ -5,8 +5,10 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Dtos;
 
     public interface StatusDataAccess
     {
+        IEnumerable<StatusConfigItem> GetStatusConfigItems();
     }
 }

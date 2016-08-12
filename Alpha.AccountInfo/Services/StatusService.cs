@@ -5,8 +5,11 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Dtos;
+    using Models;
 
     public interface StatusService
     {
+        IEnumerable<Status> BuildStatusList(IEnumerable<StatusDto> statusDtos);
     }
 }

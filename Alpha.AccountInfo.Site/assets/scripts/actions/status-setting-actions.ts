@@ -1,6 +1,6 @@
 ﻿import * as Models from "../models";
 
-export const STATUS_ACTION_NAMES =
+export const STATUS_ACTION_NAMES = 
     {
         UPDATE_STATUS: "UPDATE_STATUS"
     };

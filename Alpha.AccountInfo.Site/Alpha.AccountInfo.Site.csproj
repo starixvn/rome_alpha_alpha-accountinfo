@@ -339,7 +339,6 @@
     <Folder Include="assets\scripts\components\presentationals\" />
     <Folder Include="Handlers\" />
     <Folder Include="Requests\" />
-    <Folder Include="Scripts\tsUnit\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>

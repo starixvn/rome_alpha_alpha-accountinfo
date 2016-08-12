@@ -8,7 +8,7 @@ import * as Models from "./models";
 import AccountInfoContainer from "./components/containers/account-info-container";
 import reducer from "./reducers/combine-reducers";
 
-let statusStore = Redux.createStore(reducer);
+let statusStore = Redux.createStore(reducer, window["devToolsExtension"] && window["devToolsExtension"]());
 
 ReactDOM.render(
     <ReactRedux.Provider store={statusStore}>
