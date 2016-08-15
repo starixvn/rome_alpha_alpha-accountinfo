@@ -42,7 +42,7 @@ export class StatusSettingContainer extends React.Component<StatusSettingContain
 
                 <ul>
                     {
-                        this.props.statusList.map(status => (<li>{status.name}</li>))
+                        this.props.statusList.map(status => (<li key={status.name} >{status.name}</li>))
                     }
                 </ul>
             </div>
