@@ -33,7 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\tools\AnalysisRules\FanexRules.Error.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Alpha.AccountInfo.Site.Debug.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +42,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Alpha.AccountInfo.Site.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.Auth, Version=3.0.1.4, Culture=neutral, processorArchitecture=MSIL">
@@ -245,6 +246,8 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
+    <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
+    <Content Include="Alpha.AccountInfo.Site.ruleset" />
     <None Include="Web.uat2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -320,7 +323,7 @@
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ProductStatusController.cs" />
-    <Compile Include="Controllers\SiteBaseController.cs" />
+    <Compile Include="Controllers\AccountInfoBaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -389,6 +392,11 @@
       <Project>{19fff821-8518-4c8f-b23b-db8d91c1552a}</Project>
       <Name>Alpha.AccountInfo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

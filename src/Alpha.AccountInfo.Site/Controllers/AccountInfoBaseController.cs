@@ -1,14 +1,16 @@
 ﻿namespace Alpha.AccountInfo.Site.Controllers
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using MediatR;
     using Web;
 
-    public abstract class SiteBaseController : BaseController
+    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed")]
+    public abstract class AccountInfoBaseController : BaseAsyncController
     {
         protected readonly IMediator mediator;
 
-        protected SiteBaseController(IMediator mediator)
+        protected AccountInfoBaseController(IMediator mediator)
         {
             this.mediator = mediator;
         }
