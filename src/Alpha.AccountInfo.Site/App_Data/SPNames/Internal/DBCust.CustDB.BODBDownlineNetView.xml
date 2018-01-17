@@ -1,0 +1,7 @@
+﻿<Functions>
+  <Function Name="Product Status">
+    <Setting Key="Acc_CustomerSelStatusByProductId" SpName="Acc_CustomerSelStatusByProductId" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCUST.CustDB.BODBDownlineNetView" />
+    <Setting Key="Acc_CustSetting_DisableGameStatusSelect" SpName="Acc_CustSetting_DisableGameStatusSelect" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+</Functions>
