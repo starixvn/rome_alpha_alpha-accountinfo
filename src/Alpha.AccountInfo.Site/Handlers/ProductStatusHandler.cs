@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
     using AccountInfo.Models;
     using Constants;
-    using Enumerations;
     using MediatR;
     using Requests.ProductStatus;
     using Services.ProductStatus;
@@ -33,14 +32,7 @@
 
             var model = await statusService.GetProductStatusAsync(message.ProductId, message.CustId, message.CustRoleId);
 
-            return new ProductStatusViewModel(
-                message.ProductId,
-                message.CustId,
-                message.CustName,
-                Enumeration.FromValue<UserLevel>(message.CustRoleId),
-                model,
-                message.ViewerLevel,
-                message.IsViewOnly);
+            return message.ToProductStatusViewModel(model);
         }
 
         public async Task<Result> Handle(ProductStatusCommand message)

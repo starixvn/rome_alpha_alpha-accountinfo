@@ -63,12 +63,12 @@
         }
 
         [Theory]
-        [InlineData(ProductIdConstants.Allbet)]
-        [InlineData(ProductIdConstants.MacauGames)]
-        [InlineData(ProductIdConstants.FishingWorld)]
-        [InlineData(ProductIdConstants.Lucky3)]
-        [InlineData(ProductIdConstants.Lottery)]
-        [InlineData(ProductIdConstants.Bullfighting)]
+        [InlineData(21)]
+        [InlineData(22)]
+        [InlineData(24)]
+        [InlineData(26)]
+        [InlineData(28)]
+        [InlineData(30)]
         public void CreateSelectCriteria_ValidProductId_ReturnsSelectDCSProductStatusCriteria(int productId)
         {
             // Arrange
@@ -143,8 +143,8 @@
         }
 
         [Theory]
-        [InlineData(ProductIdConstants.Allbet)]
-        [InlineData(ProductIdConstants.Bullfighting)]
+        [InlineData(21)]
+        [InlineData(30)]
         public void CreateUpdateCriteria_DCSProduct_ReturnsUpdateDCSProductStatusCriteria(int productId)
         {
             // Arrange

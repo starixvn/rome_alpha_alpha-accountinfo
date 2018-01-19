@@ -160,7 +160,7 @@
         public async Task GetProductStatusAsync_DCSSingleBetType_ReturnsDataFromDynamicRepository()
         {
             // Arrange
-            var productId = ProductIdConstants.MacauGames;
+            var productId = 22;
             var productName = "Macau Games";
             IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
             {
@@ -196,7 +196,7 @@
         public async Task GetProductStatusAsync_DCSMultipleBetTypes_ReturnsDataFromDynamicRepository()
         {
             // Arrange
-            var productId = ProductIdConstants.Allbet;
+            var productId = 21;
             var sportType = 211;
             IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
             {

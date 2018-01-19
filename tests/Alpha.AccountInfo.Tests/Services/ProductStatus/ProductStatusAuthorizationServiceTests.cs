@@ -14,7 +14,7 @@
     [Trait("Category", "ProductStatus")]
     public class ProductStatusAuthorizationServiceTests
     {
-        private const int ProductIdTest = ProductIdConstants.Bullfighting;
+        private const int ProductIdTest = 22;
         private const int CustIdTest = 1176083;
         private const int ViewerIdTest = 1176070;
         private static readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
@@ -111,6 +111,30 @@
             var expectedResult = false;
             var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+
+            repository
+                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
+                .Returns(customerStatus);
+
+            // Act
+            var actualResult = authorizationService.CanView(param);
+
+            // Assert
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Fact]
+        public void CanView_CustomerStatusInvalidRole_ReturnsFalse()
+        {
+            // Arrange
+            var expectedResult = false;
+            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
+            var param = new ProductStatusAuthorizationParam(
+                ProductIdTest,
+                CustIdTest,
+                CustRoleTest,
+                ViewerIdTest,
+                Enumeration.FromValue<UserLevel>(1));
 
             repository
                 .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())

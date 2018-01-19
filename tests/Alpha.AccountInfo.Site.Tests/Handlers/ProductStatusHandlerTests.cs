@@ -21,7 +21,7 @@
         private const int ViewerIdTest = 1176070;
         private const bool IsInternalTest = false;
         private const bool CanUpdateAccountTest = true;
-        private const int ProductIdTest = ProductIdConstants.Bullfighting;
+        private const int ProductIdTest = 22;
         private const int CustIdTest = 1176083;
         private static readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
         private static readonly UserLevel ViewerLevelTest = Enumeration.FromValue<UserLevel>(4);

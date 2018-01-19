@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using AccountInfo.Models;
-    using Constants;
     using Enumerations;
     using MediatR;
     using NSubstitute;
@@ -19,7 +18,7 @@
         private const byte LevelIdTest = 4;
         private const bool IsInternalTest = false;
         private const bool CanUpdateAccountTest = true;
-        private const int ProductIdTest = ProductIdConstants.Bullfighting;
+        private const int ProductIdTest = 22;
         private const int CustIdTest = 1176083;
         private const byte CustRoleIdTest = 3;
 

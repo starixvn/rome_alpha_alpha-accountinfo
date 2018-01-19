@@ -2,13 +2,12 @@
 {
     using System;
     using AccountInfo.Criteria.ProductStatus;
-    using Constants;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
     public class SelectDCSProductStatusCriteriaTests
     {
-        private const int ProductIdTest = ProductIdConstants.MacauGames;
+        private const int ProductIdTest = 22;
         private const int CustIdTest = 1176083;
         private const byte RoleIdTest = 3;
 
