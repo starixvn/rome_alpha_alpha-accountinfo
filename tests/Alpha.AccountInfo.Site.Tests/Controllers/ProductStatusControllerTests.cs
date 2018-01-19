@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using AccountInfo.Models;
     using Constants;
+    using Enumerations;
     using MediatR;
     using NSubstitute;
     using Requests.ProductStatus;
@@ -105,6 +106,39 @@
 
             // Assert
             Assert.Equal("~/Views/Shared/NoInformation.cshtml", actualView.ViewName);
+        }
+
+        [Fact]
+        public async Task Index_ValidViewModel_ReturnsView()
+        {
+            // Arrange
+            user.Id.Returns(ViewerIdTest);
+            user.LevelId.Returns(LevelIdTest);
+            user.IsInternal.Returns(IsInternalTest);
+            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
+            var message = new ProductStatusQuery(user)
+            {
+                ProductId = ProductIdTest,
+                CustId = CustIdTest,
+                CustRoleId = CustRoleIdTest
+            };
+            var viewModel = new ProductStatusViewModel(
+                ProductIdTest, 
+                CustIdTest,
+                null,
+                Enumeration.FromValue<UserLevel>(CustRoleIdTest),
+                null,
+                Enumeration.FromValue<UserLevel>(4),
+                false);
+            mediator
+                .Send(message)
+                .Returns(Task.FromResult<ProductStatusViewModel>(viewModel));
+
+            // Act
+            var actualView = await productStatusController.Index(message) as ViewResult;
+
+            // Assert
+            Assert.NotNull(actualView);
         }
 
         [Fact]

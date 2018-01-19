@@ -42,6 +42,7 @@
         {
             // Arrange
             var userSession = Substitute.For<IUserSession>();
+            userSession.IsSubAcc.Returns(expectedValue);
             userSession.SubPageAccess.Returns(new PageAccess { UpdateAccount = expectedValue });
             var user = new User(userSession);
 

@@ -257,6 +257,10 @@
     <Content Include="assets\bundles\productstatus\productstatus.min.js">
       <DependentUpon>productstatus.js</DependentUpon>
     </Content>
+    <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
+    <Content Include="assets\scripts\tests\libs\jasmine.js" />
+    <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
+    <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="assets\styles\productstatus\productstatus.css">
       <DependentUpon>productstatus.scss</DependentUpon>
     </Content>
@@ -280,6 +284,7 @@
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
     <Content Include="typings\globals\jquery\typings.json" />
     <Content Include="typings\globals\jquery.blockui\typings.json" />
+    <Content Include="assets\scripts\tests\chutzpah.json" />
     <None Include="Web.uat2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -436,6 +441,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\productstatus\productstatus.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery.blockui\index.d.ts" />

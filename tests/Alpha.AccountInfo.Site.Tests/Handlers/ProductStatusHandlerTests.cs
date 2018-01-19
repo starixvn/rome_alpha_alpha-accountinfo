@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Handlers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
@@ -80,6 +81,7 @@
                 expectedViewModel.CustId == actualViewModel.CustId &&
                 expectedViewModel.CustName == actualViewModel.CustName &&
                 expectedViewModel.CustRole == actualViewModel.CustRole &&
+                expectedViewModel.GroupProductStatus.Count() == actualViewModel.GroupProductStatus.Count() &&
                 expectedViewModel.IsAgentUpdateMember == actualViewModel.IsAgentUpdateMember &&
                 expectedViewModel.IsDirectDownline == actualViewModel.IsDirectDownline &&
                 expectedViewModel.IsViewOnly == actualViewModel.IsViewOnly);

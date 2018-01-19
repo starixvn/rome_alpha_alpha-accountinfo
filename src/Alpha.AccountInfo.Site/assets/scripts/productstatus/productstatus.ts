@@ -46,7 +46,6 @@ class ProductStatus {
         }
 
         this.hideMessage();
-        //let self: any = this;
 
         this.$.post(this.$formProductStatus.attr("action"), formData, this.afterUpdateStatusSuccessfully, "json")
             .always(this.$.unblockUI);
