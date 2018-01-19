@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using AccountInfo.Models;
     using MediatR;
     using Requests.ProductStatus;
 
@@ -23,20 +24,25 @@
                 return View(InvalidPageViewPath);
             }
 
-            var viewModel = await mediator.SendAsync(message);
+            var viewModel = await mediator.Send(message);
+
+            if (viewModel == null)
+            {
+                return View(InvalidPageViewPath);
+            }
 
             return View(viewModel);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Update(ProductStatusCommand command)
+        public async Task<ActionResult> Update(ProductStatusCommand message)
         {
-            if (command == null || !command.IsValid())
+            if (message == null || !message.IsValid() || message.IsViewOnly)
             {
-                return View(InvalidPageViewPath);
+                return Json(Result.CreateForbiddenResult());
             }
 
-            var result = await mediator.SendAsync(command);
+            var result = await mediator.Send<Result>(message);
 
             return Json(result, JsonRequestBehavior.DenyGet);
         }

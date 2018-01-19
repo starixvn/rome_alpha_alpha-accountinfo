@@ -13,7 +13,7 @@
             UserLevel custRole,
             IEnumerable<GroupProductStatus> groupProductStatus,
             UserLevel loggedInUserRole,
-            bool isReadOnly)
+            bool isViewOnly)
         {
             ProductId = productId;
             CustId = custId;
@@ -22,7 +22,7 @@
             GroupProductStatus = groupProductStatus;
             IsAgentUpdateMember = custRole.IsMemberLevel() && loggedInUserRole.IsAgentLevel();
             IsDirectDownline = custRole.IsDirectDownlineOf(loggedInUserRole);
-            IsReadOnly = isReadOnly;
+            IsViewOnly = isViewOnly;
         }
 
         public int ProductId { get; }
@@ -39,6 +39,6 @@
 
         public bool IsDirectDownline { get; }
 
-        public bool IsReadOnly { get; }
+        public bool IsViewOnly { get; }
     }
 }

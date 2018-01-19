@@ -14,14 +14,8 @@
 
         public int CustId { get; }
 
-        public override string GetSettingKey()
-        {
-            return "Acc_CustomerSelStatusByProductId";
-        }
+        public override string GetSettingKey() => "Acc_CustomerSelStatusByProductId";
 
-        public override bool IsValid()
-        {
-            return ProductId > 0 && CustId > 0;
-        }
+        public override bool IsValid() => ProductId > 0 && CustId > 0;
     }
 }

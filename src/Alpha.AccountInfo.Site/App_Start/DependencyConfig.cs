@@ -15,6 +15,7 @@
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.Model.Entities.Permission;
 
     public static class DependencyConfig
     {
@@ -49,9 +50,12 @@
             container.RegisterSingleton<IMediator, Mediator>();
             container.Register(typeof(IRequestHandler<,>), assemblies);
             container.Register(typeof(IAsyncRequestHandler<,>), assemblies);
-
+            container.Register(typeof(ICancellableAsyncRequestHandler<>), assemblies);
             container.RegisterCollection(typeof(INotificationHandler<>), assemblies);
             container.RegisterCollection(typeof(IAsyncNotificationHandler<>), assemblies);
+            container.RegisterCollection(typeof(ICancellableAsyncNotificationHandler<>), assemblies);
+            container.RegisterCollection(typeof(IPipelineBehavior<,>), assemblies);
+
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
             container.RegisterSingleton(new MultiInstanceFactory(container.GetAllInstances));
         }
@@ -72,7 +76,13 @@
             container.Register<IUser, User>(Lifestyle.Singleton);
             container.Register<CacheRefService, CacheRefServiceImpl>(Lifestyle.Singleton);
 
-            container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Scoped);
+            container.Register<ProductStatusAuthorizationService>(
+                () => new ProductStatusAuthorizationServiceImpl(
+                    container.GetInstance<IDynamicRepository>(),
+                    UserPermission.HasPermissionOnProduct),
+                Lifestyle.Scoped);
+
+            container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Singleton);
             container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
         }
 

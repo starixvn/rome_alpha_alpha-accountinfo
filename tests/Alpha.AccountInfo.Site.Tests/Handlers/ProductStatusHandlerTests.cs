@@ -59,7 +59,7 @@
                 user.IsInternal || !user.CanUpdateAccount);
 
             productStatusService
-                .GetProductStatusAsync(message.ProductId, message.CustId, message.CustRoleId)
+                .GetProductStatus(message.ProductId, message.CustId, message.CustRoleId)
                 .Returns(expectedData);
 
             // Act

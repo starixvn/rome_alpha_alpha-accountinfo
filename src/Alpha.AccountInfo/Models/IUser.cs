@@ -12,7 +12,11 @@
 
         string SubAccName { get; }
 
+        int UserId { get; }
+
         string IP { get; }
+
+        string LangKey { get; }
 
         bool IsInternal { get; }
 

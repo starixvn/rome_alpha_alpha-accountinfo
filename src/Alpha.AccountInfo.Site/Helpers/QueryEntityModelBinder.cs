@@ -3,17 +3,21 @@
     using System;
     using System.Web.Mvc;
     using AccountInfo.Models;
+    using Requests;
 
     public class QueryEntityModelBinder : DefaultModelBinder
     {
         private static readonly Type[] IUserType = { typeof(IUser) };
+        private static readonly Type BaseRequestType = typeof(BaseRequest);
 
         protected override object CreateModel(
             ControllerContext controllerContext,
             ModelBindingContext bindingContext,
             Type modelType)
         {
-            if (modelType != null && modelType.GetConstructor(IUserType) != null)
+            if (modelType != null
+                && BaseRequestType.IsAssignableFrom(modelType)
+                && modelType.GetConstructor(IUserType) != null)
             {
                 return CreateInstanceOfAssignableReportBaseQuery(modelType);
             }
@@ -28,17 +32,5 @@
            ControllerContext controllerContext,
            ModelBindingContext bindingContext,
            Type modelType) => base.CreateModel(controllerContext, bindingContext, modelType);
-
-        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
-        {
-            var boundModel = CallBaseBindModel(controllerContext, bindingContext);
-
-            return boundModel;
-        }
-
-        protected virtual object CallBaseBindModel(
-           ControllerContext controllerContext,
-           ModelBindingContext bindingContext)
-            => base.BindModel(controllerContext, bindingContext);
     }
 }

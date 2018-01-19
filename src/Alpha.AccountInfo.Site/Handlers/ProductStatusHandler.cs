@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using AccountInfo.Models;
-    using AppResources;
+    using Constants;
     using Enumerations;
     using MediatR;
     using Requests.ProductStatus;
@@ -13,21 +13,25 @@
         IAsyncRequestHandler<ProductStatusQuery, ProductStatusViewModel>,
         IAsyncRequestHandler<ProductStatusCommand, Result>
     {
-        private readonly IUser user;
-        private readonly ProductStatusService service;
+        private readonly ProductStatusService statusService;
+        private readonly ProductStatusAuthorizationService authorizationService;
 
-        public ProductStatusHandler(IUser user, ProductStatusService service)
+        public ProductStatusHandler(
+            ProductStatusService statusService,
+            ProductStatusAuthorizationService authorizationService)
         {
-            this.user = user;
-            this.service = service;
+            this.statusService = statusService;
+            this.authorizationService = authorizationService;
         }
 
         public async Task<ProductStatusViewModel> Handle(ProductStatusQuery message)
         {
-            var loggedInUserRole = Enumeration.FromValue<UserLevel>(user.LevelId);
-            var isReadOnly = user.IsInternal || !user.CanUpdateAccount;
+            if (!authorizationService.CanView(message.ToProductStatusAuthorizationParam()))
+            {
+                return null;
+            }
 
-            var model = await service.GetProductStatusAsync(message.ProductId, message.CustId, message.CustRoleId);
+            var model = await statusService.GetProductStatusAsync(message.ProductId, message.CustId, message.CustRoleId);
 
             return new ProductStatusViewModel(
                 message.ProductId,
@@ -35,20 +39,20 @@
                 message.CustName,
                 Enumeration.FromValue<UserLevel>(message.CustRoleId),
                 model,
-                loggedInUserRole,
-                isReadOnly);
+                message.ViewerLevel,
+                message.IsViewOnly);
         }
 
         public async Task<Result> Handle(ProductStatusCommand message)
         {
-            var isReadOnly = user.IsInternal || !user.CanUpdateAccount;
-
-            if (isReadOnly)
+            if (!authorizationService.CanUpdate(message.ToProductStatusAuthorizationParam()))
             {
                 return Result.CreateForbiddenResult();
             }
 
-            return Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully);
+            return message.ProductId == ProductIdConstants.Keno ?
+                await statusService.UpdateKenoStatusAsync(message.ToUpdateProductStatusParam()) :
+                await statusService.UpdateProductStatusAsync(message.ToUpdateProductStatusParam());
         }
     }
 }

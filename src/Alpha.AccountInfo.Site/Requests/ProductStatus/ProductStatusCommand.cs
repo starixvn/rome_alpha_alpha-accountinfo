@@ -1,28 +1,32 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
     using AccountInfo.Models;
-    using AccountInfo.Models.ProductStatus;
-    using Enumerations;
     using MediatR;
 
-    public class ProductStatusCommand : IAsyncRequest<Result>
+    public class ProductStatusCommand : ProductStatusQuery, IRequest<Result>
     {
-        public int ProductId { get; set; }
-
-        public int CustId { get; set; }
-
-        public byte CustRoleId { get; set; }
-
-        public ProductStatusModel[] ProductStatus { get; set; }
-
-        public bool IsValid()
+        public ProductStatusCommand(IUser viewer)
+            : base(viewer)
         {
-            var custRole = Enumeration.FromValue<UserLevel>(CustRoleId);
-            var isValidRole = UserLevel.Member <= custRole && custRole <= UserLevel.Master;
+            ViewerUserId = viewer.UserId;
+            ViewerSubAccId = viewer.SubAccId;
+            LangKey = viewer.LangKey;
+            IP = viewer.IP;
+        }
 
-            var isValidProductStatus = ProductStatus != null && ProductStatus.Length > 0;
+        public string ProductStatus { get; set; }
 
-            return isValidRole && isValidProductStatus && ProductId > 0 && CustId > 0;
+        public int ViewerUserId { get; }
+
+        public int ViewerSubAccId { get; }
+
+        public string LangKey { get; }
+
+        public string IP { get; }
+
+        public override bool IsValid()
+        {
+            return base.IsValid() && !string.IsNullOrWhiteSpace(ProductStatus);
         }
     }
 }

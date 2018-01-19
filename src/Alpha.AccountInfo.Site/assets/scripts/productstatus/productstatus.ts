@@ -37,29 +37,19 @@ class ProductStatus {
         e.preventDefault();
 
         this.$.blockUI();
-        let productStatusData: any = this.getProductStatusData();
+        let formData: any = this.getProductStatusData();
 
-        if (!productStatusData) {
+        if (!formData) {
             this.showNoDataChange();
             this.$.unblockUI();
             return;
         }
 
         this.hideMessage();
-        //var self: any = this;
+        //let self: any = this;
 
-        this.$.ajax({
-            type: "POST",
-            url: this.$formProductStatus.attr("action"),
-            //contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(productStatusData),
-            dataType: "json",
-            success: this.afterUpdateStatusSuccessfully,
-            complete: this.$.unblockUI
-        });
-
-        //this.$.post(this.$formProductStatus.attr("action"), productStatusData, this.afterUpdateStatusSuccessfully, "json")
-        //    .always(self.$.unblockUI);
+        this.$.post(this.$formProductStatus.attr("action"), formData, this.afterUpdateStatusSuccessfully, "json")
+            .always(this.$.unblockUI);
     };
 
     getProductStatusData = (): any => {
@@ -89,7 +79,7 @@ class ProductStatus {
                 ProductId: this.productId,
                 CustId: this.custId,
                 CustRoleId: this.custRoleId,
-                ProductStatus: formData
+                ProductStatus: JSON.stringify(formData)
             };
         }
     };
@@ -99,7 +89,7 @@ class ProductStatus {
             this.showError(data.Message);
         } else {
             this.showSuccess(data.Message);
-            // setTimeout(parent.closeEditSportStatusPopup, 1000 * 3);
+            setTimeout(this.topWindow.closeEditSportStatusPopup, 1000 * 3);
         }
     };
 

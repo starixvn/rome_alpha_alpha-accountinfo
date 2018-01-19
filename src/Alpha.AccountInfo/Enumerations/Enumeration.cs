@@ -173,7 +173,7 @@
 
             if (matchingItem == null)
             {
-                var message = string.Format($"'{value}' is not a valid {description} in {typeof(T)}");
+                var message = $"'{value}' is not a valid {description} in {typeof(T)}";
                 throw new ArgumentOutOfRangeException(message);
             }
 

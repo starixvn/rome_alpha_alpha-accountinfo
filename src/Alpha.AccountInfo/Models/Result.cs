@@ -1,8 +1,8 @@
-﻿using System.Net;
-using Alpha.AccountInfo.AppResources;
-
-namespace Alpha.AccountInfo.Models
+﻿namespace Alpha.AccountInfo.Models
 {
+    using System.Net;
+    using AppResources;
+
     public class Result
     {
         private Result(int code, string message)

@@ -51,7 +51,7 @@
             cacheRefService.GetProductName(productId).Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
             var actualResult = actualData.First();
 
             // Assert
@@ -84,7 +84,7 @@
             dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
             var actualResult = actualData.ToList();
 
             // Assert
@@ -115,7 +115,7 @@
             cacheRefService.GetProductName(productId).Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
             var actualResult = actualData.First();
 
             // Assert
@@ -147,7 +147,7 @@
             cacheRefService.GetProductName(productId).Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
             var actualResult = actualData.First();
 
             // Assert
@@ -179,13 +179,35 @@
             dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
             var actualResult = actualData.ToList();
 
             // Assert
             Assert.True(
                 expectedResult[0].GroupId == actualResult[0].GroupId &&
                 expectedResult[0].ProductStatuses.Count() == actualResult[0].ProductStatuses.Count());
+        }
+
+        [Fact]
+        public async Task GetProductStatusAsync_NoData_ReturnsEmptyModel()
+        {
+            // Arrange
+            var productId = ProductIdConstants.RNGCasino;
+            var custId = 1176070;
+            byte roleId = 3;
+            var criteria = new SelectProductStatusCriteria(productId, custId);
+
+            var productStatus = Enumerable.Empty<ProductStatusModel>();
+            var expectedResult = Enumerable.Empty<GroupProductStatus>();
+
+            criteriaFactory.CreateSelectCriteria(productId, custId, roleId).Returns(criteria);
+            dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
+
+            // Act
+            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
+
+            // Assert
+            Assert.Equal(expectedResult.Any(), actualData.Any());
         }
 
         [Fact]

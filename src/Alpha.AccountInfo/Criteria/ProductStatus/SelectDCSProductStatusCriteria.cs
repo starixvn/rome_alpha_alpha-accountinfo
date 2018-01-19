@@ -16,10 +16,7 @@
 
         public int SettingType { get; }
 
-        public override string GetSettingKey()
-        {
-            return "Acc_CustSetting_StatusSettingSelect";
-        }
+        public override string GetSettingKey() => "Acc_CustSetting_StatusSettingSelect";
 
         public override bool IsValid()
         {

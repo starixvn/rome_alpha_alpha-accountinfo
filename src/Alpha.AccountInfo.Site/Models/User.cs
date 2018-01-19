@@ -22,10 +22,14 @@
 
         public string SubAccName => userSession.SubUserName;
 
+        public int UserId => userSession.UserId;
+
         public string IP => userSession.UserLoginIp;
+
+        public string LangKey => userSession.LangKey;
 
         public bool IsInternal => userSession.IsInternal;
 
-        public bool CanUpdateAccount => userSession.SubPageAccess.UpdateAccount;
+        public bool CanUpdateAccount => userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount;
     }
 }

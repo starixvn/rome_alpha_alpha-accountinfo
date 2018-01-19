@@ -5,8 +5,16 @@
     using MediatR;
     using ViewModels.ProductStatus;
 
-    public class ProductStatusQuery : IAsyncRequest<ProductStatusViewModel>
+    public class ProductStatusQuery : BaseRequest, IRequest<ProductStatusViewModel>
     {
+        public ProductStatusQuery(IUser viewer)
+            : base(viewer)
+        {
+            ViewerId = viewer.Id;
+            ViewerLevel = Enumeration.FromValue<UserLevel>(viewer.LevelId);
+            IsViewOnly = viewer.IsInternal || !viewer.CanUpdateAccount;
+        }
+
         public int ProductId { get; set; }
 
         public int CustId { get; set; }
@@ -15,11 +23,17 @@
 
         public byte CustRoleId { get; set; }
 
-        public bool IsValid()
-        {
-            var custRole = Enumeration.FromValue<UserLevel>(CustRoleId);
+        public UserLevel CustRole => Enumeration.FromValue<UserLevel>(CustRoleId);
 
-            return ProductId > 0 && CustId > 0 && UserLevel.Member <= custRole && custRole <= UserLevel.Master;
+        public int ViewerId { get; }
+
+        public UserLevel ViewerLevel { get; }
+
+        public bool IsViewOnly { get; }
+
+        public override bool IsValid()
+        {
+            return ProductId > 0 && CustId > 0 && UserLevel.Member <= CustRole && CustRole <= UserLevel.Master;
         }
     }
 }
