@@ -99,6 +99,15 @@
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
                 .Returns(productStatus);
+            cacheRefService
+                .GetBetTypeName(1501)
+                .Returns("Australia");
+            cacheRefService
+                .GetBetTypeName(1503)
+                .Returns("Slovakia");
+            cacheRefService
+                .GetBetTypeName(1504)
+                .Returns("Canada");
 
             // Act
             var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
@@ -107,6 +116,7 @@
             // Assert
             Assert.True(
                 expectedResult[0].GroupId == actualResult[0].GroupId &&
+                expectedResult[0].GroupName == actualResult[0].GroupName &&
                 expectedResult[0].ProductStatuses.Count() == actualResult[0].ProductStatuses.Count());
         }
 

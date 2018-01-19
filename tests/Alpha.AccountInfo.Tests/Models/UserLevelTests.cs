@@ -8,6 +8,23 @@
     public class UserLevelTests
     {
         [Theory]
+        [InlineData(4, "Super")]
+        [InlineData(3, "Master")]
+        [InlineData(2, "Agent")]
+        [InlineData(1, "Member")]
+        public void GetDisplayName_Always_ReturnsExpectedResult(byte roleId, string expectedResult)
+        {
+            // Arrange
+            var userLevel = Enumeration.FromValue<UserLevel>(roleId);
+
+            // Act
+            var actualResult = userLevel.GetDisplayName();
+
+            // Assert
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Theory]
         [InlineData(4, false)]
         [InlineData(3, false)]
         [InlineData(2, false)]

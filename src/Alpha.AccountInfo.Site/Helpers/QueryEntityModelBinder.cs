@@ -19,13 +19,13 @@
                 && BaseRequestType.IsAssignableFrom(modelType)
                 && modelType.GetConstructor(IUserType) != null)
             {
-                return CreateInstanceOfAssignableReportBaseQuery(modelType);
+                return CreateInstanceOfAssignableBaseRequest(modelType);
             }
 
             return CallBaseCreateModel(controllerContext, bindingContext, modelType);
         }
 
-        protected virtual object CreateInstanceOfAssignableReportBaseQuery(Type modelType)
+        protected virtual object CreateInstanceOfAssignableBaseRequest(Type modelType)
             => Activator.CreateInstance(modelType, DependencyResolver.Current.GetService<IUser>());
 
         protected virtual object CallBaseCreateModel(

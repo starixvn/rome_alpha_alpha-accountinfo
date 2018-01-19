@@ -31,13 +31,21 @@
             authorizationService = new ProductStatusAuthorizationServiceImpl(repository, canViewProduct);
         }
 
-        [Fact]
-        public void CanView_DirectDownline_ReturnsTrue()
+        [Theory]
+        [InlineData(1176083, 1176070, 3, 4)]
+        [InlineData(1176086, 1176083, 2, 3)]
+        [InlineData(1176092, 1176086, 1, 2)]
+        public void CanView_DirectDownline_ReturnsTrue(int custId, int viewerId, byte custRoleId, byte viewerRoleId)
         {
             // Arrange
             var expectedResult = true;
-            var customerStatus = new CustomerStatus(CustIdTest, "master1", CustRoleTest.Value, false, false, ViewerIdTest, 0, 0, true);
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+            var customerStatus = new CustomerStatus(custId, custRoleId, 1176070, 1176083, 1176086, true);
+            var param = new ProductStatusAuthorizationParam(
+                ProductIdTest,
+                custId,
+                Enumeration.FromValue<UserLevel>(custRoleId),
+                viewerId,
+                Enumeration.FromValue<UserLevel>(viewerRoleId));
 
             repository
                 .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
@@ -51,16 +59,20 @@
         }
 
         [Theory]
-        [InlineData(4)]
-        [InlineData(3)]
-        [InlineData(2)]
-        [InlineData(1)]
-        public void CanView_KenoWithoutDirectDownline_ReturnsTrue(byte roleId)
+        [InlineData(1176086, 1176070, 2, 4)]
+        [InlineData(1176092, 1176070, 1, 4)]
+        [InlineData(1176092, 1176083, 1, 3)]
+        public void CanView_KenoWithoutDirectDownline_ReturnsTrue(int custId, int viewerId, byte custRoleId, byte viewerRoleId)
         {
             // Arrange
             var expectedResult = true;
-            var customerStatus = new CustomerStatus(CustIdTest, "master1", roleId, false, false, ViewerIdTest, 0, 0, true);
-            var param = new ProductStatusAuthorizationParam(ProductIdConstants.Keno, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+            var customerStatus = new CustomerStatus(custId, custRoleId, 1176070, 1176083, 1176086, true);
+            var param = new ProductStatusAuthorizationParam(
+                ProductIdConstants.Keno,
+                custId,
+                Enumeration.FromValue<UserLevel>(custRoleId),
+                viewerId,
+                Enumeration.FromValue<UserLevel>(viewerRoleId));
 
             repository
                 .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
@@ -97,7 +109,7 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, "master1", CustRoleTest.Value, false, false, 0, 0, 0, true);
+            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
@@ -119,7 +131,7 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, "master1", roleId, false, false, ViewerIdTest, 0, 0, true);
+            var customerStatus = new CustomerStatus(CustIdTest, roleId, ViewerIdTest, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
@@ -138,7 +150,7 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, "master1", CustRoleTest.Value, false, false, ViewerIdTest, 0, 0, false);
+            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, ViewerIdTest, 0, 0, false);
             var param = new ProductStatusAuthorizationParam(ProductIdConstants.RNGCasino, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
@@ -157,7 +169,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var customerStatus = new CustomerStatus(CustIdTest, "master1", CustRoleTest.Value, false, false, ViewerIdTest, 0, 0, true);
+            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, ViewerIdTest, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
@@ -179,7 +191,7 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, "master1", roleId, false, false, ViewerIdTest, 0, 0, true);
+            var customerStatus = new CustomerStatus(CustIdTest, roleId, ViewerIdTest, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdConstants.Keno, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository

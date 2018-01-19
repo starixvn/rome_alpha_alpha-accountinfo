@@ -18,7 +18,9 @@
             userSession.RoleId.Returns((byte)2);
             userSession.SubAccId.Returns(3);
             userSession.SubUserName.Returns("subaccname");
+            userSession.UserId.Returns(8);
             userSession.UserLoginIp.Returns("::1");
+            userSession.LangKey.Returns("E");
             userSession.IsInternal.Returns(false);
 
             // Act
@@ -31,7 +33,9 @@
                 user.LevelId == 2 &&
                 user.SubAccId == 3 &&
                 user.SubAccName == "subaccname" &&
+                user.UserId == 8 &&
                 user.IP == "::1" &&
+                user.LangKey == "E" &&
                 user.IsInternal == false);
         }
 
