@@ -32,7 +32,9 @@
         public async Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(int productId, int custId, byte roleId)
         {
             ICriteria criteria = criteriaFactory.CreateSelectCriteria(productId, custId, roleId);
-            var rawData = await repository.FetchAsync<ProductStatusModel>(criteria);
+            var rawData = await repository
+                .FetchAsync<ProductStatusModel>(criteria)
+                .ConfigureAwait(false);
 
             var rawDataCount = rawData != null ? rawData.Count() : 0;
 

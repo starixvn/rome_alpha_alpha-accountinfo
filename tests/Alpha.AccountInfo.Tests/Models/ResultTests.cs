@@ -38,42 +38,48 @@
         public void CreateSuccessResult_Always_ReturnsTrue()
         {
             // Arrange
-            var code = 0;
-            var expectedResult = Result.CreateSuccessResult();
+            var expectedCode = 0;
+            var expectedMessage = string.Empty;
 
             // Act
-            var actualResult = code;
+            var actualResult = Result.CreateSuccessResult(expectedMessage);
 
             // Assert
-            Assert.Equal(expectedResult.Code, actualResult);
+            Assert.True(
+                actualResult.Code == expectedCode &&
+                actualResult.Message == expectedMessage);
         }
 
         [Fact]
         public void CreateErrorResult_Always_ReturnsTrue()
         {
             // Arrange
-            var code = 500;
-            var expectedResult = Result.CreateErrorResult(code, "Internal Server Error.");
+            var expectedCode = 500;
+            var expectedMessage = "Internal Server Error.";
 
             // Act
-            var actualResult = code;
+            var actualResult = Result.CreateErrorResult(expectedCode, expectedMessage);
 
             // Assert
-            Assert.Equal(expectedResult.Code, actualResult);
+            Assert.True(
+                actualResult.Code == expectedCode &&
+                actualResult.Message == expectedMessage);
         }
 
         [Fact]
         public void CreateUnauthorizedResult_Always_ReturnsTrue()
         {
             // Arrange
-            var code = 403;
-            var expectedResult = Result.CreateForbiddenResult();
+            var expectedCode = 403;
+            var expectedMessage = "You are not authorized on this function.";
 
             // Act
-            var actualResult = code;
+            var actualResult = Result.CreateForbiddenResult();
 
             // Assert
-            Assert.Equal(expectedResult.Code, actualResult);
+            Assert.True(
+                actualResult.Code == expectedCode &&
+                actualResult.Message == expectedMessage);
         }
     }
 }

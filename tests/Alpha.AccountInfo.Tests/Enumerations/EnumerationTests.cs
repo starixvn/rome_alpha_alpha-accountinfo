@@ -404,5 +404,22 @@
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => Enumeration.FromValue<UserLevel>(noMatchingValue));
         }
+
+        [Theory]
+        [InlineData("Member")]
+        [InlineData("Agent")]
+        [InlineData("Master")]
+        [InlineData("Super")]
+        public void ToString_Always_ReturnsDisplayName(string displayName)
+        {
+            // Arrange
+            UserLevel value = Enumeration.FromDisplayName<UserLevel>(displayName);
+
+            // Act
+            var actual = value.ToString();
+
+            // Assert
+            Assert.Equal(displayName, actual);
+        }
     }
 }
