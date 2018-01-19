@@ -29,18 +29,28 @@
             return string.Join("<br/>", attributes.Select(a => a.Value));
         }
 
+        public override bool IsValid()
+        {
+            return base.IsValid() && !string.IsNullOrEmpty(IsDisabled);
+        }
+
         private static string GetIsDisabledXmlParam(ProductStatusParam[] statusParams)
         {
-            var builder = new StringBuilder("<ROOT>");
+            var max = statusParams?.Length;
 
-            for (int i = 0; i < statusParams?.Length; i++)
+            if (max > 0)
             {
-                builder.Append(BuildProductStatusElement(statusParams[i]));
+                var builder = new StringBuilder();
+
+                for (int i = 0; i < max; i++)
+                {
+                    builder.Append(BuildProductStatusElement(statusParams[i]));
+                }
+
+                return $"<ROOT>{builder.ToString()}</ROOT>";
             }
 
-            builder.Append("</ROOT>");
-
-            return builder.ToString();
+            return string.Empty;
         }
 
         private static string BuildProductStatusElement(ProductStatusParam param)

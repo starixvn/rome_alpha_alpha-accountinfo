@@ -21,7 +21,6 @@
         {
             switch (productId)
             {
-                case ProductIdConstants.Racing:
                 case ProductIdConstants.RNGCasino:
                 case ProductIdConstants.Keno:
                 case ProductIdConstants.ColossusBets:
