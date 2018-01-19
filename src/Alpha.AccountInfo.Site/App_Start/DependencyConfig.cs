@@ -9,6 +9,7 @@
     using MediatR;
     using Models;
     using RemotingRef;
+    using Services.ProductStatus;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
@@ -67,9 +68,12 @@
 
         private static void RegisterServices(Container container)
         {
-            container.RegisterSingleton<IUserSession, UserSessionExt>();
-            container.RegisterSingleton<IUser, User>();
-            container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.Register<IUserSession, UserSessionExt>(Lifestyle.Singleton);
+            container.Register<IUser, User>(Lifestyle.Singleton);
+            container.Register<CacheRefService, CacheRefServiceImpl>(Lifestyle.Singleton);
+
+            container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Scoped);
+            container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
         }
 
         private static void RegisterStaticInstances(Container container)

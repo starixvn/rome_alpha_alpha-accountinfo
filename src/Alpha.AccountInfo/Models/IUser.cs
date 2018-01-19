@@ -6,8 +6,16 @@
 
         string Name { get; }
 
-        string Language { get; }
-
         byte LevelId { get; }
+
+        int SubAccId { get; }
+
+        string SubAccName { get; }
+
+        string IP { get; }
+
+        bool IsInternal { get; }
+
+        bool CanUpdateAccount { get; }
     }
 }

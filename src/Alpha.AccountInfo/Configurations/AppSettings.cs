@@ -9,7 +9,7 @@
         [ThreadStatic]
         private static NameValueCollection appSettingValues;
 
-        internal static NameValueCollection AppSettingValues
+        public static NameValueCollection AppSettingValues
         {
             get { return appSettingValues ?? ConfigurationManager.AppSettings; }
 

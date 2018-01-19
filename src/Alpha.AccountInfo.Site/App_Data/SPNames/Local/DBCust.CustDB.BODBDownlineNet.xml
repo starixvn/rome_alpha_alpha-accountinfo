@@ -1,4 +1,4 @@
-﻿<Functions SiteId="105" SiteName="Member Information">
+﻿<Functions SiteId="" SiteName="Account Info">
   <Function Name="Product Status">
     <Setting Key="Acc_CustomerSelStatusByProductId" SpName="Acc_CustomerSelStatusByProductId" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCUST.CustDB.BODBDownlineNet" />

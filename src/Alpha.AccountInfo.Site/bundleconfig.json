@@ -4,5 +4,17 @@
     "inputFiles": [
       "assets/styles/site.css"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/productstatus/productstatus.css",
+    "inputFiles": [
+      "assets/styles/productstatus/productstatus.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/productstatus/productstatus.js",
+    "inputFiles": [
+      "assets/scripts/productstatus/productstatus.js"
+    ]
   }
 ]

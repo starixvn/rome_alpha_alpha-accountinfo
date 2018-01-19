@@ -6,7 +6,7 @@
     using Web;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed")]
-    public abstract class AccountInfoBaseController : BaseAsyncController
+    public abstract class AccountInfoBaseController : BaseController
     {
         protected readonly IMediator mediator;
 
