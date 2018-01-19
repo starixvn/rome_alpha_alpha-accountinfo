@@ -2,16 +2,21 @@
 {
     using System;
     using AccountInfo.Criteria.ProductStatus;
+    using Constants;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
     public class SelectDCSProductStatusCriteriaTests
     {
+        private const int ProductIdTest = ProductIdConstants.MacauGames;
+        private const int CustIdTest = 1176083;
+        private const byte RoleIdTest = 3;
+
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new SelectDCSProductStatusCriteria(22, 1176070, 3);
+            var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, CustIdTest, RoleIdTest);
             var expectedSettingKey = "Acc_CustSetting_StatusSettingSelect";
 
             // Act
@@ -26,7 +31,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var criteria = new SelectDCSProductStatusCriteria(22, 1176070, 3);
+            var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, CustIdTest, RoleIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -39,11 +44,11 @@
         [InlineData(int.MinValue, false)]
         [InlineData(-1, false)]
         [InlineData(0, false)]
-        [InlineData(22, true)]
+        [InlineData(ProductIdTest, true)]
         public void IsValid_ProductId_ReturnsExpectedResult(int productId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectDCSProductStatusCriteria(productId, 1176070, 3);
+            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -56,11 +61,12 @@
         [InlineData(int.MinValue, false)]
         [InlineData(-1, false)]
         [InlineData(0, false)]
+        [InlineData(CustIdTest, true)]
         [InlineData(int.MaxValue, true)]
         public void IsValid_CustId_ReturnsExpectedResult(int custId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectDCSProductStatusCriteria(22, custId, 3);
+            var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, custId, RoleIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -73,7 +79,7 @@
         public void IsValid_InvalidRoleId_ThrowsArgumentOutOfRangeException()
         {
             // Arrange
-            var criteria = new SelectDCSProductStatusCriteria(22, 1176070, 0);
+            var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, CustIdTest, 0);
 
             // Act& Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => criteria.IsValid());
@@ -87,7 +93,7 @@
         public void IsValid_RoleId_ReturnsExpectedResult(byte roleId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectDCSProductStatusCriteria(22, 1176070, roleId);
+            var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, CustIdTest, roleId);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -104,7 +110,7 @@
         public void IsValid_SettingType_ReturnsExpectedResult(int settingType, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectDCSProductStatusCriteria(22, 1176070, 3, settingType);
+            var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, CustIdTest, RoleIdTest, settingType);
 
             // Act
             var actualResult = criteria.IsValid();

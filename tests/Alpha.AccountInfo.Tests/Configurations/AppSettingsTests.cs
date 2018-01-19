@@ -14,6 +14,20 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
+                ["SystemId"] = "2"
+            };
+
+            // Act & Assert
+            Assert.Throws<ConfigurationErrorsException>(() => AppSettings.Verify());
+        }
+
+        [Fact]
+        public void Verify_MissingSystemId_ThrowsConfigurationErrorsException()
+        {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection
+            {
+                ["StoredProcedurePath"] = "Local"
             };
 
             // Act & Assert
@@ -27,6 +41,7 @@
             AppSettings.AppSettingValues = new NameValueCollection
             {
                 ["StoredProcedurePath"] = "Local",
+                ["SystemId"] = "2"
             };
 
             // Act

@@ -109,11 +109,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettingsTests.cs" />
-    <Compile Include="Criteria\NonQueryCriteriaForTesting.cs" />
-    <Compile Include="Criteria\NonQueryCriteriaTests.cs" />
+    <Compile Include="Criteria\ProductStatus\NonQueryProductStatusCriteriaForTesting.cs" />
+    <Compile Include="Criteria\ProductStatus\NonQueryProductStatusCriteriaTests.cs" />
     <Compile Include="Criteria\ProductStatus\SelectDCSProductStatusCriteriaTests.cs" />
     <Compile Include="Criteria\ProductStatus\SelectNG2ProductStatusCriteriaTests.cs" />
     <Compile Include="Criteria\ProductStatus\SelectProductStatusCriteriaTests.cs" />
+    <Compile Include="Criteria\ProductStatus\UpdateCasinoStatusCriteriaTests.cs" />
+    <Compile Include="Criteria\ProductStatus\UpdateColossusBetStatusCriteriaTests.cs" />
+    <Compile Include="Criteria\ProductStatus\UpdateDCSProductStatusCriteriaTests.cs" />
     <Compile Include="Enumerations\EnumerationTests.cs" />
     <Compile Include="Fixtures\AnyValueCreatorFixture.cs" />
     <Compile Include="Models\ResultTests.cs" />

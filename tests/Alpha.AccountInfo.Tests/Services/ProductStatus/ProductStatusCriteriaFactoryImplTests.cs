@@ -36,7 +36,7 @@
         public void CreateSelectCriteria_ValidProductId_ReturnsSelectNG2ProductStatusCriteria()
         {
             // Arrange
-            var expectedCriteria = new SelectNG2ProductStatusCriteria(ProductIdConstants.NG2, 1176070);
+            var expectedCriteria = new SelectNG2StatusCriteria(ProductIdConstants.NG2, 1176070);
 
             // Act
             var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(ProductIdConstants.NG2, 1176070, 3);

@@ -15,6 +15,9 @@
     [Trait("Category", "ProductStatus")]
     public class ProductStatusServiceImplTests
     {
+        private const int CustIdTest = 1176083;
+        private const byte RoleIdTest = 3;
+
         private readonly IDynamicRepository dynamicRepository;
         private readonly CacheRefService cacheRefService;
         private readonly ProductStatusCriteriaFactory criteriaFactory;
@@ -35,23 +38,21 @@
             // Arrange
             var productId = ProductIdConstants.RNGCasino;
             var productName = "Casino";
-            var custId = 1176070;
-            byte roleId = 3;
             IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, 208, 2101, false, true, false, false, false, true)
+                new ProductStatusModel(productId, 208, 2101, false, false)
             };
-            var criteria = new SelectProductStatusCriteria(productId, custId);
+            var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
             var expectedResult = new List<GroupProductStatus>
             {
                 new GroupProductStatus(productId, productName, productStatus)
             };
-            criteriaFactory.CreateSelectCriteria(productId, custId, roleId).Returns(criteria);
+            criteriaFactory.CreateSelectCriteria(productId, CustIdTest, RoleIdTest).Returns(criteria);
             dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
             cacheRefService.GetProductName(productId).Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
             var actualResult = actualData.First();
 
             // Assert
@@ -67,24 +68,22 @@
             // Arrange
             var productId = ProductIdConstants.Keno;
             var sportType = 202;
-            var custId = 1176070;
-            byte roleId = 3;
             IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, sportType, 1501, false, true, false, false, false, true),
-                new ProductStatusModel(productId, sportType, 1503, false, true, false, false, false, true),
-                new ProductStatusModel(productId, sportType, 1504, false, true, false, false, false, true)
+                new ProductStatusModel(productId, sportType, 1501, false, false),
+                new ProductStatusModel(productId, sportType, 1503, false, false),
+                new ProductStatusModel(productId, sportType, 1504, false, false)
             };
-            var criteria = new SelectProductStatusCriteria(productId, custId);
+            var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
             var expectedResult = new List<GroupProductStatus>
             {
                 new GroupProductStatus(sportType, productStatus)
             };
-            criteriaFactory.CreateSelectCriteria(productId, custId, roleId).Returns(criteria);
+            criteriaFactory.CreateSelectCriteria(productId, CustIdTest, RoleIdTest).Returns(criteria);
             dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
             var actualResult = actualData.ToList();
 
             // Assert
@@ -99,23 +98,21 @@
             // Arrange
             var productId = ProductIdConstants.NG2;
             var productName = "NG2";
-            var custId = 1176070;
-            byte roleId = 3;
             IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, 212, 4001, false, true, false, false, false, true)
+                new ProductStatusModel(productId, 212, 4001, false, false)
             };
-            var criteria = new SelectNG2ProductStatusCriteria(productId, custId);
+            var criteria = new SelectNG2StatusCriteria(productId, CustIdTest);
             var expectedResult = new List<GroupProductStatus>
             {
                 new GroupProductStatus(productId, productName, productStatus)
             };
-            criteriaFactory.CreateSelectCriteria(productId, custId, roleId).Returns(criteria);
+            criteriaFactory.CreateSelectCriteria(productId, CustIdTest, RoleIdTest).Returns(criteria);
             dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
             cacheRefService.GetProductName(productId).Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
             var actualResult = actualData.First();
 
             // Assert
@@ -131,23 +128,21 @@
             // Arrange
             var productId = ProductIdConstants.MacauGames;
             var productName = "Macau Games";
-            var custId = 1176070;
-            byte roleId = 3;
             IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, 212, 4001, false, true, false, false, false, true)
+                new ProductStatusModel(productId, 212, 4001, false, false)
             };
-            var criteria = new SelectDCSProductStatusCriteria(productId, custId, roleId);
+            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
             var expectedResult = new List<GroupProductStatus>
             {
                 new GroupProductStatus(productId, productName, productStatus)
             };
-            criteriaFactory.CreateSelectCriteria(productId, custId, roleId).Returns(criteria);
+            criteriaFactory.CreateSelectCriteria(productId, CustIdTest, RoleIdTest).Returns(criteria);
             dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
             cacheRefService.GetProductName(productId).Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
             var actualResult = actualData.First();
 
             // Assert
@@ -163,23 +158,21 @@
             // Arrange
             var productId = ProductIdConstants.Allbet;
             var sportType = 211;
-            var custId = 1176070;
-            byte roleId = 3;
             IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, sportType, 2401, false, true, false, false, false, true),
-                new ProductStatusModel(productId, sportType, 2402, false, true, false, false, false, true),
+                new ProductStatusModel(productId, sportType, 2401, false, false),
+                new ProductStatusModel(productId, sportType, 2402, false, false)
             };
-            var criteria = new SelectDCSProductStatusCriteria(productId, custId, roleId);
+            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
             var expectedResult = new List<GroupProductStatus>
             {
                 new GroupProductStatus(sportType, productStatus)
             };
-            criteriaFactory.CreateSelectCriteria(productId, custId, roleId).Returns(criteria);
+            criteriaFactory.CreateSelectCriteria(productId, CustIdTest, RoleIdTest).Returns(criteria);
             dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
             var actualResult = actualData.ToList();
 
             // Assert
@@ -193,40 +186,16 @@
         {
             // Arrange
             var productId = ProductIdConstants.RNGCasino;
-            var custId = 1176070;
-            byte roleId = 3;
-            var criteria = new SelectProductStatusCriteria(productId, custId);
+            var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
 
             var productStatus = Enumerable.Empty<ProductStatusModel>();
             var expectedResult = Enumerable.Empty<GroupProductStatus>();
 
-            criteriaFactory.CreateSelectCriteria(productId, custId, roleId).Returns(criteria);
+            criteriaFactory.CreateSelectCriteria(productId, CustIdTest, RoleIdTest).Returns(criteria);
             dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatus(productId, custId, roleId);
-
-            // Assert
-            Assert.Equal(expectedResult.Any(), actualData.Any());
-        }
-
-        [Fact]
-        public async Task GetProductStatusAsync_NoData_ReturnsEmptyModel()
-        {
-            // Arrange
-            var productId = ProductIdConstants.RNGCasino;
-            var custId = 1176070;
-            byte roleId = 3;
-            var criteria = new SelectProductStatusCriteria(productId, custId);
-
-            var productStatus = Enumerable.Empty<ProductStatusModel>();
-            var expectedResult = Enumerable.Empty<GroupProductStatus>();
-
-            criteriaFactory.CreateSelectCriteria(productId, custId, roleId).Returns(criteria);
-            dynamicRepository.FetchAsync<ProductStatusModel>(criteria).Returns(productStatus);
-
-            // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, custId, roleId);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
 
             // Assert
             Assert.Equal(expectedResult.Any(), actualData.Any());

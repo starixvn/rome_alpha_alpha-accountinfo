@@ -1,16 +1,20 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
     using AccountInfo.Criteria.ProductStatus;
+    using Constants;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
     public class SelectNG2ProductStatusCriteriaTests
     {
+        private const int ProductIdTest = ProductIdConstants.NG2;
+        private const int CustIdTest = 1176083;
+
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new SelectNG2ProductStatusCriteria(23, 1176070);
+            var criteria = new SelectNG2StatusCriteria(ProductIdTest, CustIdTest);
             var expectedSettingKey = "Acc_CustSetting_DisableGameStatusSelect";
 
             // Act
@@ -25,7 +29,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var criteria = new SelectNG2ProductStatusCriteria(23, 1176070);
+            var criteria = new SelectNG2StatusCriteria(ProductIdTest, CustIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -38,11 +42,11 @@
         [InlineData(int.MinValue, false)]
         [InlineData(-1, false)]
         [InlineData(0, false)]
-        [InlineData(23, true)]
+        [InlineData(ProductIdTest, true)]
         public void IsValid_ProductId_ReturnsExpectedResult(int productId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectNG2ProductStatusCriteria(productId, 1176070);
+            var criteria = new SelectNG2StatusCriteria(productId, CustIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -55,11 +59,12 @@
         [InlineData(int.MinValue, false)]
         [InlineData(-1, false)]
         [InlineData(0, false)]
+        [InlineData(CustIdTest, true)]
         [InlineData(int.MaxValue, true)]
         public void IsValid_CustId_ReturnsExpectedResult(int custId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectNG2ProductStatusCriteria(23, custId);
+            var criteria = new SelectNG2StatusCriteria(ProductIdTest, custId);
 
             // Act
             var actualResult = criteria.IsValid();

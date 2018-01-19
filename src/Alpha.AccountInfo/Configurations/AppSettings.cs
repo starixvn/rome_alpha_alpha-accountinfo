@@ -25,7 +25,7 @@
         public static void Verify()
         {
             Require(StoredProcedurePath, nameof(StoredProcedurePath));
-            Require(nameof(SystemId), nameof(SystemId));
+            Require(GetConfigValue("SystemId"), nameof(SystemId));
         }
 
         private static void Require(string key, string keyName)

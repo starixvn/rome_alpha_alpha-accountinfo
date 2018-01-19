@@ -1,16 +1,20 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
     using AccountInfo.Criteria.ProductStatus;
+    using Constants;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
     public class SelectProductStatusCriteriaTests
     {
+        private const int ProductIdTest = ProductIdConstants.Keno;
+        private const int CustIdTest = 1176083;
+
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new SelectProductStatusCriteria(8, 1176070);
+            var criteria = new SelectProductStatusCriteria(ProductIdTest, CustIdTest);
             var expectedSettingKey = "Acc_CustomerSelStatusByProductId";
 
             // Act
@@ -25,7 +29,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var criteria = new SelectProductStatusCriteria(8, 1176070);
+            var criteria = new SelectProductStatusCriteria(ProductIdTest, CustIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -38,11 +42,12 @@
         [InlineData(int.MinValue, false)]
         [InlineData(-1, false)]
         [InlineData(0, false)]
+        [InlineData(ProductIdTest, true)]
         [InlineData(int.MaxValue, true)]
         public void IsValid_ProductId_ReturnsExpectedResult(int productId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectProductStatusCriteria(productId, 1176070);
+            var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -55,11 +60,12 @@
         [InlineData(int.MinValue, false)]
         [InlineData(-1, false)]
         [InlineData(0, false)]
+        [InlineData(CustIdTest, true)]
         [InlineData(int.MaxValue, true)]
         public void IsValid_CustId_ReturnsExpectedResult(int custId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectProductStatusCriteria(8, custId);
+            var criteria = new SelectProductStatusCriteria(ProductIdTest, custId);
 
             // Act
             var actualResult = criteria.IsValid();
