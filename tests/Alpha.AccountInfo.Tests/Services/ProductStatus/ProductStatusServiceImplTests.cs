@@ -250,9 +250,10 @@
         }
 
         [Fact]
-        public async Task UpdateKenoStatusAsync_ValidCriteria_ReturnsSucessfulResult()
+        public async Task UpdateProductStatusAsync_Keno_ReturnsSucessfulResult()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new List<UpdateKenoStatusCriteria>
             {
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070),
@@ -266,16 +267,17 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateKenoStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(actualResult.IsSuccess());
         }
 
         [Fact]
-        public async Task UpdateKenoStatusAsync_ValidCriteria_ReturnsErrorMessage()
+        public async Task UpdateProductStatusAsync_Keno_ReturnsErrorMessage()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new List<UpdateKenoStatusCriteria>
             {
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070)
@@ -297,7 +299,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateKenoStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
@@ -306,9 +308,10 @@
         }
 
         [Fact]
-        public async Task UpdateKenoStatusAsync_ValidCriteria_ReturnsGroupErrorMessage()
+        public async Task UpdateProductStatusAsync_Keno_ReturnsGroupErrorMessage()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new List<UpdateKenoStatusCriteria>
             {
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070)
@@ -330,7 +333,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateKenoStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
@@ -341,6 +344,7 @@
         public async Task UpdateProductStatusAsync_Casino_ReturnsSucessfulResult()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(ProductIdConstants.RNGCasino, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
             criteriaFactory
                 .CreateUpdateCriteria(Arg.Any<UpdateProductStatusParam>())
@@ -350,7 +354,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(actualResult.IsSuccess());
@@ -360,6 +364,7 @@
         public async Task UpdateProductStatusAsync_Casino_ReturnsErrorResult()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(ProductIdConstants.RNGCasino, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
             {
                 ErrCode = 102,
@@ -373,7 +378,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
@@ -384,6 +389,7 @@
         public async Task UpdateProductStatusAsync_ColossusBets_ReturnsSucessfulResult()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(ProductIdConstants.ColossusBets, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateColossusBetStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
             criteriaFactory
                 .CreateUpdateCriteria(Arg.Any<UpdateProductStatusParam>())
@@ -393,7 +399,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(actualResult.IsSuccess());
@@ -403,6 +409,7 @@
         public async Task UpdateProductStatusAsync_ColossusBets_ReturnsErrorResult()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(ProductIdConstants.ColossusBets, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateColossusBetStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
             {
                 ErrCode = 102,
@@ -416,7 +423,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
@@ -427,6 +434,7 @@
         public async Task UpdateProductStatusAsync_DSC_ReturnsSucessfulResult()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(30, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
                 new ProductStatusParam(211, 2401, false),
@@ -440,7 +448,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(actualResult.IsSuccess());
@@ -450,6 +458,7 @@
         public async Task UpdateProductStatusAsync_DSC_ReturnsErrorResult()
         {
             // Arrange
+            var param = new UpdateProductStatusParam(30, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
                 new ProductStatusParam(211, 2401, false),
@@ -467,7 +476,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<UpdateProductStatusParam>());
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&

@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using AccountInfo.Models;
-    using Constants;
     using MediatR;
     using Requests.ProductStatus;
     using Services.ProductStatus;
@@ -42,9 +41,7 @@
                 return Result.CreateForbiddenResult();
             }
 
-            return message.ProductId == ProductIdConstants.Keno ?
-                await statusService.UpdateKenoStatusAsync(message.ToUpdateProductStatusParam()) :
-                await statusService.UpdateProductStatusAsync(message.ToUpdateProductStatusParam());
+            return await statusService.UpdateProductStatusAsync(message.ToUpdateProductStatusParam());
         }
     }
 }

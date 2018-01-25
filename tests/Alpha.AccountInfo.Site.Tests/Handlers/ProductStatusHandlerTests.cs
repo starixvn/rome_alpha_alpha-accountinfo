@@ -112,7 +112,7 @@
         }
 
         [Fact]
-        public async Task HandleProductStatusCommand_Keno_ReturnsSuccessResult()
+        public async Task HandleProductStatusCommand_Always_ReturnsSuccessResult()
         {
             // Arrange
             user.Id.Returns(ViewerIdTest);
@@ -130,7 +130,7 @@
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             statusService
-                .UpdateKenoStatusAsync(Arg.Any<UpdateProductStatusParam>())
+                .UpdateProductStatusAsync(Arg.Any<UpdateProductStatusParam>())
                 .Returns(expectedResult);
 
             // Act

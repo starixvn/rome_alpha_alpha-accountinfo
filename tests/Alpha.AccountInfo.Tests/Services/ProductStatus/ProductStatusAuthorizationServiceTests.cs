@@ -147,30 +147,6 @@
             Assert.Equal(expectedResult, actualResult);
         }
 
-        [Fact]
-        public void CanView_CustomerStatusInvalidRole_ReturnsFalse()
-        {
-            // Arrange
-            var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
-            var param = new ProductStatusAuthorizationParam(
-                ProductIdTest,
-                CustIdTest,
-                CustRoleTest,
-                ViewerIdTest,
-                Enumeration.FromValue<UserLevel>(1));
-
-            repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
-
-            // Act
-            var actualResult = authorizationService.CanView(param);
-
-            // Assert
-            Assert.Equal(expectedResult, actualResult);
-        }
-
         [Theory]
         [InlineData(4)]
         [InlineData(2)]

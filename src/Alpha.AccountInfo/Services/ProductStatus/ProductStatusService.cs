@@ -14,8 +14,6 @@
     {
         Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(int productId, int custId, byte roleId);
 
-        Task<Result> UpdateKenoStatusAsync(UpdateProductStatusParam param);
-
         Task<Result> UpdateProductStatusAsync(UpdateProductStatusParam param);
     }
 
@@ -54,35 +52,11 @@
                 GroupBySportType(rawData);
         }
 
-        public async Task<Result> UpdateKenoStatusAsync(UpdateProductStatusParam param)
-        {
-            IList<Result> errors = new List<Result>();
-            var criteria = criteriaFactory.CreateUpdateKenoStatusCriteria(param);
-
-            foreach (var item in criteria)
-            {
-                await repository.ExecuteAsync(item);
-
-                if (item.ErrCode != 0)
-                {
-                    errors.Add(Result.CreateErrorResult(item.ErrCode, item.ErrMsg));
-                }
-            }
-
-            return errors.Count == 0 ?
-                Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-                ParseKenoErrorResults(errors);
-        }
-
         public async Task<Result> UpdateProductStatusAsync(UpdateProductStatusParam param)
         {
-            var criteria = criteriaFactory.CreateUpdateCriteria(param);
-
-            await repository.ExecuteAsync(criteria);
-
-            return criteria.ErrCode == 0 ?
-                Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-                Result.CreateErrorResult(criteria.ErrCode, criteria.ParseErrMsg());
+            return param.ProductId == ProductIdConstants.Keno ?
+                await UpdateKenoStatusAsync(param) :
+                await UpdateStatusAsync(param);
         }
 
         private static Result ParseKenoErrorResults(IList<Result> errors)
@@ -128,6 +102,37 @@
             }
 
             return cacheRefService.GetBetTypeName(betType);
+        }
+
+        private async Task<Result> UpdateKenoStatusAsync(UpdateProductStatusParam param)
+        {
+            IList<Result> errors = new List<Result>();
+            var criteria = criteriaFactory.CreateUpdateKenoStatusCriteria(param);
+
+            foreach (var item in criteria)
+            {
+                await repository.ExecuteAsync(item);
+
+                if (item.ErrCode != 0)
+                {
+                    errors.Add(Result.CreateErrorResult(item.ErrCode, item.ErrMsg));
+                }
+            }
+
+            return errors.Count == 0 ?
+                Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
+                ParseKenoErrorResults(errors);
+        }
+
+        private async Task<Result> UpdateStatusAsync(UpdateProductStatusParam param)
+        {
+            var criteria = criteriaFactory.CreateUpdateCriteria(param);
+
+            await repository.ExecuteAsync(criteria);
+
+            return criteria.ErrCode == 0 ?
+                Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
+                Result.CreateErrorResult(criteria.ErrCode, criteria.ParseErrMsg());
         }
 
         ////private void UpdateCasinoStatus(UpdateCasinoStatusCriteria criteria)
