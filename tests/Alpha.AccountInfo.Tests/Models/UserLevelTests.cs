@@ -12,7 +12,6 @@
         [InlineData(3, "Master")]
         [InlineData(2, "Agent")]
         [InlineData(1, "Member")]
-        [InlineData(5, "")]
         public void GetDisplayName_Always_ReturnsExpectedResult(byte roleId, string expectedResult)
         {
             // Arrange

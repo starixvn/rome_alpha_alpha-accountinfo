@@ -73,7 +73,8 @@
         public void IsDisabled_Always_ReturnsCorrectXML()
         {
             // Arrange
-            var expectedResult = @"<ROOT><ProductStatus SportType=""211"" BetType=""2401"" IsDisabled=""0""/><ProductStatus SportType=""211"" BetType=""2402"" IsDisabled=""0""/></ROOT>";
+            var expectedResult = 
+                @"<ROOT><ProductStatus SportType=""211"" BetType=""2401"" IsDisabled=""0""/><ProductStatus SportType=""211"" BetType=""2402"" IsDisabled=""0""/></ROOT>";
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, ProductStatusParamTest);
 
             // Act

@@ -118,7 +118,15 @@
             // Arrange
             var expectedCriteria = new UpdateColossusBetStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
             var productStatus = new[] { new ProductStatusParam(204, 18000, false) };
-            var param = new UpdateProductStatusParam(ProductIdConstants.ColossusBets, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new UpdateProductStatusParam(
+                ProductIdConstants.ColossusBets,
+                CustIdTest,
+                UplineIdTest,
+                UserIdTest,
+                SubAccIdTest,
+                LanguageTest,
+                IPTest,
+                productStatus);
 
             // Act
             var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);
