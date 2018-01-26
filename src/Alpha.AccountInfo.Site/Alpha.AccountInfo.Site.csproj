@@ -377,7 +377,6 @@
     <Compile Include="Requests\ProductStatus\ProductStatusCommand.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusCommandExtensions.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusQuery.cs" />
-    <Compile Include="Requests\ProductStatus\ProductStatusQueryExtensions.cs" />
     <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

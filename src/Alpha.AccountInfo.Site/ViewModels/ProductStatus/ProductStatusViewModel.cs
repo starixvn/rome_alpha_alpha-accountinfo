@@ -40,5 +40,10 @@
         public bool IsDirectDownline { get; }
 
         public bool IsViewOnly { get; }
+
+        public bool IsDisabledEditCustStatus(ProductStatusModel productStatus)
+        {
+            return !IsDirectDownline || productStatus.IsDisabledUpline || (!IsAgentUpdateMember && !productStatus.IsDisabled);
+        }
     }
 }

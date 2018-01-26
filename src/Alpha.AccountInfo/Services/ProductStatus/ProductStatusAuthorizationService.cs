@@ -30,46 +30,46 @@
 
         public bool CanView(ProductStatusAuthorizationParam param)
         {
-            var customerStatus = GetCustomerStatus(param.CustId);
-            var canView = IsValidCustomer(customerStatus, param.ViewerId, param.ViewerLevel);
+            var customerInformation = GetCustomerInformation(param.CustId);
+            var canView = IsMasterAgentMemberOfViewerUser(customerInformation, param.ViewerId, param.ViewerLevel);
 
             if (canView && param.ProductId != ProductIdConstants.Keno)
             {
-                canView = IsValidRole(customerStatus, param.ViewerLevel);
+                canView = IsDirectDownlineOfViewerUser(customerInformation, param.ViewerLevel);
             }
 
-            return canView && CanViewProduct(param.ProductId, customerStatus.SyncCasino);
+            return canView && CanViewProduct(param.ProductId, customerInformation.SyncCasino);
         }
 
         public bool CanUpdate(ProductStatusAuthorizationParam param)
         {
-            var customerStatus = GetCustomerStatus(param.CustId);
+            var customerInformation = GetCustomerInformation(param.CustId);
 
-            return IsValidCustomer(customerStatus, param.ViewerId, param.ViewerLevel) &&
-                IsValidRole(customerStatus, param.ViewerLevel) &&
-                CanViewProduct(param.ProductId, customerStatus.SyncCasino);
+            return IsMasterAgentMemberOfViewerUser(customerInformation, param.ViewerId, param.ViewerLevel) &&
+                IsDirectDownlineOfViewerUser(customerInformation, param.ViewerLevel) &&
+                CanViewProduct(param.ProductId, customerInformation.SyncCasino);
         }
 
-        private static bool IsValidCustomer(
-            CustomerStatus customerStatus,
+        private static bool IsMasterAgentMemberOfViewerUser(
+            CustomerInformation customerInformation,
             int viewerId,
             UserLevel viewerRole)
         {
-            bool isValidCustomer = customerStatus != null;
+            bool isValidCustomer = customerInformation != null;
 
             if (isValidCustomer)
             {
                 if (viewerRole.IsSuperLevel())
                 {
-                    isValidCustomer = viewerId == customerStatus.SuperId;
+                    isValidCustomer = viewerId == customerInformation.SuperId;
                 }
                 else if (viewerRole.IsMasterLevel())
                 {
-                    isValidCustomer = viewerId == customerStatus.MasterId;
+                    isValidCustomer = viewerId == customerInformation.MasterId;
                 }
                 else if (viewerRole.IsAgentLevel())
                 {
-                    isValidCustomer = viewerId == customerStatus.AgentId;
+                    isValidCustomer = viewerId == customerInformation.AgentId;
                 }
                 else
                 {
@@ -80,20 +80,20 @@
             return isValidCustomer;
         }
 
-        private static bool IsValidRole(
-            CustomerStatus customerStatus,
-            UserLevel loggedInUserRole)
+        private static bool IsDirectDownlineOfViewerUser(
+            CustomerInformation customerInformation,
+            UserLevel viewerRole)
         {
-            bool isValidCustomer = customerStatus != null;
+            bool isValidRole = customerInformation != null;
 
-            if (isValidCustomer)
+            if (isValidRole)
             {
-                var custRole = Enumeration.FromValue<UserLevel>(customerStatus.RoleId);
+                var custRole = Enumeration.FromValue<UserLevel>(customerInformation.RoleId);
 
-                isValidCustomer = custRole.IsDirectDownlineOf(loggedInUserRole);
+                isValidRole = custRole.IsDirectDownlineOf(viewerRole);
             }
 
-            return isValidCustomer;
+            return isValidRole;
         }
 
         private bool CanViewProduct(int productId, bool syncCasino)
@@ -103,9 +103,7 @@
             return canView && productId == ProductIdConstants.RNGCasino ? syncCasino : canView;
         }
 
-        private CustomerStatus GetCustomerStatus(int custId)
-        {
-            return repository.Get<CustomerStatus>(new SelectCustomerStatusCriteria(custId));
-        }
+        private CustomerInformation GetCustomerInformation(int custId)
+            => repository.Get<CustomerInformation>(new SelectCustomerInformationCriteria(custId));
     }
 }

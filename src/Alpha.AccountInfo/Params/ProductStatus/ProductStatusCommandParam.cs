@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Params.ProductStatus
 {
-    public class UpdateProductStatusParam
+    public class ProductStatusCommandParam
     {
-        public UpdateProductStatusParam(
+        public ProductStatusCommandParam(
             int productId,
             int custId,
             int uplineId,

@@ -103,7 +103,7 @@
             // Arrange
             var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
             var productStatus = new[] { new ProductStatusParam(208, 2101, false) };
-            var param = new UpdateProductStatusParam(ProductIdConstants.RNGCasino, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new ProductStatusCommandParam(ProductIdConstants.RNGCasino, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
 
             // Act
             var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);
@@ -118,7 +118,7 @@
             // Arrange
             var expectedCriteria = new UpdateColossusBetStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
             var productStatus = new[] { new ProductStatusParam(204, 18000, false) };
-            var param = new UpdateProductStatusParam(
+            var param = new ProductStatusCommandParam(
                 ProductIdConstants.ColossusBets,
                 CustIdTest,
                 UplineIdTest,
@@ -140,7 +140,7 @@
         {
             // Arrange
             var productStatus = new[] { new ProductStatusParam(213, 2501, false) };
-            var param = new UpdateProductStatusParam(ProductIdConstants.NG2, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new ProductStatusCommandParam(ProductIdConstants.NG2, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
             var expectedCriteria = new UpdateNG2StatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, productStatus);
 
             // Act
@@ -157,7 +157,7 @@
         {
             // Arrange
             var productStatus = new[] { new ProductStatusParam(0, 0, false) };
-            var param = new UpdateProductStatusParam(productId, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new ProductStatusCommandParam(productId, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
             var expectedCriteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, productStatus);
 
             // Act
@@ -176,7 +176,7 @@
                 new ProductStatusParam(202, 1501, false),
                 new ProductStatusParam(202, 1503, true)
             };
-            var param = new UpdateProductStatusParam(ProductIdConstants.NG2, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new ProductStatusCommandParam(ProductIdConstants.NG2, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
             var expectedCriteria = new UpdateKenoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, 1501, false, UplineIdTest);
 
             // Act

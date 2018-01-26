@@ -10,9 +10,9 @@
     {
         ICriteria CreateSelectCriteria(int productId, int customerId, byte roleId);
 
-        NonQueryProductStatusCriteria CreateUpdateCriteria(UpdateProductStatusParam param);
+        NonQueryProductStatusCriteria CreateUpdateCriteria(ProductStatusCommandParam param);
 
-        IEnumerable<NonQueryProductStatusCriteria> CreateUpdateKenoStatusCriteria(UpdateProductStatusParam param);
+        IEnumerable<NonQueryProductStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param);
     }
 
     public class ProductStatusCriteriaFactoryImpl : ProductStatusCriteriaFactory
@@ -34,7 +34,7 @@
             }
         }
 
-        public NonQueryProductStatusCriteria CreateUpdateCriteria(UpdateProductStatusParam param)
+        public NonQueryProductStatusCriteria CreateUpdateCriteria(ProductStatusCommandParam param)
         {
             switch (param.ProductId)
             {
@@ -52,7 +52,7 @@
             }
         }
 
-        public IEnumerable<NonQueryProductStatusCriteria> CreateUpdateKenoStatusCriteria(UpdateProductStatusParam param)
+        public IEnumerable<NonQueryProductStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param)
         {
             foreach (var item in param.ProductStatusParams)
             {
@@ -68,7 +68,7 @@
             }
         }
 
-        private static NonQueryProductStatusCriteria CreateUpdateCasinoStatusCriteria(UpdateProductStatusParam param)
+        private static NonQueryProductStatusCriteria CreateUpdateCasinoStatusCriteria(ProductStatusCommandParam param)
         {
             var disable = param.ProductStatusParams[0].IsDisabled;
 
@@ -81,7 +81,7 @@
                 disable);
         }
 
-        private static NonQueryProductStatusCriteria CreateUpdateColossusBetStatusCriteria(UpdateProductStatusParam param)
+        private static NonQueryProductStatusCriteria CreateUpdateColossusBetStatusCriteria(ProductStatusCommandParam param)
         {
             var disable = param.ProductStatusParams[0].IsDisabled;
 
@@ -94,7 +94,7 @@
                 disable);
         }
 
-        private static NonQueryProductStatusCriteria CreateUpdateNG2StatusCriteria(UpdateProductStatusParam param)
+        private static NonQueryProductStatusCriteria CreateUpdateNG2StatusCriteria(ProductStatusCommandParam param)
         {
             return new UpdateNG2StatusCriteria(
                 param.CustId,
@@ -104,7 +104,7 @@
                 param.ProductStatusParams);
         }
 
-        private static NonQueryProductStatusCriteria CreateUpdateDCSProductStatusCriteria(UpdateProductStatusParam param)
+        private static NonQueryProductStatusCriteria CreateUpdateDCSProductStatusCriteria(ProductStatusCommandParam param)
         {
             return new UpdateDCSProductStatusCriteria(
                 param.CustId,

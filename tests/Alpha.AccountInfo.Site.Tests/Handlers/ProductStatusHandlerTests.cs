@@ -28,15 +28,13 @@
 
         private readonly IUser user;
         private readonly ProductStatusService statusService;
-        private readonly ProductStatusAuthorizationService authorizationService;
         private readonly ProductStatusHandler statusHandler;
 
         public ProductStatusHandlerTests()
         {
             user = Substitute.For<IUser>();
             statusService = Substitute.For<ProductStatusService>();
-            authorizationService = Substitute.For<ProductStatusAuthorizationService>();
-            statusHandler = new ProductStatusHandler(statusService, authorizationService);
+            statusHandler = new ProductStatusHandler(statusService);
         }
 
         [Fact]
@@ -65,11 +63,8 @@
             };
             var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, groupProductStatus, ViewerLevelTest, false);
 
-            authorizationService
-                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
             statusService
-                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest.Value)
+                .GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusQueryParam>())
                 .Returns(groupProductStatus);
 
             // Act
@@ -93,6 +88,8 @@
             // Arrange
             user.Id.Returns(ViewerIdTest);
             user.LevelId.Returns(ViewerLevelTest.Value);
+            user.IsInternal.Returns(IsInternalTest);
+            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
             var message = new ProductStatusQuery(user)
             {
                 ProductId = ProductIdTest,
@@ -100,15 +97,15 @@
                 CustRoleId = CustRoleTest.Value
             };
 
-            authorizationService
-                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(false);
+            statusService
+                .GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusQueryParam>())
+                .Returns(Enumerable.Empty<GroupProductStatus>());
 
             // Act
             var actualViewModel = await statusHandler.Handle(message);
 
             // Assert
-            Assert.Null(actualViewModel);
+            Assert.False(actualViewModel.GroupProductStatus.Any());
         }
 
         [Fact]
@@ -126,11 +123,8 @@
             };
             var expectedResult = Result.CreateSuccessResult();
 
-            authorizationService
-                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
             statusService
-                .UpdateProductStatusAsync(Arg.Any<UpdateProductStatusParam>())
+                .UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusCommandParam>())
                 .Returns(expectedResult);
 
             // Act
@@ -148,14 +142,16 @@
             user.LevelId.Returns(ViewerLevelTest.Value);
             var message = new ProductStatusCommand(user)
             {
-                ProductId = ProductIdTest,
+                ProductId = ProductIdConstants.Keno,
                 CustId = CustIdTest,
-                CustRoleId = CustRoleTest.Value
+                CustRoleId = CustRoleTest.Value,
+                ProductStatus = "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]"
             };
+            var expectedResult = Result.CreateForbiddenResult();
 
-            authorizationService
-                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(false);
+            statusService
+                .UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusCommandParam>())
+                .Returns(expectedResult);
 
             // Act
             var actualResult = await statusHandler.Handle(message);

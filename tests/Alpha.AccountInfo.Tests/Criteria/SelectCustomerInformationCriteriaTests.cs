@@ -4,7 +4,7 @@
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
-    public class SelectCustomerStatusCriteriaTests
+    public class SelectCustomerInformationCriteriaTests
     {
         private const int CustIdTest = 1176083;
 
@@ -12,7 +12,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new SelectCustomerStatusCriteria(CustIdTest);
+            var criteria = new SelectCustomerInformationCriteria(CustIdTest);
             var expectedSettingKey = "Age_CustomerSelUserInfo";
 
             // Act
@@ -27,7 +27,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var criteria = new SelectCustomerStatusCriteria(CustIdTest);
+            var criteria = new SelectCustomerInformationCriteria(CustIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -44,7 +44,7 @@
         public void IsValid_CustId_ReturnsExpectedResult(int custId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectCustomerStatusCriteria(custId);
+            var criteria = new SelectCustomerInformationCriteria(custId);
 
             // Act
             var actualResult = criteria.IsValid();

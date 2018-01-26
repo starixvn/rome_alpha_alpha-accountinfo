@@ -83,31 +83,6 @@
         }
 
         [Fact]
-        public async Task Index_ViewModelIsNull_ReturnsInvalidPageView()
-        {
-            // Arrange
-            user.Id.Returns(ViewerIdTest);
-            user.LevelId.Returns(LevelIdTest);
-            user.IsInternal.Returns(IsInternalTest);
-            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
-            var message = new ProductStatusQuery(user)
-            {
-                ProductId = ProductIdTest,
-                CustId = CustIdTest,
-                CustRoleId = CustRoleIdTest
-            };
-            mediator
-                .Send(message)
-                .Returns(Task.FromResult<ProductStatusViewModel>(null));
-
-            // Act
-            var actualView = await productStatusController.Index(message) as ViewResult;
-
-            // Assert
-            Assert.Equal("~/Views/Shared/NoInformation.cshtml", actualView.ViewName);
-        }
-
-        [Fact]
         public async Task Index_ValidViewModel_ReturnsView()
         {
             // Arrange

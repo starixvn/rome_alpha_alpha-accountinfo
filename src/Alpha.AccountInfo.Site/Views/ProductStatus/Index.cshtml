@@ -53,7 +53,7 @@
                                    data-bettypeid="@item.BetType"
                                    data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
                                    @(item.IsDisabled ? string.Empty : "checked=checked")
-                                   @((!Model.IsDirectDownline || item.IsDisabledUpline || (!Model.IsAgentUpdateMember && !item.IsDisabled)) ? "disabled=disabled" : string.Empty)>
+                                   @(Model.IsDisabledEditCustStatus(item) ? "disabled=disabled" : string.Empty) />
                             <label for="checkbox-@item.BetType">@userLevelDisplayName</label>
                         </td>
                     </tr>

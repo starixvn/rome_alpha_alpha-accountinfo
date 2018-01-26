@@ -171,22 +171,23 @@
     <Compile Include="Criteria\ProductStatus\UpdateNG2StatusCriteria.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Criteria\SelectCustomerStatusCriteria.cs" />
+    <Compile Include="Criteria\SelectCustomerInformationCriteria.cs" />
     <Compile Include="Criteria\ProductStatus\SelectDCSProductStatusCriteria.cs" />
     <Compile Include="Criteria\ProductStatus\SelectNG2StatusCriteria.cs" />
     <Compile Include="Criteria\ProductStatus\SelectProductStatusCriteria.cs" />
     <Compile Include="Criteria\ProductStatus\UpdateKenoStatusCriteria.cs" />
     <Compile Include="Enumerations\Enumeration.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\CustomerStatus.cs" />
+    <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\ProductStatus\GroupProductStatus.cs" />
     <Compile Include="Models\ProductStatus\ProductStatusModel.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\ProductStatus\ProductStatusAuthorizationParam.cs" />
+    <Compile Include="Params\ProductStatus\ProductStatusQueryParam.cs" />
     <Compile Include="Params\ProductStatus\ProductStatusParam.cs" />
-    <Compile Include="Params\ProductStatus\UpdateProductStatusParam.cs" />
+    <Compile Include="Params\ProductStatus\ProductStatusCommandParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusAuthorizationService.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusCriteriaFactory.cs" />

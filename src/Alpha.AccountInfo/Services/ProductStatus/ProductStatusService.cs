@@ -12,9 +12,13 @@
 
     public interface ProductStatusService
     {
-        Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(int productId, int custId, byte roleId);
+        Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(
+            ProductStatusAuthorizationParam authorizationParam,
+            ProductStatusQueryParam queryParam);
 
-        Task<Result> UpdateProductStatusAsync(UpdateProductStatusParam param);
+        Task<Result> UpdateProductStatusAsync(
+            ProductStatusAuthorizationParam authorizationParam,
+            ProductStatusCommandParam commandParam);
     }
 
     public class ProductStatusServiceImpl : ProductStatusService
@@ -22,41 +26,44 @@
         private readonly IDynamicRepository repository;
         private readonly CacheRefService cacheRefService;
         private readonly ProductStatusCriteriaFactory criteriaFactory;
+        private readonly ProductStatusAuthorizationService authorizationService;
 
         public ProductStatusServiceImpl(
             IDynamicRepository dynamicRepository,
             CacheRefService cacheRefService,
-            ProductStatusCriteriaFactory criteriaFactory)
+            ProductStatusCriteriaFactory criteriaFactory,
+            ProductStatusAuthorizationService authorizationService)
         {
             repository = dynamicRepository;
             this.cacheRefService = cacheRefService;
             this.criteriaFactory = criteriaFactory;
+            this.authorizationService = authorizationService;
         }
 
-        public async Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(int productId, int custId, byte roleId)
+        public async Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(
+            ProductStatusAuthorizationParam authorizationParam,
+            ProductStatusQueryParam queryParam)
         {
-            ICriteria criteria = criteriaFactory.CreateSelectCriteria(productId, custId, roleId);
-            var rawData = await repository
-                .FetchAsync<ProductStatusModel>(criteria)
-                .ConfigureAwait(false);
-
-            var rawDataCount = rawData != null ? rawData.Count() : 0;
-
-            if (rawDataCount == 0)
+            if (!authorizationService.CanView(authorizationParam))
             {
                 return Enumerable.Empty<GroupProductStatus>();
             }
 
-            return rawDataCount == 1 ?
-                GroupByProduct(productId, rawData) :
-                GroupBySportType(rawData);
+            return await GetProductStatusAsync(queryParam);
         }
 
-        public async Task<Result> UpdateProductStatusAsync(UpdateProductStatusParam param)
+        public async Task<Result> UpdateProductStatusAsync(
+            ProductStatusAuthorizationParam authorizationParam,
+            ProductStatusCommandParam commandParam)
         {
-            return param.ProductId == ProductIdConstants.Keno ?
-                await UpdateKenoStatusAsync(param) :
-                await UpdateStatusAsync(param);
+            if (!authorizationService.CanUpdate(authorizationParam))
+            {
+                return Result.CreateForbiddenResult();
+            }
+
+            return commandParam.ProductId == ProductIdConstants.Keno ?
+                await UpdateKenoStatusAsync(commandParam) :
+                await UpdateStatusAsync(commandParam);
         }
 
         private static Result ParseKenoErrorResults(IList<Result> errors)
@@ -72,6 +79,22 @@
             return Result.CreateErrorResult(
                 flattenErrors[0].Code,
                 string.Join("<br/>", flattenErrors.Select(err => err.Message)));
+        }
+
+        private async Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(ProductStatusQueryParam queryParam)
+        {
+            ICriteria criteria = criteriaFactory.CreateSelectCriteria(queryParam.ProductId, queryParam.CustId, queryParam.CustRoleId);
+            var rawData = await repository.FetchAsync<ProductStatusModel>(criteria);
+            var rawDataCount = rawData.Count();
+
+            if (rawDataCount == 0)
+            {
+                return Enumerable.Empty<GroupProductStatus>();
+            }
+
+            return rawDataCount == 1 ?
+                GroupByProduct(queryParam.ProductId, rawData) :
+                GroupBySportType(rawData);
         }
 
         private IEnumerable<GroupProductStatus> GroupByProduct(int productId, IEnumerable<ProductStatusModel> entities)
@@ -104,7 +127,7 @@
             return cacheRefService.GetBetTypeName(betType);
         }
 
-        private async Task<Result> UpdateKenoStatusAsync(UpdateProductStatusParam param)
+        private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
             IList<Result> errors = new List<Result>();
             var criteria = criteriaFactory.CreateUpdateKenoStatusCriteria(param);
@@ -124,7 +147,7 @@
                 ParseKenoErrorResults(errors);
         }
 
-        private async Task<Result> UpdateStatusAsync(UpdateProductStatusParam param)
+        private async Task<Result> UpdateStatusAsync(ProductStatusCommandParam param)
         {
             var criteria = criteriaFactory.CreateUpdateCriteria(param);
 

@@ -1,12 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Models
 {
-    public class CustomerStatus
+    public class CustomerInformation
     {
-        public CustomerStatus()
+        public CustomerInformation()
         {
         }
 
-        public CustomerStatus(
+        public CustomerInformation(
             int custId,
             byte roleId,
             int superId,

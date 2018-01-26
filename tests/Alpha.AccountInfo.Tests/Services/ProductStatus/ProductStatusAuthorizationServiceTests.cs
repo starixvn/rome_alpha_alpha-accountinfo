@@ -39,7 +39,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var customerStatus = new CustomerStatus(custId, custRoleId, 1176070, 1176083, 1176086, true);
+            var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086, true);
             var param = new ProductStatusAuthorizationParam(
                 ProductIdTest,
                 custId,
@@ -48,8 +48,8 @@
                 Enumeration.FromValue<UserLevel>(viewerRoleId));
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanView(param);
@@ -66,7 +66,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var customerStatus = new CustomerStatus(custId, custRoleId, 1176070, 1176083, 1176086, true);
+            var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086, true);
             var param = new ProductStatusAuthorizationParam(
                 ProductIdConstants.Keno,
                 custId,
@@ -75,8 +75,8 @@
                 Enumeration.FromValue<UserLevel>(viewerRoleId));
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanView(param);
@@ -86,16 +86,16 @@
         }
 
         [Fact]
-        public void CanView_CustomerStatusIsNull_ReturnsFalse()
+        public void CanView_CustomerInformationIsNull_ReturnsFalse()
         {
             // Arrange
             var expectedResult = false;
-            CustomerStatus customerStatus = null;
+            CustomerInformation customerInformation = null;
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanView(param);
@@ -105,16 +105,16 @@
         }
 
         [Fact]
-        public void CanView_CustomerStatusInvalidSMAId_ReturnsFalse()
+        public void CanView_CustomerInformationInvalidSMAId_ReturnsFalse()
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanView(param);
@@ -124,11 +124,11 @@
         }
 
         [Fact]
-        public void CanView_CustomerStatusInvalidRole_ReturnsFalse()
+        public void CanView_CustomerInformationInvalidRole_ReturnsFalse()
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(
                 ProductIdTest,
                 CustIdTest,
@@ -137,8 +137,8 @@
                 Enumeration.FromValue<UserLevel>(1));
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanView(param);
@@ -151,16 +151,16 @@
         [InlineData(4)]
         [InlineData(2)]
         [InlineData(1)]
-        public void CanView_CustomerStatusInvalidRoleId_ReturnsFalse(byte roleId)
+        public void CanView_CustomerInformationInvalidRoleId_ReturnsFalse(byte roleId)
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, roleId, ViewerIdTest, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, roleId, ViewerIdTest, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanView(param);
@@ -174,12 +174,12 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, ViewerIdTest, 0, 0, false);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, ViewerIdTest, 0, 0, false);
             var param = new ProductStatusAuthorizationParam(ProductIdConstants.RNGCasino, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanView(param);
@@ -193,12 +193,12 @@
         {
             // Arrange
             var expectedResult = true;
-            var customerStatus = new CustomerStatus(CustIdTest, CustRoleTest.Value, ViewerIdTest, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, ViewerIdTest, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanUpdate(param);
@@ -215,12 +215,12 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerStatus = new CustomerStatus(CustIdTest, roleId, ViewerIdTest, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, roleId, ViewerIdTest, 0, 0, true);
             var param = new ProductStatusAuthorizationParam(ProductIdConstants.Keno, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
 
             repository
-                .Get<CustomerStatus>(Arg.Any<SelectCustomerStatusCriteria>())
-                .Returns(customerStatus);
+                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
+                .Returns(customerInformation);
 
             // Act
             var actualResult = authorizationService.CanUpdate(param);

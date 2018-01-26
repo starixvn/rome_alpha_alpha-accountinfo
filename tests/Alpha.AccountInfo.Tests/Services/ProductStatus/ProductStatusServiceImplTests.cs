@@ -24,7 +24,8 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly CacheRefService cacheRefService;
         private readonly ProductStatusCriteriaFactory criteriaFactory;
-        private ProductStatusServiceImpl productStatusServiceImpl;
+        private readonly ProductStatusAuthorizationService authorizationService;
+        private readonly ProductStatusServiceImpl productStatusServiceImpl;
 
         public ProductStatusServiceImplTests()
         {
@@ -36,8 +37,9 @@
             dynamicRepository = Substitute.For<IDynamicRepository>();
             cacheRefService = Substitute.For<CacheRefService>();
             criteriaFactory = Substitute.For<ProductStatusCriteriaFactory>();
+            authorizationService = Substitute.For<ProductStatusAuthorizationService>();
 
-            productStatusServiceImpl = new ProductStatusServiceImpl(dynamicRepository, cacheRefService, criteriaFactory);
+            productStatusServiceImpl = new ProductStatusServiceImpl(dynamicRepository, cacheRefService, criteriaFactory, authorizationService);
         }
 
         [Theory]
@@ -54,7 +56,11 @@
             {
                 new GroupProductStatus(productId, productName, productStatus)
             };
+            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
                 .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
                 .Returns(criteria);
@@ -66,7 +72,7 @@
                 .Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
             var actualResult = actualData.First();
 
             // Assert
@@ -92,7 +98,11 @@
             {
                 new GroupProductStatus(sportType, productStatus)
             };
+            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
                 .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
                 .Returns(criteria);
@@ -110,7 +120,7 @@
                 .Returns("Canada");
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
             var actualResult = actualData.ToList();
 
             // Assert
@@ -134,7 +144,11 @@
             {
                 new GroupProductStatus(productId, productName, productStatus)
             };
+            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectNG2StatusCriteria(productId, CustIdTest);
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
                 .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
                 .Returns(criteria);
@@ -146,7 +160,7 @@
                 .Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
             var actualResult = actualData.First();
 
             // Assert
@@ -170,7 +184,11 @@
             {
                 new GroupProductStatus(productId, productName, productStatus)
             };
+            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
                 .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
                 .Returns(criteria);
@@ -182,7 +200,7 @@
                 .Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
             var actualResult = actualData.First();
 
             // Assert
@@ -207,7 +225,11 @@
             {
                 new GroupProductStatus(sportType, productStatus)
             };
+            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
                 .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
                 .Returns(criteria);
@@ -216,13 +238,30 @@
                 .Returns(productStatus);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
             var actualResult = actualData.ToList();
 
             // Assert
             Assert.True(
                 expectedResult[0].GroupId == actualResult[0].GroupId &&
                 expectedResult[0].ProductStatuses.Count() == actualResult[0].ProductStatuses.Count());
+        }
+
+        [Fact]
+        public async Task GetProductStatusAsync_NoViewPermission_ReturnsEmptyModel()
+        {
+            // Arrange
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(false);
+
+            // Act
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(
+                Arg.Any<ProductStatusAuthorizationParam>(),
+                Arg.Any<ProductStatusQueryParam>());
+
+            // Assert
+            Assert.False(actualData.Any());
         }
 
         [Fact]
@@ -234,7 +273,11 @@
             var productStatus = Enumerable.Empty<ProductStatusModel>();
             var expectedResult = Enumerable.Empty<GroupProductStatus>();
 
+            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
                 .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
                 .Returns(criteria);
@@ -243,7 +286,7 @@
                 .Returns(productStatus);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, RoleIdTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
 
             // Assert
             Assert.Equal(expectedResult.Any(), actualData.Any());
@@ -253,21 +296,24 @@
         public async Task UpdateProductStatusAsync_Keno_ReturnsSucessfulResult()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new List<UpdateKenoStatusCriteria>
             {
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070),
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1503, false, 1176070)
             };
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateKenoStatusCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateKenoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(actualResult.IsSuccess());
@@ -277,7 +323,7 @@
         public async Task UpdateProductStatusAsync_Keno_ReturnsErrorMessage()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new List<UpdateKenoStatusCriteria>
             {
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070)
@@ -291,15 +337,18 @@
                     ErrMsg = "You are not allowed to disable for downlines."
                 }
             };
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateKenoStatusCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateKenoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
@@ -311,7 +360,7 @@
         public async Task UpdateProductStatusAsync_Keno_ReturnsGroupErrorMessage()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(ProductIdConstants.Keno, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new List<UpdateKenoStatusCriteria>
             {
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070)
@@ -325,15 +374,18 @@
                     ErrMsg = "Internal Server Error."
                 }
             };
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateKenoStatusCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateKenoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
@@ -344,17 +396,20 @@
         public async Task UpdateProductStatusAsync_Casino_ReturnsSucessfulResult()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(ProductIdConstants.RNGCasino, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(ProductIdConstants.RNGCasino, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(actualResult.IsSuccess());
@@ -364,21 +419,24 @@
         public async Task UpdateProductStatusAsync_Casino_ReturnsErrorResult()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(ProductIdConstants.RNGCasino, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(ProductIdConstants.RNGCasino, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
             {
                 ErrCode = 102,
                 ErrMsg = "You are not allowed to disable for downlines."
             };
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
@@ -389,17 +447,20 @@
         public async Task UpdateProductStatusAsync_ColossusBets_ReturnsSucessfulResult()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(ProductIdConstants.ColossusBets, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(ProductIdConstants.ColossusBets, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateColossusBetStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(actualResult.IsSuccess());
@@ -409,21 +470,24 @@
         public async Task UpdateProductStatusAsync_ColossusBets_ReturnsErrorResult()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(ProductIdConstants.ColossusBets, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(ProductIdConstants.ColossusBets, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateColossusBetStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
             {
                 ErrCode = 102,
                 ErrMsg = "You are not allowed to disable for downlines."
             };
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
@@ -434,21 +498,24 @@
         public async Task UpdateProductStatusAsync_DSC_ReturnsSucessfulResult()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(30, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(30, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
                 new ProductStatusParam(211, 2401, false),
                 new ProductStatusParam(211, 2402, false)
             });
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(actualResult.IsSuccess());
@@ -458,7 +525,7 @@
         public async Task UpdateProductStatusAsync_DSC_ReturnsErrorResult()
         {
             // Arrange
-            var param = new UpdateProductStatusParam(30, CustIdTest, 0, 0, 0, null, null, null);
+            var commandParam = new ProductStatusCommandParam(30, CustIdTest, 0, 0, 0, null, null, null);
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
                 new ProductStatusParam(211, 2401, false),
@@ -468,19 +535,39 @@
                 ErrCode = 102,
                 ErrMsg = "<Root MsgID=\"60035\" Msg=\"You are not allowed to disable for downlines.\"><Row SportType=\"211\" BetType=\"2401\"/></Root>"
             };
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
             criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<UpdateProductStatusParam>())
+                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(param);
+            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), commandParam);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
                 actualResult.Message == "You are not allowed to disable for downlines.");
+        }
+
+        [Fact]
+        public async Task UpdateProductStatusAsync_NoHostPermission_ReturnsForbiddenResult()
+        {
+            // Arrange
+            authorizationService
+                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(false);
+
+            // Act
+            var actualData = await productStatusServiceImpl.UpdateProductStatusAsync(
+                Arg.Any<ProductStatusAuthorizationParam>(),
+                Arg.Any<ProductStatusCommandParam>());
+
+            // Assert
+            Assert.Equal(403, actualData.Code);
         }
     }
 }

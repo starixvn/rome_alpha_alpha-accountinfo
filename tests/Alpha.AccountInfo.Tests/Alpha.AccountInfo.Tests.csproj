@@ -119,7 +119,7 @@
     <Compile Include="Criteria\ProductStatus\UpdateDCSProductStatusCriteriaTests.cs" />
     <Compile Include="Criteria\ProductStatus\UpdateKenoStatusCriteriaTests.cs" />
     <Compile Include="Criteria\ProductStatus\UpdateNG2StatusCriteriaTests.cs" />
-    <Compile Include="Criteria\SelectCustomerStatusCriteriaTests.cs" />
+    <Compile Include="Criteria\SelectCustomerInformationCriteriaTests.cs" />
     <Compile Include="Enumerations\EnumerationTests.cs" />
     <Compile Include="Models\ResultTests.cs" />
     <Compile Include="Models\UserLevelForTesting.cs" />

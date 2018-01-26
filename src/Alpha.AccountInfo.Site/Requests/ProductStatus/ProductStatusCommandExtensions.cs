@@ -5,12 +5,12 @@
 
     public static class ProductStatusCommandExtensions
     {
-        public static UpdateProductStatusParam ToUpdateProductStatusParam(
+        public static ProductStatusCommandParam ToUpdateProductStatusParam(
             this ProductStatusCommand command)
         {
             var productStatusParams = JsonConvert.DeserializeObject<ProductStatusParam[]>(command.ProductStatus);
 
-            return new UpdateProductStatusParam(
+            return new ProductStatusCommandParam(
                 command.ProductId,
                 command.CustId,
                 command.ViewerId,

@@ -2,9 +2,9 @@
 {
     using Fanex.Data.Repository;
 
-    public class SelectCustomerStatusCriteria : CriteriaBase
+    public class SelectCustomerInformationCriteria : CriteriaBase
     {
-        public SelectCustomerStatusCriteria(int custId)
+        public SelectCustomerInformationCriteria(int custId)
         {
             CustId = custId;
         }
