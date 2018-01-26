@@ -78,7 +78,7 @@
             // Assert
             Assert.True(
                 expectedResult[0].GroupId == actualResult.GroupId &&
-                expectedResult[0].ProductName == actualResult.ProductName &&
+                expectedResult[0].GroupName == actualResult.GroupName &&
                 expectedResult[0].ProductStatuses.Count() == actualResult.ProductStatuses.Count());
         }
 
@@ -166,7 +166,7 @@
             // Assert
             Assert.True(
                 expectedResult[0].GroupId == actualResult.GroupId &&
-                expectedResult[0].ProductName == actualResult.ProductName &&
+                expectedResult[0].GroupName == actualResult.GroupName &&
                 expectedResult[0].ProductStatuses.Count() == actualResult.ProductStatuses.Count());
         }
 
@@ -206,7 +206,7 @@
             // Assert
             Assert.True(
                 expectedResult[0].GroupId == actualResult.GroupId &&
-                expectedResult[0].ProductName == actualResult.ProductName &&
+                expectedResult[0].GroupName == actualResult.GroupName &&
                 expectedResult[0].ProductStatuses.Count() == actualResult.ProductStatuses.Count());
         }
 
