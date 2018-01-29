@@ -51,21 +51,15 @@
                 CustId = CustIdTest,
                 CustRoleId = CustRoleTest.Value
             };
-            var groupProductStatus = new List<GroupProductStatus>
+            var productStatuses = new List<ProductStatusModel>
             {
-                new GroupProductStatus(
-                    ProductIdTest,
-                    string.Empty,
-                    new List<ProductStatusModel>
-                    {
-                        new ProductStatusModel(ProductIdTest, 207, 1004, false, false)
-                    })
+                new ProductStatusModel(ProductIdTest, 207, 1004, false, false)
             };
-            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, groupProductStatus, ViewerLevelTest, false);
+            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatuses, ViewerLevelTest, false);
 
             statusService
                 .GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusQueryParam>())
-                .Returns(groupProductStatus);
+                .Returns(productStatuses);
 
             // Act
             var actualViewModel = await statusHandler.Handle(message);
@@ -76,7 +70,7 @@
                 expectedViewModel.CustId == actualViewModel.CustId &&
                 expectedViewModel.CustName == actualViewModel.CustName &&
                 expectedViewModel.CustRole == actualViewModel.CustRole &&
-                expectedViewModel.GroupProductStatus.Count() == actualViewModel.GroupProductStatus.Count() &&
+                expectedViewModel.ProductStatuses.Count() == actualViewModel.ProductStatuses.Count() &&
                 expectedViewModel.IsAgentUpdateMember == actualViewModel.IsAgentUpdateMember &&
                 expectedViewModel.IsDirectDownline == actualViewModel.IsDirectDownline &&
                 expectedViewModel.IsViewOnly == actualViewModel.IsViewOnly);
@@ -99,13 +93,13 @@
 
             statusService
                 .GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusQueryParam>())
-                .Returns(Enumerable.Empty<GroupProductStatus>());
+                .Returns(Enumerable.Empty<ProductStatusModel>());
 
             // Act
             var actualViewModel = await statusHandler.Handle(message);
 
             // Assert
-            Assert.False(actualViewModel.GroupProductStatus.Any());
+            Assert.False(actualViewModel.ProductStatuses.Any());
         }
 
         [Fact]

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -12,7 +13,7 @@
 
     public interface ProductStatusService
     {
-        Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(
+        Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
             ProductStatusAuthorizationParam authorizationParam,
             ProductStatusQueryParam queryParam);
 
@@ -40,13 +41,13 @@
             this.authorizationService = authorizationService;
         }
 
-        public async Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(
+        public async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
             ProductStatusAuthorizationParam authorizationParam,
             ProductStatusQueryParam queryParam)
         {
             if (!authorizationService.CanView(authorizationParam))
             {
-                return Enumerable.Empty<GroupProductStatus>();
+                return Enumerable.Empty<ProductStatusModel>();
             }
 
             return await GetProductStatusAsync(queryParam);
@@ -81,40 +82,22 @@
                 string.Join("<br/>", flattenErrors.Select(err => err.Message)));
         }
 
-        private async Task<IEnumerable<GroupProductStatus>> GetProductStatusAsync(ProductStatusQueryParam queryParam)
+        private async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(ProductStatusQueryParam queryParam)
         {
             ICriteria criteria = criteriaFactory.CreateSelectCriteria(queryParam.ProductId, queryParam.CustId, queryParam.CustRoleId);
             var rawData = await repository.FetchAsync<ProductStatusModel>(criteria);
+
             var rawDataCount = rawData.Count();
+            var getProductNameOrBetTypeName = rawDataCount == 1 ?
+                (Func<int, string>)cacheRefService.GetProductName :
+                GetBetTypeName;
 
-            if (rawDataCount == 0)
+            foreach (var item in rawData)
             {
-                return Enumerable.Empty<GroupProductStatus>();
+                item.BetTypeName = getProductNameOrBetTypeName(item.BetType);
             }
 
-            return rawDataCount == 1 ?
-                GroupByProduct(queryParam.ProductId, rawData) :
-                GroupBySportType(rawData);
-        }
-
-        private IEnumerable<GroupProductStatus> GroupByProduct(int productId, IEnumerable<ProductStatusModel> entities)
-        {
-            yield return new GroupProductStatus(productId, cacheRefService.GetProductName(productId), entities);
-        }
-
-        private IEnumerable<GroupProductStatus> GroupBySportType(IEnumerable<ProductStatusModel> entities)
-        {
-            var groupEntities = entities.ToLookup(kvp => kvp.SportType, kvp => kvp);
-
-            foreach (var group in groupEntities)
-            {
-                foreach (var item in group)
-                {
-                    item.BetTypeName = GetBetTypeName(item.BetType);
-                }
-
-                yield return new GroupProductStatus(group.Key, group);
-            }
+            return rawData;
         }
 
         private string GetBetTypeName(int betType)

@@ -54,13 +54,13 @@
 
         private static ProductStatusViewModel ToProductStatusViewModel(
             ProductStatusQuery message,
-            IEnumerable<GroupProductStatus> groupProductStatus)
+            IEnumerable<ProductStatusModel> productStatuses)
             => new ProductStatusViewModel(
                 message.ProductId,
                 message.CustId,
                 message.CustName,
                 Enumeration.FromValue<UserLevel>(message.CustRoleId),
-                groupProductStatus,
+                productStatuses,
                 message.ViewerLevel,
                 message.IsViewOnly);
 

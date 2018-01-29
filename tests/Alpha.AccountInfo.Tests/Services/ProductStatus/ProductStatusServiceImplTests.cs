@@ -48,13 +48,12 @@
         public async Task GetProductStatusAsync_CasinoColossusBets_ReturnsDataFromDynamicRepository(int productId, string productName)
         {
             // Arrange
-            IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
+            var expectedResults = new List<ProductStatusModel>
             {
                 new ProductStatusModel(productId, 208, 2101, false, false)
-            };
-            var expectedResult = new List<GroupProductStatus>
-            {
-                new GroupProductStatus(productId, productName, productStatus)
+                {
+                    BetTypeName = productName
+                }
             };
             var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
@@ -66,7 +65,7 @@
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(productStatus);
+                .Returns(expectedResults);
             cacheRefService
                 .GetProductName(productId)
                 .Returns(productName);
@@ -77,9 +76,12 @@
 
             // Assert
             Assert.True(
-                expectedResult[0].GroupId == actualResult.GroupId &&
-                expectedResult[0].GroupName == actualResult.GroupName &&
-                expectedResult[0].ProductStatuses.Count() == actualResult.ProductStatuses.Count());
+                expectedResults[0].ProductId == actualResult.ProductId &&
+                expectedResults[0].SportType == actualResult.SportType &&
+                expectedResults[0].BetType == actualResult.BetType &&
+                expectedResults[0].IsDisabled == actualResult.IsDisabled &&
+                expectedResults[0].IsDisabledUpline == actualResult.IsDisabledUpline &&
+                expectedResults[0].BetTypeName == actualResult.BetTypeName);
         }
 
         [Fact]
@@ -88,15 +90,11 @@
             // Arrange
             var productId = ProductIdConstants.Keno;
             var sportType = 202;
-            IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
+            var expectedResults = new List<ProductStatusModel>
             {
                 new ProductStatusModel(productId, sportType, 1501, false, false),
                 new ProductStatusModel(productId, sportType, 1503, false, false),
                 new ProductStatusModel(productId, sportType, 1504, false, false)
-            };
-            var expectedResult = new List<GroupProductStatus>
-            {
-                new GroupProductStatus(sportType, productStatus)
             };
             var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
@@ -108,26 +106,30 @@
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(productStatus);
+                .Returns(expectedResults);
             cacheRefService
                 .GetBetTypeName(1501)
                 .Returns("Australia");
             cacheRefService
                 .GetBetTypeName(1503)
                 .Returns("Slovakia");
-            cacheRefService
-                .GetBetTypeName(1504)
-                .Returns("Canada");
 
             // Act
             var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
-            var actualResult = actualData.ToList();
+            var actualResults = actualData.ToList();
 
             // Assert
             Assert.True(
-                expectedResult[0].GroupId == actualResult[0].GroupId &&
-                expectedResult[0].GroupName == actualResult[0].GroupName &&
-                expectedResult[0].ProductStatuses.Count() == actualResult[0].ProductStatuses.Count());
+                expectedResults[0].SportType == actualResults[0].SportType &&
+                expectedResults[0].BetType == actualResults[0].BetType &&
+                expectedResults[0].IsDisabled == actualResults[0].IsDisabled &&
+                expectedResults[0].IsDisabledUpline == actualResults[0].IsDisabledUpline &&
+                expectedResults[0].BetTypeName == actualResults[0].BetTypeName &&
+                expectedResults[1].SportType == actualResults[1].SportType &&
+                expectedResults[1].BetType == actualResults[1].BetType &&
+                expectedResults[1].IsDisabled == actualResults[1].IsDisabled &&
+                expectedResults[1].IsDisabledUpline == actualResults[1].IsDisabledUpline &&
+                expectedResults[1].BetTypeName == actualResults[1].BetTypeName);
         }
 
         [Fact]
@@ -136,13 +138,9 @@
             // Arrange
             var productId = ProductIdConstants.NG2;
             var productName = "NG2";
-            IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
+            var expectedResults = new List<ProductStatusModel>
             {
                 new ProductStatusModel(productId, 212, 4001, false, false)
-            };
-            var expectedResult = new List<GroupProductStatus>
-            {
-                new GroupProductStatus(productId, productName, productStatus)
             };
             var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectNG2StatusCriteria(productId, CustIdTest);
@@ -154,7 +152,7 @@
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(productStatus);
+                .Returns(expectedResults);
             cacheRefService
                 .GetProductName(productId)
                 .Returns(productName);
@@ -165,9 +163,12 @@
 
             // Assert
             Assert.True(
-                expectedResult[0].GroupId == actualResult.GroupId &&
-                expectedResult[0].GroupName == actualResult.GroupName &&
-                expectedResult[0].ProductStatuses.Count() == actualResult.ProductStatuses.Count());
+                expectedResults[0].ProductId == actualResult.ProductId &&
+                expectedResults[0].SportType == actualResult.SportType &&
+                expectedResults[0].BetType == actualResult.BetType &&
+                expectedResults[0].IsDisabled == actualResult.IsDisabled &&
+                expectedResults[0].IsDisabledUpline == actualResult.IsDisabledUpline &&
+                expectedResults[0].BetTypeName == actualResult.BetTypeName);
         }
 
         [Fact]
@@ -176,13 +177,9 @@
             // Arrange
             var productId = 22;
             var productName = "Macau Games";
-            IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
+            var expectedResults = new List<ProductStatusModel>
             {
                 new ProductStatusModel(productId, 212, 4001, false, false)
-            };
-            var expectedResult = new List<GroupProductStatus>
-            {
-                new GroupProductStatus(productId, productName, productStatus)
             };
             var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
@@ -194,7 +191,7 @@
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(productStatus);
+                .Returns(expectedResults);
             cacheRefService
                 .GetProductName(productId)
                 .Returns(productName);
@@ -205,9 +202,12 @@
 
             // Assert
             Assert.True(
-                expectedResult[0].GroupId == actualResult.GroupId &&
-                expectedResult[0].GroupName == actualResult.GroupName &&
-                expectedResult[0].ProductStatuses.Count() == actualResult.ProductStatuses.Count());
+                expectedResults[0].ProductId == actualResult.ProductId &&
+                expectedResults[0].SportType == actualResult.SportType &&
+                expectedResults[0].BetType == actualResult.BetType &&
+                expectedResults[0].IsDisabled == actualResult.IsDisabled &&
+                expectedResults[0].IsDisabledUpline == actualResult.IsDisabledUpline &&
+                expectedResults[0].BetTypeName == actualResult.BetTypeName);
         }
 
         [Fact]
@@ -216,14 +216,10 @@
             // Arrange
             var productId = 21;
             var sportType = 211;
-            IEnumerable<ProductStatusModel> productStatus = new List<ProductStatusModel>
+            var expectedResults = new List<ProductStatusModel>
             {
                 new ProductStatusModel(productId, sportType, 2401, false, false),
                 new ProductStatusModel(productId, sportType, 2402, false, false)
-            };
-            var expectedResult = new List<GroupProductStatus>
-            {
-                new GroupProductStatus(sportType, productStatus)
             };
             var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
@@ -235,16 +231,24 @@
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(productStatus);
+                .Returns(expectedResults);
 
             // Act
             var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
-            var actualResult = actualData.ToList();
+            var actualResults = actualData.ToList();
 
             // Assert
             Assert.True(
-                expectedResult[0].GroupId == actualResult[0].GroupId &&
-                expectedResult[0].ProductStatuses.Count() == actualResult[0].ProductStatuses.Count());
+                expectedResults[0].SportType == actualResults[0].SportType &&
+                expectedResults[0].BetType == actualResults[0].BetType &&
+                expectedResults[0].IsDisabled == actualResults[0].IsDisabled &&
+                expectedResults[0].IsDisabledUpline == actualResults[0].IsDisabledUpline &&
+                expectedResults[0].BetTypeName == actualResults[0].BetTypeName &&
+                expectedResults[1].SportType == actualResults[1].SportType &&
+                expectedResults[1].BetType == actualResults[1].BetType &&
+                expectedResults[1].IsDisabled == actualResults[1].IsDisabled &&
+                expectedResults[1].IsDisabledUpline == actualResults[1].IsDisabledUpline &&
+                expectedResults[1].BetTypeName == actualResults[1].BetTypeName);
         }
 
         [Fact]
@@ -269,9 +273,7 @@
         {
             // Arrange
             var productId = ProductIdConstants.RNGCasino;
-
-            var productStatus = Enumerable.Empty<ProductStatusModel>();
-            var expectedResult = Enumerable.Empty<GroupProductStatus>();
+            var expectedResult = Enumerable.Empty<ProductStatusModel>();
 
             var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
@@ -283,7 +285,7 @@
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(productStatus);
+                .Returns(expectedResult);
 
             // Act
             var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);

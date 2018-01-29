@@ -1,8 +1,7 @@
 ﻿@{
     ViewBag.Title = "Product Status";
-    bool enableSubmit = false, showBetTypeName = false;
-    string productOrBetTypeName,
-        userLevelDisplayName = Model.CustRole.GetDisplayName();
+    var enableSubmit = false;
+    var userLevelDisplayName = Model.CustRole.GetDisplayName();
 }
 
 @using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
@@ -27,37 +26,30 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var group in Model.GroupProductStatus)
+            @foreach (var item in Model.ProductStatuses)
+            {
+                if (Model.IsAgentUpdateMember)
                 {
-                    showBetTypeName = group.ProductStatuses.Count() > 1;
-
-                    foreach (var item in group.ProductStatuses)
-                    {
-                        if (Model.IsAgentUpdateMember)
-                        {
-                            enableSubmit |= !item.IsDisabledUpline;
-                        }
-                        else
-                        {
-                            enableSubmit |= !item.IsDisabledUpline && item.IsDisabled;
-                        }
-
-                        productOrBetTypeName = showBetTypeName ? item.BetTypeName : group.GroupName;
-
-                    <tr>
-                        <td>@productOrBetTypeName</td>
-                        <td>
-                            <input type="checkbox"
-                                   id="checkbox-@item.BetType"
-                                   data-sporttypeid="@item.SportType"
-                                   data-bettypeid="@item.BetType"
-                                   data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
-                                   @(item.IsDisabled ? string.Empty : "checked=checked")
-                                   @(Model.IsDisabledEditCustStatus(item) ? "disabled=disabled" : string.Empty) />
-                            <label for="checkbox-@item.BetType">@userLevelDisplayName</label>
-                        </td>
-                    </tr>
+                    enableSubmit |= !item.IsDisabledUpline;
                 }
+                else
+                {
+                    enableSubmit |= !item.IsDisabledUpline && item.IsDisabled;
+                }
+
+                <tr>
+                    <td>@item.BetTypeName</td>
+                    <td>
+                        <input type="checkbox"
+                               id="checkbox-@item.BetType"
+                               data-sporttypeid="@item.SportType"
+                               data-bettypeid="@item.BetType"
+                               data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
+                               @(item.IsDisabled ? string.Empty : "checked=checked")
+                               @(Model.IsDisabledEditCustStatus(item) ? "disabled=disabled" : string.Empty) />
+                        <label for="checkbox-@item.BetType">@userLevelDisplayName</label>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -66,12 +58,14 @@
         <div class="margin-top10">
             <button type="submit"
                     class="btn-submit"
-                    @(enableSubmit && Model.IsDirectDownline ? string.Empty : "disabled=disabled")>@Resources.Submit</button>
-        </div>
-        <input type="hidden" id="hiddenProductId" value="@Model.ProductId" />
-        <input type="hidden" id="hiddenCustId" value="@Model.CustId" />
-        <input type="hidden" id="hiddenCustRoleId" value="@Model.CustRole.Value" />
-        <input type="hidden" id="hiddenNoDataChange" value="@Resources.NoDataChange" />
+                    @(enableSubmit && Model.IsDirectDownline ? string.Empty : "disabled=disabled")>
+                @Resources.Submit
+                </button>
+            </div>
+            <input type="hidden" id="hiddenProductId" value="@Model.ProductId" />
+            <input type="hidden" id="hiddenCustId" value="@Model.CustId" />
+            <input type="hidden" id="hiddenCustRoleId" value="@Model.CustRole.Value" />
+            <input type="hidden" id="hiddenNoDataChange" value="@Resources.NoDataChange" />
     }
 }
 
