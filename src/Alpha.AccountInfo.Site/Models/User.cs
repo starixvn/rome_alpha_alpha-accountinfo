@@ -30,6 +30,7 @@
 
         public bool IsInternal => userSession.IsInternal;
 
-        public bool CanUpdateAccount => userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount;
+        public bool CanUpdateAccount
+            => !userSession.IsSubAcc || (userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount);
     }
 }

@@ -39,6 +39,21 @@
                 user.IsInternal == false);
         }
 
+        [Fact]
+        public void CanUpdateAccount_MainAccount_ReturnsTrue()
+        {
+            // Arrange
+            var userSession = Substitute.For<IUserSession>();
+            userSession.IsSubAcc.Returns(false);
+            var user = new User(userSession);
+
+            // Act
+            var actualResult = user.CanUpdateAccount;
+
+            // Assert
+            Assert.True(actualResult);
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -46,7 +61,7 @@
         {
             // Arrange
             var userSession = Substitute.For<IUserSession>();
-            userSession.IsSubAcc.Returns(expectedValue);
+            userSession.IsSubAcc.Returns(true);
             userSession.SubPageAccess.Returns(new PageAccess { UpdateAccount = expectedValue });
             var user = new User(userSession);
 
