@@ -121,7 +121,7 @@
     <value>Baccarat, Roulette, Sic Bo, Dragon Tiger</value>
   </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
-    <value>You are not allowed to disable downlines as a company policy.</value>
+    <value>You are not allowed to disable this product on your downlines as a company policy.</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>상태가 성공적으로 업데이트되었습니다.</value>

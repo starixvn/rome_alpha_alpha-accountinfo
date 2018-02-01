@@ -70,7 +70,7 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are not allowed to disable downlines as a company policy..
+        ///   Looks up a localized string similar to You are not allowed to disable this product on your downlines as a company policy..
         /// </summary>
         public static string ProductStatusWarningMessage {
             get {
