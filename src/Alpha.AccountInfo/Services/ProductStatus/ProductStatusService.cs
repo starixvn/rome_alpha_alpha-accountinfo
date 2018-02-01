@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -86,18 +85,34 @@
         {
             ICriteria criteria = criteriaFactory.CreateSelectCriteria(queryParam.ProductId, queryParam.CustId, queryParam.CustRoleId);
             var rawData = await repository.FetchAsync<ProductStatusModel>(criteria);
-
             var rawDataCount = rawData.Count();
-            var getProductNameOrBetTypeName = rawDataCount == 1 ?
-                (Func<int, string>)cacheRefService.GetProductName :
-                GetBetTypeName;
 
-            foreach (var item in rawData)
+            if (rawDataCount == 1)
             {
-                item.BetTypeName = getProductNameOrBetTypeName(item.BetType);
+                return GetProductStatusProductName(rawData);
             }
 
-            return rawData;
+            return GetProductStatusBetTypeName(rawData);
+        }
+
+        private IEnumerable<ProductStatusModel> GetProductStatusProductName(IEnumerable<ProductStatusModel> entities)
+        {
+            foreach (var item in entities)
+            {
+                item.BetTypeName = cacheRefService.GetProductName(item.ProductId);
+
+                yield return item;
+            }
+        }
+
+        private IEnumerable<ProductStatusModel> GetProductStatusBetTypeName(IEnumerable<ProductStatusModel> entities)
+        {
+            foreach (var item in entities)
+            {
+                item.BetTypeName = GetBetTypeName(item.BetType);
+
+                yield return item;
+            }
         }
 
         private string GetBetTypeName(int betType)
