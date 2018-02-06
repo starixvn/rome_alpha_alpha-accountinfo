@@ -8,17 +8,17 @@
         public ProductStatusCommand(IUser viewer)
             : base(viewer)
         {
-            ViewerUserId = viewer.UserId;
-            ViewerSubAccId = viewer.SubAccId;
+            UplineUserId = viewer.UserId;
+            UplineSubAccId = viewer.SubAccId;
             LangKey = viewer.LangKey;
             IP = viewer.IP;
         }
 
         public string ProductStatus { get; set; }
 
-        public int ViewerUserId { get; }
+        public int UplineUserId { get; }
 
-        public int ViewerSubAccId { get; }
+        public int UplineSubAccId { get; }
 
         public string LangKey { get; }
 

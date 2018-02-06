@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Xml.Linq;
     using Constants;
     using Fanex.Data.Repository;
     using Models;
@@ -13,8 +14,11 @@
     public interface ProductStatusService
     {
         Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
-            ProductStatusAuthorizationParam authorizationParam,
-            ProductStatusQueryParam queryParam);
+            int productId,
+            int custId,
+            UserLevel custRole,
+            int uplineId,
+            UserLevel uplineLevel);
 
         Task<Result> UpdateProductStatusAsync(
             ProductStatusAuthorizationParam authorizationParam,
@@ -41,15 +45,25 @@
         }
 
         public async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
-            ProductStatusAuthorizationParam authorizationParam,
-            ProductStatusQueryParam queryParam)
+            int productId,
+            int custId,
+            UserLevel custRole,
+            int uplineId,
+            UserLevel uplineLevel)
         {
+            var authorizationParam = new ProductStatusAuthorizationParam(
+                productId,
+                custId,
+                custRole,
+                uplineId,
+                uplineLevel);
+
             if (!authorizationService.CanView(authorizationParam))
             {
                 return Enumerable.Empty<ProductStatusModel>();
             }
 
-            return await GetProductStatusAsync(queryParam);
+            return await GetProductStatusAsync(productId, custId, custRole);
         }
 
         public async Task<Result> UpdateProductStatusAsync(
@@ -81,9 +95,20 @@
                 string.Join("<br/>", flattenErrors.Select(err => err.Message)));
         }
 
-        private async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(ProductStatusQueryParam queryParam)
+        private static string ParseDCSProductMessage(string errMsg)
         {
-            ICriteria criteria = criteriaFactory.CreateSelectCriteria(queryParam.ProductId, queryParam.CustId, queryParam.CustRoleId);
+            var xmlRoot = XElement.Parse(errMsg);
+            var attributes = xmlRoot.Attributes("Msg");
+
+            return string.Join("<br/>", attributes.Select(a => a.Value));
+        }
+
+        private async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
+            int productId,
+            int custId,
+            UserLevel custRole)
+        {
+            ICriteria criteria = criteriaFactory.CreateSelectCriteria(productId, custId, custRole.Value);
             var rawData = await repository.FetchAsync<ProductStatusModel>(criteria);
             var rawDataCount = rawData.Count();
 
@@ -153,7 +178,7 @@
 
             return criteria.ErrCode == 0 ?
                 Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-                Result.CreateErrorResult(criteria.ErrCode, criteria.ParseErrMsg());
+                Result.CreateErrorResult(criteria.ErrCode, ParseDCSProductMessage(criteria.ErrMsg));
         }
 
         ////private void UpdateCasinoStatus(UpdateCasinoStatusCriteria criteria)

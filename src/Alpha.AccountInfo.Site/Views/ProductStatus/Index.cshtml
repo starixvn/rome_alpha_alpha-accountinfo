@@ -26,30 +26,41 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.ProductStatuses)
+            @if (!Model.ProductStatuses.Any())
             {
-                if (Model.IsAgentUpdateMember)
-                {
-                    enableSubmit |= !item.IsDisabledUpline;
-                }
-                else
-                {
-                    enableSubmit |= !item.IsDisabledUpline && item.IsDisabled;
-                }
-
                 <tr>
-                    <td>@item.BetTypeName</td>
-                    <td>
-                        <input type="checkbox"
-                               id="checkbox-@item.BetType"
-                               data-sporttypeid="@item.SportType"
-                               data-bettypeid="@item.BetType"
-                               data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
-                               @(item.IsDisabled ? string.Empty : "checked=checked")
-                               @(Model.IsDisabledEditCustStatus(item) ? "disabled=disabled" : string.Empty) />
-                        <label for="checkbox-@item.BetType">@userLevelDisplayName</label>
+                    <td colspan="2">
+                        <div class="text-center">@Resources.NoInformationIsAvailable</div>
                     </td>
                 </tr>
+            }
+            else
+            {
+                foreach (var item in Model.ProductStatuses)
+                {
+                    if (Model.IsAgentUpdateMember)
+                    {
+                        enableSubmit |= !item.IsDisabledUpline;
+                    }
+                    else
+                    {
+                        enableSubmit |= !item.IsDisabledUpline && item.IsDisabled;
+                    }
+
+                    <tr>
+                        <td>@item.BetTypeName</td>
+                        <td>
+                            <input type="checkbox"
+                                   id="checkbox-@item.BetType"
+                                   data-sporttypeid="@item.SportType"
+                                   data-bettypeid="@item.BetType"
+                                   data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
+                                   @(item.IsDisabled ? string.Empty : "checked=checked")
+                                   @(Model.IsDisabledEditCustStatus(item) ? "disabled=disabled" : string.Empty) />
+                            <label for="checkbox-@item.BetType">@userLevelDisplayName</label>
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
@@ -60,12 +71,12 @@
                     class="btn-submit"
                     @(enableSubmit && Model.IsDirectDownline ? string.Empty : "disabled=disabled")>
                 @Resources.Submit
-                </button>
-            </div>
-            <input type="hidden" id="hiddenProductId" value="@Model.ProductId" />
-            <input type="hidden" id="hiddenCustId" value="@Model.CustId" />
-            <input type="hidden" id="hiddenCustRoleId" value="@Model.CustRole.Value" />
-            <input type="hidden" id="hiddenNoDataChange" value="@Resources.NoDataChange" />
+            </button>
+        </div>
+        <input type="hidden" id="hiddenProductId" value="@Model.ProductId" />
+        <input type="hidden" id="hiddenCustId" value="@Model.CustId" />
+        <input type="hidden" id="hiddenCustRoleId" value="@Model.CustRole.Value" />
+        <input type="hidden" id="hiddenNoDataChange" value="@Resources.NoDataChange" />
     }
 }
 

@@ -8,14 +8,14 @@
             int productId,
             int custId,
             UserLevel custRole,
-            int viewerId,
-            UserLevel viewerLevel)
+            int uplineId,
+            UserLevel uplineLevel)
         {
             ProductId = productId;
             CustId = custId;
             CustRole = custRole;
-            ViewerId = viewerId;
-            ViewerLevel = viewerLevel;
+            UplineId = uplineId;
+            UplineLevel = uplineLevel;
         }
 
         public int ProductId { get; }
@@ -24,8 +24,8 @@
 
         public UserLevel CustRole { get; }
 
-        public int ViewerId { get; }
+        public int UplineId { get; }
 
-        public UserLevel ViewerLevel { get; }
+        public UserLevel UplineLevel { get; }
     }
 }

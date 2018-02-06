@@ -1,8 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Criteria.ProductStatus
 {
-    using System.Linq;
     using System.Text;
-    using System.Xml.Linq;
     using Params.ProductStatus;
 
     public class UpdateDCSProductStatusCriteria : NonQueryProductStatusCriteria
@@ -20,14 +18,6 @@
         public string IsDisabled { get; }
 
         public override string GetSettingKey() => "Acc_CustSetting_DisableNewProductStatusUpd";
-
-        public override string ParseErrMsg()
-        {
-            var xmlRoot = XElement.Parse(ErrMsg);
-            var attributes = xmlRoot.Attributes("Msg");
-
-            return string.Join("<br/>", attributes.Select(a => a.Value));
-        }
 
         public override bool IsValid()
         {

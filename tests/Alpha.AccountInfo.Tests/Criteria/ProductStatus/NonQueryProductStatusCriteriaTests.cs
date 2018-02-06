@@ -114,24 +114,5 @@
             // Assert
             Assert.Equal(expectedResult, actualResult);
         }
-
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData("You are not allowed to disable for downlines.")]
-        public void ParseErrMsg_Always_ReturnsErrMsg(string errMsg)
-        {
-            // Arrange
-            var nonQueryCriteria = new NonQueryProductStatusCriteriaForTesting(CustIdTest, SubAccIdTest, UserIdTest, IPTest)
-            {
-                ErrMsg = errMsg
-            };
-
-            // Act
-            var actualResult = nonQueryCriteria.ParseErrMsg();
-
-            // Act & Assert
-            Assert.Equal(errMsg, actualResult);
-        }
     }
 }

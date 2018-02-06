@@ -10,8 +10,8 @@
         public ProductStatusQuery(IUser viewer)
             : base(viewer)
         {
-            ViewerId = viewer.Id;
-            ViewerLevel = Enumeration.FromValue<UserLevel>(viewer.LevelId);
+            UplineId = viewer.Id;
+            UplineLevel = Enumeration.FromValue<UserLevel>(viewer.LevelId);
             IsViewOnly = viewer.IsInternal || !viewer.CanUpdateAccount;
         }
 
@@ -25,9 +25,9 @@
 
         public UserLevel CustRole => Enumeration.FromValue<UserLevel>(CustRoleId);
 
-        public int ViewerId { get; }
+        public int UplineId { get; }
 
-        public UserLevel ViewerLevel { get; }
+        public UserLevel UplineLevel { get; }
 
         public bool IsViewOnly { get; }
 

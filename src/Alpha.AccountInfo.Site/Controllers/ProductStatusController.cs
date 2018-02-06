@@ -15,7 +15,8 @@
         {
         }
 
-        public async Task<ActionResult> Index(ProductStatusQuery message) => await View(message);
+        public async Task<ActionResult> Index(ProductStatusQuery message)
+            => await View(message);
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Update(ProductStatusCommand message)

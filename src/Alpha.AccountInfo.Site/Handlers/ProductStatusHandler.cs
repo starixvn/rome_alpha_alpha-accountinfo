@@ -25,10 +25,12 @@
 
         public async Task<ProductStatusViewModel> Handle(ProductStatusQuery message)
         {
-            var authorizationParam = ToProductStatusAuthorizationParam(message);
-            var queryParam = ToProductStatusQueryParam(message);
-
-            var model = await statusService.GetProductStatusAsync(authorizationParam, queryParam);
+            var model = await statusService.GetProductStatusAsync(
+                message.ProductId,
+                message.CustId,
+                message.CustRole,
+                message.UplineId,
+                message.UplineLevel);
 
             return ToProductStatusViewModel(message, model);
         }
@@ -46,11 +48,8 @@
                 message.ProductId,
                 message.CustId,
                 message.CustRole,
-                message.ViewerId,
-                message.ViewerLevel);
-
-        private static ProductStatusQueryParam ToProductStatusQueryParam(ProductStatusQuery message)
-            => new ProductStatusQueryParam(message.ProductId, message.CustId, message.CustRoleId);
+                message.UplineId,
+                message.UplineLevel);
 
         private static ProductStatusViewModel ToProductStatusViewModel(
             ProductStatusQuery message,
@@ -61,7 +60,7 @@
                 message.CustName,
                 Enumeration.FromValue<UserLevel>(message.CustRoleId),
                 productStatuses,
-                message.ViewerLevel,
+                message.UplineLevel,
                 message.IsViewOnly);
 
         private static ProductStatusCommandParam ToUpdateProductStatusParam(
@@ -69,9 +68,9 @@
             => new ProductStatusCommandParam(
                 message.ProductId,
                 message.CustId,
-                message.ViewerId,
-                message.ViewerUserId,
-                message.ViewerSubAccId,
+                message.UplineId,
+                message.UplineUserId,
+                message.UplineSubAccId,
                 message.LangKey,
                 message.IP,
                 JsonConvert.DeserializeObject<ProductStatusParam[]>(message.ProductStatus));

@@ -16,9 +16,9 @@
     {
         private const int ProductIdTest = 22;
         private const int CustIdTest = 1176083;
-        private const int ViewerIdTest = 1176070;
+        private const int UplineIdTest = 1176070;
         private static readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
-        private static readonly UserLevel ViewerLevel = Enumeration.FromValue<UserLevel>(4);
+        private static readonly UserLevel UplineLevel = Enumeration.FromValue<UserLevel>(4);
 
         private readonly IDynamicRepository repository;
         private readonly Func<int, bool> canViewProduct;
@@ -35,7 +35,7 @@
         [InlineData(1176083, 1176070, 3, 4)]
         [InlineData(1176086, 1176083, 2, 3)]
         [InlineData(1176092, 1176086, 1, 2)]
-        public void CanView_DirectDownline_ReturnsTrue(int custId, int viewerId, byte custRoleId, byte viewerRoleId)
+        public void CanView_DirectDownline_ReturnsTrue(int custId, int uplineId, byte custRoleId, byte uplineRoleId)
         {
             // Arrange
             var expectedResult = true;
@@ -44,8 +44,8 @@
                 ProductIdTest,
                 custId,
                 Enumeration.FromValue<UserLevel>(custRoleId),
-                viewerId,
-                Enumeration.FromValue<UserLevel>(viewerRoleId));
+                uplineId,
+                Enumeration.FromValue<UserLevel>(uplineRoleId));
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -62,7 +62,7 @@
         [InlineData(1176086, 1176070, 2, 4)]
         [InlineData(1176092, 1176070, 1, 4)]
         [InlineData(1176092, 1176083, 1, 3)]
-        public void CanView_KenoWithoutDirectDownline_ReturnsTrue(int custId, int viewerId, byte custRoleId, byte viewerRoleId)
+        public void CanView_KenoWithoutDirectDownline_ReturnsTrue(int custId, int uplineId, byte custRoleId, byte uplineRoleId)
         {
             // Arrange
             var expectedResult = true;
@@ -71,8 +71,8 @@
                 ProductIdConstants.Keno,
                 custId,
                 Enumeration.FromValue<UserLevel>(custRoleId),
-                viewerId,
-                Enumeration.FromValue<UserLevel>(viewerRoleId));
+                uplineId,
+                Enumeration.FromValue<UserLevel>(uplineRoleId));
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -91,7 +91,7 @@
             // Arrange
             var expectedResult = false;
             CustomerInformation customerInformation = null;
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -110,7 +110,7 @@
             // Arrange
             var expectedResult = false;
             var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -133,7 +133,7 @@
                 ProductIdTest,
                 CustIdTest,
                 CustRoleTest,
-                ViewerIdTest,
+                UplineIdTest,
                 Enumeration.FromValue<UserLevel>(1));
 
             repository
@@ -155,8 +155,8 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, roleId, ViewerIdTest, 0, 0, true);
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+            var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0, true);
+            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -174,8 +174,8 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, ViewerIdTest, 0, 0, false);
-            var param = new ProductStatusAuthorizationParam(ProductIdConstants.RNGCasino, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0, false);
+            var param = new ProductStatusAuthorizationParam(ProductIdConstants.RNGCasino, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -193,8 +193,8 @@
         {
             // Arrange
             var expectedResult = true;
-            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, ViewerIdTest, 0, 0, true);
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0, true);
+            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -215,8 +215,8 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, roleId, ViewerIdTest, 0, 0, true);
-            var param = new ProductStatusAuthorizationParam(ProductIdConstants.Keno, CustIdTest, CustRoleTest, ViewerIdTest, ViewerLevel);
+            var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0, true);
+            var param = new ProductStatusAuthorizationParam(ProductIdConstants.Keno, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())

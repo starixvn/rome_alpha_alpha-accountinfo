@@ -6,6 +6,8 @@
     using System.Threading.Tasks;
     using AccountInfo.Configurations;
     using AccountInfo.Criteria.ProductStatus;
+    using AccountInfo.Enumerations;
+    using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
     using AccountInfo.Services.ProductStatus;
     using Constants;
@@ -19,7 +21,9 @@
     public class ProductStatusServiceImplTests
     {
         private const int CustIdTest = 1176083;
-        private const byte RoleIdTest = 3;
+        private const int UplineIdTest = 8;
+        private readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
+        private readonly UserLevel UplineLevelTest = Enumeration.FromValue<UserLevel>(4);
 
         private readonly IDynamicRepository dynamicRepository;
         private readonly CacheRefService cacheRefService;
@@ -55,13 +59,12 @@
                     BetTypeName = productName
                 }
             };
-            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
             authorizationService
                 .CanView(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
+                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
@@ -71,7 +74,7 @@
                 .Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
             var actualResult = actualData.First();
 
             // Assert
@@ -96,13 +99,12 @@
                 new ProductStatusModel(productId, sportType, 1503, false, false),
                 new ProductStatusModel(productId, sportType, 1504, false, false)
             };
-            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
             authorizationService
                 .CanView(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
+                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
@@ -115,7 +117,7 @@
                 .Returns("Slovakia");
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
             var actualResults = actualData.ToList();
 
             // Assert
@@ -142,13 +144,12 @@
             {
                 new ProductStatusModel(productId, 212, 4001, false, false)
             };
-            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectNG2StatusCriteria(productId, CustIdTest);
             authorizationService
                 .CanView(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
+                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
@@ -158,7 +159,7 @@
                 .Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
             var actualResult = actualData.First();
 
             // Assert
@@ -181,13 +182,12 @@
             {
                 new ProductStatusModel(productId, 212, 4001, false, false)
             };
-            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
-            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
+            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
             authorizationService
                 .CanView(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
+                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
@@ -197,7 +197,7 @@
                 .Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
             var actualResult = actualData.First();
 
             // Assert
@@ -221,20 +221,19 @@
                 new ProductStatusModel(productId, sportType, 2401, false, false),
                 new ProductStatusModel(productId, sportType, 2402, false, false)
             };
-            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
-            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, RoleIdTest);
+            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
             authorizationService
                 .CanView(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
+                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
                 .Returns(expectedResults);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
             var actualResults = actualData.ToList();
 
             // Assert
@@ -260,9 +259,7 @@
                 .Returns(false);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(
-                Arg.Any<ProductStatusAuthorizationParam>(),
-                Arg.Any<ProductStatusQueryParam>());
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(ProductIdConstants.RNGCasino, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
 
             // Assert
             Assert.False(actualData.Any());
@@ -275,20 +272,19 @@
             var productId = ProductIdConstants.RNGCasino;
             var expectedResult = Enumerable.Empty<ProductStatusModel>();
 
-            var queryParam = new ProductStatusQueryParam(productId, CustIdTest, RoleIdTest);
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
             authorizationService
                 .CanView(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, RoleIdTest)
+                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
                 .Returns(criteria);
             dynamicRepository
                 .FetchAsync<ProductStatusModel>(criteria)
                 .Returns(expectedResult);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), queryParam);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
 
             // Assert
             Assert.Equal(expectedResult.Any(), actualData.Any());

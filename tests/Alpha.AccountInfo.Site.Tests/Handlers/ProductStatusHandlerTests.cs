@@ -18,13 +18,13 @@
     [Trait("Category", "ProductStatus")]
     public class ProductStatusHandlerTests
     {
-        private const int ViewerIdTest = 1176070;
+        private const int UplineIdTest = 1176070;
         private const bool IsInternalTest = false;
         private const bool CanUpdateAccountTest = true;
         private const int ProductIdTest = 22;
         private const int CustIdTest = 1176083;
         private static readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
-        private static readonly UserLevel ViewerLevelTest = Enumeration.FromValue<UserLevel>(4);
+        private static readonly UserLevel UplineLevelTest = Enumeration.FromValue<UserLevel>(4);
 
         private readonly IUser user;
         private readonly ProductStatusService statusService;
@@ -41,8 +41,8 @@
         public async Task HandleProductStatusQuery_Always_ReturnsCorrectViewModel()
         {
             // Arrange
-            user.Id.Returns(ViewerIdTest);
-            user.LevelId.Returns(ViewerLevelTest.Value);
+            user.Id.Returns(UplineIdTest);
+            user.LevelId.Returns(UplineLevelTest.Value);
             user.IsInternal.Returns(IsInternalTest);
             user.CanUpdateAccount.Returns(CanUpdateAccountTest);
             var message = new ProductStatusQuery(user)
@@ -55,10 +55,10 @@
             {
                 new ProductStatusModel(ProductIdTest, 207, 1004, false, false)
             };
-            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatuses, ViewerLevelTest, false);
+            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatuses, UplineLevelTest, false);
 
             statusService
-                .GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusQueryParam>())
+                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
                 .Returns(productStatuses);
 
             // Act
@@ -80,8 +80,8 @@
         public async Task HandleProductStatusQuery_NoViewPermission_ReturnsNull()
         {
             // Arrange
-            user.Id.Returns(ViewerIdTest);
-            user.LevelId.Returns(ViewerLevelTest.Value);
+            user.Id.Returns(UplineIdTest);
+            user.LevelId.Returns(UplineLevelTest.Value);
             user.IsInternal.Returns(IsInternalTest);
             user.CanUpdateAccount.Returns(CanUpdateAccountTest);
             var message = new ProductStatusQuery(user)
@@ -92,7 +92,7 @@
             };
 
             statusService
-                .GetProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusQueryParam>())
+                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
                 .Returns(Enumerable.Empty<ProductStatusModel>());
 
             // Act
@@ -106,8 +106,8 @@
         public async Task HandleProductStatusCommand_Always_ReturnsSuccessResult()
         {
             // Arrange
-            user.Id.Returns(ViewerIdTest);
-            user.LevelId.Returns(ViewerLevelTest.Value);
+            user.Id.Returns(UplineIdTest);
+            user.LevelId.Returns(UplineLevelTest.Value);
             var message = new ProductStatusCommand(user)
             {
                 ProductId = ProductIdConstants.Keno,
@@ -132,8 +132,8 @@
         public async Task HandleProductStatusCommand_NoHostPermission_ReturnsForbidden()
         {
             // Arrange
-            user.Id.Returns(ViewerIdTest);
-            user.LevelId.Returns(ViewerLevelTest.Value);
+            user.Id.Returns(UplineIdTest);
+            user.LevelId.Returns(UplineLevelTest.Value);
             var message = new ProductStatusCommand(user)
             {
                 ProductId = ProductIdConstants.Keno,

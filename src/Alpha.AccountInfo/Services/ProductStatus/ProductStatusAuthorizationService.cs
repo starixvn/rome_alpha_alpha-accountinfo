@@ -31,11 +31,11 @@
         public bool CanView(ProductStatusAuthorizationParam param)
         {
             var customerInformation = GetCustomerInformation(param.CustId);
-            var canView = IsMasterAgentMemberOfViewerUser(customerInformation, param.ViewerId, param.ViewerLevel);
+            var canView = IsMasterAgentMemberOfViewerUser(customerInformation, param.UplineId, param.UplineLevel);
 
             if (canView && param.ProductId != ProductIdConstants.Keno)
             {
-                canView = IsDirectDownlineOfViewerUser(customerInformation, param.ViewerLevel);
+                canView = IsDirectDownlineOfViewerUser(customerInformation, param.UplineLevel);
             }
 
             return canView && CanViewProduct(param.ProductId, customerInformation.SyncCasino);
@@ -45,31 +45,31 @@
         {
             var customerInformation = GetCustomerInformation(param.CustId);
 
-            return IsMasterAgentMemberOfViewerUser(customerInformation, param.ViewerId, param.ViewerLevel) &&
-                IsDirectDownlineOfViewerUser(customerInformation, param.ViewerLevel) &&
+            return IsMasterAgentMemberOfViewerUser(customerInformation, param.UplineId, param.UplineLevel) &&
+                IsDirectDownlineOfViewerUser(customerInformation, param.UplineLevel) &&
                 CanViewProduct(param.ProductId, customerInformation.SyncCasino);
         }
 
         private static bool IsMasterAgentMemberOfViewerUser(
             CustomerInformation customerInformation,
-            int viewerId,
-            UserLevel viewerRole)
+            int uplineId,
+            UserLevel uplineLevel)
         {
             bool isValidCustomer = customerInformation != null;
 
             if (isValidCustomer)
             {
-                if (viewerRole.IsSuperLevel())
+                if (uplineLevel.IsSuperLevel())
                 {
-                    isValidCustomer = viewerId == customerInformation.SuperId;
+                    isValidCustomer = uplineId == customerInformation.SuperId;
                 }
-                else if (viewerRole.IsMasterLevel())
+                else if (uplineLevel.IsMasterLevel())
                 {
-                    isValidCustomer = viewerId == customerInformation.MasterId;
+                    isValidCustomer = uplineId == customerInformation.MasterId;
                 }
-                else if (viewerRole.IsAgentLevel())
+                else if (uplineLevel.IsAgentLevel())
                 {
-                    isValidCustomer = viewerId == customerInformation.AgentId;
+                    isValidCustomer = uplineId == customerInformation.AgentId;
                 }
                 else
                 {
@@ -82,7 +82,7 @@
 
         private static bool IsDirectDownlineOfViewerUser(
             CustomerInformation customerInformation,
-            UserLevel viewerRole)
+            UserLevel uplineLevel)
         {
             bool isValidRole = customerInformation != null;
 
@@ -90,7 +90,7 @@
             {
                 var custRole = Enumeration.FromValue<UserLevel>(customerInformation.RoleId);
 
-                isValidRole = custRole.IsDirectDownlineOf(viewerRole);
+                isValidRole = custRole.IsDirectDownlineOf(uplineLevel);
             }
 
             return isValidRole;
