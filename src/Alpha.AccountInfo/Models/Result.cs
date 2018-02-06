@@ -16,23 +16,14 @@
         public string Message { get; }
 
         public static Result CreateSuccessResult(string message = null)
-        {
-            return new Result(0, message);
-        }
+            => new Result(0, message);
 
         public static Result CreateErrorResult(int code, string message)
-        {
-            return new Result(code, message);
-        }
+            => new Result(code, message);
 
         public static Result CreateForbiddenResult()
-        {
-            return new Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized);
-        }
+            => new Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized);
 
-        public bool IsSuccess()
-        {
-            return Code == 0;
-        }
+        public bool IsSuccess() => Code == 0;
     }
 }

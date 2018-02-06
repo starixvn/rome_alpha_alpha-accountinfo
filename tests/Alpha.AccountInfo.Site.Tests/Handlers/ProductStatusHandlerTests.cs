@@ -118,7 +118,7 @@
             var expectedResult = Result.CreateSuccessResult();
 
             statusService
-                .UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusCommandParam>())
+                .UpdateProductStatusAsync(Arg.Any<ProductStatusCommandParam>())
                 .Returns(expectedResult);
 
             // Act
@@ -144,7 +144,7 @@
             var expectedResult = Result.CreateForbiddenResult();
 
             statusService
-                .UpdateProductStatusAsync(Arg.Any<ProductStatusAuthorizationParam>(), Arg.Any<ProductStatusCommandParam>())
+                .UpdateProductStatusAsync(Arg.Any<ProductStatusCommandParam>())
                 .Returns(expectedResult);
 
             // Act

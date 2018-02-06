@@ -31,6 +31,7 @@
 
         public string ErrMsg { get; set; }
 
-        public override bool IsValid() => CustId > 0 && SubAccId >= 0 && UserId > 0 && !string.IsNullOrEmpty(IP);
+        public override bool IsValid()
+            => CustId > 0 && SubAccId >= 0 && UserId > 0 && !string.IsNullOrEmpty(IP);
     }
 }

@@ -19,10 +19,7 @@
 
         public override string GetSettingKey() => "Acc_CustSetting_DisableNewProductStatusUpd";
 
-        public override bool IsValid()
-        {
-            return base.IsValid() && !string.IsNullOrEmpty(IsDisabled);
-        }
+        public override bool IsValid() => base.IsValid() && !string.IsNullOrEmpty(IsDisabled);
 
         private static string GetIsDisabledXmlParam(ProductStatusParam[] statusParams)
         {
@@ -44,8 +41,6 @@
         }
 
         private static string BuildProductStatusElement(ProductStatusParam param)
-        {
-            return $"<ProductStatus SportType=\"{param.SportType}\" BetType=\"{param.BetType}\" IsDisabled=\"{(param.IsDisabled ? 1 : 0)}\"/>";
-        }
+            => $"<ProductStatus SportType=\"{param.SportType}\" BetType=\"{param.BetType}\" IsDisabled=\"{(param.IsDisabled ? 1 : 0)}\"/>";
     }
 }

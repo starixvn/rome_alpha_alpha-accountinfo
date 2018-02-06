@@ -25,8 +25,6 @@
         public string IP { get; }
 
         public override bool IsValid()
-        {
-            return base.IsValid() && !string.IsNullOrWhiteSpace(ProductStatus);
-        }
+            => base.IsValid() && !string.IsNullOrWhiteSpace(ProductStatus);
     }
 }

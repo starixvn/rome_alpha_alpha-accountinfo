@@ -121,6 +121,7 @@
     <Compile Include="Criteria\ProductStatus\UpdateNG2StatusCriteriaTests.cs" />
     <Compile Include="Criteria\SelectCustomerInformationCriteriaTests.cs" />
     <Compile Include="Enumerations\EnumerationTests.cs" />
+    <Compile Include="Helpers\ResultHelperTests.cs" />
     <Compile Include="Models\ResultTests.cs" />
     <Compile Include="Models\UserLevelForTesting.cs" />
     <Compile Include="Models\UserLevelTests.cs" />

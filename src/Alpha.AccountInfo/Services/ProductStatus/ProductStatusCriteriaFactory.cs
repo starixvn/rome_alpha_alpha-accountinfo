@@ -95,23 +95,19 @@
         }
 
         private static NonQueryProductStatusCriteria CreateUpdateNG2StatusCriteria(ProductStatusCommandParam param)
-        {
-            return new UpdateNG2StatusCriteria(
+            => new UpdateNG2StatusCriteria(
                 param.CustId,
                 param.SubAccId,
                 param.UserId,
                 param.IP,
                 param.ProductStatusParams);
-        }
 
         private static NonQueryProductStatusCriteria CreateUpdateDCSProductStatusCriteria(ProductStatusCommandParam param)
-        {
-            return new UpdateDCSProductStatusCriteria(
+            => new UpdateDCSProductStatusCriteria(
                 param.CustId,
                 param.SubAccId,
                 param.UserId,
                 param.IP,
                 param.ProductStatusParams);
-        }
     }
 }

@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml.Linq;
     using Constants;
     using Fanex.Data.Repository;
+    using Helpers;
     using Models;
     using Models.ProductStatus;
     using Params.ProductStatus;
@@ -20,9 +20,7 @@
             int uplineId,
             UserLevel uplineLevel);
 
-        Task<Result> UpdateProductStatusAsync(
-            ProductStatusAuthorizationParam authorizationParam,
-            ProductStatusCommandParam commandParam);
+        Task<Result> UpdateProductStatusAsync(ProductStatusCommandParam commandParam);
     }
 
     public class ProductStatusServiceImpl : ProductStatusService
@@ -66,10 +64,15 @@
             return await GetProductStatusAsync(productId, custId, custRole);
         }
 
-        public async Task<Result> UpdateProductStatusAsync(
-            ProductStatusAuthorizationParam authorizationParam,
-            ProductStatusCommandParam commandParam)
+        public async Task<Result> UpdateProductStatusAsync(ProductStatusCommandParam commandParam)
         {
+            var authorizationParam = new ProductStatusAuthorizationParam(
+                   commandParam.ProductId,
+                   commandParam.CustId,
+                   commandParam.CustRole,
+                   commandParam.UplineId,
+                   commandParam.UplineLevel);
+
             if (!authorizationService.CanUpdate(authorizationParam))
             {
                 return Result.CreateForbiddenResult();
@@ -78,29 +81,6 @@
             return commandParam.ProductId == ProductIdConstants.Keno ?
                 await UpdateKenoStatusAsync(commandParam) :
                 await UpdateStatusAsync(commandParam);
-        }
-
-        private static Result ParseKenoErrorResults(IList<Result> errors)
-        {
-            IList<Result> flattenErrors = new List<Result>();
-            var groupErrorCode = errors.ToLookup(err => err.Code);
-
-            foreach (var group in groupErrorCode)
-            {
-                flattenErrors.Add(Result.CreateErrorResult(group.Key, group.First().Message));
-            }
-
-            return Result.CreateErrorResult(
-                flattenErrors[0].Code,
-                string.Join("<br/>", flattenErrors.Select(err => err.Message)));
-        }
-
-        private static string ParseDCSProductMessage(string errMsg)
-        {
-            var xmlRoot = XElement.Parse(errMsg);
-            var attributes = xmlRoot.Attributes("Msg");
-
-            return string.Join("<br/>", attributes.Select(a => a.Value));
         }
 
         private async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -167,7 +147,7 @@
 
             return errors.Count == 0 ?
                 Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-                ParseKenoErrorResults(errors);
+                ResultHelper.ParseKenoErrorResults(errors);
         }
 
         private async Task<Result> UpdateStatusAsync(ProductStatusCommandParam param)
@@ -178,7 +158,7 @@
 
             return criteria.ErrCode == 0 ?
                 Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-                Result.CreateErrorResult(criteria.ErrCode, ParseDCSProductMessage(criteria.ErrMsg));
+                Result.CreateErrorResult(criteria.ErrCode, ResultHelper.ParseDCSProductMessage(criteria.ErrMsg));
         }
 
         ////private void UpdateCasinoStatus(UpdateCasinoStatusCriteria criteria)

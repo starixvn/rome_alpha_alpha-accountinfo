@@ -4,6 +4,8 @@
     using System.Linq;
     using AccountInfo.Configurations;
     using AccountInfo.Criteria.ProductStatus;
+    using AccountInfo.Enumerations;
+    using AccountInfo.Models;
     using AccountInfo.Services.ProductStatus;
     using Constants;
     using Params.ProductStatus;
@@ -13,13 +15,14 @@
     public class ProductStatusCriteriaFactoryImplTests
     {
         private const int CustIdTest = 1176083;
-        private const byte CustRoleIdTest = 3;
         private const int SubAccIdTest = 536751;
         private const int UserIdTest = 1176070;
         private const string IPTest = "127.0.0.1";
         private const string LanguageTest = "E";
         private const bool DisableTest = false;
         private const int UplineIdTest = 1176070;
+        private readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
+        private readonly UserLevel UplineLevelTest = Enumeration.FromValue<UserLevel>(4);
 
         private ProductStatusCriteriaFactoryImpl productStatusCriteriaFactoryImpl;
 
@@ -43,7 +46,7 @@
             var expectedCriteria = new SelectProductStatusCriteria(productId, CustIdTest);
             
             // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(productId, CustIdTest, CustRoleIdTest);
+            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value);
 
             // Assert
             Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
@@ -56,7 +59,7 @@
             var expectedCriteria = new SelectNG2StatusCriteria(ProductIdConstants.NG2, CustIdTest);
 
             // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(ProductIdConstants.NG2, CustIdTest, CustRoleIdTest);
+            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(ProductIdConstants.NG2, CustIdTest, CustRoleTest.Value);
 
             // Assert
             Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
@@ -72,10 +75,10 @@
         public void CreateSelectCriteria_ValidProductId_ReturnsSelectDCSProductStatusCriteria(int productId)
         {
             // Arrange
-            var expectedCriteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleIdTest);
+            var expectedCriteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
 
             // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(productId, CustIdTest, CustRoleIdTest);
+            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value);
 
             // Assert
             Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
@@ -88,10 +91,10 @@
         public void CreateSelectCriteria_InvalidProductId_ReturnsSelectDCSProductStatusCriteria(int productId)
         {
             // Arrange
-            var expectedCriteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleIdTest);
+            var expectedCriteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
 
             // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(productId, CustIdTest, CustRoleIdTest);
+            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value);
 
             // Assert
             Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
@@ -103,7 +106,17 @@
             // Arrange
             var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
             var productStatus = new[] { new ProductStatusParam(208, 2101, false) };
-            var param = new ProductStatusCommandParam(ProductIdConstants.RNGCasino, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new ProductStatusCommandParam(
+                ProductIdConstants.RNGCasino,
+                CustIdTest, 
+                CustRoleTest,
+                UplineIdTest,
+                UplineLevelTest,
+                UserIdTest,
+                SubAccIdTest,
+                LanguageTest,
+                IPTest,
+                productStatus);
 
             // Act
             var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);
@@ -121,7 +134,9 @@
             var param = new ProductStatusCommandParam(
                 ProductIdConstants.ColossusBets,
                 CustIdTest,
+                CustRoleTest,
                 UplineIdTest,
+                UplineLevelTest,
                 UserIdTest,
                 SubAccIdTest,
                 LanguageTest,
@@ -140,7 +155,17 @@
         {
             // Arrange
             var productStatus = new[] { new ProductStatusParam(213, 2501, false) };
-            var param = new ProductStatusCommandParam(ProductIdConstants.NG2, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new ProductStatusCommandParam(
+                ProductIdConstants.NG2,
+                CustIdTest,
+                CustRoleTest,
+                UplineIdTest,
+                UplineLevelTest,
+                UserIdTest,
+                SubAccIdTest,
+                LanguageTest,
+                IPTest,
+                productStatus);
             var expectedCriteria = new UpdateNG2StatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, productStatus);
 
             // Act
@@ -157,7 +182,17 @@
         {
             // Arrange
             var productStatus = new[] { new ProductStatusParam(0, 0, false) };
-            var param = new ProductStatusCommandParam(productId, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new ProductStatusCommandParam(
+                productId,
+                CustIdTest,
+                CustRoleTest,
+                UplineIdTest,
+                UplineLevelTest,
+                UserIdTest,
+                SubAccIdTest,
+                LanguageTest,
+                IPTest,
+                productStatus);
             var expectedCriteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, productStatus);
 
             // Act
@@ -176,7 +211,17 @@
                 new ProductStatusParam(202, 1501, false),
                 new ProductStatusParam(202, 1503, true)
             };
-            var param = new ProductStatusCommandParam(ProductIdConstants.NG2, CustIdTest, UplineIdTest, UserIdTest, SubAccIdTest, LanguageTest, IPTest, productStatus);
+            var param = new ProductStatusCommandParam(
+                ProductIdConstants.NG2,
+                CustIdTest,
+                CustRoleTest,
+                UplineIdTest,
+                UplineLevelTest,
+                UserIdTest,
+                SubAccIdTest,
+                LanguageTest,
+                IPTest,
+                productStatus);
             var expectedCriteria = new UpdateKenoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, 1501, false, UplineIdTest);
 
             // Act

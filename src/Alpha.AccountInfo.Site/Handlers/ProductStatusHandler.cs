@@ -37,19 +37,10 @@
 
         public async Task<Result> Handle(ProductStatusCommand message)
         {
-            var authorizationParam = ToProductStatusAuthorizationParam(message);
             var commandParam = ToUpdateProductStatusParam(message);
 
-            return await statusService.UpdateProductStatusAsync(authorizationParam, commandParam);
+            return await statusService.UpdateProductStatusAsync(commandParam);
         }
-
-        private static ProductStatusAuthorizationParam ToProductStatusAuthorizationParam(ProductStatusQuery message)
-            => new ProductStatusAuthorizationParam(
-                message.ProductId,
-                message.CustId,
-                message.CustRole,
-                message.UplineId,
-                message.UplineLevel);
 
         private static ProductStatusViewModel ToProductStatusViewModel(
             ProductStatusQuery message,
@@ -68,7 +59,9 @@
             => new ProductStatusCommandParam(
                 message.ProductId,
                 message.CustId,
+                message.CustRole,
                 message.UplineId,
+                message.UplineLevel,
                 message.UplineUserId,
                 message.UplineSubAccId,
                 message.LangKey,
