@@ -51,15 +51,15 @@
                 CustId = CustIdTest,
                 CustRoleId = CustRoleTest.Value
             };
-            var productStatuses = new List<ProductStatusModel>
+            var productStatus = new List<ProductStatusModel>
             {
                 new ProductStatusModel(ProductIdTest, 207, 1004, false, false)
             };
-            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatuses, UplineLevelTest, false);
+            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false);
 
             statusService
                 .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
-                .Returns(productStatuses);
+                .Returns(productStatus);
 
             // Act
             var actualViewModel = await statusHandler.Handle(message);
@@ -70,7 +70,7 @@
                 expectedViewModel.CustId == actualViewModel.CustId &&
                 expectedViewModel.CustName == actualViewModel.CustName &&
                 expectedViewModel.CustRole == actualViewModel.CustRole &&
-                expectedViewModel.ProductStatuses.Count() == actualViewModel.ProductStatuses.Count() &&
+                expectedViewModel.ProductStatus.Count() == actualViewModel.ProductStatus.Count() &&
                 expectedViewModel.IsAgentUpdateMember == actualViewModel.IsAgentUpdateMember &&
                 expectedViewModel.IsDirectDownline == actualViewModel.IsDirectDownline &&
                 expectedViewModel.IsViewOnly == actualViewModel.IsViewOnly);
@@ -99,7 +99,7 @@
             var actualViewModel = await statusHandler.Handle(message);
 
             // Assert
-            Assert.False(actualViewModel.ProductStatuses.Any());
+            Assert.False(actualViewModel.ProductStatus.Any());
         }
 
         [Fact]

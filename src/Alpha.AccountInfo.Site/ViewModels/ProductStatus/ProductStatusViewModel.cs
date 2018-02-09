@@ -11,7 +11,7 @@
             int custId,
             string custName,
             UserLevel custRole,
-            IEnumerable<ProductStatusModel> productStatuses,
+            IEnumerable<ProductStatusModel> productStatus,
             UserLevel loggedInUserRole,
             bool isViewOnly)
         {
@@ -19,7 +19,7 @@
             CustId = custId;
             CustName = custName;
             CustRole = custRole;
-            ProductStatuses = productStatuses;
+            ProductStatus = productStatus;
             IsAgentUpdateMember = custRole.IsMemberLevel() && loggedInUserRole.IsAgentLevel();
             IsDirectDownline = custRole.IsDirectDownlineOf(loggedInUserRole);
             IsViewOnly = isViewOnly;
@@ -33,7 +33,7 @@
 
         public UserLevel CustRole { get; }
 
-        public IEnumerable<ProductStatusModel> ProductStatuses { get; }
+        public IEnumerable<ProductStatusModel> ProductStatus { get; }
 
         public bool IsAgentUpdateMember { get; }
 
@@ -45,5 +45,10 @@
             => !IsDirectDownline
             || productStatus.IsDisabledUpline
             || (!IsAgentUpdateMember && !productStatus.IsDisabled);
+
+        public bool IsEnabledSubmitButton(ProductStatusModel productStatus)
+            => IsAgentUpdateMember
+            ? !productStatus.IsDisabledUpline
+            : !productStatus.IsDisabledUpline && productStatus.IsDisabled;
     }
 }

@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Product Status";
-    var enableSubmit = false;
+    var enableSubmitButton = false;
     var userLevelDisplayName = Model.CustRole.GetDisplayName();
+    var noDataFound = !Model.ProductStatus.Any();
 }
 
 @using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
@@ -26,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @if (!Model.ProductStatuses.Any())
+            @if (noDataFound)
             {
                 <tr>
                     <td colspan="2">
@@ -36,16 +37,9 @@
             }
             else
             {
-                foreach (var item in Model.ProductStatuses)
+                foreach (var item in Model.ProductStatus)
                 {
-                    if (Model.IsAgentUpdateMember)
-                    {
-                        enableSubmit |= !item.IsDisabledUpline;
-                    }
-                    else
-                    {
-                        enableSubmit |= !item.IsDisabledUpline && item.IsDisabled;
-                    }
+                    enableSubmitButton |= Model.IsEnabledSubmitButton(item);
 
                     <tr>
                         <td>@item.Name</td>
@@ -64,12 +58,12 @@
             }
         </tbody>
     </table>
-    if (!Model.IsViewOnly)
+    if (!Model.IsViewOnly && !noDataFound)
     {
         <div class="margin-top10">
             <button type="submit"
                     class="btn-submit"
-                    @(enableSubmit && Model.IsDirectDownline ? string.Empty : "disabled=disabled")>
+                    @(enableSubmitButton && Model.IsDirectDownline ? string.Empty : "disabled=disabled")>
                 @Resources.Submit
             </button>
         </div>
