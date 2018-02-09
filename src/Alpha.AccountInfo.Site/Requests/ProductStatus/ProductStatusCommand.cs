@@ -8,23 +8,23 @@
         public ProductStatusCommand(IUser viewer)
             : base(viewer)
         {
-            UplineUserId = viewer.UserId;
-            UplineSubAccId = viewer.SubAccId;
+            ActorId = viewer.UserId;
+            SubAccId = viewer.SubAccId;
             LangKey = viewer.LangKey;
             IP = viewer.IP;
         }
 
-        public string ProductStatus { get; set; }
+        public BetTypeStatus[] BetTypeStatus { get; set; }
 
-        public int UplineUserId { get; }
+        public int ActorId { get; }
 
-        public int UplineSubAccId { get; }
+        public int SubAccId { get; }
 
         public string LangKey { get; }
 
         public string IP { get; }
 
         public override bool IsValid()
-            => base.IsValid() && !string.IsNullOrWhiteSpace(ProductStatus);
+            => base.IsValid() && BetTypeStatus?.Length > 0;
     }
 }

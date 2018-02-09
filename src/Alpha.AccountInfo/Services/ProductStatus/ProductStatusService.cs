@@ -104,7 +104,7 @@
         {
             foreach (var item in entities)
             {
-                item.BetTypeName = cacheRefService.GetProductName(item.ProductId);
+                item.Name = cacheRefService.GetProductName(item.ProductId);
 
                 yield return item;
             }
@@ -114,7 +114,7 @@
         {
             foreach (var item in entities)
             {
-                item.BetTypeName = GetBetTypeName(item.BetType);
+                item.Name = GetBetTypeName(item.BetType);
 
                 yield return item;
             }
@@ -132,22 +132,21 @@
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
-            IList<Result> errors = new List<Result>();
+            IList<Result> results = new List<Result>();
             var criteria = criteriaFactory.CreateUpdateKenoStatusCriteria(param);
 
             foreach (var item in criteria)
             {
                 await repository.ExecuteAsync(item);
 
-                if (item.ErrCode != 0)
-                {
-                    errors.Add(Result.CreateErrorResult(item.ErrCode, item.ErrMsg));
-                }
+                results.Add(item.ErrCode == 0
+                    ? Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully)
+                    : Result.CreateErrorResult(item.ErrCode, item.ErrMsg));
             }
 
-            return errors.Count == 0 ?
-                Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-                ResultHelper.ParseKenoErrorResults(errors);
+            var errorResult = results.FirstOrDefault(r => !r.IsSuccess());
+
+            return errorResult ?? results[0];
         }
 
         private async Task<Result> UpdateStatusAsync(ProductStatusCommandParam param)

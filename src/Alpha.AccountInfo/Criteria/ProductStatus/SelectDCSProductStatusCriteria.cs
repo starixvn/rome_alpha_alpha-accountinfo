@@ -1,28 +1,24 @@
 ﻿namespace Alpha.AccountInfo.Criteria.ProductStatus
 {
-    using Enumerations;
     using Models;
 
     public class SelectDCSProductStatusCriteria : SelectProductStatusCriteria
     {
-        public SelectDCSProductStatusCriteria(int productId, int custId, byte roleId, int settingType = 13)
+        public SelectDCSProductStatusCriteria(int productId, int custId, byte roleId)
             : base(productId, custId)
         {
             RoleId = roleId;
-            SettingType = settingType;
         }
 
         public byte RoleId { get; }
 
-        public int SettingType { get; }
+        public int SettingType { get; } = 13;
 
         public override string GetSettingKey() => "Acc_CustSetting_StatusSettingSelect";
 
         public override bool IsValid()
-        {
-            var userRole = Enumeration.FromValue<UserLevel>(RoleId);
-
-            return base.IsValid() && UserLevel.Member <= userRole && userRole <= UserLevel.Master && SettingType > 0;
-        }
+            => base.IsValid()
+            && UserLevel.Member.Value <= RoleId
+            && RoleId <= UserLevel.Master.Value;
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
@@ -62,10 +63,10 @@
                 message.CustRole,
                 message.UplineId,
                 message.UplineLevel,
-                message.UplineUserId,
-                message.UplineSubAccId,
+                message.ActorId,
+                message.SubAccId,
                 message.LangKey,
                 message.IP,
-                JsonConvert.DeserializeObject<ProductStatusParam[]>(message.ProductStatus));
+                message.BetTypeStatus.Select(status => new BetTypeStatusParam(status.SportType, status.BetType, status.IsDisabled)));
     }
 }

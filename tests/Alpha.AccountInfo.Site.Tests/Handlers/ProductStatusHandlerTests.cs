@@ -113,7 +113,10 @@
                 ProductId = ProductIdConstants.Keno,
                 CustId = CustIdTest,
                 CustRoleId = CustRoleTest.Value,
-                ProductStatus = "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]"
+                BetTypeStatus = new[]
+                {
+                    new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
+                }
             };
             var expectedResult = Result.CreateSuccessResult();
 
@@ -139,7 +142,10 @@
                 ProductId = ProductIdConstants.Keno,
                 CustId = CustIdTest,
                 CustRoleId = CustRoleTest.Value,
-                ProductStatus = "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]"
+                BetTypeStatus = new[]
+                {
+                    new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
+                }
             };
             var expectedResult = Result.CreateForbiddenResult();
 

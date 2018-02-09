@@ -30,6 +30,6 @@
 
         public bool IsDisabledUpline { get; }
 
-        public string BetTypeName { get; set; }
+        public string Name { get; set; }
     }
 }

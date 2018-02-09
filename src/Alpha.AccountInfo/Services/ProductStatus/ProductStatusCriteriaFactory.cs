@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Constants;
     using Criteria.ProductStatus;
     using Fanex.Data.Repository;
@@ -59,7 +60,7 @@
                 yield return new UpdateKenoStatusCriteria(
                     param.CustId,
                     param.SubAccId,
-                    param.UserId,
+                    param.ActorId,
                     param.IP,
                     param.LangKey,
                     item.BetType,
@@ -70,12 +71,12 @@
 
         private static NonQueryProductStatusCriteria CreateUpdateCasinoStatusCriteria(ProductStatusCommandParam param)
         {
-            var disable = param.ProductStatusParams[0].IsDisabled;
+            var disable = param.ProductStatusParams.First().IsDisabled;
 
             return new UpdateCasinoStatusCriteria(
                 param.CustId,
                 param.SubAccId,
-                param.UserId,
+                param.ActorId,
                 param.IP,
                 param.LangKey,
                 disable);
@@ -83,12 +84,12 @@
 
         private static NonQueryProductStatusCriteria CreateUpdateColossusBetStatusCriteria(ProductStatusCommandParam param)
         {
-            var disable = param.ProductStatusParams[0].IsDisabled;
+            var disable = param.ProductStatusParams.First().IsDisabled;
 
             return new UpdateColossusBetStatusCriteria(
                 param.CustId,
                 param.SubAccId,
-                param.UserId,
+                param.ActorId,
                 param.IP,
                 param.LangKey,
                 disable);
@@ -98,7 +99,7 @@
             => new UpdateNG2StatusCriteria(
                 param.CustId,
                 param.SubAccId,
-                param.UserId,
+                param.ActorId,
                 param.IP,
                 param.ProductStatusParams);
 
@@ -106,7 +107,7 @@
             => new UpdateDCSProductStatusCriteria(
                 param.CustId,
                 param.SubAccId,
-                param.UserId,
+                param.ActorId,
                 param.IP,
                 param.ProductStatusParams);
     }

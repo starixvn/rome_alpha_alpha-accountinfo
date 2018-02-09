@@ -1,7 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
-    using System.Collections.Specialized;
-    using AccountInfo.Configurations;
     using AccountInfo.Criteria.ProductStatus;
     using Xunit;
 
@@ -14,14 +12,6 @@
         private const string IPTest = "127.0.0.1";
         private const string LanguageTest = "E";
         private const bool DisableTest = false;
-
-        public UpdateColossusBetStatusCriteriaTests()
-        {
-            AppSettings.AppSettingValues = new NameValueCollection
-            {
-                ["SystemId"] = "2"
-            };
-        }
 
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
@@ -46,22 +36,6 @@
 
             // Act
             var actualResult = criteria.IsValid();
-
-            // Assert
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Theory]
-        [InlineData(null, false)]
-        [InlineData("", false)]
-        [InlineData(LanguageTest, true)]
-        public void IsValid_Language_ReturnsExpectedResult(string language, bool expectedResult)
-        {
-            // Arrange
-            var nonQueryCriteria = new UpdateColossusBetStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, language, DisableTest);
-
-            // Act
-            var actualResult = nonQueryCriteria.IsValid();
 
             // Assert
             Assert.Equal(expectedResult, actualResult);

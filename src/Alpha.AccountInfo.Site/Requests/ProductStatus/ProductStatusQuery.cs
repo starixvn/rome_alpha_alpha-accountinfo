@@ -32,6 +32,9 @@
         public bool IsViewOnly { get; }
 
         public override bool IsValid()
-            => ProductId > 0 && CustId > 0 && UserLevel.Member <= CustRole && CustRole <= UserLevel.Master;
+            => ProductId > 0
+            && CustId > 0
+            && UserLevel.Member.Value <= CustRoleId
+            && CustRoleId <= UserLevel.Master.Value;
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
-    using System;
     using AccountInfo.Criteria.ProductStatus;
     using Xunit;
 
@@ -75,13 +74,16 @@
         }
 
         [Fact]
-        public void IsValid_InvalidRoleId_ThrowsArgumentOutOfRangeException()
+        public void IsValid_InvalidRoleId_ReturnsFalse()
         {
             // Arrange
             var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, CustIdTest, 0);
 
-            // Act& Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => criteria.IsValid());
+            // Act
+            var actualResult = criteria.IsValid();
+
+            // Assert
+            Assert.False(actualResult);
         }
 
         [Theory]
@@ -93,23 +95,6 @@
         {
             // Arrange
             var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, CustIdTest, roleId);
-
-            // Act
-            var actualResult = criteria.IsValid();
-
-            // Assert
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Theory]
-        [InlineData(int.MinValue, false)]
-        [InlineData(-1, false)]
-        [InlineData(0, false)]
-        [InlineData(13, true)]
-        public void IsValid_SettingType_ReturnsExpectedResult(int settingType, bool expectedResult)
-        {
-            // Arrange
-            var criteria = new SelectDCSProductStatusCriteria(ProductIdTest, CustIdTest, RoleIdTest, settingType);
 
             // Act
             var actualResult = criteria.IsValid();

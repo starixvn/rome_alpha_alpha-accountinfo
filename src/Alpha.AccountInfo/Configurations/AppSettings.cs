@@ -18,14 +18,11 @@
 
         public static string StoredProcedurePath => GetConfigValue("StoredProcedurePath");
 
-        public static byte SystemId => byte.Parse(GetConfigValue("SystemId"));
-
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()
         {
             Require(StoredProcedurePath, nameof(StoredProcedurePath));
-            Require(GetConfigValue("SystemId"), nameof(SystemId));
         }
 
         private static void Require(string key, string keyName)

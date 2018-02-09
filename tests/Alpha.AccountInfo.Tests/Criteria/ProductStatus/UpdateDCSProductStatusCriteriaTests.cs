@@ -13,19 +13,11 @@
         private const int SubAccIdTest = 536751;
         private const int UserIdTest = 1176070;
         private const string IPTest = "127.0.0.1";
-        private static readonly ProductStatusParam[] ProductStatusParamTest = new[]
+        private static readonly BetTypeStatusParam[] ProductStatusParamTest = new[]
         {
-            new ProductStatusParam(211, 2401, false),
-            new ProductStatusParam(211, 2402, false)
+            new BetTypeStatusParam(211, 2401, false),
+            new BetTypeStatusParam(211, 2402, false)
         };
-
-        public UpdateDCSProductStatusCriteriaTests()
-        {
-            AppSettings.AppSettingValues = new NameValueCollection
-            {
-                ["SystemId"] = "2"
-            };
-        }
 
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
@@ -78,7 +70,7 @@
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, ProductStatusParamTest);
 
             // Act
-            var actualResult = criteria.IsDisabled;
+            var actualResult = criteria.ProductStatusXml;
 
             // Assert
             Assert.Equal(expectedResult, actualResult);
@@ -92,7 +84,7 @@
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, null);
 
             // Act
-            var actualResult = criteria.IsDisabled;
+            var actualResult = criteria.ProductStatusXml;
 
             // Assert
             Assert.Equal(expectedResult, actualResult);

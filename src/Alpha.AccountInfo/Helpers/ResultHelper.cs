@@ -1,28 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Helpers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
-    using Models;
 
     public static class ResultHelper
     {
-        public static Result ParseKenoErrorResults(IEnumerable<Result> errors)
-        {
-            IList<Result> flattenErrors = new List<Result>();
-            var groupErrorCode = errors.ToLookup(err => err.Code);
-
-            foreach (var group in groupErrorCode)
-            {
-                flattenErrors.Add(Result.CreateErrorResult(group.Key, group.First().Message));
-            }
-
-            return Result.CreateErrorResult(
-                flattenErrors[0].Code,
-                string.Join("<br/>", flattenErrors.Select(err => err.Message)));
-        }
-
         public static string ParseDCSProductMessage(string errMsg)
         {
             if (IsValidXml(errMsg))

@@ -1,6 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Criteria.ProductStatus
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
+    using Fanex.Data;
     using Params.ProductStatus;
 
     public class UpdateDCSProductStatusCriteria : NonQueryProductStatusCriteria
@@ -10,28 +14,27 @@
             int subAccId,
             int userId,
             string ip,
-            ProductStatusParam[] productStatusParams) : base(custId, subAccId, userId, ip)
+            IEnumerable<BetTypeStatusParam> productStatusParams) : base(custId, subAccId, userId, ip)
         {
-            IsDisabled = GetIsDisabledXmlParam(productStatusParams);
+            ProductStatusXml = ParseProductStatusToXml(productStatusParams);
         }
 
-        public string IsDisabled { get; }
+        [SpParam(SqlParamName = "IsDisabled")]
+        public string ProductStatusXml { get; }
 
         public override string GetSettingKey() => "Acc_CustSetting_DisableNewProductStatusUpd";
 
-        public override bool IsValid() => base.IsValid() && !string.IsNullOrEmpty(IsDisabled);
+        public override bool IsValid() => base.IsValid() && !string.IsNullOrEmpty(ProductStatusXml);
 
-        private static string GetIsDisabledXmlParam(ProductStatusParam[] statusParams)
+        private static string ParseProductStatusToXml(IEnumerable<BetTypeStatusParam> statusParams)
         {
-            var max = statusParams?.Length;
-
-            if (max > 0)
+            if (statusParams != null && statusParams.Any())
             {
                 var builder = new StringBuilder();
 
-                for (int i = 0; i < max; i++)
+                foreach (var item in statusParams)
                 {
-                    builder.Append(BuildProductStatusElement(statusParams[i]));
+                    builder.Append(BuildProductStatusElement(item));
                 }
 
                 return $"<ROOT>{builder.ToString()}</ROOT>";
@@ -40,7 +43,7 @@
             return string.Empty;
         }
 
-        private static string BuildProductStatusElement(ProductStatusParam param)
-            => $"<ProductStatus SportType=\"{param.SportType}\" BetType=\"{param.BetType}\" IsDisabled=\"{(param.IsDisabled ? 1 : 0)}\"/>";
+        private static string BuildProductStatusElement(BetTypeStatusParam param)
+            => $"<ProductStatus SportType=\"{param.SportType}\" BetType=\"{param.BetType}\" IsDisabled=\"{Convert.ToInt32(param.IsDisabled)}\"/>";
     }
 }

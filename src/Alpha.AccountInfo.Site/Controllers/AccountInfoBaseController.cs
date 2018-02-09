@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.Controllers
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using AccountInfo.Models;
@@ -8,10 +7,9 @@
     using Requests;
     using Web;
 
-    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed")]
     public abstract class AccountInfoBaseController : BaseAsyncController
     {
-        private const string InvalidPageViewPath = "~/Views/Shared/NoInformation.cshtml";
+        private const string NoInformationPageViewPath = "~/Views/Shared/NoInformation.cshtml";
 
         protected readonly IMediator mediator;
 
@@ -27,7 +25,7 @@
 
             if (isValid != true)
             {
-                return View(InvalidPageViewPath);
+                return View(NoInformationPageViewPath);
             }
 
             return View(await mediator.Send(message));

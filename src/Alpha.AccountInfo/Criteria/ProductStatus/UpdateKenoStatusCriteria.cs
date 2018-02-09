@@ -29,6 +29,6 @@
         public override string GetSettingKey() => "Acc_CustomerUpdDisableKeno";
 
         public override bool IsValid()
-            => base.IsValid() && BetType > 0 && UplineId > 0 && !string.IsNullOrEmpty(Language);
+            => base.IsValid() && BetType > 0 && UplineId > 0;
     }
 }

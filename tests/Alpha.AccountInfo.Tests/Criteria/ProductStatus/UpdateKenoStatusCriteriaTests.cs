@@ -1,7 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
-    using System.Collections.Specialized;
-    using AccountInfo.Configurations;
     using AccountInfo.Criteria.ProductStatus;
     using Xunit;
 
@@ -16,14 +14,6 @@
         private const int BetTypeTest = 1501;
         private const bool DisableTest = false;
         private const int UplineIdTest = 1176070;
-
-        public UpdateKenoStatusCriteriaTests()
-        {
-            AppSettings.AppSettingValues = new NameValueCollection
-            {
-                ["SystemId"] = "2"
-            };
-        }
 
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
@@ -79,22 +69,6 @@
         {
             // Arrange
             var nonQueryCriteria = new UpdateKenoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, BetTypeTest, DisableTest, uplineId);
-
-            // Act
-            var actualResult = nonQueryCriteria.IsValid();
-
-            // Assert
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Theory]
-        [InlineData(null, false)]
-        [InlineData("", false)]
-        [InlineData(LanguageTest, true)]
-        public void IsValid_Language_ReturnsExpectedResult(string language, bool expectedResult)
-        {
-            // Arrange
-            var nonQueryCriteria = new UpdateKenoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, language, BetTypeTest, DisableTest, UplineIdTest);
 
             // Act
             var actualResult = nonQueryCriteria.IsValid();

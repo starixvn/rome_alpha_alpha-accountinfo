@@ -8,8 +8,10 @@
                     <div id="msg-serverResult" class="hide"></div>
                     <div class="msg msg-warning">
                         You are not allowed to disable downlines as a company policy.
-                    </div>                    <form action="/site-accountinfo/ProductStatus/Update" id="formProductStatus" method="post">
-                        <input name="__RequestVerificationToken" type="hidden" value="W88YvCanMUJ0AptMkY0VmYpsLc3NWRW5PQFVyBiUTOJTs4GUM1cmRI-zKId4ocyu28wTe7jx4MB2c-44KXGMBK5iCeA1" />                        <table class="tblRpt tblRpt-bordered width-100per">
+                    </div>
+                    <form action="/site-accountinfo/ProductStatus/Update" id="formProductStatus" method="post">
+                        <input name="__RequestVerificationToken" type="hidden" value="W88YvCanMUJ0AptMkY0VmYpsLc3NWRW5PQFVyBiUTOJTs4GUM1cmRI-zKId4ocyu28wTe7jx4MB2c-44KXGMBK5iCeA1" />
+                        <table class="tblRpt tblRpt-bordered width-100per">
                             <thead>
                                 <tr>
                                     <th colspan="2">
@@ -45,10 +47,13 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>                        <div class="margin-top10"><button type="submit" class="btn-submit">Submit</button></div>                        <input type="hidden" id="hiddenProductId" value="21" />
+                        </table>
+                        <div class="margin-top10"><button type="submit" class="btn-submit">Submit</button></div>
+                        <input type="hidden" id="hiddenProductId" value="21" />
                         <input type="hidden" id="hiddenCustId" value="1176083" />
                         <input type="hidden" id="hiddenCustRoleId" value="3" />
-                        <input type="hidden" id="hiddenNoDataChange" value="There is no change to update." />                    </form>
+                        <input type="hidden" id="hiddenNoDataChange" value="There is no change to update." />
+                    </form>
                 </body>`
     };
 
@@ -124,7 +129,7 @@
             productStatus.cacheDOMElements();
         });
 
-        it("_Form Data Change -> Show Warning Message", () => {
+        it("_Form Data Change -> Make a AJAX POST", () => {
             // arrange
             let e: any = { preventDefault: function () { } };
             let self: any = this;
@@ -132,7 +137,7 @@
                 let checkbox = self.$(this);
                 checkbox.prop("checked", !checkbox.is(":checked"));
             });
-            spyOn(jQueryFake, "post").and.callThrough();
+            spyOn(jQueryFake, "ajax").and.callThrough();
 
             // act
             productStatus.updateProductStatus(e);
@@ -140,13 +145,13 @@
             // assert
             expect(productStatus.$msgServerResult.hasClass("hide")).toBeTruthy();
             expect(productStatus.$msgServerResult.html()).toBe("");
-            expect(jQueryFake.post).toHaveBeenCalled();
+            expect(jQueryFake.ajax).toHaveBeenCalled();
         });
 
         it("_No Form Data Change -> Show Warning Message", () => {
             // arrange
             let e: any = { preventDefault: function () { } };
-            spyOn(jQueryFake, "post").and.callThrough();
+            spyOn(jQueryFake, "ajax").and.callThrough();
 
             // act
             productStatus.updateProductStatus(e);
@@ -154,7 +159,7 @@
             // assert
             expect(productStatus.$msgServerResult.hasClass("msg msg-warning")).toBeTruthy();
             expect(productStatus.$msgServerResult.html()).toBe("There is no change to update.");
-            expect(jQueryFake.post).not.toHaveBeenCalled();
+            expect(jQueryFake.ajax).not.toHaveBeenCalled();
         });
     });
 
@@ -227,6 +232,23 @@
             // assert
             expect(productStatus.$msgServerResult.hasClass("msg msg-error")).toBeTruthy();
             expect(productStatus.$msgServerResult.html()).toBe("You are not authorized on this function.");
+            expect(productStatus.topWindow.closeEditSportStatusPopup).not.toHaveBeenCalled();
+        });
+
+        it("_ErrCode != 0 -> Show error Message 'Request Verification Token does not exist.'", () => {
+            // arrange
+            spyOn(topWindow, "closeEditSportStatusPopup");
+            setFixtures(template.normal);
+            productStatus.cacheDOMElements();
+
+            let data: any = { ErrCode: 1, ErrMsg: "Request Verification Token does not exist. Please refresh your page. Thanks." };
+
+            // act
+            productStatus.afterUpdateStatusSuccessfully(data);
+
+            // assert
+            expect(productStatus.$msgServerResult.hasClass("msg msg-error")).toBeTruthy();
+            expect(productStatus.$msgServerResult.html()).toBe("Request Verification Token does not exist. Please refresh your page. Thanks.");
             expect(productStatus.topWindow.closeEditSportStatusPopup).not.toHaveBeenCalled();
         });
     });

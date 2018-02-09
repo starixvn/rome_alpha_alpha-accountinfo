@@ -21,6 +21,10 @@
         private const int ProductIdTest = 22;
         private const int CustIdTest = 1176083;
         private const byte CustRoleIdTest = 3;
+        private static readonly BetTypeStatus[] BetTypeStatusTest = new[]
+        {
+            new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
+        };
 
         private readonly IUser user;
         private readonly IMediator mediator;
@@ -128,7 +132,7 @@
                 ProductId = ProductIdTest,
                 CustId = CustIdTest,
                 CustRoleId = CustRoleIdTest,
-                ProductStatus = "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]"
+                BetTypeStatus = BetTypeStatusTest
             };
 
             // Act
@@ -139,14 +143,12 @@
         }
 
         [Theory]
-        [InlineData(int.MinValue, CustIdTest, CustRoleIdTest, "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]")]
-        [InlineData(0, CustIdTest, CustRoleIdTest, "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]")]
-        [InlineData(ProductIdTest, int.MinValue, CustRoleIdTest, "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]")]
-        [InlineData(ProductIdTest, 0, CustRoleIdTest, "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]")]
-        [InlineData(ProductIdTest, CustIdTest, 4, "[{\"ProductId\":30,\"SportType\":207,\"BetType\":1004,\"IsDisabled\":true}]")]
-        [InlineData(ProductIdTest, CustIdTest, CustRoleIdTest, null)]
-        [InlineData(ProductIdTest, CustIdTest, CustRoleIdTest, "")]
-        public async Task Update_InvalidQuery_ReturnsInvalidPageView(int productId, int custId, byte custRoleId, string productStatus)
+        [InlineData(int.MinValue, CustIdTest, CustRoleIdTest)]
+        [InlineData(0, CustIdTest, CustRoleIdTest)]
+        [InlineData(ProductIdTest, int.MinValue, CustRoleIdTest)]
+        [InlineData(ProductIdTest, 0, CustRoleIdTest)]
+        [InlineData(ProductIdTest, CustIdTest, 4)]
+        public async Task Update_InvalidQuery_ReturnsInvalidPageView(int productId, int custId, byte custRoleId)
         {
             // Arrange
             user.Id.Returns(ViewerIdTest);
@@ -158,7 +160,55 @@
                 ProductId = productId,
                 CustId = custId,
                 CustRoleId = custRoleId,
-                ProductStatus = productStatus
+                BetTypeStatus = BetTypeStatusTest
+            };
+
+            // Act
+            var actualResult = await productStatusController.Update(message) as JsonResult;
+            var actualData = (Result)actualResult.Data;
+
+            // Assert
+            Assert.True(!actualData.IsSuccess());
+        }
+
+        [Fact]
+        public async Task Update_BetTypeStatusIsNull_ReturnsInvalidPageView()
+        {
+            // Arrange
+            user.Id.Returns(ViewerIdTest);
+            user.LevelId.Returns(LevelIdTest);
+            user.IsInternal.Returns(IsInternalTest);
+            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
+            var message = new ProductStatusCommand(user)
+            {
+                ProductId = ProductIdTest,
+                CustId = CustIdTest,
+                CustRoleId = CustRoleIdTest,
+                BetTypeStatus = null
+            };
+
+            // Act
+            var actualResult = await productStatusController.Update(message) as JsonResult;
+            var actualData = (Result)actualResult.Data;
+
+            // Assert
+            Assert.True(!actualData.IsSuccess());
+        }
+
+        [Fact]
+        public async Task Update_BetTypeStatusIsEmpty_ReturnsInvalidPageView()
+        {
+            // Arrange
+            user.Id.Returns(ViewerIdTest);
+            user.LevelId.Returns(LevelIdTest);
+            user.IsInternal.Returns(IsInternalTest);
+            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
+            var message = new ProductStatusCommand(user)
+            {
+                ProductId = ProductIdTest,
+                CustId = CustIdTest,
+                CustRoleId = CustRoleIdTest,
+                BetTypeStatus = new BetTypeStatus[0]
             };
 
             // Act

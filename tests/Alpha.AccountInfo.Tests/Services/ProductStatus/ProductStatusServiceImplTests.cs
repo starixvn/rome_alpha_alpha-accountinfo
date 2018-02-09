@@ -1,10 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.Linq;
     using System.Threading.Tasks;
-    using AccountInfo.Configurations;
     using AccountInfo.Criteria.ProductStatus;
     using AccountInfo.Enumerations;
     using AccountInfo.Models;
@@ -33,11 +31,6 @@
 
         public ProductStatusServiceImplTests()
         {
-            AppSettings.AppSettingValues = new NameValueCollection
-            {
-                ["SystemId"] = "2"
-            };
-
             dynamicRepository = Substitute.For<IDynamicRepository>();
             cacheRefService = Substitute.For<CacheRefService>();
             criteriaFactory = Substitute.For<ProductStatusCriteriaFactory>();
@@ -56,7 +49,7 @@
             {
                 new ProductStatusModel(productId, 208, 2101, false, false)
                 {
-                    BetTypeName = productName
+                    Name = productName
                 }
             };
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
@@ -84,7 +77,7 @@
                 expectedResults[0].BetType == actualResult.BetType &&
                 expectedResults[0].IsDisabled == actualResult.IsDisabled &&
                 expectedResults[0].IsDisabledUpline == actualResult.IsDisabledUpline &&
-                expectedResults[0].BetTypeName == actualResult.BetTypeName);
+                expectedResults[0].Name == actualResult.Name);
         }
 
         [Fact]
@@ -126,12 +119,12 @@
                 expectedResults[0].BetType == actualResults[0].BetType &&
                 expectedResults[0].IsDisabled == actualResults[0].IsDisabled &&
                 expectedResults[0].IsDisabledUpline == actualResults[0].IsDisabledUpline &&
-                expectedResults[0].BetTypeName == actualResults[0].BetTypeName &&
+                expectedResults[0].Name == actualResults[0].Name &&
                 expectedResults[1].SportType == actualResults[1].SportType &&
                 expectedResults[1].BetType == actualResults[1].BetType &&
                 expectedResults[1].IsDisabled == actualResults[1].IsDisabled &&
                 expectedResults[1].IsDisabledUpline == actualResults[1].IsDisabledUpline &&
-                expectedResults[1].BetTypeName == actualResults[1].BetTypeName);
+                expectedResults[1].Name == actualResults[1].Name);
         }
 
         [Fact]
@@ -169,7 +162,7 @@
                 expectedResults[0].BetType == actualResult.BetType &&
                 expectedResults[0].IsDisabled == actualResult.IsDisabled &&
                 expectedResults[0].IsDisabledUpline == actualResult.IsDisabledUpline &&
-                expectedResults[0].BetTypeName == actualResult.BetTypeName);
+                expectedResults[0].Name == actualResult.Name);
         }
 
         [Fact]
@@ -207,7 +200,7 @@
                 expectedResults[0].BetType == actualResult.BetType &&
                 expectedResults[0].IsDisabled == actualResult.IsDisabled &&
                 expectedResults[0].IsDisabledUpline == actualResult.IsDisabledUpline &&
-                expectedResults[0].BetTypeName == actualResult.BetTypeName);
+                expectedResults[0].Name == actualResult.Name);
         }
 
         [Fact]
@@ -242,12 +235,12 @@
                 expectedResults[0].BetType == actualResults[0].BetType &&
                 expectedResults[0].IsDisabled == actualResults[0].IsDisabled &&
                 expectedResults[0].IsDisabledUpline == actualResults[0].IsDisabledUpline &&
-                expectedResults[0].BetTypeName == actualResults[0].BetTypeName &&
+                expectedResults[0].Name == actualResults[0].Name &&
                 expectedResults[1].SportType == actualResults[1].SportType &&
                 expectedResults[1].BetType == actualResults[1].BetType &&
                 expectedResults[1].IsDisabled == actualResults[1].IsDisabled &&
                 expectedResults[1].IsDisabledUpline == actualResults[1].IsDisabledUpline &&
-                expectedResults[1].BetTypeName == actualResults[1].BetTypeName);
+                expectedResults[1].Name == actualResults[1].Name);
         }
 
         [Fact]
@@ -372,52 +365,6 @@
             Assert.True(!actualResult.IsSuccess() &&
                 actualResult.Code == 102 &&
                 actualResult.Message == "You are not allowed to disable for downlines.");
-        }
-
-        [Fact]
-        public async Task UpdateProductStatusAsync_Keno_ReturnsGroupErrorMessage()
-        {
-            // Arrange
-            var commandParam = new ProductStatusCommandParam(
-                ProductIdConstants.Keno,
-                CustIdTest,
-                CustRoleTest,
-                0,
-                UplineLevelTest,
-                0,
-                0,
-                null,
-                null,
-                null);
-            var criteria = new List<UpdateKenoStatusCriteria>
-            {
-                new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070)
-                {
-                    ErrCode = 102,
-                    ErrMsg = "You are not allowed to disable for downlines."
-                },
-                new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1503, false, 1176070)
-                {
-                    ErrCode = 500,
-                    ErrMsg = "Internal Server Error."
-                }
-            };
-            authorizationService
-                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateUpdateKenoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
-                .Returns(criteria);
-            dynamicRepository
-                .ExecuteAsync(Arg.Any<INonQueryCommand>())
-                .Returns(Task.CompletedTask);
-
-            // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
-
-            // Assert
-            Assert.True(!actualResult.IsSuccess() &&
-                actualResult.Message == "You are not allowed to disable for downlines.<br/>Internal Server Error.");
         }
 
         [Fact]
@@ -579,8 +526,8 @@
                 null);
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
-                new ProductStatusParam(211, 2401, false),
-                new ProductStatusParam(211, 2402, false)
+                new BetTypeStatusParam(211, 2401, false),
+                new BetTypeStatusParam(211, 2402, false)
             });
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
@@ -616,8 +563,8 @@
                 null);
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
-                new ProductStatusParam(211, 2401, false),
-                new ProductStatusParam(211, 2402, false)
+                new BetTypeStatusParam(211, 2401, false),
+                new BetTypeStatusParam(211, 2402, false)
             })
             {
                 ErrCode = 102,

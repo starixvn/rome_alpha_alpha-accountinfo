@@ -13,18 +13,10 @@
         private const int SubAccIdTest = 536751;
         private const int UserIdTest = 1176070;
         private const string IPTest = "127.0.0.1";
-        private static readonly ProductStatusParam[] ProductStatusParamTest = new[]
+        private static readonly BetTypeStatusParam[] ProductStatusParamTest = new[]
         {
-            new ProductStatusParam(213, 2501, false)
+            new BetTypeStatusParam(213, 2501, false)
         };
-
-        public UpdateNG2StatusCriteriaTests()
-        {
-            AppSettings.AppSettingValues = new NameValueCollection
-            {
-                ["SystemId"] = "2"
-            };
-        }
 
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()

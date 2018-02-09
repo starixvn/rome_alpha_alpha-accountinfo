@@ -6,6 +6,7 @@
     using AccountInfo.Models;
     using MediatR;
     using Requests.ProductStatus;
+    using Web.Filters;
 
     [SessionState(SessionStateBehavior.Default)]
     public class ProductStatusController : AccountInfoBaseController
@@ -18,7 +19,7 @@
         public async Task<ActionResult> Index(ProductStatusQuery message)
             => await View(message);
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> Update(ProductStatusCommand message)
             => await JsonData<Result>(message, JsonRequestBehavior.DenyGet);
     }

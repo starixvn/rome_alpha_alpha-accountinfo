@@ -28,11 +28,6 @@
 
         public ProductStatusCriteriaFactoryImplTests()
         {
-            AppSettings.AppSettingValues = new NameValueCollection
-            {
-                ["SystemId"] = "2"
-            };
-
             productStatusCriteriaFactoryImpl = new ProductStatusCriteriaFactoryImpl();
         }
 
@@ -105,7 +100,7 @@
         {
             // Arrange
             var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
-            var productStatus = new[] { new ProductStatusParam(208, 2101, false) };
+            var productStatus = new[] { new BetTypeStatusParam(208, 2101, false) };
             var param = new ProductStatusCommandParam(
                 ProductIdConstants.RNGCasino,
                 CustIdTest, 
@@ -130,7 +125,7 @@
         {
             // Arrange
             var expectedCriteria = new UpdateColossusBetStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
-            var productStatus = new[] { new ProductStatusParam(204, 18000, false) };
+            var productStatus = new[] { new BetTypeStatusParam(204, 18000, false) };
             var param = new ProductStatusCommandParam(
                 ProductIdConstants.ColossusBets,
                 CustIdTest,
@@ -154,7 +149,7 @@
         public void CreateUpdateCriteria_NG2_ReturnsUpdateNG2StatusCriteria()
         {
             // Arrange
-            var productStatus = new[] { new ProductStatusParam(213, 2501, false) };
+            var productStatus = new[] { new BetTypeStatusParam(213, 2501, false) };
             var param = new ProductStatusCommandParam(
                 ProductIdConstants.NG2,
                 CustIdTest,
@@ -181,7 +176,7 @@
         public void CreateUpdateCriteria_DCSProduct_ReturnsUpdateDCSProductStatusCriteria(int productId)
         {
             // Arrange
-            var productStatus = new[] { new ProductStatusParam(0, 0, false) };
+            var productStatus = new[] { new BetTypeStatusParam(0, 0, false) };
             var param = new ProductStatusCommandParam(
                 productId,
                 CustIdTest,
@@ -208,8 +203,8 @@
             // Arrange
             var productStatus = new[]
             {
-                new ProductStatusParam(202, 1501, false),
-                new ProductStatusParam(202, 1503, true)
+                new BetTypeStatusParam(202, 1501, false),
+                new BetTypeStatusParam(202, 1503, true)
             };
             var param = new ProductStatusCommandParam(
                 ProductIdConstants.NG2,

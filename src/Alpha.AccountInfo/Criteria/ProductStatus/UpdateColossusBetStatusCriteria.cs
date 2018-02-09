@@ -19,7 +19,5 @@
         public string Language { get; }
 
         public override string GetSettingKey() => "Acc_CustomerUpdDisableColossusBet";
-
-        public override bool IsValid() => base.IsValid() && !string.IsNullOrEmpty(Language);
     }
 }

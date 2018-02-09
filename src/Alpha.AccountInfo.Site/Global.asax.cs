@@ -45,7 +45,6 @@
             ShareSession.Init();
 
             GlobalFilters.Filters.Add(new CheckUMFilter());
-            GlobalFilters.Filters.Add(new CheckBelongingFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();

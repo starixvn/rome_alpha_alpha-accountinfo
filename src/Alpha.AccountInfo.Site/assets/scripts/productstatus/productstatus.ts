@@ -46,8 +46,18 @@ class ProductStatus {
         }
 
         this.hideMessage();
+        var requestVerificationToken = this.token;
 
-        this.$.post(this.$formProductStatus.attr("action"), formData, this.afterUpdateStatusSuccessfully, "json")
+        this.$.ajax({
+            type: "POST",
+            url: this.$formProductStatus.attr("action"),
+            data: { message: formData },
+            dataType: "json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("__RequestVerificationToken", requestVerificationToken);
+            }
+        })
+            .done(this.afterUpdateStatusSuccessfully)
             .always(this.$.unblockUI);
     };
 
@@ -56,7 +66,7 @@ class ProductStatus {
             isDisabled: boolean,
             oldValue: boolean;
         let self: any = this;
-        let formData: any = [];
+        let betTypeStatus: any = [];
 
         this.$("input[type='checkbox']").each(function (): void {
             checkbox = self.$(this);
@@ -64,7 +74,7 @@ class ProductStatus {
             oldValue = checkbox.data("oldvalue");
 
             if (isDisabled !== oldValue) {
-                formData.push({
+                betTypeStatus.push({
                     SportType: checkbox.data("sporttypeid"),
                     BetType: checkbox.data("bettypeid"),
                     IsDisabled: isDisabled
@@ -72,22 +82,24 @@ class ProductStatus {
             }
         });
 
-        if (formData.length !== 0) {
+        if (betTypeStatus.length !== 0) {
             return {
-                __RequestVerificationToken: this.token,
                 ProductId: this.productId,
                 CustId: this.custId,
                 CustRoleId: this.custRoleId,
-                ProductStatus: JSON.stringify(formData)
+                BetTypeStatus: betTypeStatus
             };
         }
     };
 
     afterUpdateStatusSuccessfully = (data: any): void => {
-        if (data.Code !== 0) {
-            this.showError(data.Message);
+        var code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode;
+        var messsage = data.Message || data.ErrMsg;
+
+        if (code !== 0) {
+            this.showError(messsage);
         } else {
-            this.showSuccess(data.Message);
+            this.showSuccess(messsage);
             setTimeout(this.topWindow.closeEditSportStatusPopup, 1000 * 3);
         }
     };

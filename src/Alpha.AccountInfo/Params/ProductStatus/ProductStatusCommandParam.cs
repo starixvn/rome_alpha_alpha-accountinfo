@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Params.ProductStatus
 {
+    using System.Collections.Generic;
     using Models;
 
     public class ProductStatusCommandParam
@@ -10,18 +11,18 @@
             UserLevel custRole,
             int uplineId,
             UserLevel uplineLevel,
-            int userId,
+            int actorId,
             int subAccId,
             string langKey,
             string ip,
-            ProductStatusParam[] productStatusParams)
+            IEnumerable<BetTypeStatusParam> productStatusParams)
         {
             ProductId = productId;
             CustId = custId;
             CustRole = custRole;
             UplineId = uplineId;
             UplineLevel = uplineLevel;
-            UserId = userId;
+            ActorId = actorId;
             SubAccId = subAccId;
             LangKey = langKey;
             IP = ip;
@@ -38,7 +39,7 @@
 
         public UserLevel UplineLevel { get; }
 
-        public int UserId { get; }
+        public int ActorId { get; }
 
         public int SubAccId { get; }
 
@@ -46,6 +47,6 @@
 
         public string IP { get; }
 
-        public ProductStatusParam[] ProductStatusParams { get; }
+        public IEnumerable<BetTypeStatusParam> ProductStatusParams { get; }
     }
 }
