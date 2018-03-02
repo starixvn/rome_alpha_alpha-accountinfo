@@ -15,7 +15,7 @@
         {
             // Arrange
             var criteria = new SelectProductStatusCriteria(ProductIdTest, CustIdTest);
-            var expectedSettingKey = "Acc_CustomerSelStatusByProductId";
+            var expectedSettingKey = "Acc_AdminSelStatusByProductId";
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
