@@ -90,31 +90,21 @@
         {
             ICriteria criteria = criteriaFactory.CreateSelectCriteria(productId, custId, custRole.Value);
             var rawData = await repository.FetchAsync<ProductStatusModel>(criteria);
-            var rawDataCount = rawData.Count();
 
-            if (rawDataCount == 1)
-            {
-                return GetProductStatusProductName(rawData);
-            }
-
-            return GetProductStatusBetTypeName(rawData);
+            return SetProductStatusName(productId, rawData);
         }
 
-        private IEnumerable<ProductStatusModel> GetProductStatusProductName(IEnumerable<ProductStatusModel> entities)
+        private IEnumerable<ProductStatusModel> SetProductStatusName(
+            int productId,
+            IEnumerable<ProductStatusModel> rawData)
         {
-            foreach (var item in entities)
-            {
-                item.Name = cacheRefService.GetProductName(item.ProductId);
+            var setNameByBetTypeId = rawData.Count() > 1;
 
-                yield return item;
-            }
-        }
-
-        private IEnumerable<ProductStatusModel> GetProductStatusBetTypeName(IEnumerable<ProductStatusModel> entities)
-        {
-            foreach (var item in entities)
+            foreach (var item in rawData)
             {
-                item.Name = GetBetTypeName(item.BetType);
+                item.Name = setNameByBetTypeId
+                    ? GetBetTypeName(item.BetType)
+                    : cacheRefService.GetProductName(productId);
 
                 yield return item;
             }
