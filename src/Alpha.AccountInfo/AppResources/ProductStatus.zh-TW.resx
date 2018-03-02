@@ -121,7 +121,7 @@
     <value>百家樂，輪盤，骰寶，龍虎</value>
   </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
-    <value>作為公司的政策, 你不允許禁用下線。</value>
+    <value>You are not allowed to disable this product on your downlines per company policy.</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>狀態已成功更新</value>
