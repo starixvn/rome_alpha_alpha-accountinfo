@@ -167,7 +167,8 @@
 
             if (criteria.Success)
             {
-                rnGCasinoService.Update3rdRnGCasino(criteria.CustId,
+                rnGCasinoService.Update3rdRnGCasino(
+                    criteria.CustId,
                     !criteria.Disable,
                     criteria.IP,
                     criteria.ActorId,
