@@ -61,7 +61,7 @@
         {
             if (Request.IsLocal)
             {
-                return;
+               // return;
             }
 
             var currentCustomer = UserSession.Current;

@@ -98,7 +98,7 @@
         public void CreateUpdateCriteria_Casino_ReturnsUpdateCasinoStatusCriteria()
         {
             // Arrange
-            var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, UserNameTest, IPTest, LanguageTest, DisableTest);
+            var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
             var productStatus = new[] { new BetTypeStatusParam(208, 2101, false) };
             var param = new ProductStatusCommandParam(
                 ProductIdConstants.RNGCasino,

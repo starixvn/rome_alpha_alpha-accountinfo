@@ -399,7 +399,7 @@
                 null,
                 null,
                 null);
-            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, string.Empty, "127.0.0.1", "E", false);
+            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
@@ -433,7 +433,7 @@
                 null,
                 null,
                 null);
-            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, string.Empty, "127.0.0.1", "E", false)
+            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
             {
                 ErrCode = 102,
                 ErrMsg = "You are not allowed to disable for downlines."

@@ -8,22 +8,18 @@
             int custId,
             int subAccId,
             int userId,
-            string actorName,
             string ip,
             string language,
             bool disable) : base(custId, subAccId, userId, ip)
         {
             Language = language;
             Disable = disable;
-            ActorName = actorName;
         }
 
         [SpParam(SqlParamName = "DisabledCS")]
         public bool Disable { get; }
 
         public bool SyncCS { get; } = true;
-
-        public string ActorName { get; }
 
         public string Language { get; }
 

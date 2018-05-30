@@ -171,7 +171,7 @@
                     !criteria.Disable,
                     criteria.IP,
                     criteria.ActorId,
-                    criteria.ActorName,
+                    param.ActorName,
                     criteria.SystemId);
             }
 

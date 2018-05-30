@@ -79,7 +79,6 @@
                 param.CustId,
                 param.SubAccId,
                 param.ActorId,
-                param.ActorName,
                 param.IP,
                 param.LangKey,
                 disable);
