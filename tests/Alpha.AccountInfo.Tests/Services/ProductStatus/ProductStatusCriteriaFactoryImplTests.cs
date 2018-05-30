@@ -1,8 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
-    using System.Collections.Specialized;
     using System.Linq;
-    using AccountInfo.Configurations;
     using AccountInfo.Criteria.ProductStatus;
     using AccountInfo.Enumerations;
     using AccountInfo.Models;
@@ -17,6 +15,7 @@
         private const int CustIdTest = 1176083;
         private const int SubAccIdTest = 536751;
         private const int UserIdTest = 1176070;
+        private const string UserNameTest = "User Test";
         private const string IPTest = "127.0.0.1";
         private const string LanguageTest = "E";
         private const bool DisableTest = false;
@@ -99,7 +98,7 @@
         public void CreateUpdateCriteria_Casino_ReturnsUpdateCasinoStatusCriteria()
         {
             // Arrange
-            var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
+            var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, UserNameTest, IPTest, LanguageTest, DisableTest);
             var productStatus = new[] { new BetTypeStatusParam(208, 2101, false) };
             var param = new ProductStatusCommandParam(
                 ProductIdConstants.RNGCasino,
@@ -108,6 +107,7 @@
                 UplineIdTest,
                 UplineLevelTest,
                 UserIdTest,
+                UserNameTest,
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
@@ -133,6 +133,7 @@
                 UplineIdTest,
                 UplineLevelTest,
                 UserIdTest,
+                UserNameTest,
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
@@ -157,6 +158,7 @@
                 UplineIdTest,
                 UplineLevelTest,
                 UserIdTest,
+                UserNameTest,
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
@@ -184,6 +186,7 @@
                 UplineIdTest,
                 UplineLevelTest,
                 UserIdTest,
+                UserNameTest,
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
@@ -213,6 +216,7 @@
                 UplineIdTest,
                 UplineLevelTest,
                 UserIdTest,
+                UserNameTest,
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,

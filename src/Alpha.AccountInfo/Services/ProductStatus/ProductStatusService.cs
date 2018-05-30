@@ -29,17 +29,20 @@
         private readonly CacheRefService cacheRefService;
         private readonly ProductStatusCriteriaFactory criteriaFactory;
         private readonly ProductStatusAuthorizationService authorizationService;
+        private readonly RnGCasinoService rnGCasinoService;
 
         public ProductStatusServiceImpl(
             IDynamicRepository dynamicRepository,
             CacheRefService cacheRefService,
             ProductStatusCriteriaFactory criteriaFactory,
-            ProductStatusAuthorizationService authorizationService)
+            ProductStatusAuthorizationService authorizationService,
+            RnGCasinoService rnGCasinoService)
         {
             repository = dynamicRepository;
             this.cacheRefService = cacheRefService;
             this.criteriaFactory = criteriaFactory;
             this.authorizationService = authorizationService;
+            this.rnGCasinoService = rnGCasinoService;
         }
 
         public async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -78,9 +81,15 @@
                 return Result.CreateForbiddenResult();
             }
 
-            return commandParam.ProductId == ProductIdConstants.Keno ?
-                await UpdateKenoStatusAsync(commandParam) :
-                await UpdateStatusAsync(commandParam);
+            switch(commandParam.ProductId)
+            {
+                case ProductIdConstants.Keno:
+                    return await UpdateKenoStatusAsync(commandParam);
+                case ProductIdConstants.RNGCasino:
+                    return await UpdateCasinoStatus(commandParam);
+                default:
+                    return await UpdateStatusAsync(commandParam);
+            }
         }
 
         private async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -150,31 +159,25 @@
                 Result.CreateErrorResult(criteria.ErrCode, ResultHelper.ParseDCSProductMessage(criteria.ErrMsg));
         }
 
-        ////private void UpdateCasinoStatus(UpdateCasinoStatusCriteria criteria)
-        ////{
-        ////    const int CasinoFromSystem = 2;
-        ////    var customer = new Customer();
+        private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
+        {
+            var criteria = criteriaFactory.CreateUpdateCasinoStatusCriteria(param);
 
-        ////    try
-        ////    {
-        ////        customer.UpdateCustEnableCasino(
-        ////            criteria.CustId,
-        ////            !criteria.DisabledCS,
-        ////            !criteria.DisabledCS,
-        ////            criteria.IP,
-        ////            criteria.UserId,
-        ////            param.LoginUserName,
-        ////            CasinoFromSystem);
-        ////    }
-        ////    catch (ErrorException casinoEx)
-        ////    {
-        ////        //ExceptionHandler.Handle(new Exception(casinoEx.Message, casinoEx), TraceEventType.Warning);
-        ////        throw;
-        ////    }
-        ////    catch (Exception)
-        ////    {
-        ////        throw;
-        ////    }
-        ////}
+            await repository.ExecuteAsync(criteria);
+
+            if (criteria.ErrCode.Equals(0))
+            {
+                rnGCasinoService.UpdateCasino3rd(criteria.CustId,
+                    !criteria.Disable,
+                    criteria.IP,
+                    criteria.ActorId,
+                    criteria.ActorName,
+                    criteria.SystemId);
+            }
+
+             return criteria.ErrCode == 0 ?
+             Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
+             Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
+        }
     }
 }

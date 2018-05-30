@@ -14,6 +14,8 @@
         NonQueryProductStatusCriteria CreateUpdateCriteria(ProductStatusCommandParam param);
 
         IEnumerable<NonQueryProductStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param);
+
+        UpdateCasinoStatusCriteria CreateUpdateCasinoStatusCriteria(ProductStatusCommandParam param);
     }
 
     public class ProductStatusCriteriaFactoryImpl : ProductStatusCriteriaFactory
@@ -69,7 +71,7 @@
             }
         }
 
-        private static NonQueryProductStatusCriteria CreateUpdateCasinoStatusCriteria(ProductStatusCommandParam param)
+        public UpdateCasinoStatusCriteria CreateUpdateCasinoStatusCriteria(ProductStatusCommandParam param)
         {
             var disable = param.ProductStatusParams.First().IsDisabled;
 
@@ -77,6 +79,7 @@
                 param.CustId,
                 param.SubAccId,
                 param.ActorId,
+                param.ActorName,
                 param.IP,
                 param.LangKey,
                 disable);

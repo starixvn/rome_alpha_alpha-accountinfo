@@ -9,6 +9,7 @@
             : base(viewer)
         {
             ActorId = viewer.UserId;
+            ActorName = viewer.Name;
             SubAccId = viewer.SubAccId;
             LangKey = viewer.LangKey;
             IP = viewer.IP;
@@ -17,6 +18,8 @@
         public BetTypeStatus[] BetTypeStatus { get; set; }
 
         public int ActorId { get; }
+
+        public string ActorName { get; }
 
         public int SubAccId { get; }
 

@@ -67,6 +67,18 @@
       <HintPath>..\..\packages\Alpha.Web.1.0.1.3\lib\net40\Alpha.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CasinoLibrary, Version=2.0.2.28015, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015-ChangeRequestOnProduct\lib\net40\CasinoLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CasinoSetting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015-ChangeRequestOnProduct\lib\net40\CasinoSetting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CasinoUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015-ChangeRequestOnProduct\lib\net40\CasinoUtility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
       <Private>True</Private>
@@ -117,6 +129,10 @@
     </Reference>
     <Reference Include="Fanex.Products, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Products.1.0.0.1\lib\net40\Fanex.Products.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HandHistoryLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015-ChangeRequestOnProduct\lib\net40\HandHistoryLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -249,6 +265,20 @@
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
+    <Content Include="assets\styles\AccountInfo\AccountInfo.css" />
+    <Content Include="assets\styles\AccountInfo\AccountInfo.min.css" />
+    <Content Include="assets\styles\AccountInfo\DoubleCommissionPopup.css" />
+    <Content Include="assets\styles\AccountInfo\DoubleCommissionPopup.min.css" />
+    <Content Include="assets\styles\AccountInfo\EditCustomerInfo.css" />
+    <Content Include="assets\styles\AccountInfo\EditCustomerInfo.min.css" />
+    <Content Include="assets\styles\AccountInfo\styles.css" />
+    <Content Include="assets\styles\AccountInfo\styles.min.css" />
+    <Content Include="assets\styles\AccountInfo\theme-agent.css" />
+    <Content Include="assets\styles\AccountInfo\theme-agent.min.css" />
+    <Content Include="assets\styles\AccountInfo\theme-master.css" />
+    <Content Include="assets\styles\AccountInfo\theme-master.min.css" />
+    <Content Include="assets\styles\AccountInfo\theme-super.css" />
+    <Content Include="assets\styles\AccountInfo\theme-super.min.css" />
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
@@ -301,13 +331,23 @@
     <Content Include="Web.AppSettings.backupMNLExNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="assets\styles\AccountInfo\AccountInfo.scss" />
+    <Content Include="assets\styles\AccountInfo\DoubleCommissionPopup.scss" />
+    <Content Include="assets\styles\AccountInfo\EditCustomerInfo.scss" />
+    <Content Include="assets\styles\AccountInfo\styles.scss" />
+    <Content Include="assets\styles\AccountInfo\theme-agent.scss" />
+    <Content Include="assets\styles\AccountInfo\theme-master.scss" />
+    <Content Include="assets\styles\AccountInfo\theme-super.scss" />
     <None Include="Web.AppSettings.backupMNLNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.config" />
+    <Content Include="Web.AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.AppSettings.napexternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -368,6 +408,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\ProductStatusController.cs" />
     <Compile Include="Controllers\AccountInfoBaseController.cs" />
     <Compile Include="Global.asax.cs">
@@ -433,6 +474,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Themes\Apo\" />
     <Folder Include="assets\styles\images\" />
   </ItemGroup>
   <ItemGroup>
@@ -452,6 +494,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

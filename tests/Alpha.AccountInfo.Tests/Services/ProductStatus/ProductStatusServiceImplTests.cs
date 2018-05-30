@@ -27,6 +27,7 @@
         private readonly CacheRefService cacheRefService;
         private readonly ProductStatusCriteriaFactory criteriaFactory;
         private readonly ProductStatusAuthorizationService authorizationService;
+        private readonly RnGCasinoService rnGCasinoService;
         private readonly ProductStatusServiceImpl productStatusServiceImpl;
 
         public ProductStatusServiceImplTests()
@@ -35,8 +36,21 @@
             cacheRefService = Substitute.For<CacheRefService>();
             criteriaFactory = Substitute.For<ProductStatusCriteriaFactory>();
             authorizationService = Substitute.For<ProductStatusAuthorizationService>();
+            rnGCasinoService = Substitute.For<RnGCasinoService>();
 
-            productStatusServiceImpl = new ProductStatusServiceImpl(dynamicRepository, cacheRefService, criteriaFactory, authorizationService);
+            productStatusServiceImpl = new ProductStatusServiceImpl(
+                dynamicRepository, 
+                cacheRefService, 
+                criteriaFactory, 
+                authorizationService,
+                rnGCasinoService);
+
+            rnGCasinoService.UpdateCasino3rd(CustIdTest,
+                 true,
+                 "127.0.0.1",
+                 1176070,
+                 "User Test",
+                 2).Returns(true);
         }
 
         [Theory]
@@ -294,6 +308,7 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,
@@ -331,6 +346,7 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,
@@ -378,16 +394,17 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,
                 null);
-            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
+            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, string.Empty, "127.0.0.1", "E", false);
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
+                .CreateUpdateCasinoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
@@ -411,11 +428,12 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,
                 null);
-            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
+            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, string.Empty, "127.0.0.1", "E", false)
             {
                 ErrCode = 102,
                 ErrMsg = "You are not allowed to disable for downlines."
@@ -424,7 +442,7 @@
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
             criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
+                .CreateUpdateCasinoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
@@ -449,6 +467,7 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,
@@ -482,6 +501,7 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,
@@ -520,6 +540,7 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,
@@ -557,6 +578,7 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,
@@ -599,6 +621,7 @@
                 0,
                 UplineLevelTest,
                 0,
+                string.Empty,
                 0,
                 null,
                 null,

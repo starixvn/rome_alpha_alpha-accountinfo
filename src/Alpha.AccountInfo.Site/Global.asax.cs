@@ -1,12 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
     using App_Start;
-    using Auth.Filters;
+    using CasinoLibrary.Model.UserException;
     using Configurations;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
@@ -65,15 +66,18 @@
 
             var currentCustomer = UserSession.Current;
 
+            Exception exception = Server.GetLastError().GetBaseException();
+
             ExceptionHandler.Handle(
-                Server.GetLastError(),
+                exception,
                 new Dictionary<string, object>
                 {
                     ["CustId"] = currentCustomer?.CustId,
                     ["CustName"] = currentCustomer?.UserName,
                     ["SubAccountName"] = currentCustomer?.SubUserName,
                     ["AdminName"] = currentCustomer?.AdminName
-                });
+                },
+                exception.GetType() == typeof(ErrorException) ? TraceEventType.Information : TraceEventType.Error);
         }
 
         private static string GetBuildVersion()

@@ -84,6 +84,7 @@
 
             container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Singleton);
             container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
+            container.Register<RnGCasinoService, RnGCasinoServiceImpl>(Lifestyle.Scoped);
         }
 
         private static void RegisterStaticInstances(Container container)

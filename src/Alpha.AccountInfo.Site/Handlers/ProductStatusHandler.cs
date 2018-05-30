@@ -64,6 +64,7 @@
                 message.UplineId,
                 message.UplineLevel,
                 message.ActorId,
+                message.ActorName,
                 message.SubAccId,
                 message.LangKey,
                 message.IP,

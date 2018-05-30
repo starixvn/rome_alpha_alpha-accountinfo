@@ -12,6 +12,7 @@
             int uplineId,
             UserLevel uplineLevel,
             int actorId,
+            string actorName,
             int subAccId,
             string langKey,
             string ip,
@@ -23,6 +24,7 @@
             UplineId = uplineId;
             UplineLevel = uplineLevel;
             ActorId = actorId;
+            ActorName = actorName;
             SubAccId = subAccId;
             LangKey = langKey;
             IP = ip;
@@ -40,6 +42,8 @@
         public UserLevel UplineLevel { get; }
 
         public int ActorId { get; }
+
+        public string ActorName { get; }
 
         public int SubAccId { get; }
 
