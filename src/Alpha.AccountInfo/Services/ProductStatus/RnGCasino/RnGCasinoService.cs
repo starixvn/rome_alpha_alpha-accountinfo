@@ -1,15 +1,16 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
+    using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
 
     public interface RnGCasinoService
     {
-        bool UpdateCasino3rd(int IBCCustID, bool EnableCasino, string FromIP, int ModifyBy, string ModifyUserName, int FromSystem);
+        void Update3rdRnGCasino(int IBCCustID, bool EnableCasino, string FromIP, int ModifyBy, string ModifyUserName, int FromSystem);
     }
 
     public class RnGCasinoServiceImpl : RnGCasinoService
     {
-        public bool UpdateCasino3rd(
+        public void Update3rdRnGCasino(
             int IBCCustID, 
             bool EnableCasino,
             string FromIP, 
@@ -19,7 +20,7 @@
         {
             var customer = new Customer();
 
-            return customer.UpdateCustEnableCasino(
+            var success = customer.UpdateCustEnableCasino(
                 IBCCustID,
                 EnableCasino,
                 false,
@@ -27,6 +28,11 @@
                 ModifyBy,
                 ModifyUserName,
                 FromSystem);
+
+            if (!success)
+            {
+                throw (new ErrorException($"UpdateCustEnableCasino({IBCCustID}) on CasinoLibrary is failure."));
+            }
         }
     }
 }

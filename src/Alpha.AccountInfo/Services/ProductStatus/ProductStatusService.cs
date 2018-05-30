@@ -138,7 +138,7 @@
             {
                 await repository.ExecuteAsync(item);
 
-                results.Add(item.ErrCode == 0
+                results.Add(item.Success
                     ? Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully)
                     : Result.CreateErrorResult(item.ErrCode, item.ErrMsg));
             }
@@ -154,7 +154,7 @@
 
             await repository.ExecuteAsync(criteria);
 
-            return criteria.ErrCode == 0 ?
+            return criteria.Success ?
                 Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
                 Result.CreateErrorResult(criteria.ErrCode, ResultHelper.ParseDCSProductMessage(criteria.ErrMsg));
         }
@@ -165,19 +165,19 @@
 
             await repository.ExecuteAsync(criteria);
 
-            if (criteria.ErrCode.Equals(0))
+            if (criteria.Success)
             {
-                rnGCasinoService.UpdateCasino3rd(criteria.CustId,
+                rnGCasinoService.Update3rdRnGCasino(criteria.CustId,
                     !criteria.Disable,
                     criteria.IP,
                     criteria.ActorId,
                     param.ActorName,
                     criteria.SystemId);
+
+                return Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully);
             }
 
-             return criteria.ErrCode == 0 ?
-             Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-             Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
+             return Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
         }
     }
 }

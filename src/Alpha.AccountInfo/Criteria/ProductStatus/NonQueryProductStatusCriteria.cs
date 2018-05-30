@@ -32,6 +32,8 @@
 
         public string ErrMsg { get; set; }
 
+        public bool Success => ErrCode.Equals(0);
+
         public override bool IsValid()
             => CustId > 0
             && SubAccId >= 0

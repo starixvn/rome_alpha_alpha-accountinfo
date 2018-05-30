@@ -45,12 +45,7 @@
                 authorizationService,
                 rnGCasinoService);
 
-            rnGCasinoService.UpdateCasino3rd(CustIdTest,
-                 true,
-                 "127.0.0.1",
-                 1176070,
-                 "User Test",
-                 2).Returns(true);
+            rnGCasinoService.Update3rdRnGCasino(CustIdTest, true, "127.0.0.1", 1176070, "User Test", 2);
         }
 
         [Theory]
