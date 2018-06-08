@@ -32,6 +32,7 @@
 
         public string ErrMsg { get; set; }
 
+        [SpParam(Ignored = true)]
         public bool Success => ErrCode.Equals(0);
 
         public override bool IsValid()
