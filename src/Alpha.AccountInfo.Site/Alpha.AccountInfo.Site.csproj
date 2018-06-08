@@ -281,20 +281,6 @@
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="assets\styles\AccountInfo\AccountInfo.css" />
-    <Content Include="assets\styles\AccountInfo\AccountInfo.min.css" />
-    <Content Include="assets\styles\AccountInfo\DoubleCommissionPopup.css" />
-    <Content Include="assets\styles\AccountInfo\DoubleCommissionPopup.min.css" />
-    <Content Include="assets\styles\AccountInfo\EditCustomerInfo.css" />
-    <Content Include="assets\styles\AccountInfo\EditCustomerInfo.min.css" />
-    <Content Include="assets\styles\AccountInfo\styles.css" />
-    <Content Include="assets\styles\AccountInfo\styles.min.css" />
-    <Content Include="assets\styles\AccountInfo\theme-agent.css" />
-    <Content Include="assets\styles\AccountInfo\theme-agent.min.css" />
-    <Content Include="assets\styles\AccountInfo\theme-master.css" />
-    <Content Include="assets\styles\AccountInfo\theme-master.min.css" />
-    <Content Include="assets\styles\AccountInfo\theme-super.css" />
-    <Content Include="assets\styles\AccountInfo\theme-super.min.css" />
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
@@ -347,14 +333,6 @@
     <Content Include="Web.AppSettings.backupMNLExNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Views\Setting\Index.cshtml" />
-    <Content Include="assets\styles\AccountInfo\AccountInfo.scss" />
-    <Content Include="assets\styles\AccountInfo\DoubleCommissionPopup.scss" />
-    <Content Include="assets\styles\AccountInfo\EditCustomerInfo.scss" />
-    <Content Include="assets\styles\AccountInfo\styles.scss" />
-    <Content Include="assets\styles\AccountInfo\theme-agent.scss" />
-    <Content Include="assets\styles\AccountInfo\theme-master.scss" />
-    <Content Include="assets\styles\AccountInfo\theme-super.scss" />
     <None Include="Web.AppSettings.backupMNLNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
@@ -424,7 +402,6 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\ProductStatusController.cs" />
     <Compile Include="Controllers\AccountInfoBaseController.cs" />
     <Compile Include="Global.asax.cs">
