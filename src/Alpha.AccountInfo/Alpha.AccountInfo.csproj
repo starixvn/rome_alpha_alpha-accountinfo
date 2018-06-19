@@ -254,6 +254,9 @@
     <Compile Include="Criteria\ProductStatus\UpdateKenoStatusCriteria.cs" />
     <Compile Include="Enumerations\Enumeration.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\AccountInfo\CustomerStatusModel.cs" />
+    <Compile Include="Models\AccountInfo\NonDCSProductModel.cs" />
+    <Compile Include="Models\AccountInfo\DCSProductModel.cs" />
     <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\ProductStatus\ProductProfile.cs" />
