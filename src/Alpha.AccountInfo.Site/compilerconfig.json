@@ -6,5 +6,9 @@
   {
     "outputFile": "assets/styles/productstatus/productstatus.css",
     "inputFile": "assets/styles/productstatus/productstatus.scss"
+  },
+  {
+    "outputFile": "assets/styles/account-info.css",
+    "inputFile": "assets/styles/account-info.scss"
   }
 ]

@@ -315,6 +315,10 @@
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
+    <Content Include="assets\bundles\account-info\index.css" />
+    <Content Include="assets\bundles\account-info\index.min.css">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
@@ -327,10 +331,17 @@
     <Content Include="assets\bundles\productstatus\productstatus.min.js">
       <DependentUpon>productstatus.js</DependentUpon>
     </Content>
+    <Content Include="assets\scripts\account-info.js" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
+    <Content Include="assets\styles\account-info.css">
+      <DependentUpon>account-info.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\account-info.min.css">
+      <DependentUpon>account-info.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\productstatus\productstatus.css">
       <DependentUpon>productstatus.scss</DependentUpon>
     </Content>
@@ -355,6 +366,7 @@
     <Content Include="typings\globals\jquery\typings.json" />
     <Content Include="typings\globals\jquery.blockui\typings.json" />
     <Content Include="assets\scripts\tests\chutzpah.json" />
+    <Content Include="Views\Shared\account-info.html" />
     <Content Include="Web.AppSettings.backupMNL.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -367,6 +379,8 @@
     <Content Include="Web.AppSettings.backupMNLNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="assets\styles\account-info.scss" />
+    <Content Include="assets\styles\_mixins.scss" />
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>

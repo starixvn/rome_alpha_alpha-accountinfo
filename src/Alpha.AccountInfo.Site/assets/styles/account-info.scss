@@ -1,0 +1,672 @@
+﻿@import 'variables';
+@import 'mixins';
+
+@include keyframes-ripple;
+
+body {
+    font-family: $font-family + 2;
+    min-width: initial;
+    height: 100%;
+    background-color: #fff;
+
+    @media (min-device-width: 768px) {
+        font-family: $font-family;
+    }
+}
+
+a {
+    color: $link-color;
+
+    &:hover, &:active, &:focus {
+        color: $link-hover-color;
+        text-decoration: none;
+    }
+}
+
+.font-weight-normal {
+    font-weight: normal !important;
+}
+
+hr {
+    border-top-color: #ddd;
+    border-style: dashed;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.no-p-x {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.icon-more-info {
+    font-size: 16px;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    border: 1px solid $border-color-dark;
+    @include effect-normal;
+
+    &:before, &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        bottom: 100%;        
+    }
+
+    &:before {        
+        border-width: 10px;   
+        border-bottom-color: $border-color-dark;     
+        right: 14px;              
+    }
+
+    &:after {
+        border-width: 8px;        
+        right: 16px;
+        border-bottom-color: #fff;  
+    }
+}
+
+%linkColor {
+    color: $link-color;
+
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+
+.row-info {
+    line-height: 30px;
+    [class^="col"] {
+        padding: 0 0 0 0;
+    }
+}
+
+.accountinfo-container {
+    position: relative;
+    height: 100%;
+
+    .col-right {
+        text-align: right;
+        font-weight: bold;
+    }
+
+    .highlight .col-right {
+        font-family: "Roboto Bold";
+    }
+
+    /* Search box */
+    .search-box {
+        position: relative;
+        height: 40px;
+        margin: 7px 12px 0;
+
+        .txt-search {
+            border: none;
+            border-bottom: 1px solid #888;
+            font-style: italic;
+            height: 30px;
+            margin-left: 0;
+            padding: 10px 30px 4px 0;
+            width: 100%;
+            @include transition('all .3s'); 
+            @include border-radius(0);
+            @include box-shadow-multiple(none);
+
+            &:focus {
+                border-bottom: 2px solid #67151b;
+            }
+        }
+
+        .icon-search {
+            @include ripple-effect-icon($top: 3px, $margin-left: -1px);
+            color: $text-color;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 6px;
+            position: absolute;
+            top: 3px;
+            right: 0;                   
+        }
+    }
+
+    /* Customer info checkbox */
+    .block-info {
+        display: table;
+        max-height: initial;
+        transition: max-height 0.25s ease-in;
+
+        &.collapse {
+            display: block;
+            max-height: 130px;
+            transition: max-height 0.15s ease-out;
+            overflow: hidden;
+        }
+
+        .txt-name {
+            color: $link-color;
+        }
+
+        [class^="btn"] {
+            width: 47%;
+            line-height: 28px;
+
+            &:first-child {
+                margin-right: 8px;
+            }
+        }
+
+        .dropdown-menu {
+            right: -8px;
+            left: inherit;
+            padding: 8px 0;
+
+            a {
+                font-size: $font-size;
+                line-height: 30px;
+                padding: 0 16px;
+                @extend %linkColor;
+            }
+        }
+    }
+    
+    .panel-group.account-info .row-info {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* Balance Info/ Downline List */
+    .block-balanceInfo {
+        display: table;
+        padding-top: 8px;
+
+        .pagingContainer {
+            text-align: left;
+        }
+    }    
+
+    /* Settings */
+    .product {
+        display: table;
+    }
+
+    .block-status {
+        a { 
+            color: $text-color;
+            display: block;
+
+            &:hover {
+                color: $link-color;
+            }
+        }
+
+        .checkbox:hover label {
+            color: $link-color;
+        }
+
+        .icon-ic_list {
+            color: #67151b;
+            font-size: 15px;
+            float: left;
+            margin-right: 8px;                
+            margin-top: 6px;
+            @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+        }
+    }
+
+    .block-setting {
+        ul {
+            li {
+                float: left;
+                width: 50%;
+                padding: 0;
+                line-height: 30px;
+                @include box-sizing;
+
+                a { @extend %linkColor; }
+            }
+        }
+    }
+}
+
+/* Buttons */
+
+.list-button {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+[class^='btn'] {
+    margin-right: 0;
+}
+
+.btn-noBackground {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: $height-normal;
+    line-height: $height-normal;
+    outline: none;
+    margin-right: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    white-space: nowrap;
+    font-size: $font-size;
+    -webkit-appearance: none;
+    @include box-shadow(1px, 2px, 3px, rgba(0,0,0,.3));
+    @include border-radius(1px);
+
+    &:hover {
+        color: $link-color;
+    }
+}
+
+.btn-default {
+    margin-right: 0;
+
+    &.with-level {
+        background-color: #67151b;
+        color: #fff;
+
+        &:hover,
+        &:active {
+            background-color: darken(#67151b, 5%);
+            color: #fff;
+        }
+    }
+} 
+
+.number {
+    color: $link-color;
+    &-red {
+        color: #e92819;
+    }
+}
+
+.status {
+    &-closed {
+        color: #e92819;
+    }
+
+    &-suspended {
+        color: #fc6b00;
+    }
+}
+
+.box-edited {
+    .icon-edited {
+        @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+        color: $icon-color;
+        font:{
+            size: 16px;
+            weight: 100;
+        }
+        position: absolute;
+        left: 0;
+        top: 9px;
+        cursor: pointer;
+    }
+
+    .txt-number-edited {
+        border: none;
+        height: $height-normal;
+        color: #049bac;
+        padding-left: 24px;
+        padding-right: 0;
+        text-align: right;
+        width: 100%;
+        @include box-shadow-multiple(none);
+
+        &.grey {
+            color: $text-color;
+        }
+
+        &:before {
+            content: '\e937';
+            position: absolute;
+            left: 0;
+        }
+
+        &:focus + .icon-edited {
+            color: $icon-hover-color;
+        }
+    }    
+}
+
+.account-tabs {
+    width: 100%;
+    background-color: #fff;
+    transform: translateY(0);
+    transition: .2s transform ease-in-out .1s;
+
+    &.scroll-top {
+        position: absolute;
+        top: 167px;
+        transform: translateY(-36px);
+    }
+}
+
+.panel-group.account-info {
+    margin-bottom: 0;
+
+    .panel + .panel {
+        margin-top: 0;
+    }
+
+    .panel-default {
+        border: none;
+        box-shadow: none;
+    }
+
+    .panel-heading {
+        background: none;
+        border: none;
+        padding: 0;
+
+        [class^="icon"] {
+            font-size: 14px;
+            position: relative;
+            top: 2px;
+            margin-right: 6px;
+        }
+
+        .icon-status {
+            font-size: 16px;
+            margin-right: 4px;
+        }
+
+        .icon-login {
+            font-size: 13px;
+            margin-right: 5px;
+        }
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top: none;
+        padding: 0 15px;
+    }
+
+    .panel-title > a {
+        position: relative;
+        display: block;
+        padding: 10px 25px 10px 15px;        
+        line-height: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #222;
+
+        @media (min-device-width: 1025px) {
+            padding: 8px 25px 8px 15px;
+        }
+
+        &:after {
+            font-family: "Iconalpha";
+            content: '\e954';
+            position: absolute;
+            right: 9px;
+            font-size: 19px;
+            font-weight: normal;
+        }
+
+        &.collapsed:after {
+            content: '\e942';
+        }
+
+        &:hover, &:active, &:focus {
+            color: #333;
+        }
+
+        @media (min-width: 1025px) {
+            &:hover {
+                background-color: #e5e5e5;
+            }
+        }
+        
+    }
+}
+
+.panel-settings .pagingContainer {
+    padding-left: 15px;
+}
+
+.settings {
+    //height: 186px;
+    //overflow: hidden;
+
+    @media (min-device-width: 1025px) {
+        .two-col {
+            height: auto;
+            width: 50%;
+            float: left;
+        }
+    }
+}
+
+.login-info {
+    .group {
+        margin-bottom: 4px;
+    }
+
+    .row-info {
+        line-height: 20px;
+    }
+}
+
+.pagingContainer {
+    padding-bottom: 4px;
+
+    @media (min-device-width: 1025px) {
+
+        &.invisible-desktop {
+            display: none;
+        }        
+    }
+        
+
+    .page-control {
+        float: left;
+        padding-left: 10px;
+    }
+
+    .number {
+        width: 36px;
+        height: 24px;
+        line-height: 24px;
+        border: 1px solid #b9b9b9;
+        box-shadow: none;
+    }
+
+    .page-number {
+        float: left;
+
+        .paging-item {
+            float: left;
+            text-align: center;            
+        }
+    }
+
+    .page-button {
+        display: inline-block;
+        background-color: #67151b;
+        color: #fff;
+        width: 24px;
+        line-height: 22px;
+
+        &:before {
+            position: relative;
+            top: 1px;
+            font-family: Iconalpha;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        &.prev:before {
+            content: '\e93f';
+        }
+
+        &.next:before {
+            content: '\e942';
+        }
+
+        &.disabled, &.disabled:hover {
+            opacity: .2;
+            cursor: default;
+        }
+    }
+
+    .paging-link {
+        display: inline-block;
+        line-height: 24px;
+        padding-left: 8px;
+        padding-right: 8px;  
+        cursor: pointer;
+        color: $paging-item-color;
+
+        &:hover,
+        &.active {
+            color: $paging-item-color-hover;
+            text-decoration: underline;
+            cursor: default;
+        }
+    }
+}
+
+
+// Using Swiper to change pages
+
+.swiper-wrapper {
+    padding-bottom: 30px;
+
+    &.settings {
+        padding-bottom: 0;
+    }
+}
+
+.swiper-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 0 5px;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-container-horizontal .swiper-pagination-bullets {
+    position: relative;
+    bottom: 0;    
+    left: 0;
+    right: auto;
+    width: auto;
+    margin: 0;
+    padding-left: 58px;
+    float: left;
+}
+
+.swiper-container-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0;
+}
+
+.swiper-pagination-bullet {
+	padding: 0 8px;    
+	border-radius: 0;
+	width: auto;
+	height: 24px;
+	text-align: center;
+	line-height: 24px;
+	color:#000;
+	opacity: 1;
+	background: none;
+}
+
+.swiper-pagination-bullet-active {
+    color: #67151b;
+    background: none;
+    text-decoration: underline;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    position: absolute;
+    top: auto;
+    bottom: auto;
+    width: 24px;
+    height: 24px;
+    margin-top: 0;
+    z-index: 100;
+    cursor: pointer;
+    background: #67151b;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+
+    [class^='icon'] {
+        position: relative;
+        top: 2px;
+    }
+}
+
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+    left: 34px;
+}
+
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    left: 0;
+}
+
+.page-control {
+    float: left;
+
+    .number {
+        width: 36px;
+        height: 24px;
+        line-height: 24px;
+        border: 1px solid #b9b9b9;
+        box-shadow: none;
+    }
+}
+
+.panel-downline-list {
+    overflow: hidden;    
+    .swiper-container {
+        width: 230px;
+    }
+
+    .two-col {
+        line-height: 32px;
+    }
+
+    @media (min-device-width: 768px) {
+        .two-col {
+            height: auto;
+            width: 50%;
+            float: left;
+        }
+    }
+}
+
+.panel-settings {
+    overflow: hidden;
+    .swiper-container {
+        width: 230px;
+    }
+
+    .two-col {
+        line-height: 32px;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) 
+{
+    .accountinfo-container .block-balanceInfo .nav.nav-tabs > li > a:hover:after {
+        width: 0;
+    }
+}
