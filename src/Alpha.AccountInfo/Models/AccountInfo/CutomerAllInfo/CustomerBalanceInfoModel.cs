@@ -2,9 +2,9 @@
 {
     using System;
 
-    public class CustomerCashInfoModel
+    public class CustomerBalanceInfoModel
     {
-        public CustomerCashInfoModel(
+        public CustomerBalanceInfoModel(
              double masterCash,
              double yesterday_MasterCash,
              double masterPositionTaking,

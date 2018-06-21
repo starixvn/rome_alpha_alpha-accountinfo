@@ -5,7 +5,7 @@
         public CutomerAllInfoModel(
              CustomerInfoModel customerInfo,
              LineInfoModel lineInfo,
-             CustomerCashInfoModel customerCashInfo)
+             CustomerBalanceInfoModel customerCashInfo)
         {
             CustomerInfo = customerInfo;
             LineInfo = lineInfo;
@@ -16,6 +16,6 @@
 
         public LineInfoModel LineInfo { get; }
 
-        public CustomerCashInfoModel CustomerCashInfo { get; }
+        public CustomerBalanceInfoModel CustomerCashInfo { get; }
     }
 }

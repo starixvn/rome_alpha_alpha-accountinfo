@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.ProductStatus
 {
     using System.Collections.Generic;
-    using AccountInfo.Models;
-    using AccountInfo.Models.ProductStatus;
+    using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Models.ProductStatus;
 
     public class ProductStatusViewModel
     {

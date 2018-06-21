@@ -255,7 +255,7 @@
     <Compile Include="Enumerations\Enumeration.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\AccountInfo\CustomerAllStatus\CustomerAllStatusModel.cs" />
-    <Compile Include="Models\AccountInfo\CutomerAllInfo\CustomerCashInfoModel.cs" />
+    <Compile Include="Models\AccountInfo\CutomerAllInfo\CustomerBalanceInfoModel.cs" />
     <Compile Include="Models\AccountInfo\CutomerAllInfo\CustomerInfoModel.cs" />
     <Compile Include="Models\AccountInfo\CustomerAllStatus\CustomerStatusModel.cs" />
     <Compile Include="Models\AccountInfo\CutomerAllInfo\CutomerAllInfoModel.cs" />

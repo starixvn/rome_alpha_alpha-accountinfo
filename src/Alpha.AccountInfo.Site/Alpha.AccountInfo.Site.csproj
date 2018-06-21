@@ -459,6 +459,14 @@
     <Compile Include="Requests\ProductStatus\BetTypeStatus.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusCommand.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusQuery.cs" />
+    <Compile Include="ViewModels\AccountInfo\AccountInfoViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\BalanceInfoViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\CustomerInfoViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\DownlineListViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\OnlineListViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\ProductSettingViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\StatusViewModel.cs" />
     <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
