@@ -481,6 +481,7 @@
     <Compile Include="ViewModels\AccountInfo\OnlineListViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\ProductSettingViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\StatusViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\TotalStatusDownline.cs" />
     <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

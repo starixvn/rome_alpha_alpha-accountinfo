@@ -1,6 +1,91 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
+    using System.Collections.Generic;
+    using Alpha.AccountInfo.Models;
+    using Enumerations;
+
     public class CustomerInfoViewModel
     {
+        private const string SMAStatementLink = "/site-reports/(S(wa000mahqldvjxctxg3naqhq))/Statement/SMAStatement?CustID=1382167&amp;CustName=ACGUUS3838&amp;CustLevelId=2";
+        private const string memberStatementLink = "/site-reports/(S(wa000mahqldvjxctxg3naqhq))/Statement/MemberStatement?CustID=1387971&amp;CustName=ACGUUS3838338&amp;CustLevelId=1";
+        private const string betListLink = "/site-betlists/(S(wa000mahqldvjxctxg3naqhq))/MemberBetList/Index?CustID=1387971&amp;CustName=ACGUUS3838338";
+
+        private readonly Dictionary<UserLevel, string> CustomerListLinkDict
+            = new Dictionary<UserLevel, string>
+            {
+                { UserLevel.Master, "../_MemberInfo/CustomerList/Super/AgentList.aspx?custid=1382145"},
+                { UserLevel.Agent, "../_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167"}
+            };
+
+        public CustomerInfoViewModel(
+             int custId,
+             byte roleId,
+             string userName,
+             string userName2,
+             string phone,
+             string fax,
+             string memberName,
+             string agentName,
+             string masterName,
+             string superName)
+        {
+            CustId = custId;
+            RoleId = roleId;
+            UserName = userName;
+            UserName2 = userName2;
+            Phone = phone;
+            Fax = fax;
+
+            MemberName = memberName;
+            AgentName = agentName;
+            MasterName = masterName;
+            SuperName = superName;
+        }
+
+        public int CustId { get; }
+
+        public byte RoleId { get; }
+
+        public string UserName { get; }
+
+        public string UserName2 { get; }
+
+        public string Phone { get; }
+
+        public string Fax { get; }
+
+        public string MemberName { get; }
+
+        public string AgentName { get; }
+
+        public string MasterName { get; }
+
+        public string SuperName { get; }
+
+        public string CustomerListLink
+        {
+            get
+            {
+                return CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)];
+            }
+        }
+
+        public string BetListLink
+        {
+            get
+            {
+                return RoleId.Equals(1) ? betListLink : string.Empty;
+            }
+        }
+
+        public string StatemenLink
+        {
+            get
+            {
+                return RoleId.Equals(1) ? memberStatementLink : SMAStatementLink;
+            }
+        }
+
+        public string ViewLogLink { get; } = "/site-viewlogs/(S(wa000mahqldvjxctxg3naqhq))/setting/index?username=ACGUUS3838338";
     }
 }

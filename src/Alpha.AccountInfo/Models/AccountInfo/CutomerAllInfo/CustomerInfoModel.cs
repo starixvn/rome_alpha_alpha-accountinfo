@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Alpha.AccountInfo.Models.AccountInfo
+﻿namespace Alpha.AccountInfo.Models.AccountInfo
 {
+    using System;
+
     public class CustomerInfoModel
     {
         public CustomerInfoModel(
