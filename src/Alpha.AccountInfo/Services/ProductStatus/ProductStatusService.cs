@@ -125,7 +125,7 @@
         {
             if (betType == BetTypeConstants.AllbetStartRange)
             {
-                return AppResources.ProductStatus.BetType_2401;
+                return ProductStatus.BetType_2401;
             }
 
             return cacheRefService.GetBetTypeName(betType);
@@ -147,7 +147,7 @@
             }
 
             return errorMessages.Count == 0
-                ? Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully)
+                ? Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully)
                 : Result.CreateErrorResult(101, string.Join("<br>", errorMessages));
         }
 
@@ -158,8 +158,8 @@
             await repository.ExecuteAsync(criteria);
 
             return criteria.Success ?
-                Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-                Result.CreateErrorResult(criteria.ErrCode, ParseDCSProductMessage(criteria.ErrMsg));
+                Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully) :
+                Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.ProductId));
         }
 
         private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
@@ -178,27 +178,32 @@
                     param.ActorName,
                     criteria.SystemId);
 
-                return Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully);
+                return Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully);
             }
 
              return Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
         }
 
-        private string ParseDCSProductMessage(string errMsg)
+        private string ParseDCSXmlErrorMessage(string errMsg, int productId)
         {
             if (IsValidXml(errMsg))
             {
                 var xmlRoot = XElement.Parse(errMsg);
-
-                var messageElement = xmlRoot.Elements()
-                    .Select(row =>  GetBetTypeName(int.Parse(row.Attributes("BetType").First().Value)))
-                    .ToList();
-
                 var errCode = xmlRoot.Attributes("MsgID").FirstOrDefault().Value;
                 var errMsgFromResource = ProductStatus.ResourceManager.GetString($"Msg{errCode}");
-                messageElement.Insert(0, errMsgFromResource ?? xmlRoot.Attributes("Msg").First().Value);
 
-                return string.Join("<br>", messageElement);
+                var errors = new List<string>
+                {
+                    errMsgFromResource ?? xmlRoot.Attributes("Msg").First().Value
+                };
+
+                if (productId == ProductIdConstants.Allbet)
+                {
+                    errors.AddRange(xmlRoot.Elements()
+                        .Select(row => GetBetTypeName(int.Parse(row.Attributes("BetType").First().Value))));
+                }
+
+                return string.Join("<br>", errors);
             }
 
             return errMsg;

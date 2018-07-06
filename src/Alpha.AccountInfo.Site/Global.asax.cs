@@ -59,11 +59,6 @@
 
         protected void Application_Error()
         {
-            if (Request.IsLocal)
-            {
-               // return;
-            }
-
             var currentCustomer = UserSession.Current;
 
             Exception exception = Server.GetLastError().GetBaseException();
