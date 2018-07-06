@@ -13,7 +13,7 @@
 
         NonQueryProductStatusCriteria CreateUpdateCriteria(ProductStatusCommandParam param);
 
-        IEnumerable<NonQueryProductStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param);
+        IEnumerable<UpdateKenoStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param);
 
         UpdateCasinoStatusCriteria CreateUpdateCasinoStatusCriteria(ProductStatusCommandParam param);
     }
@@ -55,7 +55,7 @@
             }
         }
 
-        public IEnumerable<NonQueryProductStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param)
+        public IEnumerable<UpdateKenoStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param)
         {
             foreach (var item in param.ProductStatusParams)
             {

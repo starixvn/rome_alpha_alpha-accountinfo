@@ -1,11 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Xml.Linq;
+    using AppResources;
     using Constants;
     using Fanex.Data.Repository;
-    using Helpers;
     using Models;
     using Models.ProductStatus;
     using Params.ProductStatus;
@@ -131,21 +133,22 @@
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
-            IList<Result> results = new List<Result>();
+            IList<string> errorMessages = new List<string>();
             var criteria = criteriaFactory.CreateUpdateKenoStatusCriteria(param);
 
             foreach (var item in criteria)
             {
                 await repository.ExecuteAsync(item);
 
-                results.Add(item.Success
-                    ? Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully)
-                    : Result.CreateErrorResult(item.ErrCode, item.ErrMsg));
+                if (!item.Success)
+                {
+                    errorMessages.Add($"{item.ErrMsg}: {cacheRefService.GetBetTypeName(item.BetType)}");
+                }
             }
 
-            var errorResult = results.FirstOrDefault(r => !r.IsSuccess());
-
-            return errorResult ?? results[0];
+            return errorMessages.Count == 0
+                ? Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully)
+                : Result.CreateErrorResult(101, string.Join("<br>", errorMessages));
         }
 
         private async Task<Result> UpdateStatusAsync(ProductStatusCommandParam param)
@@ -156,7 +159,7 @@
 
             return criteria.Success ?
                 Result.CreateSuccessResult(AppResources.ProductStatus.StatusUpdatedSuccessfully) :
-                Result.CreateErrorResult(criteria.ErrCode, ResultHelper.ParseDCSProductMessage(criteria.ErrMsg));
+                Result.CreateErrorResult(criteria.ErrCode, ParseDCSProductMessage(criteria.ErrMsg));
         }
 
         private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
@@ -179,6 +182,43 @@
             }
 
              return Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
+        }
+
+        private string ParseDCSProductMessage(string errMsg)
+        {
+            if (IsValidXml(errMsg))
+            {
+                var xmlRoot = XElement.Parse(errMsg);
+
+                var messageElement = xmlRoot.Elements()
+                    .Select(row =>  GetBetTypeName(int.Parse(row.Attributes("BetType").First().Value)))
+                    .ToList();
+
+                var errCode = xmlRoot.Attributes("MsgID").FirstOrDefault().Value;
+                var errMsgFromResource = ProductStatus.ResourceManager.GetString($"Msg{errCode}");
+                messageElement.Insert(0, errMsgFromResource ?? xmlRoot.Attributes("Msg").First().Value);
+
+                return string.Join("<br>", messageElement);
+            }
+
+            return errMsg;
+        }
+
+        private static bool IsValidXml(string xml)
+        {
+            if (!string.IsNullOrEmpty(xml) && xml.TrimStart().StartsWith("<"))
+            {
+                try
+                {
+                    XDocument.Parse(xml);
+                    return true;
+                }
+                catch (Exception)
+                {
+                }
+            }
+
+            return false;
         }
     }
 }

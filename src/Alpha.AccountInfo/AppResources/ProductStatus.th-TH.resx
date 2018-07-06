@@ -120,6 +120,15 @@
   <data name="BetType_2401" xml:space="preserve">
     <value>บาคาร่า, รูเล็ต, ไฮโล, Dragon Tiger</value>
   </data>
+  <data name="Msg60033" xml:space="preserve">
+    <value>ไม่สามารถแก้ไขสถานะผลิตภัณฑ์ของดาวน์ไลน์ได้ เนื่องจากไม่ได้เปิดการใช้งานผลิตภัณฑ์นี้</value>
+  </data>
+  <data name="Msg60035" xml:space="preserve">
+    <value>คุณไม่สามารถปิดการใช้งานสินค้าให้กับดาวไลน์</value>
+  </data>
+  <data name="Msg90012" xml:space="preserve">
+    <value>คุณไม่สามารถดำเนินการนี้</value>
+  </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
     <value>ตามนโยบายของบริษัท คุณไม่ได้อนุญาตให้ปิดใช้งานผลิตภัณฑ์ของดาวน์ไลน์</value>
   </data>

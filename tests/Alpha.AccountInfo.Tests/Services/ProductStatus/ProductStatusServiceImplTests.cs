@@ -368,14 +368,16 @@
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
+            cacheRefService.GetBetTypeName(1501).Returns("Australia");
+            cacheRefService.GetBetTypeName(1503).Returns("Slovakia");
 
             // Act
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
-                actualResult.Code == 102 &&
-                actualResult.Message == "You are not allowed to disable for downlines.");
+                actualResult.Code == 101 &&
+                actualResult.Message == "You are not allowed to disable for downlines.: Australia<br>You are not allowed to disable for downlines.: Slovakia");
         }
 
         [Fact]
@@ -585,7 +587,7 @@
             })
             {
                 ErrCode = 102,
-                ErrMsg = "<Root MsgID=\"60035\" Msg=\"You are not allowed to disable for downlines.\"><Row SportType=\"211\" BetType=\"2401\"/></Root>"
+                ErrMsg = "<Root MsgID=\"60035\" Msg=\"You are not allowed to disable downline's product.\"><Row SportType=\"211\" BetType=\"2401\"/></Root>"
             };
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
@@ -596,13 +598,14 @@
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
+            cacheRefService.GetBetTypeName(2401).Returns("Baccarat, Roulette, Sic Bo, Dragon Tiger");
 
             // Act
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
-                actualResult.Message == "You are not allowed to disable for downlines.");
+                actualResult.Message == "You are not allowed to disable downline's product.<br>Baccarat, Roulette, Sic Bo, Dragon Tiger");
         }
 
         [Fact]
