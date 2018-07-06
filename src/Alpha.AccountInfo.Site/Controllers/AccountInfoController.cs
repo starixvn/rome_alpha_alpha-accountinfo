@@ -13,5 +13,7 @@
         }
 
         public ActionResult Index() => View();
+
+        public ActionResult React() => View();
     }
 }

@@ -382,6 +382,11 @@
     <Content Include="assets\styles\account-info.scss" />
     <Content Include="assets\styles\_mixins.scss" />
     <Content Include="Views\AccountInfo\Index.cshtml" />
+    <Content Include="webpack.config.js" />
+    <Content Include="package.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="Views\ReactDemo\Index.cshtml" />
+    <Content Include="Views\AccountInfo\Index - Copy.cshtml" />
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -460,6 +465,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ReactDemoController.cs" />
     <Compile Include="Controllers\AccountInfoController.cs" />
     <Compile Include="Controllers\ProductStatusController.cs" />
     <Compile Include="Controllers\AccountInfoBaseController.cs" />
@@ -538,6 +544,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\AccountInfo\constants\" />
     <Folder Include="App_Themes\Apo\" />
     <Folder Include="assets\styles\images\" />
   </ItemGroup>
@@ -548,6 +555,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\AccountInfo\components\link.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\row-info.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\cell.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\tab-online-list.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\button.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\tab-setting.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\tab-login-info.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\tab-status.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\tab-downline-list.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\index.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\containers\account-info.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\tab-balance-info.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\tab-account-info.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\models\cell-model.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\models\row-info-model.tsx" />
     <TypeScriptCompile Include="assets\scripts\productstatus\productstatus.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />

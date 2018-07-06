@@ -24,6 +24,7 @@ Thumbs.db
 *.lib
 *.sbr
 obj/
+node_modules/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
@@ -45,6 +46,7 @@ bundles
 *.js.map
 */**/assets/scripts/**/*.js
 */**/bundles/**/*.js
+*/**/app/**/*.js
 *.ncrunchproject
 *.ncrunchsolution
 
