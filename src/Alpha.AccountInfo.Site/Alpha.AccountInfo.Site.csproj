@@ -381,6 +381,7 @@
     </Content>
     <Content Include="assets\styles\account-info.scss" />
     <Content Include="assets\styles\_mixins.scss" />
+    <Content Include="Views\AccountInfo\Index.cshtml" />
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -459,6 +460,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountInfoController.cs" />
     <Compile Include="Controllers\ProductStatusController.cs" />
     <Compile Include="Controllers\AccountInfoBaseController.cs" />
     <Compile Include="Global.asax.cs">
