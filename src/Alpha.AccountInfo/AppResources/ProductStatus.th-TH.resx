@@ -121,7 +121,7 @@
     <value>บาคาร่า, รูเล็ต, ไฮโล, Dragon Tiger</value>
   </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
-    <value>You are not allowed to disable this product on your downlines per company policy.</value>
+    <value>ตามนโยบายของบริษัท คุณไม่ได้อนุญาตให้ปิดใช้งานผลิตภัณฑ์ของดาวน์ไลน์</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>สถานะการปรับปรุงเรียบร้อยแล้ว</value>

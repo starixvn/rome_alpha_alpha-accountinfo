@@ -121,7 +121,7 @@
     <value>Baccarat, Roulette, Sic Bo, Dragon Tiger</value>
   </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
-    <value>You are not allowed to disable this product on your downlines per company policy.</value>
+    <value>Theo chính sách của công ty, bạn không được phép vô hiệu hoá sản phẩm cược của cấp dưới.</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>Cập nhật trạng thái thành công.</value>
