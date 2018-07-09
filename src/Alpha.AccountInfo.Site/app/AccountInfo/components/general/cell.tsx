@@ -1,15 +1,16 @@
 ﻿import * as React from 'react';
+import Link from './link';
 
-interface IButtonProps {
-    classnames: string,
+interface ICellProps {
+    classnames?: string;
     text: string
 }
 
-interface IButtonState {
+interface ICellState {
     text: string
 }
 
-export default class Button extends React.Component<IButtonProps, IButtonState> {
+export default class Cell extends React.Component<ICellProps, ICellState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,7 +19,7 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
     }
     render() {
         return (
-            <button className={this.props.classnames}>{this.state.text}</button>
+            <div className={this.props.classnames}>{this.state.text}</div>
       );
     }
 }

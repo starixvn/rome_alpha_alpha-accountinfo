@@ -1,11 +1,11 @@
 ﻿import * as React from 'react';
-import AccountInfoTab from '../components/tab-account-info';
-import BalanceInfoTab from '../components/tab-balance-info';
-import DownlineListTab from '../components/tab-downline-list';
-import StatusTab from '../components/tab-status';
-import SettingTab from '../components/tab-setting';
-import LoginInfoTab from '../components/tab-login-info';
-import OnlineListTab from '../components/tab-online-list';
+import AccountInfoTab from '../components/account-info/index';
+import BalanceInfoTab from '../components/balance-info/index';
+import DownlineListTab from '../components/downline-list/index';
+import StatusTab from '../components/status/index';
+import SettingTab from '../components/setting/index';
+import LoginInfoTab from '../components/login-info/index';
+import OnlineListTab from '../components/online-list/index';
 
 interface IAccountInfoProps {
 }

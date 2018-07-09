@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import HeadingTab from '../general/tab-heading';
 
 interface IStatusTabProps {
 }
@@ -13,13 +14,8 @@ export default class StatusTab extends React.Component<IStatusTabProps, IStatusT
     render() {
         return (
             <div className="panel panel-default">
-                <div className="panel-heading" role="tab" id="headingStatus">
-                    <h4 className="panel-title">
-                        <a className="collapsed" role="button" data-toggle="collapse" data-parent="#infoTab" href="#collapseStatus" aria-expanded="false" aria-controls="collapseStatus">
-                            <span className="icon-status"></span> Status
-                            </a>
-                    </h4>
-                </div>
+                <HeadingTab text="Status" id="headingStatus" iconClassname="icon-status" tabHref="collapseStatus" />
+
                 <div id="collapseStatus" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingStatus">
                     <div className="panel-body">
                         <div className="col-xs-6 no-p-x">
