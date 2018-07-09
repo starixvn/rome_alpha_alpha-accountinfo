@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../general/tab-heading';
+import HeadingTab from '../common/tab-heading';
+import Status from './status';
 
 interface IStatusTabProps {
 }
@@ -19,25 +20,17 @@ export default class StatusTab extends React.Component<IStatusTabProps, IStatusT
                 <div id="collapseStatus" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingStatus">
                     <div className="panel-body">
                         <div className="col-xs-6 no-p-x">
-                            <div className="row-info checkbox">
-                                <label><input type="checkbox" id="chkSuspended" checked /> Suspended</label>
-                            </div>
+                            <Status text="Suspended" checked={true} id="chkSuspended" />
+                            <Status text="Auto PT" checked={true}/>
+                            <Status text="Outright" checked={true} />
+                            <Status text="Outright" checked={true} />
+                            <Status text="Double Comm"/>
 
-                            <div className="row-info checkbox">
-                                <label><input type="checkbox" checked /> Auto PT</label>
-                            </div>
-                            <div className="row-info checkbox">
-                                <label><input type="checkbox" checked /> Outright</label>
-                            </div>
-                            <div className="row-info checkbox">
-                                <label><input type="checkbox" /> Double Comm</label>
-                            </div>
                             <div className="row-info">
                                 <a href="#" id="enableKeno"><span className="icon-ic_list"></span> Enable Keno</a>
                             </div>
-                            <div className="row-info checkbox">
-                                <label><input type="checkbox" checked /> Colossus Bets</label>
-                            </div>
+
+                            <Status text="Colossus Bets" checked={true} />
                         </div>
                         <div className="col-xs-6 no-p-x">
                             <div className="row-info checkbox">

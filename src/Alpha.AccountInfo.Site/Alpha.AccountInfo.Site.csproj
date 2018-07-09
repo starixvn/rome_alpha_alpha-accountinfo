@@ -555,17 +555,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\AccountInfo\components\general\cell-with-input.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\general\cell-with-number-format.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\general\cell-with-link.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\downline-info.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\total-downline-list.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\general\cell-contain-input.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\general\cell-contain-number-format.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\general\cell-contain-link.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\general\tab-heading.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\general\link.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\general\row-info.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\general\cell.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\online-list\downline-list.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\online-list\downline.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\online-list\no-infomation.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\online-list\index.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\general\button.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\setting\index.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\login-info\index.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\status\status.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\status\index.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\downline-list\index.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\index.tsx" />

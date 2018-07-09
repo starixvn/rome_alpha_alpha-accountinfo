@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../general/tab-heading';
-import Cell from '../general/cell';
+import HeadingTab from '../common/tab-heading';
+import Cell from '../common/cell';
 
 interface ILoginInfoTabProps {
 }

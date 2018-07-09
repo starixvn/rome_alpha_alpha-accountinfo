@@ -1,10 +1,10 @@
 ﻿import * as React from 'react';
-import Button from '../general/button';
+import Button from '../common/button';
 
-import CellWithNumberFormat from '../general/cell-with-number-format';
-import CellWithInput from '../general/cell-with-input';
-import Cell from '../general/cell';
-import HeadingTab from '../general/tab-heading';
+import CellContainNumberFormat from '../common/cell-contain-number-format';
+import CellContainInput from '../common/cell-contain-input';
+import Cell from '../common/cell';
+import HeadingTab from '../common/tab-heading';
 
 
 interface IBalanceInfoTabProps {
@@ -18,13 +18,9 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
         super(props);
     }
 
-    handleCancelClick = () => {
+    handleCancelClick = () => { }
 
-    }
-
-    handleSubmitClick = () => {
-
-    }
+    handleSubmitClick = () => { }
 
     handleOutStandingChange = () => { }
 
@@ -40,32 +36,35 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
                     <div className="panel-body">
                         <div className={rowClasses}>
                             <Cell text="Total Cash" classnames="col-xs-6" /> 
-                            <CellWithNumberFormat text={-31931.68} classnames="col-xs-6 col-right" />
+                            <CellContainNumberFormat text={-31931.68} classnames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
                             <Cell text="Yesterday Cash" classnames="col-xs-6" />
-                            <CellWithNumberFormat text={-31291.44} classnames="col-xs-6 col-right" />
+                            <CellContainNumberFormat text={-31291.44} classnames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
                             <Cell text="Total Balance" classnames="col-xs-6" />
-                            <CellWithNumberFormat text={-27715.24} classnames="col-xs-6 col-right" />
+                            <CellContainNumberFormat text={-27715.24} classnames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
                             <Cell text="Yesterday Balance" classnames="col-xs-6" />
-                            <CellWithNumberFormat text={-28496.39} classnames="col-xs-6 col-right" />
+                            <CellContainNumberFormat text={-28496.39} classnames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
                             <Cell text="Outstanding" classnames="col-xs-6" />
-                            <CellWithInput text={1159.70} classnames="col-xs-6 col-right box-edited" inputClassname="txt-number-edited" onSave={this.handleOutStandingChange} />
+                            <CellContainInput text={1159.70}
+                                classnames="col-xs-6 col-right box-edited"
+                                inputClassname="txt-number-edited"
+                                onSave={this.handleOutStandingChange} />
                         </div>
 
                         <div className={rowClasses}>
                             <Cell text="Used Credit" classnames="col-xs-6" />
-                            <CellWithNumberFormat text={2670903.00} classnames="col-xs-6 col-right" />
+                            <CellContainNumberFormat text={2670903.00} classnames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
@@ -74,6 +73,7 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
                                 <input type="text" className="txt-number-edited" value="300,000.00" />
                                 <span className="icon-border-color icon-edited"></span>
                             </div>
+
                             <div id="popup-confirm-given-credit" className="popup-confirm">
                                 <h1 className="title">Given Credit</h1>
 
@@ -84,7 +84,10 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
 
                                 <div className={rowClasses}>
                                     <Cell text="New Given Credit" classnames="col-xs-7" />
-                                    <CellWithInput text={350000000.00} classnames="col-xs-5 text-right" inputClassname="hasBorder txt-newValue" onSave={this.handleNewGivenCredit} />
+                                    <CellContainInput text={350000000.00}
+                                        classnames="col-xs-5 text-right"
+                                        inputClassname="hasBorder txt-newValue"
+                                        onSave={this.handleNewGivenCredit} />
                                 </div>
 
                                 <div className={rowClasses}>

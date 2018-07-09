@@ -1,12 +1,12 @@
 ﻿import * as React from 'react';
-import Button from '../general/button';
+import Button from '../common/button';
 
 //import RowInfo from './row-info';
 //import RowInfoModel from '.../models/row-info-model';
 
 //import CellModel from '../models/cell-model';
-import Cell from '../general/cell';
-import CellWithLink from '../general/cell-with-link';
+import Cell from '../common/cell';
+import CellWithLink from '../common/cell-contain-link';
 
 interface IAccountInfoProps {
 }
@@ -35,10 +35,12 @@ export default class AccountInfoTab extends React.Component<IAccountInfoProps, I
                     <input type="text" className="txt-search" placeholder="Username" value="Customer01"/>
                         <span className="icon-search"></span>
                 </div>
+
                 <div className="col-xs-12 row-info">
                     <Cell text="Master" classnames="col-xs-5" />
                     <Cell text="Master01" classnames="col-xs-7 col-right font-weight-normal" />
                 </div>
+
                 <div className="col-xs-12 row-info">
                     <Cell text="Agent" classnames="col-xs-5" />
                     <CellWithLink text="Agent01" classnames="col-xs-7 col-right font-weight-normal" hrefLink="#" />

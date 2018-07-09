@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../general/tab-heading';
+import HeadingTab from '../common/tab-heading';
 
 interface ISettingTabProps {
 }

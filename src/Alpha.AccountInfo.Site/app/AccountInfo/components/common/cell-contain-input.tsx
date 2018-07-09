@@ -2,18 +2,18 @@
 import Cell from './cell';
 //import * as NumberFormat from '..../node_modules/react-number-format/src/number_format';
 
-interface ICellWithInputProps {
+interface ICellContainInputProps {
     classnames?: string;
     inputClassname?: string;
     text: number;
     onSave(text: string): void
 }
 
-interface ICellWithInputState {
+interface ICellContainInputState {
     text: number
 }
 
-export default class CellWithInput extends React.Component<ICellWithInputProps, ICellWithInputState> {
+export default class CellContainInput extends React.Component<ICellContainInputProps, ICellContainInputState> {
     constructor(props) {
         super(props);
         this.state = {

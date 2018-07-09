@@ -2,17 +2,17 @@
 import Link from './link';
 import Cell from './cell';
 
-interface ICellWithLinkProps {
+interface ICellContainLinkProps {
     classnames?: string;
     hrefLink?: string;
     text: string
 }
 
-interface ICellWithLinkState {
+interface ICellContainLinkState {
     text: string
 }
 
-export default class CellWithLink extends React.Component<ICellWithLinkProps, ICellWithLinkState> {
+export default class CellContainLink extends React.Component<ICellContainLinkProps, ICellContainLinkState> {
     constructor(props) {
         super(props);
     }
