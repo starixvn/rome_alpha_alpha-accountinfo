@@ -4,7 +4,7 @@ import NoInfomation from './no-infomation';
 import DownlineList from './downline-list';
 
 interface IOnlineListTabProps {
-   
+  
 }
 
 interface IOnlineListTabState {
@@ -14,6 +14,9 @@ interface IOnlineListTabState {
 export default class OnlineListTab extends React.Component<IOnlineListTabProps, IOnlineListTabState> {
     constructor(props) {
         super(props);
+        this.state = {
+            downlineList: ["master1", "master2"]
+        };
     }
     render() {
         let content = this.state.downlineList.length > 0 ? <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />

@@ -26,13 +26,19 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
 
     handleNewGivenCredit = () => { }
 
+    handleGivenCredit = () => { }
+
     render() {
         const rowClasses = "col-xs-12 row-info";
         return (
             <div className="panel panel-default">
                 <HeadingTab text="Balance Info" id="headingBalanceInfo" iconClassname="icon-balance" tabHref="collapseBalanceInfo" />
 
-                <div id="collapseBalanceInfo" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingBalanceInfo">
+                <div id="collapseBalanceInfo"
+                    className="panel-collapse collapse in"
+                    role="tabpanel"
+                    aria-labelledby="headingBalanceInfo">
+
                     <div className="panel-body">
                         <div className={rowClasses}>
                             <Cell text="Total Cash" classnames="col-xs-6" /> 
@@ -69,10 +75,13 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
 
                         <div className={rowClasses}>
                             <div className="col-xs-6">Given Credit</div>
-                            <div className="col-xs-6 col-right box-edited" id="txt-given-edit">
-                                <input type="text" className="txt-number-edited" value="300,000.00" />
-                                <span className="icon-border-color icon-edited"></span>
-                            </div>
+
+                            <CellContainInput text={300000.00}
+                                id="txt-given-edit"
+                                classnames="col-xs-6 col-right box-edited"
+                                inputClassname="txt-number-edited"
+                                onSave={this.handleGivenCredit}
+                                iconClassname="icon-border-color icon-edited" />
 
                             <div id="popup-confirm-given-credit" className="popup-confirm">
                                 <h1 className="title">Given Credit</h1>

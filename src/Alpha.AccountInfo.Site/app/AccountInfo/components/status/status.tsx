@@ -14,12 +14,18 @@ export default class Status extends React.Component<IStatusProps, IStatusState> 
     constructor(props) {
         super(props);
     }
+    handleChange = (e) => {
+        this.setState({ text: e.target.value });
+    }
     render() {
-        let isCheck = this.props.checked ? "checked" : "";
         return (
             <div className="row-info checkbox">
                 <label>
-                    <input type="checkbox" id={this.props.id} {...isCheck} />
+                    <input type="text"
+                        checked={this.props.checked ? true : false} 
+                        id={this.props.id}
+                        onChange={this.handleChange}/>
+
                     {this.props.text}
                 </label>
             </div> 

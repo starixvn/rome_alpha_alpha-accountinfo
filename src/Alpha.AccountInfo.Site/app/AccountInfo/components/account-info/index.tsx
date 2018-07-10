@@ -7,6 +7,7 @@ import Button from '../common/button';
 //import CellModel from '../models/cell-model';
 import Cell from '../common/cell';
 import CellWithLink from '../common/cell-contain-link';
+import Search from './search';
 
 interface IAccountInfoProps {
 }
@@ -19,66 +20,59 @@ export default class AccountInfoTab extends React.Component<IAccountInfoProps, I
         super(props);
     }
 
-    handleBetListClick = () =>
-    {
-        
-    }
+    handleBetListClick = () => { }
 
-    handleStatementClick = () => {
-
-    }
+    handleStatementClick = () => { }
 
     render() {
+        const rowClasses = "col-xs-12 row-info";
         return (
             <div className="block-info" id="blockInfo">
-                  <div className="search-box">
-                    <input type="text" className="txt-search" placeholder="Username" value="Customer01"/>
-                        <span className="icon-search"></span>
-                </div>
+                <Search username="Customer01" />
 
-                <div className="col-xs-12 row-info">
+                <div className={rowClasses}>
                     <Cell text="Master" classnames="col-xs-5" />
                     <Cell text="Master01" classnames="col-xs-7 col-right font-weight-normal" />
                 </div>
 
-                <div className="col-xs-12 row-info">
+                <div className={rowClasses}>
                     <Cell text="Agent" classnames="col-xs-5" />
                     <CellWithLink text="Agent01" classnames="col-xs-7 col-right font-weight-normal" hrefLink="#" />
                 </div>
 
-                    <div className="col-xs-12 row-info highlight">
-                        <div className="col-xs-5">Customer</div>
-                        <div className="col-xs-7 col-right">
-                            <a href="#">Customer01</a>
-                            <span className="icon-viewlog"></span>
-                        </div>
-                    </div>
+                <div className={rowClasses + " highlight"}>
+                    <Cell text="Customer" classnames="col-xs-5" />
+                    <CellWithLink text="Agent01"
+                        classnames="col-xs-7 col-right"
+                        hrefLink="#"
+                        iconClassname="icon-viewlog" />
+                </div>
 
-                <div className="col-xs-12 row-info">
+                <div className={rowClasses}>
                     <Cell text="Name" classnames="col-xs-5" />
                     <Cell text="Thien Nguyen" classnames="col-xs-7 col-right" />
                 </div>
 
-                <div className="col-xs-12 row-info">
+                <div className={rowClasses}>
                     <Cell text="Phone" classnames="col-xs-5" />
                     <Cell text="08 0123 456" classnames="col-xs-7 col-right" />
                 </div>
 
-                <div className="col-xs-12 row-info">
+                <div className={rowClasses}>
                     <Cell text="Fax" classnames="col-xs-5" />
                     <Cell text="08 0123 456" classnames="col-xs-7 col-right" />
                 </div>
 
-                <div className="col-xs-12 row-info">
+                <div className={rowClasses}>
                     <Cell text="Fax" classnames="col-xs-5" />
                     <Cell text="08 0123 456" classnames="col-xs-7 col-right" />
                 </div>
 
-                <div className="col-xs-12 row-info text-center list-button">
+                <div className={rowClasses + " text-center list-button"}>
                     <Button text="Bet List" classnames="btn-default with-level" onClick={this.handleBetListClick} />
                     <Button text="Statement" classnames="btn-default with-level" onClick={this.handleStatementClick} />
-                    </div>
-            </div> 
-      );
+                </div>
+            </div>
+        );
     }
 }

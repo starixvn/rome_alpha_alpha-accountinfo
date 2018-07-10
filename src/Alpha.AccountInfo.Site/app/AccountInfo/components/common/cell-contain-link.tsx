@@ -5,7 +5,8 @@ import Cell from './cell';
 interface ICellContainLinkProps {
     classnames?: string;
     hrefLink?: string;
-    text: string
+    text: string,
+    iconClassname?: string
 }
 
 interface ICellContainLinkState {
@@ -20,6 +21,7 @@ export default class CellContainLink extends React.Component<ICellContainLinkPro
         return (
             <div className={this.props.classnames}>
                 <Link text={this.props.text} url={this.props.hrefLink} />
+                <span className={this.props.iconClassname}></span>
             </div>
       );
     }

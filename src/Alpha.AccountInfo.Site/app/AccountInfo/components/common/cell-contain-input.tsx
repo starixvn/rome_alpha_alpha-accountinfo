@@ -4,9 +4,11 @@ import Cell from './cell';
 
 interface ICellContainInputProps {
     classnames?: string;
+    id?: string,
     inputClassname?: string;
     text: number;
-    onSave(text: string): void
+    onSave(text: string): void,
+    iconClassname?: string
 }
 
 interface ICellContainInputState {
@@ -46,6 +48,7 @@ export default class CellContainInput extends React.Component<ICellContainInputP
                     onBlur={this.handleBlur}
                     onChange={this.handleChange}
                     onKeyDown={this.handleSubmit} />
+                <span className={this.props.iconClassname}></span>
             </div>
       );
     }

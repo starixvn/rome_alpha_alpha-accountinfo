@@ -4,7 +4,7 @@ export default class NoInfomation extends React.Component<{}, {}> {
     render() {
         return (
             <div className="panel-body">
-                No information
+                This user is not online
             </div>
         );
     }
