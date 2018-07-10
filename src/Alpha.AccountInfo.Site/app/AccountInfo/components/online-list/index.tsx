@@ -19,11 +19,19 @@ export default class OnlineListTab extends React.Component<IOnlineListTabProps, 
         };
     }
     render() {
-        let content = this.state.downlineList.length > 0 ? <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />
+        let content = this.state.downlineList.length > 0 ?
+            <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Online List" id="headingOnlineList" iconClassname="icon-onlinelist" tabHref="collapseOnlineList" />
-                <div id="collapseOnlineList" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOnlineList">
+                <HeadingTab
+                    text="Online List"
+                    id="headingOnlineList"
+                    iconClassname="icon-onlinelist"
+                    tabHref="collapseOnlineList" />
+                <div id="collapseOnlineList"
+                    className="panel-collapse collapse"
+                    role="tabpanel"
+                    aria-labelledby="headingOnlineList">
                     {content}
                 </div>
             </div>

@@ -6,7 +6,7 @@ import Button from '../common/button';
 
 //import CellModel from '../models/cell-model';
 import Cell from '../common/cell';
-import CellWithLink from '../common/cell-contain-link';
+import CellContainLink from '../common/cell-contain-link';
 import Search from './search';
 
 interface IAccountInfoProps {
@@ -26,46 +26,51 @@ export default class AccountInfoTab extends React.Component<IAccountInfoProps, I
 
     render() {
         const rowClasses = "col-xs-12 row-info";
+        const firstCellClass = "col-xs-5";
+        const secondCellClass = "col-xs-7 col-right";
+
         return (
             <div className="block-info" id="blockInfo">
                 <Search username="Customer01" />
 
                 <div className={rowClasses}>
-                    <Cell text="Master" classnames="col-xs-5" />
-                    <Cell text="Master01" classnames="col-xs-7 col-right font-weight-normal" />
+                    <Cell text="Master" classnames={firstCellClass} />
+                    <Cell text="Master01" classnames={secondCellClass + " font-weight-normal"}/>
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Agent" classnames="col-xs-5" />
-                    <CellWithLink text="Agent01" classnames="col-xs-7 col-right font-weight-normal" hrefLink="#" />
+                    <Cell text="Agent" classnames={firstCellClass} />
+                    <CellContainLink text="Agent01"
+                        classnames={secondCellClass + " font-weight-normal"}
+                        hrefLink="#" />
                 </div>
 
                 <div className={rowClasses + " highlight"}>
-                    <Cell text="Customer" classnames="col-xs-5" />
-                    <CellWithLink text="Agent01"
-                        classnames="col-xs-7 col-right"
+                    <Cell text="Customer" classnames={firstCellClass} />
+                    <CellContainLink text="Agent01"
+                        classnames={secondCellClass}
                         hrefLink="#"
                         iconClassname="icon-viewlog" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Name" classnames="col-xs-5" />
-                    <Cell text="Thien Nguyen" classnames="col-xs-7 col-right" />
+                    <Cell text="Name" classnames={firstCellClass} />
+                    <Cell text="Thien Nguyen" classnames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Phone" classnames="col-xs-5" />
-                    <Cell text="08 0123 456" classnames="col-xs-7 col-right" />
+                    <Cell text="Phone" classnames={firstCellClass} />
+                    <Cell text="08 0123 456" classnames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Fax" classnames="col-xs-5" />
-                    <Cell text="08 0123 456" classnames="col-xs-7 col-right" />
+                    <Cell text="Fax" classnames={firstCellClass} />
+                    <Cell text="08 0123 456" classnames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Fax" classnames="col-xs-5" />
-                    <Cell text="08 0123 456" classnames="col-xs-7 col-right" />
+                    <Cell text="Fax" classnames={firstCellClass} />
+                    <Cell text="08 0123 456" classnames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses + " text-center list-button"}>

@@ -3,8 +3,8 @@ import Link from './link';
 import Cell from './cell';
 
 interface ICellContainLinkProps {
-    classnames?: string;
-    hrefLink?: string;
+    classnames?: string,
+    hrefLink?: string,
     text: string,
     iconClassname?: string
 }

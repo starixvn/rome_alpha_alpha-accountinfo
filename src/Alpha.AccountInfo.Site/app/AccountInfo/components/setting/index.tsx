@@ -14,9 +14,15 @@ export default class SettingTab extends React.Component<ISettingTabProps, ISetti
     render() {
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Settings" id="headingSettings" iconClassname="icon-settings" tabHref="collapseSettings" />
+                <HeadingTab text="Settings"
+                    id="headingSettings"
+                    iconClassname="icon-settings"
+                    tabHref="collapseSettings" />
 
-                <div id="collapseSettings" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettings">
+                <div id="collapseSettings"
+                    className="panel-collapse collapse"
+                    role="tabpanel"
+                    aria-labelledby="headingSettings">
                     <div className="panel-body panel-settings">
                         <div className="swiper-container" id="settingsSwiperContainer">
                                 <div className="swiper-wrapper settings" id="setting-wrapper">

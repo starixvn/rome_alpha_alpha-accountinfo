@@ -30,9 +30,13 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
 
     render() {
         const rowClasses = "col-xs-12 row-info";
+
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Balance Info" id="headingBalanceInfo" iconClassname="icon-balance" tabHref="collapseBalanceInfo" />
+                <HeadingTab text="Balance Info"
+                    id="headingBalanceInfo"
+                    iconClassname="icon-balance"
+                    tabHref="collapseBalanceInfo" />
 
                 <div id="collapseBalanceInfo"
                     className="panel-collapse collapse in"
@@ -74,8 +78,7 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
                         </div>
 
                         <div className={rowClasses}>
-                            <div className="col-xs-6">Given Credit</div>
-
+                            <Cell text="Given Credit" classnames="col-xs-6" />
                             <CellContainInput text={300000.00}
                                 id="txt-given-edit"
                                 classnames="col-xs-6 col-right box-edited"

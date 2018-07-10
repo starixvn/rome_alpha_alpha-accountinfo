@@ -16,14 +16,18 @@ export default class DownlineListTab extends React.Component<IDownlineListTabPro
     render() {
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Downline list" id="headingDownlineList" iconClassname="icon-downline" tabHref="collapseDownlineList" />
+                <HeadingTab text="Downline list"
+                    id="headingDownlineList"
+                    iconClassname="icon-downline"
+                    tabHref="collapseDownlineList" />
 
-                <div id="collapseDownlineList" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDownlineList">
+                <div id="collapseDownlineList"
+                    className="panel-collapse collapse"
+                    role="tabpanel"
+                    aria-labelledby="headingDownlineList">
                     <div className="panel-body panel-downline-list">
                         <DownlineInfo />
-
                         <div className="col-xs-12 row-info"><hr /></div>
-
                         <TotalDownlineList levelName="Agents" totalActive={90} totalClosed={47} totalSuspended={2} />
                         <TotalDownlineList levelName="Members" totalActive={80} totalClosed={584} totalSuspended={3} />
                     </div>

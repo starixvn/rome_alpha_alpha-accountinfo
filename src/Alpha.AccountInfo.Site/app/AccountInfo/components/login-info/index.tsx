@@ -15,9 +15,15 @@ export default class LoginInfoTab extends React.Component<ILoginInfoTabProps, IL
     render() {
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Login Info" id="headingLoginInfo" iconClassname="icon-login" tabHref="collapseLoginInfo" />
+                <HeadingTab text="Login Info"
+                    id="headingLoginInfo"
+                    iconClassname="icon-login"
+                    tabHref="collapseLoginInfo" />
 
-                <div id="collapseLoginInfo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLoginInfo">
+                <div id="collapseLoginInfo"
+                    className="panel-collapse collapse"
+                    role="tabpanel"
+                    aria-labelledby="headingLoginInfo">
                     <div className="panel-body login-info">
                         <div className="group">
                             <Cell text="Created Date:" classnames="row-info bold" />
