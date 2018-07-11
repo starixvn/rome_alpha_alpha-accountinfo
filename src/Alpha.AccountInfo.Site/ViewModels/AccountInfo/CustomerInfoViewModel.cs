@@ -20,6 +20,7 @@
         public CustomerInfoViewModel(
              int custId,
              byte roleId,
+             byte actorRoleId,
              string userName,
              string userName2,
              string phone,
@@ -31,6 +32,8 @@
         {
             CustId = custId;
             RoleId = roleId;
+            ActorRoleId = actorRoleId;
+
             UserName = userName;
             UserName2 = userName2;
             Phone = phone;
@@ -45,6 +48,8 @@
         public int CustId { get; }
 
         public byte RoleId { get; }
+
+        public byte ActorRoleId { get; }
 
         public string UserName { get; }
 
@@ -66,7 +71,7 @@
         {
             get
             {
-                return CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)];
+                return RoleId > 1 ? CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)] : string.Empty;
             }
         }
 

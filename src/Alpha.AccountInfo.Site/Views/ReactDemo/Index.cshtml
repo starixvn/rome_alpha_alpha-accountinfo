@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model CustomerInfoViewModel
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
@@ -13,10 +14,13 @@
     <div id="account-info">
     </div>
 </body>
+</html>
+<script>
+    window.reactApp = @(Html.Raw(Json.Encode(Model)));
+</script>
 @section Scripts {
-  @StaticResources.RenderScripts("/assets/bundles/site-main/account-info/index")
+    @StaticResources.RenderScripts("/assets/bundles/site-main/account-info/index")
     @StaticResources.RenderScripts("~/node_modules/react/dist/react")
     @StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
     @StaticResources.RenderScripts("~/assets/bundles/account-info/index")
 }
-</html>

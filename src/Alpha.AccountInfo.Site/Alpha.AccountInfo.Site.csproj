@@ -531,7 +531,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\AccountInfo\components\account-info\search.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\customer-info\user-level.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\customer-info\search.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\downline-list\downline-info.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\downline-list\total-downline-list.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-input.tsx" />
@@ -550,12 +551,12 @@
     <TypeScriptCompile Include="app\AccountInfo\components\status\status.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\status\index.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\downline-list\index.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\api-client.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\index.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\containers\account-info.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\balance-info\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\account-info\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\cell-model.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\row-info-model.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\customer-info\index.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\models\customer-info-model.tsx" />
     <TypeScriptCompile Include="assets\scripts\productstatus\productstatus.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />

@@ -2,12 +2,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import AccountInfo from './containers/account-info';
+declare var window: any;
 
-const renderApp = () => {
+interface Window {
+    reactApp: any;
+}
+
+const renderApp = (reactApp: any) => {
     ReactDOM.render(
-        <AccountInfo />,
+        <AccountInfo customerInfoModel={reactApp} />,
         document.getElementById('account-info')
     );
 };
 
-renderApp();
+renderApp(window.reactApp);
