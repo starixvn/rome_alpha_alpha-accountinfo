@@ -315,10 +315,6 @@
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="assets\bundles\account-info\index.css" />
-    <Content Include="assets\bundles\account-info\index.min.css">
-      <DependentUpon>index.css</DependentUpon>
-    </Content>
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
@@ -336,24 +332,8 @@
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
-    <Content Include="assets\styles\account-info.css">
-      <DependentUpon>account-info.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\account-info.min.css">
-      <DependentUpon>account-info.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\productstatus\productstatus.css">
-      <DependentUpon>productstatus.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\productstatus\productstatus.min.css">
-      <DependentUpon>productstatus.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\site.css">
-      <DependentUpon>site.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\site.min.css">
-      <DependentUpon>site.css</DependentUpon>
-    </Content>
+    <Content Include="assets\styles\account-info.css" />
+    <Content Include="assets\styles\productstatus\productstatus.css" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
     <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
@@ -498,13 +478,8 @@
     <Content Include="Views\Shared\NoInformation.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="assets\styles\site.scss" />
     <Content Include="assets\styles\_variables.scss" />
     <Content Include="bundleconfig.json" />
-    <None Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -546,6 +521,7 @@
   <ItemGroup>
     <Folder Include="app\AccountInfo\constants\" />
     <Folder Include="App_Themes\Apo\" />
+    <Folder Include="assets\bundles\account-info\" />
     <Folder Include="assets\styles\images\" />
   </ItemGroup>
   <ItemGroup>

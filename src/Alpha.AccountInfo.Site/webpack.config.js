@@ -1,9 +1,18 @@
 var path = require("path");
 var webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
     entry: {
-        "bundles/account-info/index": "./app/AccountInfo/index.tsx"
+        "bundles/account-info/index": [
+            "./app/AccountInfo/index.tsx",
+            "./assets/styles/account-info.css"
+        ],
+        "bundles/productstatus/productstatus": [
+            "./assets/scripts/productstatus/productstatus.js",
+            "./assets/styles/productstatus/productstatus.css"
+        ]
     },
 
     output: {
@@ -25,7 +34,17 @@ module.exports = {
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+
+            // Load css files
+            {
+                test: /\.(s*)css$/,
+                use: [
+                    'style-loader',
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+                ]
+            },
         ]
     },
 
@@ -36,5 +55,18 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM"
-    }
+    },
+    optimization: {
+        minimizer: [
+          new OptimizeCSSAssetsPlugin({})
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
+    ]
 };

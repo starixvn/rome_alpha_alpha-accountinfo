@@ -33,7 +33,7 @@ export default class StatusTab extends React.Component<IStatusTabProps, IStatusT
                             <Status text="Outright" checked={true} />
                             <Status text="Double Comm"/>
 
-                            <CellContainLink text="Enable Keno"
+                            <CellContainLink text="Enable Keno01"
                                 classnames="row-info"
                                 iconClassname="icon-ic_list"
                                 hrefLink="#" />

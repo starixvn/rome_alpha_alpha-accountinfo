@@ -16,11 +16,11 @@
     "inputFiles": [
       "assets/scripts/productstatus/productstatus.js"
     ]
-  },
-  {
-    "outputFileName": "assets/bundles/account-info/index.css",
-    "inputFiles": [
-      "assets/styles/account-info.css"
-    ]
-  },
+  }
+  //{
+  //  "outputFileName": "assets/bundles/account-info/index.css",
+  //  "inputFiles": [
+  //    "assets/styles/account-info.css"
+  //  ]
+  //},
 ]
