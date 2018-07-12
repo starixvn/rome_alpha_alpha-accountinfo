@@ -19,7 +19,7 @@ interface ICustomerInfoTabState {
     secondCellClass: string,
 }
 
-export default class CustomerInfoTab extends React.Component<ICustomerInfoTabProps, ICustomerInfoTabState> {
+export default class CustomerInfoBlock extends React.Component<ICustomerInfoTabProps, ICustomerInfoTabState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -82,45 +82,45 @@ export default class CustomerInfoTab extends React.Component<ICustomerInfoTabPro
                 <Search username={this.state.data.userName}/>
 
                 <div className={rowClasses}>
-                    <Cell text="Master" classnames={firstCellClass} />
+                    <Cell text="Master" classNames={firstCellClass} />
                     <CellContainLink text="Master01"
-                        classnames={secondCellClass + " font-weight-normal"}
+                        classNames={secondCellClass + " font-weight-normal"}
                         hrefLink="#" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Agent" classnames={firstCellClass} />
+                    <Cell text="Agent" classNames={firstCellClass} />
                     <CellContainLink text="Agent01"
-                        classnames={secondCellClass + " font-weight-normal"}
+                        classNames={secondCellClass + " font-weight-normal"}
                         hrefLink="#" />
                 </div>
 
                 <div className={rowClasses + " highlight"}>
-                    <Cell text="Customer" classnames={firstCellClass} />
+                    <Cell text="Customer" classNames={firstCellClass} />
                     <CellContainLink text={this.state.data.userName}
-                        classnames={secondCellClass}
+                        classNames={secondCellClass}
                         hrefLink="#"
                         iconClassname="icon-viewlog" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Name" classnames={firstCellClass} />
-                    <Cell text="Thien Nguyen" classnames={secondCellClass} />
+                    <Cell text="Name" classNames={firstCellClass} />
+                    <Cell text="Thien Nguyen" classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Phone" classnames={firstCellClass} />
-                    <Cell text={this.state.data.phone} classnames={secondCellClass} />
+                    <Cell text="Phone" classNames={firstCellClass} />
+                    <Cell text={this.state.data.phone} classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Fax" classnames={firstCellClass} />
-                    <Cell text={this.state.data.fax} classnames={secondCellClass} />
+                    <Cell text="Fax" classNames={firstCellClass} />
+                    <Cell text={this.state.data.fax} classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses + " text-center list-button"}>
-                    <Button text="Bet List" classnames="btn-default with-level" onClick={this.handleBetListClick} />
-                    <Button text="Statement" classnames="btn-default with-level" onClick={this.handleStatementClick} />
+                    <Button text="Bet List" classNames="btn-default with-level" onClick={this.handleBetListClick} />
+                    <Button text="Statement" classNames="btn-default with-level" onClick={this.handleStatementClick} />
                 </div>
             </div>
         );

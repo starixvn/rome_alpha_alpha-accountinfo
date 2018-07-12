@@ -3,7 +3,7 @@ import Link from './link';
 import Cell from './cell';
 
 interface ICellContainLinkProps {
-    classnames?: string,
+    classNames?: string,
     hrefLink?: string,
     text: string,
     iconClassname?: string
@@ -19,7 +19,7 @@ export default class CellContainLink extends React.Component<ICellContainLinkPro
     }
     render() {
         return (
-            <div className={this.props.classnames}>
+            <div className={this.props.classNames}>
                 <Link text={this.props.text} url={this.props.hrefLink} />
                 <span className={this.props.iconClassname}></span>
             </div>

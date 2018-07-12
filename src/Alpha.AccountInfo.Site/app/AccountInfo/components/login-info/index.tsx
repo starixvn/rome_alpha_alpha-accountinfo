@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../common/tab-heading';
+import BlockHeading from '../common/block-heading';
 import Cell from '../common/cell';
 
 interface ILoginInfoTabProps {
@@ -8,14 +8,14 @@ interface ILoginInfoTabProps {
 interface ILoginInfoTabState {
 }
 
-export default class LoginInfoTab extends React.Component<ILoginInfoTabProps, ILoginInfoTabState> {
+export default class LoginInfoBlock extends React.Component<ILoginInfoTabProps, ILoginInfoTabState> {
     constructor(props) {
         super(props);
     }
     render() {
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Login Info"
+                <BlockHeading text="Login Info"
                     id="headingLoginInfo"
                     iconClassname="icon-login"
                     tabHref="collapseLoginInfo" />
@@ -26,19 +26,19 @@ export default class LoginInfoTab extends React.Component<ILoginInfoTabProps, IL
                     aria-labelledby="headingLoginInfo">
                     <div className="panel-body login-info">
                         <div className="group">
-                            <Cell text="Created Date:" classnames="row-info bold" />
-                            <Cell text="8/5/2016 1:52 AM" classnames="row-info" />
+                            <Cell text="Created Date:" classNames="row-info bold" />
+                            <Cell text="8/5/2016 1:52 AM" classNames="row-info" />
                         </div>
                         <div className="group">
-                            <Cell text="Last Login:" classnames="row-info bold" />
-                            <Cell text="8/28/2017 10:24 PM" classnames="row-info" />
+                            <Cell text="Last Login:" classNames="row-info bold" />
+                            <Cell text="8/28/2017 10:24 PM" classNames="row-info" />
                         </div>
                         <div className="group">
-                            <Cell text="Last Txn:" classnames="row-info bold" />
+                            <Cell text="Last Txn:" classNames="row-info bold" />
                         </div>
                         <div className="group">
-                            <Cell text="Login IP:" classnames="row-info bold" />
-                            <Cell text="202.78.231.34" classnames="row-info" />
+                            <Cell text="Login IP:" classNames="row-info bold" />
+                            <Cell text="202.78.231.34" classNames="row-info" />
                         </div>
                     </div>
                 </div>

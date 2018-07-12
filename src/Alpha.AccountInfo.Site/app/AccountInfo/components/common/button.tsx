@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 
 interface IButtonProps {
-    classnames: string,
+    classNames: string,
     text: string,
     onClick(): void
 }
@@ -27,7 +27,7 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
 
     render() {
         return (
-            <button className={this.props.classnames} onClick={this.handleClick}>
+            <button className={this.props.classNames} onClick={this.handleClick}>
                 {this.state.text}
             </button>
       );

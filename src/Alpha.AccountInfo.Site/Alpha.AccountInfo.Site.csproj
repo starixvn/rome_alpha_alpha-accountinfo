@@ -315,10 +315,6 @@
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="assets\bundles\default.css" />
-    <Content Include="assets\bundles\default.min.css">
-      <DependentUpon>default.css</DependentUpon>
-    </Content>
     <Content Include="assets\bundles\productstatus\productstatus.css" />
     <Content Include="assets\bundles\productstatus\productstatus.js" />
     <Content Include="assets\bundles\productstatus\productstatus.min.css">
@@ -327,7 +323,6 @@
     <Content Include="assets\bundles\productstatus\productstatus.min.js">
       <DependentUpon>productstatus.js</DependentUpon>
     </Content>
-    <Content Include="assets\scripts\account-info.js" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
@@ -538,7 +533,7 @@
     <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-input.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-number-format.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-link.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\common\tab-heading.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\common\block-heading.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\common\link.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\common\cell.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\online-list\downline-list.tsx" />

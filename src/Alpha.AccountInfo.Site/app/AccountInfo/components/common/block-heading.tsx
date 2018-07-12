@@ -11,7 +11,7 @@ interface IHeadingTabState {
     text: string
 }
 
-export default class HeadingTab extends React.Component<IHeadingTabProps, IHeadingTabState> {
+export default class BlockHeading extends React.Component<IHeadingTabProps, IHeadingTabState> {
     constructor(props) {
         super(props);
     }

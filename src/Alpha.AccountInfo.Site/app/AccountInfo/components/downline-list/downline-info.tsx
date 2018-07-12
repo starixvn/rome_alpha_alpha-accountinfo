@@ -1,5 +1,4 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../common/tab-heading';
 
 interface IDownlineInfoProps {
 

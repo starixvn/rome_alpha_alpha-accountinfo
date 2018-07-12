@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../common/tab-heading';
+import BlockHeading from '../common/block-heading';
 import NoInfomation from './no-infomation';
 import DownlineList from './downline-list';
 
@@ -11,7 +11,7 @@ interface IOnlineListTabState {
     downlineList: string[]
 }
 
-export default class OnlineListTab extends React.Component<IOnlineListTabProps, IOnlineListTabState> {
+export default class OnlineListBlock extends React.Component<IOnlineListTabProps, IOnlineListTabState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,7 +23,7 @@ export default class OnlineListTab extends React.Component<IOnlineListTabProps, 
             <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />
         return (
             <div className="panel panel-default">
-                <HeadingTab
+                <BlockHeading
                     text="Online List"
                     id="headingOnlineList"
                     iconClassname="icon-onlinelist"

@@ -4,7 +4,7 @@ import Button from '../common/button';
 import CellContainNumberFormat from '../common/cell-contain-number-format';
 import CellContainInput from '../common/cell-contain-input';
 import Cell from '../common/cell';
-import HeadingTab from '../common/tab-heading';
+import BlockHeading from '../common/block-heading';
 
 
 interface IBalanceInfoTabProps {
@@ -13,7 +13,7 @@ interface IBalanceInfoTabProps {
 interface IBalanceInfoTabState {
 }
 
-export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps, IBalanceInfoTabState> {
+export default class BalanceInfoBlock extends React.Component<IBalanceInfoTabProps, IBalanceInfoTabState> {
     constructor(props) {
         super(props);
     }
@@ -33,7 +33,7 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
 
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Balance Info"
+                <BlockHeading text="Balance Info"
                     id="headingBalanceInfo"
                     iconClassname="icon-balance"
                     tabHref="collapseBalanceInfo" />
@@ -45,43 +45,43 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
 
                     <div className="panel-body">
                         <div className={rowClasses}>
-                            <Cell text="Total Cash" classnames="col-xs-6" /> 
-                            <CellContainNumberFormat text={-31931.68} classnames="col-xs-6 col-right" />
+                            <Cell text="Total Cash" classNames="col-xs-6" /> 
+                            <CellContainNumberFormat text={-31931.68} classNames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
-                            <Cell text="Yesterday Cash" classnames="col-xs-6" />
-                            <CellContainNumberFormat text={-31291.44} classnames="col-xs-6 col-right" />
+                            <Cell text="Yesterday Cash" classNames="col-xs-6" />
+                            <CellContainNumberFormat text={-31291.44} classNames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
-                            <Cell text="Total Balance" classnames="col-xs-6" />
-                            <CellContainNumberFormat text={-27715.24} classnames="col-xs-6 col-right" />
+                            <Cell text="Total Balance" classNames="col-xs-6" />
+                            <CellContainNumberFormat text={-27715.24} classNames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
-                            <Cell text="Yesterday Balance" classnames="col-xs-6" />
-                            <CellContainNumberFormat text={-28496.39} classnames="col-xs-6 col-right" />
+                            <Cell text="Yesterday Balance" classNames="col-xs-6" />
+                            <CellContainNumberFormat text={-28496.39} classNames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
-                            <Cell text="Outstanding" classnames="col-xs-6" />
+                            <Cell text="Outstanding" classNames="col-xs-6" />
                             <CellContainInput text={1159.70}
-                                classnames="col-xs-6 col-right box-edited"
+                                classNames="col-xs-6 col-right box-edited"
                                 inputClassname="txt-number-edited"
                                 onSave={this.handleOutStandingChange} />
                         </div>
 
                         <div className={rowClasses}>
-                            <Cell text="Used Credit" classnames="col-xs-6" />
-                            <CellContainNumberFormat text={2670903.00} classnames="col-xs-6 col-right" />
+                            <Cell text="Used Credit" classNames="col-xs-6" />
+                            <CellContainNumberFormat text={2670903.00} classNames="col-xs-6 col-right" />
                         </div>
 
                         <div className={rowClasses}>
-                            <Cell text="Given Credit" classnames="col-xs-6" />
+                            <Cell text="Given Credit" classNames="col-xs-6" />
                             <CellContainInput text={300000.00}
                                 id="txt-given-edit"
-                                classnames="col-xs-6 col-right box-edited"
+                                classNames="col-xs-6 col-right box-edited"
                                 inputClassname="txt-number-edited"
                                 onSave={this.handleGivenCredit}
                                 iconClassname="icon-border-color icon-edited" />
@@ -90,26 +90,26 @@ export default class BalanceInfoTab extends React.Component<IBalanceInfoTabProps
                                 <h1 className="title">Given Credit</h1>
 
                                 <div className={rowClasses}>
-                                    <Cell text="Current Given Credit" classnames="col-xs-7" />
-                                    <Cell text="300,000,000.00" classnames="col-xs-5 show-value" />
+                                    <Cell text="Current Given Credit" classNames="col-xs-7" />
+                                    <Cell text="300,000,000.00" classNames="col-xs-5 show-value" />
                                 </div>
 
                                 <div className={rowClasses}>
-                                    <Cell text="New Given Credit" classnames="col-xs-7" />
+                                    <Cell text="New Given Credit" classNames="col-xs-7" />
                                     <CellContainInput text={350000000.00}
-                                        classnames="col-xs-5 text-right"
+                                        classNames="col-xs-5 text-right"
                                         inputClassname="hasBorder txt-newValue"
                                         onSave={this.handleNewGivenCredit} />
                                 </div>
 
                                 <div className={rowClasses}>
-                                    <Cell text="Difference" classnames="col-xs-7" />
-                                    <Cell text="50,000,000.00" classnames="col-xs-5 show-value" />
+                                    <Cell text="Difference" classNames="col-xs-7" />
+                                    <Cell text="50,000,000.00" classNames="col-xs-5 show-value" />
                                 </div>
 
                                 <div className="col-xs-12 row-info popup-bottom list-button">
-                                    <Button text="Cancel" classnames="btn-cancel" onClick={this.handleCancelClick} />
-                                    <Button text="Submit" classnames="btn-submit" onClick={this.handleSubmitClick} />
+                                    <Button text="Cancel" classNames="btn-cancel" onClick={this.handleCancelClick} />
+                                    <Button text="Submit" classNames="btn-submit" onClick={this.handleSubmitClick} />
                                 </div>
                             </div>
                         </div>

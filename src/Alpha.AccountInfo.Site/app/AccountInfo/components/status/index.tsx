@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../common/tab-heading';
+import BlockHeading from '../common/block-heading';
 import Status from './status';
 import CellContainLink from '../common/cell-contain-link';
 
@@ -9,14 +9,14 @@ interface IStatusTabProps {
 interface IStatusTabState {
 }
 
-export default class StatusTab extends React.Component<IStatusTabProps, IStatusTabState> {
+export default class StatusBlock extends React.Component<IStatusTabProps, IStatusTabState> {
     constructor(props) {
         super(props);
     }
     render() {
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Status"
+                <BlockHeading text="Status"
                     id="headingStatus"
                     iconClassname="icon-status"
                     tabHref="collapseStatus" />
@@ -34,7 +34,7 @@ export default class StatusTab extends React.Component<IStatusTabProps, IStatusT
                             <Status text="Double Comm"/>
 
                             <CellContainLink text="Enable Keno01"
-                                classnames="row-info"
+                                classNames="row-info"
                                 iconClassname="icon-ic_list"
                                 hrefLink="#" />
 

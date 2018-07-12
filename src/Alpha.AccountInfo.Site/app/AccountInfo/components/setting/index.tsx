@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../common/tab-heading';
+import BlockHeading from '../common/block-heading';
 
 interface ISettingTabProps {
 }
@@ -7,14 +7,14 @@ interface ISettingTabProps {
 interface ISettingTabState {
 }
 
-export default class SettingTab extends React.Component<ISettingTabProps, ISettingTabState> {
+export default class SettingBlock extends React.Component<ISettingTabProps, ISettingTabState> {
     constructor(props) {
         super(props);
     }
     render() {
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Settings"
+                <BlockHeading text="Settings"
                     id="headingSettings"
                     iconClassname="icon-settings"
                     tabHref="collapseSettings" />

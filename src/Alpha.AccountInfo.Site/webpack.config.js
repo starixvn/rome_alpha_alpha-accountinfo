@@ -10,7 +10,7 @@ module.exports = {
             "./assets/styles/account-info.css"
         ],
         "bundles/productstatus/productstatus": [
-            "./assets/scripts/productstatus/productstatus.js",
+            "./assets/scripts/productstatus/productstatus.ts",
             "./assets/styles/productstatus/productstatus.css"
         ]
     },

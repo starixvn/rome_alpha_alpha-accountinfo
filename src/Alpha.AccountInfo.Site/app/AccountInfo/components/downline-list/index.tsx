@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import HeadingTab from '../common/tab-heading';
+import BlockHeading from '../common/block-heading';
 import TotalDownlineList from './total-downline-list';
 import DownlineInfo from './downline-info';
 
@@ -9,14 +9,14 @@ interface IDownlineListTabProps {
 interface IDownlineListTabState {
 }
 
-export default class DownlineListTab extends React.Component<IDownlineListTabProps, IDownlineListTabState> {
+export default class DownlineListBlock extends React.Component<IDownlineListTabProps, IDownlineListTabState> {
     constructor(props) {
         super(props);
     }
     render() {
         return (
             <div className="panel panel-default">
-                <HeadingTab text="Downline list"
+                <BlockHeading text="Downline list"
                     id="headingDownlineList"
                     iconClassname="icon-downline"
                     tabHref="collapseDownlineList" />

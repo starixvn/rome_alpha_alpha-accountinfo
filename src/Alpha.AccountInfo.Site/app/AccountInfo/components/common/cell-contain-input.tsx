@@ -3,7 +3,7 @@ import Cell from './cell';
 //import * as NumberFormat from '..../node_modules/react-number-format/src/number_format';
 
 interface ICellContainInputProps {
-    classnames?: string;
+    classNames?: string;
     id?: string,
     inputClassname?: string;
     text: number;
@@ -41,7 +41,7 @@ export default class CellContainInput extends React.Component<ICellContainInputP
     render() {
         const inputClassname = "txt-number-edited";
         return (
-            <div className={this.props.classnames}>
+            <div className={this.props.classNames}>
                 <input type="text"
                     className={inputClassname}
                     value={this.props.text.toLocaleString('en-us', { minimumFractionDigits: 2 })} 

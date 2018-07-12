@@ -3,7 +3,7 @@ import Link from './link';
 import Cell from './cell';
 
 interface ICellContainNumberFormatProps {
-    classnames?: string;
+    classNames?: string;
     text: number
 }
 
@@ -17,7 +17,7 @@ export default class CellContainNumberFormat extends React.Component<ICellContai
     }
     render() {
         return (
-            <div className={this.props.classnames}>
+            <div className={this.props.classNames}>
                 <span className={this.props.text < 0 ? "number-red" : "number"} >{this.props.text.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
             </div>
       );

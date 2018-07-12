@@ -2,7 +2,7 @@
 import Link from './link';
 
 interface ICellProps {
-    classnames?: string;
+    classNames?: string;
     text: string
 }
 
@@ -19,7 +19,7 @@ export default class Cell extends React.Component<ICellProps, ICellState> {
     }
     render() {
         return (
-            <div className={this.props.classnames}>{this.state.text}</div>
+            <div className={this.props.classNames}>{this.state.text}</div>
       );
     }
 }
