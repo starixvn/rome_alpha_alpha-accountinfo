@@ -6,7 +6,6 @@ interface IDownlineListProps {
 }
 
 interface IDownlineListState {
-
 }
 
 export default class DownlineList extends React.Component<IDownlineListProps, IDownlineListState> {

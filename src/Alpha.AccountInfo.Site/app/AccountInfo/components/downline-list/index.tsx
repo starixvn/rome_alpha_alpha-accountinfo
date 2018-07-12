@@ -3,7 +3,10 @@ import BlockHeading from '../common/block-heading';
 import TotalDownlineList from './total-downline-list';
 import DownlineInfo from './downline-info';
 
+import DownlineListViewModel from '../../models/downline-list-model'
+
 interface IDownlineListBlockProps {
+    downlineList: DownlineListViewModel;
 }
 
 interface IDownlineListBlockState {
@@ -26,10 +29,16 @@ export default class DownlineListBlock extends React.Component<IDownlineListBloc
                     role="tabpanel"
                     aria-labelledby="headingDownlineList">
                     <div className="panel-body panel-downline-list">
-                        <DownlineInfo />
+                        <DownlineInfo downlineList={this.props.downlineList.DownlineList} />
                         <div className="col-xs-12 row-info"><hr /></div>
-                        <TotalDownlineList levelName="Agents" totalActive={90} totalClosed={47} totalSuspended={2} />
-                        <TotalDownlineList levelName="Members" totalActive={80} totalClosed={584} totalSuspended={3} />
+                        <TotalDownlineList levelName="Agents"
+                            totalActive={this.props.downlineList.TotalStatusAgent.TotalActive}
+                            totalClosed={this.props.downlineList.TotalStatusAgent.TotalClosed}
+                            totalSuspended={this.props.downlineList.TotalStatusAgent.TotalSuspend} />
+                        <TotalDownlineList levelName="Members"
+                            totalActive={this.props.downlineList.TotalStatusMember.TotalActive}
+                            totalClosed={this.props.downlineList.TotalStatusMember.TotalClosed}
+                            totalSuspended={this.props.downlineList.TotalStatusMember.TotalSuspend} />
                     </div>
                 </div>
             </div>

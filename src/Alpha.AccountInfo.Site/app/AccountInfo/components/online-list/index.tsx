@@ -20,7 +20,8 @@ export default class OnlineListBlock extends React.Component<IOnlineListBlockPro
     }
     render() {
         let content = this.state.downlineList.length > 0 ?
-            <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />
+            <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />;
+
         return (
             <div className="panel panel-default">
                 <BlockHeading

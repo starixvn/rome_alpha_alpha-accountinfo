@@ -26,7 +26,7 @@ export default class AccountInfo extends React.Component<IAccountInfoProps, IAcc
                 <div id="account-tabs" className="account-tabs">
                     <div className="panel-group account-info" id="infoTab" role="tablist" aria-multiselectable="true">
                         <BalanceInfoBlock balanceInfo={this.props.accountInfoModel.BalanceInfo} />
-                        <DownlineListBlock />
+                        <DownlineListBlock downlineList={this.props.accountInfoModel.DownlineList} />
                         <StatusBlock />
                         <SettingBlock />
                         <LoginInfoBlock loginInfo={this.props.accountInfoModel.LoginInfo} />

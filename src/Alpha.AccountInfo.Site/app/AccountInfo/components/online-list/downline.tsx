@@ -4,11 +4,7 @@ interface IDownlineProps {
     username: string
 }
 
-interface IDownlineState {
-
-}
-
-export default class Downline extends React.Component<IDownlineProps, IDownlineState> {
+export default class Downline extends React.Component<IDownlineProps, {}> {
     constructor(props) {
         super(props);
     }
