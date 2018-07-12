@@ -1,21 +1,21 @@
 ﻿export default class CustomerInfoViewModel {
-    custId: number;
-    roleId: number;
-    actorRoleId: number;
-    userName: string;
-    userName2: string;
+    CustId: number;
+    RoleId: number;
+    ActorRoleId: number;
+    UserName: string;
+    UserName2: string;
 
-    phone: string;
-    fax: string;
-    memberName: string;
-    agentName: string;
-    masterName: string;
-    superName: string;
+    Phone: string;
+    Fax: string;
+    MemberName: string;
+    AgentName: string;
+    MasterName: string;
+    SuperName: string;
 
-    customerListLink: string;
-    betListLink: string;
-    statemenLink: string;
-    viewLogLink: string;
+    CustomerListLink: string;
+    BetListLink: string;
+    StatemenLink: string;
+    ViewLogLink: string;
 
     public constructor(init?: Partial<CustomerInfoViewModel>) {
         Object.assign(this, init);

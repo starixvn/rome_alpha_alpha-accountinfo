@@ -19,7 +19,7 @@ interface ICustomerInfoTabState {
     secondCellClass: string,
 }
 
-export default class CustomerInfoBlock extends React.Component<ICustomerInfoTabProps, ICustomerInfoTabState> {
+export default class CustomerInfoTab extends React.Component<ICustomerInfoTabProps, ICustomerInfoTabState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,35 +34,8 @@ export default class CustomerInfoBlock extends React.Component<ICustomerInfoTabP
 
     handleStatementClick = () => { }
 
-    buildMasterRow = (actorRoleId: number, roleId: number, username: string) => {
-        if (this.state.data.roleId == 3) {
-            return this.buildLevelRow(username, "Master", roleId == 4 ? "icon-viewlog" : null);
-        }
-        else {
-            return null;
-        }
-    }
-
-    buildAgentRow = (actorRoleId: number, roleId: number, username: string) => {
-        if (this.state.data.actorRoleId == 2) {
-            return this.buildLevelRow(username, "Agent", roleId == 3? "icon-viewlog" : null);
-        }
-        else {
-            return null;
-        }
-    }
-
-    buildMemberRow = (actorRoleId: number, roleId: number, username: string) => {
-        if (this.state.data.actorRoleId == 1) {
-            return this.buildLevelRow(username, "Customer", roleId == 2 ? "icon-viewlog" : null);
-        }
-        else {
-            return null;
-        }
-    }
-
-    buildLevelRow = (username: string, levelName: string, iconClassname?: string) => {
-        return <UserLevel
+    buildLevelRow = (username: string, levelName: string, iconClassname?: string): JSX.Element => 
+        <UserLevel
             username={username}
             levelname={levelName}
             rowClasses={this.state.rowClasses}
@@ -70,38 +43,31 @@ export default class CustomerInfoBlock extends React.Component<ICustomerInfoTabP
             secondCellClass={this.state.secondCellClass}
             hrefLink="#"
             iconClassname={iconClassname} />
-    }
 
     render() {
         const rowClasses = "col-xs-12 row-info";
         const firstCellClass = "col-xs-5";
         const secondCellClass = "col-xs-7 col-right";
 
+        let roleId = this.state.data.RoleId;
+        let actorRoleId = this.state.data.ActorRoleId;
+
+        let masterRow = actorRoleId == 4 && roleId < 4 ?
+            this.buildLevelRow(this.state.data.MasterName, "Master", roleId == 3 ? "icon-viewlog" : null) : null;
+
+        let agentRow = (actorRoleId == 4 || actorRoleId == 3) && this.state.data.RoleId < 3 ?
+            this.buildLevelRow(this.state.data.AgentName, "Agent", roleId == 2 ? "icon-viewlog" : null) : null;
+
+        let memberRow = roleId == 1 ?
+            this.buildLevelRow(this.state.data.MemberName, "Customer", "icon-viewlog") : null;
+
         return (
             <div className="block-info" id="blockInfo">
-                <Search username={this.state.data.userName}/>
+                <Search username={this.state.data.UserName} />
 
-                <div className={rowClasses}>
-                    <Cell text="Master" classNames={firstCellClass} />
-                    <CellContainLink text="Master01"
-                        classNames={secondCellClass + " font-weight-normal"}
-                        hrefLink="#" />
-                </div>
-
-                <div className={rowClasses}>
-                    <Cell text="Agent" classNames={firstCellClass} />
-                    <CellContainLink text="Agent01"
-                        classNames={secondCellClass + " font-weight-normal"}
-                        hrefLink="#" />
-                </div>
-
-                <div className={rowClasses + " highlight"}>
-                    <Cell text="Customer" classNames={firstCellClass} />
-                    <CellContainLink text={this.state.data.userName}
-                        classNames={secondCellClass}
-                        hrefLink="#"
-                        iconClassname="icon-viewlog" />
-                </div>
+                {masterRow}
+                {agentRow}
+                {memberRow}
 
                 <div className={rowClasses}>
                     <Cell text="Name" classNames={firstCellClass} />
@@ -110,12 +76,12 @@ export default class CustomerInfoBlock extends React.Component<ICustomerInfoTabP
 
                 <div className={rowClasses}>
                     <Cell text="Phone" classNames={firstCellClass} />
-                    <Cell text={this.state.data.phone} classNames={secondCellClass} />
+                    <Cell text={this.state.data.Phone} classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>
                     <Cell text="Fax" classNames={firstCellClass} />
-                    <Cell text={this.state.data.fax} classNames={secondCellClass} />
+                    <Cell text={this.state.data.Fax} classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses + " text-center list-button"}>
