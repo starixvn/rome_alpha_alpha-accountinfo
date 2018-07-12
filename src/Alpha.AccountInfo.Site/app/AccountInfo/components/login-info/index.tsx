@@ -2,13 +2,13 @@
 import BlockHeading from '../common/block-heading';
 import Cell from '../common/cell';
 
-interface ILoginInfoTabProps {
+interface ILoginInfoBlockProps {
 }
 
-interface ILoginInfoTabState {
+interface ILoginInfoBlockState {
 }
 
-export default class LoginInfoBlock extends React.Component<ILoginInfoTabProps, ILoginInfoTabState> {
+export default class LoginInfoBlock extends React.Component<ILoginInfoBlockProps, ILoginInfoBlockState> {
     constructor(props) {
         super(props);
     }

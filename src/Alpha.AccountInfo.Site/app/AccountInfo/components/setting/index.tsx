@@ -1,13 +1,13 @@
 ﻿import * as React from 'react';
 import BlockHeading from '../common/block-heading';
 
-interface ISettingTabProps {
+interface ISettingBlockProps {
 }
 
-interface ISettingTabState {
+interface ISettingBlockState {
 }
 
-export default class SettingBlock extends React.Component<ISettingTabProps, ISettingTabState> {
+export default class SettingBlock extends React.Component<ISettingBlockProps, ISettingBlockState> {
     constructor(props) {
         super(props);
     }

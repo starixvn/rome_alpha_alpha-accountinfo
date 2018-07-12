@@ -3,13 +3,13 @@ import BlockHeading from '../common/block-heading';
 import TotalDownlineList from './total-downline-list';
 import DownlineInfo from './downline-info';
 
-interface IDownlineListTabProps {
+interface IDownlineListBlockProps {
 }
 
-interface IDownlineListTabState {
+interface IDownlineListBlockState {
 }
 
-export default class DownlineListBlock extends React.Component<IDownlineListTabProps, IDownlineListTabState> {
+export default class DownlineListBlock extends React.Component<IDownlineListBlockProps, IDownlineListBlockState> {
     constructor(props) {
         super(props);
     }

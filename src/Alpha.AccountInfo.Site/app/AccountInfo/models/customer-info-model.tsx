@@ -17,6 +17,10 @@
     StatemenLink: string;
     ViewLogLink: string;
 
+    ShowMasterName: boolean;
+    ShowAgentName: boolean;
+    ShowMemberName: boolean;
+
     public constructor(init?: Partial<CustomerInfoViewModel>) {
         Object.assign(this, init);
     }

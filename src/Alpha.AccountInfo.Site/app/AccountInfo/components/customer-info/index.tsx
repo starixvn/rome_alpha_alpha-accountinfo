@@ -8,18 +8,18 @@ import UserLevel from './user-level';
 
 import CustomerInfoViewModel from '../../models/customer-info-model'
 
-interface ICustomerInfoTabProps {
+interface ICustomerInfoBlockProps {
     customerInfoModel: CustomerInfoViewModel
 }
 
-interface ICustomerInfoTabState {
+interface ICustomerInfoBlockState {
     data: CustomerInfoViewModel,
     rowClasses: string,
     firstCellClass: string,
     secondCellClass: string,
 }
 
-export default class CustomerInfoTab extends React.Component<ICustomerInfoTabProps, ICustomerInfoTabState> {
+export default class CustomerInfoBlock extends React.Component<ICustomerInfoBlockProps, ICustomerInfoBlockState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,29 +45,21 @@ export default class CustomerInfoTab extends React.Component<ICustomerInfoTabPro
             iconClassname={iconClassname} />
 
     render() {
-        const rowClasses = "col-xs-12 row-info";
-        const firstCellClass = "col-xs-5";
-        const secondCellClass = "col-xs-7 col-right";
+        const rowClasses = this.state.rowClasses;
+        const firstCellClass = this.state.firstCellClass;
+        const secondCellClass = this.state.secondCellClass;
 
         let roleId = this.state.data.RoleId;
-        let actorRoleId = this.state.data.ActorRoleId;
-
-        let masterRow = actorRoleId == 4 && roleId < 4 ?
-            this.buildLevelRow(this.state.data.MasterName, "Master", roleId == 3 ? "icon-viewlog" : null) : null;
-
-        let agentRow = (actorRoleId == 4 || actorRoleId == 3) && this.state.data.RoleId < 3 ?
-            this.buildLevelRow(this.state.data.AgentName, "Agent", roleId == 2 ? "icon-viewlog" : null) : null;
-
-        let memberRow = roleId == 1 ?
-            this.buildLevelRow(this.state.data.MemberName, "Customer", "icon-viewlog") : null;
 
         return (
             <div className="block-info" id="blockInfo">
                 <Search username={this.state.data.UserName} />
 
-                {masterRow}
-                {agentRow}
-                {memberRow}
+                {this.state.data.ShowMasterName ? this.buildLevelRow(this.state.data.MasterName, "Master", roleId == 3 ? "icon-viewlog" : null) : null}
+
+                {this.state.data.ShowAgentName ? this.buildLevelRow(this.state.data.AgentName, "Agent", roleId == 2 ? "icon-viewlog" : null) : null}
+
+                {this.state.data.ShowMemberName ? this.buildLevelRow(this.state.data.MemberName, "Customer", "icon-viewlog") : null}
 
                 <div className={rowClasses}>
                     <Cell text="Name" classNames={firstCellClass} />

@@ -3,13 +3,13 @@ import BlockHeading from '../common/block-heading';
 import Status from './status';
 import CellContainLink from '../common/cell-contain-link';
 
-interface IStatusTabProps {
+interface IStatusBlockProps {
 }
 
-interface IStatusTabState {
+interface IStatusBlockState {
 }
 
-export default class StatusBlock extends React.Component<IStatusTabProps, IStatusTabState> {
+export default class StatusBlock extends React.Component<IStatusBlockProps, IStatusBlockState> {
     constructor(props) {
         super(props);
     }

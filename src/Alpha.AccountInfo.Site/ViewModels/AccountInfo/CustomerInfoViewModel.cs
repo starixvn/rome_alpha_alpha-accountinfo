@@ -59,13 +59,19 @@
 
         public string Fax { get; }
 
+        public bool ShowMemberName => RoleId.Equals(1);
+
         public string MemberName { get; }
+
+        public bool ShowAgentName => (ActorRoleId.Equals(4) || ActorRoleId.Equals(3)) && RoleId < 3;
 
         public string AgentName { get; }
 
+        public bool ShowMasterName => ActorRoleId.Equals(4) && RoleId < 4;
+
         public string MasterName { get; }
 
-        public string SuperName { get; }
+        public string SuperName { get; }       
 
         public string CustomerListLink
         {

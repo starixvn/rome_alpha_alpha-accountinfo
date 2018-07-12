@@ -3,15 +3,15 @@ import BlockHeading from '../common/block-heading';
 import NoInfomation from './no-infomation';
 import DownlineList from './downline-list';
 
-interface IOnlineListTabProps {
+interface IOnlineListBlockProps {
   
 }
 
-interface IOnlineListTabState {
+interface IOnlineListBlockState {
     downlineList: string[]
 }
 
-export default class OnlineListBlock extends React.Component<IOnlineListTabProps, IOnlineListTabState> {
+export default class OnlineListBlock extends React.Component<IOnlineListBlockProps, IOnlineListBlockState> {
     constructor(props) {
         super(props);
         this.state = {

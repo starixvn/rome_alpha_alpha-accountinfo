@@ -7,13 +7,13 @@ import Cell from '../common/cell';
 import BlockHeading from '../common/block-heading';
 
 
-interface IBalanceInfoTabProps {
+interface IBalanceInfoBlockProps {
 }
 
-interface IBalanceInfoTabState {
+interface IBalanceInfoBlockState {
 }
 
-export default class BalanceInfoBlock extends React.Component<IBalanceInfoTabProps, IBalanceInfoTabState> {
+export default class BalanceInfoBlock extends React.Component<IBalanceInfoBlockProps, IBalanceInfoBlockState> {
     constructor(props) {
         super(props);
     }
