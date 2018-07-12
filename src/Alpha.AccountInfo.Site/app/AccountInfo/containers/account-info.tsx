@@ -6,10 +6,10 @@ import StatusBlock from '../components/status/index';
 import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
-import CustomerInfoViewModel from '../models/customer-info-model'
+import AccountInfoViewModel from '../models/account-info-model'
 
 interface IAccountInfoProps {
-    customerInfoModel: CustomerInfoViewModel
+    accountInfoModel: AccountInfoViewModel
 }
 
 interface IAccountInfoState {
@@ -22,14 +22,14 @@ export default class AccountInfo extends React.Component<IAccountInfoProps, IAcc
     render() {
         return (
             <div className="accountinfo-container">
-                <CustomerInfoBlock customerInfoModel={this.props.customerInfoModel} />
+                <CustomerInfoBlock customerInfoModel={this.props.accountInfoModel.CustomerInfo} />
                 <div id="account-tabs" className="account-tabs">
                     <div className="panel-group account-info" id="infoTab" role="tablist" aria-multiselectable="true">
-                        <BalanceInfoBlock />
+                        <BalanceInfoBlock balanceInfo={this.props.accountInfoModel.BalanceInfo} />
                         <DownlineListBlock />
                         <StatusBlock />
                         <SettingBlock />
-                        <LoginInfoBlock />
+                        <LoginInfoBlock loginInfo={this.props.accountInfoModel.LoginInfo} />
                         <OnlineListBlock />
                     </div>
                 </div>

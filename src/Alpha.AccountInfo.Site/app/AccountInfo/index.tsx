@@ -10,7 +10,7 @@ interface Window {
 
 const renderApp = (reactApp: any) => {
     ReactDOM.render(
-        <AccountInfo customerInfoModel={reactApp} />,
+        <AccountInfo accountInfoModel={reactApp} />,
         document.getElementById('account-info')
     );
 };

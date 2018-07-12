@@ -5,8 +5,6 @@ import CellContainLink from '../common/cell-contain-link';
 interface IUserLevelProps {
     levelname: string,
     username: string,
-    roleId?: number,
-    actorRoleId?: number,
     rowClasses: string,
     firstCellClass: string,
     secondCellClass: string,
@@ -14,10 +12,7 @@ interface IUserLevelProps {
     iconClassname?: string
 }
 
-interface IUserLevelState {
-}
-
-export default class UserLevel extends React.Component<IUserLevelProps, IUserLevelState> {
+export default class UserLevel extends React.Component<IUserLevelProps, {}> {
     constructor(props) {
         super(props);
     }

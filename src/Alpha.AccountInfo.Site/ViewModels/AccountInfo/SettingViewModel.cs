@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    public class ProductSettingViewModel
+    public class SettingViewModel
     {
     }
 }

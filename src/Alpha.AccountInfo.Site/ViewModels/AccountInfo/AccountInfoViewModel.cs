@@ -7,7 +7,7 @@
              BalanceInfoViewModel balanceInfo,
              DownlineListViewModel downlineList,
              StatusViewModel status,
-             ProductSettingViewModel productSetting,
+             SettingViewModel setting,
              LoginInfoViewModel loginInfo,
              OnlineListViewModel onlineList)
         {
@@ -15,7 +15,7 @@
             BalanceInfo = balanceInfo;
             DownlineList = downlineList;
             Status = status;
-            ProductSetting = productSetting;
+            Setting = setting;
             LoginInfo = loginInfo;
             OnlineList = onlineList;
         }
@@ -28,7 +28,7 @@
 
         public StatusViewModel Status { get; }
 
-        public ProductSettingViewModel ProductSetting { get; }
+        public SettingViewModel Setting { get; }
 
         public LoginInfoViewModel LoginInfo { get; }
 

@@ -9,7 +9,10 @@
              double yesterdayBalance,
              double outstanding,
              double usedCredit,
-             double givenCredit)
+             double givenCredit,
+             double currentGivenCredit,
+             double newGivenCredit,
+             double difference)
         {
             TotalCash = totalCash;
             YesterdayCash = yesterdayCash;
@@ -20,6 +23,9 @@
             Outstanding = outstanding;
             UsedCredit = usedCredit;
             GivenCredit = givenCredit;
+            CurrentGivenCredit = currentGivenCredit;
+            NewGivenCredit = newGivenCredit;
+            Difference = difference;
         }
 
         public double TotalCash { get; }
@@ -35,5 +41,11 @@
         public double UsedCredit { get; }
 
         public double GivenCredit { get; }
+
+        public double CurrentGivenCredit { get; }
+
+        public double NewGivenCredit { get; }
+
+        public double Difference { get; }
     }
 }

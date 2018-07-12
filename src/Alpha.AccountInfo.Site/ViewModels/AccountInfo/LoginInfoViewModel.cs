@@ -4,23 +4,23 @@
 
     public class LoginInfoViewModel
     {
-        public LoginInfoViewModel(
+       public LoginInfoViewModel(
             DateTime createdDate,
             DateTime lastLogin,
             DateTime lastTxn,
             string loginIP)
         {
-            CreatedDate = createdDate;
-            LastLogin = lastLogin;
-            LastTxn = lastTxn;
+            CreatedDate = createdDate.ToString();
+            LastLogin = lastLogin.ToString();
+            LastTxn = lastTxn.ToString();
             LoginIP = loginIP;
         }
 
-        public DateTime CreatedDate { get; }
+        public string CreatedDate { get; }
 
-        public DateTime LastLogin { get; }
+        public string LastLogin { get; }
 
-        public DateTime LastTxn { get; }
+        public string LastTxn { get; }
 
         public string LoginIP { get; }
     }
