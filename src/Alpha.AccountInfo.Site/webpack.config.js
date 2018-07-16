@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         "bundles/account-info/index": [
             "./app/AccountInfo/index.tsx",
+
             "./assets/styles/account-info.css"
         ],
         "bundles/productstatus/productstatus": [
