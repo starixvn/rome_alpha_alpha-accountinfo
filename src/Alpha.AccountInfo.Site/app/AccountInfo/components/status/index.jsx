@@ -1,7 +1,7 @@
 ﻿import React from 'react';
-import BlockHeading from '../common/block-heading';
 import Status from './status';
 import CellContainLink from '../common/cell-contain-link';
+import CustomizedAccordionItem from '../common/customized-accordion-item';
 
 export default class StatusBlock extends React.Component {
     constructor(props) {
@@ -9,40 +9,28 @@ export default class StatusBlock extends React.Component {
     }
     render() {
         return (
-            <div className="panel panel-default">
-                <BlockHeading text="Status"
-                    id="headingStatus"
-                    iconClassname="icon-status"
-                    tabHref="collapseStatus" />
+            <CustomizedAccordionItem title="Status" iconClassname="icon-status">
+                <div className="col-xs-6 px-0">
+                    <Status text="Suspended" checked={true} />
+                    <Status text="Auto PT" checked={true} />
+                    <Status text="Outright" checked={true} />
+                    <Status text="Outright" checked={true} />
+                    <Status text="Double Comm" />
 
-                <div id="collapseStatus"
-                    className="panel-collapse collapse"
-                    role="tabpanel"
-                    aria-labelledby="headingStatus">
-                    <div className="panel-body">
-                        <div className="col-xs-6 no-p-x">
-                            <Status text="Suspended" checked={true}/>
-                            <Status text="Auto PT" checked={true}/>
-                            <Status text="Outright" checked={true} />
-                            <Status text="Outright" checked={true} />
-                            <Status text="Double Comm"/>
+                    <CellContainLink text="Enable Keno01"
+                        classNames="row-info"
+                        iconClassname="icon-ic_list"
+                        hrefLink="#" />
 
-                            <CellContainLink text="Enable Keno01"
-                                classNames="row-info"
-                                iconClassname="icon-ic_list"
-                                hrefLink="#" />
-
-                            <Status text="Colossus Bets" checked={true} />
-                        </div>
-                        <div className="col-xs-6 no-p-x">
-                            <Status text="Closed" />
-                            <Status text="Virtual Sports" />
-                            <Status text="HR Fixed Odds" />
-                            <Status text="Allbet" />
-                        </div>
-                    </div>
+                    <Status text="Colossus Bets" checked={true} />
                 </div>
-            </div>
+                <div className="col-xs-6 px-0">
+                    <Status text="Closed" />
+                    <Status text="Virtual Sports" />
+                    <Status text="HR Fixed Odds" />
+                    <Status text="Allbet" />
+                </div>
+            </CustomizedAccordionItem>
       );
     }
 }

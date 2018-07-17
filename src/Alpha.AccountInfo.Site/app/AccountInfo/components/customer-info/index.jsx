@@ -51,7 +51,7 @@ export default class CustomerInfoBlock extends React.Component {
 
                 <div className={rowClasses}>
                     <Cell text="Name" classNames={firstCellClass} />
-                    <Cell text="Thien Nguyen" classNames={secondCellClass} />
+                    <Cell text="Thien Nguyen 0001" classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>

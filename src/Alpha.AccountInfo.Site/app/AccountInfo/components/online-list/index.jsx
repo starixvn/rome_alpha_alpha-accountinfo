@@ -1,7 +1,7 @@
 ﻿import React from 'react';
-import BlockHeading from '../common/block-heading';
 import NoInfomation from './no-infomation';
 import DownlineList from './downline-list';
+import CustomizedAccordionItem from '../common/customized-accordion-item';
 
 export default class OnlineListBlock extends React.Component{
     constructor(props) {
@@ -15,19 +15,9 @@ export default class OnlineListBlock extends React.Component{
             <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />;
 
         return (
-            <div className="panel panel-default">
-                <BlockHeading
-                    text="Online List"
-                    id="headingOnlineList"
-                    iconClassname="icon-onlinelist"
-                    tabHref="collapseOnlineList" />
-                <div id="collapseOnlineList"
-                    className="panel-collapse collapse"
-                    role="tabpanel"
-                    aria-labelledby="headingOnlineList">
-                    {content}
-                </div>
-            </div>
+            <CustomizedAccordionItem title="Online List" iconClassname="icon-onlinelist">
+                {content}
+            </CustomizedAccordionItem>
       );
     }
 }

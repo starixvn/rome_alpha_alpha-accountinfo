@@ -304,6 +304,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
@@ -532,7 +533,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\AccountInfo\components\customer-info\index.jsx" />
-    <Content Include="app\AccountInfo\components\common\block-heading.jsx" />
     <Content Include="app\AccountInfo\components\common\button.jsx" />
     <Content Include="app\AccountInfo\components\common\cell-contain-input.jsx" />
     <Content Include="app\AccountInfo\components\common\cell-contain-link.jsx" />
