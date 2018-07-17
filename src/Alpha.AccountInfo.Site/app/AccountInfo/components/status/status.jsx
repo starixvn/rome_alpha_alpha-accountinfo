@@ -1,18 +1,6 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 
-interface IStatusProps {
-    text: string,
-    checked?: boolean,
-    classname?: string
-  //  onclick(): void
-}
-
-interface IStatusState {
-    classname: string,
-    text: string
-}
-
-export default class Status extends React.Component<IStatusProps, IStatusState> {
+export default class Status extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +8,7 @@ export default class Status extends React.Component<IStatusProps, IStatusState> 
             text: this.props.text || ''
         }
     }
-    handleChange = (e) => {
+    handleChange (e) {
         this.setState({ text: e.target.value });
     }
     render() {

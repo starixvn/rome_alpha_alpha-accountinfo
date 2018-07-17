@@ -1,17 +1,6 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 
-interface IHeadingTabProps {
-    text: string,
-    iconClassname: string,
-    id: string,
-    tabHref: string
-}
-
-interface IHeadingTabState {
-    text: string
-}
-
-export default class BlockHeading extends React.Component<IHeadingTabProps, IHeadingTabState> {
+export default class BlockHeading extends React.Component {
     constructor(props) {
         super(props);
     }

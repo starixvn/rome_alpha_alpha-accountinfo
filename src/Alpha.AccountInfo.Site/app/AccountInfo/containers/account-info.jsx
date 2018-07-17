@@ -6,16 +6,8 @@ import StatusBlock from '../components/status/index';
 import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
-import AccountInfoViewModel from '../models/account-info-model'
 
-interface IAccountInfoProps {
-    accountInfoModel: AccountInfoViewModel
-}
-
-interface IAccountInfoState {
-}
-
-export default class AccountInfo extends React.Component<IAccountInfoProps, IAccountInfoState> {
+export default class AccountInfo extends React.Component {
     constructor(props) {
         super(props);
     }

@@ -6,7 +6,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
     entry: {
         "bundles/account-info/index": [
-            "./app/AccountInfo/index.tsx",
+            "./app/AccountInfo/index.jsx",
 
             "./assets/styles/account-info.css"
         ],
@@ -26,7 +26,7 @@ module.exports = {
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js", ".json"]
+        extensions: [".ts", ".tsx", ".js", '.jsx', ".json"]
     },
 
     module: {
@@ -34,6 +34,15 @@ module.exports = {
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loaders: ['babel-loader?presets[]=react,presets[]=es2015'],
+                //loaders: ["react-hot", 'babel-loader'],
+                //query: {
+                //    presets : ['es2015', 'react']
+                //}
+            },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
 

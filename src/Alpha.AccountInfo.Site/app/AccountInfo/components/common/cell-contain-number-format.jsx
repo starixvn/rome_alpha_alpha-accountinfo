@@ -2,16 +2,7 @@
 import Link from './link';
 import Cell from './cell';
 
-interface ICellContainNumberFormatProps {
-    classNames?: string;
-    text: number
-}
-
-interface ICellContainNumberFormatState {
-    text: number
-}
-
-export default class CellContainNumberFormat extends React.Component<ICellContainNumberFormatProps, ICellContainNumberFormatState> {
+export default class CellContainNumberFormat extends React.Component{
     constructor(props) {
         super(props);
     }

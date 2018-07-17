@@ -1,18 +1,9 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import BlockHeading from '../common/block-heading';
 import TotalDownlineList from './total-downline-list';
 import DownlineInfo from './downline-info';
 
-import DownlineListViewModel from '../../models/downline-list-model'
-
-interface IDownlineListBlockProps {
-    downlineList: DownlineListViewModel;
-}
-
-interface IDownlineListBlockState {
-}
-
-export default class DownlineListBlock extends React.Component<IDownlineListBlockProps, IDownlineListBlockState> {
+export default class DownlineListBlock extends React.Component{
     constructor(props) {
         super(props);
     }

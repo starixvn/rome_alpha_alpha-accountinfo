@@ -1,31 +1,16 @@
-﻿import * as React from 'react';
-import NoInfomation from '../../components/online-list/no-infomation';
-import DownlineList from '../../components/online-list/downline-list';
-//import ReactIdSwiper from '../../../../node_modules/react-id-swiper/lib/index.js';
-import Swiper from 'swiper';
-import NavigationSwiper from './navigation-swiper';
-//import ReactIdSwiper from 'ReactIdSwiper';
-
-//declare var Swiper : any;
-
-//declare module ReactIdSwiperModule {
-//    swiper: ReactIdSwiper;
-//}
+﻿import React from 'react';
+//import NoInfomation from '../../components/online-list/no-infomation';
+//import DownlineList from '../../components/online-list/downline-list';
+//import Swiper from 'swiper';
 
 
-interface IDownlineInfoProps {
-    downlineList: string[]
-}
-
-interface IDownlineInfoState {
-}
-export default class DownlineInfo extends React.Component<IDownlineInfoProps, IDownlineInfoState> {
+export default class DownlineInfo extends React.Component {
     constructor(props) {
         super(props);
 
    
     }
-    chunkArray = (myArray, chunk_size) => {
+    chunkArray (myArray, chunk_size) {
         var index = 0;
         var arrayLength = myArray.length;
         var tempArray = [];
@@ -38,7 +23,7 @@ export default class DownlineInfo extends React.Component<IDownlineInfoProps, ID
 
         return tempArray;
     }
-    getMembers =(separate) => {
+    getMembers (separate) {
     var members = ['Member 01', 'Member 02', 'Member 03', 'Member 04', 'Member 05',
         'Member 06', 'Member 07', 'Member 08', 'Member 09', 'Member 10',
         'Member 11', 'Member 12', 'Member 13', 'Member 14', 'Member 15',
@@ -68,36 +53,37 @@ export default class DownlineInfo extends React.Component<IDownlineInfoProps, ID
     return slideContainer;
 }
     render() {
-        let content = this.props.downlineList.length > 0 ?
-            <DownlineList usernames={this.props.downlineList} /> : <NoInfomation />;
+        //let content = this.props.downlineList.length > 0 ?
+        //    <DownlineList usernames={this.props.downlineList} /> : <NoInfomation />;
        
 
-        let downlineListSwiper = new Swiper('#downlineListSwiperContainer', {
-            // If we need pagination
-            pagination: {
-                el: '#downlineListPagination',
-                clickable: true,
-                renderBullet: function (index, className) {
-                    return '<span class="' + className + '">' + (index + 1) + '</span>';
-                },
-            },
+        //let downlineListSwiper = new Swiper('#downlineListSwiperContainer', {
+        //    // If we need pagination
+        //    pagination: {
+        //        el: '#downlineListPagination',
+        //        clickable: true,
+        //        renderBullet: function (index, className) {
+        //            return '<span class="' + className + '">' + (index + 1) + '</span>';
+        //        },
+        //    },
 
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            observer: true,
-            observeParents: true,
-            grabCursor: true
-        });
+        //    // Navigation arrows
+        //    navigation: {
+        //        nextEl: '.swiper-button-next',
+        //        prevEl: '.swiper-button-prev',
+        //    },
+        //    observer: true,
+        //    observeParents: true,
+        //    grabCursor: true
+        //});
        
         // downlineListSwiper.appendSlide(this.getMembers(6));
+        //{ results.map((result, index) => <NavigationSwiper downlineList={result} key={index} />) }
         var results = this.chunkArray(this.props.downlineList, 10);
         return (  
             <div className="swiper-container" id="downlineListSwiperContainer">
                 <div className="swiper-wrapper" id="downline-list-wrapper">
-                    {results.map((result, index) => <NavigationSwiper downlineList={result} key={index} />)}
+                   
                 </div>
                 <div className="swiper-bottom" id="downlineListPagination"></div>
             </div>

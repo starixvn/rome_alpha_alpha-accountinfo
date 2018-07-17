@@ -1,16 +1,6 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 
-interface IButtonProps {
-    classNames: string,
-    text: string,
-    onClick(): void
-}
-
-interface IButtonState {
-    text: string
-}
-
-export default class Button extends React.Component<IButtonProps, IButtonState> {
+export default class Button extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

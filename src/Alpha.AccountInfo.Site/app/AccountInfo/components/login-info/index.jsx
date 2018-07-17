@@ -1,13 +1,8 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import BlockHeading from '../common/block-heading';
 import Cell from '../common/cell';
-import LoginInfoViewModel from '../../models/login-info-model'
 
-interface ILoginInfoBlockProps {
-    loginInfo: LoginInfoViewModel
-}
-
-export default class LoginInfoBlock extends React.Component<ILoginInfoBlockProps, {}> {
+export default class LoginInfoBlock extends React.Component{
     constructor(props) {
         super(props);
     }

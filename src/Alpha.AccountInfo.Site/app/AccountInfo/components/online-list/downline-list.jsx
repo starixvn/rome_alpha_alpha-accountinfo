@@ -1,14 +1,7 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import Downline from './downline';
 
-interface IDownlineListProps {
-    usernames: string[]
-}
-
-interface IDownlineListState {
-}
-
-export default class DownlineList extends React.Component<IDownlineListProps, IDownlineListState> {
+export default class DownlineList extends React.Component{
     constructor(props) {
         super(props);
     }

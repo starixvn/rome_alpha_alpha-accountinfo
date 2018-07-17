@@ -1,24 +1,15 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import Button from '../common/button';
-
 
 import Cell from '../common/cell';
 import CellWithLink from '../common/cell-contain-link';
 
-interface ISearchProps {
-    username: string,
-    //searh(username: string): void
-}
-
-interface ISearchState {
-}
-
-export default class Search extends React.Component<ISearchProps, ISearchState> {
+export default class Search extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    handleChange = () => {
+    handleChange () {
 
     }
 

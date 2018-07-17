@@ -1,13 +1,7 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import BlockHeading from '../common/block-heading';
 
-interface ISettingBlockProps {
-}
-
-interface ISettingBlockState {
-}
-
-export default class SettingBlock extends React.Component<ISettingBlockProps, ISettingBlockState> {
+export default class SettingBlock extends React.Component {
     constructor(props) {
         super(props);
     }

@@ -1,13 +1,6 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 
-interface ITotalDownlineListProps {
-    levelName: string,
-    totalActive: number,
-    totalClosed: number,
-    totalSuspended: number
-}
-
-export default class TotalDownlineList extends React.Component<ITotalDownlineListProps, {}> {
+export default class TotalDownlineList extends React.Component {
     constructor(props) {
         super(props);
     }

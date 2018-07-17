@@ -1,21 +1,8 @@
 ﻿import * as React from 'react';
 import Cell from './cell';
-//import * as NumberFormat from '..../node_modules/react-number-format/src/number_format';
 
-interface ICellContainInputProps {
-    classNames?: string;
-    id?: string,
-    inputClassname?: string;
-    text: number;
-    onSave(text: string): void,
-    iconClassname?: string
-}
 
-interface ICellContainInputState {
-    text: number
-}
-
-export default class CellContainInput extends React.Component<ICellContainInputProps, ICellContainInputState> {
+export default class CellContainInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,7 +10,7 @@ export default class CellContainInput extends React.Component<ICellContainInputP
         }
     }
 
-    handleSubmit = (e) => {
+    handleSubmit(e) {
         const text = e.target.value.trim();
         if (e.which === 13) {
             this.props.onSave(text);
@@ -31,11 +18,11 @@ export default class CellContainInput extends React.Component<ICellContainInputP
         }
     }
 
-    handleChange = (e) => {
+    handleChange(e) {
         this.setState({ text: e.target.value });
     }
 
-    handleBlur = (e) => {
+    handleBlur(e) {
        
     }
     render() {

@@ -6,20 +6,7 @@ import CellContainLink from '../common/cell-contain-link';
 import Search from './search';
 import UserLevel from './user-level';
 
-import CustomerInfoViewModel from '../../models/customer-info-model'
-
-interface ICustomerInfoBlockProps {
-    customerInfoModel: CustomerInfoViewModel
-}
-
-interface ICustomerInfoBlockState {
-    data: CustomerInfoViewModel,
-    rowClasses: string,
-    firstCellClass: string,
-    secondCellClass: string,
-}
-
-export default class CustomerInfoBlock extends React.Component<ICustomerInfoBlockProps, ICustomerInfoBlockState> {
+export default class CustomerInfoBlock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,12 +17,12 @@ export default class CustomerInfoBlock extends React.Component<ICustomerInfoBloc
         }
     }
 
-    handleBetListClick = () => { }
+    handleBetListClick ()  { }
 
-    handleStatementClick = () => { }
+    handleStatementClick () { }
 
-    buildLevelRow = (username: string, levelName: string, iconClassname?: string): JSX.Element => 
-        <UserLevel
+    buildLevelRow(username, levelName, iconClassname) {
+        return <UserLevel
             username={username}
             levelname={levelName}
             rowClasses={this.state.rowClasses}
@@ -43,6 +30,7 @@ export default class CustomerInfoBlock extends React.Component<ICustomerInfoBloc
             secondCellClass={this.state.secondCellClass}
             hrefLink="#"
             iconClassname={iconClassname} />
+    }
 
     render() {
         const rowClasses = this.state.rowClasses;

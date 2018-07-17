@@ -1,16 +1,6 @@
-﻿import * as React from 'react';
-import Link from './link';
+﻿import React from 'react';
 
-interface ICellProps {
-    classNames?: string;
-    text: string
-}
-
-interface ICellState {
-    text: string
-}
-
-export default class Cell extends React.Component<ICellProps, ICellState> {
+export default class Cell extends React.Component{
     constructor(props) {
         super(props);
         this.state = {

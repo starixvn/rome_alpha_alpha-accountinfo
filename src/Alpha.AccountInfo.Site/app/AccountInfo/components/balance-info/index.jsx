@@ -1,33 +1,25 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import Button from '../common/button';
 
 import CellContainNumberFormat from '../common/cell-contain-number-format';
 import CellContainInput from '../common/cell-contain-input';
 import Cell from '../common/cell';
 import BlockHeading from '../common/block-heading';
-import BalanceInfoViewModel from '../../models/balance-info-model'
 
-interface IBalanceInfoBlockProps {
-    balanceInfo: BalanceInfoViewModel
-}
-
-interface IBalanceInfoBlockState {
-}
-
-export default class BalanceInfoBlock extends React.Component<IBalanceInfoBlockProps, IBalanceInfoBlockState> {
+export default class BalanceInfoBlock extends React.Component{
     constructor(props) {
         super(props);
     }
 
-    handleCancelClick = () => { }
+    handleCancelClick () { }
 
-    handleSubmitClick = () => { }
+    handleSubmitClick ()  { }
 
-    handleOutStandingChange = () => { }
+    handleOutStandingChange () { }
 
-    handleNewGivenCredit = () => { }
+    handleNewGivenCredit () { }
 
-    handleGivenCredit = () => { }
+    handleGivenCredit () { }
 
     render() {
         const rowClasses = "col-xs-12 row-info";

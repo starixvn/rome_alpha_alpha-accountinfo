@@ -1,15 +1,9 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import BlockHeading from '../common/block-heading';
 import Status from './status';
 import CellContainLink from '../common/cell-contain-link';
 
-interface IStatusBlockProps {
-}
-
-interface IStatusBlockState {
-}
-
-export default class StatusBlock extends React.Component<IStatusBlockProps, IStatusBlockState> {
+export default class StatusBlock extends React.Component {
     constructor(props) {
         super(props);
     }

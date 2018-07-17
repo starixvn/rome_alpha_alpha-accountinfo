@@ -1,17 +1,9 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import BlockHeading from '../common/block-heading';
 import NoInfomation from './no-infomation';
 import DownlineList from './downline-list';
 
-interface IOnlineListBlockProps {
-  
-}
-
-interface IOnlineListBlockState {
-    downlineList: string[]
-}
-
-export default class OnlineListBlock extends React.Component<IOnlineListBlockProps, IOnlineListBlockState> {
+export default class OnlineListBlock extends React.Component{
     constructor(props) {
         super(props);
         this.state = {

@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.7</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -530,33 +531,33 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\AccountInfo\components\customer-info\user-level.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\customer-info\search.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\downline-info.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\navigation-swiper.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\swiper-item.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\total-downline-list.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-input.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-number-format.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-link.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\common\block-heading.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\common\link.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\common\cell.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\online-list\downline-list.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\online-list\downline.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\online-list\no-infomation.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\online-list\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\common\button.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\setting\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\login-info\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\status\status.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\status\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\api-client.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\containers\account-info.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\balance-info\index.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\components\customer-info\index.tsx" />
+    <Content Include="app\AccountInfo\components\customer-info\index.jsx" />
+    <Content Include="app\AccountInfo\components\common\block-heading.jsx" />
+    <Content Include="app\AccountInfo\components\common\button.jsx" />
+    <Content Include="app\AccountInfo\components\common\cell-contain-input.jsx" />
+    <Content Include="app\AccountInfo\components\common\cell-contain-link.jsx" />
+    <Content Include="app\AccountInfo\components\common\cell-contain-number-format.jsx" />
+    <Content Include="app\AccountInfo\components\common\cell.jsx" />
+    <Content Include="app\AccountInfo\components\customer-info\user-level.jsx" />
+    <Content Include="app\AccountInfo\components\customer-info\search.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\downline-info.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\navigation-swiper.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\swiper-item.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\total-downline-list.jsx" />
+    <Content Include="app\AccountInfo\components\common\link.jsx" />
+    <Content Include="app\AccountInfo\components\online-list\downline-list.jsx" />
+    <Content Include="app\AccountInfo\components\online-list\downline.jsx" />
+    <Content Include="app\AccountInfo\components\online-list\no-infomation.jsx" />
+    <Content Include="app\AccountInfo\components\online-list\index.jsx" />
+    <Content Include="app\AccountInfo\components\setting\index.jsx" />
+    <Content Include="app\AccountInfo\components\login-info\index.jsx" />
+    <Content Include="app\AccountInfo\components\status\status.jsx" />
+    <Content Include="app\AccountInfo\components\status\index.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\index.jsx" />
+    <Content Include="app\AccountInfo\api-client.jsx" />
+    <Content Include="app\AccountInfo\index.jsx" />
+    <Content Include="app\AccountInfo\containers\account-info.jsx" />
+    <Content Include="app\AccountInfo\components\balance-info\index.jsx" />
     <TypeScriptCompile Include="app\AccountInfo\models\account-info-model.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\models\online-list-model.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\models\login-info-model.tsx" />

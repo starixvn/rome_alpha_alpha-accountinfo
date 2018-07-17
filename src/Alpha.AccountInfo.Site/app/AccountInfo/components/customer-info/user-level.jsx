@@ -1,18 +1,8 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import Cell from '../common/cell';
 import CellContainLink from '../common/cell-contain-link';
 
-interface IUserLevelProps {
-    levelname: string,
-    username: string,
-    rowClasses: string,
-    firstCellClass: string,
-    secondCellClass: string,
-    hrefLink: string,
-    iconClassname?: string
-}
-
-export default class UserLevel extends React.Component<IUserLevelProps, {}> {
+export default class UserLevel extends React.Component {
     constructor(props) {
         super(props);
     }
