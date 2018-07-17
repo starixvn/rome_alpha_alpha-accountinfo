@@ -334,6 +334,10 @@
     <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
     <Content Include="Alpha.AccountInfo.Site.ruleset" />
     <Content Include="App_Data\securitycode.json" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\react-id-swiper.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\swiper.js" />
     <Content Include="Views\ProductStatus\Index.cshtml" />
     <Content Include="assets\styles\productstatus\productstatus.scss" />
     <Content Include="typings\globals\jasmine\typings.json" />
@@ -529,6 +533,8 @@
     <TypeScriptCompile Include="app\AccountInfo\components\customer-info\user-level.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\customer-info\search.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\downline-list\downline-info.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\navigation-swiper.tsx" />
+    <TypeScriptCompile Include="app\AccountInfo\components\downline-list\swiper-item.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\downline-list\total-downline-list.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-input.tsx" />
     <TypeScriptCompile Include="app\AccountInfo\components\common\cell-contain-number-format.tsx" />

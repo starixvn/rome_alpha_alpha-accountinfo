@@ -1,27 +1,30 @@
 ﻿@model AccountInfoViewModel
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta charset="utf-8" />
-        @section Styles {
-            @StaticResources.RenderStyles("/assets/bundles/common/common")
-            @StaticResources.RenderStyles("/assets/bundles/site-accountinfo/index")
-            @StaticResources.RenderStyles("~/assets/bundles/account-info/index")
-        }
-    </head>
-    <body>
-        <div id="account-info">
-        </div>
-
-        <script>
-        window.reactApp = @(Html.Raw(Json.Encode(Model)));
-        </script>
-        @section Scripts {
-            @StaticResources.RenderScripts("/assets/bundles/site-main/account-info/index")
-            @StaticResources.RenderScripts("~/node_modules/react/dist/react")
-            @StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
-            @StaticResources.RenderScripts("~/assets/bundles/account-info/index")
-        }
-    </body>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.6/css/swiper.css">
+    @section Styles {
+        @StaticResources.RenderStyles("/assets/bundles/common/common")
+        @StaticResources.RenderStyles("/assets/bundles/site-accountinfo/index")
+        @StaticResources.RenderStyles("~/assets/bundles/account-info/index")
+    }
+</head>
+<body>
+    <div id="account-info">
+    </div>
+</body>
 </html>
+<script>
+    window.reactApp = @(Html.Raw(Json.Encode(Model)));
+</script>
+@*<script src="@Url.Content("~/Scripts/react-id-swiper.jsx")"></script>*@
+@StaticResources.RenderScripts("~/Scripts/jquery")
+@StaticResources.RenderScripts("/assets/bundles/site-main/account-info/index")
+@* @StaticResources.RenderScripts("~/Scripts/require")*@
+@StaticResources.RenderScripts("~/node_modules/react/dist/react")
+@StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
+@StaticResources.RenderScripts("~/Scripts/swiper")
+@StaticResources.RenderScripts("~/Scripts/react-id-swiper")
+@StaticResources.RenderScripts("~/assets/bundles/account-info/index")

@@ -10,8 +10,8 @@ export default class Downline extends React.Component<IDownlineProps, {}> {
     }
     render() {
         return (
-            <div className="panel-body">
-                {this.props.username}
+            <div className="two-col">
+                <a href="#">{this.props.username}</a>
             </div>
         );
     }

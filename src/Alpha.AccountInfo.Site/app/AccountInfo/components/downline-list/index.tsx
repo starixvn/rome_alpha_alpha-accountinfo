@@ -16,6 +16,10 @@ export default class DownlineListBlock extends React.Component<IDownlineListBloc
     constructor(props) {
         super(props);
     }
+    componentDidMount() {
+    
+    }
+
     render() {
         return (
             <div className="panel panel-default">
