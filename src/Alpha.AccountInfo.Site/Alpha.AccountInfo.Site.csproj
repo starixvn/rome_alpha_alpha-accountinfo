@@ -541,8 +541,7 @@
     <Content Include="app\AccountInfo\components\customer-info\user-level.jsx" />
     <Content Include="app\AccountInfo\components\customer-info\search.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-info.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list\navigation-swiper.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list\swiper-item.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\downline-list.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\total-downline-list.jsx" />
     <Content Include="app\AccountInfo\components\common\link.jsx" />
     <Content Include="app\AccountInfo\components\online-list\downline-list.jsx" />
