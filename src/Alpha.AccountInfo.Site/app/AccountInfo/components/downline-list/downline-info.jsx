@@ -3,7 +3,7 @@
 //import DownlineList from '../../components/online-list/downline-list';
 //import Swiper from 'swiper';
 import DownlineListPaging from './downline-list-paging';
-import Swiper from '../../../../node_modules/react-id-swiper/lib/index';
+import Swiper from 'react-id-swiper';
 
 export default class DownlineInfo extends React.Component {
     constructor(props) {
@@ -38,19 +38,18 @@ export default class DownlineInfo extends React.Component {
             prevButton: '.swiper-button-prev',
             observer: true,
             observeParents: true,
-            grabCursor: true
+            grabCursor: true,
+            containerClass: 'swiper-container block-downline-list'
         }
 
         var results = this.chunkArray(this.props.downlineList, 10);
 
         return (
-            <div className="col-xs-5">
-                <Swiper {...params}>
-                    {results.map((result, index) => {
-                        return <DownlineListPaging usernames={result} key={index} />
-                    })}
-                </Swiper>
-            </div>
+            <Swiper {...params}>
+                {results.map((result, index) => {
+                    return <DownlineListPaging usernames={result} key={index} />
+                })}
+            </Swiper>
         )
     }
 }

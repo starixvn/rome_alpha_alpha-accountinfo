@@ -15,7 +15,7 @@ export default class DownlineListBlock extends React.Component{
         return (
             <CustomizedAccordionItem title="Downline list" iconClassname="icon-downline">
                 <DownlineInfo downlineList={this.props.downlineList.DownlineList} />
-                <div className="col-xs-12 row-info"><hr /></div>
+                <div><hr /></div>
                 <TotalDownlineList levelName="Agents"
                     totalActive={this.props.downlineList.TotalStatusAgent.TotalActive}
                     totalClosed={this.props.downlineList.TotalStatusAgent.TotalClosed}

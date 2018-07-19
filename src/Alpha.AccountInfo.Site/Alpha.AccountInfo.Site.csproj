@@ -305,6 +305,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
+    <Content Include="app\AccountInfo\components\common\show-contact-info.jsx" />
+    <Content Include="app\AccountInfo\containers\feature-list.jsx" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
@@ -331,6 +333,8 @@
     <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="assets\styles\account-info.css" />
     <Content Include="assets\styles\productstatus\productstatus.css" />
+    <Content Include="assets\styles\vendors\swiper\swiper.css" />
+    <Content Include="assets\styles\vendors\swiper\swiper.min.css" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
     <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />

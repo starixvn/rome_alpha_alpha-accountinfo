@@ -9,7 +9,8 @@ export default class StatusBlock extends React.Component {
     }
     render() {
         return (
-            <CustomizedAccordionItem title="Status" iconClassname="icon-status">
+            <CustomizedAccordionItem title="Status" iconClassname="icon-status"
+                accordionItemBodyClassName="accordion__body block-status">
                 <div className="col-xs-6 px-0">
                     <Status text="Suspended" checked={true} />
                     <Status text="Auto PT" checked={true} />

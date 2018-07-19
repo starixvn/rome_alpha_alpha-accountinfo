@@ -6,27 +6,29 @@ import StatusBlock from '../components/status/index';
 import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
-import { Accordion } from 'react-accessible-accordion';
-
-// Demo styles, see 'Styles' section below for some notes on use.
-import 'react-accessible-accordion/dist/fancy-example.css';
+import FeatureList from './feature-list';
 
 export default class AccountInfo extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showInfoStatus: false
+        };
+
+        this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
     }
+
+    handleShowContactInfo() {
+        this.setState((prevStatus) => { showInfoStatus: !prevStatus })
+    }
+
     render() {
         return (
             <div className="accountinfo-container">
                 <CustomerInfoBlock customerInfoModel={this.props.accountInfoModel.CustomerInfo} />
-                <Accordion>
-                    <BalanceInfoBlock balanceInfo={this.props.accountInfoModel.BalanceInfo} />
-                    <DownlineListBlock downlineList={this.props.accountInfoModel.DownlineList} />
-                    <StatusBlock />
-                    <SettingBlock />
-                    <LoginInfoBlock loginInfo={this.props.accountInfoModel.LoginInfo} />
-                    <OnlineListBlock />
-                </Accordion>
+                <FeatureList accountInfoModel={this.props.accountInfoModel}
+                    handleShowContactInfo={this.handleShowContactInfo}
+                    showInfoStatus={this.showInfoStatus} />                
             </div>
         );
     }

@@ -5,12 +5,11 @@
 
 body {
     font-family: $font-family;
-    min-width: initial;
-    height: 100%;
+    font-size: $font-size + 2;
     background-color: #fff;
 
     @media (min-device-width: 768px) {
-        font-family: $font-family;
+        font-size: $font-size;
     }
 }
 
@@ -22,6 +21,7 @@ a {
         text-decoration: none;
     }
 }
+
 
 .font-weight-normal {
     font-weight: normal !important;
@@ -39,12 +39,14 @@ hr {
     padding-right: 0;
 }
 
-.icon-more-info {
-    font-size: 16px;
-    position: relative;
-    top: 3px;
-    cursor: pointer;
+.visible-mobile {
+    display: none !important;
+
+    @media (max-device-width: 767px) {
+        display: block !important;
+    }
 }
+
 
 .dropdown-menu {
     border: 1px solid $border-color-dark;
@@ -344,6 +346,37 @@ hr {
     }
 }
 
+.account-info-group {
+    width: 100%;
+    background-color: #fff;
+    transform: translateY(0);
+    transition: .2s transform ease-in-out .1s;
+
+    .show-more-container {
+        display: none !important;
+        width: 100%;
+        padding: 4px 16px;
+    }
+
+    &.scroll-top {
+        position: absolute;
+        top: 167px;
+        transform: translateY(-33px);
+        
+        .show-more-container {
+            display: block !important;
+        }
+
+        .show-more {
+            @include box-shadow-multiple(none);
+            width: 100%;
+            line-height: 26px;
+            border: 1px solid #888;
+            background-color: #fff;
+        }
+    }
+}
+
 // Customize Accordion
 
 .accordion {
@@ -424,10 +457,6 @@ hr {
 
 //---
 
-.panel-settings .pagingContainer {
-    padding-left: 15px;
-}
-
 .settings {
     //height: 186px;
     //overflow: hidden;
@@ -451,94 +480,14 @@ hr {
     }
 }
 
-.pagingContainer {
-    padding-bottom: 4px;
-
-    @media (min-device-width: 1025px) {
-
-        &.invisible-desktop {
-            display: none;
-        }        
-    }
-        
-
-    .page-control {
-        float: left;
-        padding-left: 10px;
-    }
-
-    .number {
-        width: 36px;
-        height: 24px;
-        line-height: 24px;
-        border: 1px solid #b9b9b9;
-        box-shadow: none;
-    }
-
-    .page-number {
-        float: left;
-
-        .paging-item {
-            float: left;
-            text-align: center;            
-        }
-    }
-
-    .page-button {
-        display: inline-block;
-        background-color: #67151b;
-        color: #fff;
-        width: 24px;
-        line-height: 22px;
-
-        &:before {
-            position: relative;
-            top: 1px;
-            font-family: Iconalpha;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        &.prev:before {
-            content: '\e93f';
-        }
-
-        &.next:before {
-            content: '\e942';
-        }
-
-        &.disabled, &.disabled:hover {
-            opacity: .2;
-            cursor: default;
-        }
-    }
-
-    .paging-link {
-        display: inline-block;
-        line-height: 24px;
-        padding-left: 8px;
-        padding-right: 8px;  
-        cursor: pointer;
-        color: $paging-item-color;
-
-        &:hover,
-        &.active {
-            color: $paging-item-color-hover;
-            text-decoration: underline;
-            cursor: default;
-        }
-    }
-}
-
-
 // Using Swiper to change pages
+
+.swiper-container {
+    width: 230px;
+}
 
 .swiper-wrapper {
     padding-bottom: 30px;
-
-    &.settings {
-        padding-bottom: 0;
-    }
 }
 
 .swiper-bottom {
@@ -553,7 +502,7 @@ hr {
 .swiper-pagination-custom,
 .swiper-container-horizontal .swiper-pagination-bullets {
     position: relative;
-    bottom: 0;    
+    bottom: 0;
     left: 0;
     right: auto;
     width: auto;
@@ -562,29 +511,28 @@ hr {
     float: left;
 }
 
-.swiper-container-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
-    margin: 0;
+.swiper-container-horizontal .swiper-pagination-bullets {
+    .swiper-pagination-bullet {
+        padding: 0 8px;
+        border-radius: 0;
+        width: auto;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        color: #000;
+        opacity: 1;
+        background: none;
+    }
+
+    .swiper-pagination-bullet-active {
+        color: #67151b;
+        background: none;
+        text-decoration: underline;
+    }
 }
 
-.swiper-pagination-bullet {
-	padding: 0 8px;    
-	border-radius: 0;
-	width: auto;
-	height: 24px;
-	text-align: center;
-	line-height: 24px;
-	color:#000;
-	opacity: 1;
-	background: none;
-}
-
-.swiper-pagination-bullet-active {
-    color: #67151b;
-    background: none;
-    text-decoration: underline;
-}
-
-.swiper-button-prev, .swiper-button-next {
+.swiper-button-prev,
+.swiper-button-next {
     position: absolute;
     top: auto;
     bottom: auto;
@@ -598,18 +546,30 @@ hr {
     font-size: 16px;
     text-align: center;
 
-    [class^='icon'] {
+    &:before {
         position: relative;
         top: 2px;
+        font-family: Iconalpha;
+        color: #fff;
     }
 }
 
-.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+.swiper-button-next {
     left: 34px;
+
+    &:before {
+        content: '\e942';
+        display: inline-block;
+    }
 }
 
-.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+.swiper-button-prev {
     left: 0;
+
+    &:before {
+        content: '\e93f';
+        display: inline-block;
+    }
 }
 
 .page-control {
@@ -624,11 +584,9 @@ hr {
     }
 }
 
-.panel-downline-list {
-    overflow: hidden;    
-    .swiper-container {
-        width: 230px;
-    }
+
+.block-downline-list {
+    overflow: hidden;
 
     .two-col {
         line-height: 32px;
@@ -643,10 +601,45 @@ hr {
     }
 }
 
-.panel-settings {
+.block-settings {
     overflow: hidden;
-    .swiper-container {
-        width: 230px;
+
+    @media (max-device-width: 767px) {
+        .settings {
+            padding-bottom: 0;
+        }
+
+        .swiper-bottom {
+            bottom: auto;
+            left: auto;
+            right: 0;
+            top: 50%;
+            height: 64px;
+            margin-top: -32px;
+        }
+
+        .swiper-pagination {
+            display: none;
+        }
+
+        .page-control {
+            display: none;
+        }
+
+        .swiper-button-prev, .swiper-button-next {
+            left: auto;
+            bottom: auto;
+            right: 0;
+            border-radius: 50%;
+        }
+
+        .swiper-button-next {
+            bottom: 0;
+        }
+
+        .swiper-button-prev {
+            top: 0;
+        }
     }
 
     .two-col {
@@ -654,9 +647,4 @@ hr {
     }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) 
-{
-    .accountinfo-container .block-balanceInfo .nav.nav-tabs > li > a:hover:after {
-        width: 0;
-    }
-}
+

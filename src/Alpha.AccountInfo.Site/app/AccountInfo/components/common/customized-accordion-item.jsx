@@ -13,13 +13,16 @@ import {
 export default class CustomizedAccordionItem extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            expanded: this.props.expanded || false
+        }
     }
 
     render() {
-        const { title, iconClassname, accordionItemBodyClassName } = this.props;
+        const { title, iconClassname, accordionItemBodyClassName, expanded } = this.props;
 
         return (
-            <AccordionItem>
+            <AccordionItem expanded={expanded}>
                 <AccordionItemTitle>
                     <span className={iconClassname}></span> {title}
                 </AccordionItemTitle>

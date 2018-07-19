@@ -6,7 +6,7 @@ export default class TotalDownlineList extends React.Component {
     }
     render() {
         return (
-            <div className="col-xs-12 row-info">
+            <div className="col-xs-12 row-info px-0">
                 <div className="col-xs-6">{this.props.levelName} (A/C/S)</div>
                 <div className="col-xs-6 col-right">
                     <div className="pull-right"
