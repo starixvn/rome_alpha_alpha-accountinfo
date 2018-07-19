@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-export default class DownlineList extends React.Component {
+export default class DownlineListPaging extends React.Component {
     constructor(props) {
         super(props);
     }
