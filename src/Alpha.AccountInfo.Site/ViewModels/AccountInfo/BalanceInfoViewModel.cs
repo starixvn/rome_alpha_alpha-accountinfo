@@ -1,51 +1,133 @@
-﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
+﻿using Alpha.AccountInfo.Models.AccountInfo;
+
+namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     public class BalanceInfoViewModel
     {
-        public BalanceInfoViewModel(
-             double totalCash,
-             double yesterdayCash,
-             double totalBalance,
-             double yesterdayBalance,
-             double outstanding,
-             double usedCredit,
-             double givenCredit,
-             double currentGivenCredit,
-             double newGivenCredit,
-             double difference)
+        private readonly BalanceInfoModel model;
+        private readonly byte roleId;
+
+        public BalanceInfoViewModel(byte roleId, BalanceInfoModel model)
         {
-            TotalCash = totalCash;
-            YesterdayCash = yesterdayCash;
+            this.model = model;
+            this.roleId = roleId;
+            //TotalCash = totalCash;
+            //YesterdayCash = yesterdayCash;
 
-            TotalBalance = totalBalance;
-            YesterdayBalance = yesterdayBalance;
+            //TotalBalance = totalBalance;
+            //YesterdayBalance = yesterdayBalance;
 
-            Outstanding = outstanding;
-            UsedCredit = usedCredit;
-            GivenCredit = givenCredit;
-            CurrentGivenCredit = currentGivenCredit;
-            NewGivenCredit = newGivenCredit;
-            Difference = difference;
+            //Outstanding = outstanding;
+            //UsedCredit = usedCredit;
+            //GivenCredit = givenCredit;
+            //CurrentGivenCredit = currentGivenCredit;
+            //NewGivenCredit = newGivenCredit;
+            //Difference = difference;
         }
 
-        public double TotalCash { get; }
+        public decimal TotalCash { get {
+                switch (roleId)
+                {
+                    case 3:
+                        return model.MasterCash;
+                    case 2:
+                        return model.AgentCash;
+                    default:
+                        return model.CustomerCash;
+                }
+            }
+        }
 
-        public double YesterdayCash { get; }
+        public decimal YesterdayCash
+        {
+            get
+            {
+                switch (roleId)
+                {
+                    case 3:
+                        return model.Yesterday_MasterCash;
+                    case 2:
+                        return model.Yesterday_AgentCash;
+                    default:
+                        return model.Yesterday_CustomerCash;
+                }
+            }
+        }
 
-        public double TotalBalance { get; }
+        public decimal TotalBalance
+        {
+            get
+            {
+                switch (roleId)
+                {
+                    case 3:
+                        return model.MasterCash + model.AgentCash + model.CustomerCash;
+                    case 2:
+                        return model.AgentCash + model.CustomerCash;
+                    default:
+                        return model.CustomerCash;
+                }
+            }
+        }
 
-        public double YesterdayBalance { get; }
+        public decimal YesterdayBalance
+        {
+            get
+            {
+                switch (roleId)
+                {
+                    case 3:
+                        return model.Yesterday_MasterCash + model.Yesterday_AgentCash + model.Yesterday_CustomerCash;
+                    case 2:
+                        return model.Yesterday_AgentCash + model.Yesterday_CustomerCash;
+                    default:
+                        return model.Yesterday_CustomerCash;
+                }
+            }
+        }
 
-        public double Outstanding { get; }
+        public decimal Outstanding
+        {
+            get
+            {
+                switch (roleId)
+                {
+                    case 3:
+                        return model.MasterPositionTaking;
+                    case 2:
+                        return model.AgentPositionTaking;
+                    default:
+                        return model.CustomerOutstanding;
+                }
+            }
+        }
 
-        public double UsedCredit { get; }
+        public decimal UsedCredit
+        {
+            get
+            {
+                switch (roleId)
+                {
+                    case 3:
+                        return model.MasterUsedCredit;
+                    default:
+                        return model.AgentUsedCredit;
+                }
+            }
+        }
 
-        public double GivenCredit { get; }
+        public decimal GivenCredit { get; }
 
-        public double CurrentGivenCredit { get; }
+        public decimal CurrentGivenCredit { get; }
 
-        public double NewGivenCredit { get; }
+        public decimal NewGivenCredit { get; }
 
-        public double Difference { get; }
+        public decimal Difference { get; }
+
+        public decimal BetCredit { get; }
+
+        public decimal NetPostion { get; }
+
+        public decimal MemberMaxCredit { get; }
     }
 }

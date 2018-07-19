@@ -2,10 +2,13 @@
 {
     using System.Collections.Generic;
     using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Models.AccountInfo;
     using Enumerations;
 
     public class CustomerInfoViewModel
     {
+        private readonly CustomerInfoModel model;
+
         private const string SMAStatementLink = "/site-reports/(S(wa000mahqldvjxctxg3naqhq))/Statement/SMAStatement?CustID=1382167&amp;CustName=ACGUUS3838&amp;CustLevelId=2";
         private const string memberStatementLink = "/site-reports/(S(wa000mahqldvjxctxg3naqhq))/Statement/MemberStatement?CustID=1387971&amp;CustName=ACGUUS3838338&amp;CustLevelId=1";
         private const string betListLink = "/site-betlists/(S(wa000mahqldvjxctxg3naqhq))/MemberBetList/Index?CustID=1387971&amp;CustName=ACGUUS3838338";
@@ -17,47 +20,25 @@
                 { UserLevel.Agent, "../_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167"}
             };
 
-        public CustomerInfoViewModel(
-             int custId,
-             byte roleId,
-             byte actorRoleId,
-             string userName,
-             string userName2,
-             string phone,
-             string fax,
-             string memberName,
-             string agentName,
-             string masterName,
-             string superName)
+        public CustomerInfoViewModel(byte actorRoleId, CustomerInfoModel model)
         {
-            CustId = custId;
-            RoleId = roleId;
             ActorRoleId = actorRoleId;
-
-            UserName = userName;
-            UserName2 = userName2;
-            Phone = phone;
-            Fax = fax;
-
-            MemberName = memberName;
-            AgentName = agentName;
-            MasterName = masterName;
-            SuperName = superName;
+            this.model = model;
         }
 
-        public int CustId { get; }
+        public int CustId => model.CustId;
 
-        public byte RoleId { get; }
+        public byte RoleId => model.RoleId;
 
         public byte ActorRoleId { get; }
 
-        public string UserName { get; }
+        public string UserName => model.UserName;
 
-        public string UserName2 { get; }
+        public string NickName => model.UserName2;
 
-        public string Phone { get; }
+        public string Phone => model.Phone;
 
-        public string Fax { get; }
+        public string Fax => model.Fax;
 
         public bool ShowMemberName => RoleId.Equals(1);
 

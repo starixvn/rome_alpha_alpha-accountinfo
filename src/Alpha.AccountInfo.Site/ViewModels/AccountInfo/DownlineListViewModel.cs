@@ -1,24 +1,24 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
+    using Alpha.AccountInfo.Models.AccountInfo;
     using System.Collections.Generic;
 
     public class DownlineListViewModel
     {
-        public DownlineListViewModel(
-            IEnumerable<string> downlineList,
-            TotalStatusDownline totalStatusAgent,
-            TotalStatusDownline totalStatusMember)
+        private readonly DownlineListModel model;
+
+        public DownlineListViewModel(DownlineListModel model)
         {
-            DownlineList = downlineList;
-            TotalStatusAgent = totalStatusAgent;
-            TotalStatusMember = totalStatusMember;
+            this.model = model;
         }
 
-        public IEnumerable<string> DownlineList { get; }
+        public IEnumerable<DownlineInfoModel> DownlineList => model.Downlines;
 
-        public TotalStatusDownline TotalStatusAgent { get; }
+        public TotalStatusDownline TotalStatusAgent
+            => new TotalStatusDownline(model.TotalAgActive, model.TotalAgClosed, model.TotalAgSuspended);
 
-        public TotalStatusDownline TotalStatusMember { get; }
+        public TotalStatusDownline TotalStatusMember
+             => new TotalStatusDownline(model.TotalMemActive, model.TotalMemClosed, model.TotalMemSuspended);
 
         public static string BuildDownlineInfoLink(string username)
             => $"AccountInfo.aspx?username={username}";

@@ -14,4 +14,10 @@
     <Setting Key="Acc_CustSetting_DisableNewProductStatusUpd" SpName="Acc_CustSetting_DisableNewProductStatusUpd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCust.CustDB.BODBDownlineNet" />
   </Function>
+
+  <Function Name="Account Info">
+    <Setting Key="Acc_CustomerSelList" SpName="Acc_CustomerSelList_xpre" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo_xpre" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
+  </Function>
+  
 </Functions>

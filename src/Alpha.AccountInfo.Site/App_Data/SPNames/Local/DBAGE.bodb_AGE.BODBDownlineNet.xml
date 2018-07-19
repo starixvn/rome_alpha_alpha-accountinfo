@@ -1,0 +1,6 @@
+﻿<Functions SiteId="" SiteName="Account Info">
+  <Function Name="Account Info">
+    <Setting Key="Age_CustomerBalanceSel" SpName="Age_CustomerBalanceSel_xpre" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus_xpre" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>
