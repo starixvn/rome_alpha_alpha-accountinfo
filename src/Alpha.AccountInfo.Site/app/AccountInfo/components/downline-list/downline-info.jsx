@@ -9,7 +9,11 @@ export default class DownlineInfo extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            slideTo: ''
+        };
 
+        this.slideTo = this.slideTo.bind(this);
     }
     chunkArray(myArray, chunk_size) {
         var index = 0;
@@ -24,6 +28,14 @@ export default class DownlineInfo extends React.Component {
 
         return tempArray;
     }
+
+    slideTo(e) {
+        const value = e.target.value;
+        this.setState({ slideTo: value });
+        const pageNumber = value - 1;
+        if (this.swiper) this.swiper.slideTo(pageNumber);
+    }
+    
     render() {
         //let content = this.props.downlineList.length > 0 ?
         //    <DownlineList usernames={this.props.downlineList} /> : <NoInfomation />;
@@ -45,11 +57,17 @@ export default class DownlineInfo extends React.Component {
         var results = this.chunkArray(this.props.downlineList, 10);
 
         return (
-            <Swiper {...params}>
-                {results.map((result, index) => {
-                    return <DownlineListPaging usernames={result} key={index} />
-                })}
-            </Swiper>
+            <div className="downline-list-container">
+                <Swiper {...params} ref={node => { if (node) this.swiper = node.swiper } }>
+                    {results.map((result, index) => {
+                        return <DownlineListPaging usernames={result} key={index} />
+                    })}
+                </Swiper>
+                <div className="page-control">
+                    <span>Page</span>
+                    <input type="text" ref="slideTo" className="number" value={this.state.slideTo} onChange={this.slideTo} />
+                </div>
+            </div>
         )
     }
 }

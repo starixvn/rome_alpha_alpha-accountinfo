@@ -8,7 +8,8 @@ export default class LoginInfoBlock extends React.Component{
     }
     render() {
         return (
-            <CustomizedAccordionItem title="Login Info" iconClassname="icon-login">
+            <CustomizedAccordionItem title="Login Info" iconClassname="icon-login"
+                accordionItemBodyClassName="accordion__body block-login-info">
                 <div className="group">
                     <Cell text="Created Date:" classNames="row-info bold" />
                     <Cell text={this.props.loginInfo.CreatedDate} classNames="row-info" />
