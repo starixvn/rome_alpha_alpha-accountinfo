@@ -1,15 +1,17 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
-    using Alpha.AccountInfo.Services.AccountInfo;
-    using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
     using Requests.ProductStatus;
+    using Services.AccountInfo;
     using System.Threading.Tasks;
+    using ViewModels.AccountInfo;
 
     public class AccountInfoHandler :
         IAsyncRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
-        IAsyncRequestHandler<BalanceInfoQuery, BalanceInfoViewModel>,
-        IAsyncRequestHandler<DownlineListQuery, DownlineListViewModel>
+        IAsyncRequestHandler<DownlineListQuery, DownlineListViewModel>,
+        IAsyncRequestHandler<MasterBalanceInfoQuery, MasterBalanceInfoViewModel>,
+        IAsyncRequestHandler<AgentBalanceInfoQuery, AgentBalanceInfoViewModel>,
+        IAsyncRequestHandler<MemberBalanceInfoQuery, MemberBalanceInfoViewModel>
        // IAsyncRequestHandler<ProductQuery, ProductViewModel>
     {
         private readonly AccountInfoService accountInfoService;
@@ -20,24 +22,20 @@
         }
 
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
-        {
-            var model = await accountInfoService.GetCustomerInfoModelAsync(message.UserName, message.UplineId);
-
-            return new CustomerInfoViewModel(message.UplineLevel.Value, model);
-        }
-
-        public async Task<BalanceInfoViewModel> Handle(BalanceInfoQuery message)
-        {
-            var model = await accountInfoService.GetBalanceInfoModelAsync(message.CustId);
-
-            return new BalanceInfoViewModel(message.RoleId, model);
-        }
+            => new CustomerInfoViewModel(
+                message.UplineLevel.Value, 
+                await accountInfoService.GetCustomerInfoModelAsync(message.UserName, message.UplineId));
 
         public async Task<DownlineListViewModel> Handle(DownlineListQuery message)
-        {
-            var model = await accountInfoService.GetDownlineListModelAsync(message.CustId);
+            => new DownlineListViewModel(await accountInfoService.GetDownlineListModelAsync(message.CustId));
 
-            return new DownlineListViewModel(model);
-        }
+        public async Task<MasterBalanceInfoViewModel> Handle(MasterBalanceInfoQuery message)
+            => new MasterBalanceInfoViewModel(message, await accountInfoService.GetBalanceInfoModelAsync(message.CustId));
+
+        public async Task<AgentBalanceInfoViewModel> Handle(AgentBalanceInfoQuery message)
+            => new AgentBalanceInfoViewModel(message, await accountInfoService.GetBalanceInfoModelAsync(message.CustId));
+
+        public async Task<MemberBalanceInfoViewModel> Handle(MemberBalanceInfoQuery message)
+         => new MemberBalanceInfoViewModel(message, await accountInfoService.GetBalanceInfoModelAsync(message.CustId));
     }
 }

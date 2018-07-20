@@ -20,7 +20,15 @@
 
         //[HttpPost, AntiXsrfFilter]
         [HttpPost]
-        public async Task<ActionResult> GetBalanceInfoModelAsync(BalanceInfoQuery message)
-           => await JsonData<BalanceInfoViewModel>(message, JsonRequestBehavior.DenyGet);
+        public async Task<ActionResult> GetMasterBalanceInfoModelAsync(MasterBalanceInfoQuery message)
+           => await JsonData(message, JsonRequestBehavior.DenyGet);
+
+        [HttpPost]
+        public async Task<ActionResult> GetAgentBalanceInfoModelAsync(AgentBalanceInfoQuery message)
+         => await JsonData<AgentBalanceInfoViewModel>(message, JsonRequestBehavior.DenyGet);
+
+        [HttpPost]
+        public async Task<ActionResult> GetMemberBalanceInfoModelAsync(MemberBalanceInfoQuery message)
+         => await JsonData<MemberBalanceInfoViewModel>(message, JsonRequestBehavior.DenyGet);
     }
 }

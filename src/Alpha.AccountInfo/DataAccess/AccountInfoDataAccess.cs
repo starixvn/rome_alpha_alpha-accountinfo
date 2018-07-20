@@ -29,6 +29,8 @@
                     var row1 = dataset.Tables[0].Rows[0];
                     var row2 = dataset.Tables[1].Rows[0];
                     return new BalanceInfoModel(
+                            custId: Converter.ToInt(row1["custid"]),
+                            credit: Converter.ToDecimal(row2["credit"]),
                             masterCash: Converter.ToDecimal(row2["masterCash"]),
                             yesterday_MasterCash: Converter.ToDecimal(row2["yesterday_masterCash"]),
                             masterPositionTaking: Converter.ToDecimal(row2["masterPositionTaking"]),// TODO Depend on level
@@ -48,7 +50,8 @@
                             agentCredit_Min: Converter.ToDecimal(row1["AgentCredit_Min"]),
                             agentCredit_Max: Converter.ToDecimal(row1["AgentCredit_Max"]),
                             memMaxCredit_Min: Converter.ToDecimal(row1["MemMaxCredit_Min"]),
-                            memMaxCredit_Max: Converter.ToDecimal(row1["MemMaxCredit_Max"])
+                            memMaxCredit_Max: Converter.ToDecimal(row1["MemMaxCredit_Max"]),
+                            memberMaxCredit: Converter.ToDecimal(row1["memberMaxCredit"])
                         ); 
                 }
             }

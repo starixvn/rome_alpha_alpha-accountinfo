@@ -21,5 +21,13 @@
         bool IsInternal { get; }
 
         bool CanUpdateAccount { get; }
+
+        bool AllowedAllDayBalTransfer { get; }
+
+        bool AllowedTotalBalanceTransfer { get; }
+
+        bool AllowTransfer { get; }
+
+        bool CanViewReports { get; }
     }
 }

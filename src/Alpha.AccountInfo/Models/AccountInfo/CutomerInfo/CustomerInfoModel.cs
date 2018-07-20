@@ -19,7 +19,7 @@
          string phone,
          string mobilePhone,
          string fax,
-         double credit,
+         
          bool closedReason,
          bool enabled,
          bool uplineEnabled,
@@ -49,7 +49,6 @@
             MobilePhone = mobilePhone;
             Fax = fax;
 
-            Credit = credit;
             ClosedReason = closedReason;
             Enabled = enabled;
             UplineEnabled = uplineEnabled;
@@ -91,8 +90,6 @@
         public string MobilePhone { get; }
 
         public string Fax { get; }
-
-        public double Credit { get; }
 
         public bool ClosedReason { get; }
 

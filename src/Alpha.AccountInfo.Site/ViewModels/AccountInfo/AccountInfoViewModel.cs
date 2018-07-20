@@ -4,7 +4,6 @@
     {
         public AccountInfoViewModel(
              CustomerInfoViewModel customerInfo,
-             BalanceInfoViewModel balanceInfo,
              DownlineListViewModel downlineList,
              StatusViewModel status,
              SettingViewModel setting,
@@ -12,7 +11,6 @@
              OnlineListViewModel onlineList)
         {
             CustomerInfo = customerInfo;
-            BalanceInfo = balanceInfo;
             DownlineList = downlineList;
             Status = status;
             Setting = setting;
@@ -21,8 +19,6 @@
         }
 
         public CustomerInfoViewModel CustomerInfo { get; }
-
-        public BalanceInfoViewModel BalanceInfo { get; }
 
         public DownlineListViewModel DownlineList { get; }
 
