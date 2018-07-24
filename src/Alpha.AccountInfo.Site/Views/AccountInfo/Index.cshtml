@@ -16,7 +16,7 @@
 </body>
 </html>
 <script>
-    window.reactApp = @(Html.Raw(Json.Encode(Model)));
+    window.accountInfoSiteAppPath = '@Model.AccountInfoSiteAppPath';
 </script>
 @*<script src="@Url.Content("~/Scripts/react-id-swiper.jsx")"></script>*@
 @StaticResources.RenderScripts("~/Scripts/jquery")

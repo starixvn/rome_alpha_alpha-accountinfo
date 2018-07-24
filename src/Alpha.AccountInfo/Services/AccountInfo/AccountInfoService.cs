@@ -37,8 +37,12 @@
                 new SelectCustomerAllStatusModelCriteria(custId));
 
         public async Task<CustomerInfoModel> GetCustomerInfoModelAsync(string username, int uplineId)
-            => await repository.GetAsync<CustomerInfoModel>(
-                new SelectCustomerInfoCriteria(username, uplineId));
+        {
+          //  var model = await accountInfoDataAccess.GetCustomerInfoModelAsync(new SelectCustomerInfoCriteria(username, uplineId));
+            // repository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
+           // var model = await accountInfoDataAccess.GetCustomerInfoModelAsync(new SelectCustomerInfoCriteria(username, uplineId));
+            return await accountInfoDataAccess.GetCustomerInfoModelAsync(new SelectCustomerInfoCriteria(username, uplineId));
+        }
 
         public async Task<DownlineListModel> GetDownlineListModelAsync(int custId)
             => await accountInfoDataAccess.GetDownlineListModelAsync(

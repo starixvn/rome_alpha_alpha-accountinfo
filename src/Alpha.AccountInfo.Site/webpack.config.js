@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         "bundles/account-info/index": [
             "./app/AccountInfo/index.jsx",
-            "./assets/styles/vendors/swiper/swiper.css",
+            //"./assets/styles/vendors/swiper/swiper.css",
             "./assets/styles/account-info.css"
         ],
         "bundles/productstatus/productstatus": [

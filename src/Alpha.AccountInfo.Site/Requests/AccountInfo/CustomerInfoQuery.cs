@@ -7,17 +7,19 @@
 
     public class CustomerInfoQuery : BaseRequest, IRequest<CustomerInfoViewModel>
     {
+        private readonly IUser viewer;
+
         public CustomerInfoQuery(IUser viewer)
             : base(viewer)
         {
-            UplineLevel = Enumeration.FromValue<UserLevel>(viewer.LevelId);
+            this.viewer = viewer;
         }
 
         public string UserName { get; set; }
 
-        public int UplineId { get; set; }
+        public int UplineId => viewer.Id;
 
-        public UserLevel UplineLevel { get; }
+        public UserLevel UplineLevel => Enumeration.FromValue<UserLevel>(viewer.LevelId);
 
         public override bool IsValid() => !string.IsNullOrEmpty(UserName) && UplineId > 0;
     }

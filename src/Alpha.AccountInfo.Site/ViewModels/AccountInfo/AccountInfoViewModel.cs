@@ -1,33 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
+    using Alpha.AccountInfo.Site.Helpers;
+
     public class AccountInfoViewModel
     {
-        public AccountInfoViewModel(
-             CustomerInfoViewModel customerInfo,
-             DownlineListViewModel downlineList,
-             StatusViewModel status,
-             SettingViewModel setting,
-             LoginInfoViewModel loginInfo,
-             OnlineListViewModel onlineList)
+        public AccountInfoViewModel(string accountInfoSiteAppPath = null)
         {
-            CustomerInfo = customerInfo;
-            DownlineList = downlineList;
-            Status = status;
-            Setting = setting;
-            LoginInfo = loginInfo;
-            OnlineList = onlineList;
+            AccountInfoSiteAppPath = string.IsNullOrEmpty(accountInfoSiteAppPath) ? UrlHelper.MapAccountInfoPath("~/") : accountInfoSiteAppPath;
         }
-
-        public CustomerInfoViewModel CustomerInfo { get; }
-
-        public DownlineListViewModel DownlineList { get; }
-
-        public StatusViewModel Status { get; }
-
-        public SettingViewModel Setting { get; }
-
-        public LoginInfoViewModel LoginInfo { get; }
-
-        public OnlineListViewModel OnlineList { get; }
+        public string AccountInfoSiteAppPath { get; }
     }
 }

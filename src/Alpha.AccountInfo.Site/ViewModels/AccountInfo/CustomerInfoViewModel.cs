@@ -42,17 +42,17 @@
 
         public bool ShowMemberName => RoleId.Equals(1);
 
-        public string MemberName { get; }
+        public string MemberName => model.MemberName;
 
         public bool ShowAgentName => (ActorRoleId.Equals(4) || ActorRoleId.Equals(3)) && RoleId < 3;
 
-        public string AgentName { get; }
+        public string AgentName => model.AgentName;
 
         public bool ShowMasterName => ActorRoleId.Equals(4) && RoleId < 4;
 
-        public string MasterName { get; }
+        public string MasterName => model.MasterName;
 
-        public string SuperName { get; }       
+        public string SuperName => model.SuperName;
 
         public string CustomerListLink
         {

@@ -9,16 +9,36 @@ export default class CustomerInfoBlock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: this.props.customerInfoModel,
+            username: '',
+            url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfoasync01",
+            data: {},
             rowClasses: "col-xs-12 row-info",
             firstCellClass: "col-xs-5",
             secondCellClass: "col-xs-7 col-right",
         }
+
+        this.handleSearch = this.handleSearch.bind(this);
+        this.loadCutomerInfoFromServer = this.loadCutomerInfoFromServer.bind(this);
     }
 
     handleBetListClick ()  { }
 
     handleStatementClick () { }
+
+    handleSearch(e) {
+        this.setState({ username: e.target.value });
+        this.loadCutomerInfoFromServer();
+    }
+
+    loadCutomerInfoFromServer() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', this.state.url + "?username=" + this.state.username);
+        xhr.onload = () => {
+            const data = JSON.parse(xhr.responseText);
+            this.setState({ data: data });
+        };
+        xhr.send();
+    }
 
     buildLevelRow(username, levelName, iconClassname) {
         return <UserLevel
@@ -43,7 +63,15 @@ export default class CustomerInfoBlock extends React.Component {
 
         return (
             <div className="block-info" id="blockInfo">
-                <Search username={this.state.data.UserName} />
+              
+                <div className="search-box">
+                    <input type="text"
+                        className="txt-search"
+                        placeholder="Username" value={this.state.username}
+                        onChange={this.handleSearch} />
+                    <span className="icon-search" onClick={this.loadCutomerInfoFromServer}></span>
+                </div>
+
 
                 {this.state.data.ShowMasterName ? this.buildLevelRow(this.state.data.MasterName, "Master", roleId == 3 ? "icon-viewlog" : null) : null}
 
@@ -53,7 +81,7 @@ export default class CustomerInfoBlock extends React.Component {
 
                 <div className={rowClasses}>
                     <Cell title="Name" classNames={firstCellClass} />
-                    <Cell title="Thien Nguyen 0001" classNames={secondCellClass} />
+                    <Cell text={this.state.data.username} classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>

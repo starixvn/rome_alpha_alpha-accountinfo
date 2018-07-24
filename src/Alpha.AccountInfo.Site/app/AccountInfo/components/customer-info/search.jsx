@@ -7,10 +7,12 @@ import CellWithLink from '../common/cell-contain-link';
 export default class Search extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { username: '' };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange () {
-
+        this.setState({ username: e.target.value });
     }
 
     render() {

@@ -19,7 +19,6 @@
          string phone,
          string mobilePhone,
          string fax,
-         
          bool closedReason,
          bool enabled,
          bool uplineEnabled,
@@ -27,6 +26,7 @@
          bool suspended,
          DateTime createDate,
          DateTime lastLogged,
+         DateTime lastTxn,
          string lastLoginIP,
          DateTime pwdExpiry,
          int memberId,
@@ -57,6 +57,7 @@
             
             CreateDate = createDate;
             LastLogged = lastLogged;
+            LastTxn = lastTxn;
             LastLoginIP = lastLoginIP;
             PwdExpiry = pwdExpiry;
 
@@ -104,6 +105,8 @@
         public DateTime CreateDate { get; }
 
         public DateTime LastLogged { get; }
+
+        public DateTime LastTxn { get; }
 
         public string LastLoginIP { get; }
 

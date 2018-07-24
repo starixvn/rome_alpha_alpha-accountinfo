@@ -11,11 +11,13 @@
 
     public interface AccountInfoDataAccess
     {
+        Task<CustomerAllStatusModel> GetCustomerAllStatusModelAsync(ICriteria criteria);
+
         Task<BalanceInfoModel> GetBalanceInfoModelAsync(ICriteria criteria);
 
         Task<DownlineListModel> GetDownlineListModelAsync(ICriteria criteria);
 
-        Task<CustomerAllStatusModel> GetCustomerAllStatusModelAsync(ICriteria criteria);
+        Task<CustomerInfoModel> GetCustomerInfoModelAsync(ICriteria criteria);
     }
 
     public class AccountInfoDataAccessImpl : AccountInfoDataAccess
@@ -55,6 +57,51 @@
                         ); 
                 }
             }
+        }
+
+        public async Task<CustomerInfoModel> GetCustomerInfoModelAsync(ICriteria criteria)
+        {
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                {
+                    if (reader.Read())
+                    {
+                        return new CustomerInfoModel(
+                           custId: Converter.ToInt(reader["custid"]),
+          roleId: (byte)reader["roleid"],
+          userName: Converter.ToString2(reader["username"]),
+          userName2: Converter.ToString2(reader["username2"]),
+          firstName: Converter.ToString2(reader["firstname"]),
+          lastName: Converter.ToString2(reader["lastname"]),
+          phone: Converter.ToString2(reader["phone"]),
+          mobilePhone: Converter.ToString2(reader["mobilephone"]),
+          fax: Converter.ToString2(reader["fax"]),
+          closedReason: Converter.ToBool(reader["ClosedReason"]),
+          enabled: Converter.ToBool(reader["enabled"]),
+          uplineEnabled: Converter.ToBool(reader["upLineEnabled"]),
+          closed: Converter.ToBool(reader["closed"]),
+          suspended: Converter.ToBool(reader["suspended"]),
+          createDate: Converter.ToDateTime(reader["creatdate"]),
+          lastLogged: Converter.ToDateTime(reader["lastlogged"]),
+          lastTxn: Converter.ToDateTime(reader["lastTxn"]),
+          lastLoginIP: Converter.ToString2(reader["lastloginip"]),
+          pwdExpiry: Converter.ToDateTime(reader["pwdexpiry"]),
+          memberId: Converter.ToInt(reader["memberID"]),
+         memberName: Converter.ToString2(reader["memberName"]),
+         agentId: Converter.ToInt(reader["agentID"]),
+         agentName: Converter.ToString2(reader["agentName"]),
+         masterId: Converter.ToInt(reader["custid"]),
+         masterName: Converter.ToString2(reader["masterName"]),
+         superId: Converter.ToInt(reader["superID"]),
+         superName: Converter.ToString2(reader["superName"])
+                            );
+                    }
+
+                }
+            }
+
+            throw new NotImplementedException();
         }
 
         public async Task<CustomerAllStatusModel> GetCustomerAllStatusModelAsync(ICriteria criteria)

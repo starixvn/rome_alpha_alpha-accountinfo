@@ -14,6 +14,20 @@
             this.message = message;
         }
 
+        public decimal TotalCash => model.MasterCash;
+
+        public decimal YesterdayCash => model.Yesterday_MasterCash;
+
+        public decimal TotalBalance => model.MasterCash + model.AgentCash + model.CustomerCash;
+
+        public decimal YesterdayBalance => model.Yesterday_MasterCash + model.Yesterday_AgentCash + model.Yesterday_CustomerCash;
+
+        public decimal Outstanding => model.MasterPositionTaking;
+
+        public decimal UsedCredit => model.MasterUsedCredit;
+
+        public decimal GivenCredit => model.Credit;
+
         public bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
 
         // Show TransferLink On TotalBalance or YesterdayBalance
@@ -33,24 +47,11 @@
         public string OutstandingLink =>
             $"../outstanding/Super?CustId={message.CustId}&CustName={message.UserName}&CustLevelId=3&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
 
-        public decimal TotalCash => model.MasterCash;
-
-        public decimal YesterdayCash => model.Yesterday_MasterCash;
-
-        public decimal TotalBalance => model.MasterCash + model.AgentCash + model.CustomerCash;
-
-        public decimal YesterdayBalance => model.Yesterday_MasterCash + model.Yesterday_AgentCash + model.Yesterday_CustomerCash;
-
-        public decimal Outstanding => model.MasterPositionTaking;
-
-        public decimal UsedCredit => model.MasterUsedCredit;
-
-        public decimal GivenCredit => model.Credit;
-
-        public decimal MasterCredit_Min => model.MasterCredit_Min;
-
-        public decimal MasterCredit_Max => model.MasterCredit_Max;
-
         public string GivenCreditLimit => $">={MasterCredit_Min} and <={MasterCredit_Max}";
+
+        private decimal MasterCredit_Min => model.MasterCredit_Min;
+
+        private decimal MasterCredit_Max => model.MasterCredit_Max;
+
     }
 }

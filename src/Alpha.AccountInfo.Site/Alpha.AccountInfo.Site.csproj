@@ -62,7 +62,6 @@
     </Reference>
     <Reference Include="Alpha.Web, Version=1.0.1.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Web.1.0.1.8\lib\net461\Alpha.Web.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="CasinoLibrary, Version=2.0.2.28015, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015-ChangeRequestOnProduct\lib\net40\CasinoLibrary.dll</HintPath>
@@ -463,6 +462,7 @@
     <Compile Include="Handlers\AccountInfoHandler.cs" />
     <Compile Include="Handlers\ProductStatusHandler.cs" />
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\AccountInfo\BalanceInfo\MemberBalanceInfoQuery.cs" />

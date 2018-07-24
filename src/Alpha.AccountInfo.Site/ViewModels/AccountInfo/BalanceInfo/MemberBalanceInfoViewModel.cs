@@ -44,8 +44,8 @@
 
         public decimal BetCredit => GivenCredit + TotalCash - Outstanding + NetPostion;
 
-        public decimal MemMaxCredit_Max => model.MemMaxCredit_Max;
-
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
+
+        private decimal MemMaxCredit_Max => model.MemMaxCredit_Max;
     }
 }

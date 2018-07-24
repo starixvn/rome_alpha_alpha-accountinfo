@@ -16,27 +16,6 @@
             this.message = message;
         }
 
-        public bool ShowTransferLink => !message.AllDayBalTransfer && !IsSuperLevel && message.AllowTransfer;
-
-        // Show TransferLink On TotalBalance or YesterdayBalance
-        public bool ShowTransferLinkOnTotalBalance => message.AllowedTotalBalanceTransfer;
-
-        public string TransferLink
-        {
-            get
-            {
-                var atm = message.AllowedTotalBalanceTransfer ? TotalBalance : YesterdayBalance;
-                return $"../_Transfer/Master/AgentTransfer.aspx?amt={atm}&custid={message.CustId}&status=1&CallBack=false&username={message.UserName}&isyesterday=1";
-            }
-        }
-
-        public string MemberMaxCreditLimit => IsSuperLevel ? string.Empty : $">={MemMaxCredit_Min} and <={GivenCredit}";
-
-        public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
-
-        public string OutstandingLink =>
-            $"../outstanding/Master?CustId={message.CustId}&CustName={message.UserName}&CustLevelId=2&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
-
         public decimal TotalCash => model.AgentCash;
 
         public decimal YesterdayCash => model.Yesterday_AgentCash;
@@ -53,13 +32,33 @@
 
         public decimal GivenCredit => model.Credit;
 
-        public decimal AgentCredit_Min => model.AgentCredit_Min;
-
-        public decimal AgentCredit_Max => model.AgentCredit_Max;
-
-        public decimal MemMaxCredit_Min => model.MemMaxCredit_Min;
-
         public string GivenCreditLimit => $">={AgentCredit_Min} and <={AgentCredit_Max}";
+
+        public bool ShowTransferLink => !message.AllDayBalTransfer && !IsSuperLevel && message.AllowTransfer;
+
+        // Show TransferLink On TotalBalance or YesterdayBalance
+        public bool ShowTransferLinkOnTotalBalance => message.AllowedTotalBalanceTransfer;
+
+        public string TransferLink
+        {
+            get
+            {
+                var atm = message.AllowedTotalBalanceTransfer ? TotalBalance : YesterdayBalance;
+                return $"../_Transfer/Master/AgentTransfer.aspx?amt={atm}&custid={message.CustId}&status=1&CallBack=false&username={message.UserName}&isyesterday=1";
+            }
+        }
+        public string MemberMaxCreditLimit => IsSuperLevel ? string.Empty : $">={MemMaxCredit_Min} and <={GivenCredit}";
+
+        public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
+
+        public string OutstandingLink =>
+            $"../outstanding/Master?CustId={message.CustId}&CustName={message.UserName}&CustLevelId=2&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
+
+        private decimal MemMaxCredit_Min => model.MemMaxCredit_Min;
+
+        private decimal AgentCredit_Min => model.AgentCredit_Min;
+
+        private decimal AgentCredit_Max => model.AgentCredit_Max;
 
         private bool IsSuperLevel => Enumeration.FromValue<UserLevel>(message.ActorId).IsSuperLevel();
     }
