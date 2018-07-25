@@ -23,7 +23,6 @@ export default class BalanceInfoContent extends React.Component{
 
     render() {
         const rowClasses = "col-xs-12 row-info";
-        const { headingText, iconClassname } = this.props; 
 
         return (
             <div>

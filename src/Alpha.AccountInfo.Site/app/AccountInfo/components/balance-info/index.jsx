@@ -13,22 +13,12 @@ export default class BalanceInfoBlock extends React.Component{
         super(props);
         this.state = {
             username: '',
-            url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfoasync01",
+            url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo",
             data: null
         }
 
         this.handleClick = this.handleClick.bind(this);
     }
-
-    handleCancelClick () { }
-
-    handleSubmitClick ()  { }
-
-    handleOutStandingChange () { }
-
-    handleNewGivenCredit () { }
-
-    handleGivenCredit () { }
 
     handleClick(e) {
         this.props.collapExpandMethod(e);
