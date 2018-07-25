@@ -6,9 +6,11 @@ export default class DownlineList extends React.Component{
         super(props);
     }
     render() {
+        const { usernames } = this.props;
+
         return (
             <div >
-                {this.props.usernames.map((username, index) => <Downline username={username} key={index}/>)}
+                {usernames.map((username, index) => <Downline username={username} key={index}/>)}
             </div>
         );
     }

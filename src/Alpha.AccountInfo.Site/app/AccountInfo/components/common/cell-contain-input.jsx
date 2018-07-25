@@ -6,7 +6,7 @@ export default class CellContainInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: this.props.text
+            text: this.props.title
         }
     }
 
@@ -31,7 +31,7 @@ export default class CellContainInput extends React.Component {
             <div className={this.props.classNames}>
                 <input type="text"
                     className={inputClassname}
-                    value={this.props.text.toLocaleString('en-us', { minimumFractionDigits: 2 })} 
+                    value={this.props.title.toLocaleString('en-us', { minimumFractionDigits: 2 })} 
                     onBlur={this.handleBlur}
                     onChange={this.handleChange}
                     onKeyDown={this.handleSubmit} />

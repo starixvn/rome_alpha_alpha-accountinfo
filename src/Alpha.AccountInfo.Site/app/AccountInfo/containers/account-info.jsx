@@ -11,24 +11,15 @@ import FeatureList from './feature-list';
 export default class AccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            showInfoStatus: false
-        };
-
-        this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
-    }
-
-    handleShowContactInfo() {
-        this.setState((prevStatus) => { showInfoStatus: !prevStatus })
     }
 
     render() {
+        const { accountInfoModel, } = this.props;
+
         return (
             <div className="accountinfo-container">
-                <CustomerInfoBlock customerInfoModel={this.props.accountInfoModel.CustomerInfo} />
-                <FeatureList accountInfoModel={this.props.accountInfoModel}
-                    handleShowContactInfo={this.handleShowContactInfo}
-                    showInfoStatus={this.showInfoStatus} />                
+                <CustomerInfoBlock customerInfoModel={accountInfoModel.CustomerInfo} />
+                <FeatureList accountInfoModel={accountInfoModel} />                
             </div>
         );
     }

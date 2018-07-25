@@ -7,7 +7,11 @@ export default class LoginInfoBlock extends React.Component{
         super(props);
     }
     render() {
-        const { handleClick, dataId, expanded  } = this.props;
+        const {
+            handleClick,
+            dataId,
+            expanded
+        } = this.props;
 
         return (
             <CustomizedAccordionItem

@@ -8,13 +8,23 @@ export default class UserLevel extends React.Component {
     }
 
     render() {
+        const {
+            rowClasses,
+            levelname,
+            firstCellClass,
+            username,
+            secondCellClass,
+            hrefLink,
+            iconClassname
+        } = this.props;
+
         return (
-            <div className={this.props.rowClasses}>
-                <Cell text={this.props.levelname} classNames={this.props.firstCellClass} />
-                <CellContainLink text={this.props.username}
-                    classNames={this.props.secondCellClass}
-                    hrefLink={this.props.hrefLink}
-                    iconClassname={this.props.iconClassname} />
+            <div className={rowClasses}>
+                <Cell title={levelname} classNames={firstCellClass} />
+                <CellContainLink title={username}
+                    classNames={secondCellClass}
+                    hrefLink={hrefLink}
+                    iconClassname={iconClassname} />
             </div>
         );
     }

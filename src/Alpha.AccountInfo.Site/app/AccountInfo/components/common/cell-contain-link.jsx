@@ -8,7 +8,7 @@ export default class CellContainLink extends React.Component{
     render() {
         return (
             <div className={this.props.classNames}>
-                <Link text={this.props.text} url={this.props.hrefLink} />
+                <Link title={this.props.title} url={this.props.hrefLink} />
                 <span className={this.props.iconClassname}></span>
             </div>
       );

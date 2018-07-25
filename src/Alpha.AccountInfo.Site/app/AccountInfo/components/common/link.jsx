@@ -1,12 +1,6 @@
 ﻿import React from 'react';
 
-export default class Link extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
-            <a href={this.props.url}>{this.props.text}</a>
-      );
-    }
-}
+const Link = ({ classNames = null, title, url = '#', handleClick = f => f }) =>
+    <a href={url} onClick={handleClick} className={classNames}>{title}</a>
+
+export default Link;

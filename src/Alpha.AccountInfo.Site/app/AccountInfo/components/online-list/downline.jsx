@@ -5,9 +5,11 @@ export default class Downline extends React.Component{
         super(props);
     }
     render() {
+        const { username } = this.props;
+
         return (
             <div className="two-col">
-                <a href="#">{this.props.username}</a>
+                <a href="#">{username}</a>
             </div>
         );
     }

@@ -305,7 +305,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
-    <Content Include="app\AccountInfo\components\common\show-contact-info.jsx" />
+    <Content Include="app\AccountInfo\components\common\checkbox.jsx" />
+    <Content Include="app\AccountInfo\containers\show-contact-info.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
@@ -550,7 +551,7 @@
     <Content Include="app\AccountInfo\components\common\link.jsx" />
     <Content Include="app\AccountInfo\components\online-list\downline-list.jsx" />
     <Content Include="app\AccountInfo\components\online-list\downline.jsx" />
-    <Content Include="app\AccountInfo\components\online-list\no-infomation.jsx" />
+    <Content Include="app\AccountInfo\components\common\no-infomation.jsx" />
     <Content Include="app\AccountInfo\components\online-list\index.jsx" />
     <Content Include="app\AccountInfo\components\setting\index.jsx" />
     <Content Include="app\AccountInfo\components\login-info\index.jsx" />

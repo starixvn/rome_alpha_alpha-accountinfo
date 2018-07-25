@@ -1,24 +1,9 @@
 ﻿import React from 'react';
 
-export default class Button extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: this.props.text || ''
-        };
 
-        this.handleClick = this.handleClick.bind(this);
-    }
+const Button = ({ title, classNames, handleClick }) =>
+    <button className={classNames} onClick={handleClick}>
+        {title}
+    </button>;
 
-    handleClick() {
-        this.props.onClick();
-    }
-
-    render() {
-        return (
-            <button className={this.props.classNames} onClick={this.handleClick}>
-                {this.state.text}
-            </button>
-      );
-    }
-}
+export default Button;

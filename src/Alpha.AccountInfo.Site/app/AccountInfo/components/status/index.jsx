@@ -22,22 +22,22 @@ export default class StatusBlock extends React.Component {
                 handleClick={handleClick}
                 dataId={dataId}>
 
-                <Status text="Suspended" checked={true} />
-                <Status text="Auto PT" checked={true} />
-                <Status text="Outright" checked={true} />
-                <Status text="Outright" checked={true} />
-                <Status text="Double Comm" />
+                <Status title="Suspended" checked={true} statusId={1} />
+                <Status title="Auto PT" checked={true} statusId={2}  />
+                <Status title="Outright" checked={true} statusId={3}  />
+                <Status title="Outright" checked={true} statusId={4}  />
+                <Status title="Double Comm" statusId={5}  />
 
-                <CellContainLink text="Enable Keno01"
+                <CellContainLink title="Enable Keno01"
                     classNames="row-info"
                     iconClassname="icon-ic_list"
                     hrefLink="#" />
 
-                <Status text="Colossus Bets" checked={true} />
-                <Status text="Closed" />
-                <Status text="Virtual Sports" />
-                <Status text="HR Fixed Odds" />
-                <Status text="Allbet" />
+                <Status title="Colossus Bets" checked={true} statusId={6}  />
+                <Status title="Closed" statusId={7} />
+                <Status title="Virtual Sports" statusId={8}  />
+                <Status title="HR Fixed Odds" statusId={9}  />
+                <Status title="Allbet" statusId={10}  />
             </CustomizedAccordionItem>
       );
     }

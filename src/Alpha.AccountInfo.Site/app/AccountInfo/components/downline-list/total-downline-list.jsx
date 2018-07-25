@@ -5,15 +5,24 @@ export default class TotalDownlineList extends React.Component {
         super(props);
     }
     render() {
+        const {
+            levelName,
+            totalActive,
+            totalClosed,
+            totalSuspended
+        } = this.props;
+
         return (
             <div className="col-xs-12 row-info px-0">
-                <div className="col-xs-6">{this.props.levelName} (A/C/S)</div>
+                <div className="col-xs-6">{levelName} (A/C/S)</div>
                 <div className="col-xs-6 col-right">
                     <div className="pull-right"
                         data-toggle="tooltip"
                         data-placement="top"
-                        title={"Active:" + this.props.totalActive + " Closed:" + this.props.totalClosed + " Suspended:" + this.props.totalSuspended}>
-                        <span className="number">{this.props.totalActive}</span>/<span className="status-closed">{this.props.totalClosed}</span>/<span className="status-suspended">{this.props.totalSuspended}</span>
+                        title={"Active:" + totalActive + " Closed:" + totalClosed + " Suspended:" + totalSuspended}>
+                        <span className="number">{totalActive}</span>
+                        /<span className="status-closed">{totalClosed}</span>
+                        /<span className="status-suspended">{totalSuspended}</span>
                     </div>
                 </div>
             </div>

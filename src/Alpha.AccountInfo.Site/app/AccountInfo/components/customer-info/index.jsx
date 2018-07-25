@@ -2,7 +2,6 @@
 import Button from '../common/button';
 
 import Cell from '../common/cell';
-import CellContainLink from '../common/cell-contain-link';
 import Search from './search';
 import UserLevel from './user-level';
 
@@ -33,11 +32,14 @@ export default class CustomerInfoBlock extends React.Component {
     }
 
     render() {
-        const rowClasses = this.state.rowClasses;
-        const firstCellClass = this.state.firstCellClass;
-        const secondCellClass = this.state.secondCellClass;
+        const {
+            rowClasses,
+            firstCellClass,
+            secondCellClass,
+            data
+        } = this.state;
 
-        let roleId = this.state.data.RoleId;
+        let roleId = data.RoleId;
 
         return (
             <div className="block-info" id="blockInfo">
@@ -50,23 +52,23 @@ export default class CustomerInfoBlock extends React.Component {
                 {this.state.data.ShowMemberName ? this.buildLevelRow(this.state.data.MemberName, "Customer", "icon-viewlog") : null}
 
                 <div className={rowClasses}>
-                    <Cell text="Name" classNames={firstCellClass} />
-                    <Cell text="Thien Nguyen 0001" classNames={secondCellClass} />
+                    <Cell title="Name" classNames={firstCellClass} />
+                    <Cell title="Thien Nguyen 0001" classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Phone" classNames={firstCellClass} />
-                    <Cell text={this.state.data.Phone} classNames={secondCellClass} />
+                    <Cell title="Phone" classNames={firstCellClass} />
+                    <Cell title={this.state.data.Phone} classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Fax" classNames={firstCellClass} />
-                    <Cell text={this.state.data.Fax} classNames={secondCellClass} />
+                    <Cell title="Fax" classNames={firstCellClass} />
+                    <Cell title={this.state.data.Fax} classNames={secondCellClass} />
                 </div>
 
                 <div className={rowClasses + " text-center list-button"}>
-                    <Button text="Bet List" classNames="btn-default with-level" onClick={this.handleBetListClick} />
-                    <Button text="Statement" classNames="btn-default with-level" onClick={this.handleStatementClick} />
+                    <Button title="Bet List" classNames="btn-default with-level" handleClick={this.handleBetListClick} />
+                    <Button title="Statement" classNames="btn-default with-level" handleClick={this.handleStatementClick} />
                 </div>
             </div>
         );

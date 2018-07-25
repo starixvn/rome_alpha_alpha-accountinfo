@@ -6,9 +6,11 @@ export default class DownlineListPaging extends React.Component {
     }
 
     render() {
+        const { usernames } = this.props;
+
         return (
             <div className="swiper-slide" >
-                {this.props.usernames.map((username, index) => {
+                {usernames.map((username, index) => {
                     return <div className="two-col" key={index}>
                         <a href="#">{username}</a>
                         </div>

@@ -37,6 +37,9 @@ export default class DownlineInfo extends React.Component {
     }
     
     render() {
+        const { downlineList } = this.props;
+        const { slideTo } = this.state;
+
         //let content = this.props.downlineList.length > 0 ?
         //    <DownlineList usernames={this.props.downlineList} /> : <NoInfomation />;
 
@@ -54,7 +57,7 @@ export default class DownlineInfo extends React.Component {
             containerClass: 'swiper-container block-downline-list'
         }
 
-        var results = this.chunkArray(this.props.downlineList, 10);
+        var results = this.chunkArray(downlineList, 10);
 
         return (
             <div className="downline-list-container">
@@ -65,7 +68,7 @@ export default class DownlineInfo extends React.Component {
                 </Swiper>
                 <div className="page-control">
                     <span>Page</span>
-                    <input type="text" ref="slideTo" className="number" value={this.state.slideTo} onChange={this.slideTo} />
+                    <input type="text" ref="slideTo" className="number" value={slideTo} onChange={this.slideTo} />
                 </div>
             </div>
         )

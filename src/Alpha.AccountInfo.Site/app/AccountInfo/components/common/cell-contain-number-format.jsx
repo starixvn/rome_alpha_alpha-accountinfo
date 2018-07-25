@@ -2,15 +2,11 @@
 import Link from './link';
 import Cell from './cell';
 
-export default class CellContainNumberFormat extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
-            <div className={this.props.classNames}>
-                <span className={this.props.text < 0 ? "number-red" : "number"} >{this.props.text.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
-            </div>
-      );
-    }
-}
+const CellContainNumberFormat = ({ classNames, title }) =>
+    <div className={classNames}>
+        <span className={title < 0 ? "number-red" : "number"} >
+            {title.toLocaleString('en-us', { minimumFractionDigits: 2 })}
+        </span>
+    </div>
+
+export default CellContainNumberFormat;

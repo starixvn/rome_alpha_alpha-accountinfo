@@ -6,7 +6,7 @@ import StatusBlock from '../components/status/index';
 import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
-import ShowContactInfo from '../components/common/show-contact-info';
+import ShowContactInfo from './show-contact-info';
 import { Accordion } from 'react-accessible-accordion';
 
 // Demo styles, see 'Styles' section below for some notes on use.
@@ -75,15 +75,18 @@ export default class FeatureList extends React.Component {
     }
 
     render() {
-        const accountInfoModel = this.props.accountInfoModel;
-        const expandedItems = this.state.expandedItems;
-        const collapseExpandClassName = this.state.collapseAll ? 'account-info-group' : 'account-info-group scroll-top';
+        const { accountInfoModel } = this.props;
+        const { expandedItems, collapseAll } = this.state;
+
+        const collapseExpandClassName = collapseAll ? 'account-info-group' : 'account-info-group scroll-top';
 
         return (
             <div className={collapseExpandClassName}>
                 {
-                    !this.state.collapseAll && 
-                    <ShowContactInfo text="Show Contact Info" onClick={this.handleShowContactInfo} />
+                    !this.state.collapseAll &&
+                    <ShowContactInfo title="Show Contact Info"
+                        classNames="visible-mobile show-more-container"
+                        handleClick={this.handleShowContactInfo} />
                 }                
                 <Accordion>
                     <BalanceInfoBlock

@@ -14,11 +14,13 @@ export default class Search extends React.Component {
     }
 
     render() {
+        const { username } = this.props;
+
         return (
             <div className="search-box">
                 <input type="text"
                     className="txt-search"
-                    placeholder="Username" value={this.props.username}
+                    placeholder="Username" value={username}
                     onChange={this.handleChange} />
                 <span className="icon-search"></span>
             </div>

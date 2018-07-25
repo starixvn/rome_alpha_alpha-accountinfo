@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import NoInfomation from './no-infomation';
+import NoInfomation from '../common/no-infomation';
 import DownlineList from './downline-list';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 
@@ -11,10 +11,11 @@ export default class OnlineListBlock extends React.Component{
         };
     }
     render() {
-        let content = this.state.downlineList.length > 0 ?
-            <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />;
-
         const { handleClick, dataId, expanded } = this.props;
+        const { downlineList } = this.state;
+
+        let content = downlineList.length > 0 ?
+            <DownlineList usernames={downlineList} /> : <NoInfomation title="This user is not online" />;
 
         return (
             <CustomizedAccordionItem
