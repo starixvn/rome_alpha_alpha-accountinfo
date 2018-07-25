@@ -6,9 +6,18 @@ import CellContainInput from '../common/cell-contain-input';
 import Cell from '../common/cell';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 
+import BalanceInfoContent from './balance-info-content'
+
 export default class BalanceInfoBlock extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            username: '',
+            url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfoasync01",
+            data: null
+        }
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleCancelClick () { }
@@ -21,6 +30,35 @@ export default class BalanceInfoBlock extends React.Component{
 
     handleGivenCredit () { }
 
+    handleClick(e) {
+        if (this.state.data === null) {
+            this.setState({
+                data: this.loadBalanceInfoFromServer()
+            });
+        }
+    }
+
+    loadBalanceInfoFromServer() {
+        console.log("load balance info");
+
+        return {
+            TotalCash: 45,
+            YesterdayCash: 56,
+            TotalBalance: 4656,
+            YesterdayBalance: 87,
+            Outstanding: 1234,
+            NetPostion: 749877,
+            GivenCredit: 7897,
+            BetCredit: 1234,
+            MemMaxCredit_Max: 4156476,
+            UsedCredit: 456,
+            CurrentGivenCredit: 45674,
+            Difference: 7897,
+            NewGivenCredit: 45674
+
+        }
+    }
+
     render() {
         const rowClasses = "col-xs-12 row-info";
         const {
@@ -30,84 +68,11 @@ export default class BalanceInfoBlock extends React.Component{
             dataId,
             expanded
         } = this.props; 
-
+ 
         return (
-            <CustomizedAccordionItem
-                title="Balance Info"
-                iconClassname="icon-balance"
-                accordionItemBodyClassName="accordion__body balance-info"
-                expanded={expanded}
-                handleClick={handleClick}
-                dataId={dataId}>
-                <div className={rowClasses}>
-                    <Cell title="Total Cash" classNames="col-xs-6" />
-                    <CellContainNumberFormat title={this.props.balanceInfo.TotalCash} classNames="col-xs-6 col-right" />
-                </div>
-
-                <div className={rowClasses}>
-                    <Cell title="Yesterday Cash" classNames="col-xs-6" />
-                    <CellContainNumberFormat title={this.props.balanceInfo.YesterdayCash} classNames="col-xs-6 col-right" />
-                </div>
-
-                <div className={rowClasses}>
-                    <Cell title="Total Balance" classNames="col-xs-6" />
-                    <CellContainNumberFormat title={this.props.balanceInfo.TotalBalance} classNames="col-xs-6 col-right" />
-                </div>
-
-                <div className={rowClasses}>
-                    <Cell title="Yesterday Balance" classNames="col-xs-6" />
-                    <CellContainNumberFormat title={this.props.balanceInfo.YesterdayBalance} classNames="col-xs-6 col-right" />
-                </div>
-
-                <div className={rowClasses}>
-                    <Cell title="Outstanding" classNames="col-xs-6" />
-                    <CellContainInput title={this.props.balanceInfo.Outstanding}
-                        classNames="col-xs-6 col-right box-edited"
-                        inputClassname="txt-number-edited"
-                        onSave={this.handleOutStandingChange} />
-                </div>
-
-                <div className={rowClasses}>
-                    <Cell title="Used Credit" classNames="col-xs-6" />
-                    <CellContainNumberFormat title={this.props.balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
-                </div>
-
-                <div className={rowClasses}>
-                    <Cell title="Given Credit" classNames="col-xs-6" />
-                    <CellContainInput title={this.props.balanceInfo.GivenCredit}
-                        id="txt-given-edit"
-                        classNames="col-xs-6 col-right box-edited"
-                        inputClassname="txt-number-edited"
-                        onSave={this.handleGivenCredit}
-                        iconClassname="icon-border-color icon-edited" />
-
-                    <div id="popup-confirm-given-credit" className="popup-confirm">
-                        <h1 className="title">Given Credit</h1>
-
-                        <div className={rowClasses}>
-                            <Cell title="Current Given Credit" classNames="col-xs-7" />
-                            <Cell title={this.props.balanceInfo.CurrentGivenCredit.toLocaleString('en-us', { minimumFractionDigits: 2 })} classNames="col-xs-5 show-value" />
-                        </div>
-
-                        <div className={rowClasses}>
-                            <Cell title="New Given Credit" classNames="col-xs-7" />
-                            <CellContainInput title={this.props.balanceInfo.NewGivenCredit}
-                                classNames="col-xs-5 text-right"
-                                inputClassname="hasBorder txt-newValue"
-                                onSave={this.handleNewGivenCredit} />
-                        </div>
-
-                        <div className={rowClasses}>
-                            <Cell title="Difference" classNames="col-xs-7" />
-                            <Cell title={this.props.balanceInfo.Difference.toLocaleString('en-us', { minimumFractionDigits: 2 })} classNames="col-xs-5 show-value" />
-                        </div>
-
-                        <div className="col-xs-12 row-info popup-bottom list-button">
-                            <Button title="Cancel" classNames="btn-cancel" handleClick={this.handleCancelClick} />
-                            <Button title="Submit" classNames="btn-submit" handleClick={this.handleSubmitClick} />
-                        </div>
-                    </div>
-                </div>
+            <CustomizedAccordionItem title="Balance Info" iconClassname="icon-balance"
+                accordionItemBodyClassName="accordion__body balance-info" handleClick={this.handleClick}>
+                {this.state.data != null && <BalanceInfoContent balanceInfo={this.state.data} /> }
             </CustomizedAccordionItem>
       );
     }

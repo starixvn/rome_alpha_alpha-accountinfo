@@ -41,14 +41,14 @@
         {
             return Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
         }
-          // => await JsonData(message, JsonRequestBehavior.DenyGet);
+        // => await JsonData(message, JsonRequestBehavior.DenyGet);
 
         //[HttpPost]
         //public async Task<ActionResult> GetAgentBalanceInfoModelAsync(AgentBalanceInfoQuery message)
         // => await JsonData<AgentBalanceInfoViewModel>(message, JsonRequestBehavior.DenyGet);
 
-        //[HttpPost]
-        //public async Task<ActionResult> GetMemberBalanceInfoModelAsync(MemberBalanceInfoQuery message)
-        // => await JsonData<MemberBalanceInfoViewModel>(message, JsonRequestBehavior.DenyGet);
+        [HttpPost]
+        public async Task<ActionResult> GetMemberBalanceInfoModelAsync(MemberBalanceInfoQuery message)
+         => await JsonData<MemberBalanceInfoViewModel>(message, JsonRequestBehavior.AllowGet);
     }
 }
