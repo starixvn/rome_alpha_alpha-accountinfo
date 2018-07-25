@@ -15,14 +15,21 @@ export default class CustomizedAccordionItem extends React.Component {
         super(props);
         this.state = {
             expanded: this.props.expanded || false
-        }
+        }        
     }
 
     render() {
-        const { title, iconClassname, accordionItemBodyClassName, expanded } = this.props;
+        const {
+            title,
+            iconClassname,
+            accordionItemBodyClassName,
+            expanded,
+            handleClick,
+            dataId
+        } = this.props;
 
         return (
-            <AccordionItem expanded={expanded}>
+            <AccordionItem expanded={expanded} onClick={handleClick} data-id={dataId}>
                 <AccordionItemTitle>
                     <span className={iconClassname}></span> {title}
                 </AccordionItemTitle>

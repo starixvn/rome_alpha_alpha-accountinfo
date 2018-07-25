@@ -17,7 +17,7 @@ export default class Status extends React.Component {
                 <input type="checkbox"
                     checked={this.props.checked ? true : false}
                     onChange={this.handleChange} />
-                <label class="label-text" for="showPassword">{this.props.text}</label>
+                <label className="label-text" htmlFor="showPassword">{this.props.text}</label>
             </div> 
         );
     }

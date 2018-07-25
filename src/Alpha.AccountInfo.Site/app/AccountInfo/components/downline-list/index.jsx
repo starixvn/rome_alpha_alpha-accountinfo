@@ -12,8 +12,15 @@ export default class DownlineListBlock extends React.Component{
     }
 
     render() {
+        const { handleClick, dataId, expanded } = this.props;
+
         return (
-            <CustomizedAccordionItem title="Downline list" iconClassname="icon-downline">
+            <CustomizedAccordionItem
+                title="Downline list"
+                iconClassname="icon-downline"
+                expanded={expanded}
+                handleClick={handleClick}
+                dataId={dataId}>
                 <DownlineInfo downlineList={this.props.downlineList.DownlineList} />
                 <div><hr /></div>
                 <TotalDownlineList levelName="Agents"

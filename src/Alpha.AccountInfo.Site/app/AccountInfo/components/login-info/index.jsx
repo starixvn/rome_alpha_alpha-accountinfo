@@ -7,9 +7,17 @@ export default class LoginInfoBlock extends React.Component{
         super(props);
     }
     render() {
+        const { handleClick, dataId, expanded  } = this.props;
+
         return (
-            <CustomizedAccordionItem title="Login Info" iconClassname="icon-login"
-                accordionItemBodyClassName="accordion__body block-login-info">
+            <CustomizedAccordionItem
+                title="Login Info"
+                iconClassname="icon-login"
+                accordionItemBodyClassName="accordion__body block-login-info"
+                expanded={expanded}
+                handleClick={handleClick}
+                dataId={dataId}>
+
                 <div className="group">
                     <Cell text="Created Date:" classNames="row-info bold" />
                     <Cell text={this.props.loginInfo.CreatedDate} classNames="row-info" />

@@ -23,11 +23,16 @@ export default class BalanceInfoBlock extends React.Component{
 
     render() {
         const rowClasses = "col-xs-12 row-info";
-        const { headingText, iconClassname } = this.props; 
+        const { headingText, iconClassname, handleClick, dataId, expanded } = this.props; 
 
         return (
-            <CustomizedAccordionItem title="Balance Info" iconClassname="icon-balance"
-                accordionItemBodyClassName="accordion__body balance-info">
+            <CustomizedAccordionItem
+                title="Balance Info"
+                iconClassname="icon-balance"
+                accordionItemBodyClassName="accordion__body balance-info"
+                expanded={expanded}
+                handleClick={handleClick}
+                dataId={dataId}>
                 <div className={rowClasses}>
                     <Cell text="Total Cash" classNames="col-xs-6" />
                     <CellContainNumberFormat text={this.props.balanceInfo.TotalCash} classNames="col-xs-6 col-right" />

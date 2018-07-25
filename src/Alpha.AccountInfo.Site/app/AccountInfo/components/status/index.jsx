@@ -6,11 +6,22 @@ import CustomizedAccordionItem from '../common/customized-accordion-item';
 export default class StatusBlock extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            expanded: this.props.expanded || false
+        }
     }
     render() {
+        const { handleClick, dataId, expanded } = this.props;
+
         return (
-            <CustomizedAccordionItem title="Status" iconClassname="icon-status"
-                accordionItemBodyClassName="accordion__body block-status" expanded="true">
+            <CustomizedAccordionItem
+                title="Status"
+                iconClassname="icon-status"
+                accordionItemBodyClassName="accordion__body block-status"
+                expanded={expanded}
+                handleClick={handleClick}
+                dataId={dataId}>
+
                 <Status text="Suspended" checked={true} />
                 <Status text="Auto PT" checked={true} />
                 <Status text="Outright" checked={true} />

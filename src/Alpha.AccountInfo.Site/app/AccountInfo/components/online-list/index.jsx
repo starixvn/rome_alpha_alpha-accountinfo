@@ -14,8 +14,15 @@ export default class OnlineListBlock extends React.Component{
         let content = this.state.downlineList.length > 0 ?
             <DownlineList usernames={this.state.downlineList} /> : <NoInfomation />;
 
+        const { handleClick, dataId, expanded } = this.props;
+
         return (
-            <CustomizedAccordionItem title="Online List" iconClassname="icon-onlinelist">
+            <CustomizedAccordionItem
+                title="Online List"
+                iconClassname="icon-onlinelist"
+                expanded={expanded}
+                handleClick={handleClick}
+                dataId={dataId}>
                 {content}
             </CustomizedAccordionItem>
       );
