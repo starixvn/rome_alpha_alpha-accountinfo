@@ -6,7 +6,7 @@ import StatusBlock from '../components/status/index';
 import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
-import ShowContactInfo from './show-contact-info';
+import ShowContactInfo from '../components/common/show-contact-info';
 import { Accordion } from 'react-accessible-accordion';
 
 // Demo styles, see 'Styles' section below for some notes on use.
@@ -59,7 +59,7 @@ export default class FeatureList extends React.Component {
         e.preventDefault();
         const blockId = e.currentTarget.dataset.id;
 
-        this.updateState(blockId);        
+        this.updateState(blockId);
     }
 
     handleShowContactInfo(e) {
@@ -75,31 +75,27 @@ export default class FeatureList extends React.Component {
     }
 
     render() {
-        const { accountInfoModel } = this.props;
-        const { expandedItems, collapseAll } = this.state;
-
-        const collapseExpandClassName = collapseAll ? 'account-info-group' : 'account-info-group scroll-top';
+        const accountInfoModel = this.props.accountInfoModel;
+        const expandedItems = this.state.expandedItems;
+        const collapseExpandClassName = this.state.collapseAll ? 'account-info-group' : 'account-info-group scroll-top';
 
         return (
             <div className={collapseExpandClassName}>
                 {
                     !this.state.collapseAll &&
-                    <ShowContactInfo title="Show Contact Info"
-                        classNames="visible-mobile show-more-container"
-                        handleClick={this.handleShowContactInfo} />
-                }                
+                    <ShowContactInfo text="Show Contact Info" onClick={this.handleShowContactInfo} />
+                }
                 <Accordion>
                     <BalanceInfoBlock
-                        balanceInfo={accountInfoModel.BalanceInfo}
-                        handleClick={this.handleClick}
+                        collapExpandMethod={this.handleClick}
                         expanded={expandedItems.balanceInfo}
                         dataId="balanceInfo" />
                     <DownlineListBlock
-                        downlineList={accountInfoModel.DownlineList}
-                        handleClick={this.handleClick}
+                        collapExpandMethod={this.handleClick}
                         expanded={expandedItems.downlineList}
-                        dataId="downlineList" />
-                    <StatusBlock                       
+                        dataId="downlineList"
+                        custId={this.props.customerInfo.CustId} />
+                    <StatusBlock
                         handleClick={this.handleClick}
                         expanded={expandedItems.status}
                         dataId="status" />
@@ -107,11 +103,13 @@ export default class FeatureList extends React.Component {
                         handleClick={this.handleClick}
                         expanded={expandedItems.setting}
                         dataId="setting" />
+
                     <LoginInfoBlock
-                        loginInfo={accountInfoModel.LoginInfo}
+                        loginInfo={this.props.customerInfo}
                         handleClick={this.handleClick}
                         expanded={expandedItems.loginInfo}
                         dataId="loginInfo" />
+
                     <OnlineListBlock
                         handleClick={this.handleClick}
                         expanded={expandedItems.onlineList}

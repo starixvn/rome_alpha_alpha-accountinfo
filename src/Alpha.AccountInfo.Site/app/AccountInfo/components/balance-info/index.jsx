@@ -31,6 +31,7 @@ export default class BalanceInfoBlock extends React.Component{
     handleGivenCredit () { }
 
     handleClick(e) {
+        this.props.collapExpandMethod(e);
         if (this.state.data === null) {
             this.setState({
                 data: this.loadBalanceInfoFromServer()
@@ -60,18 +61,17 @@ export default class BalanceInfoBlock extends React.Component{
     }
 
     render() {
-        const rowClasses = "col-xs-12 row-info";
-        const {
-            headingText,
-            iconClassname,
-            handleClick,
-            dataId,
-            expanded
-        } = this.props; 
+        const { headingText, iconClassname, dataId, expanded } = this.props;
  
         return (
-            <CustomizedAccordionItem title="Balance Info" iconClassname="icon-balance"
-                accordionItemBodyClassName="accordion__body balance-info" handleClick={this.handleClick}>
+            <CustomizedAccordionItem
+                title="Balance Info"
+                iconClassname="icon-balance"
+                accordionItemBodyClassName="accordion__body balance-info"
+                expanded={expanded}
+                handleClick={this.handleClick}
+                hanldeGetData={this.hanldeGetData}
+                dataId={dataId}>
                 {this.state.data != null && <BalanceInfoContent balanceInfo={this.state.data} /> }
             </CustomizedAccordionItem>
       );

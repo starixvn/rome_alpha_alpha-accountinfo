@@ -22,11 +22,9 @@
         }
 
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
-        {
-            var model = new CustomerInfoViewModel(message.UplineLevel.Value, await accountInfoService.GetCustomerInfoModelAsync(message.UserName, message.UplineId));
-
-            return model;
-        }
+            => new CustomerInfoViewModel(
+                message.UplineLevel.Value, 
+                await accountInfoService.GetCustomerInfoModelAsync(message.UserName, message.UplineId));
 
         public async Task<DownlineListViewModel> Handle(DownlineListQuery message)
             => new DownlineListViewModel(await accountInfoService.GetDownlineListModelAsync(message.CustId));

@@ -23,21 +23,12 @@
             return View(new AccountInfoViewModel());
         }
 
-        public ActionResult GetCustomerInfo(string username)
-        {
-            var a = 10;
-            return Json(a, JsonRequestBehavior.DenyGet);
-        }
-
-        public async Task<ActionResult> GetCustomerInfoAsync01(CustomerInfoQuery message)
-        {
-           // var model = await JsonData(message, JsonRequestBehavior.DenyGet);
-            return await JsonData(message, JsonRequestBehavior.AllowGet);
-        }
+        public async Task<ActionResult> GetCustomerInfo(CustomerInfoQuery message)
+            => await JsonData(message, JsonRequestBehavior.AllowGet);
 
         //[HttpPost, AntiXsrfFilter]
         [HttpPost]
-        public async Task<ActionResult> GetMasterBalanceInfoModelAsync(MasterBalanceInfoQuery message)
+        public async Task<ActionResult> GetMasterBalanceInfo(MasterBalanceInfoQuery message)
         {
             return Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
         }
@@ -48,7 +39,10 @@
         // => await JsonData<AgentBalanceInfoViewModel>(message, JsonRequestBehavior.DenyGet);
 
         [HttpPost]
-        public async Task<ActionResult> GetMemberBalanceInfoModelAsync(MemberBalanceInfoQuery message)
+        public async Task<ActionResult> GetMemberBalanceInfo(MemberBalanceInfoQuery message)
          => await JsonData<MemberBalanceInfoViewModel>(message, JsonRequestBehavior.AllowGet);
+
+        public async Task<ActionResult> GetDownlineList(DownlineListQuery message)
+          => await JsonData(message, JsonRequestBehavior.AllowGet);
     }
 }

@@ -307,6 +307,7 @@
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
     <Content Include="app\AccountInfo\components\common\checkbox.jsx" />
     <Content Include="app\AccountInfo\containers\show-contact-info.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\downline-list-content.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />

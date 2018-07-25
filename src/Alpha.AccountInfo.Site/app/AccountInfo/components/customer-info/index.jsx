@@ -9,36 +9,16 @@ export default class CustomerInfoBlock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfoasync01",
-            data: {},
+            data: this.props.data,
             rowClasses: "col-xs-12 row-info",
             firstCellClass: "col-xs-5",
             secondCellClass: "col-xs-7 col-right",
         }
-
-        this.handleSearch = this.handleSearch.bind(this);
-        this.loadCutomerInfoFromServer = this.loadCutomerInfoFromServer.bind(this);
     }
 
-    handleBetListClick ()  { }
+    handleBetListClick() { }
 
-    handleStatementClick () { }
-
-    handleSearch(e) {
-        this.setState({ username: e.target.value });
-        this.loadCutomerInfoFromServer();
-    }
-
-    loadCutomerInfoFromServer() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('get', this.state.url + "?username=" + this.state.username);
-        xhr.onload = () => {
-            const data = JSON.parse(xhr.responseText);
-            this.setState({ data: data });
-        };
-        xhr.send();
-    }
+    handleStatementClick() { }
 
     buildLevelRow(username, levelName, iconClassname) {
         return <UserLevel
@@ -62,17 +42,7 @@ export default class CustomerInfoBlock extends React.Component {
         let roleId = data.RoleId;
 
         return (
-            <div className="block-info" id="blockInfo">
-              
-                <div className="search-box">
-                    <input type="text"
-                        className="txt-search"
-                        placeholder="Username" value={this.state.username}
-                        onChange={this.handleSearch} />
-                    <span className="icon-search" onClick={this.loadCutomerInfoFromServer}></span>
-                </div>
-
-
+            <div >
                 {this.state.data.ShowMasterName ? this.buildLevelRow(this.state.data.MasterName, "Master", roleId == 3 ? "icon-viewlog" : null) : null}
 
                 {this.state.data.ShowAgentName ? this.buildLevelRow(this.state.data.AgentName, "Agent", roleId == 2 ? "icon-viewlog" : null) : null}
