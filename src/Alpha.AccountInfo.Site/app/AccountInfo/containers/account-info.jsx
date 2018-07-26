@@ -7,6 +7,45 @@ import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
 import FeatureList from './feature-list';
+import Autosuggest from 'react-autosuggest';
+
+// Imagine you have a list of languages that you'd like to autosuggest.
+const listUserName = [
+    {
+        id: 1,
+        name: 'ACGUUS38'
+    },
+    {
+        id: 2,
+        name: 'ACGUUS3838'
+    },
+    {
+        id: 3,
+        name: 'ACGUUS3838033'
+    }
+];
+
+// Teach Autosuggest how to calculate suggestions for any given input value.
+const getSuggestions = value => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0 ? [] : listUserName.filter(user =>
+        user.name.toLowerCase().slice(0, inputLength) === inputValue
+    );
+};
+
+// When suggestion is clicked, Autosuggest needs to populate the input
+// based on the clicked suggestion. Teach Autosuggest how to calculate the
+// input value for every given suggestion.
+const getSuggestionValue = suggestion => suggestion.name;
+
+// Use your imagination to render suggestions.
+const renderSuggestion = suggestion => (
+    <div>
+        {suggestion.name}
+    </div>
+);
 
 export default class AccountInfo extends React.Component {
     constructor(props) {
@@ -15,24 +54,16 @@ export default class AccountInfo extends React.Component {
             showInfoStatus: false,
             username: '',
             url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo",
-            data: null
+            data: null,
+            suggestions: []
         };
 
         this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-        this.getCustomerInfo = this.getCustomerInfo.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-    }
-
-    handleSearch(e) {
-        this.setState({ username: e.target.value });
-        // TO DO suggestion
-    }
-
-    handleKeyPress(e) {
-        if (e.key === 'Enter') {
-            this.getCustomerInfo(e);
-        }
+        this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
+        this.getCustomerInfo = this.getCustomerInfo.bind(this);        
+        this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+        this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
     }
 
     getCustomerInfo(e) {
@@ -51,21 +82,60 @@ export default class AccountInfo extends React.Component {
         this.setState((prevStatus) => { showInfoStatus: !prevStatus })
     }
 
+    handleSearch(e, input) {
+        this.setState({ username: input.newValue });
+    };
+
+    handleSearchKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.getCustomerInfo(e);
+        }
+    }
+
+    // Autosuggest will call this function every time you need to update suggestions.
+    // You already implemented this logic above, so just use it.
+    onSuggestionsFetchRequested(input) {
+        this.setState({
+            suggestions: getSuggestions(input.value)
+        });
+    }
+
+    // Autosuggest will call this function every time you need to clear suggestions.
+    onSuggestionsClearRequested() {
+        this.setState({
+            suggestions: []
+        });
+    }
+
+    shouldRenderSuggestions(value) {
+        return value.trim().length > 1;
+    }
+
     render() {
+        const { showInfoStatus, username, url, data, suggestions } = this.state;
+
         const inputProps = {
             type: 'text',
             className: 'txt-search',
             onChange: this.handleSearch,
-            onKeyPress: this.handleKeyPress,
+            onKeyPress: this.handleSearchKeyPress,
             placeholder: 'Username',
-            value: this.state.username
+            value: username
         }
 
         return (
             <div className="accountinfo-container">
                 <div className="block-info" id="blockInfo">
                     <div className="search-box">
-                        <input {...inputProps} />
+                        <Autosuggest
+                            suggestions={suggestions}
+                            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                            getSuggestionValue={getSuggestionValue}
+                            renderSuggestion={renderSuggestion}
+                            shouldRenderSuggestions={this.shouldRenderSuggestions}
+                            inputProps={inputProps}
+                        />
                         <span className="icon-search" onClick={this.getCustomerInfo}></span>
                     </div>
 

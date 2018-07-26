@@ -108,6 +108,7 @@ hr {
         position: relative;
         height: 40px;
         margin: 7px 12px 0;
+        z-index: 1000;
 
         .txt-search {
             border: none;
@@ -137,9 +138,10 @@ hr {
             right: 0;
         }
     }
-   
+
     .block-info {
         display: table;
+        width: 100%;
         max-height: initial;
         transition: max-height 0.25s ease-in;
 
@@ -176,12 +178,11 @@ hr {
             }
         }
     }
-    
     // Settings
     .product {
         display: table;
     }
-    
+
 
     .block-setting {
         ul {
@@ -592,6 +593,7 @@ hr {
         color: #000;
         opacity: 1;
         background: none;
+        text-align: left;
     }
 
     .swiper-pagination-bullet-active {
@@ -702,6 +704,26 @@ hr {
 }
 
 
+// Customize UI for auto suggestion
+
+.react-autosuggest__suggestions-list {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: 1px solid #dfdfdf;
+    border-radius: 1px;
+    color: #333;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+}
+
+.react-autosuggest__suggestion {
+    padding: 5px 12px;
+
+    &:hover {
+        background-color: #fff;
+    }
+}
 
 
 
