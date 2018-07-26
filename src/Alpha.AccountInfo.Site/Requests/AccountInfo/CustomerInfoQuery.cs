@@ -17,10 +17,21 @@
 
         public string UserName { get; set; }
 
-        public int UplineId => viewer.Id;
+        public int ActorId => viewer.Id;
 
-        public UserLevel UplineLevel => Enumeration.FromValue<UserLevel>(viewer.LevelId);
+        public byte ActorRoleId => viewer.LevelId;
 
-        public override bool IsValid() => !string.IsNullOrEmpty(UserName) && UplineId > 0;
+        public UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(viewer.LevelId);
+
+        public bool AllDayBalTransfer => viewer.AllowedAllDayBalTransfer;
+
+        public bool AllowedTotalBalanceTransfer => viewer.AllowedTotalBalanceTransfer;
+
+        public bool AllowTransfer => viewer.AllowTransfer;
+
+        public bool ViewReports => viewer.CanViewReports;
+
+
+        public override bool IsValid() => !string.IsNullOrEmpty(UserName) && ActorId > 0;
     }
 }

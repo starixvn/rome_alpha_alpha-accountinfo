@@ -76,10 +76,21 @@ export default class BalanceInfoContent extends React.Component{
                         onSave={this.handleOutStandingChange} />
                 </div>
 
-                <div className={rowClasses}>
-                    <Cell title="Used Credit" classNames="col-xs-6" />
-                    <CellContainNumberFormat title={this.props.balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
-                </div>
+                {
+                    this.props.roleId > 1 &&
+                    <div className={rowClasses}>
+                        <Cell title="Used Credit" classNames="col-xs-6" />
+                        <CellContainNumberFormat title={this.props.balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
+                    </div>
+                }
+
+                {
+                    this.props.roleId == 1 &&
+                    <div className={rowClasses}>
+                        <Cell title="Net Position" classNames="col-xs-6" />
+                        <CellContainNumberFormat title={this.props.balanceInfo.NetPosition} classNames="col-xs-6 col-right" />
+                    </div>
+                }
 
                 <div className={rowClasses}>
                     <Cell title="Given Credit" classNames="col-xs-6" />

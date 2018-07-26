@@ -8,26 +8,32 @@ export default class DownlineListBlock extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            custId: this.props.custId,
             url: window.accountInfoSiteAppPath + "accountinfo/getdownlinelist",
             data: null
         }
         this.handleClick = this.handleClick.bind(this);
     }
+
+    componentWillReceiveProps(props) {
+        if (props.custId != this.state.custId) {
+            this.setState({
+                custId: props.custId,
+                data: null
+            });
+        }
+    }
+
+
     componentDidMount() {
     
     }
 
     handleClick(e) {
         this.props.collapExpandMethod(e);
-        this.setState({
+        this.data == null && this.setState({
             data: this.loadDownlineListFromServer()
         });
-        //if (this.state.data === null) {
-        //    this.setState({
-        //        data: this.loadDownlineListFromServer()
-        //    });
-        //}
     }
 
     loadDownlineListFromServer() {
@@ -40,20 +46,6 @@ export default class DownlineListBlock extends React.Component{
             this.setState({ data: data });
         };
         xhr.send();
-
-        //return {
-        //    DownlineList: ["user1", "user2"],
-        //    TotalStatusAgent: {
-        //        TotalActive: 456,
-        //        TotalClosed: 123,
-        //        TotalSuspend:787
-        //    },
-        //    TotalStatusMember: {
-        //        TotalActive: 576,
-        //        TotalClosed: 789780,
-        //        TotalSuspend: 2543
-        //    }
-        //}
     }
 
     render() {

@@ -8,9 +8,9 @@
     public class MemberBalanceInfoViewModel
     {
         private readonly BalanceInfoModel model;
-        private readonly MemberBalanceInfoQuery message;
+        private readonly CustomerInfoQuery message;
 
-        public MemberBalanceInfoViewModel(MemberBalanceInfoQuery message, BalanceInfoModel model)
+        public MemberBalanceInfoViewModel(CustomerInfoQuery message, BalanceInfoModel model)
         {
             this.model = model;
             this.message = message;
@@ -22,14 +22,14 @@
 
         public decimal Outstanding => model.CustomerOutstanding;
 
-        public decimal NetPostion => model.NetPosition;
+        public decimal NetPosition => model.NetPosition;
 
         public decimal GivenCredit => model.Credit;
 
-        public decimal BetCredit => GivenCredit + model.CustomerCash - Outstanding + NetPostion;
+        public decimal BetCredit => GivenCredit + model.CustomerCash - Outstanding + NetPosition;
 
         public bool ShowTransferLink =>
-            Enumeration.FromValue<UserLevel>(message.ActorId).IsAgentLevel() 
+            Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsAgentLevel() 
             && !message.AllDayBalTransfer
             && message.AllowTransfer;
 

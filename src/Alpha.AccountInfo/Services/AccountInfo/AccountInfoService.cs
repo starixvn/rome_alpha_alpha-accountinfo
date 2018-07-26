@@ -10,7 +10,7 @@
     {
         Task<CustomerInfoModel> GetCustomerInfoModelAsync(string username, int uplineId);
 
-        Task<BalanceInfoModel> GetBalanceInfoModelAsync(int custId);
+        Task<BalanceInfoModel> GetBalanceInfoModelAsync(int custId, byte roleId);
 
         Task<DownlineListModel> GetDownlineListModelAsync(int custId);
 
@@ -28,9 +28,9 @@
             this.accountInfoDataAccess = accountInfoDataAccess;
         }
 
-        public async Task<BalanceInfoModel> GetBalanceInfoModelAsync(int custId)
+        public async Task<BalanceInfoModel> GetBalanceInfoModelAsync(int custId, byte roleId)
             => await accountInfoDataAccess.GetBalanceInfoModelAsync(
-               new SelectBalanceInfoCriteria(custId));
+               new SelectBalanceInfoCriteria(custId), roleId);
 
         public async Task<CustomerAllStatusModel> GetCustomerAllStatusModelAsync(int custId)
             => await accountInfoDataAccess.GetCustomerAllStatusModelAsync(

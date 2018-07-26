@@ -16,14 +16,20 @@ export default class DownlineListContent extends React.Component{
             <div>
                 <DownlineInfo downlineList={downlineList.DownlineList} />
                 <div><hr /></div>
-                <TotalDownlineList levelName="Agents"
+                {
+                    this.props.downlineList.TotalStatusAgent != null &&
+                    <TotalDownlineList levelName="Agents"
                     totalActive={downlineList.TotalStatusAgent.TotalActive}
                     totalClosed={downlineList.TotalStatusAgent.TotalClosed}
                     totalSuspended={downlineList.TotalStatusAgent.TotalSuspend} />
-                <TotalDownlineList levelName="Members"
+                }
+                {
+                    this.props.downlineList.TotalStatusMember != null &&
+                    <TotalDownlineList levelName="Members"
                     totalActive={downlineList.TotalStatusMember.TotalActive}
                     totalClosed={downlineList.TotalStatusMember.TotalClosed}
                     totalSuspended={downlineList.TotalStatusMember.TotalSuspend} />
+                }
             </div>    
         );
     }

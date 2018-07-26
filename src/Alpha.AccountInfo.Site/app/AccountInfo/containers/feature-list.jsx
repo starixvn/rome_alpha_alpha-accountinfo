@@ -16,19 +16,31 @@ export default class FeatureList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expandedItems: {
-                balanceInfo: true,
-                downlineList: false,
-                status: false,
-                setting: false,
-                loginInfo: false,
-                onlineList: false
-            },
+            expandedItems: this.initialExpandedItems(),
             collapseAll: false
         }
 
         this.handleClick = this.handleClick.bind(this);
         this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
+    }
+
+    initialExpandedItems() {
+        return {
+            balanceInfo: true,
+            downlineList: false,
+            status: false,
+            setting: false,
+            loginInfo: false,
+            onlineList: false
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.customerInfo.CustId != this.props.customerInfo.CustId) {
+            this.setState({
+                expandedItems: this.initialExpandedItems()
+            });
+        }
     }
 
     resetColllapseAll(expandedItems) {
@@ -74,11 +86,25 @@ export default class FeatureList extends React.Component {
         });
     }
 
+    getBalanceInfo() {
+        switch (this.props.customerInfo.RoleId) {
+            case 3:
+                return this.props.customerInfo.MasterBalanceInfo;
+            case 2: 
+                return this.props.customerInfo.AgentBalanceInfo;
+            default:
+                return this.props.customerInfo.MemberBalanceInfo;
+        }
+    }
+
+
     render() {
         const { accountInfoModel } = this.props;
         const { expandedItems, collapseAll } = this.state;
 
         const collapseExpandClassName = collapseAll ? 'account-info-group' : 'account-info-group scroll-top';
+
+        const balanceinfo = this.getBalanceInfo();
 
         return (
             <div className={collapseExpandClassName}>
@@ -94,7 +120,8 @@ export default class FeatureList extends React.Component {
                         expanded={expandedItems.balanceInfo}
                         dataId="balanceInfo"
                         custId={this.props.customerInfo.CustId}
-                        roleId={this.props.customerInfo.RoleId} />
+                        roleId={this.props.customerInfo.RoleId}
+                        balanceInfo={this.getBalanceInfo()} />
                     <DownlineListBlock
                         collapExpandMethod={this.handleClick}
                         expanded={expandedItems.downlineList}

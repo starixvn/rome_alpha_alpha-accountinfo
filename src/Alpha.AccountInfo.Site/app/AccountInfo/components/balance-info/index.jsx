@@ -14,41 +14,41 @@ export default class BalanceInfoBlock extends React.Component{
         this.state = {
             username: '',
             url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo",
-            data: null
+            data: this.props.balanceInfo
         }
 
-        this.handleClick = this.handleClick.bind(this);
+        //this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
-        this.props.collapExpandMethod(e);
-        if (this.state.data === null) {
-            this.setState({
-                data: this.loadBalanceInfoFromServer()
-            });
-        }
-    }
+    //handleClick(e) {
+    //    this.props.collapExpandMethod(e);
+    //    if (this.state.data === null) {
+    //        this.setState({
+    //            data: this.loadBalanceInfoFromServer()
+    //        });
+    //    }
+    //}
 
-    loadBalanceInfoFromServer() {
-        console.log("load balance info");
+    //loadBalanceInfoFromServer() {
+    //    console.log("load balance info");
 
-        return {
-            TotalCash: 45,
-            YesterdayCash: 56,
-            TotalBalance: 4656,
-            YesterdayBalance: 87,
-            Outstanding: 1234,
-            NetPostion: 749877,
-            GivenCredit: 7897,
-            BetCredit: 1234,
-            MemMaxCredit_Max: 4156476,
-            UsedCredit: 456,
-            CurrentGivenCredit: 45674,
-            Difference: 7897,
-            NewGivenCredit: 45674
+    //    return {
+    //        TotalCash: 45,
+    //        YesterdayCash: 56,
+    //        TotalBalance: 4656,
+    //        YesterdayBalance: 87,
+    //        Outstanding: 1234,
+    //        NetPostion: 749877,
+    //        GivenCredit: 7897,
+    //        BetCredit: 1234,
+    //        MemMaxCredit_Max: 4156476,
+    //        UsedCredit: 456,
+    //        CurrentGivenCredit: 45674,
+    //        Difference: 7897,
+    //        NewGivenCredit: 45674
 
-        }
-    }
+    //    }
+    //}
 
     render() {
         const { headingText, iconClassname, dataId, expanded, roleId } = this.props;

@@ -3,11 +3,14 @@
     using System.Collections.Generic;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Enumerations;
 
     public class CustomerInfoViewModel
     {
-        private readonly CustomerInfoModel model;
+        private readonly CustomerInfoQuery message;
+        private readonly CustomerInfoModel customerInfo;
+        private readonly BalanceInfoModel balanceInfo;
 
         private const string SMAStatementLink = "/site-reports/(S(wa000mahqldvjxctxg3naqhq))/Statement/SMAStatement?CustID=1382167&amp;CustName=ACGUUS3838&amp;CustLevelId=2";
         private const string memberStatementLink = "/site-reports/(S(wa000mahqldvjxctxg3naqhq))/Statement/MemberStatement?CustID=1387971&amp;CustName=ACGUUS3838338&amp;CustLevelId=1";
@@ -20,50 +23,66 @@
                 { UserLevel.Agent, "../_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167"}
             };
 
-        public CustomerInfoViewModel(byte actorRoleId, CustomerInfoModel model)
+        public CustomerInfoViewModel(
+            CustomerInfoQuery message, 
+            CustomerInfoModel customerInfo,
+            BalanceInfoModel balanceInfo)
         {
-            ActorRoleId = actorRoleId;
-            this.model = model;
+            this.message = message;
+            this.customerInfo = customerInfo;
+            this.balanceInfo = balanceInfo;
         }
 
-        public int CustId => model.CustId;
+        public int CustId => customerInfo.CustId;
 
-        public byte RoleId => model.RoleId;
+        public byte RoleId => customerInfo.RoleId;
 
-        public byte ActorRoleId { get; }
+        public byte ActorRoleId => message.ActorRoleId;
 
-        public string UserName => model.UserName;
+        public string UserName => customerInfo.UserName;
 
-        public string NickName => model.UserName2;
+        public string NickName => customerInfo.UserName2;
 
-        public string Phone => model.Phone;
+        public string Phone => customerInfo.Phone;
 
-        public string Fax => model.Fax;
+        public string Fax => customerInfo.Fax;
 
         public bool ShowMemberName => RoleId.Equals(1);
 
-        public string MemberName => model.MemberName;
+        public string MemberName => customerInfo.MemberName;
 
         public bool ShowAgentName => (ActorRoleId.Equals(4) || ActorRoleId.Equals(3)) && RoleId < 3;
 
-        public string AgentName => model.AgentName;
+        public string AgentName => customerInfo.AgentName;
 
         public bool ShowMasterName => ActorRoleId.Equals(4) && RoleId < 4;
 
-        public string MasterName => model.MasterName;
+        public string MasterName => customerInfo.MasterName;
 
-        public string SuperName => model.SuperName;
+        public string SuperName => customerInfo.SuperName;
 
         public LoginInfoViewModel LoginInfo {
             get
             {
                 return new LoginInfoViewModel(
-                    model.CreateDate,
-                    model.LastLogged,
-                    model.LastTxn,
-                    model.LastLoginIP);
+                    customerInfo.CreateDate,
+                    customerInfo.LastLogged,
+                    customerInfo.LastTxn,
+                    customerInfo.LastLoginIP);
             }
         }
+
+        public MasterBalanceInfoViewModel MasterBalanceInfo 
+            => Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMasterLevel() 
+            ? new MasterBalanceInfoViewModel(message, balanceInfo) : null;
+
+        public AgentBalanceInfoViewModel AgentBalanceInfo
+            => Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsAgentLevel()
+            ? new AgentBalanceInfoViewModel(message, balanceInfo) : null;
+
+        public MemberBalanceInfoViewModel MemberBalanceInfo
+             => Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel()
+            ? new MemberBalanceInfoViewModel(message, balanceInfo) : null;
 
         public string CustomerListLink
         {

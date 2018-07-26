@@ -6,9 +6,9 @@
     public class MasterBalanceInfoViewModel
     {
         private readonly BalanceInfoModel model;
-        private readonly MasterBalanceInfoQuery message;
+        private readonly CustomerInfoQuery message;
 
-        public MasterBalanceInfoViewModel(MasterBalanceInfoQuery message, BalanceInfoModel model)
+        public MasterBalanceInfoViewModel(CustomerInfoQuery message, BalanceInfoModel model)
         {
             this.model = model;
             this.message = message;
@@ -38,14 +38,14 @@
             get
             {
                 var atm = message.AllowedTotalBalanceTransfer ? TotalBalance : YesterdayBalance;
-                return $"../_Transfer/Super/MasterTransfer.aspx?amt={atm}&custid={message.CustId}&status=1&CallBack=false&username={message.UserName}&isyesterday=1";
+                return $"../_Transfer/Super/MasterTransfer.aspx?amt={atm}&custid={model.CustId}&status=1&CallBack=false&username={message.UserName}&isyesterday=1";
             }
         }
 
         public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
 
         public string OutstandingLink =>
-            $"../outstanding/Super?CustId={message.CustId}&CustName={message.UserName}&CustLevelId=3&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
+            $"../outstanding/Super?CustId={model.CustId}&CustName={message.UserName}&CustLevelId=3&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
 
         public string GivenCreditLimit => $">={MasterCredit_Min} and <={MasterCredit_Max}";
 

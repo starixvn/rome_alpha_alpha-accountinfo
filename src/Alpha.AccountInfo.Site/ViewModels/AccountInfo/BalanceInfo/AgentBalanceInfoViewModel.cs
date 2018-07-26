@@ -8,9 +8,9 @@
     public class AgentBalanceInfoViewModel
     {
         private readonly BalanceInfoModel model;
-        private readonly AgentBalanceInfoQuery message;
+        private readonly CustomerInfoQuery message;
 
-        public AgentBalanceInfoViewModel(AgentBalanceInfoQuery message, BalanceInfoModel model)
+        public AgentBalanceInfoViewModel(CustomerInfoQuery message, BalanceInfoModel model)
         {
             this.model = model;
             this.message = message;
@@ -44,7 +44,7 @@
             get
             {
                 var atm = message.AllowedTotalBalanceTransfer ? TotalBalance : YesterdayBalance;
-                return $"../_Transfer/Master/AgentTransfer.aspx?amt={atm}&custid={message.CustId}&status=1&CallBack=false&username={message.UserName}&isyesterday=1";
+                return $"../_Transfer/Master/AgentTransfer.aspx?amt={atm}&custid={model.CustId}&status=1&CallBack=false&username={message.UserName}&isyesterday=1";
             }
         }
         public string MemberMaxCreditLimit => IsSuperLevel ? string.Empty : $">={MemMaxCredit_Min} and <={GivenCredit}";
@@ -52,7 +52,7 @@
         public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
 
         public string OutstandingLink =>
-            $"../outstanding/Master?CustId={message.CustId}&CustName={message.UserName}&CustLevelId=2&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
+            $"../outstanding/Master?CustId={model.CustId}&CustName={message.UserName}&CustLevelId=2&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
 
         private decimal MemMaxCredit_Min => model.MemMaxCredit_Min;
 
@@ -60,6 +60,6 @@
 
         private decimal AgentCredit_Max => model.AgentCredit_Max;
 
-        private bool IsSuperLevel => Enumeration.FromValue<UserLevel>(message.ActorId).IsSuperLevel();
+        private bool IsSuperLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsSuperLevel();
     }
 }
