@@ -51,7 +51,7 @@ export default class BalanceInfoBlock extends React.Component{
     }
 
     render() {
-        const { headingText, iconClassname, dataId, expanded } = this.props;
+        const { headingText, iconClassname, dataId, expanded, roleId } = this.props;
  
         return (
             <CustomizedAccordionItem
@@ -62,7 +62,7 @@ export default class BalanceInfoBlock extends React.Component{
                 handleClick={this.handleClick}
                 hanldeGetData={this.hanldeGetData}
                 dataId={dataId}>
-                {this.state.data != null && <BalanceInfoContent balanceInfo={this.state.data} /> }
+                {this.state.data != null && <BalanceInfoContent balanceInfo={this.state.data} roleId={roleId} />}
             </CustomizedAccordionItem>
       );
     }

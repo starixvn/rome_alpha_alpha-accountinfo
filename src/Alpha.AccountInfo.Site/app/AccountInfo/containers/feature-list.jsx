@@ -92,7 +92,9 @@ export default class FeatureList extends React.Component {
                     <BalanceInfoBlock
                         collapExpandMethod={this.handleClick}
                         expanded={expandedItems.balanceInfo}
-                        dataId="balanceInfo" />
+                        dataId="balanceInfo"
+                        custId={this.props.customerInfo.CustId}
+                        roleId={this.props.customerInfo.RoleId} />
                     <DownlineListBlock
                         collapExpandMethod={this.handleClick}
                         expanded={expandedItems.downlineList}

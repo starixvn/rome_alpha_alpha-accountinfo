@@ -16,25 +16,9 @@
             this.message = message;
         }
 
-        public decimal TotalCash => model.CustomerCash;
+        public decimal TotalBalance => model.CustomerCash;
 
-        public decimal YesterdayCash => model.Yesterday_CustomerCash;
-
-        public decimal TotalBalance => TotalCash;
-
-        public decimal YesterdayBalance => YesterdayCash;
-
-        public bool ShowTransferLink =>
-            Enumeration.FromValue<UserLevel>(message.ActorId).IsAgentLevel() 
-            && !message.AllDayBalTransfer
-            && message.AllowTransfer;
-
-        // Show TransferLink On TotalBalance or YesterdayBalance
-        public bool ShowTransferLinkOnTotalBalance => message.AllowedTotalBalanceTransfer;
-
-        public bool ShowBetListLink => message.ViewReports && Outstanding > 0;
-
-        public string TransferLink => $"../_Transfer/Agent/MemberTransfer.aspx?custid={model.CustId}&CallBack=false";
+        public decimal YesterdayBalance => model.Yesterday_CustomerCash;
 
         public decimal Outstanding => model.CustomerOutstanding;
 
@@ -42,7 +26,21 @@
 
         public decimal GivenCredit => model.Credit;
 
-        public decimal BetCredit => GivenCredit + TotalCash - Outstanding + NetPostion;
+        public decimal BetCredit => GivenCredit + model.CustomerCash - Outstanding + NetPostion;
+
+        public bool ShowTransferLink =>
+            Enumeration.FromValue<UserLevel>(message.ActorId).IsAgentLevel() 
+            && !message.AllDayBalTransfer
+            && message.AllowTransfer;
+
+        // Show TransferLink On TotalBalance or YesterdayBalance
+        public bool AllowedTotalBalanceTransfer => message.AllowedTotalBalanceTransfer;
+
+        public string TransferLink => $"../_Transfer/Agent/MemberTransfer.aspx?custid={model.CustId}&CallBack=false";
+
+        public bool ShowBetListLink => message.ViewReports && Outstanding > 0;
+        
+        public string BetListLink => $"/site-betlists/(S(0q5s4rp4cfwvxiwmxikqhavv))/RunningBetList/Index?CustID={model.CustId}&amp;CustName=ACGUUS3838033&amp;GetAll=True";
 
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
 

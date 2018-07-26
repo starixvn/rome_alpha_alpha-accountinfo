@@ -31,7 +31,7 @@
         public bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
 
         // Show TransferLink On TotalBalance or YesterdayBalance
-        public bool ShowTransferLinkOnTotalBalance => message.AllowedTotalBalanceTransfer;
+        public bool AllowedTotalBalanceTransfer => message.AllowedTotalBalanceTransfer;
 
         public string TransferLink
         {
