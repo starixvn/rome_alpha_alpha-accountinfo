@@ -27,27 +27,27 @@ export default class BalanceInfoContent extends React.Component{
         return (
             <div>
                 <div className={rowClasses}>
-                    <Cell text="Total Cash" classNames="col-xs-6" />
+                    <Cell title="Total Cash" classNames="col-xs-6" />
                     <CellContainNumberFormat title={this.props.balanceInfo.TotalCash} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Yesterday Cash" classNames="col-xs-6" />
+                    <Cell title="Yesterday Cash" classNames="col-xs-6" />
                     <CellContainNumberFormat title={this.props.balanceInfo.YesterdayCash} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Total Balance" classNames="col-xs-6" />
+                    <Cell title="Total Balance" classNames="col-xs-6" />
                     <CellContainNumberFormat title={this.props.balanceInfo.TotalBalance} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Yesterday Balance" classNames="col-xs-6" />
+                    <Cell title="Yesterday Balance" classNames="col-xs-6" />
                     <CellContainNumberFormat title={this.props.balanceInfo.YesterdayBalance} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Outstanding" classNames="col-xs-6" />
+                    <Cell title="Outstanding" classNames="col-xs-6" />
                     <CellContainInput title={this.props.balanceInfo.Outstanding}
                         classNames="col-xs-6 col-right box-edited"
                         inputClassname="txt-number-edited"
@@ -55,12 +55,12 @@ export default class BalanceInfoContent extends React.Component{
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Used Credit" classNames="col-xs-6" />
+                    <Cell title="Used Credit" classNames="col-xs-6" />
                     <CellContainNumberFormat title={this.props.balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell text="Given Credit" classNames="col-xs-6" />
+                    <Cell title="Given Credit" classNames="col-xs-6" />
                     <CellContainInput title={this.props.balanceInfo.GivenCredit}
                         id="txt-given-edit"
                         classNames="col-xs-6 col-right box-edited"
@@ -72,12 +72,12 @@ export default class BalanceInfoContent extends React.Component{
                         <h1 className="title">Given Credit</h1>
 
                         <div className={rowClasses}>
-                            <Cell text="Current Given Credit" classNames="col-xs-7" />
-                            <Cell text={this.props.balanceInfo.CurrentGivenCredit.toLocaleString('en-us', { minimumFractionDigits: 2 })} classNames="col-xs-5 show-value" />
+                            <Cell title="Current Given Credit" classNames="col-xs-7" />
+                            <Cell title={this.props.balanceInfo.CurrentGivenCredit.toLocaleString('en-us', { minimumFractionDigits: 2 })} classNames="col-xs-5 show-value" />
                         </div>
 
                         <div className={rowClasses}>
-                            <Cell text="New Given Credit" classNames="col-xs-7" />
+                            <Cell title="New Given Credit" classNames="col-xs-7" />
                             <CellContainInput title={this.props.balanceInfo.NewGivenCredit}
                                 classNames="col-xs-5 text-right"
                                 inputClassname="hasBorder txt-newValue"
@@ -85,13 +85,13 @@ export default class BalanceInfoContent extends React.Component{
                         </div>
 
                         <div className={rowClasses}>
-                            <Cell text="Difference" classNames="col-xs-7" />
-                            <Cell text={this.props.balanceInfo.Difference.toLocaleString('en-us', { minimumFractionDigits: 2 })} classNames="col-xs-5 show-value" />
+                            <Cell title="Difference" classNames="col-xs-7" />
+                            <Cell title={this.props.balanceInfo.Difference.toLocaleString('en-us', { minimumFractionDigits: 2 })} classNames="col-xs-5 show-value" />
                         </div>
 
                         <div className="col-xs-12 row-info popup-bottom list-button">
-                            <Button text="Cancel" classNames="btn-cancel" onClick={this.handleCancelClick} />
-                            <Button text="Submit" classNames="btn-submit" onClick={this.handleSubmitClick} />
+                            <Button title="Cancel" classNames="btn-cancel" onClick={this.handleCancelClick} />
+                            <Button title="Submit" classNames="btn-submit" onClick={this.handleSubmitClick} />
                         </div>
                     </div>
                 </div>

@@ -10,18 +10,20 @@ export default class DownlineListContent extends React.Component{
     }
 
     render() {
+        const { downlineList } = this.props;
+
         return (
             <div>
-                <DownlineInfo downlineList={this.props.downlineList.DownlineList} />
+                <DownlineInfo downlineList={downlineList.DownlineList} />
                 <div><hr /></div>
                 <TotalDownlineList levelName="Agents"
-                    totalActive={this.props.downlineList.TotalStatusAgent.TotalActive}
-                    totalClosed={this.props.downlineList.TotalStatusAgent.TotalClosed}
-                    totalSuspended={this.props.downlineList.TotalStatusAgent.TotalSuspend} />
+                    totalActive={downlineList.TotalStatusAgent.TotalActive}
+                    totalClosed={downlineList.TotalStatusAgent.TotalClosed}
+                    totalSuspended={downlineList.TotalStatusAgent.TotalSuspend} />
                 <TotalDownlineList levelName="Members"
-                    totalActive={this.props.downlineList.TotalStatusMember.TotalActive}
-                    totalClosed={this.props.downlineList.TotalStatusMember.TotalClosed}
-                    totalSuspended={this.props.downlineList.TotalStatusMember.TotalSuspend} />
+                    totalActive={downlineList.TotalStatusMember.TotalActive}
+                    totalClosed={downlineList.TotalStatusMember.TotalClosed}
+                    totalSuspended={downlineList.TotalStatusMember.TotalSuspend} />
             </div>    
         );
     }

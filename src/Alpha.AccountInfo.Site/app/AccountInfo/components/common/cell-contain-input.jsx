@@ -26,16 +26,18 @@ export default class CellContainInput extends React.Component {
        
     }
     render() {
+        const { classNames, title, iconClassname } = this.props;
+
         const inputClassname = "txt-number-edited";
         return (
-            <div className={this.props.classNames}>
+            <div className={classNames}>
                 <input type="text"
                     className={inputClassname}
-                    value={this.props.title.toLocaleString('en-us', { minimumFractionDigits: 2 })} 
+                    value={title.toLocaleString('en-us', { minimumFractionDigits: 2 })} 
                     onBlur={this.handleBlur}
                     onChange={this.handleChange}
                     onKeyDown={this.handleSubmit} />
-                <span className={this.props.iconClassname}></span>
+                <span className={iconClassname}></span>
             </div>
       );
     }

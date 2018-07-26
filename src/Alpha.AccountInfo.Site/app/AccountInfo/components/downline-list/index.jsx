@@ -58,6 +58,7 @@ export default class DownlineListBlock extends React.Component{
 
     render() {
         const { handleClick, dataId, expanded } = this.props;
+        const { data } = this.state;
 
         return (
             <CustomizedAccordionItem
@@ -66,7 +67,7 @@ export default class DownlineListBlock extends React.Component{
                 expanded={expanded}
                 handleClick={this.handleClick}
                 dataId={dataId}>
-                {this.state.data != null && <DownlineListContent downlineList={this.state.data} />}
+                {data != null && <DownlineListContent downlineList={data} />}
             </CustomizedAccordionItem>    
         );
     }
