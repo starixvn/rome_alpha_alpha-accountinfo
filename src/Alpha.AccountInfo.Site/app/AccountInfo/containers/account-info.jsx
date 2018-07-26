@@ -21,11 +21,18 @@ export default class AccountInfo extends React.Component {
         this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.getCustomerInfo = this.getCustomerInfo.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     handleSearch(e) {
         this.setState({ username: e.target.value });
         // TO DO suggestion
+    }
+
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.getCustomerInfo(e);
+        }
     }
 
     getCustomerInfo(e) {
@@ -45,14 +52,20 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
+        const inputProps = {
+            type: 'text',
+            className: 'txt-search',
+            onChange: this.handleSearch,
+            onKeyPress: this.handleKeyPress,
+            placeholder: 'Username',
+            value: this.state.username
+        }
+
         return (
             <div className="accountinfo-container">
                 <div className="block-info" id="blockInfo">
                     <div className="search-box">
-                        <input type="text"
-                            className="txt-search"
-                            placeholder="Username" value={this.state.username}
-                            onChange={this.handleSearch} />
+                        <input {...inputProps} />
                         <span className="icon-search" onClick={this.getCustomerInfo}></span>
                     </div>
 
