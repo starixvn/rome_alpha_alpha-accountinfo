@@ -16,6 +16,10 @@ export default class CustomerInfoBlock extends React.Component {
         }
     }
 
+    componentWillReceiveProps(props) {
+        this.setState({ data: props.data });
+    }
+
     handleBetListClick() { }
 
     handleStatementClick() { }

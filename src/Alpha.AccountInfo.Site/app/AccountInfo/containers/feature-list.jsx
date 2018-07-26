@@ -107,7 +107,7 @@ export default class FeatureList extends React.Component {
                         expanded={expandedItems.setting}
                         dataId="setting" />
                     <LoginInfoBlock
-                        loginInfo={this.props.customerInfo}
+                        loginInfo={this.props.customerInfo.LoginInfo}
                         handleClick={this.handleClick}
                         expanded={expandedItems.loginInfo}
                         dataId="loginInfo" />

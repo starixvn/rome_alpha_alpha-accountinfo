@@ -54,6 +54,17 @@
 
         public string SuperName => model.SuperName;
 
+        public LoginInfoViewModel LoginInfo {
+            get
+            {
+                return new LoginInfoViewModel(
+                    model.CreateDate,
+                    model.LastLogged,
+                    model.LastTxn,
+                    model.LastLoginIP);
+            }
+        }
+
         public string CustomerListLink
         {
             get

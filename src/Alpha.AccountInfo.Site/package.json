@@ -58,7 +58,6 @@
     "react-number-format": "^3.4.2",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
-    "todomvc-app-css": "^2.1.0",
     "typescript": "^2.1.6",
     "webpack": "^4.10.2",
     "webpack-cli": "^2.1.5",

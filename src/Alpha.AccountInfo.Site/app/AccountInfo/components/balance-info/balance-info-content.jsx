@@ -28,27 +28,27 @@ export default class BalanceInfoContent extends React.Component{
             <div>
                 <div className={rowClasses}>
                     <Cell text="Total Cash" classNames="col-xs-6" />
-                    <CellContainNumberFormat text={this.props.balanceInfo.TotalCash} classNames="col-xs-6 col-right" />
+                    <CellContainNumberFormat title={this.props.balanceInfo.TotalCash} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
                     <Cell text="Yesterday Cash" classNames="col-xs-6" />
-                    <CellContainNumberFormat text={this.props.balanceInfo.YesterdayCash} classNames="col-xs-6 col-right" />
+                    <CellContainNumberFormat title={this.props.balanceInfo.YesterdayCash} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
                     <Cell text="Total Balance" classNames="col-xs-6" />
-                    <CellContainNumberFormat text={this.props.balanceInfo.TotalBalance} classNames="col-xs-6 col-right" />
+                    <CellContainNumberFormat title={this.props.balanceInfo.TotalBalance} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
                     <Cell text="Yesterday Balance" classNames="col-xs-6" />
-                    <CellContainNumberFormat text={this.props.balanceInfo.YesterdayBalance} classNames="col-xs-6 col-right" />
+                    <CellContainNumberFormat title={this.props.balanceInfo.YesterdayBalance} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
                     <Cell text="Outstanding" classNames="col-xs-6" />
-                    <CellContainInput text={this.props.balanceInfo.Outstanding}
+                    <CellContainInput title={this.props.balanceInfo.Outstanding}
                         classNames="col-xs-6 col-right box-edited"
                         inputClassname="txt-number-edited"
                         onSave={this.handleOutStandingChange} />
@@ -56,12 +56,12 @@ export default class BalanceInfoContent extends React.Component{
 
                 <div className={rowClasses}>
                     <Cell text="Used Credit" classNames="col-xs-6" />
-                    <CellContainNumberFormat text={this.props.balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
+                    <CellContainNumberFormat title={this.props.balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
                     <Cell text="Given Credit" classNames="col-xs-6" />
-                    <CellContainInput text={this.props.balanceInfo.GivenCredit}
+                    <CellContainInput title={this.props.balanceInfo.GivenCredit}
                         id="txt-given-edit"
                         classNames="col-xs-6 col-right box-edited"
                         inputClassname="txt-number-edited"
@@ -78,7 +78,7 @@ export default class BalanceInfoContent extends React.Component{
 
                         <div className={rowClasses}>
                             <Cell text="New Given Credit" classNames="col-xs-7" />
-                            <CellContainInput text={this.props.balanceInfo.NewGivenCredit}
+                            <CellContainInput title={this.props.balanceInfo.NewGivenCredit}
                                 classNames="col-xs-5 text-right"
                                 inputClassname="hasBorder txt-newValue"
                                 onSave={this.handleNewGivenCredit} />
