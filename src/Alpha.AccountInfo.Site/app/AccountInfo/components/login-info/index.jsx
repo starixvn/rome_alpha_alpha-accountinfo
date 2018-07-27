@@ -8,8 +8,8 @@ export default class LoginInfoBlock extends React.Component{
     }
     render() {
         const {
-            handleClick,
-            dataId,
+            handleCollapExpandBlock,
+            blockId,
             expanded
         } = this.props;
 
@@ -19,8 +19,8 @@ export default class LoginInfoBlock extends React.Component{
                 iconClassname="icon-login"
                 accordionItemBodyClassName="accordion__body block-login-info"
                 expanded={expanded}
-                handleClick={handleClick}
-                dataId={dataId}>
+                handleClick={handleCollapExpandBlock}
+                blockId={blockId}>
 
                 <div className="group">
                     <Cell title="Created Date:" classNames="row-info bold" />

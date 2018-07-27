@@ -30,7 +30,7 @@ export default class DownlineListBlock extends React.Component{
     }
 
     handleClick(e) {
-        this.props.collapExpandMethod(e);
+        this.props.handleCollapExpandBlock(e);
         this.data == null && this.setState({
             data: this.loadDownlineListFromServer()
         });
@@ -49,7 +49,7 @@ export default class DownlineListBlock extends React.Component{
     }
 
     render() {
-        const { handleClick, dataId, expanded } = this.props;
+        const { blockId, expanded } = this.props;
         const { data } = this.state;
 
         return (
@@ -58,7 +58,8 @@ export default class DownlineListBlock extends React.Component{
                 iconClassname="icon-downline"
                 expanded={expanded}
                 handleClick={this.handleClick}
-                dataId={dataId}>
+                blockId={blockId}>
+
                 {data != null && <DownlineListContent downlineList={data} />}
             </CustomizedAccordionItem>    
         );

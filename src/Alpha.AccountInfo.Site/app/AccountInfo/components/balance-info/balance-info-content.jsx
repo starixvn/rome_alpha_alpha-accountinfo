@@ -5,8 +5,8 @@ import CellContainNumberFormat from '../common/cell-contain-number-format';
 import CellContainInput from '../common/cell-contain-input';
 import Cell from '../common/cell';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
-
 import Cash from './cash';
+
 
 export default class BalanceInfoContent extends React.Component{
     constructor(props) {

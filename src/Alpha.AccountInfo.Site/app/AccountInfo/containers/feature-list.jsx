@@ -17,11 +17,12 @@ export default class FeatureList extends React.Component {
         super(props);
         this.state = {
             expandedItems: this.initialExpandedItems(),
-            collapseAll: false
+            collapseAll: false,
+            firstLoadSearch: true
         }
 
-        this.handleClick = this.handleClick.bind(this);
-        this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
+        this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
+        this.ShowHideContactInfoButton = this.ShowHideContactInfoButton.bind(this);
     }
 
     initialExpandedItems() {
@@ -61,20 +62,26 @@ export default class FeatureList extends React.Component {
         const newExpandedItems = Object.assign({}, emptyObject, { [blockId]: !currentStatus });
         const collapseAll = Object.keys(expandedItems).filter(key => newExpandedItems[key] === true).length === 0;
 
+        if (this.state.firstLoadSearch) {
+            this.setState({
+                firstLoadSearch: false
+            });
+        }
+
         this.setState({
             expandedItems: newExpandedItems,
             collapseAll
         });
     }
 
-    handleClick(e) {
+    handleCollapExpandBlock(e) {
         e.preventDefault();
-        const blockId = e.currentTarget.dataset.id;
+        const blockId = e.currentTarget.dataset.blockid;
 
         this.updateState(blockId);
     }
 
-    handleShowContactInfo(e) {
+    ShowHideContactInfoButton(e) {
         const { expandedItems } = this.state;
         const emptyObject = this.resetColllapseAll(expandedItems);
 
@@ -100,9 +107,13 @@ export default class FeatureList extends React.Component {
 
     render() {
         const { accountInfoModel } = this.props;
-        const { expandedItems, collapseAll } = this.state;
+        const { expandedItems, collapseAll, firstLoadSearch } = this.state;
+        let collapseExpandClassName = 'account-info-group';
 
-        const collapseExpandClassName = collapseAll ? 'account-info-group' : 'account-info-group scroll-top';
+        if (firstLoadSearch === false && collapseAll === false) {
+            collapseExpandClassName = 'account-info-group scroll-top';
+        }
+        
 
         const balanceinfo = this.getBalanceInfo();
 
@@ -112,38 +123,38 @@ export default class FeatureList extends React.Component {
                     !this.state.collapseAll &&
                     <ShowContactInfo title="Show Contact Info"
                         classNames="visible-mobile show-more-container"
-                        handleClick={this.handleShowContactInfo} />
+                        handleShowHide={this.ShowHideContactInfoButton} />
                 }
                 <Accordion>
                     <BalanceInfoBlock
-                        collapExpandMethod={this.handleClick}
+                        handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.balanceInfo}
-                        dataId="balanceInfo"
+                        blockId="balanceInfo"
                         custId={this.props.customerInfo.CustId}
                         roleId={this.props.customerInfo.RoleId}
                         balanceInfo={this.getBalanceInfo()} />
                     <DownlineListBlock
-                        collapExpandMethod={this.handleClick}
+                        handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.downlineList}
-                        dataId="downlineList"
+                        blockId="downlineList"
                         custId={this.props.customerInfo.CustId} />
                     <StatusBlock
-                        handleClick={this.handleClick}
+                        handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.status}
-                        dataId="status" />
+                        blockId="status" />
                     <SettingBlock
-                        handleClick={this.handleClick}
+                        handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.setting}
-                        dataId="setting" />
+                        blockId="setting" />
                     <LoginInfoBlock
                         loginInfo={this.props.customerInfo.LoginInfo}
-                        handleClick={this.handleClick}
+                        handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.loginInfo}
-                        dataId="loginInfo" />
+                        blockId="loginInfo" />
                     <OnlineListBlock
-                        handleClick={this.handleClick}
+                        handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.onlineList}
-                        dataId="onlineList" />
+                        blockId="onlineList" />
                 </Accordion>
             </div>
         );

@@ -7,20 +7,20 @@ export default class SettingBlock extends React.Component {
         super(props);
     }
     render() {
-        const { handleClick, dataId, expanded } = this.props;
+        const { handleCollapExpandBlock, blockId, expanded } = this.props;
 
         return (
             <CustomizedAccordionItem
                 title="Settings"
                 iconClassname="icon-settings"
                 expanded={expanded}
-                handleClick={handleClick}
-                dataId={dataId}>
+                handleClick={handleCollapExpandBlock}
+                blockId={blockId}>
                 <div className="swiper-container" id="settingsSwiperContainer">
                     <div className="swiper-wrapper settings" id="setting-wrapper">
                     </div>
                 </div>
             </CustomizedAccordionItem>
-      );
+        );
     }
 }

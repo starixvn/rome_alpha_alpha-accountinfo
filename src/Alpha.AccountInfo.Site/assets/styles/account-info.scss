@@ -47,35 +47,6 @@ hr {
     }
 }
 
-
-.dropdown-menu {
-    border: 1px solid $border-color-dark;
-    @include effect-normal;
-
-    &:before, &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-color: transparent;
-        border-style: solid;
-        bottom: 100%;        
-    }
-
-    &:before {        
-        border-width: 10px;   
-        border-bottom-color: $border-color-dark;     
-        right: 14px;              
-    }
-
-    &:after {
-        border-width: 8px;        
-        right: 16px;
-        border-bottom-color: #fff;  
-    }
-}
-
 %linkColor {
     color: $link-color;
 
@@ -103,6 +74,7 @@ hr {
     .highlight .col-right {
         font-family: "Roboto Bold";
     }
+
     // Search box
     .search-box {
         position: relative;
@@ -145,45 +117,16 @@ hr {
         max-height: initial;
         transition: max-height 0.25s ease-in;
 
-        &.collapse {
-            display: block;
-            max-height: 130px;
-            transition: max-height 0.15s ease-out;
-            overflow: hidden;
-        }
-
         .txt-name {
             color: $link-color;
         }
-
-        [class^="btn"] {
-            width: 47%;
-            line-height: 28px;
-
-            &:first-child {
-                margin-right: 8px;
-            }
-        }
-
-        .dropdown-menu {
-            right: -8px;
-            left: inherit;
-            padding: 8px 0;
-
-            a {
-                font-size: $font-size;
-                line-height: 30px;
-                padding: 0 16px;
-                @extend %linkColor;
-            }
-        }
     }
+
     // Settings
     .product {
         display: table;
     }
-
-
+    
     .block-setting {
         ul {
             li {
@@ -201,53 +144,24 @@ hr {
     }
 }
 
-/* Buttons */
+// Buttons
 
 .list-button {
+
     padding-top: 8px;
     padding-bottom: 8px;
     text-align: center;
-}
 
-[class^='btn'] {
-    margin-right: 0;
-}
+    [class^="btn"] {
+        width: 48%;
+        line-height: 28px;
+        margin-right: 0;
 
-.btn-noBackground {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    height: $height-normal;
-    line-height: $height-normal;
-    outline: none;
-    margin-right: 0;
-    padding-left: 16px;
-    padding-right: 16px;
-    white-space: nowrap;
-    font-size: $font-size;
-    -webkit-appearance: none;
-    @include box-shadow(1px, 2px, 3px, rgba(0,0,0,.3));
-    @include border-radius(1px);
-
-    &:hover {
-        color: $link-color;
-    }
-}
-
-.btn-default {
-    margin-right: 0;
-
-    &.with-level {
-        background-color: #67151b;
-        color: #fff;
-
-        &:hover,
-        &:active {
-            background-color: darken(#67151b, 5%);
-            color: #fff;
+        &:last-child {
+            margin-left: 8px;
         }
     }
-} 
+}
 
 .number {
     color: $link-color;
@@ -304,19 +218,6 @@ hr {
             color: $icon-hover-color;
         }
     }    
-}
-
-.account-tabs {
-    width: 100%;
-    background-color: #fff;
-    transform: translateY(0);
-    transition: .2s transform ease-in-out .1s;
-
-    &.scroll-top {
-        position: absolute;
-        top: 167px;
-        transform: translateY(-36px);
-    }
 }
 
 .account-info-group {

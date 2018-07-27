@@ -11,7 +11,7 @@ export default class OnlineListBlock extends React.Component{
         };
     }
     render() {
-        const { handleClick, dataId, expanded } = this.props;
+        const { handleCollapExpandBlock, blockId, expanded } = this.props;
         const { downlineList } = this.state;
 
         let content = downlineList.length > 0 ?
@@ -22,8 +22,8 @@ export default class OnlineListBlock extends React.Component{
                 title="Online List"
                 iconClassname="icon-onlinelist"
                 expanded={expanded}
-                handleClick={handleClick}
-                dataId={dataId}>
+                handleClick={handleCollapExpandBlock}
+                blockId={blockId}>
                 {content}
             </CustomizedAccordionItem>
       );

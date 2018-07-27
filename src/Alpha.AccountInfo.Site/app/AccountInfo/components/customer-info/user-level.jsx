@@ -15,7 +15,8 @@ export default class UserLevel extends React.Component {
             username,
             secondCellClass,
             hrefLink,
-            iconClassname
+            iconClassname,
+            handleSearchFromUserLevel
         } = this.props;
 
         return (
@@ -24,7 +25,9 @@ export default class UserLevel extends React.Component {
                 <CellContainLink title={username}
                     classNames={secondCellClass}
                     hrefLink={hrefLink}
-                    iconClassname={iconClassname} />
+                    iconClassname={iconClassname}
+                    handleClick={handleSearchFromUserLevel}
+                    isDataSet={true} />
             </div>
         );
     }

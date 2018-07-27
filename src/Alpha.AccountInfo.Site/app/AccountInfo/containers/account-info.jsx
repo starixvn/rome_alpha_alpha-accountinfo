@@ -64,6 +64,7 @@ export default class AccountInfo extends React.Component {
         this.getCustomerInfo = this.getCustomerInfo.bind(this);        
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+        this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
     }
 
     getCustomerInfo(e) {
@@ -111,6 +112,13 @@ export default class AccountInfo extends React.Component {
         return value.trim().length > 1;
     }
 
+    handleSearchFromUserLevel(e) {
+        e.preventDefault();
+        const username = e.currentTarget.dataset.username;
+
+        this.setState({ username: username }, this.getCustomerInfo);
+    }
+
     render() {
         const { showInfoStatus, username, url, data, suggestions } = this.state;
 
@@ -139,7 +147,7 @@ export default class AccountInfo extends React.Component {
                         <span className="icon-search" onClick={this.getCustomerInfo}></span>
                     </div>
 
-                    {data != null && <CustomerInfoBlock data={data} />}
+                    {data != null && <CustomerInfoBlock data={data} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />}
 
                 </div>
                 {data != null && <FeatureList handleShowContactInfo={this.handleShowContactInfo}

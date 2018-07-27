@@ -11,7 +11,7 @@ export default class StatusBlock extends React.Component {
         }
     }
     render() {
-        const { handleClick, dataId, expanded } = this.props;
+        const { handleCollapExpandBlock, blockId, expanded } = this.props;
 
         return (
             <CustomizedAccordionItem
@@ -19,8 +19,8 @@ export default class StatusBlock extends React.Component {
                 iconClassname="icon-status"
                 accordionItemBodyClassName="accordion__body block-status"
                 expanded={expanded}
-                handleClick={handleClick}
-                dataId={dataId}>
+                handleClick={handleCollapExpandBlock}
+                blockId={blockId}>
 
                 <Status title="Suspended" checked={true} statusId={1} />
                 <Status title="Auto PT" checked={true} statusId={2}  />

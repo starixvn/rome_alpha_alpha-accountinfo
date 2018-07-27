@@ -1,12 +1,19 @@
 ﻿import * as React from 'react';
-import Link from './link';
-import Cell from './cell';
+import NumberFormat from 'react-number-format';
 
-const CellContainNumberFormat = ({ classNames, title }) =>
-    <div className={classNames}>
-        <span className={title < 0 ? "number-red" : "number"} >
-            {title.toLocaleString('en-us', { minimumFractionDigits: 2 })}
-        </span>
-    </div>
+
+const CellContainNumberFormat = ({ classNames, title }) => {
+    let formatClassNames = title < 0 ? `${classNames} number-red` : `${classNames} number`;
+    return (
+        <div className={formatClassNames}>
+            <NumberFormat
+                value={title}
+                displayType={'text'}
+                decimalScale="2"
+                thousandSeparator={true}
+                renderText={value => <span>{value}</span>} />
+        </div>
+    );
+}    
 
 export default CellContainNumberFormat;

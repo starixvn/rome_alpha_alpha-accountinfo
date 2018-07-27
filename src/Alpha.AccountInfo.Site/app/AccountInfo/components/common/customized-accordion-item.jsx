@@ -25,12 +25,12 @@ export default class CustomizedAccordionItem extends React.Component {
             accordionItemBodyClassName,
             expanded,
             handleClick,
-            dataId
+            blockId
         } = this.props;
 
         return (
             <AccordionItem expanded={expanded}>
-                <AccordionItemTitle onClick={handleClick} data-id={dataId}>
+                <AccordionItemTitle onClick={handleClick} data-blockid={blockId}>
                     <span className={iconClassname}></span> {title}
                 </AccordionItemTitle>
                 <AccordionItemBody className={accordionItemBodyClassName}>
