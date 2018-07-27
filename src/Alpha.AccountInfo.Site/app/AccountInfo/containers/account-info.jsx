@@ -139,11 +139,11 @@ export default class AccountInfo extends React.Component {
                         <span className="icon-search" onClick={this.getCustomerInfo}></span>
                     </div>
 
-                    {this.state.data != null && <CustomerInfoBlock data={this.state.data} />}
+                    {data != null && <CustomerInfoBlock data={data} />}
 
                 </div>
-                {this.state.data != null && <FeatureList handleShowContactInfo={this.handleShowContactInfo}
-                    showInfoStatus={this.showInfoStatus} customerInfo={this.state.data}  />}
+                {data != null && <FeatureList handleShowContactInfo={this.handleShowContactInfo}
+                    showInfoStatus={this.showInfoStatus} customerInfo={data}  />}
                        
             </div>
         );
