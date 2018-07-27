@@ -10,11 +10,6 @@ import BalanceInfoContent from './balance-info-content';
 export default class BalanceInfoBlock extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {
-            username: '',
-            url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo",
-            data: this.props.balanceInfo
-        }
     }
 
     render() {
@@ -24,11 +19,10 @@ export default class BalanceInfoBlock extends React.Component{
             blockId,
             expanded,
             roleId,
-            handleCollapExpandBlock
+            handleCollapExpandBlock,
+            balanceInfo
         } = this.props;
 
-        const { data } = this.state;
- 
         return (
             <CustomizedAccordionItem
                 title="Balance Info"
@@ -36,10 +30,9 @@ export default class BalanceInfoBlock extends React.Component{
                 accordionItemBodyClassName="accordion__body balance-info"
                 expanded={expanded}
                 handleClick={handleCollapExpandBlock}
-                hanldeGetData={this.hanldeGetData}
                 blockId={blockId}>
 
-                {data != null && <BalanceInfoContent balanceInfo={data} roleId={roleId} />}
+                {balanceInfo != null && <BalanceInfoContent balanceInfo={balanceInfo} roleId={roleId} />}
             </CustomizedAccordionItem>
       );
     }

@@ -106,7 +106,7 @@ export default class FeatureList extends React.Component {
 
 
     render() {
-        const { accountInfoModel } = this.props;
+        const { customerInfo } = this.props;
         const { expandedItems, collapseAll, firstLoadSearch } = this.state;
         let collapseExpandClassName = 'account-info-group';
 
@@ -114,8 +114,6 @@ export default class FeatureList extends React.Component {
             collapseExpandClassName = 'account-info-group scroll-top';
         }
         
-
-        const balanceinfo = this.getBalanceInfo();
 
         return (
             <div className={collapseExpandClassName}>
@@ -130,31 +128,42 @@ export default class FeatureList extends React.Component {
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.balanceInfo}
                         blockId="balanceInfo"
-                        custId={this.props.customerInfo.CustId}
-                        roleId={this.props.customerInfo.RoleId}
+                        custId={customerInfo.CustId}
+                        roleId={customerInfo.RoleId}
                         balanceInfo={this.getBalanceInfo()} />
-                    <DownlineListBlock
-                        handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        expanded={expandedItems.downlineList}
-                        blockId="downlineList"
-                        custId={this.props.customerInfo.CustId} />
+
+                    {
+                        customerInfo.RoleId > 1 &&
+                        <DownlineListBlock
+                            handleCollapExpandBlock={this.handleCollapExpandBlock}
+                            expanded={expandedItems.downlineList}
+                            blockId="downlineList"
+                            custId={this.props.customerInfo.CustId} />
+                    }
+
                     <StatusBlock
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.status}
                         blockId="status" />
+
                     <SettingBlock
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.setting}
                         blockId="setting" />
+
                     <LoginInfoBlock
                         loginInfo={this.props.customerInfo.LoginInfo}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.loginInfo}
                         blockId="loginInfo" />
-                    <OnlineListBlock
-                        handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        expanded={expandedItems.onlineList}
-                        blockId="onlineList" />
+
+                    {
+                        customerInfo.RoleId > 1 &&
+                        <OnlineListBlock
+                            handleCollapExpandBlock={this.handleCollapExpandBlock}
+                            expanded={expandedItems.onlineList}
+                            blockId="onlineList" />
+                    }
                 </Accordion>
             </div>
         );
