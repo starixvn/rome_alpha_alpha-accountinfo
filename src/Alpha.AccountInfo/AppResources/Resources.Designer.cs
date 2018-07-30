@@ -19,7 +19,7 @@ namespace Alpha.AccountInfo.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -70,6 +70,78 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet Setting.
+        /// </summary>
+        public static string BetSettingViewModelText {
+            get {
+                return ResourceManager.GetString("BetSettingViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commision.
+        /// </summary>
+        public static string CommissionViewModelText {
+            get {
+                return ResourceManager.GetString("CommissionViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Master PT.
+        /// </summary>
+        public static string ConfirmAllowAutoMasterPTViewModelText {
+            get {
+                return ResourceManager.GetString("ConfirmAllowAutoMasterPTViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outright.
+        /// </summary>
+        public static string ConfirmAllowOutrightViewModelText {
+            get {
+                return ResourceManager.GetString("ConfirmAllowOutrightViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closed.
+        /// </summary>
+        public static string ConfirmClosedViewModelText {
+            get {
+                return ResourceManager.GetString("ConfirmClosedViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double Comm.
+        /// </summary>
+        public static string ConfirmDoubleCommViewModelText {
+            get {
+                return ResourceManager.GetString("ConfirmDoubleCommViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suspended.
+        /// </summary>
+        public static string ConfirmSuspendedViewModelText {
+            get {
+                return ResourceManager.GetString("ConfirmSuspendedViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Info.
+        /// </summary>
+        public static string EditInfoViewModelText {
+            get {
+                return ResourceManager.GetString("EditInfoViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master.
         /// </summary>
         public static string Master {
@@ -115,6 +187,33 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ResetPassword.
+        /// </summary>
+        public static string ResetPasswordViewModelText {
+            get {
+                return ResourceManager.GetString("ResetPasswordViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Security Code.
+        /// </summary>
+        public static string ResetSecurityCodeViewModelText {
+            get {
+                return ResourceManager.GetString("ResetSecurityCodeViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sportsbook MinPT.
+        /// </summary>
+        public static string SportsbookMinPTViewModelText {
+            get {
+                return ResourceManager.GetString("SportsbookMinPTViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {
@@ -129,6 +228,15 @@ namespace Alpha.AccountInfo.AppResources {
         public static string Super {
             get {
                 return ResourceManager.GetString("Super", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer.
+        /// </summary>
+        public static string TransferViewModelText {
+            get {
+                return ResourceManager.GetString("TransferViewModelText", resourceCulture);
             }
         }
     }

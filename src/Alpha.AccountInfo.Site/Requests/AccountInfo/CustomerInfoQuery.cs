@@ -17,6 +17,8 @@
 
         public string UserName { get; set; }
 
+        public int SubAccountId => viewer.SubAccId;
+
         public int ActorId => viewer.Id;
 
         public byte ActorRoleId => viewer.LevelId;
@@ -30,7 +32,6 @@
         public bool AllowTransfer => viewer.AllowTransfer;
 
         public bool ViewReports => viewer.CanViewReports;
-
 
         public override bool IsValid() => !string.IsNullOrEmpty(UserName) && ActorId > 0;
     }

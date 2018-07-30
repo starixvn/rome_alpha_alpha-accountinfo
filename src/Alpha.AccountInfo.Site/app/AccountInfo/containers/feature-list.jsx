@@ -143,11 +143,13 @@ export default class FeatureList extends React.Component {
 
                     <StatusBlock
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
+                        custId={customerInfo.CustId}
                         expanded={expandedItems.status}
                         blockId="status" />
 
                     <SettingBlock
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
+                        custId={customerInfo.CustId}
                         expanded={expandedItems.setting}
                         blockId="setting" />
 
@@ -157,13 +159,10 @@ export default class FeatureList extends React.Component {
                         expanded={expandedItems.loginInfo}
                         blockId="loginInfo" />
 
-                    {
-                        customerInfo.RoleId > 1 &&
-                        <OnlineListBlock
-                            handleCollapExpandBlock={this.handleCollapExpandBlock}
-                            expanded={expandedItems.onlineList}
-                            blockId="onlineList" />
-                    }
+                    <OnlineListBlock
+                        handleCollapExpandBlock={this.handleCollapExpandBlock}
+                        expanded={expandedItems.onlineList}
+                        blockId="onlineList" />
                 </Accordion>
             </div>
         );

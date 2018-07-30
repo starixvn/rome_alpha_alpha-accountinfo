@@ -134,6 +134,66 @@
 
         public async Task<CustomerAllStatusModel> GetCustomerAllStatusModelAsync(ICriteria criteria)
         {
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                using (var dataset = await db.ExecuteDataSetAsync(criteria.GetSpParams()))
+                {
+                    var customerStatusRow = dataset.Tables[0].Rows[0];
+                    var nonDCSProductRow = dataset.Tables[1].Rows[0];
+                    var dcsProductTable = dataset.Tables[2];
+
+                    var customerStatus = new CustomerStatusModel(
+                             hasDownline: Converter.ToBool(customerStatusRow["HasDownline"]),
+                             disableAutoMPT: Converter.ToBool(customerStatusRow["DisableAutoMPT"]),
+                             closed: Converter.ToBool(customerStatusRow["closed"]),
+                             uplineClosed: Converter.ToBool(customerStatusRow["upLineClosed"]),
+                             suspended: Converter.ToBool(customerStatusRow["suspended"]),
+                             uplineSuspend: Converter.ToBool(customerStatusRow["upLineSuspend"]),
+                             transferOption: Converter.ToBool(customerStatusRow["TransferOption"]),
+                             doubleCommLosing: Converter.ToBool(customerStatusRow["DoubleCommLosing"]),
+                             uplineDoubleCommLosing: Converter.ToBool(customerStatusRow["uplineDoubleCommLosing"]),
+                             disableOutright: Converter.ToBool(customerStatusRow["DisableOutright"]),
+                             uplineDisableOutright: Converter.ToBool(customerStatusRow["upLineDisableOutright"]));
+
+                    var nonDCSProduct = new NonDCSProductModel(
+                             syncCasino: Converter.ToBool(nonDCSProductRow["SyncCasino"]),
+                             disableCasino: Converter.ToBool(nonDCSProductRow["DisableCasino"]),
+                             uplineDisableCS: Converter.ToBool(nonDCSProductRow["uplineDisableCS"]),
+                             disableNumber: Converter.ToBool(nonDCSProductRow["DisableNumber"]),
+                             uplineDisableNumber: Converter.ToBool(nonDCSProductRow["uplineDisabledNumber"]),
+                             disableEsports: Converter.ToBool(nonDCSProductRow["DisableEsports"]),
+                             uplineDisableEsports: Converter.ToBool(nonDCSProductRow["uplineDisableEsports"]),
+                             disableColossusBet: Converter.ToBool(nonDCSProductRow["DisableColossusBet"]),
+                             hideColossusBet: Converter.ToBool(nonDCSProductRow["HideColossusBet"]),
+                             uplineDisableColossusBet: Converter.ToBool(nonDCSProductRow["uplineDisableColossusBet"]),
+                             hideKeno: Converter.ToBool(nonDCSProductRow["HideKeno"]));
+
+                    var dcsProducts = new List<DCSProductModel>();
+
+                    foreach(DataRow row in dcsProductTable.Rows)
+                    {
+                        dcsProducts.Add(
+                            new DCSProductModel(
+                                  productId: Converter.ToInt(row["ProductID"]),
+                                  sportType: Converter.ToInt(row["SportType"]),
+                                  betType: Converter.ToInt(row["BetType"]),
+                                  isSync: Converter.ToBool(row["IsSync"]),
+                                  isHidden: Converter.ToBool(row["isHidden"]),
+                                  isDisabled: Converter.ToBool(row["isDisabled"]),
+                                  isSyncedUpline: Converter.ToBool(row["isSyncedUpline"]),
+                                  isHiddenUpline: Converter.ToBool(row["isHiddenUpline"]),
+                                  isDisabledUpline: Converter.ToBool(row["isDisabledUpline"]),
+                                  hasDownline: Converter.ToBool(row["HasDownline"])));
+                    }
+
+
+                    return new CustomerAllStatusModel(
+                        customerStatus: customerStatus,
+                        nonDCSProduct: nonDCSProduct,
+                        dcsProducts: dcsProducts);
+                }
+            }
+
             throw new NotImplementedException();
         }
 

@@ -1,11 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Site
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Routing;
+    using Alpha.AccountInfo.AppResources;
+    using Alpha.AccountInfo.Site.Integration;
+    using Alpha.Products.AccountInfo;
+    using Alpha.Products.Core.Configuration;
+    using Alpha.Products.Core.Services;
+    using Alpha.RemotingRef;
     using App_Start;
     using CasinoLibrary.Model.UserException;
     using Configurations;
@@ -18,6 +18,12 @@
     using Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Routing;
     using Web;
     using Web.Filters;
     using Web.Helpers;
@@ -43,6 +49,8 @@
                 .UseDefaultDbSettingProvider(resourcePath: AppSettings.StoredProcedurePath, enableWatching: true)
                 .Use((settingKey, commandTimeout) => new WrappingExceptionObjectDb(settingKey, commandTimeout))
                 .Run();
+
+            StartConfiguration();
 
             ShareSession.Init();
 
@@ -86,6 +94,15 @@
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
 
             return versionInfo.FileVersion;
+        }
+
+        private static void StartConfiguration()
+        {
+            SimpleServiceLocator
+            .Instance
+            .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter()))
+            .Register<Func<int, string>>(CacheRef.GetProductName)
+            .Register<Func<string, string>>(Resources.ResourceManager.GetString);
         }
     }
 }

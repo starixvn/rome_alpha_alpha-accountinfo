@@ -120,6 +120,30 @@
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
+  <data name="BetSettingViewModelText" xml:space="preserve">
+    <value>Bet Setting</value>
+  </data>
+  <data name="CommissionViewModelText" xml:space="preserve">
+    <value>Commision</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
+    <value>Auto Master PT</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>Outright</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>Double Comm</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>Edit Info</value>
+  </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
   </data>
@@ -135,10 +159,22 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>You are not authorized on this function.</value>
   </data>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>ResetPassword</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>Reset Security Code</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>Sportsbook MinPT</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
+  </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>Transfer</value>
   </data>
 </root>

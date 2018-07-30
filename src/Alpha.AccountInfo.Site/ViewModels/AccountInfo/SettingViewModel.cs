@@ -1,6 +1,33 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
+    using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.Products.AccountInfo;
+    using Alpha.Products.AccountInfo.Requests;
+    using Alpha.Products.AccountInfo.Setting;
+    using Alpha.Products.AccountInfo.Setting.ViewModels.Base;
+    using Alpha.Products.Core.Models;
+    using System.Collections.Generic;
+
     public class SettingViewModel
     {
+        public SettingViewModel(
+            ProductQuery message,
+            CustomerAllStatusModel model,
+            Customer actor,
+            Customer searchAccount)
+        {
+            var viewModelfactory = new SettingViewModelFactory();
+
+            var request = new SettingSearchAccountRequest(actor, searchAccount);
+
+            request
+                 .AddData(DataKey.Actor.CanEditDailyTransferOption, true)
+                 .AddData(DataKey.Actor.HasUpdateAccountPermission, true);
+
+            Settings = viewModelfactory.GetViewModels(request);
+        }
+
+        public IEnumerable<ISettingItemViewModel> Settings {get;}
     }
 }
