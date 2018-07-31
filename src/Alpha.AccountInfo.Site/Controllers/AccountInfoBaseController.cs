@@ -18,7 +18,21 @@
             this.mediator = mediator;
         }
 
-        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
+        protected ActionResult View<TResponse>(IRequest<TResponse> message)
+        {
+            var baseRequest = message as BaseRequest;
+            var isValid = baseRequest?.IsValid();
+
+            if (isValid != true)
+            {
+                return View(NoInformationPageViewPath);
+            }
+
+            return View(mediator.Send(message));
+        }
+
+
+        protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message)
         {
             var baseRequest = message as BaseRequest;
             var isValid = baseRequest?.IsValid();
@@ -31,7 +45,23 @@
             return View(await mediator.Send(message));
         }
 
-        protected async Task<ActionResult> JsonData<TResponse>(
+        protected ActionResult JsonData<TResponse>(
+           IRequest<TResponse> message,
+           JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
+        {
+            var baseRequest = message as BaseRequest;
+            var isValid = baseRequest?.IsValid();
+
+            if (isValid != true)
+            {
+                return Json(Result.CreateForbiddenResult());
+            }
+
+            var model = mediator.Send(message);
+            return Json(model, jsonRequestBehavior);
+        }
+
+        protected async Task<ActionResult> JsonDataAsync<TResponse>(
             IRequest<TResponse> message,
             JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
         {

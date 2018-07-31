@@ -4,7 +4,7 @@
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
 
-    public class CustomerAllStatusQuery : BaseRequest, IRequest<ProductViewModel>
+    public class CustomerAllStatusQuery : BaseRequest, IRequest<CustomererAllStatusViewModel>
     {
         private readonly IUser viewer;
 
@@ -12,6 +12,22 @@
             : base(viewer)
         {
             this.viewer = viewer;
+            ActorId = viewer.Id;
+            ActorRoleId = viewer.LevelId;
+            ActorName = viewer.Name;
+
+            SubAccountId = viewer.SubAccId;
+            CanUpdateAccount = !viewer.IsInternal && viewer.CanUpdateAccount;
+
+            IsHideKeno = viewer.IsHideKeno;
+            IsCasinoSync = viewer.IsCasinoSync;
+            IsCasinoDisabled = viewer.IsCasinoDisabled;
+
+            IsHideColossusBets = viewer.IsHideColossusBets;
+            DisableColossusBets = viewer.DisableColossusBets;
+
+            IsDisabledESports = viewer.IsDisabledESports;
+            IsNumberGameDisabled = viewer.IsNumberGameDisabled;
         }
 
         public int SearchAccountId { get; set; }
@@ -26,15 +42,15 @@
 
         public byte UplineRoleId { get; set; }
 
-        public int ActorId => viewer.Id;
+        public int ActorId { get; }
 
-        public byte ActorRoleId => viewer.LevelId;
+        public byte ActorRoleId { get; }
 
-        public string ActorName => viewer.Name;
+        public string ActorName { get; }
 
-        public int SubAccountId => viewer.SubAccId;
+        public int SubAccountId { get; }
 
-        public bool CanUpdateAccount => viewer.CanUpdateAccount;
+        public bool CanUpdateAccount { get; }
 
         public bool GetDisabledProduct(int productId) => viewer.GetDisabledProduct(productId);
 
@@ -42,19 +58,19 @@
 
         public bool GetSyncedProduct(int productId) => viewer.GetSyncedProduct(productId);
 
-        public bool IsHideKeno => viewer.IsHideKeno;
+        public bool IsHideKeno { get; }
 
-        public bool IsCasinoSync => viewer.IsCasinoSync;
+        public bool IsCasinoSync { get; }
 
-        public bool IsCasinoDisabled => viewer.IsCasinoDisabled;
+        public bool IsCasinoDisabled { get; }
 
-        public bool IsHideColossusBets => viewer.IsHideColossusBets;
+        public bool IsHideColossusBets { get; }
 
-        public bool DisableColossusBets => viewer.DisableColossusBets;
+        public bool DisableColossusBets { get; }
 
-        public bool IsDisabledESports => viewer.IsDisabledESports;
+        public bool IsDisabledESports { get; }
 
-        public bool IsNumberGameDisabled => viewer.IsNumberGameDisabled;
+        public bool IsNumberGameDisabled { get; }
 
         public override bool IsValid() => SearchAccountId > 0;
     }

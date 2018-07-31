@@ -507,9 +507,9 @@
     <Compile Include="ViewModels\AccountInfo\Integration\StubCustomerProductStatusGetter.cs" />
     <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\OnlineListViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\SettingViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\ProductViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\StatusViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\SettingViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\CustomererAllStatusViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\StatusViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\TotalStatusDownline.cs" />
     <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />
   </ItemGroup>

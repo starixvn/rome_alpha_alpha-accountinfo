@@ -16,13 +16,61 @@ export default class FeatureList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            getCustomerStatusUrl: window.accountInfoSiteAppPath + "accountinfo/getcustomerstatus",
             expandedItems: this.initialExpandedItems(),
             collapseAll: false,
-            firstLoadSearch: true
+            firstLoadSearch: true,
+            statusData: null,
+            settingData: null,
         }
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
         this.ShowHideContactInfoButton = this.ShowHideContactInfoButton.bind(this);
+        this.getCustomerAllStatus = this.getCustomerAllStatus.bind(this);
+    }
+
+    getCustomerAllStatus(e) {
+        console.log("load customerstatus");
+        this.handleCollapExpandBlock(e);
+        const xhr = new XMLHttpRequest();
+
+        let uplineId = null;
+        let uplineName = null;
+        switch (this.props.customerInfo.RoleId) {
+            case 3:
+                uplineId = this.props.customerInfo.SuperId;
+                uplineName = this.props.customerInfo.SuperName;
+                break;
+            case 2:
+                uplineId = this.props.customerInfo.MasterId;
+                uplineName = this.props.customerInfo.MasterName;
+                break;
+            default:
+                uplineId = this.props.customerInfo.AgentId;
+                uplineName = this.props.customerInfo.AgentName;
+                break;
+        }
+
+        var params = JSON.stringify({
+            SearchAccountId: this.props.customerInfo.CustId,
+            SearchAccountName: this.props.customerInfo.UserName,
+            SearchAccountRoleId: this.props.customerInfo.RoleId,
+            UplientId: uplineId,
+            UplineName: uplineName,
+            UplineRoleId: this.props.customerInfo.RoleId + 1
+        });
+
+        xhr.open('post', this.state.getCustomerStatusUrl, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+        xhr.onload = () => {
+            var data = JSON.parse(xhr.responseText).Result;
+            this.setState({
+                settingData: data.Setting,
+                statusData: data.Status
+            });
+        };
+        xhr.send(params);
     }
 
     initialExpandedItems() {
@@ -93,27 +141,36 @@ export default class FeatureList extends React.Component {
         });
     }
 
-    getBalanceInfo() {
-        switch (this.props.customerInfo.RoleId) {
-            case 3:
-                return this.props.customerInfo.MasterBalanceInfo;
-            case 2: 
-                return this.props.customerInfo.AgentBalanceInfo;
-            default:
-                return this.props.customerInfo.MemberBalanceInfo;
-        }
-    }
-
-
     render() {
         const { customerInfo } = this.props;
-        const { expandedItems, collapseAll, firstLoadSearch } = this.state;
+        const { expandedItems, collapseAll, firstLoadSearch, statusData, settingData} = this.state;
         let collapseExpandClassName = 'account-info-group';
 
         if (firstLoadSearch === false && collapseAll === false) {
             collapseExpandClassName = 'account-info-group scroll-top';
         }
-        
+
+        let balanceInfo = null;
+        let uplineId = null;
+        let uplineName = null;
+
+        switch (this.props.customerInfo.RoleId) {
+            case 3:
+                uplineId = customerInfo.SuperId;
+                uplineName = customerInfo.SuperName;
+                balanceInfo = customerInfo.MasterBalanceInfo;
+                break;
+            case 2:
+                uplineId = customerInfo.MasterId;
+                uplineName = customerInfo.MasterName;
+                balanceInfo = customerInfo.AgentBalanceInfo;
+                break;
+            default:
+                uplineId = customerInfo.AgentId;
+                uplineName = customerInfo.AgentName;
+                balanceInfo = customerInfo.MemberBalanceInfo;
+                break;
+        }
 
         return (
             <div className={collapseExpandClassName}>
@@ -130,7 +187,7 @@ export default class FeatureList extends React.Component {
                         blockId="balanceInfo"
                         custId={customerInfo.CustId}
                         roleId={customerInfo.RoleId}
-                        balanceInfo={this.getBalanceInfo()} />
+                        balanceInfo={balanceInfo} />
 
                     {
                         customerInfo.RoleId > 1 &&
@@ -143,13 +200,15 @@ export default class FeatureList extends React.Component {
 
                     <StatusBlock
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        custId={customerInfo.CustId}
+                        getCustomerAllStatus={this.getCustomerAllStatus}
+                        statusData={statusData}
                         expanded={expandedItems.status}
                         blockId="status" />
 
                     <SettingBlock
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        custId={customerInfo.CustId}
+                        getCustomerAllStatus={this.getCustomerAllStatus}
+                        settingData={settingData}
                         expanded={expandedItems.setting}
                         blockId="setting" />
 

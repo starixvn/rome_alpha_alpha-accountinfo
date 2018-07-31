@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    public class ProductViewModel
+    public class CustomererAllStatusViewModel
     {
-        public ProductViewModel(StatusViewModel status, SettingViewModel setting)
+        public CustomererAllStatusViewModel(StatusViewModel status, SettingViewModel setting)
         {
             Status = status;
             Setting = setting;

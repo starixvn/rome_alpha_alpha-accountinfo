@@ -12,9 +12,9 @@
     using ViewModels.AccountInfo;
 
     public class AccountInfoHandler :
-        IAsyncRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
-        IAsyncRequestHandler<DownlineListQuery, DownlineListViewModel>,
-        IAsyncRequestHandler<CustomerAllStatusQuery, ProductViewModel>
+        IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
+        IRequestHandler<DownlineListQuery, DownlineListViewModel>,
+        IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>
     {
         private readonly AccountInfoService accountInfoService;
 
@@ -23,49 +23,47 @@
             this.accountInfoService = accountInfoService;
         }
 
-        public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
+        public CustomerInfoViewModel Handle(CustomerInfoQuery message)
         {
-            var custormerinfo = await accountInfoService.GetCustomerInfoModelAsync(message.UserName, message.ActorId);
-            var balanceinfo = await accountInfoService.GetBalanceInfoModelAsync(custormerinfo.CustId, custormerinfo.RoleId);
+            var custormerinfo = accountInfoService.GetCustomerInfoModelAsync(message.UserName, message.ActorId);
+            var balanceinfo = accountInfoService.GetBalanceInfoModelAsync(custormerinfo.CustId, custormerinfo.RoleId);
 
             return new CustomerInfoViewModel(message, custormerinfo, balanceinfo);
         }
 
-        public async Task<DownlineListViewModel> Handle(DownlineListQuery message)
-            => new DownlineListViewModel(await accountInfoService.GetDownlineListModelAsync(message.CustId));
+        public DownlineListViewModel Handle(DownlineListQuery message)
+            => new DownlineListViewModel(accountInfoService.GetDownlineListModelAsync(message.CustId));
 
-        public async Task<ProductViewModel> Handle(CustomerAllStatusQuery message)
+        public CustomererAllStatusViewModel Handle(CustomerAllStatusQuery message)
         {
-            var model = await accountInfoService.GetCustomerAllStatusModelAsync(message.SearchAccountId);
-
-            int subAccountId = 0; // TO DO
+            var model = accountInfoService.GetCustomerAllStatusModelAsync(message.SearchAccountId);
 
             var actor = new Customer(
-                message.ActorId, 
-                subAccountId, 
+                message.ActorId,
+                message.SubAccountId, 
                 message.ActorName, 
                 message.ActorRoleId, 
                 GetActorProductStatus(message, model.DCSProducts.ToList()));
 
             var upline = new Customer(
                 message.UplientId,
-                subAccountId,
+                message.SubAccountId,
                 message.UplineName,
                 message.UplineRoleId,
                 GetUplineProductStatus(model.NonDCSProduct, model.DCSProducts.ToList()));
 
             var searchAccount = new Customer(
-                message.SearchAccountId, 
-                subAccountId, 
+                message.SearchAccountId,
+                message.SubAccountId,
                 message.SearchAccountName,
-                message.SearchAccountRoleId, 
+                message.SearchAccountRoleId,
                 GetSearchAccountProductStatus(model.NonDCSProduct, model.DCSProducts.ToList()), 
                 upline);
 
             var setting = new SettingViewModel(message, model, actor, searchAccount);
             var status = new StatusViewModel(message, model.CustomerStatus, actor, searchAccount);
 
-            return new ProductViewModel(status, setting);
+            return new CustomererAllStatusViewModel(status, setting);
         }
 
         private IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
@@ -123,7 +121,8 @@
                 new CustomerProductStatus(ProductIdConstants.Keno, message.IsHideKeno)
             };
 
-            dcsProducts.ForEach(product => {
+            dcsProducts.ForEach(product =>
+            {
                 var productId = product.ProductId;
                 customerProductStatus.Add(
                     new CustomerProductStatus(

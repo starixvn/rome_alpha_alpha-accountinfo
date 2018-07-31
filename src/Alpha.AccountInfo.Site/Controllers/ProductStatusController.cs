@@ -17,10 +17,10 @@
         }
 
         public async Task<ActionResult> Index(ProductStatusQuery message)
-            => await View(message);
+            => await ViewAsync(message);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> Update(ProductStatusCommand message)
-            => await JsonData<Result>(message, JsonRequestBehavior.DenyGet);
+            => await JsonDataAsync<Result>(message, JsonRequestBehavior.DenyGet);
     }
 }

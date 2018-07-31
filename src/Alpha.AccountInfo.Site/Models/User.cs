@@ -2,6 +2,7 @@
 {
     using AccountInfo.Models;
     using Sunplus.Agent.Model.Entities;
+    using System.Threading.Tasks;
 
     public class User : IUser
     {
@@ -54,6 +55,7 @@
         public bool IsCasinoDisabled => userSession.IsCasinoDisabled;
 
         public bool IsHideColossusBets => userSession.IsHideColossusBets;
+
         public bool DisableColossusBets => userSession.DisableColossusBets;
 
         public bool IsDisabledESports => userSession.IsDisabledESports;

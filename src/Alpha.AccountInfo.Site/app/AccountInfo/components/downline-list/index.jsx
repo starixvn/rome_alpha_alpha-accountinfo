@@ -31,9 +31,7 @@ export default class DownlineListBlock extends React.Component{
 
     handleClick(e) {
         this.props.handleCollapExpandBlock(e);
-        this.data == null && this.setState({
-            data: this.loadDownlineListFromServer()
-        });
+        this.loadDownlineListFromServer();
     }
 
     loadDownlineListFromServer() {
@@ -42,8 +40,7 @@ export default class DownlineListBlock extends React.Component{
         const xhr = new XMLHttpRequest();
         xhr.open('get', this.state.url + "?custid=" + this.props.custId);
         xhr.onload = () => {
-            const data = JSON.parse(xhr.responseText);
-            this.setState({ data: data });
+            this.setState({ data: JSON.parse(xhr.responseText).Result });
         };
         xhr.send();
     }

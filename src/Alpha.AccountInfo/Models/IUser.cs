@@ -1,4 +1,6 @@
-﻿namespace Alpha.AccountInfo.Models
+﻿using System.Threading.Tasks;
+
+namespace Alpha.AccountInfo.Models
 {
     public interface IUser
     {

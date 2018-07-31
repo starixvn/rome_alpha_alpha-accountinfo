@@ -54,7 +54,7 @@ export default class AccountInfo extends React.Component {
             showInfoStatus: false,
             username: '',
             url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo",
-            data: null,
+            customerInfo: null,
             suggestions: []
         };
 
@@ -67,12 +67,12 @@ export default class AccountInfo extends React.Component {
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
     }
 
+
     getCustomerInfo(e) {
         const xhr = new XMLHttpRequest();
         xhr.open('get', this.state.url + "?username=" + this.state.username);
         xhr.onload = () => {
-            const data = JSON.parse(xhr.responseText);
-            this.setState({ data: data });
+            this.setState({ customerInfo: JSON.parse(xhr.responseText).Result });
 
             this.handleShowContactInfo(e);
         };
@@ -120,7 +120,7 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const { showInfoStatus, username, url, data, suggestions } = this.state;
+        const { showInfoStatus, username, url, customerInfo, suggestions } = this.state;
 
         const inputProps = {
             type: 'text',
@@ -147,11 +147,11 @@ export default class AccountInfo extends React.Component {
                         <span className="icon-search" onClick={this.getCustomerInfo}></span>
                     </div>
 
-                    {data != null && <CustomerInfoBlock data={data} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />}
+                    {customerInfo != null && <CustomerInfoBlock data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />}
 
                 </div>
-                {data != null && <FeatureList handleShowContactInfo={this.handleShowContactInfo}
-                    showInfoStatus={this.showInfoStatus} customerInfo={data}  />}
+                {customerInfo != null && <FeatureList handleShowContactInfo={this.handleShowContactInfo}
+                    showInfoStatus={this.showInfoStatus} customerInfo={customerInfo}  />}
                        
             </div>
         );

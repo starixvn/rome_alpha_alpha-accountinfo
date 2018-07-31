@@ -23,13 +23,14 @@
             return View(new AccountInfoViewModel());
         }
 
-        public async Task<ActionResult> GetCustomerInfo(CustomerInfoQuery message)
-            => await JsonData(message, JsonRequestBehavior.AllowGet);
+        public ActionResult GetCustomerInfo(CustomerInfoQuery message)
+            => JsonData(message, JsonRequestBehavior.AllowGet);
 
-        public async Task<ActionResult> GetDownlineList(DownlineListQuery message)
-          => await JsonData(message, JsonRequestBehavior.AllowGet);
+        public ActionResult GetDownlineList(DownlineListQuery message)
+            =>  JsonData(message, JsonRequestBehavior.AllowGet);
 
-        public async Task<ActionResult> GetCustomerStatus(CustomerAllStatusQuery message)
-         => await JsonData(message, JsonRequestBehavior.AllowGet);
+        [HttpPost]
+        public ActionResult GetCustomerStatus(CustomerAllStatusQuery message)
+            => JsonData(message, JsonRequestBehavior.AllowGet);
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.DataAccess
 {
-    using Alpha.AccountInfo.Criteria.AccountInfo;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Fanex.Common;
     using Fanex.Data;
@@ -8,35 +7,34 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Threading.Tasks;
 
     public interface AccountInfoDataAccess
     {
-        Task<CustomerAllStatusModel> GetCustomerAllStatusModelAsync(ICriteria criteria);
+       CustomerAllStatusModel GetCustomerAllStatusModelAsync(ICriteria criteria);
 
-        Task<BalanceInfoModel> GetBalanceInfoModelAsync(ICriteria criteria, byte roleId);
+        BalanceInfoModel GetBalanceInfoModelAsync(ICriteria criteria, byte roleId);
 
-        Task<DownlineListModel> GetDownlineListModelAsync(ICriteria criteria);
+        DownlineListModel GetDownlineListModelAsync(ICriteria criteria);
     }
 
     public class AccountInfoDataAccessImpl : AccountInfoDataAccess
     {
-        public async Task<BalanceInfoModel> GetBalanceInfoModelAsync(ICriteria criteria, byte roleId)
+        public BalanceInfoModel GetBalanceInfoModelAsync(ICriteria criteria, byte roleId)
         {
             using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                using (var reader = db.ExecuteReader(criteria.GetSpParams()))
                 {
                     if (reader.Read())
                     {
                         switch (roleId)
                         {
                             case 3:
-                                return await BuildMasterBalanceInfoModelAsync(reader);
+                                return BuildMasterBalanceInfoModelAsync(reader);
                             case 2:
-                                return await BuildAgentBalanceInfoModelAsync(reader);
+                                return BuildAgentBalanceInfoModelAsync(reader);
                             default:
-                                return await BuildMemberBalanceInfoModelAsync(reader);
+                                return BuildMemberBalanceInfoModelAsync(reader);
                         }
                     }
                 }
@@ -45,7 +43,7 @@
             throw new NotImplementedException();
         }
 
-        private async Task<BalanceInfoModel> BuildMasterBalanceInfoModelAsync(IDataReader reader)
+        private BalanceInfoModel BuildMasterBalanceInfoModelAsync(IDataReader reader)
         {
             return new BalanceInfoModel(
                           custId: Converter.ToInt(reader["custid"]),
@@ -74,7 +72,7 @@
                           memberMaxCredit: 0);
         }
 
-        private async Task<BalanceInfoModel> BuildAgentBalanceInfoModelAsync(IDataReader reader)
+        private BalanceInfoModel BuildAgentBalanceInfoModelAsync(IDataReader reader)
         {
             return new BalanceInfoModel(
                           custId: Converter.ToInt(reader["custid"]),
@@ -103,7 +101,7 @@
                           memMaxCredit_Max: 0);
         }
 
-        private async Task<BalanceInfoModel> BuildMemberBalanceInfoModelAsync(IDataReader reader)
+        private BalanceInfoModel BuildMemberBalanceInfoModelAsync(IDataReader reader)
         {
             return new BalanceInfoModel(
                           custId: Converter.ToInt(reader["custid"]),
@@ -132,11 +130,11 @@
                           memberMaxCredit: 0);
         }
 
-        public async Task<CustomerAllStatusModel> GetCustomerAllStatusModelAsync(ICriteria criteria)
+        public CustomerAllStatusModel GetCustomerAllStatusModelAsync(ICriteria criteria)
         {
             using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var dataset = await db.ExecuteDataSetAsync(criteria.GetSpParams()))
+                using (var dataset = db.ExecuteDataSet(criteria.GetSpParams()))
                 {
                     var customerStatusRow = dataset.Tables[0].Rows[0];
                     var nonDCSProductRow = dataset.Tables[1].Rows[0];
@@ -197,11 +195,11 @@
             throw new NotImplementedException();
         }
 
-        public async Task<DownlineListModel> GetDownlineListModelAsync(ICriteria criteria)
+        public DownlineListModel GetDownlineListModelAsync(ICriteria criteria)
         {
             using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
-                using (var dataset = await db.ExecuteDataSetAsync(criteria.GetSpParams()))
+                using (var dataset = db.ExecuteDataSet(criteria.GetSpParams()))
                 {
                     var downlineListTable = dataset.Tables[0];
                     var row2 = dataset.Tables[1].Rows[0];
