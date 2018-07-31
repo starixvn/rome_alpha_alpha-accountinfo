@@ -232,7 +232,6 @@
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
@@ -324,8 +323,6 @@
     <Content Include="app\AccountInfo\components\setting\setting-info.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-content.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-paging.jsx" />
-    <Content Include="app\AccountInfo\containers\info-block.jsx" />
-    <Content Include="app\AccountInfo\containers\search-box.jsx" />
     <Content Include="app\AccountInfo\containers\show-contact-info.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-list-content.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />
@@ -490,7 +487,7 @@
     <Compile Include="Requests\AccountInfo\BalanceInfo\MemberBalanceInfoQuery.cs" />
     <Compile Include="Requests\AccountInfo\BalanceInfo\AgentBalanceInfoQuery.cs" />
     <Compile Include="Requests\AccountInfo\BalanceInfo\MasterBalanceInfoQuery.cs" />
-    <Compile Include="Requests\AccountInfo\ProductQuery.cs" />
+    <Compile Include="Requests\AccountInfo\CustomerAllStatusQuery.cs" />
     <Compile Include="Requests\AccountInfo\DownlineListQuery.cs" />
     <Compile Include="Requests\AccountInfo\BalanceInfo\BalanceInfoQuery.cs" />
     <Compile Include="Requests\AccountInfo\CustomerInfoQuery.cs" />

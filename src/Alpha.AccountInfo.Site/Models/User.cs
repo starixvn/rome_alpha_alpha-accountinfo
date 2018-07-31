@@ -34,11 +34,31 @@
             => !userSession.IsSubAcc || (userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount);
 
         public bool AllowedAllDayBalTransfer => userSession.IsAllDayBalTransfer;
-
+         
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
         public bool AllowTransfer => userSession.SubPageAccess.Transfer; 
 
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;
+
+        public bool GetDisabledProduct(int productId) => userSession.GetDisabledProduct(productId);
+
+        public bool GetHideProduct(int productId) => userSession.GetHideProduct(productId);
+
+        public bool GetSyncedProduct(int productId) => userSession.GetSyncedProduct(productId);
+
+        public bool IsHideKeno => userSession.IsHideKeno;
+
+        public bool IsCasinoSync => userSession.IsCasinoSync;
+
+        public bool IsCasinoDisabled => userSession.IsCasinoDisabled;
+
+        public bool IsHideColossusBets => userSession.IsHideColossusBets;
+        public bool DisableColossusBets => userSession.DisableColossusBets;
+
+        public bool IsDisabledESports => userSession.IsDisabledESports;
+
+        public bool IsNumberGameDisabled => userSession.IsNumberGameDisabled;
+
     }
 }

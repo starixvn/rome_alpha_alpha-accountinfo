@@ -12,7 +12,7 @@
     public class SettingViewModel
     {
         public SettingViewModel(
-            ProductQuery message,
+            CustomerAllStatusQuery message,
             CustomerAllStatusModel model,
             Customer actor,
             Customer searchAccount)
@@ -22,8 +22,8 @@
             var request = new SettingSearchAccountRequest(actor, searchAccount);
 
             request
-                 .AddData(DataKey.Actor.CanEditDailyTransferOption, true)
-                 .AddData(DataKey.Actor.HasUpdateAccountPermission, true);
+                 .AddData(DataKey.Actor.CanEditDailyTransferOption, true) // TO DO
+                 .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount);
 
             Settings = viewModelfactory.GetViewModels(request);
         }

@@ -13,8 +13,8 @@
     public class StatusViewModel
     {
         public StatusViewModel(
-              ProductQuery message,
-              CustomerAllStatusModel model,
+              CustomerAllStatusQuery message,
+              CustomerStatusModel customerStatus,
               Customer actor,
               Customer searchAccount)
         {
@@ -23,21 +23,21 @@
             var request = new StatusSearchAccountRequest(actor, searchAccount);
 
             request
-                .AddData(DataKey.Actor.HasUpdateAccountPermission, true)
+                .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount)
 
-                .AddData(SearchAccount.IsAllowedMasterAutoPT, true)
+                .AddData(SearchAccount.IsAllowedMasterAutoPT, !customerStatus.DisableAutoMPT)
 
-                .AddData(DataKey.SearchAccount.Upline.IsAllowedOutright, true)
-                .AddData(DataKey.SearchAccount.IsAllowedOutright, true)
+                .AddData(DataKey.SearchAccount.Upline.IsAllowedOutright, !customerStatus.UplineDisableOutright)
+                .AddData(DataKey.SearchAccount.IsAllowedOutright, !customerStatus.DisableOutright)
 
-                .AddData(DataKey.SearchAccount.Upline.IsClosed, true)
-                .AddData(DataKey.SearchAccount.IsClosed, true)
+                .AddData(DataKey.SearchAccount.Upline.IsClosed, customerStatus.UplineClosed)
+                .AddData(DataKey.SearchAccount.IsClosed, customerStatus.Closed)
 
-                .AddData(DataKey.SearchAccount.Upline.IsAllowedDoubleComm, true)
-                .AddData(DataKey.SearchAccount.IsAllowedDoubleComm, true)
+                .AddData(DataKey.SearchAccount.Upline.IsAllowedDoubleComm, customerStatus.UplineDoubleCommLosing)
+                .AddData(DataKey.SearchAccount.IsAllowedDoubleComm, customerStatus.DoubleCommLosing)
 
-                .AddData(SearchAccount.Upline.IsSuspended, true)
-                .AddData(SearchAccount.IsSuspended, true);
+                .AddData(SearchAccount.Upline.IsSuspended, customerStatus.UplineSuspend)
+                .AddData(SearchAccount.IsSuspended, customerStatus.Suspended);
 
             Settings = viewModelfactory.GetViewModels(request);
         }

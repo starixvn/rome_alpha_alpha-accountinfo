@@ -29,7 +29,7 @@
         public async Task<ActionResult> GetDownlineList(DownlineListQuery message)
           => await JsonData(message, JsonRequestBehavior.AllowGet);
 
-        public async Task<ActionResult> GetCustomerStatus(ProductQuery message)
+        public async Task<ActionResult> GetCustomerStatus(CustomerAllStatusQuery message)
          => await JsonData(message, JsonRequestBehavior.AllowGet);
     }
 }

@@ -29,5 +29,24 @@
         bool AllowTransfer { get; }
 
         bool CanViewReports { get; }
+
+        bool GetDisabledProduct(int productId);
+
+        bool GetHideProduct(int productId);
+
+        bool GetSyncedProduct(int productId);
+
+        bool IsHideKeno { get; }
+
+        bool IsCasinoSync { get; }
+
+        bool IsCasinoDisabled { get; }
+
+        bool IsHideColossusBets { get; }
+        bool DisableColossusBets { get; }
+
+        bool IsDisabledESports { get; }
+
+        bool IsNumberGameDisabled { get; }
     }
 }

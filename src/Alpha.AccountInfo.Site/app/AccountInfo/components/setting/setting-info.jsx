@@ -37,9 +37,6 @@ export default class SettingInfo extends React.Component {
         const { settings } = this.props;
         const { slideTo } = this.state;
 
-        //let content = this.props.downlineList.length > 0 ?
-        //    <DownlineList usernames={this.props.downlineList} /> : <NoInfomation />;
-
         const params = {
             pagination: '.swiper-pagination',
             paginationClickable: true,
