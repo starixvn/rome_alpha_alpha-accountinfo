@@ -325,7 +325,7 @@ hr {
 .accordion__body {
     overflow: hidden;
     border-bottom: 1px solid #cecece;
-    padding: 0 15px 2px;
+    padding: 4px 15px 2px;
     margin-bottom: 2px;
 
     &.balance-info .row-info {
@@ -376,11 +376,21 @@ hr {
 
     &.block-login-info {
         .group {
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .row-info {
             line-height: 20px;
+        }
+    }
+
+    .online-list {
+        margin-top: 6px;
+        margin-bottom: 6px;
+        font-size: 12px;
+
+        .datetime {
+            font-size: 11px;
         }
     }
 }
