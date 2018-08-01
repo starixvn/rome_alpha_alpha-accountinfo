@@ -30,6 +30,13 @@
         [ThreadStatic]
         private static Func<string, string> mapMainPath;
 
+        [ThreadStatic]
+        private static Func<string, string> mapViewLogsPath;
+
+        [ThreadStatic]
+        private static Func<string, string> mapBetListPath;
+
+
         public static Func<string, string> MapExTotalBetsForecastPath
         {
             get
@@ -131,6 +138,32 @@
             internal set
             {
                 mapMainPath = value;
+            }
+        }
+
+        public static Func<string, string> MapViewLogsPath
+        {
+            get
+            {
+                return mapViewLogsPath ?? MicroSites.BetListsUrl; // TO DO Viewlogs
+            }
+
+            internal set
+            {
+                mapViewLogsPath = value;
+            }
+        }
+
+        public static Func<string, string> MapBetListPath
+        {
+            get
+            {
+                return mapBetListPath ?? MicroSites.BetListsUrl;
+            }
+
+            internal set
+            {
+                mapBetListPath = value;
             }
         }
     }

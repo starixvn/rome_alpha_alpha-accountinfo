@@ -18,10 +18,6 @@ export default class CustomerInfoBlock extends React.Component {
         this.setState({ data: props.data });
     }
 
-    handleBetListClick() { }
-
-    handleStatementClick() { }
-
     buildLevelRow(username, levelName, iconClassname, handleSearchFromUserLevel) {
         return <UserLevel
             username={username}
@@ -71,8 +67,19 @@ export default class CustomerInfoBlock extends React.Component {
                 </div>
 
                 <div className={rowClasses + " text-center list-button"}>
-                    <Button title="Bet List" classNames="btn-default with-level" handleClick={this.handleBetListClick} />
-                    <Button title="Statement" classNames="btn-default with-level" handleClick={this.handleStatementClick} />
+                    {
+                        roleId == 1 && <Button title="Bet List" classNames="btn-default with-level" targetIframe="main" url={data.BetListLink} />
+                    }
+
+                    {
+                        roleId == 2 && <Button title="Member List" classNames="btn-default with-level" targetIframe="main" url={data.CustomerListLink} />
+                    }
+
+                    {
+                        roleId == 3 && <Button title="Agent List" classNames="btn-default with-level" targetIframe="main" url={data.CustomerListLink} />
+                    }
+
+                    <Button title="Statement" classNames="btn-default with-level" targetIframe="main" url={data.StatemenLink} />
                 </div>
             </div>
         );

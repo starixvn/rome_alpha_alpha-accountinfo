@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Enumerations;
 
@@ -12,15 +13,11 @@
         private readonly CustomerInfoModel customerInfo;
         private readonly BalanceInfoModel balanceInfo;
 
-        private const string SMAStatementLink = "/site-reports/(S(wa000mahqldvjxctxg3naqhq))/Statement/SMAStatement?CustID=1382167&amp;CustName=ACGUUS3838&amp;CustLevelId=2";
-        private const string memberStatementLink = "/site-reports/(S(wa000mahqldvjxctxg3naqhq))/Statement/MemberStatement?CustID=1387971&amp;CustName=ACGUUS3838338&amp;CustLevelId=1";
-        private const string betListLink = "/site-betlists/(S(wa000mahqldvjxctxg3naqhq))/MemberBetList/Index?CustID=1387971&amp;CustName=ACGUUS3838338";
-
         private readonly Dictionary<UserLevel, string> CustomerListLinkDict
             = new Dictionary<UserLevel, string>
             {
-                { UserLevel.Master, "../_MemberInfo/CustomerList/Super/AgentList.aspx?custid=1382145"},
-                { UserLevel.Agent, "../_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167"}
+                { UserLevel.Master, "_MemberInfo/CustomerList/Super/AgentList.aspx?custid=1382145"},
+                { UserLevel.Agent,  "_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167"}
             };
 
         public CustomerInfoViewModel(
@@ -94,7 +91,8 @@
         {
             get
             {
-                return RoleId > 1 ? CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)] : string.Empty;
+                return !Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ? 
+                    $"{OldMainPath}{CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)]}?custid={CustId}" : string.Empty;
             }
         }
 
@@ -102,7 +100,8 @@
         {
             get
             {
-                return RoleId.Equals(1) ? betListLink : string.Empty;
+                return Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ? 
+                    $"{BetListPath}MemberBetList/Index?CustID={CustId}&amp;CustName={UserName}" : string.Empty;
             }
         }
 
@@ -110,10 +109,24 @@
         {
             get
             {
-                return RoleId.Equals(1) ? memberStatementLink : SMAStatementLink;
+                var memberStatementLink = $"{ReportPath}Statement/MemberStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}";
+                var SMAStatementLink = $"{ReportPath}Statement/SMAStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}";
+
+                return Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ? memberStatementLink : SMAStatementLink;
             }
         }
 
-        public string ViewLogLink { get; } = "/site-viewlogs/(S(wa000mahqldvjxctxg3naqhq))/setting/index?username=ACGUUS3838338";
+        public string ViewLogLink => $"{ViewLogsPath}setting/index?username={UserName}";
+
+
+        private static string ViewLogsPath => UrlHelper.MapViewLogsPath("~/");
+
+        private static string ReportPath => UrlHelper.MapReportsPath("~/");
+
+        private static string BetListPath => UrlHelper.MapBetListPath("~/");
+
+        private static string OldMainPath => UrlHelper.MapOldMainPath("~/");
+
+        public string AccountinfoPath => UrlHelper.MapAccountInfoPath("~/");
     }
 }

@@ -9,11 +9,11 @@ export default class SettingContent extends React.Component{
     }
 
     render() {
-        const { setting } = this.props;
+        const { setting, oldMainPath } = this.props;
 
         return (
             <div>
-                <SettingInfo settings={setting.Settings} />
+                <SettingInfo settings={setting.Settings} oldMainPath={oldMainPath}/>
             </div>    
         );
     }

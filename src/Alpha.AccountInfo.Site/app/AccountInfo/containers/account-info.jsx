@@ -9,16 +9,16 @@ import OnlineListBlock from '../components/online-list/index';
 import FeatureList from './feature-list';
 import Autosuggest from 'react-autosuggest';
 
-const getSuggestions = (value, listUserName) => {
+const getSuggestions = (value, usernames) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
-    return inputLength === 0 ? [] : listUserName.filter(user =>
+    return inputLength === 0 ? [] : usernames.filter(user =>
         user.UserName.toLowerCase().indexOf(inputValue) != -1
     );
 };
 
-const getSuggestionValue = suggestion => suggestion.name;
+const getSuggestionValue = suggestion => suggestion.UserName;
 
 const renderSuggestion = suggestion => (
     <div>
@@ -38,33 +38,36 @@ export default class AccountInfo extends React.Component {
         };
 
         this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
+        this.onChangeSearchBox = this.onChangeSearchBox.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
         this.getCustomerInfo = this.getCustomerInfo.bind(this);        
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+        this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
-
-        this.getUsernamesSuggestion = this.getUsernamesSuggestion.bind(this);
     }
 
-
     getCustomerInfo(e) {
+        this.fetchCustomerInfoFromServer(this.state.username);
+    }
+
+    fetchCustomerInfoFromServer(username) {
         const xhr = new XMLHttpRequest();
-        xhr.open('get', this.state.url + "?username=" + this.state.username);
+        xhr.open('get', this.state.url + "?username=" + username);
         xhr.onload = () => {
             this.setState({ customerInfo: JSON.parse(xhr.responseText).Result });
 
             this.handleShowContactInfo(e);
         };
         xhr.send();
+
     }
 
     handleShowContactInfo() {
         this.setState((prevStatus) => { showInfoStatus: !prevStatus })
     }
 
-    handleSearch(e, input) {
+    onChangeSearchBox(e, input) {
         this.setState({ username: input.newValue });
     };
 
@@ -74,16 +77,6 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    getUsernamesSuggestion(value) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('get', window.accountInfoSiteAppPath + "accountinfo/GetUsernamesSuggestion" + "?SuggestionQuery=" + value);
-        xhr.onload = () => {
-            return JSON.parse(xhr.responseText).Result;
-        };
-        xhr.send();
-    }
-    // Autosuggest will call this function every time you need to update suggestions.
-    // You already implemented this logic above, so just use it.
     onSuggestionsFetchRequested(input) {
         const xhr = new XMLHttpRequest();
         xhr.open('get', window.accountInfoSiteAppPath + "accountinfo/GetUsernamesSuggestion" + "?SuggestionQuery=" + input.value);
@@ -91,12 +84,10 @@ export default class AccountInfo extends React.Component {
             this.setState({
                 suggestions: getSuggestions(input.value, JSON.parse(xhr.responseText).Result)
             });
-            return ;
         };
         xhr.send();
     }
 
-    // Autosuggest will call this function every time you need to clear suggestions.
     onSuggestionsClearRequested() {
         this.setState({
             suggestions: []
@@ -111,7 +102,14 @@ export default class AccountInfo extends React.Component {
         e.preventDefault();
         const username = e.currentTarget.dataset.username;
 
-        this.setState({ username: username }, this.getCustomerInfo);
+        this.setState({ username: username }, this.fetchCustomerInfoFromServer(username));
+    }
+
+    onSuggestionSelected(e, suggestion) {
+        this.fetchCustomerInfoFromServer(suggestion.suggestionValue);
+    }
+
+    componentDidMount() {
     }
 
     render() {
@@ -120,7 +118,7 @@ export default class AccountInfo extends React.Component {
         const inputProps = {
             type: 'text',
             className: 'txt-search',
-            onChange: this.handleSearch,
+            onChange: this.onChangeSearchBox,
             onKeyPress: this.handleSearchKeyPress,
             placeholder: 'Username',
             value: username
@@ -134,6 +132,7 @@ export default class AccountInfo extends React.Component {
                             suggestions={suggestions}
                             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                            onSuggestionSelected={this.onSuggestionSelected}
                             getSuggestionValue={getSuggestionValue}
                             renderSuggestion={renderSuggestion}
                             shouldRenderSuggestions={this.shouldRenderSuggestions}

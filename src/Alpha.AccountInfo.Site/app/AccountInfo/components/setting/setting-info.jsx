@@ -34,7 +34,7 @@ export default class SettingInfo extends React.Component {
     }
     
     render() {
-        const { settings } = this.props;
+        const { settings, oldMainPath } = this.props;
         const { slideTo } = this.state;
 
         const params = {
@@ -57,7 +57,7 @@ export default class SettingInfo extends React.Component {
             <div className="downline-list-container">
                 <Swiper {...params} ref={node => { if (node) this.swiper = node.swiper } }>
                     {results.map((result, index) => {
-                        return <SettingPaging models={result} key={index} />
+                        return <SettingPaging models={result} oldMainPath={oldMainPath} key={index} />
                     })}
                 </Swiper>
                 <div className="page-control">

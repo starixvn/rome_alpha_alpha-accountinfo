@@ -3,6 +3,7 @@
     using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
     public class MemberBalanceInfoViewModel
@@ -36,14 +37,18 @@
         // Show TransferLink On TotalBalance or YesterdayBalance
         public bool AllowedTotalBalanceTransfer => message.AllowedTotalBalanceTransfer;
 
-        public string TransferLink => $"../_Transfer/Agent/MemberTransfer.aspx?custid={model.CustId}&CallBack=false";
+        public string TransferLink => $"{OldMainPath}_Transfer/Agent/MemberTransfer.aspx?custid={model.CustId}&CallBack=false";
 
         public bool ShowBetListLink => message.ViewReports && Outstanding > 0;
         
-        public string BetListLink => $"/site-betlists/(S(0q5s4rp4cfwvxiwmxikqhavv))/RunningBetList/Index?CustID={model.CustId}&amp;CustName=ACGUUS3838033&amp;GetAll=True";
+        public string BetListLink => $"{BetListPath}RunningBetList/Index?CustID={model.CustId}&amp;CustName=ACGUUS3838033&amp;GetAll=True";
 
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
 
         private decimal MemMaxCredit_Max => model.MemMaxCredit_Max;
+
+        private static string BetListPath => UrlHelper.MapBetListPath("~/");
+
+        private static string OldMainPath => UrlHelper.MapOldMainPath("~/");
     }
 }

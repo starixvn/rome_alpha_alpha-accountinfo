@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.AccountInfo;
     using Alpha.Products.AccountInfo.Requests;
@@ -29,5 +30,7 @@
         }
 
         public IEnumerable<ISettingItemViewModel> Settings {get;}
+
+        public string OldMainPath => UrlHelper.MapOldMainPath("~/");
     }
 }
