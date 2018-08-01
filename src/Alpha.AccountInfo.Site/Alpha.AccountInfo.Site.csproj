@@ -334,7 +334,6 @@
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -493,6 +492,7 @@
     <Compile Include="Requests\AccountInfo\BalanceInfo\AgentBalanceInfoQuery.cs" />
     <Compile Include="Requests\AccountInfo\BalanceInfo\MasterBalanceInfoQuery.cs" />
     <Compile Include="Requests\AccountInfo\CustomerAllStatusQuery.cs" />
+    <Compile Include="Requests\AccountInfo\UserNameSuggestionQuery.cs" />
     <Compile Include="Requests\AccountInfo\DownlineListQuery.cs" />
     <Compile Include="Requests\AccountInfo\BalanceInfo\BalanceInfoQuery.cs" />
     <Compile Include="Requests\AccountInfo\CustomerInfoQuery.cs" />

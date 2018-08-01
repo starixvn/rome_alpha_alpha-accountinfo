@@ -12,6 +12,7 @@
     using ViewModels.AccountInfo;
 
     public class AccountInfoHandler :
+        IRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>,
         IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
         IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>
@@ -22,6 +23,9 @@
         {
             this.accountInfoService = accountInfoService;
         }
+
+        public IEnumerable<UsernameSuggestion> Handle(UserNameSuggestionQuery message)
+            => accountInfoService.GetUsernamesSuggestion(message.ActorId, message.SuggestionQuery, message.IsInternal);
 
         public CustomerInfoViewModel Handle(CustomerInfoQuery message)
         {

@@ -23,6 +23,9 @@
             return View(new AccountInfoViewModel());
         }
 
+        public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
+           => JsonData(message, JsonRequestBehavior.AllowGet);
+
         public ActionResult GetCustomerInfo(CustomerInfoQuery message)
             => JsonData(message, JsonRequestBehavior.AllowGet);
 

@@ -4,9 +4,12 @@
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
 
     public interface AccountInfoService
     {
+       IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
+
        CustomerInfoModel GetCustomerInfoModelAsync(string username, int uplineId);
 
         BalanceInfoModel GetBalanceInfoModelAsync(int custId, byte roleId);
@@ -26,6 +29,9 @@
             repository = dynamicRepository;
             this.accountInfoDataAccess = accountInfoDataAccess;
         }
+
+        public IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
+            => repository.Fetch<UsernameSuggestion>(new SelectAutoSuggestion(actorId, suggestionQuery, isInternal));
 
         public BalanceInfoModel GetBalanceInfoModelAsync(int custId, byte roleId)
             => accountInfoDataAccess.GetBalanceInfoModelAsync(
