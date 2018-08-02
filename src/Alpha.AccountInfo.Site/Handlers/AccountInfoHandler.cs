@@ -15,7 +15,8 @@
         IRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>,
         IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
-        IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>
+        IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>,
+        IRequestHandler<OnlineListQuery, IEnumerable<OnlineListModel>>
     {
         private readonly AccountInfoService accountInfoService;
 
@@ -143,5 +144,8 @@
 
             return customerProductStatus;
         }
+
+        public IEnumerable<OnlineListModel> Handle(OnlineListQuery message)
+            => accountInfoService.GetOnlineList(message.CustId);
     }
 }

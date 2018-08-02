@@ -251,6 +251,7 @@
     <Compile Include="Criteria\AccountInfo\SelectAutoSuggestion.cs" />
     <Compile Include="Criteria\AccountInfo\SelectCustomerAllStatusModelCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\AccountInfoCriteria.cs" />
+    <Compile Include="Criteria\AccountInfo\SelectOnlineListCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\SelectDownlineListCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\SelectBalanceInfoCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\SelectCustomerInfoCriteria.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="Models\AccountInfo\CustomerAllStatus\CustomerStatusModel.cs" />
     <Compile Include="Models\AccountInfo\CustomerAllStatus\NonDCSProductModel.cs" />
     <Compile Include="Models\AccountInfo\CustomerAllStatus\DCSProductModel.cs" />
+    <Compile Include="Models\AccountInfo\OnlineList\OnlineListModel.cs" />
     <Compile Include="Models\AccountInfo\DownlineList\DownlineInfoModel.cs" />
     <Compile Include="Models\AccountInfo\DownlineList\DownlineListModel.cs" />
     <Compile Include="Models\CustomerInformation.cs" />

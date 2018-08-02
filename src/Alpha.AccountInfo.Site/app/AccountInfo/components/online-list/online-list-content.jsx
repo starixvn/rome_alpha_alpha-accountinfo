@@ -6,18 +6,17 @@ export default class OnlineListContent extends React.Component {
         super(props);
     }
     render() {
-        const { onlineListData } = this.props;
+        const { data } = this.props;
 
         return (
             <tbody>
                 {onlineListData === null && <NoInformationRow colspan="3" /> }
 
-                { onlineListData !== null &&
-                    onlineListData.map(rowObj =>
-                        <tr key={rowObj.id}>
-                            <td className="text-center">{rowObj.id}</td>
-                            <td>{rowObj.ip}</td>
-                            <td className="text-center"> {rowObj.dateTime}</td>
+                {data != null && data.map((online, index) =>
+                        <tr key={index}>
+                            <td className="text-center">{index}</td>
+                            <td>{online.IP}</td>
+                            <td className="text-center"> {online.Reload_Time}</td>
                         </tr>
                     )
                 }

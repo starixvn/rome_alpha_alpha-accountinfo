@@ -17,6 +17,8 @@
         DownlineListModel GetDownlineListModelAsync(int custId);
 
        CustomerAllStatusModel GetCustomerAllStatusModelAsync(int custId);
+
+        IEnumerable<OnlineListModel> GetOnlineList(int custid); 
     }
 
     public class AccountInfoServiceImpl : AccountInfoService
@@ -46,5 +48,8 @@
 
         public DownlineListModel GetDownlineListModelAsync(int custId)
             =>  accountInfoDataAccess.GetDownlineListModelAsync(new SelectDownlineListCriteria(custId));
+
+        public IEnumerable<OnlineListModel> GetOnlineList(int custid)
+            =>  repository.Fetch<OnlineListModel>(new SelectOnlineListCriteria(custid));
     }
 }

@@ -222,7 +222,8 @@ export default class FeatureList extends React.Component {
                     <OnlineListBlock
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.onlineList}
-                        blockId="onlineList" />
+                        blockId="onlineList"
+                        custId={this.props.customerInfo.CustId}/>
                 </Accordion>
             </div>
         );

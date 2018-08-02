@@ -35,5 +35,9 @@
         [HttpPost]
         public ActionResult GetCustomerStatus(CustomerAllStatusQuery message)
             => JsonData(message, JsonRequestBehavior.AllowGet);
+
+        [HttpPost]
+        public ActionResult GetOnlineList(OnlineListQuery message)
+           => JsonData(message, JsonRequestBehavior.AllowGet);
     }
 }

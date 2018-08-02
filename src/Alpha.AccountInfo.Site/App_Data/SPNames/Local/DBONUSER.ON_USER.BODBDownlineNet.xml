@@ -1,0 +1,5 @@
+﻿<Functions SiteId="" SiteName="Account Info">
+  <Function Name="Online List">
+    <Setting Key="Acc_CustomerSelOnline" SpName="Acc_CustomerSelOnline" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>
