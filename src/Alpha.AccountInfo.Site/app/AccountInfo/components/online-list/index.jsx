@@ -5,6 +5,7 @@ import HeadTable from '../common/table/head-table';
 import BodyTable from '../common/table/body-table';
 import ColTable from '../common/table/col-table';
 import RowNoInformation from '../common/table/row-no-infomation';
+import RowTable from '../common/table/row-table';
 
 export default class OnlineListBlock extends React.Component{
     constructor(props) {
@@ -30,9 +31,11 @@ export default class OnlineListBlock extends React.Component{
 
                 <Table classNames="tblRpt tblRpt-bordered width-100per online-list">
                     <HeadTable>
-                        <ColTable title='#' isHeadeTable={true} />
-                        <ColTable title='IP' isHeadeTable={true} />
-                        <ColTable title='Login Time' isHeadeTable={true} />
+                        <RowTable>
+                            <ColTable title='#' isHeadeTable={true} />
+                            <ColTable title='IP' isHeadeTable={true} />
+                            <ColTable title='Login Time' isHeadeTable={true} />
+                        </RowTable>                        
                     </HeadTable>
                     <BodyTable>
 
@@ -40,11 +43,11 @@ export default class OnlineListBlock extends React.Component{
 
                         {data.length !== 0 &&
                             data.map(rowObj =>
-                                <tr key={rowObj.id}>
+                                <RowTable key={rowObj.id}>
                                     <ColTable classNames="text-center" title={rowObj.id} />
                                     <ColTable title={rowObj.ip} />
                                     <ColTable classNames="text-center" title={rowObj.dateTime} />
-                                </tr>
+                                </RowTable>
                             )
                         }
                     </BodyTable>

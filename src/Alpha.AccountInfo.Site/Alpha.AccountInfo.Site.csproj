@@ -325,6 +325,7 @@
     <Content Include="app\AccountInfo\components\common\table\col-table.jsx" />
     <Content Include="app\AccountInfo\components\common\table\index.jsx" />
     <Content Include="app\AccountInfo\components\common\table\head-table.jsx" />
+    <Content Include="app\AccountInfo\components\common\table\row-table.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-info.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-content.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-paging.jsx" />

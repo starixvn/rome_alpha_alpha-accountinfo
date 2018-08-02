@@ -8,9 +8,7 @@ export default class HeadTable extends React.Component {
         const { children} = this.props;
         return (
             <thead>
-                <tr>
-                    {children}
-                </tr>
+                {children}
             </thead>
         );
     }
