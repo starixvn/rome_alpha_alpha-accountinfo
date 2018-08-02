@@ -16,8 +16,8 @@
         private readonly Dictionary<UserLevel, string> CustomerListLinkDict
             = new Dictionary<UserLevel, string>
             {
-                { UserLevel.Master, "_MemberInfo/CustomerList/Super/AgentList.aspx?custid=1382145"},
-                { UserLevel.Agent,  "_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167"}
+                { UserLevel.Master, "_MemberInfo/CustomerList/Super/AgentList.aspx"},
+                { UserLevel.Agent,  "_MemberInfo/CustomerList/Super/MemberList.aspx"}
             };
 
         public CustomerInfoViewModel(
