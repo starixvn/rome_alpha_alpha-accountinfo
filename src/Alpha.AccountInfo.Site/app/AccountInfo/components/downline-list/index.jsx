@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import DownlineListContent from './downline-list-content';
+import NoInfomation from '../../components/common/no-infomation'
 
 export default class DownlineListBlock extends React.Component{
     constructor(props) {
@@ -33,8 +34,6 @@ export default class DownlineListBlock extends React.Component{
     }
 
     loadDownlineListFromServer() {
-        console.log("load downline list");
-
         const xhr = new XMLHttpRequest();
         xhr.open('get', this.state.url + "?custid=" + this.props.custId);
         xhr.onload = () => {
@@ -47,6 +46,10 @@ export default class DownlineListBlock extends React.Component{
         const { blockId, expanded, fetchCustomerInfoFromServer } = this.props;
         const { data } = this.state;
 
+        const content = data == null || data.DownlineList.length == 0 ?
+            <NoInfomation title="No information is available" /> :
+            <DownlineListContent downlineList={data} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
+           
         return (
             <CustomizedAccordionItem
                 title="Downline list"
@@ -54,8 +57,7 @@ export default class DownlineListBlock extends React.Component{
                 expanded={expanded}
                 handleClick={this.handleClick}
                 blockId={blockId}>
-
-                {data != null && <DownlineListContent downlineList={data} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />}
+                {content}
             </CustomizedAccordionItem>    
         );
     }

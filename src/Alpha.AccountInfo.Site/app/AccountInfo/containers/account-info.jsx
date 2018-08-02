@@ -7,6 +7,7 @@ import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
 import FeatureList from './feature-list';
+import NoInfomation from '../components/common/no-infomation'
 import Autosuggest from 'react-autosuggest';
 
 const getSuggestions = (value, usernames) => {
@@ -31,6 +32,7 @@ export default class AccountInfo extends React.Component {
         super(props);
         this.state = {
             showInfoStatus: false,
+            searchCounter: 0,
             username: '',
             customerInfo: null,
             suggestions: []
@@ -56,10 +58,11 @@ export default class AccountInfo extends React.Component {
         let url = window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo?username=" + username;
         xhr.open('get', url);
         xhr.onload = () => {
-            this.setState({
+            this.setState((prevState) => ({
                 username: username,
+                searchCounter: prevState.searchCounter + 1,
                 customerInfo: JSON.parse(xhr.responseText).Result
-            });
+            }));
 
             this.handleShowContactInfo(e);
         };
@@ -117,16 +120,20 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const { showInfoStatus, username, url, customerInfo, suggestions } = this.state;
+        const { showInfoStatus, username, url, customerInfo, suggestions, searchCounter } = this.state;
 
         const inputProps = {
             type: 'text',
             className: 'txt-search',
             onChange: this.onChangeSearchBox,
             onKeyPress: this.handleSearchKeyPress,
-            placeholder: 'Username',
+            placeholder: 'Username or First/Last Name',
             value: username
         }
+
+        const customerInfoContent = customerInfo == null ?
+            <NoInfomation title="No information is available" /> :
+            <CustomerInfoBlock data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />;
 
         return (
             <div className="accountinfo-container">
@@ -145,7 +152,7 @@ export default class AccountInfo extends React.Component {
                         <span className="icon-search" onClick={this.getCustomerInfo}></span>
                     </div>
 
-                    {customerInfo != null && <CustomerInfoBlock data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />}
+                    {searchCounter > 0 && customerInfoContent}
 
                 </div>
                 {customerInfo != null &&

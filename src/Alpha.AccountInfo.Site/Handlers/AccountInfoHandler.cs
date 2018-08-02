@@ -30,9 +30,14 @@
         public CustomerInfoViewModel Handle(CustomerInfoQuery message)
         {
             var custormerinfo = accountInfoService.GetCustomerInfoModelAsync(message.UserName, message.ActorId);
-            var balanceinfo = accountInfoService.GetBalanceInfoModelAsync(custormerinfo.CustId, custormerinfo.RoleId);
+            if (custormerinfo != null)
+            {
+                var balanceinfo = accountInfoService.GetBalanceInfoModelAsync(custormerinfo.CustId, custormerinfo.RoleId);
 
-            return new CustomerInfoViewModel(message, custormerinfo, balanceinfo);
+                return new CustomerInfoViewModel(message, custormerinfo, balanceinfo);
+            }
+
+            return null;
         }
 
         public DownlineListViewModel Handle(DownlineListQuery message)
