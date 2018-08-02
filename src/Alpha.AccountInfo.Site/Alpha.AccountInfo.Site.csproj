@@ -318,6 +318,7 @@
   <ItemGroup>
     <Content Include="app\AccountInfo\components\balance-info\cash.jsx" />
     <Content Include="app\AccountInfo\components\balance-info\balance-info-content.jsx" />
+    <Content Include="app\AccountInfo\components\common\link-style-button.jsx" />
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
     <Content Include="app\AccountInfo\components\common\checkbox.jsx" />
     <Content Include="app\AccountInfo\components\common\table\body-table.jsx" />

@@ -1,8 +1,8 @@
 ﻿import React from 'react';
 
-const CheckBox = ({ checked, title, id, handleChecked=f=>f }) => {
+const CheckBox = ({ classNames= null, checked = false, title = '', id = null, handleChecked = f => f }) => {
     return (
-        <div>
+        <div className={classNames}>
             <input type="checkbox"
                 checked={checked ? true : false}
                 onChange={handleChecked} id={id} />

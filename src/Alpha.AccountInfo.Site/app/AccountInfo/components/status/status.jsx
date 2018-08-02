@@ -14,16 +14,10 @@ export default class Status extends React.Component {
     }
 
     render() {
-        const { classname, checked, title, id } = this.props;
+        const { classNames, checked, title, id } = this.props;
 
         return (
-            <div className={classname}>
-                <CheckBox checked={checked} onChange={this.handleChange} title={title} id={id} />
-            </div>
+            <CheckBox classNames={classNames} checked={checked} onChange={this.handleChange} title={title} id={id} />
         );
     }
-}
-
-Status.defaultProps = {
-    classname: 'checkbox'
 }

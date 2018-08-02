@@ -35,11 +35,11 @@ export default class OnlineListBlock extends React.Component{
                             <ColTable title='#' isHeadeTable={true} />
                             <ColTable title='IP' isHeadeTable={true} />
                             <ColTable title='Login Time' isHeadeTable={true} />
-                        </RowTable>                        
+                        </RowTable>              
                     </HeadTable>
                     <BodyTable>
 
-                        {data.length === 0 && <RowNoInformation classNames="text-center" title="No information" colspan="3" />}
+                        {data.length === 0 && <RowNoInformation classNames="text-center" colspan="3" />}
 
                         {data.length !== 0 &&
                             data.map(rowObj =>

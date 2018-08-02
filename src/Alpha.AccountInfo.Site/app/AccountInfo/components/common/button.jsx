@@ -1,8 +1,8 @@
 ﻿import React from 'react';
 
-const Button = ({ title, classNames, targetIframe, url }) =>
-    <button className={classNames}>
-        <a href={url} target={targetIframe}>  {title} </a>
+const Button = ({ title = '', classNames = null, handleClick = f => f }) =>
+    <button className={classNames} onClick={handleClick}>
+        {title}
     </button>;
 
 export default Button;

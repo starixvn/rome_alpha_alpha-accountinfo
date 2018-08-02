@@ -1,20 +1,7 @@
 ﻿import React from 'react';
 import SettingInfo from './setting-info';
-import CustomizedAccordionItem from '../common/customized-accordion-item';
 
-export default class SettingContent extends React.Component{
-    constructor(props) {
-        super(props);
+const SettingContent = ({ setting, oldMainPath }) => 
+    <SettingInfo settings={setting.Settings} oldMainPath={oldMainPath} />
 
-    }
-
-    render() {
-        const { setting, oldMainPath } = this.props;
-
-        return (
-            <div>
-                <SettingInfo settings={setting.Settings} oldMainPath={oldMainPath}/>
-            </div>    
-        );
-    }
-}
+export default SettingContent;

@@ -1,5 +1,5 @@
 ﻿
-const RowNoInformation = ({ classNames = null, title, colspan = null }) =>
-    <tr><td className={classNames} colSpan={colspan}>{title}</td></tr>
+const RowNoInformation = ({ classNames = null, colspan = null }) =>
+    <tr><td className={classNames} colSpan={colspan}>No information is available</td></tr>
 
 export default RowNoInformation;

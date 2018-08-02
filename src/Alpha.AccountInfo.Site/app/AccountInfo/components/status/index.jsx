@@ -25,10 +25,10 @@ export default class StatusBlock extends React.Component {
                         <CellContainLink title={status.Text}
                             statusId={status.DisplayOrder}
                             key={index}
-                            classNames="row-info"
+                            classNames="col"
                             iconClassname="icon-ic_list"
                             hrefLink="#" /> :
-                        <Status title={status.Text}
+                        <Status classNames='col checkbox' title={status.Text}
                             checked={status.Checked}
                             key={index}
                             statusId={status.DisplayOrder} /> 

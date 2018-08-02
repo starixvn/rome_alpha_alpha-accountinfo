@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-const NoInfomation = ({ title }) => 
-    <div className="panel-body">{title}</div>
+const NoInfomation = ({ classNames = null }) => 
+    <div className={classNames}>No information is available</div>
 
 export default NoInfomation;

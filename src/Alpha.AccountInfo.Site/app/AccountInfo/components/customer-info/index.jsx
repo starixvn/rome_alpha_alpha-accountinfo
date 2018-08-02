@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import Button from '../common/button';
+import LinkStyleButton from '../common/link-style-button';
 import Cell from '../common/cell';
 import UserLevel from './user-level';
 
@@ -68,18 +68,18 @@ export default class CustomerInfoBlock extends React.Component {
 
                 <div className={rowClasses + " text-center list-button"}>
                     {
-                        roleId == 1 && <Button title="Bet List" classNames="btn-default with-level" targetIframe="main" url={data.BetListLink} />
+                        roleId == 1 && <LinkStyleButton title="Bet List" classNames="btn-default with-level" targetIframe="main" url={data.BetListLink} />
                     }
 
                     {
-                        roleId == 2 && <Button title="Member List" classNames="btn-default with-level" targetIframe="main" url={data.CustomerListLink} />
+                        roleId == 2 && <LinkStyleButton title="Member List" classNames="btn-default with-level" targetIframe="main" url={data.CustomerListLink} />
                     }
 
                     {
-                        roleId == 3 && <Button title="Agent List" classNames="btn-default with-level" targetIframe="main" url={data.CustomerListLink} />
+                        roleId == 3 && <LinkStyleButton title="Agent List" classNames="btn-default with-level" targetIframe="main" url={data.CustomerListLink} />
                     }
 
-                    <Button title="Statement" classNames="btn-default with-level" targetIframe="main" url={data.StatemenLink} />
+                    <LinkStyleButton title="Statement" classNames="btn-default with-level" targetIframe="main" url={data.StatemenLink} />
                 </div>
             </div>
         );

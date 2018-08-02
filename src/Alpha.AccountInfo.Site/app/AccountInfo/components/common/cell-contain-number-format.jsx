@@ -2,7 +2,7 @@
 import NumberFormat from 'react-number-format';
 
 
-const CellContainNumberFormat = ({ classNames, title }) => {
+const CellContainNumberFormat = ({ classNames =  null, title = '' }) => {
     let formatClassNames = title < 0 ? `${classNames} number-red` : `${classNames} number`;
     return (
         <div className={formatClassNames}>
