@@ -321,13 +321,9 @@
     <Content Include="app\AccountInfo\components\common\link-style-button.jsx" />
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
     <Content Include="app\AccountInfo\components\common\checkbox.jsx" />
-    <Content Include="app\AccountInfo\components\common\table\body-table.jsx" />
-    <Content Include="app\AccountInfo\components\common\table\row-no-infomation.jsx" />
-    <Content Include="app\AccountInfo\components\common\table\col-table.jsx" />
-    <Content Include="app\AccountInfo\components\common\table\index.jsx" />
-    <Content Include="app\AccountInfo\components\common\table\head-table.jsx" />
-    <Content Include="app\AccountInfo\components\common\table\row-table.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-list-page.jsx" />
+    <Content Include="app\AccountInfo\components\online-list\online-list-content.jsx" />
+    <Content Include="app\AccountInfo\components\online-list\no-infomation-row.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-info.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-content.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-paging.jsx" />

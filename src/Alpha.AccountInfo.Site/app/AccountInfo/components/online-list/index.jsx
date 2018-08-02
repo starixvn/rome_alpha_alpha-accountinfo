@@ -1,11 +1,6 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
-import Table from '../common/table/index';
-import HeadTable from '../common/table/head-table';
-import BodyTable from '../common/table/body-table';
-import ColTable from '../common/table/col-table';
-import RowNoInformation from '../common/table/row-no-infomation';
-import RowTable from '../common/table/row-table';
+import OnlineListContent from './online-list-content';
 
 export default class OnlineListBlock extends React.Component{
     constructor(props) {
@@ -20,7 +15,8 @@ export default class OnlineListBlock extends React.Component{
     render() {
         const { expanded, handleCollapExpandBlock, blockId } = this.props;
         const { data } = this.state;
-
+        const onlineListData = data.length > 0 ? data : null;
+        
         return (
             <CustomizedAccordionItem
                 title="Online List"
@@ -29,29 +25,14 @@ export default class OnlineListBlock extends React.Component{
                 handleClick={handleCollapExpandBlock}
                 blockId={blockId}>
 
-                <Table classNames="tblRpt tblRpt-bordered width-100per online-list">
-                    <HeadTable>
-                        <RowTable>
-                            <ColTable title='#' isHeadeTable={true} />
-                            <ColTable title='IP' isHeadeTable={true} />
-                            <ColTable title='Login Time' isHeadeTable={true} />
-                        </RowTable>              
-                    </HeadTable>
-                    <BodyTable>
-
-                        {data.length === 0 && <RowNoInformation classNames="text-center" colspan="3" />}
-
-                        {data.length !== 0 &&
-                            data.map(rowObj =>
-                                <RowTable key={rowObj.id}>
-                                    <ColTable classNames="text-center" title={rowObj.id} />
-                                    <ColTable title={rowObj.ip} />
-                                    <ColTable classNames="text-center" title={rowObj.dateTime} />
-                                </RowTable>
-                            )
-                        }
-                    </BodyTable>
-                </Table>
+                <table className="tblRpt tblRpt-bordered width-100per online-list">
+                    <thead>
+                        <th>#</th>
+                        <th>IP</th>
+                        <th>Login Time</th>
+                    </thead>
+                    <OnlineListContent onlineListData={onlineListData} />
+                </table>
             </CustomizedAccordionItem>
       );
     }
