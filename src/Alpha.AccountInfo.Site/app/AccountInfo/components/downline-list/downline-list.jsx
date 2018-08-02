@@ -1,11 +1,10 @@
 ﻿import React from 'react';
+import Swiper from 'react-id-swiper';
 //import NoInfomation from '../../components/online-list/no-infomation';
 //import DownlineList from '../../components/online-list/downline-list';
-//import Swiper from 'swiper';
-import DownlineListPaging from './downline-list-paging';
-import Swiper from 'react-id-swiper';
+import DownlineListPage from './downline-list-page';
 
-export default class DownlineInfo extends React.Component {
+export default class DownlineList extends React.Component {
     constructor(props) {
         super(props);
 
@@ -15,6 +14,7 @@ export default class DownlineInfo extends React.Component {
 
         this.slideTo = this.slideTo.bind(this);
     }
+
     chunkArray(myArray, chunk_size) {
         var index = 0;
         var arrayLength = myArray.length;
@@ -22,7 +22,6 @@ export default class DownlineInfo extends React.Component {
 
         for (index = 0; index < arrayLength; index += chunk_size) {
             let myChunk = myArray.slice(index, index + chunk_size);
-            // Do something if you want with the group
             tempArray.push(myChunk);
         }
 
@@ -37,7 +36,7 @@ export default class DownlineInfo extends React.Component {
     }
     
     render() {
-        const { downlineList } = this.props;
+        const { downlineList, fetchCustomerInfoFromServer } = this.props;
         const { slideTo } = this.state;
 
         //let content = this.props.downlineList.length > 0 ?
@@ -63,7 +62,7 @@ export default class DownlineInfo extends React.Component {
             <div className="downline-list-container">
                 <Swiper {...params} ref={node => { if (node) this.swiper = node.swiper } }>
                     {results.map((result, index) => {
-                        return <DownlineListPaging usernames={result} key={index} />
+                        return <DownlineListPage usernames={result} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} key={index} />
                     })}
                 </Swiper>
                 <div className="page-control">

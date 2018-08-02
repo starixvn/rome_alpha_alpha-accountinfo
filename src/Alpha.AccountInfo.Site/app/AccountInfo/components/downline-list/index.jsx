@@ -1,6 +1,4 @@
 ﻿import React from 'react';
-import TotalDownlineList from './total-downline-list';
-import DownlineInfo from './downline-info';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import DownlineListContent from './downline-list-content';
 
@@ -46,7 +44,7 @@ export default class DownlineListBlock extends React.Component{
     }
 
     render() {
-        const { blockId, expanded } = this.props;
+        const { blockId, expanded, fetchCustomerInfoFromServer } = this.props;
         const { data } = this.state;
 
         return (
@@ -57,7 +55,7 @@ export default class DownlineListBlock extends React.Component{
                 handleClick={this.handleClick}
                 blockId={blockId}>
 
-                {data != null && <DownlineListContent downlineList={data} />}
+                {data != null && <DownlineListContent downlineList={data} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />}
             </CustomizedAccordionItem>    
         );
     }

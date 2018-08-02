@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-export default class TotalDownlineList extends React.Component {
+export default class TotalDownlines extends React.Component {
     constructor(props) {
         super(props);
     }

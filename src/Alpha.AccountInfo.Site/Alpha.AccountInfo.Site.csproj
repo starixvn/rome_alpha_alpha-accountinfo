@@ -327,6 +327,7 @@
     <Content Include="app\AccountInfo\components\common\table\index.jsx" />
     <Content Include="app\AccountInfo\components\common\table\head-table.jsx" />
     <Content Include="app\AccountInfo\components\common\table\row-table.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\downline-list-page.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-info.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-content.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-paging.jsx" />
@@ -585,9 +586,9 @@
     <Content Include="app\AccountInfo\components\common\cell-contain-number-format.jsx" />
     <Content Include="app\AccountInfo\components\common\cell.jsx" />
     <Content Include="app\AccountInfo\components\customer-info\user-level.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list\downline-info.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list\downline-list-paging.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list\total-downline-list.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\downline-list.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\downline-name.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list\total-downlines.jsx" />
     <Content Include="app\AccountInfo\components\common\link.jsx" />
     <Content Include="app\AccountInfo\components\common\no-infomation.jsx" />
     <Content Include="app\AccountInfo\components\online-list\index.jsx" />
@@ -600,15 +601,6 @@
     <Content Include="app\AccountInfo\index.jsx" />
     <Content Include="app\AccountInfo\containers\account-info.jsx" />
     <Content Include="app\AccountInfo\components\balance-info\index.jsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\account-info-model.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\online-list-model.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\login-info-model.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\setting-model.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\status-model.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\total-status-downline.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\downline-list-model.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\balance-info-model.tsx" />
-    <TypeScriptCompile Include="app\AccountInfo\models\customer-info-model.tsx" />
     <TypeScriptCompile Include="assets\scripts\productstatus\productstatus.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />

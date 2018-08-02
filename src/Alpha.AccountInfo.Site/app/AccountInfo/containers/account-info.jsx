@@ -32,7 +32,6 @@ export default class AccountInfo extends React.Component {
         this.state = {
             showInfoStatus: false,
             username: '',
-            url: window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo",
             customerInfo: null,
             suggestions: []
         };
@@ -45,17 +44,22 @@ export default class AccountInfo extends React.Component {
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
+        this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
     }
 
     getCustomerInfo(e) {
-        this.fetchCustomerInfoFromServer(this.state.username);
+        this.fetchCustomerInfoFromServer(e, this.state.username);
     }
 
-    fetchCustomerInfoFromServer(username) {
+    fetchCustomerInfoFromServer(e, username) {
         const xhr = new XMLHttpRequest();
-        xhr.open('get', this.state.url + "?username=" + username);
+        let url = window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo?username=" + username;
+        xhr.open('get', url);
         xhr.onload = () => {
-            this.setState({ customerInfo: JSON.parse(xhr.responseText).Result });
+            this.setState({
+                username: username,
+                customerInfo: JSON.parse(xhr.responseText).Result
+            });
 
             this.handleShowContactInfo(e);
         };
@@ -102,11 +106,11 @@ export default class AccountInfo extends React.Component {
         e.preventDefault();
         const username = e.currentTarget.dataset.username;
 
-        this.setState({ username: username }, this.fetchCustomerInfoFromServer(username));
+        this.setState({ username: username }, this.fetchCustomerInfoFromServer(e, username));
     }
 
     onSuggestionSelected(e, suggestion) {
-        this.fetchCustomerInfoFromServer(suggestion.suggestionValue);
+        this.fetchCustomerInfoFromServer(e, suggestion.suggestionValue);
     }
 
     componentDidMount() {
@@ -144,8 +148,11 @@ export default class AccountInfo extends React.Component {
                     {customerInfo != null && <CustomerInfoBlock data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />}
 
                 </div>
-                {customerInfo != null && <FeatureList handleShowContactInfo={this.handleShowContactInfo}
-                    showInfoStatus={this.showInfoStatus} customerInfo={customerInfo}  />}
+                {customerInfo != null &&
+                    <FeatureList handleShowContactInfo={this.handleShowContactInfo}
+                        showInfoStatus={this.showInfoStatus}
+                        customerInfo={customerInfo}
+                        fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} />}
                        
             </div>
         );
