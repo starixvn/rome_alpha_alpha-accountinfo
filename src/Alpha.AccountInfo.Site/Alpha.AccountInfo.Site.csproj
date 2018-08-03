@@ -343,9 +343,9 @@
     <Content Include="Web.AppSettings.backupMNLExNap4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <None Include="Web.AppSettings.backupMNLNap.config">
+    <Content Include="Web.AppSettings.backupMNLNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </None>
+    </Content>
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -364,9 +364,9 @@
     <Content Include="Web.AppSettings.napexternal4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <None Include="Web.AppSettings.napinternal.config">
+    <Content Include="Web.AppSettings.napinternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </None>
+    </Content>
     <Content Include="Web.AppSettings.napinternal2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
