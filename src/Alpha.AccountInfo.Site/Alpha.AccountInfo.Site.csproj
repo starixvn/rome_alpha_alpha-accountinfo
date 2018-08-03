@@ -331,16 +331,25 @@
     <Content Include="Web.AppSettings.backupMNL2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.backupMNL4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.AppSettings.backupMNLExNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.backupMNLExNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.backupMNLExNap4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <None Include="Web.AppSettings.backupMNLNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
     <Content Include="Web.AppSettings.backupMNLNap2.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.backupMNLNap4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.config">
@@ -352,10 +361,16 @@
     <Content Include="Web.AppSettings.napexternal2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.napexternal4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <None Include="Web.AppSettings.napinternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
     <Content Include="Web.AppSettings.napinternal2.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.napinternal4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.pro.config">
@@ -364,10 +379,16 @@
     <Content Include="Web.AppSettings.pro2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.pro4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.AppSettings.sit.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.sit2.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.sit4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.uat.config">
@@ -376,7 +397,13 @@
     <Content Include="Web.AppSettings.uat2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.uat4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.uat2.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.uat4.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.backupMNL.config">
@@ -385,16 +412,25 @@
     <Content Include="Web.backupMNL2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+    <Content Include="Web.backupMNL4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.backupMNLExNap.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.backupMNLExNap2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+    <Content Include="Web.backupMNLExNap4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.backupMNLNap.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.backupMNLNap2.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLNap4.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.config">
@@ -445,10 +481,16 @@
     <Content Include="Web.napexternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+    <Content Include="Web.napexternal4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.napinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.napinternal2.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.napinternal4.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.pro.config">
@@ -460,10 +502,16 @@
     <Content Include="Web.pro2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+    <Content Include="Web.pro4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.sit.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.sit2.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.sit4.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.uat.config">
