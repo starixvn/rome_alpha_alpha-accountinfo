@@ -1,9 +1,6 @@
 ﻿import React from 'react';
-import Button from '../common/button';
-
+import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from '../common/cell-contain-number-format';
-import CellContainInput from '../common/cell-contain-input';
-import Cell from '../common/cell';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import Cash from './cash';
 
@@ -59,27 +56,27 @@ export default class BalanceInfoContent extends React.Component{
                 }
 
                 <div className={rowClasses}>
-                    <Cell title="Total Balance" classNames="col-xs-6" />
+                    <div className="col-xs-6">Total Balance</div>
                     <CellContainNumberFormat title={this.props.balanceInfo.TotalBalance} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell title="Yesterday Balance" classNames="col-xs-6" />
+                    <div className="col-xs-6">Yesterday Balance</div>
                     <CellContainNumberFormat title={this.props.balanceInfo.YesterdayBalance} classNames="col-xs-6 col-right" />
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell title="Outstanding" classNames="col-xs-6" />
-                    <CellContainInput title={this.props.balanceInfo.Outstanding}
-                        classNames="col-xs-6 col-right box-edited"
-                        inputClassname="txt-number-edited"
-                        onSave={this.handleOutStandingChange} />
+                    <div className="col-xs-6">Outstanding</div>
+                    <div className="col-xs-6 col-right">
+                        <a href="#" className="link">{this.props.balanceInfo.Outstanding}</a>
+                    </div>
+                    
                 </div>
 
                 {
                     this.props.roleId > 1 &&
                     <div className={rowClasses}>
-                        <Cell title="Used Credit" classNames="col-xs-6" />
+                        <div className="col-xs-6">Used Credit</div>
                         <CellContainNumberFormat title={this.props.balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
                     </div>
                 }
@@ -87,19 +84,26 @@ export default class BalanceInfoContent extends React.Component{
                 {
                     this.props.roleId == 1 &&
                     <div className={rowClasses}>
-                        <Cell title="Net Position" classNames="col-xs-6" />
+                        <div className="col-xs-6">Net Position</div>
                         <CellContainNumberFormat title={this.props.balanceInfo.NetPosition} classNames="col-xs-6 col-right" />
                     </div>
                 }
 
                 <div className={rowClasses}>
-                    <Cell title="Given Credit" classNames="col-xs-6" />
-                    <CellContainInput title={this.props.balanceInfo.GivenCredit}
-                        id="txt-given-edit"
-                        classNames="col-xs-6 col-right box-edited"
-                        inputClassname="txt-number-edited"
-                        onSave={this.handleGivenCredit}
-                        iconClassname="icon-border-color icon-edited" /> 
+                    <div className="col-xs-6">Given Credit</div>
+                    <div className="col-xs-6 col-right given-credit"
+                        title={`<= ${this.props.balanceInfo.GivenCredit}`}
+                        onClick={this.handleGivenCredit}>
+
+                        <NumberFormat
+                            className="link"
+                            value={this.props.balanceInfo.GivenCredit}
+                            displayType={'text'}
+                            thousandSeparator={true}
+                            decimalScale="2" />
+
+                        <span className="icon-border-color icon-edited"></span>
+                    </div>
                 </div>
             </div>
       );

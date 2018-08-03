@@ -1,9 +1,10 @@
 ﻿import * as React from 'react';
-import Button from '../components/common/button';
 
 const ShowContactInfo = ({ title = '', classNames = null, handleShowHide = f => f }) =>
     <div className={classNames}>
-        <Button classNames="btn-default show-more" handleClick={handleShowHide} title={title} />
+        <button className="btn-default show-more" onClick={handleShowHide}>
+            {title}
+        </button>
     </div>;
 
 export default ShowContactInfo;

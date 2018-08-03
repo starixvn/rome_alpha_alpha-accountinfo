@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-const NoInfomation = ({ classNames = null }) => 
-    <div className={classNames}>No information is available</div>
+const NoInfomation = ({ classNames = null, title ='No information is available' }) => 
+    <div className={classNames}>{title}</div>
 
 export default NoInfomation;

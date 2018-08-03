@@ -1,5 +1,5 @@
 ﻿
 const NoInformationRow = ({ classNames = null, colspan = null }) =>
-    <tr><td className={classNames} colSpan={colspan}>No information is available</td></tr>
+    <tr><td className={classNames} colSpan={colspan}>This user is not online</td></tr>
 
 export default NoInformationRow;

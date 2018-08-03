@@ -1,7 +1,5 @@
 ﻿import React from 'react';
 import Swiper from 'react-id-swiper';
-//import NoInfomation from '../../components/online-list/no-infomation';
-//import DownlineList from '../../components/online-list/downline-list';
 import DownlineListPage from './downline-list-page';
 
 export default class DownlineList extends React.Component {
@@ -38,9 +36,6 @@ export default class DownlineList extends React.Component {
     render() {
         const { downlineList, fetchCustomerInfoFromServer } = this.props;
         const { slideTo } = this.state;
-
-        //let content = this.props.downlineList.length > 0 ?
-        //    <DownlineList usernames={this.props.downlineList} /> : <NoInfomation />;
 
         const params = {
             pagination: '.swiper-pagination',

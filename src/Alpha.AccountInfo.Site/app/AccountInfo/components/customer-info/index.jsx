@@ -1,6 +1,4 @@
 ﻿import * as React from 'react';
-import LinkStyleButton from '../common/link-style-button';
-import Cell from '../common/cell';
 import UserLevel from './user-level';
 
 export default class CustomerInfoBlock extends React.Component {
@@ -52,34 +50,37 @@ export default class CustomerInfoBlock extends React.Component {
                 {data.ShowMemberName ? this.buildLevelRow(data.MemberName, "Customer", "icon-viewlog", handleSearchFromUserLevel) : null}
 
                 <div className={rowClasses}>
-                    <Cell title="Name" classNames={firstCellClass} />
-                    <Cell title={data.username} classNames={secondCellClass} />
+                    <div className={firstCellClass}>Name</div>
+                    <div className={secondCellClass}>{data.username}</div>
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell title="Phone" classNames={firstCellClass} />
-                    <Cell title={data.Phone} classNames={secondCellClass} />
+                    <div className={firstCellClass}>Phone</div>
+                    <div className={secondCellClass}>{data.Phone}</div>
                 </div>
 
                 <div className={rowClasses}>
-                    <Cell title="Fax" classNames={firstCellClass} />
-                    <Cell title={data.Fax} classNames={secondCellClass} />
+                    <div className={firstCellClass}>Fax</div>
+                    <div className={secondCellClass}>{data.Fax}</div>
                 </div>
 
                 <div className={rowClasses + " text-center list-button"}>
                     {
-                        roleId == 1 && <LinkStyleButton title="Bet List" classNames="btn-default with-level" targetIframe="main" url={data.BetListLink} />
+                        roleId == 1 &&
+                        <a className="btn-default with-level" href={data.BetListLink} target="main">Bet List</a>
                     }
 
                     {
-                        roleId == 2 && <LinkStyleButton title="Member List" classNames="btn-default with-level" targetIframe="main" url={data.CustomerListLink} />
+                        roleId == 2 &&
+                        <a className="btn-default with-level" href={data.CustomerListLink} target="main">Member List</a>
                     }
 
                     {
-                        roleId == 3 && <LinkStyleButton title="Agent List" classNames="btn-default with-level" targetIframe="main" url={data.CustomerListLink} />
+                        roleId == 3 &&
+                        <a className="btn-default with-level" href={data.CustomerListLink} target="main">Agent List</a>
                     }
 
-                    <LinkStyleButton title="Statement" classNames="btn-default with-level" targetIframe="main" url={data.StatemenLink} />
+                    <a className="btn-default with-level" href={data.StatemenLink} target="main">Statement</a>
                 </div>
             </div>
         );

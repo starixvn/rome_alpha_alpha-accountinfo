@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import Cell from '../common/cell';
 import CellContainLink from '../common/cell-contain-link';
 
 export default class UserLevel extends React.Component {
@@ -21,13 +20,13 @@ export default class UserLevel extends React.Component {
 
         return (
             <div className={rowClasses}>
-                <Cell title={levelname} classNames={firstCellClass} />
+                <div className={firstCellClass}>{levelname}</div>
                 <CellContainLink title={username}
                     classNames={secondCellClass}
                     hrefLink={hrefLink}
                     iconClassname={iconClassname}
-                    handleClick={handleSearchFromUserLevel}
-                    isDataSet={true} />
+                    iconTitle="View log"
+                    handleClick={handleSearchFromUserLevel} />
             </div>
         );
     }

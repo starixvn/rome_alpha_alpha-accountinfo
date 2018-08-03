@@ -1,9 +1,4 @@
 ﻿import React from 'react';
-import Button from '../common/button';
-
-import CellContainNumberFormat from '../common/cell-contain-number-format';
-import CellContainInput from '../common/cell-contain-input';
-import Cell from '../common/cell';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import BalanceInfoContent from './balance-info-content';
 

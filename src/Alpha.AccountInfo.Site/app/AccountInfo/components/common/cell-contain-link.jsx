@@ -1,10 +1,9 @@
 ﻿import React from 'react';
-import Link from './link';
 
-const CellContainLink = ({ classNames = null, title = '', hrefLink = '#', iconClassname = null, handleClick = f => f, isDataSet = false }) => 
+const CellContainLink = ({ classNames = null, title = '', hrefLink = '#', iconClassname = null, iconTitle = null, handleClick = f => f }) => 
     <div className={classNames}>
-        <Link title={title} url={hrefLink} handleClick={handleClick} isDataSet={isDataSet} />
-        <span className={iconClassname}></span>
+        <a href={hrefLink} onClick={handleClick} data-username={title}>{title}</a>
+        <span className={iconClassname} title={iconTitle}></span>
     </div>
 
 export default CellContainLink;

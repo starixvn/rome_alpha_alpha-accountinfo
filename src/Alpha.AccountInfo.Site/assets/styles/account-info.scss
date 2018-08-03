@@ -74,6 +74,7 @@ hr {
     .highlight .col-right {
         font-family: "Roboto Bold";
     }
+
     // Search box
     .search-box {
         position: relative;
@@ -124,7 +125,12 @@ hr {
             margin-left: 4px;
             cursor: pointer;
         }
+
+        .no-information-search {
+            padding: 8px 12px;
+        }
     }
+
     // Settings
     .product {
         display: table;
@@ -184,7 +190,7 @@ hr {
     }
 }
 
-.box-edited {
+.given-credit {
     .icon-edited {
         @include ripple-effect-icon($top: -2px, $margin-left: -5px);
         color: $icon-color;
@@ -243,7 +249,7 @@ hr {
         position: absolute;
         top: 167px;
         transform: translateY(-33px);
-        
+
         .show-more-container {
             display: block !important;
         }
@@ -254,6 +260,10 @@ hr {
             line-height: 26px;
             border: 1px solid #888;
             background-color: #fff;
+        }
+
+        .show-more:hover {
+            background-color: darken(#fff, 5%);
         }
     }
 }
@@ -332,15 +342,21 @@ hr {
 .accordion__body {
     overflow: hidden;
     border-bottom: 1px solid #cecece;
-    padding: 4px 15px 2px;
+    padding: 6px 15px 4px;
     margin-bottom: 2px;
 
-    &.balance-info .row-info {
-        padding-left: 2px;
-        padding-right: 2px;
+    &.balance-info {
+        .row-info {
+            padding-left: 2px;
+            padding-right: 2px;
+        }
 
-        &:hover {
+        .row-info:hover {
             background-color: #f2f2f2;
+        }
+
+        .link {
+            color: #049bac;
         }
     }
 
@@ -550,7 +566,7 @@ hr {
 
     &:before {
         position: relative;
-        top: 2px;
+        top: 1px;
         font-family: Iconalpha;
         color: #fff;
     }
@@ -634,8 +650,6 @@ hr {
 // Customize UI for auto suggestion
 
 .react-autosuggest__suggestions-list {
-    padding-top: 6px;
-    padding-bottom: 6px;
     border: 1px solid #dfdfdf;
     border-radius: 1px;
     color: #333;
@@ -645,10 +659,10 @@ hr {
 }
 
 .react-autosuggest__suggestion {
-    padding: 5px 12px;
+    padding: 8px 12px;
 
     &:hover {
-        background-color: #fff;
+        background-color: #ddd;
     }
 }
 

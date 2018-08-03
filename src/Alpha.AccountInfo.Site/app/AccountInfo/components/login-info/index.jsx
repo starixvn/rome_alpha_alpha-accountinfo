@@ -1,6 +1,5 @@
 ﻿import React from 'react';
-import Cell from '../common/cell';
-import CustomizedAccordionItem from '../common/customized-accordion-item'
+import CustomizedAccordionItem from '../common/customized-accordion-item';
 
 export default class LoginInfoBlock extends React.Component{
     constructor(props) {
@@ -23,20 +22,20 @@ export default class LoginInfoBlock extends React.Component{
                 blockId={blockId}>
 
                 <div className="group">
-                    <Cell title="Created Date:" classNames="row-info bold" />
-                    <Cell title={this.props.loginInfo.CreatedDate} classNames="row-info" />
+                    <div className="row-info bold">Created Date:</div>
+                    <div className="row-info">{this.props.loginInfo.CreatedDate}</div>
                 </div>
                 <div className="group">
-                    <Cell title="Last Login:" classNames="row-info bold" />
-                    <Cell title={this.props.loginInfo.LastLogin} classNames="row-info" />
+                    <div className="row-info bold">Last Login:</div>
+                    <div className="row-info">{this.props.loginInfo.LastLogin}</div>
                 </div>
                 <div className="group">
-                    <Cell title="Last Txn:" classNames="row-info bold" />
-                    <Cell title={this.props.loginInfo.LastTxn} classNames="row-info" />
+                    <div className="row-info bold">Last Txn:</div>
+                    <div className="row-info">{this.props.loginInfo.LastTxn}</div>
                 </div>
                 <div className="group">
-                    <Cell title="Login IP:" classNames="row-info bold" />
-                    <Cell title={this.props.loginInfo.LoginIP} classNames="row-info" />
+                    <div className="row-info bold">Login IP:</div>
+                    <div className="row-info">{this.props.loginInfo.LoginIP}</div>
                 </div>
             </CustomizedAccordionItem>
       );

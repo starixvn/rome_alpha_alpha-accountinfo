@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import DownlineListContent from './downline-list-content';
-import NoInfomation from '../../components/common/no-infomation'
+import NoInfomation from '../../components/common/no-infomation';
 
 export default class DownlineListBlock extends React.Component{
     constructor(props) {
@@ -47,7 +47,7 @@ export default class DownlineListBlock extends React.Component{
         const { data } = this.state;
 
         const content = data == null || data.DownlineList.length == 0 ?
-            <NoInfomation title="No information is available" /> :
+            <NoInfomation /> :
             <DownlineListContent downlineList={data} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
            
         return (

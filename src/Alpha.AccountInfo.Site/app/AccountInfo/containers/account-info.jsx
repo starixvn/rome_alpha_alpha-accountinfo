@@ -7,7 +7,7 @@ import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
 import FeatureList from './feature-list';
-import NoInfomation from '../components/common/no-infomation'
+import NoInfomation from '../components/common/no-infomation';
 import Autosuggest from 'react-autosuggest';
 
 const getSuggestions = (value, usernames) => {
@@ -132,7 +132,7 @@ export default class AccountInfo extends React.Component {
         }
 
         const customerInfoContent = customerInfo == null ?
-            <NoInfomation title="No information is available" /> :
+            <NoInfomation classNames="no-information-search" /> :
             <CustomerInfoBlock data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />;
 
         return (
