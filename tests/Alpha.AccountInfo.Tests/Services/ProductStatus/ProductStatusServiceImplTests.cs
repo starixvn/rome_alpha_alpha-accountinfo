@@ -605,7 +605,7 @@
 
             // Assert
             Assert.True(!actualResult.IsSuccess() &&
-                actualResult.Message == "You are not allowed to disable downline's product.<br>Baccarat, Roulette, Sic Bo, Dragon Tiger");
+                actualResult.Message == "You are not allowed to disable downline's product.");
         }
 
         [Fact]
