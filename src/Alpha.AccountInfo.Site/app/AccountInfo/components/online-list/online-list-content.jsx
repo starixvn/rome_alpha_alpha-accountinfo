@@ -10,7 +10,7 @@ export default class OnlineListContent extends React.Component {
 
         return (
             <tbody>
-                {onlineListData === null && <NoInformationRow colspan="3" /> }
+                {(data === null || data.length == 0) && <NoInformationRow colspan="3" /> }
 
                 {data != null && data.map((online, index) =>
                         <tr key={index}>

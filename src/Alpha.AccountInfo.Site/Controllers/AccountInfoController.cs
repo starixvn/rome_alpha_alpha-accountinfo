@@ -23,21 +23,24 @@
             return View(new AccountInfoViewModel());
         }
 
+        [HttpPost]
         public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
-           => JsonData(message, JsonRequestBehavior.AllowGet);
-
-        public ActionResult GetCustomerInfo(CustomerInfoQuery message)
-            => JsonData(message, JsonRequestBehavior.AllowGet);
-
-        public ActionResult GetDownlineList(DownlineListQuery message)
-            =>  JsonData(message, JsonRequestBehavior.AllowGet);
+           => JsonData(message, JsonRequestBehavior.DenyGet);
 
         [HttpPost]
-        public ActionResult GetCustomerStatus(CustomerAllStatusQuery message)
-            => JsonData(message, JsonRequestBehavior.AllowGet);
+        public ActionResult GetCustomerInfo(CustomerInfoQuery message)
+            => JsonData(message, JsonRequestBehavior.DenyGet);
+
+        [HttpPost]
+        public ActionResult GetDownlineList(DownlineListQuery message)
+            =>  JsonData(message, JsonRequestBehavior.DenyGet);
+
+        [HttpPost]
+        public ActionResult GetCustomerAllStatus(CustomerAllStatusQuery message)
+            => JsonData(message, JsonRequestBehavior.DenyGet);
 
         [HttpPost]
         public ActionResult GetOnlineList(OnlineListQuery message)
-           => JsonData(message, JsonRequestBehavior.AllowGet);
+           => JsonData(message, JsonRequestBehavior.DenyGet);
     }
 }

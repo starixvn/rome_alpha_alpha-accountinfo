@@ -8,6 +8,7 @@ import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
 import ShowContactInfo from './show-contact-info';
 import { Accordion } from 'react-accessible-accordion';
+import { accountInfoAPI } from '../api-client';
 
 // Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/fancy-example.css';
@@ -60,17 +61,12 @@ export default class FeatureList extends React.Component {
             UplineRoleId: this.props.customerInfo.RoleId + 1
         });
 
-        xhr.open('post', this.state.getCustomerStatusUrl, true);
-        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
-
-        xhr.onload = () => {
-            var data = JSON.parse(xhr.responseText).Result;
+        accountInfoAPI.getCustomerAllStatus(params).then((data) => {
             this.setState({
                 settingData: data.Setting,
                 statusData: data.Status
             });
-        };
-        xhr.send(params);
+        });
     }
 
     initialExpandedItems() {

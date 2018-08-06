@@ -1,13 +1,13 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import OnlineListContent from './online-list-content';
+import { accountInfoAPI } from '../../api-client';
 
 export default class OnlineListBlock extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             custId: this.props.custId,
-            url: window.accountInfoSiteAppPath + "accountinfo/getonlinelist",
             data: null
         }
 
@@ -20,12 +20,9 @@ export default class OnlineListBlock extends React.Component{
     }
 
     loadOnlineListFromServer() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('post', this.state.url + "?custid=" + this.props.custId);
-        xhr.onload = () => {
-            this.setState({ data: JSON.parse(xhr.responseText).Result });
-        };
-        xhr.send();
+        accountInfoAPI.getDownlineList({ custid: this.props.custId }).then((data) => {
+            this.setState({ data: data });
+        });
     }
 
     render() {

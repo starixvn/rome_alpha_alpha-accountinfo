@@ -56,34 +56,15 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerInfoFromServer(e, username) {
-
-        accountInfoAPI.getCustomerInfo(username)
-            .then(action((data: any) => {
-                this.setState((prevState) => ({
-                    username: username,
-                    searchCounter: prevState.searchCounter + 1,
-                    customerInfo: data
-                }));
-
-                this.handleShowContactInfo(e);
-
-                data.forEach(todo => this.todos.push(new TodoItem(todo)));
+        accountInfoAPI.getCustomerInfo({ username: username}).then((data) => {
+            this.setState((prevState) => ({
+                username: username,
+                searchCounter: prevState.searchCounter + 1,
+                customerInfo: data
             }));
 
-        ////const xhr = new XMLHttpRequest();
-        ////let url = window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo?username=" + username;
-        ////xhr.open('get', url);
-        ////xhr.onload = () => {
-        ////    this.setState((prevState) => ({
-        ////        username: username,
-        ////        searchCounter: prevState.searchCounter + 1,
-        ////        customerInfo: JSON.parse(xhr.responseText).Result
-        ////    }));
-
-        ////    this.handleShowContactInfo(e);
-        ////};
-        ////xhr.send();
-
+            this.handleShowContactInfo(e);
+        });
     }
 
     handleShowContactInfo() {
@@ -101,14 +82,9 @@ export default class AccountInfo extends React.Component {
     }
 
     onSuggestionsFetchRequested(input) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('get', window.accountInfoSiteAppPath + "accountinfo/GetUsernamesSuggestion" + "?SuggestionQuery=" + input.value);
-        xhr.onload = () => {
-            this.setState({
-                suggestions: getSuggestions(input.value, JSON.parse(xhr.responseText).Result)
-            });
-        };
-        xhr.send();
+        accountInfoAPI.getAutoUsernameSuggestion({ SuggestionQuery: input.value }).then((data) => {
+            this.setState({ suggestions: data });
+        });
     }
 
     onSuggestionsClearRequested() {

@@ -2,13 +2,13 @@
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import DownlineListContent from './downline-list-content';
 import NoInfomation from '../../components/common/no-infomation';
+import { accountInfoAPI } from '../../api-client';
 
 export default class DownlineListBlock extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             custId: this.props.custId,
-            url: window.accountInfoSiteAppPath + "accountinfo/getdownlinelist",
             data: null
         }
         this.handleClick = this.handleClick.bind(this);
@@ -23,7 +23,6 @@ export default class DownlineListBlock extends React.Component{
         }
     }
 
-
     componentDidMount() {
     
     }
@@ -34,12 +33,9 @@ export default class DownlineListBlock extends React.Component{
     }
 
     loadDownlineListFromServer() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('get', this.state.url + "?custid=" + this.props.custId);
-        xhr.onload = () => {
-            this.setState({ data: JSON.parse(xhr.responseText).Result });
-        };
-        xhr.send();
+        accountInfoAPI.getDownlineList({ custid: this.props.custId }).then((data) => {
+            this.setState({ data: data });
+        });
     }
 
     render() {
