@@ -28,14 +28,11 @@ export default class DownlineListBlock extends React.Component{
     }
 
     handleClick(e) {
-        this.props.handleCollapExpandBlock(e);
-        this.loadDownlineListFromServer();
-    }
-
-    loadDownlineListFromServer() {
-        accountInfoAPI.getDownlineList({ custid: this.props.custId }).then((data) => {
+        this.state.data === null && accountInfoAPI.getDownlineList({ custid: this.props.custId }).then((data) => {
             this.setState({ data: data });
         });
+
+        this.props.handleCollapExpandBlock(e);
     }
 
     render() {

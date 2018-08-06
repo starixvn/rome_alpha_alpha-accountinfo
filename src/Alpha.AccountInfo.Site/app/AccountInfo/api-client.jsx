@@ -5,9 +5,7 @@ const handleErrors = (err) => {
     throw err;
 };
 
-const responseData = (res) => {
-    return res.data.Result;
-};
+const responseData = (res) => res.data.Result;
 
 const requests = {
     get: (url) => axios.get(url)

@@ -2,9 +2,7 @@
 {
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
-    using Alpha.Web;
     using MediatR;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
 

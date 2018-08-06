@@ -17,12 +17,11 @@ export default class FeatureList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            getCustomerStatusUrl: window.accountInfoSiteAppPath + "accountinfo/getcustomerstatus",
             expandedItems: this.initialExpandedItems(),
             collapseAll: false,
             firstLoadSearch: true,
             statusData: null,
-            settingData: null,
+            settingData: null
         }
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
@@ -31,10 +30,11 @@ export default class FeatureList extends React.Component {
     }
 
     getCustomerAllStatus(e) {
-        console.log("load customerstatus");
+        this.state.settingData === null && this.fetchCustomerAllStatusFromServer();
         this.handleCollapExpandBlock(e);
-        const xhr = new XMLHttpRequest();
+    }
 
+    fetchCustomerAllStatusFromServer() {
         let uplineId = null;
         let uplineName = null;
         switch (this.props.customerInfo.RoleId) {
@@ -52,14 +52,14 @@ export default class FeatureList extends React.Component {
                 break;
         }
 
-        var params = JSON.stringify({
+        var params = {
             SearchAccountId: this.props.customerInfo.CustId,
             SearchAccountName: this.props.customerInfo.UserName,
             SearchAccountRoleId: this.props.customerInfo.RoleId,
             UplientId: uplineId,
             UplineName: uplineName,
             UplineRoleId: this.props.customerInfo.RoleId + 1
-        });
+        };
 
         accountInfoAPI.getCustomerAllStatus(params).then((data) => {
             this.setState({

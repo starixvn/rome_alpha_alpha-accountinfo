@@ -7,6 +7,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
 
     public interface AccountInfoDataAccess
     {
@@ -188,7 +189,7 @@
                     return new CustomerAllStatusModel(
                         customerStatus: customerStatus,
                         nonDCSProduct: nonDCSProduct,
-                        dcsProducts: dcsProducts);
+                        dcsProducts: dcsProducts.GroupBy(product => product.ProductId).Select(group => group.First()));
                 }
             }
 
