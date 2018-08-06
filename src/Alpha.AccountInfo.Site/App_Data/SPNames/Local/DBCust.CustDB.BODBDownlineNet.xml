@@ -17,6 +17,9 @@
 
   <Function Name="Account Info">
     <Setting Key="Acc_CustomerSelList" SpName="Acc_CustomerSelList_xpre" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerUpdCredit_MAg" SpName="Age_CustomerUpdCredit_MAg" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerUpdCredit_SAg" SpName="Age_CustomerUpdCredit_SAg" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   
 </Functions>

@@ -40,5 +40,9 @@
         [HttpPost]
         public ActionResult GetOnlineList(OnlineListQuery message)
            => JsonData(message, JsonRequestBehavior.DenyGet);
+
+        [HttpPost]
+        public ActionResult UpdateGivenCredit(GivenCreditCommand message)
+          => JsonData(message, JsonRequestBehavior.DenyGet);
     }
 }

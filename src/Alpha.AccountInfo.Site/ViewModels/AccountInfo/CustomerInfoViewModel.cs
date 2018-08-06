@@ -20,6 +20,10 @@
                 { UserLevel.Agent,  "_MemberInfo/CustomerList/Super/MemberList.aspx"}
             };
 
+        public CustomerInfoViewModel()
+        {
+        }
+
         public CustomerInfoViewModel(
             CustomerInfoQuery message, 
             CustomerInfoModel customerInfo,

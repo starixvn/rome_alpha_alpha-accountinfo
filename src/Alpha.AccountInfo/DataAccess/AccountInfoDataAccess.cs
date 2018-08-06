@@ -1,5 +1,7 @@
 ﻿namespace Alpha.AccountInfo.DataAccess
 {
+    using Alpha.AccountInfo.AppResources;
+    using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Fanex.Common;
     using Fanex.Data;
@@ -16,10 +18,26 @@
         BalanceInfoModel GetBalanceInfoModelAsync(ICriteria criteria, byte roleId);
 
         DownlineListModel GetDownlineListModelAsync(ICriteria criteria);
+
+        Result UpdateGivenCredit(ICriteria criteria);
     }
 
     public class AccountInfoDataAccessImpl : AccountInfoDataAccess
     {
+        private readonly IDictionary<byte, Func<IDataReader, BalanceInfoModel>> getBalanceInfoFunction;
+
+        private readonly int updateCreditFailErrorCode = 100;
+
+        public AccountInfoDataAccessImpl()
+        {
+            getBalanceInfoFunction = new Dictionary<byte, Func<IDataReader, BalanceInfoModel>>
+            {
+                [1] = BuildMemberBalanceInfoModelAsync,
+                [2] = BuildAgentBalanceInfoModelAsync,
+                [3] = BuildMasterBalanceInfoModelAsync
+            };
+        }
+
         public BalanceInfoModel GetBalanceInfoModelAsync(ICriteria criteria, byte roleId)
         {
             using (var db = new ObjectDb(criteria.GetSettingKey()))
@@ -28,25 +46,16 @@
                 {
                     if (reader.Read())
                     {
-                        switch (roleId)
-                        {
-                            case 3:
-                                return BuildMasterBalanceInfoModelAsync(reader);
-                            case 2:
-                                return BuildAgentBalanceInfoModelAsync(reader);
-                            default:
-                                return BuildMemberBalanceInfoModelAsync(reader);
-                        }
+                        return getBalanceInfoFunction[roleId](reader);
                     }
                 }
             }
 
-            throw new NotImplementedException();
+            return new BalanceInfoModel();
         }
 
-        private BalanceInfoModel BuildMasterBalanceInfoModelAsync(IDataReader reader)
-        {
-            return new BalanceInfoModel(
+        private static BalanceInfoModel BuildMasterBalanceInfoModelAsync(IDataReader reader)
+            => new BalanceInfoModel(
                           custId: Converter.ToInt(reader["custid"]),
                           credit: Converter.ToDecimal(reader["credit"]),
                           masterCash: Converter.ToDecimal(reader["masterCash"]),
@@ -62,7 +71,6 @@
                           casinoOutstanding: Converter.ToDecimal(reader["csOutstanding"]),
                           casinoTransfer: Converter.ToDecimal(reader["csTransfer"]),
                           masterUsedCredit: Converter.ToDecimal(reader["masterUsedCredit"]),
-
                           agentPositionTaking: 0,
                           agentUsedCredit: 0,
                           netPosition: 0,
@@ -71,11 +79,9 @@
                           memMaxCredit_Min: 0,
                           memMaxCredit_Max: 0,
                           memberMaxCredit: 0);
-        }
 
-        private BalanceInfoModel BuildAgentBalanceInfoModelAsync(IDataReader reader)
-        {
-            return new BalanceInfoModel(
+        private static BalanceInfoModel BuildAgentBalanceInfoModelAsync(IDataReader reader)
+            => new BalanceInfoModel(
                           custId: Converter.ToInt(reader["custid"]),
                           credit: Converter.ToDecimal(reader["credit"]),
                           agentCredit_Min: Converter.ToDecimal(reader["AgentCredit_Min"]),
@@ -91,7 +97,6 @@
                           casinoTransfer: Converter.ToDecimal(reader["csTransfer"]),
                           agentUsedCredit: Converter.ToDecimal(reader["agentUsedCredit"]),
                           memberMaxCredit: Converter.ToDecimal(reader["memberMaxCredit"]),
-
                           masterCash: 0,
                           yesterday_MasterCash: 0,
                           masterPositionTaking: 0,
@@ -100,11 +105,9 @@
                           masterCredit_Min: 0,
                           masterCredit_Max: 0,
                           memMaxCredit_Max: 0);
-        }
 
-        private BalanceInfoModel BuildMemberBalanceInfoModelAsync(IDataReader reader)
-        {
-            return new BalanceInfoModel(
+        private static BalanceInfoModel BuildMemberBalanceInfoModelAsync(IDataReader reader)
+            => new BalanceInfoModel(
                           custId: Converter.ToInt(reader["custid"]),
                           credit: Converter.ToDecimal(reader["credit"]),
                           netPosition: Converter.ToDecimal(reader["netPosition"]),
@@ -114,7 +117,6 @@
                           customerOutstanding: Converter.ToDecimal(reader["outstanding"]),
                           casinoOutstanding: Converter.ToDecimal(reader["csOutstanding"]),
                           casinoTransfer: Converter.ToDecimal(reader["csTransfer"]),
-
                           masterCash: 0,
                           yesterday_MasterCash: 0,
                           masterPositionTaking: 0,
@@ -127,9 +129,8 @@
                           masterCredit_Max: 0,
                           agentCredit_Min: 0,
                           agentCredit_Max: 0,
-                          memMaxCredit_Min: 0, 
+                          memMaxCredit_Min: 0,
                           memberMaxCredit: 0);
-        }
 
         public CustomerAllStatusModel GetCustomerAllStatusModelAsync(ICriteria criteria)
         {
@@ -185,15 +186,12 @@
                                   hasDownline: Converter.ToBool(row["HasDownline"])));
                     }
 
-
                     return new CustomerAllStatusModel(
                         customerStatus: customerStatus,
                         nonDCSProduct: nonDCSProduct,
                         dcsProducts: dcsProducts.GroupBy(product => product.ProductId).Select(group => group.First()));
                 }
             }
-
-            throw new NotImplementedException();
         }
 
         public DownlineListModel GetDownlineListModelAsync(ICriteria criteria)
@@ -203,7 +201,7 @@
                 using (var dataset = db.ExecuteDataSet(criteria.GetSpParams()))
                 {
                     var downlineListTable = dataset.Tables[0];
-                    var row2 = dataset.Tables[1].Rows[0];
+                    var totalDownlineRow = dataset.Tables[1].Rows[0];
 
                     var downlineList = new List<DownlineInfoModel>();
                     foreach(DataRow row in downlineListTable.Rows)
@@ -216,14 +214,29 @@
 
                     return new DownlineListModel(
                           downlines: downlineList,
-                          totalAgActive: Converter.ToInt(row2["TotalAgActive"]),
-                          totalAgClosed: Converter.ToInt(row2["TotalAgClosed"]),
-                          totalAgSuspended: Converter.ToInt(row2["TotalAgSuspended"]),
-                          totalMemActive: Converter.ToInt(row2["TotalMemActive"]),
-                          totalMemClosed: Converter.ToInt(row2["TotalMemClosed"]),
-                          totalMemSuspended: Converter.ToInt(row2["TotalMemSuspended"])
+                          totalAgActive: Converter.ToInt(totalDownlineRow["TotalAgActive"]),
+                          totalAgClosed: Converter.ToInt(totalDownlineRow["TotalAgClosed"]),
+                          totalAgSuspended: Converter.ToInt(totalDownlineRow["TotalAgSuspended"]),
+                          totalMemActive: Converter.ToInt(totalDownlineRow["TotalMemActive"]),
+                          totalMemClosed: Converter.ToInt(totalDownlineRow["TotalMemClosed"]),
+                          totalMemSuspended: Converter.ToInt(totalDownlineRow["TotalMemSuspended"])
                         );
                 }
+            }
+        }
+
+        public Result UpdateGivenCredit(ICriteria criteria)
+        {
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(criteria.GetSpParams());
+                var outputParams = db.GetOuputParams();
+
+                var creditProblem = Converter.ToBool(outputParams["CreditProblem"]);
+
+                return creditProblem ?
+                    Result.CreateErrorResult(updateCreditFailErrorCode, Converter.ToString2(outputParams["ErrMsg"])) :
+                    Result.CreateSuccessResult(Resources.UpdateGivenCreditSuccessfully);
             }
         }
     }

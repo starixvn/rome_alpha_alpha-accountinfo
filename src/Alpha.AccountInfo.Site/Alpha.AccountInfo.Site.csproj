@@ -316,6 +316,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\AccountInfo\components\balance-info\given-credit-dialog.jsx" />
+    <Content Include="app\AccountInfo\components\balance-info\dialog.jsx" />
     <Content Include="app\AccountInfo\components\balance-info\cash.jsx" />
     <Content Include="app\AccountInfo\components\balance-info\balance-info-content.jsx" />
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
@@ -486,6 +488,7 @@
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\AccountInfo\GivenCreditCommand.cs" />
     <Compile Include="Requests\AccountInfo\CustomerAllStatusQuery.cs" />
     <Compile Include="Requests\AccountInfo\OnlineListQuery.cs" />
     <Compile Include="Requests\AccountInfo\UserNameSuggestionQuery.cs" />
@@ -560,7 +563,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\AccountInfo\constants\" />
-    <Folder Include="App_Themes\Apo\" />
     <Folder Include="assets\bundles\account-info\" />
     <Folder Include="assets\styles\images\" />
   </ItemGroup>

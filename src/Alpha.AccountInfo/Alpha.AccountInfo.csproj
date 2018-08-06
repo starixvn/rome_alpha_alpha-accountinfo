@@ -248,6 +248,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\BetTypeConstants.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
+    <Compile Include="Criteria\AccountInfo\GivenCredit\UpdateGivenCreditCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\SelectAutoSuggestion.cs" />
     <Compile Include="Criteria\AccountInfo\SelectCustomerAllStatusModelCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\AccountInfoCriteria.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Models\ProductStatus\ProductStatusModel.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\UserLevel.cs" />
+    <Compile Include="Params\AccountInfo\GivenCreditParam.cs" />
     <Compile Include="Params\ProductStatus\ProductStatusAuthorizationParam.cs" />
     <Compile Include="Params\ProductStatus\BetTypeStatusParam.cs" />
     <Compile Include="Params\ProductStatus\ProductStatusCommandParam.cs" />

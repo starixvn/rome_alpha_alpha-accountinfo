@@ -239,5 +239,14 @@ namespace Alpha.AccountInfo.AppResources {
                 return ResourceManager.GetString("TransferViewModelText", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Given Credit Successfully !.
+        /// </summary>
+        public static string UpdateGivenCreditSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdateGivenCreditSuccessfully", resourceCulture);
+            }
+        }
     }
 }

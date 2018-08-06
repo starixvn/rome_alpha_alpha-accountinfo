@@ -13,8 +13,11 @@ export default class BalanceInfoBlock extends React.Component{
             iconClassname,
             blockId,
             expanded,
+            username,
+            custId,
             roleId,
             handleCollapExpandBlock,
+            fetchCustomerInfoFromServer,
             balanceInfo
         } = this.props;
 
@@ -27,7 +30,13 @@ export default class BalanceInfoBlock extends React.Component{
                 handleClick={handleCollapExpandBlock}
                 blockId={blockId}>
 
-                {balanceInfo != null && <BalanceInfoContent balanceInfo={balanceInfo} roleId={roleId} />}
+                {balanceInfo != null &&
+                    <BalanceInfoContent
+                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                        balanceInfo={balanceInfo}
+                        custId={custId}
+                        roleId={roleId}
+                        username={username} />}
             </CustomizedAccordionItem>
       );
     }

@@ -4,6 +4,10 @@
 
     public class CustomerAllStatusModel
     {
+        public CustomerAllStatusModel()
+        {
+        }
+
         public CustomerAllStatusModel(
             CustomerStatusModel customerStatus,
             NonDCSProductModel nonDCSProduct,

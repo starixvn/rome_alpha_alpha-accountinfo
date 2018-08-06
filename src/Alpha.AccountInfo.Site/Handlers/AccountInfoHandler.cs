@@ -1,14 +1,15 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
     using Alpha.AccountInfo.Constants;
+    using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Params.ProductStatus;
     using Alpha.Products.Core.Models;
     using MediatR;
     using Requests.ProductStatus;
     using Services.AccountInfo;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using ViewModels.AccountInfo;
 
     public class AccountInfoHandler :
@@ -16,7 +17,8 @@
         IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
         IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>,
-        IRequestHandler<OnlineListQuery, IEnumerable<OnlineListModel>>
+        IRequestHandler<OnlineListQuery, IEnumerable<OnlineListModel>>,
+        IRequestHandler<GivenCreditCommand, Result>
     {
         private readonly AccountInfoService accountInfoService;
 
@@ -38,7 +40,7 @@
                 return new CustomerInfoViewModel(message, custormerinfo, balanceinfo);
             }
 
-            return null;
+            return new CustomerInfoViewModel();
         }
 
         public DownlineListViewModel Handle(DownlineListQuery message)
@@ -76,7 +78,7 @@
             return new CustomererAllStatusViewModel(status, setting);
         }
 
-        private IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
+        private static IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
             NonDCSProductModel nonDCSProduct,
             List<DCSProductModel> dcsProducts)
         {
@@ -97,7 +99,7 @@
             return customerProductStatus;
         }
 
-        private IEnumerable<CustomerProductStatus> GetUplineProductStatus(
+        private static IEnumerable<CustomerProductStatus> GetUplineProductStatus(
             NonDCSProductModel nonDCSProduct,
             List<DCSProductModel> dcsProducts)
         {
@@ -118,7 +120,7 @@
             return customerProductStatus;
         }
 
-        private IEnumerable<CustomerProductStatus> GetActorProductStatus(
+        private static IEnumerable<CustomerProductStatus> GetActorProductStatus(
             CustomerAllStatusQuery message,
             List<DCSProductModel> dcsProducts)
         {
@@ -147,5 +149,17 @@
 
         public IEnumerable<OnlineListModel> Handle(OnlineListQuery message)
             => accountInfoService.GetOnlineList(message.CustId);
+
+        public Result Handle(GivenCreditCommand message)
+            => accountInfoService.UpdateGivenCredit(
+                new GivenCreditParam(
+                    message.SearchAccountId,
+                    message.SearchAccountRoleId,
+                    message.CreditAmount,
+                    message.ActorId,
+                    message.ActorRoleId,
+                    message.SubAccountId,
+                    message.Language,
+                    message.IP));
     }
 }

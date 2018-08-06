@@ -179,8 +179,10 @@ export default class FeatureList extends React.Component {
                 <Accordion>
                     <BalanceInfoBlock
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
+                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                         expanded={expandedItems.balanceInfo}
                         blockId="balanceInfo"
+                        username={customerInfo.UserName}
                         custId={customerInfo.CustId}
                         roleId={customerInfo.RoleId}
                         balanceInfo={balanceInfo} />

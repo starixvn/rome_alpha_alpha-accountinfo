@@ -4,6 +4,10 @@
 
     public class BalanceInfoModel
     {
+        public BalanceInfoModel()
+        {
+        }
+
         public BalanceInfoModel(
              int custId,
              decimal credit,

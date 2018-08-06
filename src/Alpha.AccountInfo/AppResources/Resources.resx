@@ -177,4 +177,7 @@
   <data name="TransferViewModelText" xml:space="preserve">
     <value>Transfer</value>
   </data>
+  <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
+    <value>Update Given Credit Successfully !</value>
+  </data>
 </root>

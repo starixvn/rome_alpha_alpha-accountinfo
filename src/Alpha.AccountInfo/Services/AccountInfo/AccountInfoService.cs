@@ -2,7 +2,9 @@
 {
     using Alpha.AccountInfo.Criteria.AccountInfo;
     using Alpha.AccountInfo.DataAccess;
+    using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Params.ProductStatus;
     using Fanex.Data.Repository;
     using System.Collections.Generic;
 
@@ -18,7 +20,9 @@
 
        CustomerAllStatusModel GetCustomerAllStatusModelAsync(int custId);
 
-        IEnumerable<OnlineListModel> GetOnlineList(int custid); 
+        IEnumerable<OnlineListModel> GetOnlineList(int custid);
+
+        Result UpdateGivenCredit(GivenCreditParam param);
     }
 
     public class AccountInfoServiceImpl : AccountInfoService
@@ -51,5 +55,17 @@
 
         public IEnumerable<OnlineListModel> GetOnlineList(int custid)
             =>  repository.Fetch<OnlineListModel>(new SelectOnlineListCriteria(custid));
+
+        public Result UpdateGivenCredit(GivenCreditParam param)
+            => accountInfoDataAccess.UpdateGivenCredit(
+                new UpdateGivenCreditCriteria(
+                    param.CustId,
+                    param.RoleId,
+                    param.CreditAmount,
+                    param.ActorId,
+                    param.ActorRoleId,
+                    param.SubAccountId,
+                    param.Language,
+                    param.IP));
     }
 }
