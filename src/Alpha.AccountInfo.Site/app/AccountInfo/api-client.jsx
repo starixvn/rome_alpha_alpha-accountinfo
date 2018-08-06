@@ -1,18 +1,14 @@
 ﻿import axios from 'axios';
 
-// __API_URL_ comes from webpack DefinePlugin
-declare const __API_URL__: string;
-const apiUrl: string = __API_URL__;
-
-const handleErrors = err => {
+const handleErrors = (err) => {
     console.error(err);
     throw err;
 };
 
-const responseData = res => res.data;
+const responseData = res => JSON.parse(res.data);
 
 const requests = {
-    get: (url) => axios.get(`${apiUrl}${url}`)
+    get: (url) => axios.get(url)
         .then(responseData)
         .catch(handleErrors),
     post: (url, data) => axios.post(`${apiUrl}${url}`, data)
@@ -29,9 +25,6 @@ const requests = {
         .catch(handleErrors)
 };
 
-export const todosApi = {
-    getCustomerInfoAsync: () => requests.get('/AccountInfo/GetCustomerInfoAsync'),
-    getMasterBalanceInfoModelAsync: () => requests.get('/AccountInfo/GetMasterBalanceInfoModelAsync'),
-    GetAgentBalanceInfoModelAsync: () => requests.get('/AccountInfo/GetAgentBalanceInfoModelAsync'),
-    GetMemberBalanceInfoModelAsync: () => requests.get('/AccountInfo/GetMemberBalanceInfoModelAsync')
+export const accountInfoAPI = {
+    getCustomerInfo: (username) => requests.get(window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo?username=" + username)
 }

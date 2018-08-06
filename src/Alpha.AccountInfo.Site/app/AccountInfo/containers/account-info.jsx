@@ -10,6 +10,8 @@ import FeatureList from './feature-list';
 import NoInfomation from '../components/common/no-infomation';
 import Autosuggest from 'react-autosuggest';
 
+import { accountInfoAPI } from '../api-client';
+
 const getSuggestions = (value, usernames) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
@@ -54,19 +56,33 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerInfoFromServer(e, username) {
-        const xhr = new XMLHttpRequest();
-        let url = window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo?username=" + username;
-        xhr.open('get', url);
-        xhr.onload = () => {
-            this.setState((prevState) => ({
-                username: username,
-                searchCounter: prevState.searchCounter + 1,
-                customerInfo: JSON.parse(xhr.responseText).Result
+
+        accountInfoAPI.getCustomerInfo(username)
+            .then(action((data: any) => {
+                this.setState((prevState) => ({
+                    username: username,
+                    searchCounter: prevState.searchCounter + 1,
+                    customerInfo: data
+                }));
+
+                this.handleShowContactInfo(e);
+
+                data.forEach(todo => this.todos.push(new TodoItem(todo)));
             }));
 
-            this.handleShowContactInfo(e);
-        };
-        xhr.send();
+        ////const xhr = new XMLHttpRequest();
+        ////let url = window.accountInfoSiteAppPath + "accountinfo/getcustomerinfo?username=" + username;
+        ////xhr.open('get', url);
+        ////xhr.onload = () => {
+        ////    this.setState((prevState) => ({
+        ////        username: username,
+        ////        searchCounter: prevState.searchCounter + 1,
+        ////        customerInfo: JSON.parse(xhr.responseText).Result
+        ////    }));
+
+        ////    this.handleShowContactInfo(e);
+        ////};
+        ////xhr.send();
 
     }
 
