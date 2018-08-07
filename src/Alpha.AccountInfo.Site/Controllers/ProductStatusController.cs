@@ -8,7 +8,7 @@
     using Requests.ProductStatus;
     using Web.Filters;
 
-    [SessionState(SessionStateBehavior.Default)]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ProductStatusController : AccountInfoBaseController
     {
         public ProductStatusController(IMediator mediator)
