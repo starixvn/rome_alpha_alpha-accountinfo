@@ -328,6 +328,7 @@
     <Content Include="app\AccountInfo\components\setting\setting-info.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-content.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-paging.jsx" />
+    <Content Include="app\AccountInfo\components\status\status-on-product.jsx" />
     <Content Include="app\AccountInfo\containers\show-contact-info.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-list-content.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />

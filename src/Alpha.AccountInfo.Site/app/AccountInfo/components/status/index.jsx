@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import Status from './status';
-import CellContainLink from '../common/cell-contain-link';
+import StatusOnProduct from './status-on-product';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 
 export default class StatusBlock extends React.Component {
@@ -22,13 +22,16 @@ export default class StatusBlock extends React.Component {
                 blockId={blockId}>
                 {statusData != null && statusData.Settings.map((status, index) => {
                     return status.IsEditOnProductLevel != undefined && !status.IsEditOnProductLevel ?
-                        <CellContainLink title={status.Text}
-                            statusId={status.DisplayOrder}
+                        <StatusOnProduct title={status.Text}
+                            url={status.Url}
+                            confirmMessage={status.ConfirmMessage}
+                            disabled={status.Disabled}
                             key={index}
-                            classNames="col"
-                            iconClassname="icon-ic_list"
-                            hrefLink="#" /> :
+                            statusId={status.DisplayOrder}/> :
                         <Status classNames='col checkbox' title={status.Text}
+                            url={status.Url}
+                            confirmMessage={status.ConfirmMessage}
+                            disabled={status.Disabled}
                             checked={status.Checked}
                             key={index}
                             statusId={status.DisplayOrder} /> 

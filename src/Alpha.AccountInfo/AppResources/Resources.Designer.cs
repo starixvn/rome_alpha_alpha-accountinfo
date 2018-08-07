@@ -88,11 +88,29 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disable auto position taking feature of this master?.
+        /// </summary>
+        public static string ConfirmAllowAutoMasterPTViewModelMessage {
+            get {
+                return ResourceManager.GetString("ConfirmAllowAutoMasterPTViewModelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Master PT.
         /// </summary>
         public static string ConfirmAllowAutoMasterPTViewModelText {
             get {
                 return ResourceManager.GetString("ConfirmAllowAutoMasterPTViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disallow outright betting for this customer?.
+        /// </summary>
+        public static string ConfirmAllowOutrightViewModelMessage {
+            get {
+                return ResourceManager.GetString("ConfirmAllowOutrightViewModelMessage", resourceCulture);
             }
         }
         
@@ -106,6 +124,15 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Close status for this customer? Warning, all downlines will be closed as well!.
+        /// </summary>
+        public static string ConfirmClosedViewModelMessage {
+            get {
+                return ResourceManager.GetString("ConfirmClosedViewModelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Closed.
         /// </summary>
         public static string ConfirmClosedViewModelText {
@@ -115,11 +142,29 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to allow Double Commission feature for Sportsbook&apos;s Losing tickets on this customer?.
+        /// </summary>
+        public static string ConfirmDoubleCommViewModelMessage {
+            get {
+                return ResourceManager.GetString("ConfirmDoubleCommViewModelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double Comm.
         /// </summary>
         public static string ConfirmDoubleCommViewModelText {
             get {
                 return ResourceManager.GetString("ConfirmDoubleCommViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Suspend status for this customer? Warning, all members under this agent can&apos;t place bet!.
+        /// </summary>
+        public static string ConfirmSuspendedViewModelMessage {
+            get {
+                return ResourceManager.GetString("ConfirmSuspendedViewModelMessage", resourceCulture);
             }
         }
         
