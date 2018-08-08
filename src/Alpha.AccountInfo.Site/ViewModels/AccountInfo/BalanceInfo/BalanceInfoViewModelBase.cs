@@ -1,0 +1,49 @@
+﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
+{
+    using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Site.Helpers;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Newtonsoft.Json;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public class BalanceInfoViewModelBase
+    {
+        protected readonly BalanceInfoModel model;
+        protected readonly CustomerInfoQuery message;
+        protected readonly CustomerInfoModel customerInfoModel;
+
+        public BalanceInfoViewModelBase(
+            CustomerInfoQuery message, 
+            BalanceInfoModel model,
+            CustomerInfoModel customerInfoModel)
+        {
+            this.model = model;
+            this.message = message;
+            this.customerInfoModel = customerInfoModel;
+        }
+
+        protected static string OldMainPath => UrlHelper.MapOldMainPath("~/");
+
+        protected static string ReportPath => UrlHelper.MapReportsPath("~/");
+
+        protected static string BetListPath => UrlHelper.MapBetListPath("~/");
+
+        protected string BreadcrumbLevelJson
+        {
+            get
+            {
+                var custInfos = new List<BreadcrumbLevel>
+                {
+                    new BreadcrumbLevel(customerInfoModel.SuperId, customerInfoModel.SuperName, 4),
+                    new BreadcrumbLevel(customerInfoModel.MasterId, customerInfoModel.MasterName, 3),
+                    new BreadcrumbLevel(customerInfoModel.AgentId, customerInfoModel.AgentName, 2)
+                };
+
+                return JsonConvert.SerializeObject(
+                    custInfos.Where(custInfo => custInfo.CustLevelId > customerInfoModel.RoleId 
+                    && custInfo.CustLevelId <= message.ActorRoleId)).Replace("\"", "'");
+            }
+        }
+    }
+}

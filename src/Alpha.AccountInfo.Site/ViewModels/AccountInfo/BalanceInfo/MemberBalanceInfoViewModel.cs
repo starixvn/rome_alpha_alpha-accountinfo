@@ -3,18 +3,15 @@
     using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
-    public class MemberBalanceInfoViewModel
+    public class MemberBalanceInfoViewModel : BalanceInfoViewModelBase
     {
-        private readonly BalanceInfoModel model;
-        private readonly CustomerInfoQuery message;
-
-        public MemberBalanceInfoViewModel(CustomerInfoQuery message, BalanceInfoModel model)
+        public MemberBalanceInfoViewModel(
+            CustomerInfoQuery message,
+            BalanceInfoModel model,
+            CustomerInfoModel customerInfoModel) : base(message, model, customerInfoModel)
         {
-            this.model = model;
-            this.message = message;
         }
 
         public decimal TotalBalance => model.CustomerCash;
@@ -46,9 +43,5 @@
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
 
         private decimal MemMaxCredit_Max => model.MemMaxCredit_Max;
-
-        private static string BetListPath => UrlHelper.MapBetListPath("~/");
-
-        private static string OldMainPath => UrlHelper.MapOldMainPath("~/");
     }
 }

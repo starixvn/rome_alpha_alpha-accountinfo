@@ -79,17 +79,17 @@
             }
         }
 
-        public MasterBalanceInfoViewModel MasterBalanceInfo 
-            => Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMasterLevel() 
-            ? new MasterBalanceInfoViewModel(message, balanceInfo) : null;
+        public MasterBalanceInfoViewModel MasterBalanceInfo => 
+            Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMasterLevel() ?
+            new MasterBalanceInfoViewModel(message, balanceInfo, customerInfo) : null;
 
-        public AgentBalanceInfoViewModel AgentBalanceInfo
-            => Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsAgentLevel()
-            ? new AgentBalanceInfoViewModel(message, balanceInfo) : null;
+        public AgentBalanceInfoViewModel AgentBalanceInfo =>
+            Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsAgentLevel() ?
+            new AgentBalanceInfoViewModel(message, balanceInfo, customerInfo) : null;
 
-        public MemberBalanceInfoViewModel MemberBalanceInfo
-             => Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel()
-            ? new MemberBalanceInfoViewModel(message, balanceInfo) : null;
+        public MemberBalanceInfoViewModel MemberBalanceInfo =>
+            Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel() ?
+            new MemberBalanceInfoViewModel(message, balanceInfo, customerInfo) : null;
 
         public string CustomerListLink
         {
@@ -121,7 +121,6 @@
         }
 
         public string ViewLogLink => $"{ViewLogsPath}setting/index?username={UserName}";
-
 
         private static string ViewLogsPath => UrlHelper.MapViewLogsPath("~/");
 

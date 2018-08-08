@@ -5,7 +5,6 @@ import { RaisedButton, FlatButton, Dialog } from 'material-ui';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from '../common/cell-contain-number-format';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
-import Cash from './cash';
 import { accountInfoAPI } from '../../api-client';
 import { fade } from 'material-ui/utils/colorManipulator';
 

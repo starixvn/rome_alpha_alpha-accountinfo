@@ -3,18 +3,15 @@
     using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
-    public class AgentBalanceInfoViewModel
+    public class AgentBalanceInfoViewModel : BalanceInfoViewModelBase
     {
-        private readonly BalanceInfoModel model;
-        private readonly CustomerInfoQuery message;
-
-        public AgentBalanceInfoViewModel(CustomerInfoQuery message, BalanceInfoModel model)
+        public AgentBalanceInfoViewModel( 
+            CustomerInfoQuery message, 
+            BalanceInfoModel model,
+            CustomerInfoModel customerInfoModel) : base(message, model, customerInfoModel)
         {
-            this.model = model;
-            this.message = message;
         }
 
         public decimal TotalCash => model.AgentCash;
@@ -52,8 +49,7 @@
 
         public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
 
-        public string OutstandingLink =>
-            $"{OldMainPath}outstanding/Master?CustId={model.CustId}&CustName={message.UserName}&CustLevelId=2&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
+        public string OutstandingLink => $"{ReportPath}outstanding/Agent?CustId={model.CustId}&CustName={message.UserName}&CustLevelId=2&BreadcrumbLevelJson={BreadcrumbLevelJson}";
 
         private decimal MemMaxCredit_Min => model.MemMaxCredit_Min;
 
@@ -62,7 +58,5 @@
         private decimal AgentCredit_Max => model.AgentCredit_Max;
 
         private bool IsSuperLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsSuperLevel();
-
-        private static string OldMainPath => UrlHelper.MapOldMainPath("~/");
     }
 }

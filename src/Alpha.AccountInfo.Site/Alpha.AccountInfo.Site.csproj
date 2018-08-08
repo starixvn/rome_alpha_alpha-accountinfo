@@ -318,7 +318,6 @@
   <ItemGroup>
     <Content Include="app\AccountInfo\components\balance-info\given-credit-dialog.jsx" />
     <Content Include="app\AccountInfo\components\balance-info\dialog.jsx" />
-    <Content Include="app\AccountInfo\components\balance-info\cash.jsx" />
     <Content Include="app\AccountInfo\components\balance-info\balance-info-content.jsx" />
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
     <Content Include="app\AccountInfo\components\common\checkbox.jsx" />
@@ -395,8 +394,6 @@
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
-    <Content Include="Views\ReactDemo\Index.cshtml" />
-    <Content Include="Views\AccountInfo\Index - Copy.cshtml" />
     <Content Include="App_Data\ProductConfiguration.json" />
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
@@ -500,6 +497,8 @@
     <Compile Include="Requests\ProductStatus\ProductStatusCommand.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusQuery.cs" />
     <Compile Include="ViewModels\AccountInfo\AccountInfoViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\BalanceInfo\BalanceInfoViewModelBase.cs" />
+    <Compile Include="ViewModels\AccountInfo\BalanceInfo\BreadcrumbLevel.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\AgentBalanceInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\MemberBalanceInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\MasterBalanceInfoViewModel.cs" />

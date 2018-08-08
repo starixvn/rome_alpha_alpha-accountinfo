@@ -1,18 +1,15 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
-    public class MasterBalanceInfoViewModel
+    public class MasterBalanceInfoViewModel : BalanceInfoViewModelBase
     {
-        private readonly BalanceInfoModel model;
-        private readonly CustomerInfoQuery message;
-
-        public MasterBalanceInfoViewModel(CustomerInfoQuery message, BalanceInfoModel model)
+        public MasterBalanceInfoViewModel(
+            CustomerInfoQuery message,
+            BalanceInfoModel model,
+            CustomerInfoModel customerInfoModel) : base(message, model, customerInfoModel)
         {
-            this.model = model;
-            this.message = message;
         }
 
         public decimal TotalCash => model.MasterCash;
@@ -45,15 +42,12 @@
 
         public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
 
-        public string OutstandingLink =>
-            $"{OldMainPath}outstanding/Super?CustId={model.CustId}&CustName={message.UserName}&CustLevelId=3&BreadcrumbLevelJson="; //BuildBreadcrumbLevelJson()
+        public string OutstandingLink => $"{ReportPath}outstanding/Master?CustId={model.CustId}&CustName={message.UserName}&CustLevelId=3&BreadcrumbLevelJson={BreadcrumbLevelJson}";
 
         public string GivenCreditLimit => $">={MasterCredit_Min} and <={MasterCredit_Max}";
 
         private decimal MasterCredit_Min => model.MasterCredit_Min;
 
         private decimal MasterCredit_Max => model.MasterCredit_Max;
-
-        private static string OldMainPath => UrlHelper.MapOldMainPath("~/");
     }
 }
