@@ -10,9 +10,11 @@
     using Services.AccountInfo;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using ViewModels.AccountInfo;
 
     public class AccountInfoHandler :
+        IAsyncRequestHandler<AccountInfoQuery, AccountInfoViewModel>,
         IRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>,
         IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
@@ -26,6 +28,9 @@
         {
             this.accountInfoService = accountInfoService;
         }
+
+        public async Task<AccountInfoViewModel> Handle(AccountInfoQuery message)
+            => new AccountInfoViewModel(message);
 
         public IEnumerable<UsernameSuggestion> Handle(UserNameSuggestionQuery message)
             => accountInfoService.GetUsernamesSuggestion(message.ActorId, message.SuggestionQuery, message.IsInternal);
@@ -161,6 +166,5 @@
                     message.SubAccountId,
                     message.Language,
                     message.IP));
-
     }
 }

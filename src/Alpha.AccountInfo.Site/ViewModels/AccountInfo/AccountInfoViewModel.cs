@@ -1,13 +1,18 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
+    using Alpha.AccountInfo.Enumerations;
+    using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Site.Helpers;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
     public class AccountInfoViewModel
     {
-        public AccountInfoViewModel(string accountInfoSiteAppPath = null)
+        public AccountInfoViewModel(AccountInfoQuery message)
         {
-            AccountInfoSiteAppPath = string.IsNullOrEmpty(accountInfoSiteAppPath) ? UrlHelper.MapAccountInfoPath("~/") : accountInfoSiteAppPath;
+            ActorLevelName = Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
         }
-        public string AccountInfoSiteAppPath { get; }
+        public string AccountInfoSiteAppPath => UrlHelper.MapAccountInfoPath("~/");
+
+        public string ActorLevelName { get; }
     }
 }

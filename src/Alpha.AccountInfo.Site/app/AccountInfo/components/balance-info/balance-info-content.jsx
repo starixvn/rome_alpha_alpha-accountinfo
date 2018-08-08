@@ -26,8 +26,8 @@ export default class BalanceInfoContent extends React.Component{
                 {
                     roleId > 1 &&
                     <div className={rowClasses}>
-                        <div className="col-xs-6">Yesterday Cash</div>
-                        <CellContainNumberFormat title={balanceInfo.YesterdayCash} classNames="col-xs-6 col-right" />
+                        <div className="col-xs-6">Total Cash</div>
+                        <CellContainNumberFormat title={balanceInfo.TotalCash} classNames="col-xs-6 col-right" />
                     </div>
                 }
 
@@ -80,6 +80,13 @@ export default class BalanceInfoContent extends React.Component{
                         <CellContainNumberFormat title={balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
                     </div>
                 }
+                
+                <GivenCreditModal
+                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                    balanceInfo={balanceInfo}
+                    custId={custId}
+                    roleId={roleId}
+                    username={username} />
 
                 {
                     roleId == 1 &&
@@ -89,12 +96,14 @@ export default class BalanceInfoContent extends React.Component{
                     </div>
                 }
 
-                <GivenCreditModal
-                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                    balanceInfo={balanceInfo}
-                    custId={custId}
-                    roleId={roleId}
-                    username={username} />
+                {
+                    roleId == 1 &&
+                    <div className={rowClasses}>
+                        <div className="col-xs-6">Bet Credit</div>
+                        <CellContainNumberFormat title={balanceInfo.BetCredit} classNames="col-xs-6 col-right" />
+                    </div>
+                }
+
             </div>
       );
     }

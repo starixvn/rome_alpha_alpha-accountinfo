@@ -3,6 +3,7 @@
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
 
@@ -16,10 +17,8 @@
         {
         }
 
-        public ActionResult Index()
-        {
-            return View(new AccountInfoViewModel());
-        }
+        public async Task<ActionResult> Index(AccountInfoQuery message)
+          => await ViewAsync(message);
 
         [HttpPost]
         public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
