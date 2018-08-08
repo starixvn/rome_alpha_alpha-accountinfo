@@ -4,6 +4,7 @@
     using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -45,5 +46,8 @@
                     && custInfo.CustLevelId <= message.ActorRoleId)).Replace("\"", "'");
             }
         }
+
+        protected static decimal RoundNumber(decimal value, byte decimalScale = 2)
+            => Math.Round(value, decimalScale, MidpointRounding.AwayFromZero);
     }
 }

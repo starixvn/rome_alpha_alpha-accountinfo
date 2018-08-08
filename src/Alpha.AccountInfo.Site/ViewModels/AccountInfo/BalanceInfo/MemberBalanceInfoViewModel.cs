@@ -14,17 +14,17 @@
         {
         }
 
-        public decimal TotalBalance => model.CustomerCash;
+        public decimal TotalBalance => RoundNumber(model.CustomerCash);
 
-        public decimal YesterdayBalance => model.Yesterday_CustomerCash;
+        public decimal YesterdayBalance => RoundNumber(model.Yesterday_CustomerCash);
 
-        public decimal Outstanding => model.CustomerOutstanding;
+        public decimal Outstanding => RoundNumber(model.CustomerOutstanding);
 
-        public decimal NetPosition => model.NetPosition;
+        public decimal NetPosition => RoundNumber(model.NetPosition);
 
-        public decimal GivenCredit => model.Credit;
+        public decimal GivenCredit => RoundNumber(model.Credit);
 
-        public decimal BetCredit => GivenCredit + model.CustomerCash - Outstanding + NetPosition;
+        public decimal BetCredit => RoundNumber(GivenCredit + model.CustomerCash - Outstanding + NetPosition);
 
         public bool ShowTransferLink =>
             Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsAgentLevel() 

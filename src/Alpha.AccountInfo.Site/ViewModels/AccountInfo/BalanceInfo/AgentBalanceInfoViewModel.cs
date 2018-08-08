@@ -14,21 +14,21 @@
         {
         }
 
-        public decimal TotalCash => model.AgentCash;
+        public decimal TotalCash => RoundNumber(model.AgentCash);
 
-        public decimal YesterdayCash => model.Yesterday_AgentCash;
+        public decimal YesterdayCash => RoundNumber(model.Yesterday_AgentCash);
 
-        public decimal TotalBalance => model.AgentCash + model.CustomerCash;
+        public decimal TotalBalance => RoundNumber(model.AgentCash + model.CustomerCash);
 
-        public decimal YesterdayBalance => model.Yesterday_AgentCash + model.Yesterday_CustomerCash;
+        public decimal YesterdayBalance => RoundNumber(model.Yesterday_AgentCash + model.Yesterday_CustomerCash);
 
-        public decimal Outstanding => model.AgentPositionTaking;
+        public decimal Outstanding => RoundNumber(model.AgentPositionTaking);
 
-        public decimal MemberMaxCredit => model.MemberMaxCredit;
+        public decimal MemberMaxCredit => RoundNumber(model.MemberMaxCredit);
 
-        public decimal UsedCredit => model.AgentUsedCredit;
+        public decimal UsedCredit => RoundNumber(model.AgentUsedCredit);
 
-        public decimal GivenCredit => model.Credit;
+        public decimal GivenCredit => RoundNumber(model.Credit);
 
         public string GivenCreditLimit => $">={AgentCredit_Min} and <={AgentCredit_Max}";
 

@@ -12,19 +12,19 @@
         {
         }
 
-        public decimal TotalCash => model.MasterCash;
+        public decimal TotalCash => RoundNumber(model.MasterCash);
 
-        public decimal YesterdayCash => model.Yesterday_MasterCash;
+        public decimal YesterdayCash => RoundNumber(model.Yesterday_MasterCash);
 
-        public decimal TotalBalance => model.MasterCash + model.AgentCash + model.CustomerCash;
+        public decimal TotalBalance => RoundNumber(model.MasterCash + model.AgentCash + model.CustomerCash);
 
-        public decimal YesterdayBalance => model.Yesterday_MasterCash + model.Yesterday_AgentCash + model.Yesterday_CustomerCash;
+        public decimal YesterdayBalance => RoundNumber(model.Yesterday_MasterCash + model.Yesterday_AgentCash + model.Yesterday_CustomerCash);
 
-        public decimal Outstanding => model.MasterPositionTaking;
+        public decimal Outstanding => RoundNumber(model.MasterPositionTaking);
 
-        public decimal UsedCredit => model.MasterUsedCredit;
+        public decimal UsedCredit => RoundNumber(model.MasterUsedCredit);
 
-        public decimal GivenCredit => model.Credit;
+        public decimal GivenCredit => RoundNumber(model.Credit);
 
         public bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
 
