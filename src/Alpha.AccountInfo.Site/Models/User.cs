@@ -29,6 +29,8 @@
 
         public string LangKey => userSession.LangKey;
 
+        public string Language => userSession.Language;
+
         public bool IsInternal => userSession.IsInternal;
 
         public bool CanUpdateAccount

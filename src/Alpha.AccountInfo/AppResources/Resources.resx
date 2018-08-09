@@ -156,6 +156,9 @@
   <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
     <value>Suspended</value>
   </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
   <data name="EditInfoViewModelText" xml:space="preserve">
     <value>Edit Info</value>
   </data>

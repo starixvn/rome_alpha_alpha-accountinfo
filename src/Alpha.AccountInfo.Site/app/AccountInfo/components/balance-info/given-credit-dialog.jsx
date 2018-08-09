@@ -76,8 +76,9 @@ export default class GivenCreditModal extends React.Component {
                         className="link"
                         value={balanceInfo.GivenCredit}
                         displayType={'text'}
-                        thousandSeparator={true}
-                        decimalScale="2" />
+                         decimalScale="2"
+                fixedDecimalScale={true}
+                thousandSeparator={true}/>
                     <MuiThemeProvider >
                         <span className="icon-border-color icon-edited" onClick={this.handleOpen} >
                             <Dialog

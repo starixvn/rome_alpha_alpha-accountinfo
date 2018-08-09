@@ -6,3 +6,5 @@ ReactDOM.render(
     <AccountInfo />,
     document.getElementById('account-info')
 );
+
+window.accountInfoResources = JSON.parse(window.accountInfoResourcesString.replace(/&quot;/g, '\"'));

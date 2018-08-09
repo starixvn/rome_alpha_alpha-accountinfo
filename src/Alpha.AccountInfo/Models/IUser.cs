@@ -20,6 +20,8 @@ namespace Alpha.AccountInfo.Models
 
         string LangKey { get; }
 
+        string Language { get; }
+
         bool IsInternal { get; }
 
         bool CanUpdateAccount { get; }

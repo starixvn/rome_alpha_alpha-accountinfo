@@ -10,8 +10,11 @@
             : base(viewer)
         {
             ActorRoleId = viewer.LevelId;
+            Language = viewer.Language;
         }
         public byte ActorRoleId { get; }
+
+        public string Language { get; }
 
         public override bool IsValid() => ActorRoleId > 0;
     }

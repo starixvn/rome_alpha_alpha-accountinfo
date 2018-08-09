@@ -43,11 +43,11 @@ export default class CustomerInfoBlock extends React.Component {
 
         return (
             <div >
-                {data.ShowMasterName ? this.buildLevelRow(data.MasterName, "Master", roleId == 3 ? "icon-viewlog" : null, handleSearchFromUserLevel) : null}
+                {data.ShowMasterName ? this.buildLevelRow(data.MasterName, window.accountInfoResources.Master, roleId == 3 ? "icon-viewlog" : null, handleSearchFromUserLevel) : null}
 
-                {data.ShowAgentName ? this.buildLevelRow(data.AgentName, "Agent", roleId == 2 ? "icon-viewlog" : null, handleSearchFromUserLevel) : null}
+                {data.ShowAgentName ? this.buildLevelRow(data.AgentName, window.accountInfoResources.Agent, roleId == 2 ? "icon-viewlog" : null, handleSearchFromUserLevel) : null}
 
-                {data.ShowMemberName ? this.buildLevelRow(data.MemberName, "Customer", "icon-viewlog", handleSearchFromUserLevel) : null}
+                {data.ShowMemberName ? this.buildLevelRow(data.MemberName, window.accountInfoResources.Customer, "icon-viewlog", handleSearchFromUserLevel) : null}
 
                 <div className={rowClasses}>
                     <div className={firstCellClass}>Name</div>
