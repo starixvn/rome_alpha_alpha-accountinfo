@@ -117,14 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>ที่ Active อยู่</value>
+  </data>
   <data name="Agent" xml:space="preserve">
     <value>ตัวแทน</value>
+  </data>
+  <data name="AgentList" xml:space="preserve">
+    <value>รายชื่อ เอเจนต์</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>เอเย่นต์ยอดคงค้าง</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>ข้อมูลยอดเงินคงเหลือ</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>เครดิตสำหรับการวางเดิมพัน</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>รายการวางเดิมพัน</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>ที่ถูกปิด</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>สร้างขึ้นเมื่อ</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>ลูกค้า</value>
+  </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>รายชื่อลูกค้า</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>แฟกซ์</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>เครดิตทั้งหมด</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>รหัสของเครื่องคอมพิวเตอร์ที่ใช้</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>เข้าระบบครั้งสุดท้าย</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>transaction ครั้งล่าสุด</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>IP สุดท้ายที่เข้าระบบ</value>
+  </data>
+  <data name="LoginTime" xml:space="preserve">
+    <value>เวลาเข้าระบบ</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>ตัวแทนหลัก</value>
   </data>
+  <data name="MasterOutstanding" xml:space="preserve">
+    <value>การเดิมพันที่ยังไม่สิ้นสุดของ Master</value>
+  </data>
   <data name="Member" xml:space="preserve">
     <value>สมาชิก</value>
+  </data>
+  <data name="MemberList" xml:space="preserve">
+    <value>รายชื่อลูกค้า</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>เครดิตโอนเงินสูงสุดของสมาชิก</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="NetPosition" xml:space="preserve">
+    <value>สถานะเงินลงทุนสุทธิ</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>ไม่มีการเปลี่ยนแปลงการอัพเดท</value>
@@ -135,10 +204,61 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
   </data>
+  <data name="NumberOrder" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="OnlineList" xml:space="preserve">
+    <value>รายชื่อผู้ออนไลน์</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>ตั้งค่า</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>บัญชี</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>ตกลง</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>ที่สูงสุด ที่มีประสิทธิภาพ</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>การแข่งขันถูกระงับ</value>
+  </data>
+  <data name="ThisUserIsNotOnline" xml:space="preserve">
+    <value>ยูเซอร์ไม่ได้ออนไลน์</value>
+  </data>
+  <data name="TotalAgentActiveClosed" xml:space="preserve">
+    <value>สถานะของAgent ทั้งหมด/การแข่งขันถูกระงับ</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>ยอดเงินรวมทั้งหมด</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>ยอดเงินสด</value>
+  </data>
+  <data name="TotalMemberActiveClosed" xml:space="preserve">
+    <value>สถานะของสมาชิกทั้งหมด/การแข่งขันถูกระงับ</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>เครดิตที่ใช้ไป</value>
+  </data>
+  <data name="UserNamePlaceHolder" xml:space="preserve">
+    <value>ยูเซอร์เนม หรือ ชื่อ/นามสุกล</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>ยอดคงเหลือเมื่อวาน</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>เงินสดเมื่อวาน</value>
   </data>
 </root>

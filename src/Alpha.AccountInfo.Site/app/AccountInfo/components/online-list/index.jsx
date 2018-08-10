@@ -20,18 +20,18 @@ export default class OnlineListBlock extends React.Component{
     }
 
     loadOnlineListFromServer() {
-        accountInfoAPI.getDownlineList({ custid: this.props.custId }).then((data) => {
+        accountInfoAPI.getOnlineList({ custid: this.props.custId }).then((data) => {
             this.setState({ data: data });
         });
     }
 
     render() {
-        const { expanded, handleCollapExpandBlock, blockId } = this.props;
+        const { resources,expanded, handleCollapExpandBlock, blockId } = this.props;
         const { data } = this.state;
         
         return (
             <CustomizedAccordionItem
-                title="Online List"
+                title={resources.OnlineList}
                 iconClassname="icon-onlinelist"
                 expanded={expanded}
                 handleClick={this.handleClick}
@@ -40,11 +40,11 @@ export default class OnlineListBlock extends React.Component{
                 {
                     <table className="tblRpt tblRpt-bordered width-100per online-list">
                         <thead>
-                            <th>#</th>
-                            <th>IP</th>
-                            <th>Login Time</th>
+                            <th>{resources.NumberOrder}</th>
+                            <th>{resources.IP}</th>
+                            <th>{resources.LoginTime}</th>
                         </thead>
-                        <OnlineListContent data={data} />
+                        <OnlineListContent resources={resources} data={data} />
                     </table>
                 }
             </CustomizedAccordionItem>

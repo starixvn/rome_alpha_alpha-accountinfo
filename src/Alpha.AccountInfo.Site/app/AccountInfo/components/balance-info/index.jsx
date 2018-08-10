@@ -9,6 +9,7 @@ export default class BalanceInfoBlock extends React.Component{
 
     render() {
         const {
+            resources,
             headingText,
             iconClassname,
             blockId,
@@ -23,7 +24,7 @@ export default class BalanceInfoBlock extends React.Component{
 
         return (
             <CustomizedAccordionItem
-                title="Balance Info"
+                title={resources.BalanceInfo}
                 iconClassname="icon-balance"
                 accordionItemBodyClassName="accordion__body balance-info"
                 expanded={expanded}
@@ -32,6 +33,7 @@ export default class BalanceInfoBlock extends React.Component{
 
                 {balanceInfo != null &&
                     <BalanceInfoContent
+                        resources={resources}
                         fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                         balanceInfo={balanceInfo}
                         custId={custId}

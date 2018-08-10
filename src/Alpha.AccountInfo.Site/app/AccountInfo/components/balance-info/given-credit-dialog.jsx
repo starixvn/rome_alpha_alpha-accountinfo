@@ -65,12 +65,12 @@ export default class GivenCreditModal extends React.Component {
     render() {
         const rowClasses = "col-xs-12 row-info";
         const { newGivenCredit, updateSuccess, message, hideMessages } = this.state;
-        const { balanceInfo } = this.props;
+        const { resources, balanceInfo } = this.props;
 
         return (
 
             <div className={rowClasses}>
-                <div className="col-xs-6">Given Credit</div>
+                <div className="col-xs-6">{resources.GivenCredit}</div>
                 <div className="col-xs-6 col-right given-credit" title={`<= ${balanceInfo.GivenCredit}`} >
                     <NumberFormat
                         className="link"
@@ -82,19 +82,19 @@ export default class GivenCreditModal extends React.Component {
                     <MuiThemeProvider >
                         <span className="icon-border-color icon-edited" onClick={this.handleOpen} >
                             <Dialog
-                                title="Given Credit"
+                                title={resources.GivenCredit}
                                 modal={true}
                                 open={this.state.open}>
                                 <div className={hideMessages && 'hidden'}>
                                     <span className={updateSuccess ? 'msg-success' : 'msg-error'}>  {message} </span>
                                 </div>
                                 <div className={rowClasses}>
-                                    <div className="col-xs-7">Current Given Credit</div>
+                                    <div className="col-xs-7">resources.CurrentGivenCredit</div>
                                     <CellContainNumberFormat title={balanceInfo.GivenCredit} classNames="col-right" />
                                 </div>
 
                                 <div className={rowClasses}>
-                                    <div className="col-xs-7">New Given Credit</div>
+                                    <div className="col-xs-7">resources.NewGivenCredit</div>
                                     <NumberFormat thousandSeparator={true} decimalScale="2" onValueChange={(values) => {
                                         const { formattedValue, value, floatValue } = values;
                                         this.setState({ newGivenCredit: (floatValue === undefined ? 0 : floatValue)})
@@ -102,13 +102,13 @@ export default class GivenCreditModal extends React.Component {
                                 </div>
 
                                 <div className={rowClasses}>
-                                    <div className="col-xs-7">Difference</div>
+                                    <div className="col-xs-7">resources.Difference</div>
                                     <CellContainNumberFormat title={balanceInfo.GivenCredit - newGivenCredit} classNames="col-right" />
                                 </div>
 
                                 <div className="col-xs-12 row-info popup-bottom list-button">
-                                    <a className="btn-default with-level" onClick={this.handleClose}>Cancel</a>
-                                    <a className="btn-default with-level" onClick={this.handleSubmit}>Submit</a>
+                                    <a className="btn-default with-level" onClick={this.handleClose}>{resources.Cancel}</a>
+                                    <a className="btn-default with-level" onClick={this.handleSubmit}>{resources.Submit}</a>
                                 </div>
                             </Dialog>
                         </span>

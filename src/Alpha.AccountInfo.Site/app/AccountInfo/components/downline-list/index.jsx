@@ -36,16 +36,19 @@ export default class DownlineListBlock extends React.Component{
     }
 
     render() {
-        const { blockId, expanded, fetchCustomerInfoFromServer } = this.props;
+        const { resources, blockId, expanded, fetchCustomerInfoFromServer } = this.props;
         const { data } = this.state;
 
         const content = data == null || data.DownlineList.length == 0 ?
             <NoInfomation /> :
-            <DownlineListContent downlineList={data} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
+            <DownlineListContent
+                resources={resources}
+                downlineList={data}
+                fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
            
         return (
             <CustomizedAccordionItem
-                title="Downline list"
+                title={resources.DownlineList}
                 iconClassname="icon-downline"
                 expanded={expanded}
                 handleClick={this.handleClick}

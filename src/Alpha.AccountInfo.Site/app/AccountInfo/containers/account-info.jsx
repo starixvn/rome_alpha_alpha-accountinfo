@@ -113,19 +113,20 @@ export default class AccountInfo extends React.Component {
 
     render() {
         const { showInfoStatus, username, url, customerInfo, suggestions, searchCounter } = this.state;
+        const { resources } = this.props;
 
         const inputProps = {
             type: 'text',
             className: 'txt-search',
             onChange: this.onChangeSearchBox,
             onKeyPress: this.handleSearchKeyPress,
-            placeholder: 'Username or First/Last Name',
+            placeholder: resources.UserNamePlaceHolder,
             value: username
         }
 
         const customerInfoContent = customerInfo == null ?
             <NoInfomation classNames="no-information-search" /> :
-            <CustomerInfoBlock data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />;
+            <CustomerInfoBlock resources={resources} data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />;
 
         return (
             <div className="accountinfo-container">
@@ -148,7 +149,8 @@ export default class AccountInfo extends React.Component {
 
                 </div>
                 {customerInfo != null &&
-                    <FeatureList handleShowContactInfo={this.handleShowContactInfo}
+                    <FeatureList resources={resources}
+                        handleShowContactInfo={this.handleShowContactInfo}
                         showInfoStatus={this.showInfoStatus}
                         customerInfo={customerInfo}
                         fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} />}

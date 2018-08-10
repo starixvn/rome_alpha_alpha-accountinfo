@@ -10,11 +10,11 @@ export default class StatusBlock extends React.Component {
 
 
     render() {
-        const { getCustomerAllStatus, blockId, expanded, statusData } = this.props;
+        const { resources, getCustomerAllStatus, blockId, expanded, statusData } = this.props;
 
         return (
             <CustomizedAccordionItem
-                title="Status"
+                title={resources.Setting}
                 iconClassname="icon-status"
                 accordionItemBodyClassName="accordion__body block-status"
                 expanded={expanded}

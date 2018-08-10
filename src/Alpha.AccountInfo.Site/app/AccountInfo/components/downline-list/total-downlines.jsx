@@ -6,6 +6,7 @@ export default class TotalDownlines extends React.Component {
     }
     render() {
         const {
+            resources,
             levelName,
             totalActive,
             totalClosed,
@@ -19,7 +20,7 @@ export default class TotalDownlines extends React.Component {
                     <div className="pull-right"
                         data-toggle="tooltip"
                         data-placement="top"
-                        title={"Active:" + totalActive + " Closed:" + totalClosed + " Suspended:" + totalSuspended}>
+                        title={`${resources.Active}: ${totalActive}/ ${resources.Closed}: ${totalClosed}/ ${resources.Suspended}: ${totalSuspended}`}>
                         <span className="number">{totalActive}</span>
                         /<span className="status-closed">{totalClosed}</span>
                         /<span className="status-suspended">{totalSuspended}</span>

@@ -117,14 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>活跃</value>
+  </data>
   <data name="Agent" xml:space="preserve">
     <value>代理</value>
+  </data>
+  <data name="AgentList" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>代理未结束交易</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>余额资料</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>投注额度</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>投注历史</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>新增日期</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>下线名单</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>传真</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>信用额度</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最后登入</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>最后交易</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>最后登入IP</value>
+  </data>
+  <data name="LoginTime" xml:space="preserve">
+    <value>登入时间</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>总代理</value>
   </data>
+  <data name="MasterOutstanding" xml:space="preserve">
+    <value>总代理未结束交易</value>
+  </data>
   <data name="Member" xml:space="preserve">
     <value>会员</value>
+  </data>
+  <data name="MemberList" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>会员最高信用额</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="NetPosition" xml:space="preserve">
+    <value>最低净赢</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>没有任何的变化更新</value>
@@ -135,10 +204,61 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>您没有使用此功能的权限</value>
   </data>
+  <data name="NumberOrder" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="OnlineList" xml:space="preserve">
+    <value>上线名单</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>未完成交易</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>设定</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>账目</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>超级</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="ThisUserIsNotOnline" xml:space="preserve">
+    <value>此会员没上线</value>
+  </data>
+  <data name="TotalAgentActiveClosed" xml:space="preserve">
+    <value>代理总数"活跃/关闭/暫停"</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>总平均</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>馀额总数</value>
+  </data>
+  <data name="TotalMemberActiveClosed" xml:space="preserve">
+    <value>会员总数"活跃/关闭/暫停"</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>已用額度</value>
+  </data>
+  <data name="UserNamePlaceHolder" xml:space="preserve">
+    <value>用户名或名/姓</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>昨天餘額</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>昨天馀额</value>
   </data>
 </root>

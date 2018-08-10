@@ -117,14 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>有効)</value>
+  </data>
   <data name="Agent" xml:space="preserve">
     <value>エージェント</value>
+  </data>
+  <data name="AgentList" xml:space="preserve">
+    <value>エージェントリスト</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>エージェント未払い</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>Balance Info</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>未払い取り引き</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>ベットリスト</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>閉鎖</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>お客様</value>
+  </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>Downline List</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>ファックス</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>貸付金額</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最後のログイン</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>最後の取り引き</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>最後のログインIP</value>
+  </data>
+  <data name="LoginTime" xml:space="preserve">
+    <value>Login Time</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>マスター</value>
   </data>
+  <data name="MasterOutstanding" xml:space="preserve">
+    <value>マスター未払い残高</value>
+  </data>
   <data name="Member" xml:space="preserve">
     <value>メンバー</value>
+  </data>
+  <data name="MemberList" xml:space="preserve">
+    <value>お客様リスト</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>メンバー最大貸付</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NetPosition" xml:space="preserve">
+    <value>Net Position</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>There is no change to update.</value>
@@ -135,10 +204,61 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>You are not authorized on this function.</value>
   </data>
+  <data name="NumberOrder" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="OnlineList" xml:space="preserve">
+    <value>Online List</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>未払い</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>電話番号</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>明細書</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>送信</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="ThisUserIsNotOnline" xml:space="preserve">
+    <value>This user is not online</value>
+  </data>
+  <data name="TotalAgentActiveClosed" xml:space="preserve">
+    <value>有効/閉鎖の合計エージェント</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>合計残高</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>Total Cash</value>
+  </data>
+  <data name="TotalMemberActiveClosed" xml:space="preserve">
+    <value>有効/閉鎖の合計メンバー</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>使用貸付金額</value>
+  </data>
+  <data name="UserNamePlaceHolder" xml:space="preserve">
+    <value>Username or First/Last Name</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>Yesterday Balance</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>Yesterday Cash</value>
   </data>
 </root>

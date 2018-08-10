@@ -6,11 +6,11 @@ export default class OnlineListContent extends React.Component {
         super(props);
     }
     render() {
-        const { data } = this.props;
+        const { resources, data } = this.props;
 
         return (
             <tbody>
-                {(data === null || data.length == 0) && <NoInformationRow colspan="3" /> }
+                {(data === null || data.length == 0) && <NoInformationRow resources={resources} colspan="3" /> }
 
                 {data != null && data.map((online, index) =>
                         <tr key={index}>

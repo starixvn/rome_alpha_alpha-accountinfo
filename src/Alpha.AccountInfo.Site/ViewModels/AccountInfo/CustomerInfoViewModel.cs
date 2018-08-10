@@ -72,7 +72,7 @@
             get
             {
                 return new LoginInfoViewModel(
-                    customerInfo.CreateDate,
+                    customerInfo.CreatDate,
                     customerInfo.LastLogged,
                     customerInfo.LastTxn,
                     customerInfo.LastLoginIP);

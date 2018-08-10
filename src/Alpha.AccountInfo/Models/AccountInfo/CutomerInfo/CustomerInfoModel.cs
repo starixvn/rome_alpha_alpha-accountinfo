@@ -24,7 +24,7 @@
          bool uplineEnabled,
          bool closed,
          bool suspended,
-         DateTime createDate,
+         DateTime creatDate,
          DateTime lastLogged,
          DateTime lastTxn,
          string lastLoginIP,
@@ -54,8 +54,8 @@
             UplineEnabled = uplineEnabled;
             Closed = closed;
             Suspended = suspended;
-            
-            CreateDate = createDate;
+
+            CreatDate = creatDate;
             LastLogged = lastLogged;
             LastTxn = lastTxn;
             LastLoginIP = lastLoginIP;
@@ -102,7 +102,7 @@
 
         public bool Suspended { get; }
 
-        public DateTime CreateDate { get; }
+        public DateTime CreatDate { get; }
 
         public DateTime LastLogged { get; }
 

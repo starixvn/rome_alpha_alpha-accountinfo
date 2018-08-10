@@ -29,7 +29,7 @@ export default class CustomerInfoBlock extends React.Component {
     }
 
     render() {
-        const { handleSearchFromUserLevel } = this.props;
+        const { resources, handleSearchFromUserLevel } = this.props;
 
         const {
             rowClasses,
@@ -40,47 +40,46 @@ export default class CustomerInfoBlock extends React.Component {
 
         let roleId = data.RoleId;
 
-
         return (
             <div >
-                {data.ShowMasterName ? this.buildLevelRow(data.MasterName, window.accountInfoResources.Master, roleId == 3 ? "icon-viewlog" : null, handleSearchFromUserLevel) : null}
+                {data.ShowMasterName ? this.buildLevelRow(data.MasterName, resources.Master, roleId == 3 ? "icon-viewlog" : null, handleSearchFromUserLevel) : null}
 
-                {data.ShowAgentName ? this.buildLevelRow(data.AgentName, window.accountInfoResources.Agent, roleId == 2 ? "icon-viewlog" : null, handleSearchFromUserLevel) : null}
+                {data.ShowAgentName ? this.buildLevelRow(data.AgentName, resources.Agent, roleId == 2 ? "icon-viewlog" : null, handleSearchFromUserLevel) : null}
 
-                {data.ShowMemberName ? this.buildLevelRow(data.MemberName, window.accountInfoResources.Customer, "icon-viewlog", handleSearchFromUserLevel) : null}
+                {data.ShowMemberName ? this.buildLevelRow(data.MemberName, resources.Customer, "icon-viewlog", handleSearchFromUserLevel) : null}
 
                 <div className={rowClasses}>
-                    <div className={firstCellClass}>Name</div>
+                    <div className={firstCellClass}>{resources.Name}</div>
                     <div className={secondCellClass}>{data.username}</div>
                 </div>
 
                 <div className={rowClasses}>
-                    <div className={firstCellClass}>Phone</div>
+                    <div className={firstCellClass}>{resources.Phone}</div>
                     <div className={secondCellClass}>{data.Phone}</div>
                 </div>
 
                 <div className={rowClasses}>
-                    <div className={firstCellClass}>Fax</div>
+                    <div className={firstCellClass}>{resources.Fax}</div>
                     <div className={secondCellClass}>{data.Fax}</div>
                 </div>
 
                 <div className={rowClasses + " text-center list-button"}>
                     {
                         roleId == 1 &&
-                        <a className="btn-default with-level" href={data.BetListLink} target="main">Bet List</a>
+                        <a className="btn-default with-level" href={data.BetListLink} target="main">{resources.BetList}</a>
                     }
 
                     {
                         roleId == 2 &&
-                        <a className="btn-default with-level" href={data.CustomerListLink} target="main">Member List</a>
+                        <a className="btn-default with-level" href={data.CustomerListLink} target="main">{resources.MemberList}</a>
                     }
 
                     {
                         roleId == 3 &&
-                        <a className="btn-default with-level" href={data.CustomerListLink} target="main">Agent List</a>
+                        <a className="btn-default with-level" href={data.CustomerListLink} target="main">{resources.AgentList}</a>
                     }
 
-                    <a className="btn-default with-level" href={data.StatemenLink} target="main">Statement</a>
+                    <a className="btn-default with-level" href={data.StatemenLink} target="main">{resources.Statement}</a>
                 </div>
             </div>
         );

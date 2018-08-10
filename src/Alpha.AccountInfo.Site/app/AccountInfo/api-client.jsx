@@ -17,10 +17,10 @@ const requests = {
 };
 
 export const accountInfoAPI = {
-    getAutoUsernameSuggestion: (data) => requests.post(window.accountInfoSiteAppPath + "AccountInfo/GetUsernamesSuggestion", data),
-    getCustomerInfo: (data) => requests.post(window.accountInfoSiteAppPath + "AccountInfo/GetCustomerInfo", data),
-    getDownlineList: (data) => requests.post(window.accountInfoSiteAppPath + "AccountInfo/GetDownlineList", data),
-    getCustomerAllStatus: (data) => requests.post(window.accountInfoSiteAppPath + "AccountInfo/GetCustomerAllStatus", data),
-    getOnlineList: (data) => requests.post(window.accountInfoSiteAppPath + "AccountInfo/GetOnlineList", data),
-    updateGivenCredit: (data) => requests.post(window.accountInfoSiteAppPath + "AccountInfo/UpdateGivenCredit", data)
+    getAutoUsernameSuggestion: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetUsernamesSuggestion", data),
+    getCustomerInfo: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetCustomerInfo", data),
+    getDownlineList: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetDownlineList", data),
+    getCustomerAllStatus: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetCustomerAllStatus", data),
+    getOnlineList: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetOnlineList", data),
+    updateGivenCredit: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/UpdateGivenCredit", data)
 }

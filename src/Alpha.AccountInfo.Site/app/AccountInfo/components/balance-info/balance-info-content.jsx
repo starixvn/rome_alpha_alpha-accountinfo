@@ -14,6 +14,7 @@ export default class BalanceInfoContent extends React.Component{
         const rowClasses = "col-xs-12 row-info";
 
         const {
+            resources,
             custId,
             username,
             roleId,
@@ -21,12 +22,14 @@ export default class BalanceInfoContent extends React.Component{
             fetchCustomerInfoFromServer
         } = this.props;
 
+
+        // TO DO : lblMemberMaxCredit
         return (
             <div>
                 {
                     roleId > 1 &&
                     <div className={rowClasses}>
-                        <div className="col-xs-6">Total Cash</div>
+                        <div className="col-xs-6">{resources.TotalCash}</div>
                         <CellContainNumberFormat title={balanceInfo.TotalCash} classNames="col-xs-6 col-right" />
                     </div>
                 }
@@ -34,13 +37,13 @@ export default class BalanceInfoContent extends React.Component{
                 {
                     roleId > 1 &&
                     <div className={rowClasses}>
-                        <div className="col-xs-6">Yesterday Cash</div>
+                        <div className="col-xs-6">{resources.YesterdayCash}</div>
                         <CellContainNumberFormat title={balanceInfo.YesterdayCash} classNames="col-xs-6 col-right" />
                     </div>
                 }
 
                 <div className={rowClasses}>
-                    <div className="col-xs-6">Total Balance</div>
+                    <div className="col-xs-6">{resources.TotalBalance}</div>
                     <CellContainNumberFormat
                         title={balanceInfo.TotalBalance}
                         classNames="col-xs-6 col-right"
@@ -49,7 +52,7 @@ export default class BalanceInfoContent extends React.Component{
                 </div>
 
                 <div className={rowClasses}>
-                    <div className="col-xs-6">Yesterday Balance</div>
+                    <div className="col-xs-6">{resources.YesterdayBalance}</div>
                     <CellContainNumberFormat
                         title={balanceInfo.YesterdayBalance}
                         classNames="col-xs-6 col-right"
@@ -60,9 +63,9 @@ export default class BalanceInfoContent extends React.Component{
                 <div className={rowClasses}>
                     <div className="col-xs-6">
                     {
-                            (roleId == 3 && "Master Outstanding") ||
-                            (roleId == 2 && "Agent Outstanding") ||
-                            (roleId == 1 && "Outstanding")
+                            (roleId == 3 && resources.MasterOutstanding) ||
+                            (roleId == 2 && resources.AgentOutstanding) ||
+                            (roleId == 1 && resources.Outstanding)
                     }
                     </div>
                     <CellContainNumberFormat
@@ -76,12 +79,13 @@ export default class BalanceInfoContent extends React.Component{
                 {
                     roleId > 1 &&
                     <div className={rowClasses}>
-                        <div className="col-xs-6">Used Credit</div>
+                        <div className="col-xs-6">{resources.UsedCredit}</div>
                         <CellContainNumberFormat title={balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
                     </div>
                 }
                 
                 <GivenCreditModal
+                    resources={resources}
                     fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                     balanceInfo={balanceInfo}
                     custId={custId}
@@ -91,7 +95,7 @@ export default class BalanceInfoContent extends React.Component{
                 {
                     roleId == 1 &&
                     <div className={rowClasses}>
-                        <div className="col-xs-6">Net Position</div>
+                        <div className="col-xs-6">{resources.NetPosition}</div>
                         <CellContainNumberFormat title={balanceInfo.NetPosition} classNames="col-xs-6 col-right" />
                     </div>
                 }
@@ -99,7 +103,7 @@ export default class BalanceInfoContent extends React.Component{
                 {
                     roleId == 1 &&
                     <div className={rowClasses}>
-                        <div className="col-xs-6">Bet Credit</div>
+                        <div className="col-xs-6">{resources.BetCredit}</div>
                         <CellContainNumberFormat title={balanceInfo.BetCredit} classNames="col-xs-6 col-right" />
                     </div>
                 }

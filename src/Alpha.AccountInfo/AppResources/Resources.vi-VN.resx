@@ -117,14 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
+  </data>
+  <data name="AgentList" xml:space="preserve">
+    <value>Các Agent</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý của Agent</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>Tài Khoản</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>Hạn mức khả dụng</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>Danh sách cược</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Bị khóa</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Thành viên</value>
+  </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>Thành viên</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>Hạn mức được cấp</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>Lần đăng nhập cuối</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>Lần giao dịch cuối cùng</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>IP đăng nhập</value>
+  </data>
+  <data name="LoginTime" xml:space="preserve">
+    <value>Thời gian đăng nhập</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
   </data>
+  <data name="MasterOutstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý của Master</value>
+  </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
+  </data>
+  <data name="MemberList" xml:space="preserve">
+    <value>Các Thành Viên</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>Hạn mức tín dụng tối đa của Member</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="NetPosition" xml:space="preserve">
+    <value>Net Position</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>Không có gì thay đổi để cập nhật.</value>
@@ -135,10 +204,61 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>Bạn không được cho phép sử dụng chức năng này.</value>
   </data>
+  <data name="NumberOrder" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="OnlineList" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Thiết lập</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>Sao kê</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Bị đình chỉ</value>
+  </data>
+  <data name="ThisUserIsNotOnline" xml:space="preserve">
+    <value>Thành viên này không online</value>
+  </data>
+  <data name="TotalAgentActiveClosed" xml:space="preserve">
+    <value>Số tài khoản Agent hiện đang: Kích hoạt/Khóa/Đình chỉ</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>Tổng số tiền giao dịch</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>Tổng số dư tài khoản</value>
+  </data>
+  <data name="TotalMemberActiveClosed" xml:space="preserve">
+    <value>Số tài khoản Member hiện đang: Kích hoạt/Khóa/Đình chỉ</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>Hạn mức tín dụng đã dùng</value>
+  </data>
+  <data name="UserNamePlaceHolder" xml:space="preserve">
+    <value>Tên đăng nhập hoặc Tên/Họ</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>Số dư đến hết hôm qua</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>Số dư tài khoản đến hết hôm qua</value>
   </data>
 </root>

@@ -17,13 +17,11 @@
 </body>
 </html>
 <script>
-    window.accountInfoSiteAppPath = '@Model.AccountInfoSiteAppPath';
-    window.accountInfoResourcesString = '@Model.AccountInfoResources';
+    var accountInfoSiteAppPath = '@Model.AccountInfoSiteAppPath';
+    var accountInfoResources = JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"'));
 </script>
-@*<script src="@Url.Content("~/Scripts/react-id-swiper.jsx")"></script>*@
 @StaticResources.RenderScripts("~/Scripts/jquery")
 @StaticResources.RenderScripts("/assets/bundles/site-main/account-info/index")
-@* @StaticResources.RenderScripts("~/Scripts/require")*@
 @StaticResources.RenderScripts("~/node_modules/react/dist/react")
 @StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
 @StaticResources.RenderScripts("~/Scripts/swiper")

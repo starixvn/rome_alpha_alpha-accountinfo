@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import AccountInfo from './containers/account-info';
 
 ReactDOM.render(
-    <AccountInfo />,
+    <AccountInfo resources={accountInfoResources}/>,
     document.getElementById('account-info')
 );
-
-window.accountInfoResources = JSON.parse(window.accountInfoResourcesString.replace(/&quot;/g, '\"'));

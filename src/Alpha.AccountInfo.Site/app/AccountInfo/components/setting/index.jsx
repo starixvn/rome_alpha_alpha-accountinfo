@@ -8,11 +8,11 @@ export default class SettingBlock extends React.Component {
     }
 
     render() {
-        const { blockId, expanded, settingData, getCustomerAllStatus } = this.props;
+        const { resources, blockId, expanded, settingData, getCustomerAllStatus } = this.props;
 
         return (
             <CustomizedAccordionItem
-                title="Settings"
+                title={resources.Setting}
                 iconClassname="icon-settings"
                 expanded={expanded}
                 handleClick={getCustomerAllStatus}

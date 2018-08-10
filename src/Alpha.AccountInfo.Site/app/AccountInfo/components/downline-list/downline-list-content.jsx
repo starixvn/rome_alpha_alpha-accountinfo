@@ -9,7 +9,7 @@ export default class DownlineListContent extends React.Component{
     }
 
     render() {
-        const { downlineList, fetchCustomerInfoFromServer } = this.props;
+        const { resources, downlineList, fetchCustomerInfoFromServer } = this.props;
 
         return (
             <div>
@@ -18,16 +18,18 @@ export default class DownlineListContent extends React.Component{
                 {
                     this.props.downlineList.TotalStatusAgent != null &&
                     <TotalDownlines levelName="Agents"
-                    totalActive={downlineList.TotalStatusAgent.TotalActive}
-                    totalClosed={downlineList.TotalStatusAgent.TotalClosed}
-                    totalSuspended={downlineList.TotalStatusAgent.TotalSuspend} />
+                        resources={resources}
+                        totalActive={downlineList.TotalStatusAgent.TotalActive}
+                        totalClosed={downlineList.TotalStatusAgent.TotalClosed}
+                        totalSuspended={downlineList.TotalStatusAgent.TotalSuspend} />
                 }
                 {
                     this.props.downlineList.TotalStatusMember != null &&
                     <TotalDownlines levelName="Members"
-                    totalActive={downlineList.TotalStatusMember.TotalActive}
-                    totalClosed={downlineList.TotalStatusMember.TotalClosed}
-                    totalSuspended={downlineList.TotalStatusMember.TotalSuspend} />
+                        resources={resources}
+                        totalActive={downlineList.TotalStatusMember.TotalActive}
+                        totalClosed={downlineList.TotalStatusMember.TotalClosed}
+                        totalSuspended={downlineList.TotalStatusMember.TotalSuspend} />
                 }
             </div>    
         );

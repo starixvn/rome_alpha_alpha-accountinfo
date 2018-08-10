@@ -138,7 +138,7 @@ export default class FeatureList extends React.Component {
     }
 
     render() {
-        const { customerInfo, fetchCustomerInfoFromServer } = this.props;
+        const { resources, customerInfo, fetchCustomerInfoFromServer } = this.props;
         const { expandedItems, collapseAll, firstLoadSearch, statusData, settingData} = this.state;
         let collapseExpandClassName = 'account-info-group';
 
@@ -178,6 +178,7 @@ export default class FeatureList extends React.Component {
                 }
                 <Accordion>
                     <BalanceInfoBlock
+                        resources={resources}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                         expanded={expandedItems.balanceInfo}
@@ -190,6 +191,7 @@ export default class FeatureList extends React.Component {
                     {
                         customerInfo.RoleId > 1 &&
                         <DownlineListBlock
+                            resources={resources}
                             fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} 
                             handleCollapExpandBlock={this.handleCollapExpandBlock}
                             expanded={expandedItems.downlineList}
@@ -198,6 +200,7 @@ export default class FeatureList extends React.Component {
                     }
 
                     <StatusBlock
+                        resources={resources}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         getCustomerAllStatus={this.getCustomerAllStatus}
                         statusData={statusData}
@@ -205,6 +208,7 @@ export default class FeatureList extends React.Component {
                         blockId="status" />
 
                     <SettingBlock
+                        resources={resources}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         getCustomerAllStatus={this.getCustomerAllStatus}
                         settingData={settingData}
@@ -212,12 +216,14 @@ export default class FeatureList extends React.Component {
                         blockId="setting" />
 
                     <LoginInfoBlock
+                        resources={resources}
                         loginInfo={this.props.customerInfo.LoginInfo}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.loginInfo}
                         blockId="loginInfo" />
 
                     <OnlineListBlock
+                        resources={resources}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.onlineList}
                         blockId="onlineList"
