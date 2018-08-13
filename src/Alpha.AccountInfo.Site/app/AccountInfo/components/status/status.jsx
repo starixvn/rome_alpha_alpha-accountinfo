@@ -32,7 +32,7 @@ export default class Status extends React.Component {
         this.handleClose(e); 
     };
     render() {
-        const { classNames, checked, disabled, title, id, confirmMessage, url } = this.props;
+        const { resources, classNames, checked, disabled, title, id, confirmMessage, url } = this.props;
         const dialogPaper = {
             height: 220,
             width: 475,
@@ -54,8 +54,8 @@ export default class Status extends React.Component {
                                 <div>
                                     {confirmMessage}
                                     <div>
-                                        <a className="btn-default with-level" onClick={this.handleClose}>Cancel</a>
-                                        <a className="btn-default with-level" onClick={this.handleSubmit}>Submit</a>
+                                        <a className="btn-default with-level" onClick={this.handleClose}>{resources.Cancel}</a>
+                                        <a className="btn-default with-level" onClick={this.handleSubmit}>{resources.Submit}</a>
                                     </div>
                                 </div>
                             }

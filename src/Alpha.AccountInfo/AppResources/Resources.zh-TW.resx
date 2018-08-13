@@ -138,11 +138,62 @@
   <data name="BetList" xml:space="preserve">
     <value>投注歷史</value>
   </data>
+  <data name="BetSettingViewModelText" xml:space="preserve">
+    <value>投注設定</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>關閉</value>
+  </data>
+  <data name="CommissionViewModelText" xml:space="preserve">
+    <value>佣金</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>您確定要禁用總代自動占成功能嗎？</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>您確定要啟用總代自動占成功能嗎？</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
+    <value>允許自動佔成</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>您確定要禁止此客戶的優勝冠軍投注嗎？</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>您確定要允許優勝冠軍狀況給個客戶嗎？</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
+    <value>您確定要更改這個客戶的關閉狀態？</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
+    <value>您確定要更改這個客戶的關閉狀態？警告！所有下線將被關閉！</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
+    <value>您確定要禁止此客戶的雙倍佣金功能於體育博彩之輸額注單? 警告, 所有附屬此代理之會員也將被禁止!</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
+    <value>您確定要關閉此客戶的雙倍佣金功能於體育博彩之輸額注單?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
+    <value>您確定要開啟此客戶的雙倍佣金功能於體育博彩之輸額注單?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
+    <value>您確定要允許此客戶的雙倍佣金功能於體育博彩之輸額注單?</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>您確定要更改這個客戶暫停狀態嗎？警告，所有代理的會員不能投注！</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
+    <value>您確定要更改這個客戶暫停狀態嗎？會員將無法投注.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>您確定要更改這個客戶暫停狀態嗎？所有下線將取消暫停.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
+    <value>您確定要更改這個客戶暫停狀態嗎？</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>新增日期</value>

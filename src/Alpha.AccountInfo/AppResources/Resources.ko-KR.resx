@@ -138,11 +138,62 @@
   <data name="BetList" xml:space="preserve">
     <value>배팅 목록</value>
   </data>
+  <data name="BetSettingViewModelText" xml:space="preserve">
+    <value>배팅 설정</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>중지</value>
+  </data>
+  <data name="CommissionViewModelText" xml:space="preserve">
+    <value>수수료</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>이 마스터의 자동 포지션 설정 기능을 비활성화 하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>이 마스터의 자동 포지션 설정 기능을 활성화하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
+    <value>자동 포지션 설정 허가</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>이 고객의 기타베팅을 거부하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>이 고객의 기타 상태 설정을 허용하시겠습니까?</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
+    <value>이 고객의 계정을 비활성화 상태로 바꾸시겠습니까?</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
+    <value>이 고객의 계정을 비활성화 상태로 바꾸시겠습니까? 주의!! 모든 하부라인의 계정도 비활성화 되어집니다.</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
+    <value>고객님의 스포츠 북에 해당하는 진 티켓에 대한 더블 커미션 기능을 허용하지 않겠습니까 ? 알림 :  에이젼트에 해당하는 모든 회원 또한 허용되지 않습니다.</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
+    <value>고객님의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을  켜시겠습니까?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
+    <value>고객의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을 허용하지 않겠습니까 ?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
+    <value>고객님의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을 끄시겠습니까?</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>이 고객의 계정을 일시정지로 바꾸시겠습니까? 주의! 이 에이젼트 소속의 모든 회원의 계정도 일시정지 되어집니다.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
+    <value>이 고객의 계정을 일시정지로 바꾸시겟습니까? 주의! 이 회원은 베팅할수 없게 되어집니다.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>이 고객의 계정을 일시정지로 바꾸시겠습니까? 주의! 모든 하부라인도 일시정지 되어집니다.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
+    <value>이 고객의 계정을 일시정지로 바꾸시겠습니까?</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>작성일</value>

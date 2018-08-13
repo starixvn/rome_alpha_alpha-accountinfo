@@ -151,7 +151,7 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commision.
+        ///   Looks up a localized string similar to Commission.
         /// </summary>
         public static string CommissionViewModelText {
             get {
@@ -162,14 +162,23 @@ namespace Alpha.AccountInfo.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to disable auto position taking feature of this master?.
         /// </summary>
-        public static string ConfirmAllowAutoMasterPTViewModelMessage {
+        public static string ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage {
             get {
-                return ResourceManager.GetString("ConfirmAllowAutoMasterPTViewModelMessage", resourceCulture);
+                return ResourceManager.GetString("ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Master PT.
+        ///   Looks up a localized string similar to Are you sure you want to enable auto position taking feature of this master?.
+        /// </summary>
+        public static string ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage {
+            get {
+                return ResourceManager.GetString("ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow Auto PT.
         /// </summary>
         public static string ConfirmAllowAutoMasterPTViewModelText {
             get {
@@ -180,9 +189,18 @@ namespace Alpha.AccountInfo.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to disallow outright betting for this customer?.
         /// </summary>
-        public static string ConfirmAllowOutrightViewModelMessage {
+        public static string ConfirmAllowOutrightViewModelInCaseDisabledMessage {
             get {
-                return ResourceManager.GetString("ConfirmAllowOutrightViewModelMessage", resourceCulture);
+                return ResourceManager.GetString("ConfirmAllowOutrightViewModelInCaseDisabledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to allow outright betting for this customer?.
+        /// </summary>
+        public static string ConfirmAllowOutrightViewModelInCaseEnabledMessage {
+            get {
+                return ResourceManager.GetString("ConfirmAllowOutrightViewModelInCaseEnabledMessage", resourceCulture);
             }
         }
         
@@ -196,11 +214,20 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Close status for this customer?.
+        /// </summary>
+        public static string ConfirmClosedViewModelInCaseChangeClosedStatusMessage {
+            get {
+                return ResourceManager.GetString("ConfirmClosedViewModelInCaseChangeClosedStatusMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to change Close status for this customer? Warning, all downlines will be closed as well!.
         /// </summary>
-        public static string ConfirmClosedViewModelMessage {
+        public static string ConfirmClosedViewModelInCaseClosedDownlinesMessage {
             get {
-                return ResourceManager.GetString("ConfirmClosedViewModelMessage", resourceCulture);
+                return ResourceManager.GetString("ConfirmClosedViewModelInCaseClosedDownlinesMessage", resourceCulture);
             }
         }
         
@@ -214,11 +241,38 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disallow Double Commission feature for Sportsbook&apos;s Losing tickets on this customer? Warning, all members under this agent will be disallowed as well!.
+        /// </summary>
+        public static string ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage {
+            get {
+                return ResourceManager.GetString("ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to turn OFF Double Commission feature for Sportsbook&apos;s Losing tickets on this customer?.
+        /// </summary>
+        public static string ConfirmDoubleCommViewModelInCaseDisabledMemberMessage {
+            get {
+                return ResourceManager.GetString("ConfirmDoubleCommViewModelInCaseDisabledMemberMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to turn ON Double Commission feature for Sportsbook&apos;s Losing tickets on this customer?.
+        /// </summary>
+        public static string ConfirmDoubleCommViewModelInCaseEnabledMemberMessage {
+            get {
+                return ResourceManager.GetString("ConfirmDoubleCommViewModelInCaseEnabledMemberMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to allow Double Commission feature for Sportsbook&apos;s Losing tickets on this customer?.
         /// </summary>
-        public static string ConfirmDoubleCommViewModelMessage {
+        public static string ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage {
             get {
-                return ResourceManager.GetString("ConfirmDoubleCommViewModelMessage", resourceCulture);
+                return ResourceManager.GetString("ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage", resourceCulture);
             }
         }
         
@@ -234,9 +288,36 @@ namespace Alpha.AccountInfo.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to change Suspend status for this customer? Warning, all members under this agent can&apos;t place bet!.
         /// </summary>
-        public static string ConfirmSuspendedViewModelMessage {
+        public static string ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage {
             get {
-                return ResourceManager.GetString("ConfirmSuspendedViewModelMessage", resourceCulture);
+                return ResourceManager.GetString("ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Suspend status for this customer? Warning, this member can&apos;t place bet!.
+        /// </summary>
+        public static string ConfirmSuspendedViewModelInCaseSuspendedMemberMessage {
+            get {
+                return ResourceManager.GetString("ConfirmSuspendedViewModelInCaseSuspendedMemberMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well..
+        /// </summary>
+        public static string ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage {
+            get {
+                return ResourceManager.GetString("ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Suspend status for this customer?.
+        /// </summary>
+        public static string ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage {
+            get {
+                return ResourceManager.GetString("ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage", resourceCulture);
             }
         }
         

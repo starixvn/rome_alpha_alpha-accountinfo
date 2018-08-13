@@ -138,11 +138,62 @@
   <data name="BetList" xml:space="preserve">
     <value>ベットリスト</value>
   </data>
+  <data name="BetSettingViewModelText" xml:space="preserve">
+    <value>Bet Setting</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>閉鎖</value>
+  </data>
+  <data name="CommissionViewModelText" xml:space="preserve">
+    <value>手数料</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>Are you sure you want to disable auto position taking feature of this master?</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>Are you sure you want to enable auto position taking feature of this master?</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
+    <value>Allow Auto PT</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>Are you sure you want to disallow outright betting for this customer?</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>Are you sure you want to allow outright betting for this customer?</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
+    <value>Are you sure you want to change Close status for this customer?</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
+    <value>Are you sure you want to change Close status for this customer? Warning, all downlines will be closed as well!</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
+    <value>Are you sure you want to disallow Double Commission feature for Sportsbook's Losing tickets on this customer? Warning, all members under this agent will be disallowed as well!</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to turn OFF Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to turn ON Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
+    <value>Are you sure you want to allow Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>Are you sure you want to change Suspend status for this customer? \n Warning, all members under this agent can't place bet!</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to change Suspend status for this customer? Warning, this member can't place bet!</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to change Suspend status for this customer?</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>Created Date</value>

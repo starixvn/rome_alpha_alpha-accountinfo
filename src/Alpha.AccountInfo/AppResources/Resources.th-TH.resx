@@ -138,11 +138,62 @@
   <data name="BetList" xml:space="preserve">
     <value>รายการวางเดิมพัน</value>
   </data>
+  <data name="BetSettingViewModelText" xml:space="preserve">
+    <value>การกำหนดการวางเดิมพัน</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>ยกเลิก</value>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>ที่ถูกปิด</value>
+  </data>
+  <data name="CommissionViewModelText" xml:space="preserve">
+    <value>คอมมิชชั่น</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการปิดการใช้งานฟังก์ชันแบ่งสู้อัตโนมัติของมาสเตอร์</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปิดการใช้งานฟังก์ชันแบ่งสู้อัตโนมัติของมาสเตอร์</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
+    <value>อนุญาตให้มีแบ่งสู้อัตโนมัติ</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าไม่อนุญาตให้ลูกค้าท่านนี้พนันเอาท์ไรท์</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าจะอนุญาตให้ลูกค้าท่านนี้มี เอาท์ไรท์</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าจะเปลียนสถานะเป็นปิดให้กับลูกค้า</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นปิดให้กับลูกค้าท่านนี้? คำเตือน : ดาวน์ไลน์ทั้งหมดจะถูกปิดลงเช่นกัน</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
+    <value>ท่านแน่ใจหรือไม่ที่จะไม่อนุญาติการใช้งานรูปแบบดับเบิลคอมมิชชั่น สำหรับตั๋วต่างๆ ตั๋วที่เสียการทายผลหน้ากีฬาของลูกค้าท่านนี้? คำเตือน ลูกค้าทั้งหมดภายใต้เอเย่นต์ท่านนี้จะไม่ได้รับอนุญาติเช่นเดียวกัน</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
+    <value>ท่านแน่ใจหรือไม่ว่าต้องการปิดการใช้งานรูปแบบดับเบิลคอมมิชชั่น สำหรับตั๋วต่างๆ ตั๋วที่เสียการทายผลหน้ากีฬาของลูกค้าท่านนี้?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
+    <value>ท่านแน่ใจหรือไม่ว่าต้องการเปิดการใช้งานรูปแบบดับเบิลคอมมิชชั่นสำหรับตั๋วต่างๆ ที่เสียในการทายผลหน้ากีฬาของลูกค้าท่านนี้?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
+    <value>ท่านแน่ใจหรือไม่ที่จะอนุญาติการใช้งานรูปแบบดับเบิลคอมมิชชั่นสำหรับตั๋วต่างๆ ที่เสียในการทายผลหน้ากีฬาของลูกค้าท่านนี้?</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าจะเปลียนสถานะเป็นระงับให้กับลูกค้า \n คำเดือน, สมาชิกทั้งหมดที่อยู่ภายใต้เอเย่นท่านนี้ไม่สามารถวางเดิมพันได้</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?  คำเตือน : สมาชิกท่านนี้ไม่สามารถวางพนันได้</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?  คำเตือน : ดาวน์ไลน์ทั้งหมดไม่สามารถยกเลิกการระงับการใช้งานได้</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>สร้างขึ้นเมื่อ</value>

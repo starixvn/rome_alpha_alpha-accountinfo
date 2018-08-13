@@ -148,34 +148,61 @@
     <value>Closed</value>
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
-    <value>Commision</value>
+    <value>Commission</value>
   </data>
-  <data name="ConfirmAllowAutoMasterPTViewModelMessage" xml:space="preserve">
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>Are you sure you want to disable auto position taking feature of this master?</value>
   </data>
-  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
-    <value>Auto Master PT</value>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>Are you sure you want to enable auto position taking feature of this master?</value>
   </data>
-  <data name="ConfirmAllowOutrightViewModelMessage" xml:space="preserve">
+  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
+    <value>Allow Auto PT</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>Are you sure you want to disallow outright betting for this customer?</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>Are you sure you want to allow outright betting for this customer?</value>
   </data>
   <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
     <value>Outright</value>
   </data>
-  <data name="ConfirmClosedViewModelMessage" xml:space="preserve">
+  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
+    <value>Are you sure you want to change Close status for this customer?</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
     <value>Are you sure you want to change Close status for this customer? Warning, all downlines will be closed as well!</value>
   </data>
   <data name="ConfirmClosedViewModelText" xml:space="preserve">
     <value>Closed</value>
   </data>
-  <data name="ConfirmDoubleCommViewModelMessage" xml:space="preserve">
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
+    <value>Are you sure you want to disallow Double Commission feature for Sportsbook's Losing tickets on this customer? Warning, all members under this agent will be disallowed as well!</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to turn OFF Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to turn ON Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to allow Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
   </data>
   <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
     <value>Double Comm</value>
   </data>
-  <data name="ConfirmSuspendedViewModelMessage" xml:space="preserve">
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to change Suspend status for this customer? Warning, all members under this agent can't place bet!</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to change Suspend status for this customer? Warning, this member can't place bet!</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to change Suspend status for this customer?</value>
   </data>
   <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
     <value>Suspended</value>

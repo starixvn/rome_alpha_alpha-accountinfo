@@ -8,13 +8,12 @@ export default class StatusBlock extends React.Component {
         super(props);
     }
 
-
     render() {
         const { resources, getCustomerAllStatus, blockId, expanded, statusData } = this.props;
 
         return (
             <CustomizedAccordionItem
-                title={resources.Setting}
+                title={resources.Status}
                 iconClassname="icon-status"
                 accordionItemBodyClassName="accordion__body block-status"
                 expanded={expanded}
@@ -22,13 +21,16 @@ export default class StatusBlock extends React.Component {
                 blockId={blockId}>
                 {statusData != null && statusData.Settings.map((status, index) => {
                     return status.IsEditOnProductLevel != undefined && !status.IsEditOnProductLevel ?
-                        <StatusOnProduct title={status.Text}
+                        <StatusOnProduct resources={resources}
+                            title={status.Text}
                             url={status.Url}
                             confirmMessage={status.ConfirmMessage}
                             disabled={status.Disabled}
                             key={index}
                             statusId={status.DisplayOrder}/> :
-                        <Status classNames='col checkbox' title={status.Text}
+                        <Status resources={resources}
+                            classNames='col checkbox'
+                            title={status.Text}
                             url={status.Url}
                             confirmMessage={status.ConfirmMessage}
                             disabled={status.Disabled}

@@ -53,7 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Products.AccountInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.AccountInfo.1.0.0-beta3\lib\net40\Alpha.Products.AccountInfo.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Products.AccountInfo.1.0.0-beta4\lib\net40\Alpha.Products.AccountInfo.dll</HintPath>
       </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
