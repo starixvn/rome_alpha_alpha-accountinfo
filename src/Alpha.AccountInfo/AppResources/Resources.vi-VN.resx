@@ -144,9 +144,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>Hủy</value>
   </data>
-  <data name="Closed" xml:space="preserve">
-    <value>Bị khóa</value>
-  </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>Hoa hồng</value>
   </data>
@@ -282,9 +279,6 @@
   <data name="Super" xml:space="preserve">
     <value>Super</value>
   </data>
-  <data name="Suspended" xml:space="preserve">
-    <value>Bị đình chỉ</value>
-  </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>Thành viên này không online</value>
   </data>
@@ -311,5 +305,44 @@
   </data>
   <data name="YesterdayCash" xml:space="preserve">
     <value>Số dư tài khoản đến hết hôm qua</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>Cho phép Outright</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>Bị khóa</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>Nhân đôi hoa hồng</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>Bị đình chỉ</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>Thông tin chưa được cập nhật</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>Xoá OTP</value>
+  </data>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>Đổi Mật khẩu</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>Thay đổi Mã bảo mật</value>
+  </data>
+  <data name="ShowContactInfo" xml:space="preserve">
+    <value>Show Contact Info</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>PT nhỏ nhất cho Sportsbook</value>
+  </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>Chuyển khoản</value>
   </data>
 </root>

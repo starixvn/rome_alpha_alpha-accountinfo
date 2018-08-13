@@ -144,9 +144,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
-  <data name="Closed" xml:space="preserve">
-    <value>중지</value>
-  </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>수수료</value>
   </data>
@@ -282,9 +279,6 @@
   <data name="Super" xml:space="preserve">
     <value>슈퍼</value>
   </data>
-  <data name="Suspended" xml:space="preserve">
-    <value>보류</value>
-  </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>회원이 온라인 상에 있지 않습니다.</value>
   </data>
@@ -311,5 +305,44 @@
   </data>
   <data name="YesterdayCash" xml:space="preserve">
     <value>어제의 현금</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>기타베팅 허용</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>중지</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>더블 커미션</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>보류</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>고객</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>가능한 정보가 없습니다</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>페이지</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>Remove OTP</value>
+  </data>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>비밀번호 재설정</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>Reset Security Code</value>
+  </data>
+  <data name="ShowContactInfo" xml:space="preserve">
+    <value>Show Contact Info</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>최소조건 수정</value>
+  </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>전송</value>
   </data>
 </root>

@@ -34,7 +34,7 @@ export default class SettingInfo extends React.Component {
     }
     
     render() {
-        const { settings, oldMainPath } = this.props;
+        const { resources, settings, oldMainPath } = this.props;
         const { slideTo } = this.state;
 
         const params = {
@@ -61,7 +61,7 @@ export default class SettingInfo extends React.Component {
                     })}
                 </Swiper>
                 <div className="page-control">
-                    <span>Page</span>
+                    <span>{resources.Page}</span>
                     <input type="text" ref="slideTo" className="number" value={slideTo} onChange={this.slideTo} />
                 </div>
             </div>

@@ -17,7 +17,7 @@ export default class SettingBlock extends React.Component {
                 expanded={expanded}
                 handleClick={getCustomerAllStatus}
                 blockId={blockId}>
-                {settingData != null && <SettingContent setting={settingData} oldMainPath={settingData.OldMainPath}/>}
+                {settingData != null && <SettingContent resources={resources} setting={settingData} oldMainPath={settingData.OldMainPath}/>}
             </CustomizedAccordionItem>
         );
     }

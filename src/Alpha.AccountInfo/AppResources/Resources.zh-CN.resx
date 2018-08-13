@@ -144,9 +144,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="Closed" xml:space="preserve">
-    <value>关闭</value>
-  </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>佣金</value>
   </data>
@@ -282,9 +279,6 @@
   <data name="Super" xml:space="preserve">
     <value>超级</value>
   </data>
-  <data name="Suspended" xml:space="preserve">
-    <value>暫停</value>
-  </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>此会员没上线</value>
   </data>
@@ -311,5 +305,44 @@
   </data>
   <data name="YesterdayCash" xml:space="preserve">
     <value>昨天馀额</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>允许优胜冠军</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>双倍佣金</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>资料</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>没资料显示</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>页</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>刪除OTP</value>
+  </data>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>修改密码</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>重置保安码</value>
+  </data>
+  <data name="ShowContactInfo" xml:space="preserve">
+    <value>Show Contact Info</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>体育博彩最低占成</value>
+  </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>转账</value>
   </data>
 </root>

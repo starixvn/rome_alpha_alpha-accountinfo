@@ -144,9 +144,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>ยกเลิก</value>
   </data>
-  <data name="Closed" xml:space="preserve">
-    <value>ที่ถูกปิด</value>
-  </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>คอมมิชชั่น</value>
   </data>
@@ -282,9 +279,6 @@
   <data name="Super" xml:space="preserve">
     <value>ที่สูงสุด ที่มีประสิทธิภาพ</value>
   </data>
-  <data name="Suspended" xml:space="preserve">
-    <value>การแข่งขันถูกระงับ</value>
-  </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>ยูเซอร์ไม่ได้ออนไลน์</value>
   </data>
@@ -311,5 +305,44 @@
   </data>
   <data name="YesterdayCash" xml:space="preserve">
     <value>เงินสดเมื่อวาน</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>อนุญาตให้มีเอาท์ไรท์</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>ที่ถูกปิด</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>คอมสองเท่า</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>การแข่งขันถูกระงับ</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>ข้อมูล</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>ไม่มีข้อมูล</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>หน้า</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>ลบ OTP</value>
+  </data>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>แก้ไขรหัส</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>Reset Security Code</value>
+  </data>
+  <data name="ShowContactInfo" xml:space="preserve">
+    <value>Show Contact Info</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>แบ่งสู้ สปอตร์</value>
+  </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>ตั้งค่าใหม่</value>
   </data>
 </root>

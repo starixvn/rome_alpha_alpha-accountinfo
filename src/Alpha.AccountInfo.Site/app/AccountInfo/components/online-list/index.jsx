@@ -26,7 +26,7 @@ export default class OnlineListBlock extends React.Component{
     }
 
     render() {
-        const { resources,expanded, handleCollapExpandBlock, blockId } = this.props;
+        const { resources, expanded, handleCollapExpandBlock, blockId } = this.props;
         const { data } = this.state;
         
         return (

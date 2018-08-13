@@ -144,9 +144,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="Closed" xml:space="preserve">
-    <value>Closed</value>
-  </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>Commission</value>
   </data>
@@ -166,7 +163,7 @@
     <value>Are you sure you want to allow outright betting for this customer?</value>
   </data>
   <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
-    <value>Outright</value>
+    <value>Allow Outright</value>
   </data>
   <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
     <value>Are you sure you want to change Close status for this customer?</value>
@@ -217,7 +214,7 @@
     <value>Downline List</value>
   </data>
   <data name="EditInfoViewModelText" xml:space="preserve">
-    <value>Edit Info</value>
+    <value>Info</value>
   </data>
   <data name="Fax" xml:space="preserve">
     <value>Fax</value>
@@ -280,7 +277,7 @@
     <value>Outstanding</value>
   </data>
   <data name="ResetPasswordViewModelText" xml:space="preserve">
-    <value>ResetPassword</value>
+    <value>Reset Password</value>
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
     <value>Reset Security Code</value>
@@ -289,7 +286,7 @@
     <value>Setting</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
-    <value>Sportsbook MinPT</value>
+    <value>SB's Min PT</value>
   </data>
   <data name="Statement" xml:space="preserve">
     <value>Statement</value>
@@ -302,9 +299,6 @@
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
-  </data>
-  <data name="Suspended" xml:space="preserve">
-    <value>Suspended</value>
   </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>This user is not online</value>
@@ -338,5 +332,17 @@
   </data>
   <data name="YesterdayCash" xml:space="preserve">
     <value>Yesterday Cash</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>No information is available</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>Remove OTP</value>
+  </data>
+  <data name="ShowContactInfo" xml:space="preserve">
+    <value>Show Contact Info</value>
   </data>
 </root>

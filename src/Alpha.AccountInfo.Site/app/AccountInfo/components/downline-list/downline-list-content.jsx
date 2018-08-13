@@ -13,7 +13,10 @@ export default class DownlineListContent extends React.Component{
 
         return (
             <div>
-                <DownlineList downlineList={downlineList.DownlineList} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
+                <DownlineList
+                    resources={resources}
+                    downlineList={downlineList.DownlineList}
+                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
                 <div><hr /></div>
                 {
                     this.props.downlineList.TotalStatusAgent != null &&

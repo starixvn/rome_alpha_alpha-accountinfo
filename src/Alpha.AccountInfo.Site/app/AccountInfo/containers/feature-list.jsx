@@ -172,7 +172,7 @@ export default class FeatureList extends React.Component {
             <div className={collapseExpandClassName}>
                 {
                     !this.state.collapseAll &&
-                    <ShowContactInfo title="Show Contact Info"
+                    <ShowContactInfo title="resources.ShowContactInfo"
                         classNames="visible-mobile show-more-container"
                         handleShowHide={this.ShowHideContactInfoButton} />
                 }

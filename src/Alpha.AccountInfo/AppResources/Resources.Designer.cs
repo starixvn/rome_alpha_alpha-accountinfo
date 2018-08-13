@@ -142,15 +142,6 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Closed.
-        /// </summary>
-        public static string Closed {
-            get {
-                return ResourceManager.GetString("Closed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Commission.
         /// </summary>
         public static string CommissionViewModelText {
@@ -205,7 +196,7 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Outright.
+        ///   Looks up a localized string similar to Allow Outright.
         /// </summary>
         public static string ConfirmAllowOutrightViewModelText {
             get {
@@ -358,7 +349,7 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Info.
+        ///   Looks up a localized string similar to Info.
         /// </summary>
         public static string EditInfoViewModelText {
             get {
@@ -504,6 +495,15 @@ namespace Alpha.AccountInfo.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
+        public static string NoInfo {
+            get {
+                return ResourceManager.GetString("NoInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No information is available.
+        /// </summary>
         public static string NoInformationIsAvailable {
             get {
                 return ResourceManager.GetString("NoInformationIsAvailable", resourceCulture);
@@ -547,7 +547,25 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ResetPassword.
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        public static string Page {
+            get {
+                return ResourceManager.GetString("Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove OTP.
+        /// </summary>
+        public static string RemoveOtpViewModelText {
+            get {
+                return ResourceManager.GetString("RemoveOtpViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Password.
         /// </summary>
         public static string ResetPasswordViewModelText {
             get {
@@ -574,7 +592,16 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sportsbook MinPT.
+        ///   Looks up a localized string similar to Show Contact Info.
+        /// </summary>
+        public static string ShowContactInfo {
+            get {
+                return ResourceManager.GetString("ShowContactInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SB&apos;s Min PT.
         /// </summary>
         public static string SportsbookMinPTViewModelText {
             get {
@@ -615,15 +642,6 @@ namespace Alpha.AccountInfo.AppResources {
         public static string Super {
             get {
                 return ResourceManager.GetString("Super", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Suspended.
-        /// </summary>
-        public static string Suspended {
-            get {
-                return ResourceManager.GetString("Suspended", resourceCulture);
             }
         }
         
