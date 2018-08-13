@@ -83,7 +83,9 @@ export default class FeatureList extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.customerInfo.CustId != this.props.customerInfo.CustId) {
             this.setState({
-                expandedItems: this.initialExpandedItems()
+                expandedItems: this.initialExpandedItems(),
+                statusData: null,
+                settingData: null
             });
         }
     }

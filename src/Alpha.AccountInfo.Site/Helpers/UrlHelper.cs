@@ -132,7 +132,7 @@
         {
             get
             {
-                return mapMainPath ?? HttpContext.Current.Response.ApplyAppPathModifier;
+                return mapMainPath ?? MicroSites.MainUrl;
             }
 
             internal set

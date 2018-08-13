@@ -320,7 +320,6 @@
     <Content Include="app\AccountInfo\components\balance-info\dialog.jsx" />
     <Content Include="app\AccountInfo\components\balance-info\balance-info-content.jsx" />
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
-    <Content Include="app\AccountInfo\components\common\checkbox.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-list-page.jsx" />
     <Content Include="app\AccountInfo\components\online-list\online-list-content.jsx" />
     <Content Include="app\AccountInfo\components\online-list\no-infomation-row.jsx" />
@@ -581,11 +580,10 @@
     <Content Include="app\AccountInfo\components\downline-list\downline-list.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-name.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\total-downlines.jsx" />
-    <Content Include="app\AccountInfo\components\common\no-infomation.jsx" />
     <Content Include="app\AccountInfo\components\online-list\index.jsx" />
     <Content Include="app\AccountInfo\components\setting\index.jsx" />
     <Content Include="app\AccountInfo\components\login-info\index.jsx" />
-    <Content Include="app\AccountInfo\components\status\status.jsx" />
+    <Content Include="app\AccountInfo\components\status\status-checkbox.jsx" />
     <Content Include="app\AccountInfo\components\status\index.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\index.jsx" />
     <Content Include="app\AccountInfo\api-client.jsx" />

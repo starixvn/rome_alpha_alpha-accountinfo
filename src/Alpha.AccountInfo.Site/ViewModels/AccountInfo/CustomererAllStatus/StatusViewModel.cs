@@ -3,7 +3,6 @@
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.Products.AccountInfo;
     using Alpha.Products.AccountInfo.Requests;
     using Alpha.Products.AccountInfo.Status;
     using Alpha.Products.AccountInfo.Status.ViewModels.Base;
@@ -21,21 +20,28 @@
         {
             var viewModelfactory = new StatusViewModelFactory();
 
-            var request = new StatusSearchAccountRequest(actor, searchAccount);
+            var micrositePaths = new Dictionary<string, string>
+            {
+               {"MainPath",  UrlHelper.MapMainPath("~/")},
+               {"OldMainPath",  UrlHelper.MapOldMainPath("~/")},
+               {"AccountInfoPath",  UrlHelper.MapAccountInfoPath("~/")},
+            };
+
+            var request = new StatusSearchAccountRequest(actor, searchAccount, micrositePaths);
 
             request
-                .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount)
+                .AddData(Actor.HasUpdateAccountPermission, message.CanUpdateAccount)
 
                 .AddData(SearchAccount.IsAllowedMasterAutoPT, !customerStatus.DisableAutoMPT)
 
-                .AddData(DataKey.SearchAccount.Upline.IsAllowedOutright, !customerStatus.UplineDisableOutright)
-                .AddData(DataKey.SearchAccount.IsAllowedOutright, !customerStatus.DisableOutright)
+                .AddData(SearchAccount.Upline.IsAllowedOutright, !customerStatus.UplineDisableOutright)
+                .AddData(SearchAccount.IsAllowedOutright, !customerStatus.DisableOutright)
 
-                .AddData(DataKey.SearchAccount.Upline.IsClosed, customerStatus.UplineClosed)
-                .AddData(DataKey.SearchAccount.IsClosed, customerStatus.Closed)
+                .AddData(SearchAccount.Upline.IsClosed, customerStatus.UplineClosed)
+                .AddData(SearchAccount.IsClosed, customerStatus.Closed)
 
-                .AddData(DataKey.SearchAccount.Upline.IsAllowedDoubleComm, customerStatus.UplineDoubleCommLosing)
-                .AddData(DataKey.SearchAccount.IsAllowedDoubleComm, customerStatus.DoubleCommLosing)
+                .AddData(SearchAccount.Upline.IsAllowedDoubleComm, customerStatus.UplineDoubleCommLosing)
+                .AddData(SearchAccount.IsAllowedDoubleComm, customerStatus.DoubleCommLosing)
 
                 .AddData(SearchAccount.Upline.IsSuspended, customerStatus.UplineSuspend)
                 .AddData(SearchAccount.IsSuspended, customerStatus.Suspended);

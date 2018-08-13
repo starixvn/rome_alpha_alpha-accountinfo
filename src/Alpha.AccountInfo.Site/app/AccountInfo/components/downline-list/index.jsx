@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import DownlineListContent from './downline-list-content';
-import NoInfomation from '../../components/common/no-infomation';
 import { accountInfoAPI } from '../../api-client';
 
 export default class DownlineListBlock extends React.Component{
@@ -40,7 +39,7 @@ export default class DownlineListBlock extends React.Component{
         const { data } = this.state;
 
         const content = data == null || data.DownlineList.length == 0 ?
-            <NoInfomation title={resources.NoInfo} /> :
+            <div>{resources.NoInfo}</div> :
             <DownlineListContent
                 resources={resources}
                 downlineList={data}

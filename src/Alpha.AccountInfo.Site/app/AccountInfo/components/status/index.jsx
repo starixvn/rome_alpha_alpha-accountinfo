@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import Status from './status';
+import StatusCheckbox from './status-checkbox';
 import StatusOnProduct from './status-on-product';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 
@@ -28,7 +28,7 @@ export default class StatusBlock extends React.Component {
                             disabled={status.Disabled}
                             key={index}
                             statusId={status.DisplayOrder}/> :
-                        <Status resources={resources}
+                        <StatusCheckbox resources={resources}
                             classNames='col checkbox'
                             title={status.Text}
                             url={status.Url}

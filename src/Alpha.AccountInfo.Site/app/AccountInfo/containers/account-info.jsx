@@ -7,7 +7,6 @@ import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
 import FeatureList from './feature-list';
-import NoInfomation from '../components/common/no-infomation';
 import Autosuggest from 'react-autosuggest';
 
 import { accountInfoAPI } from '../api-client';
@@ -125,7 +124,7 @@ export default class AccountInfo extends React.Component {
         }
 
         const customerInfoContent = customerInfo == null ?
-            <NoInfomation classNames="no-information-search" title={resources.NoInfo} /> :
+            <div classNames="no-information-search">{resources.NoInfo}</div> :
             <CustomerInfoBlock resources={resources} data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />;
 
         return (

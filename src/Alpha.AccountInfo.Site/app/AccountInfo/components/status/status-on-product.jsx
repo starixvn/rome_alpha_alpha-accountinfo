@@ -1,99 +1,49 @@
 ﻿import React from 'react';
 import CellContainLink from '../common/cell-contain-link';
-import CheckBox from '../common/checkbox';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {FlatButton, Dialog } from 'material-ui';
-
-const styles = theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        background: theme.palette.background.paper,
-    },
-    dialog: {
-        width: 475,
-        maxHeight: 220,
-    },
-});
-
+import { Button, Modal } from 'react-bootstrap';
 
 export default class StatusOnProduct extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            show: false,
             value : ''
         }
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
-
-    }
-
-    handleChange (e) {
-        this.setState({ value: e.target.value });
     }
 
     handleOpen(e) {
-        this.setState({
-            open: true
-        });
+        this.setState({ show: true});
     };
 
     handleClose(e) {
-        this.setState({ open: false });
+        this.setState({ show: false });
     };
-    handleSubmit(e) {
-        this.handleClose(e); 
-    };
+
     render() {
         const { resources, disabled, statusId, title, confirmMessage, url } = this.props;
 
-        const styles = {
-            dialogPaper: {
-                height: "220px",
-                width: "475px",
-            },
-        };
-        const dialogPaper = {
-            height: 220,
-            width: 475
-        };
-
         return (
-           
-            <MuiThemeProvider>
-                <div onClick={this.handleOpen}>
-                    <CellContainLink title={title}
-                        statusId={statusId}
-                        classNames="col"
-                        iconClassname="icon-ic_list"
-                        hrefLink="#" />
-                    <Dialog
-                        classes={{ paper: styles.dialogPaper }}
-                        title={confirmMessage == null && `${title}`}
-                        modal={false}
-                        open={this.state.open}
-                        onRequestClose={this.handleClose}>
-                          <div className="col-xs-12 row-info popup-bottom list-button">
-                            {
-                                confirmMessage != null &&
-                                <div>
-                                    {confirmMessage}
-                                    <div>
-                                        <a className="btn-default with-level" onClick={this.handleClose}>{resources.Cancel}</a>
-                                        <a className="btn-default with-level" onClick={this.handleSubmit}>{resources.Submit}</a>
-                                    </div>
-                                </div>
-                            }
+            <div>
+                <CellContainLink title={title}
+                    statusId={statusId}
+                    handleClick={this.handleOpen}
+                    classNames="col"
+                    iconClassname="icon-ic_list"
+                    hrefLink="#" />
 
-                            {
-                                confirmMessage == null &&
-                                <iframe width="475" height="220" src={window.accountInfoSiteAppPath + url} frameborder="0" allowfullscreen></iframe>
-                            }
-                        </div>
-                    </Dialog>
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title">
+                            {confirmMessage == null && `${title}`}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <iframe width="475" height="220" src={url} frameborder="0" allowfullscreen></iframe>
+                    </Modal.Body>
+                </Modal>
                 </div>
-                </MuiThemeProvider>
             
         );
     }
