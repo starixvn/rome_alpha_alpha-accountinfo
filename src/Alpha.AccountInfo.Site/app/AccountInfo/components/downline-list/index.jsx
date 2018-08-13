@@ -40,7 +40,7 @@ export default class DownlineListBlock extends React.Component{
         const { data } = this.state;
 
         const content = data == null || data.DownlineList.length == 0 ?
-            <NoInfomation /> :
+            <NoInfomation title={resources.NoInfo} /> :
             <DownlineListContent
                 resources={resources}
                 downlineList={data}

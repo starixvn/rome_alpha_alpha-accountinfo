@@ -125,7 +125,7 @@ export default class AccountInfo extends React.Component {
         }
 
         const customerInfoContent = customerInfo == null ?
-            <NoInfomation classNames="no-information-search" /> :
+            <NoInfomation classNames="no-information-search" title={resources.NoInfo} /> :
             <CustomerInfoBlock resources={resources} data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />;
 
         return (
