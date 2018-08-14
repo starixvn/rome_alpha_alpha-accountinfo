@@ -599,6 +599,10 @@ hr {
 .checkbox {
     position: relative;
 
+    &.disabled {
+        opacity: .4;
+    }
+
     label {
         transition: all .3s ease-in-out;
         padding-top: 2px;
@@ -667,7 +671,11 @@ hr {
 }
 
 
-
+.popup {
+    .list-actions {
+        padding-top: 15px;
+    }
+}
 
 
 
