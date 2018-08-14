@@ -317,8 +317,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\AccountInfo\components\balance-info\given-credit-dialog.jsx" />
-    <Content Include="app\AccountInfo\components\balance-info\dialog.jsx" />
     <Content Include="app\AccountInfo\components\balance-info\balance-info-content.jsx" />
+    <Content Include="app\AccountInfo\components\common\draggable-modal-dialog.jsx" />
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-list-page.jsx" />
     <Content Include="app\AccountInfo\components\online-list\online-list-content.jsx" />

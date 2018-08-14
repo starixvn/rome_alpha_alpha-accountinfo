@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import CellContainLink from '../common/cell-contain-link';
 import { Button, Modal } from 'react-bootstrap';
+import DraggableModalDialog from '../common/draggable-modal-dialog';
 
 export default class StatusOnProduct extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class StatusOnProduct extends React.Component {
     }
 
     handleOpen(e) {
+        window.top.ageWnd.open(this.props.url);
         this.setState({ show: true});
     };
 
@@ -24,6 +26,17 @@ export default class StatusOnProduct extends React.Component {
     render() {
         const { resources, disabled, statusId, title, confirmMessage, url } = this.props;
 
+        //<Modal dialogComponentClass={DraggableModalDialog} show={this.state.show} onHide={this.handleClose}>
+        //    <Modal.Header closeButton>
+        //        <Modal.Title id="contained-modal-title">
+        //            {confirmMessage == null && `${title}`}
+        //        </Modal.Title>
+        //    </Modal.Header>
+        //    <Modal.Body>
+        //        <iframe width="475" height="220" src={url} frameborder="0" allowfullscreen></iframe>
+        //    </Modal.Body>
+        //</Modal>
+
         return (
             <div>
                 <CellContainLink title={title}
@@ -32,19 +45,7 @@ export default class StatusOnProduct extends React.Component {
                     classNames="col"
                     iconClassname="icon-ic_list"
                     hrefLink="#" />
-
-                <Modal show={this.state.show} onHide={this.handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title">
-                            {confirmMessage == null && `${title}`}
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <iframe width="475" height="220" src={url} frameborder="0" allowfullscreen></iframe>
-                    </Modal.Body>
-                </Modal>
-                </div>
-            
+            </div>  
         );
     }
 }

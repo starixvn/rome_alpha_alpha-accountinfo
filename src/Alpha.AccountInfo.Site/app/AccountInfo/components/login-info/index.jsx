@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
+import { Button, Modal } from 'react-bootstrap';
 
 export default class LoginInfoBlock extends React.Component{
     constructor(props) {

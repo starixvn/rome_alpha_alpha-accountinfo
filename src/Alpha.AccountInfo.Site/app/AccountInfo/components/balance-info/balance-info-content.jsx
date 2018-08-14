@@ -2,7 +2,6 @@
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from '../common/cell-contain-number-format';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
-import DialogExampleModal from './dialog'
 import GivenCreditModal from './given-credit-dialog'
 
 export default class BalanceInfoContent extends React.Component{

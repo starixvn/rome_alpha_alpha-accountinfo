@@ -1,18 +1,16 @@
 ﻿import * as React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import { RaisedButton, FlatButton, Dialog } from 'material-ui';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from '../common/cell-contain-number-format';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 import { accountInfoAPI } from '../../api-client';
-import { fade } from 'material-ui/utils/colorManipulator';
+import { Button, Modal } from 'react-bootstrap';
+import DraggableModalDialog from '../common/draggable-modal-dialog';
 
 export default class GivenCreditModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            show: false,
             newGivenCredit: 0,
             hideMessages: true,
             updateSuccess: false,
@@ -26,7 +24,7 @@ export default class GivenCreditModal extends React.Component {
 
     handleOpen (e){
         this.setState({
-            open: true,
+            show: true,
             newGivenCredit: 0,
             hideMessages: true,
             updateSuccess: false,
@@ -35,7 +33,7 @@ export default class GivenCreditModal extends React.Component {
     };
 
     handleClose (e)  {
-        this.setState({ open: false });
+        this.setState({ show: false });
     };
 
     handleSubmit(e) {
@@ -76,15 +74,19 @@ export default class GivenCreditModal extends React.Component {
                         className="link"
                         value={balanceInfo.GivenCredit}
                         displayType={'text'}
-                         decimalScale="2"
-                fixedDecimalScale={true}
-                thousandSeparator={true}/>
-                    <MuiThemeProvider >
-                        <span className="icon-border-color icon-edited" onClick={this.handleOpen} >
-                            <Dialog
-                                title={resources.GivenCredit}
-                                modal={true}
-                                open={this.state.open}>
+                        decimalScale="2"
+                        fixedDecimalScale={true}
+                        thousandSeparator={true} />
+
+                    <span className="icon-border-color icon-edited" onClick={this.handleOpen} />
+
+                    <Modal dialogComponentClass={DraggableModalDialog} show={this.state.show} onHide={this.handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title id="contained-modal-title">
+                                    {resources.GivenCredit}
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
                                 <div className={hideMessages && 'hidden'}>
                                     <span className={updateSuccess ? 'msg-success' : 'msg-error'}>  {message} </span>
                                 </div>
@@ -97,7 +99,7 @@ export default class GivenCreditModal extends React.Component {
                                     <div className="col-xs-7">resources.NewGivenCredit</div>
                                     <NumberFormat thousandSeparator={true} decimalScale="2" onValueChange={(values) => {
                                         const { formattedValue, value, floatValue } = values;
-                                        this.setState({ newGivenCredit: (floatValue === undefined ? 0 : floatValue)})
+                                        this.setState({ newGivenCredit: (floatValue === undefined ? 0 : floatValue) })
                                     }} />
                                 </div>
 
@@ -105,14 +107,12 @@ export default class GivenCreditModal extends React.Component {
                                     <div className="col-xs-7">resources.Difference</div>
                                     <CellContainNumberFormat title={balanceInfo.GivenCredit - newGivenCredit} classNames="col-right" />
                                 </div>
-
-                                <div className="col-xs-12 row-info popup-bottom list-button">
-                                    <a className="btn-default with-level" onClick={this.handleClose}>{resources.Cancel}</a>
-                                    <a className="btn-default with-level" onClick={this.handleSubmit}>{resources.Submit}</a>
-                                </div>
-                            </Dialog>
-                        </span>
-                    </MuiThemeProvider>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button onClick={this.handleClose}>{resources.Cancel}</Button>
+                                <Button onClick={this.handleSubmit}>{resources.Submit}</Button>
+                            </Modal.Footer>
+                        </Modal>
                 </div>
             </div>
         );
