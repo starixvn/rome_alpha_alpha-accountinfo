@@ -7,12 +7,12 @@
     using AccountInfo.Enumerations;
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
+    using AccountInfo.Services;
     using AccountInfo.Services.ProductStatus;
     using Constants;
     using Fanex.Data.Repository;
     using NSubstitute;
     using Params.ProductStatus;
-    using RemotingRef;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]

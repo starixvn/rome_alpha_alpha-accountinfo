@@ -11,7 +11,6 @@
     using Models;
     using Models.ProductStatus;
     using Params.ProductStatus;
-    using RemotingRef;
 
     public interface ProductStatusService
     {

@@ -6,9 +6,10 @@
     using AccountInfo.Models;
     using Controllers;
     using Fanex.Data.Repository;
+    using Fanex.RemotingRef;
     using MediatR;
     using Models;
-    using RemotingRef;
+    using Services;
     using Services.ProductStatus;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
@@ -66,15 +67,14 @@
         }
 
         private static void RegisterDataAccesses(Container container)
-        {
-            container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
-        }
+            => container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
 
         private static void RegisterServices(Container container)
         {
             container.Register<IUserSession, UserSessionExt>(Lifestyle.Singleton);
             container.Register<IUser, User>(Lifestyle.Singleton);
-            container.Register<CacheRefService, CacheRefServiceImpl>(Lifestyle.Singleton);
+            container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
+            container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
 
             container.Register<ProductStatusAuthorizationService>(
                 () => new ProductStatusAuthorizationServiceImpl(
