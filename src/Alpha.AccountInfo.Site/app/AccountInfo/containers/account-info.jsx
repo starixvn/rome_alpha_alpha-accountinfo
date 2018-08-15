@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import ReactDOM from 'react-dom';
 import CustomerInfoBlock from '../components/customer-info/index';
 import BalanceInfoBlock from '../components/balance-info/index';
 import DownlineListBlock from '../components/downline-list/index';
@@ -31,10 +32,12 @@ const renderSuggestion = suggestion => (
 export default class AccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        let lastSearchUsername = localStorage.getItem("lastSearchUsername") != null ? localStorage.getItem("lastSearchUsername") : '';
+
+      this.state = {
             showInfoStatus: false,
             searchCounter: 0,
-            username: '',
+          username: lastSearchUsername,
             customerInfo: null,
             suggestions: []
         };
@@ -48,6 +51,8 @@ export default class AccountInfo extends React.Component {
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
         this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
+       // this.searchAcccount = React.createRef();
+      
     }
 
     getCustomerInfo(e) {
@@ -61,7 +66,7 @@ export default class AccountInfo extends React.Component {
                 searchCounter: prevState.searchCounter + 1,
                 customerInfo: data
             }));
-
+            localStorage.setItem('lastSearchUsername', username);
             this.handleShowContactInfo(e);
         });
     }
@@ -107,7 +112,10 @@ export default class AccountInfo extends React.Component {
         this.fetchCustomerInfoFromServer(e, suggestion.suggestionValue);
     }
 
-    componentDidMount() {
+    componentDidMount() {  
+        if (this.state.username != '') {
+            ReactDOM.findDOMNode(this.refs.searchAccount).click();
+        }
     }
 
     render() {
@@ -141,7 +149,7 @@ export default class AccountInfo extends React.Component {
                             shouldRenderSuggestions={this.shouldRenderSuggestions}
                             inputProps={inputProps}
                         />
-                        <span className="icon-search" onClick={this.getCustomerInfo}></span>
+                        <span className="icon-search" onClick={this.getCustomerInfo} ref="searchAccount"></span>
                     </div>
 
                     {searchCounter > 0 && customerInfoContent}

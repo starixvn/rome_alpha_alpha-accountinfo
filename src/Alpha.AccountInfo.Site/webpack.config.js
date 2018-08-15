@@ -10,6 +10,10 @@ module.exports = {
             "./assets/styles/vendors/swiper/swiper.css",
             "./assets/styles/account-info.css"
         ],
+        "bundles/account-info/given-credit": [
+            "./app/AccountInfo/given-credit.jsx",
+            "./assets/styles/account-info.css"
+        ],
         "bundles/productstatus/productstatus": [
             "./assets/scripts/productstatus/productstatus.ts",
             "./assets/styles/productstatus/productstatus.css"

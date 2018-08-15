@@ -22,14 +22,16 @@ export default class GivenCreditModal extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleOpen (e){
-        this.setState({
-            show: true,
-            newGivenCredit: 0,
-            hideMessages: true,
-            updateSuccess: false,
-            message: ''
-        });
+    handleOpen(e) {
+        let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${this.props.custId}&SearchAccountName=${this.props.username}&SearchAccountRoleId=${this.props.roleId}&CurrentGivenCredit=${this.props.balanceInfo.GivenCredit}`;
+        window.top.ageWnd.open(givenCreditUrl, "resources.UpdateGivenCredit");
+        //this.setState({
+        //    show: true,
+        //    newGivenCredit: 0,
+        //    hideMessages: true,
+        //    updateSuccess: false,
+        //    message: ''
+        //});
     };
 
     handleClose (e)  {

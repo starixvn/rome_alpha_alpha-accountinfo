@@ -20,6 +20,7 @@
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
         IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>,
         IRequestHandler<OnlineListQuery, IEnumerable<OnlineListModel>>,
+        IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IRequestHandler<GivenCreditCommand, Result>
     {
         private readonly AccountInfoService accountInfoService;
@@ -154,6 +155,9 @@
 
         public IEnumerable<OnlineListModel> Handle(OnlineListQuery message)
             => accountInfoService.GetOnlineList(message.CustId);
+
+        public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
+           => new GivenCreditViewModel(message);
 
         public Result Handle(GivenCreditCommand message)
             => accountInfoService.UpdateGivenCredit(

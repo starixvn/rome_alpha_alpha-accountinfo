@@ -1,0 +1,29 @@
+﻿@model GivenCreditViewModel
+@using Newtonsoft.Json
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    @section Styles {
+        @StaticResources.RenderStyles("/assets/bundles/common/common")
+        @*  @StaticResources.RenderStyles("/assets/bundles/common/common-" + Model.ActorLevelName)*@
+        @StaticResources.RenderStyles("/assets/bundles/site-accountinfo/index")
+        @StaticResources.RenderStyles("~/assets/bundles/account-info/index")
+    }
+</head>
+<body>
+    <div id="given-credit">
+    </div>
+</body>
+</html>
+
+@StaticResources.RenderScripts("~/Scripts/jquery")
+@StaticResources.RenderScripts("/assets/bundles/site-main/account-info/index")
+@StaticResources.RenderScripts("~/node_modules/react/dist/react")
+@StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
+@StaticResources.RenderScripts("~/assets/bundles/account-info/given-credit")
+<script>
+     var accountInfoSiteAppPath = '@Model.AccountInfoSiteAppPath';
+     renderGivenCredit("@Model.SearchAccountId", "@Model.SearchAccountRoleId", "@Model.CurrentGivenCredit", JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"')));
+</script>

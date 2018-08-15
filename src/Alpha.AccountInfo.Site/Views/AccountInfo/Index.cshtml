@@ -16,10 +16,6 @@
     </div>
 </body>
 </html>
-<script>
-    var accountInfoSiteAppPath = '@Model.AccountInfoSiteAppPath';
-    var accountInfoResources = JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"'));
-</script>
 @StaticResources.RenderScripts("~/Scripts/jquery")
 @StaticResources.RenderScripts("/assets/bundles/site-main/account-info/index")
 @StaticResources.RenderScripts("~/node_modules/react/dist/react")
@@ -27,3 +23,7 @@
 @StaticResources.RenderScripts("~/Scripts/swiper")
 @StaticResources.RenderScripts("~/Scripts/react-id-swiper")
 @StaticResources.RenderScripts("~/assets/bundles/account-info/index")
+<script>
+    var accountInfoSiteAppPath = '@Model.AccountInfoSiteAppPath';
+    renderAccountInfo(JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"')))
+</script>

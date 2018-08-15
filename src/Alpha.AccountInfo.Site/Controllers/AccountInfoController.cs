@@ -1,7 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Controllers
 {
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -39,6 +38,9 @@
         [HttpPost]
         public ActionResult GetOnlineList(OnlineListQuery message)
            => JsonData(message, JsonRequestBehavior.DenyGet);
+
+        public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
+                 => await ViewAsync(message);
 
         [HttpPost]
         public ActionResult UpdateGivenCredit(GivenCreditCommand message)

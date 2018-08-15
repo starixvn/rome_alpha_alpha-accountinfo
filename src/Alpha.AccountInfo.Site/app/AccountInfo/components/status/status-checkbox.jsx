@@ -16,7 +16,7 @@ export default class StatusCheckbox extends React.Component {
 
     handleOpen(e) {
 
-        this.props.confirmMessage == undefined ? window.top.ageWnd.open(this.props.url) :window.top.bootboxConfirm(this.props.confirmMessage);
+        this.props.confirmMessage == undefined ? window.top.ageWnd.open(this.props.url) : window.top.bootboxConfirm(this.props.confirmMessage, e, this.props.url );
         this.setState({
             show: true
         });
