@@ -2,12 +2,17 @@
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from '../common/cell-contain-number-format';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
-import GivenCreditModal from './given-credit-dialog'
 
 export default class BalanceInfoContent extends React.Component{
     constructor(props) {
         super(props);
+        this.handleOpen = this.handleOpen.bind(this);
     }
+
+    handleOpen(e) {
+        let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${this.props.custId}&SearchAccountName=${this.props.username}&SearchAccountRoleId=${this.props.roleId}&CurrentGivenCredit=${this.props.balanceInfo.GivenCredit}`;
+        window.top.ageWnd.open(givenCreditUrl, "resources.UpdateGivenCredit");
+    };
 
     render() {
         const rowClasses = "col-xs-12 row-info";
@@ -82,14 +87,21 @@ export default class BalanceInfoContent extends React.Component{
                         <CellContainNumberFormat title={balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
                     </div>
                 }
-                
-                <GivenCreditModal
-                    resources={resources}
-                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                    balanceInfo={balanceInfo}
-                    custId={custId}
-                    roleId={roleId}
-                    username={username} />
+
+                <div className={rowClasses}>
+                    <div className="col-xs-6">{resources.GivenCredit}</div>
+                    <div className="col-xs-6 col-right given-credit" title={`<= ${balanceInfo.GivenCredit}`} >
+                        <NumberFormat
+                            className="link"
+                            value={balanceInfo.GivenCredit}
+                            displayType={'text'}
+                            decimalScale="2"
+                            fixedDecimalScale={true}
+                            thousandSeparator={true} />
+
+                        <span className="icon-border-color icon-edited" onClick={this.handleOpen} />
+                    </div>
+                </div>
 
                 {
                     roleId == 1 &&

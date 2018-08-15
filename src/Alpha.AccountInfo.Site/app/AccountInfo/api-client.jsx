@@ -22,5 +22,6 @@ export const accountInfoAPI = {
     getDownlineList: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetDownlineList", data),
     getCustomerAllStatus: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetCustomerAllStatus", data),
     getOnlineList: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetOnlineList", data),
-    updateGivenCredit: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/UpdateGivenCredit", data)
+    updateGivenCredit: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/UpdateGivenCredit", data),
+    updateStatus: (url) => requests.post(url)
 }
