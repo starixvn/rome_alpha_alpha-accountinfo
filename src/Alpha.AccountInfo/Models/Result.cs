@@ -24,6 +24,6 @@
         public static Result CreateForbiddenResult()
             => new Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized);
 
-        public bool IsSuccess() => Code == 0;
+        public bool IsSuccess => Code.Equals(0);
     }
 }

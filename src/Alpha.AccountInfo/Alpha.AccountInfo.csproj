@@ -253,7 +253,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\BetTypeConstants.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
-    <Compile Include="Criteria\AccountInfo\Base\UpdateStatusCriteria.cs" />
+    <Compile Include="Criteria\AccountInfo\Base\UpdateCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateAutoMasterPTCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateClosedCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateSuspendedCriteria.cs" />
@@ -298,8 +298,10 @@
     <Compile Include="Models\ProductStatus\ProductStatusModel.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Params\AccountInfo\OutrightParam.cs" />
-    <Compile Include="Params\AccountInfo\GivenCreditParam.cs" />
+    <Compile Include="Params\AccountInfo\Base\UpdateCustomerStatusParam.cs" />
+    <Compile Include="Params\AccountInfo\UpdateClosedParam.cs" />
+    <Compile Include="Params\AccountInfo\UpdateOutrightParam.cs" />
+    <Compile Include="Params\AccountInfo\UpdateGivenCreditParam.cs" />
     <Compile Include="Params\ProductStatus\ProductStatusAuthorizationParam.cs" />
     <Compile Include="Params\ProductStatus\BetTypeStatusParam.cs" />
     <Compile Include="Params\ProductStatus\ProductStatusCommandParam.cs" />

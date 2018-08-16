@@ -14,7 +14,7 @@
             var result = Result.CreateSuccessResult();
 
             // Act
-            var actualResult = result.IsSuccess();
+            var actualResult = result.IsSuccess;
 
             // Assert
             Assert.Equal(expectedResult, actualResult);
@@ -28,7 +28,7 @@
             var result = Result.CreateErrorResult(500, "Internal Server Error.");
 
             // Act
-            var actualResult = result.IsSuccess();
+            var actualResult = result.IsSuccess;
 
             // Assert
             Assert.Equal(expectedResult, actualResult);

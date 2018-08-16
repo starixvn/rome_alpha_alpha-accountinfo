@@ -186,13 +186,12 @@
 
             if (criteria.Success)
             {
-                rnGCasinoService.Update3rdRnGCasino(
+                rnGCasinoService.Update3rdRnGCasinoStatus(
                     criteria.CustId,
                     !criteria.Disable,
                     criteria.IP,
                     criteria.ActorId,
-                    param.ActorName,
-                    criteria.SystemId);
+                    param.ActorName);
 
                 return Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully);
             }

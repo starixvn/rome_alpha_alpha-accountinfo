@@ -43,11 +43,15 @@
            => await ViewAsync(message);
 
         [HttpPost]
-        public ActionResult UpdateGivenCredit(GivenCreditCommand message)
-          => JsonData(message, JsonRequestBehavior.DenyGet);
+        public ActionResult UpdateGivenCredit(GivenCreditCommand command)
+          => JsonData(command, JsonRequestBehavior.DenyGet);
 
         [HttpPost]
-        public ActionResult UpdateOutright(OutrightCommand message)
-           => JsonData(message, JsonRequestBehavior.DenyGet);
+        public ActionResult UpdateOutright(OutrightCommand command)
+           => JsonData(command, JsonRequestBehavior.DenyGet);
+
+        [HttpPost]
+        public ActionResult UpdateClosed(ClosedCommand command)
+          => JsonData(command, JsonRequestBehavior.DenyGet);
     }
 }

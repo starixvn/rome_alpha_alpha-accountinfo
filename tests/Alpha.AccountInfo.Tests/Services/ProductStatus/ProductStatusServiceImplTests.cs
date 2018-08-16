@@ -48,7 +48,7 @@
                 rnGCasinoService,
                 productProfileService);
 
-            rnGCasinoService.Update3rdRnGCasino(CustIdTest, true, "127.0.0.1", 1176070, "User Test", 2);
+            rnGCasinoService.Update3rdRnGCasinoStatus(CustIdTest, true, "127.0.0.1", 1176070, "User Test");
         }
 
         [Theory]
@@ -393,7 +393,7 @@
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
-            Assert.True(actualResult.IsSuccess());
+            Assert.True(actualResult.IsSuccess);
         }
 
         [Fact]
@@ -441,7 +441,7 @@
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
-            Assert.True(!actualResult.IsSuccess() &&
+            Assert.True(!actualResult.IsSuccess &&
                 actualResult.Code == 101 &&
                 actualResult.Message == "You are not allowed to disable for downlines.: Australia<br>You are not allowed to disable for downlines.: Slovakia");
         }
@@ -477,7 +477,7 @@
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
-            Assert.True(actualResult.IsSuccess());
+            Assert.True(actualResult.IsSuccess);
         }
 
         [Fact]
@@ -515,7 +515,7 @@
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
-            Assert.True(!actualResult.IsSuccess() &&
+            Assert.True(!actualResult.IsSuccess &&
                 actualResult.Message == "You are not allowed to disable for downlines.");
         }
 
@@ -550,7 +550,7 @@
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
-            Assert.True(actualResult.IsSuccess());
+            Assert.True(actualResult.IsSuccess);
         }
 
         [Fact]
@@ -588,7 +588,7 @@
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
-            Assert.True(!actualResult.IsSuccess() &&
+            Assert.True(!actualResult.IsSuccess &&
                 actualResult.Message == "You are not allowed to disable for downlines.");
         }
 
@@ -627,7 +627,7 @@
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
-            Assert.True(actualResult.IsSuccess());
+            Assert.True(actualResult.IsSuccess);
         }
 
         [Fact]
@@ -670,7 +670,7 @@
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
 
             // Assert
-            Assert.True(!actualResult.IsSuccess() &&
+            Assert.True(!actualResult.IsSuccess &&
                 actualResult.Message == "You are not allowed to disable downline's product.");
         }
 

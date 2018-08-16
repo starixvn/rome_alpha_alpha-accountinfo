@@ -486,6 +486,8 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\AccountInfo\AccountInfoQuery.cs" />
+    <Compile Include="Requests\AccountInfo\Base\CustomerStatusCommand.cs" />
+    <Compile Include="Requests\AccountInfo\ClosedCommand.cs" />
     <Compile Include="Requests\AccountInfo\OutrightCommand.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditQuery.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditCommand.cs" />

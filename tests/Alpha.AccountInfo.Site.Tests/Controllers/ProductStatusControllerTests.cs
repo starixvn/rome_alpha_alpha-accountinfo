@@ -168,7 +168,7 @@
             var actualData = (Result)actualResult.Data;
 
             // Assert
-            Assert.True(!actualData.IsSuccess());
+            Assert.True(!actualData.IsSuccess);
         }
 
         [Fact]
@@ -192,7 +192,7 @@
             var actualData = (Result)actualResult.Data;
 
             // Assert
-            Assert.True(!actualData.IsSuccess());
+            Assert.True(!actualData.IsSuccess);
         }
 
         [Fact]
@@ -216,7 +216,7 @@
             var actualData = (Result)actualResult.Data;
 
             // Assert
-            Assert.True(!actualData.IsSuccess());
+            Assert.True(!actualData.IsSuccess);
         }
     }
 }

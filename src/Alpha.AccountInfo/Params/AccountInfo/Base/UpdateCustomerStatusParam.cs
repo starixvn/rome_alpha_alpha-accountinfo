@@ -1,34 +1,26 @@
 ﻿namespace Alpha.AccountInfo.Params.ProductStatus
 {
-    public class OutrightParam
+    public class UpdateCustomerStatusParam
     {
-        public OutrightParam()
-        {
-        }
-
-        public OutrightParam(
-            int custId,
+        public UpdateCustomerStatusParam(
+            int searchAccountId,
             int actorId,
-            bool disableOutright,
             int subAccountId,
             string language,
             string ip)
         {
-            CustId = custId;
+            SearchAccountId = searchAccountId;
             ActorId = actorId;
             SubAccountId = subAccountId;
-            DisableOutright = disableOutright;
             Language = language;
             IP = ip;
         }
 
-        public int CustId { get; }
+        public int SearchAccountId { get; }
 
         public int ActorId { get; }
 
         public int SubAccountId { get; }
-
-        public bool DisableOutright { get; }
 
         public string Language { get; }
 

@@ -22,7 +22,8 @@
         IRequestHandler<OnlineListQuery, IEnumerable<OnlineListModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IRequestHandler<GivenCreditCommand, Result>,
-        IRequestHandler<OutrightCommand, Result>
+        IRequestHandler<OutrightCommand, Result>,
+        IRequestHandler<ClosedCommand, Result>
     {
         private readonly AccountInfoService accountInfoService;
 
@@ -160,26 +161,38 @@
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
            => new GivenCreditViewModel(message);
 
-        public Result Handle(GivenCreditCommand message)
+        public Result Handle(GivenCreditCommand command)
             => accountInfoService.UpdateGivenCredit(
-                new GivenCreditParam(
-                    message.SearchAccountId,
-                    message.SearchAccountRoleId,
-                    message.CreditAmount,
-                    message.ActorId,
-                    message.ActorRoleId,
-                    message.SubAccountId,
-                    message.Language,
-                    message.IP));
+                new UpdateGivenCreditParam(
+                    command.SearchAccountId,
+                    command.SearchAccountRoleId,
+                    command.CreditAmount,
+                    command.ActorId,
+                    command.ActorRoleId,
+                    command.SubAccountId,
+                    command.Language,
+                    command.IP));
 
-        public Result Handle(OutrightCommand message)
+        public Result Handle(OutrightCommand command)
            => accountInfoService.UpdateOutright(
-               new OutrightParam(
-                   message.SearchAccountId,
-                   message.ActorId,
-                   message.DisableOutright,
-                   message.SubAccountId,
-                   message.Language,
-                   message.IP));
+               new UpdateOutrightParam(
+                   command.SearchAccountId,
+                   command.ActorId,
+                   command.DisableOutright,
+                   command.SubAccountId,
+                   command.Language,
+                   command.IP));
+
+        public Result Handle(ClosedCommand command)
+           => accountInfoService.UpdateClosed(
+               new UpdateClosedParam(
+                   command.SearchAccountId,
+                   command.ActorName,
+                   command.ActorId,
+                   command.Closed,
+                   command.SyncedCasino,
+                   command.SubAccountId,
+                   command.Language,
+                   command.IP));
     }
 }

@@ -5,6 +5,7 @@
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Params.ProductStatus;
+    using Alpha.AccountInfo.Services.ProductStatus;
     using Fanex.Data.Repository;
     using System.Collections.Generic;
 
@@ -22,20 +23,27 @@
 
         IEnumerable<OnlineListModel> GetOnlineList(int custid);
 
-        Result UpdateGivenCredit(GivenCreditParam param);
+        Result UpdateGivenCredit(UpdateGivenCreditParam param);
 
-        Result UpdateOutright(OutrightParam param);
+        Result UpdateOutright(UpdateOutrightParam param);
+
+        Result UpdateClosed(UpdateClosedParam param);
     }
 
     public class AccountInfoServiceImpl : AccountInfoService
     {
         private readonly IDynamicRepository repository;
         private readonly AccountInfoDataAccess accountInfoDataAccess;
+        private readonly RnGCasinoService rnGCasinoService;
 
-        public AccountInfoServiceImpl(IDynamicRepository dynamicRepository, AccountInfoDataAccess accountInfoDataAccess)
+        public AccountInfoServiceImpl(
+            IDynamicRepository dynamicRepository, 
+            AccountInfoDataAccess accountInfoDataAccess,
+            RnGCasinoService rnGCasinoService)
         {
             repository = dynamicRepository;
             this.accountInfoDataAccess = accountInfoDataAccess;
+            this.rnGCasinoService = rnGCasinoService;
         }
 
         public IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
@@ -58,10 +66,10 @@
         public IEnumerable<OnlineListModel> GetOnlineList(int custid)
             =>  repository.Fetch<OnlineListModel>(new SelectOnlineListCriteria(custid));
 
-        public Result UpdateGivenCredit(GivenCreditParam param)
+        public Result UpdateGivenCredit(UpdateGivenCreditParam param)
             => accountInfoDataAccess.UpdateGivenCredit(
                 new UpdateGivenCreditCriteria(
-                    param.CustId,
+                    param.SearchAccountId,
                     param.RoleId,
                     param.CreditAmount,
                     param.ActorId,
@@ -70,14 +78,38 @@
                     param.Language,
                     param.IP));
 
-        public Result UpdateOutright(OutrightParam param)
+        public Result UpdateOutright(UpdateOutrightParam param)
             => accountInfoDataAccess.ExecuteNonQuery(
-                new UpdateOutrightCriteria(
-                    param.CustId,
+               new UpdateOutrightCriteria(
+                   param.SearchAccountId,
+                   param.ActorId,
+                   param.SubAccountId,
+                   param.DisableOutright,
+                   param.Language,
+                   param.IP));
+
+        public Result UpdateClosed(UpdateClosedParam param)
+        {
+            var result = accountInfoDataAccess.ExecuteNonQuery(
+                new UpdateClosedCriteria(
+                    param.SearchAccountId,
                     param.ActorId,
                     param.SubAccountId,
-                    param.DisableOutright,
+                    param.Closed,
                     param.Language,
                     param.IP));
+
+            if(result.IsSuccess && param.SyncedCasino)
+            {
+                rnGCasinoService.Update3rdRnGCasinoClosed(
+                    param.SearchAccountId,
+                    param.Closed,
+                    param.IP,
+                    param.ActorId,
+                    param.ActorName);
+            }
+
+            return result;
+        }
     }
 }
