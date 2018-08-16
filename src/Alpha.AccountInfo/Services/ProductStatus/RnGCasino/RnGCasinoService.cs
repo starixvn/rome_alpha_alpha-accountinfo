@@ -21,6 +21,13 @@
             string FromIP, 
             int ModifyBy, 
             string ModifyUserName);
+
+        void Update3rdRnGCasinoSuspended(
+           int IBCCustID,
+           bool Suspended,
+           string FromIP,
+           int ModifyBy,
+           string ModifyUserName);
     }
 
     public class RnGCasinoServiceImpl : RnGCasinoService
@@ -70,6 +77,35 @@
                 customer.UpdateCustClosed(
                        IBCCustID,
                        Closed,
+                       FromIP,
+                       ModifyBy,
+                       ModifyUserName,
+                       AlphaSystemId);
+            }
+            catch (ErrorException ex)
+            {
+                ExceptionHandler.Handle(new Exception(ex.Message, ex), TraceEventType.Information);
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler.Handle(e, TraceEventType.Information);
+            }
+        }
+
+        public void Update3rdRnGCasinoSuspended(
+           int IBCCustID,
+           bool Suspended,
+           string FromIP,
+           int ModifyBy,
+           string ModifyUserName)
+        {
+            var customer = new Customer();
+
+            try
+            {
+                customer.UpdateCustSuspend(
+                       IBCCustID,
+                       Suspended,
                        FromIP,
                        ModifyBy,
                        ModifyUserName,

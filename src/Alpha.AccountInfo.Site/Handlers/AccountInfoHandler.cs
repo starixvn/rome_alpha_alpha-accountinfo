@@ -23,7 +23,10 @@
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IRequestHandler<GivenCreditCommand, Result>,
         IRequestHandler<OutrightCommand, Result>,
-        IRequestHandler<ClosedCommand, Result>
+        IRequestHandler<ClosedCommand, Result>,
+        IRequestHandler<SuspendedCommand, Result>,
+        IRequestHandler<AutoMasterPTCommand, Result>,
+        IRequestHandler<DoubleCommCommand, Result> 
     {
         private readonly AccountInfoService accountInfoService;
 
@@ -194,5 +197,38 @@
                    command.SubAccountId,
                    command.Language,
                    command.IP));
+
+        public Result Handle(SuspendedCommand command)
+          => accountInfoService.UpdateSuspended(
+              new UpdateSuspendedParam(
+                  command.SearchAccountId,
+                  command.ActorName,
+                  command.ActorId,
+                  command.Suspended,
+                  command.SyncedCasino,
+                  command.SubAccountId,
+                  command.Language,
+                  command.IP));
+
+        public Result Handle(AutoMasterPTCommand command)
+           => accountInfoService.UpdateAutoMasterPT(
+               new UpdateAutoMasterPTParam(
+                   command.SearchAccountId,
+                   command.ActorId,
+                   command.DisableAutoMasterPT,
+                   command.SubAccountId,
+                   command.Language,
+                   command.IP));
+
+        public Result Handle(DoubleCommCommand command)
+          => accountInfoService.UpdateDoubleComm(
+              new UpdateDoubleCommParam(
+                  command.SearchAccountId,
+                  command.ActorId,
+                  command.DoubleComm,
+                  command.SubAccountId,
+                  command.Language,
+                  command.IP));
+        
     }
 }

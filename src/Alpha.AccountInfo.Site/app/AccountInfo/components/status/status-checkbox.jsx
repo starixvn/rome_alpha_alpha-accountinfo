@@ -5,7 +5,7 @@ export default class StatusCheckbox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            checked: this.props.checked
         }
         this.handleOpen = this.handleOpen.bind(this);
     }
@@ -13,25 +13,30 @@ export default class StatusCheckbox extends React.Component {
     handleOpen(e) {
         var url = this.props.url;
         var param = JSON.parse(this.props.param);
+        var self = this;
 
         this.props.confirmMessage == undefined ? window.top.ageWnd.open(this.props.url) :
             window.top.bootboxConfirm(this.props.confirmMessage, e,
                 function () {
                     accountInfoAPI.updateStatus(url, param).then((data) => {
-                        let self = this;
-                        if (data.Code == 0) {
-                            setTimeout(() => {
-                                var iframe = parent.document.getElementById("accountinfo-content");
-                                iframe.src = iframe.src;
-                                window.top.ageWnd.close();
-                            }, 3000);
-                        }
+                        self.setState(previousState => ({
+                            checked: !previousState.checked
+                        }));
+
+                        //if (data.IsSuccess) {
+                        //    self
+                        //    setTimeout(() => {
+                        //        var iframe = parent.document.getElementById("accountinfo-content");
+                        //        iframe.src = iframe.src;
+                        //        window.top.ageWnd.close();
+                        //    }, 3000);
+                        //}
                     });
                 });
     };
 
     render() {
-        const { resources, classNames, checked, disabled, title, id, confirmMessage, url } = this.props;
+        const { resources, classNames, disabled, title, id, confirmMessage, url } = this.props;
         const checkBoxClass = disabled ? `${classNames} disabled` : classNames;
 
         return (
@@ -40,7 +45,7 @@ export default class StatusCheckbox extends React.Component {
                     <input id={id}
                         type="checkbox"
                         disabled={disabled}
-                        checked={checked}
+                        checked={this.state.checked}
                         onChange={this.handleOpen} />
                     <label className="label-text" htmlFor={id}>{title}</label>
                 </div>

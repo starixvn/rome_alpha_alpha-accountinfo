@@ -55,7 +55,7 @@ export default class GivenCredit extends React.Component {
                 updateSuccess: data.Code == 0
             });
 
-            if (data.Code == 0) {
+            if (data.IsSuccess) {
                 setTimeout(() => {
                     var iframe = parent.document.getElementById("accountinfo-content");
                     iframe.src = iframe.src;

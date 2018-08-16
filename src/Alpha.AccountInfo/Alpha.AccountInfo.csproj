@@ -256,6 +256,7 @@
     <Compile Include="Criteria\AccountInfo\Base\UpdateCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateAutoMasterPTCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateClosedCriteria.cs" />
+    <Compile Include="Criteria\AccountInfo\UpdateDoubleCommCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateSuspendedCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateOutrightCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateGivenCreditCriteria.cs" />
@@ -299,7 +300,10 @@
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\AccountInfo\Base\UpdateCustomerStatusParam.cs" />
+    <Compile Include="Params\AccountInfo\UpdateDoubleCommParam.cs" />
+    <Compile Include="Params\AccountInfo\UpdateSuspendedParam.cs" />
     <Compile Include="Params\AccountInfo\UpdateClosedParam.cs" />
+    <Compile Include="Params\AccountInfo\UpdateAutoMasterPTParam.cs" />
     <Compile Include="Params\AccountInfo\UpdateOutrightParam.cs" />
     <Compile Include="Params\AccountInfo\UpdateGivenCreditParam.cs" />
     <Compile Include="Params\ProductStatus\ProductStatusAuthorizationParam.cs" />

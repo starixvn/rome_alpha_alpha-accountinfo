@@ -28,6 +28,12 @@
         Result UpdateOutright(UpdateOutrightParam param);
 
         Result UpdateClosed(UpdateClosedParam param);
+
+        Result UpdateSuspended(UpdateSuspendedParam param);
+
+        Result UpdateAutoMasterPT(UpdateAutoMasterPTParam param);
+
+        Result UpdateDoubleComm(UpdateDoubleCommParam param);
     }
 
     public class AccountInfoServiceImpl : AccountInfoService
@@ -111,5 +117,48 @@
 
             return result;
         }
+
+        public Result UpdateSuspended(UpdateSuspendedParam param)
+        {
+            var result = accountInfoDataAccess.ExecuteNonQuery(
+                new UpdateSuspendedCriteria(
+                    param.SearchAccountId,
+                    param.ActorId,
+                    param.SubAccountId,
+                    param.Suspended,
+                    param.Language,
+                    param.IP));
+
+            if (result.IsSuccess && param.SyncedCasino)
+            {
+                rnGCasinoService.Update3rdRnGCasinoSuspended(
+                    param.SearchAccountId,
+                    param.Suspended,
+                    param.IP,
+                    param.ActorId,
+                    param.ActorName);
+            }
+
+            return result;
+        }
+        public Result UpdateAutoMasterPT(UpdateAutoMasterPTParam param)
+            => accountInfoDataAccess.ExecuteNonQuery(
+               new UpdateAutoMasterPTCriteria(
+                   param.SearchAccountId,
+                   param.ActorId,
+                   param.SubAccountId,
+                   param.DisableAutoMasterPT,
+                   param.Language,
+                   param.IP));
+
+        public Result UpdateDoubleComm(UpdateDoubleCommParam param)
+            => accountInfoDataAccess.ExecuteNonQuery(
+                new UpdateDoubleCommCriteria(
+                   param.SearchAccountId,
+                   param.ActorId,
+                   param.SubAccountId,
+                   param.DoubleComm,
+                   param.Language,
+                   param.IP));
     }
 }
