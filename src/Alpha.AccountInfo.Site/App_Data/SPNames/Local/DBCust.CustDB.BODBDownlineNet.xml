@@ -20,6 +20,10 @@
     <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerUpdCredit_MAg" SpName="Age_CustomerUpdCredit_MAg" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerUpdCredit_SAg" SpName="Age_CustomerUpdCredit_SAg" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdClosed" SpName="Acc_CustomerUpdClosed" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdSuspended" SpName="Acc_CustomerUpdSuspended" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdMaster_DisableAutoMPT" SpName="Acc_CustomerUpdMaster_DisableAutoMPT" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDisableOutright" SpName="Acc_CustomerUpdDisableOutright" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   
 </Functions>

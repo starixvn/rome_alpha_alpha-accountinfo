@@ -486,6 +486,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\AccountInfo\AccountInfoQuery.cs" />
+    <Compile Include="Requests\AccountInfo\OutrightCommand.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditQuery.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditCommand.cs" />
     <Compile Include="Requests\AccountInfo\CustomerAllStatusQuery.cs" />
@@ -506,9 +507,7 @@
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\MasterBalanceInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomerInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\DownlineListViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\Integration\ProductConfiguration.cs" />
     <Compile Include="ViewModels\AccountInfo\Integration\ProductJsonConverter.cs" />
-    <Compile Include="ViewModels\AccountInfo\Integration\StubCustomerProductStatusGetter.cs" />
     <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\OnlineListViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\SettingViewModel.cs" />

@@ -23,6 +23,8 @@
         IEnumerable<OnlineListModel> GetOnlineList(int custid);
 
         Result UpdateGivenCredit(GivenCreditParam param);
+
+        Result UpdateOutright(OutrightParam param);
     }
 
     public class AccountInfoServiceImpl : AccountInfoService
@@ -65,6 +67,16 @@
                     param.ActorId,
                     param.ActorRoleId,
                     param.SubAccountId,
+                    param.Language,
+                    param.IP));
+
+        public Result UpdateOutright(OutrightParam param)
+            => accountInfoDataAccess.ExecuteNonQuery(
+                new UpdateOutrightCriteria(
+                    param.CustId,
+                    param.ActorId,
+                    param.SubAccountId,
+                    param.DisableOutright,
                     param.Language,
                     param.IP));
     }

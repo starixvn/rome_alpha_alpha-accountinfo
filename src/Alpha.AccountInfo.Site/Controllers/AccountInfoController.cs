@@ -40,10 +40,14 @@
            => JsonData(message, JsonRequestBehavior.DenyGet);
 
         public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
-                 => await ViewAsync(message);
+           => await ViewAsync(message);
 
         [HttpPost]
         public ActionResult UpdateGivenCredit(GivenCreditCommand message)
           => JsonData(message, JsonRequestBehavior.DenyGet);
+
+        [HttpPost]
+        public ActionResult UpdateOutright(OutrightCommand message)
+           => JsonData(message, JsonRequestBehavior.DenyGet);
     }
 }

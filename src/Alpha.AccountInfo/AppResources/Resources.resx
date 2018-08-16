@@ -345,4 +345,7 @@
   <data name="ShowContactInfo" xml:space="preserve">
     <value>Show Contact Info</value>
   </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Update Successfully !</value>
+  </data>
 </root>

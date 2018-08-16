@@ -12,7 +12,22 @@ export default class StatusCheckbox extends React.Component {
 
     handleOpen(e) {
         var url = this.props.url;
-        this.props.confirmMessage == undefined ? window.top.ageWnd.open(this.props.url) : window.top.bootboxConfirm(this.props.confirmMessage, e, function () { accountInfoAPI.updateStatus(url) });
+        var param = JSON.parse(this.props.param);
+
+        this.props.confirmMessage == undefined ? window.top.ageWnd.open(this.props.url) :
+            window.top.bootboxConfirm(this.props.confirmMessage, e,
+                function () {
+                    accountInfoAPI.updateStatus(url, param).then((data) => {
+                        let self = this;
+                        if (data.Code == 0) {
+                            setTimeout(() => {
+                                var iframe = parent.document.getElementById("accountinfo-content");
+                                iframe.src = iframe.src;
+                                window.top.ageWnd.close();
+                            }, 3000);
+                        }
+                    });
+                });
     };
 
     render() {

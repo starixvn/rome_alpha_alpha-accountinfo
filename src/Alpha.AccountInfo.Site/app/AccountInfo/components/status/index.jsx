@@ -32,6 +32,7 @@ export default class StatusBlock extends React.Component {
                             classNames='col checkbox'
                             title={status.Text}
                             url={status.Url}
+                            param={status.Param}
                             confirmMessage={status.ConfirmMessage}
                             disabled={status.Disabled}
                             checked={status.Checked}

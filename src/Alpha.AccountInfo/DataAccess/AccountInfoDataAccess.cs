@@ -20,13 +20,15 @@
         DownlineListModel GetDownlineListModelAsync(ICriteria criteria);
 
         Result UpdateGivenCredit(ICriteria criteria);
+
+        Result ExecuteNonQuery(ICriteria criteria);
     }
 
     public class AccountInfoDataAccessImpl : AccountInfoDataAccess
     {
         private readonly IDictionary<byte, Func<IDataReader, BalanceInfoModel>> getBalanceInfoFunction;
 
-        private readonly int updateCreditFailErrorCode = 100;
+        private readonly int updateFailErrorCode = 100;
 
         public AccountInfoDataAccessImpl()
         {
@@ -235,8 +237,23 @@
                 var creditProblem = Converter.ToBool(outputParams["CreditProblem"]);
 
                 return creditProblem ?
-                    Result.CreateErrorResult(updateCreditFailErrorCode, Converter.ToString2(outputParams["ErrMsg"])) :
+                    Result.CreateErrorResult(updateFailErrorCode, Converter.ToString2(outputParams["ErrMsg"])) :
                     Result.CreateSuccessResult(Resources.UpdateGivenCreditSuccessfully);
+            }
+        }
+
+        public Result ExecuteNonQuery(ICriteria criteria)
+        {
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(criteria.GetSpParams());
+                var outputParams = db.GetOuputParams();
+
+                var success = Convert.ToInt32(outputParams["errcode"]).Equals(0);
+
+                return success ? 
+                    Result.CreateSuccessResult(Resources.UpdateSuccessfully) :
+                    Result.CreateErrorResult(updateFailErrorCode, Converter.ToString2(outputParams["ErrMsg"]));
             }
         }
     }

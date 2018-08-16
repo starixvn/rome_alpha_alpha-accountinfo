@@ -21,7 +21,8 @@
         IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>,
         IRequestHandler<OnlineListQuery, IEnumerable<OnlineListModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
-        IRequestHandler<GivenCreditCommand, Result>
+        IRequestHandler<GivenCreditCommand, Result>,
+        IRequestHandler<OutrightCommand, Result>
     {
         private readonly AccountInfoService accountInfoService;
 
@@ -170,5 +171,15 @@
                     message.SubAccountId,
                     message.Language,
                     message.IP));
+
+        public Result Handle(OutrightCommand message)
+           => accountInfoService.UpdateOutright(
+               new OutrightParam(
+                   message.SearchAccountId,
+                   message.ActorId,
+                   message.DisableOutright,
+                   message.SubAccountId,
+                   message.Language,
+                   message.IP));
     }
 }

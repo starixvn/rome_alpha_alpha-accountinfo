@@ -5,7 +5,7 @@
 
     public class Result
     {
-        private Result(int code, string message)
+        public Result(int code, string message)
         {
             Code = code;
             Message = message;
