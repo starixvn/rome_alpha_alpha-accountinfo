@@ -50,7 +50,5 @@
         }
 
         public IEnumerable<IStatusItemViewModel> Settings { get; }
-
-        public string OldMainPath => UrlHelper.MapOldMainPath("~/");
     }
 }

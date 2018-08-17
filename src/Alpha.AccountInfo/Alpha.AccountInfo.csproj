@@ -313,6 +313,7 @@
     <Compile Include="Services\CacheRefService.cs" />
     <Compile Include="Services\ProductStatus\ProductProfileService.cs" />
     <Compile Include="Services\AccountInfo\AccountInfoService.cs" />
+    <Compile Include="Services\AccountInfo\AccountInfoServiceImpl.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusAuthorizationService.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusCriteriaFactory.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusService.cs" />

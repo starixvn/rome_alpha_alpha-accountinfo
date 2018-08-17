@@ -12,13 +12,12 @@ export default class StatusCheckbox extends React.Component {
 
     handleOpen(e) {
         var url = this.props.url;
-        var param = JSON.parse(this.props.param);
         var self = this;
 
-        this.props.confirmMessage == undefined ? window.top.ageWnd.open(this.props.url) :
-            window.top.bootboxConfirm(this.props.confirmMessage, e,
+        this.props.confirmMessage == undefined ? window.top.ageWnd.open(self.props.url) :
+            window.top.bootboxConfirm(self.props.confirmMessage, e,
                 function () {
-                    accountInfoAPI.updateStatus(url, param).then((data) => {
+                    accountInfoAPI.updateStatus(url, JSON.parse(self.props.param)).then((data) => {
                         self.setState(previousState => ({
                             checked: !previousState.checked
                         }));

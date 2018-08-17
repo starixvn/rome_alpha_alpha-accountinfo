@@ -36,7 +36,5 @@
         }
 
         public IEnumerable<ISettingItemViewModel> Settings {get;}
-
-        public string OldMainPath => UrlHelper.MapOldMainPath("~/");
     }
 }
