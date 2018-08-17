@@ -6,7 +6,6 @@ import StatusBlock from '../components/status/index';
 import SettingBlock from '../components/setting/index';
 import LoginInfoBlock from '../components/login-info/index';
 import OnlineListBlock from '../components/online-list/index';
-import ShowContactInfo from './show-contact-info';
 import { Accordion } from 'react-accessible-accordion';
 import { accountInfoAPI } from '../api-client';
 
@@ -174,9 +173,11 @@ export default class FeatureList extends React.Component {
             <div className={collapseExpandClassName}>
                 {
                     !this.state.collapseAll &&
-                    <ShowContactInfo title={resources.ShowContactInfo}
-                        classNames="visible-mobile show-more-container"
-                        handleShowHide={this.ShowHideContactInfoButton} />
+                    <div className="visible-mobile show-more-container">
+                        <button className="btn-default show-more" onClick={this.ShowHideContactInfoButton}>
+                            {resources.ShowContactInfo}
+                        </button>
+                    </div>
                 }
                 <Accordion>
                     <BalanceInfoBlock

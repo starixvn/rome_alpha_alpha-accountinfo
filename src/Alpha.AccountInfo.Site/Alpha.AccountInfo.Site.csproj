@@ -320,12 +320,9 @@
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-list-page.jsx" />
     <Content Include="app\AccountInfo\components\online-list\online-list-content.jsx" />
-    <Content Include="app\AccountInfo\components\online-list\no-infomation-row.jsx" />
-    <Content Include="app\AccountInfo\components\setting\setting-info.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-content.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-paging.jsx" />
     <Content Include="app\AccountInfo\components\status\status-on-product.jsx" />
-    <Content Include="app\AccountInfo\containers\show-contact-info.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-list-content.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />
     <Content Include="app\AccountInfo\given-credit.jsx" />
@@ -568,7 +565,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\AccountInfo\constants\" />
     <Folder Include="assets\bundles\account-info\" />
     <Folder Include="assets\styles\images\" />
   </ItemGroup>

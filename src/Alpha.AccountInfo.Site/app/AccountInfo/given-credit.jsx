@@ -1,8 +1,6 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
-import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
-import CustomizedAccordionItem from './components/common/customized-accordion-item';
 import { accountInfoAPI } from './api-client';
 import $ from 'jquery';
 
@@ -16,7 +14,6 @@ window.renderGivenCredit = function (searchAccountId, searchAccountRoleId, curre
     );
 };
 
-
 export default class GivenCredit extends React.Component {
     constructor(props) {
         super(props);
@@ -27,14 +24,9 @@ export default class GivenCredit extends React.Component {
             message: ''
         };
 
-        this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleOpen(e) {
-
-    };
 
     handleClose(e) {
         window.top.ageWnd.close();
