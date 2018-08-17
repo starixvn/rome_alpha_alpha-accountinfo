@@ -19,16 +19,17 @@ export default class StatusBlock extends React.Component {
                 expanded={expanded}
                 handleClick={getCustomerAllStatus}
                 blockId={blockId}>
-                {statusData != null && statusData.Settings.map((status, index) => {
-                    return status.IsEditOnProductLevel != undefined && !status.IsEditOnProductLevel ?
-                        <StatusOnProduct resources={resources}
+                {
+                    statusData != null && statusData.Settings.map((status, index) => {
+                        return status.IsEditOnProductLevel != undefined && !status.IsEditOnProductLevel ?
+                            (status.Visible && <StatusOnProduct resources={resources}
                             title={status.Text}
                             url={status.Url}
                             confirmMessage={status.ConfirmMessage}
                             disabled={status.Disabled}
                             key={index}
-                            statusId={status.DisplayOrder}/> :
-                        <StatusCheckbox resources={resources}
+                            statusId={status.DisplayOrder}/> ):
+                            (status.Visible && <StatusCheckbox resources={resources}
                             classNames='col checkbox'
                             title={status.Text}
                             url={status.Url}
@@ -37,7 +38,7 @@ export default class StatusBlock extends React.Component {
                             disabled={status.Disabled}
                             checked={status.Checked}
                             key={index}
-                            statusId={status.DisplayOrder} /> 
+                            statusId={status.DisplayOrder} /> )
                       
                 })}
             </CustomizedAccordionItem>
