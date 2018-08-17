@@ -238,7 +238,7 @@
 
                 return creditProblem ?
                     Result.CreateErrorResult(updateFailErrorCode, Converter.ToString2(outputParams["ErrMsg"])) :
-                    Result.CreateSuccessResult(Resources.UpdateGivenCreditSuccessfully);
+                    Result.CreateSuccessResult(Resources.UpdateSuccessfully);
             }
         }
 

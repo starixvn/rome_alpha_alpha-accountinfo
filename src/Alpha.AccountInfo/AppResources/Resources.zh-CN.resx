@@ -345,4 +345,13 @@
   <data name="TransferViewModelText" xml:space="preserve">
     <value>转账</value>
   </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Update Successfully !</value>
+  </data>
+  <data name="GivenCreditPopupTitle" xml:space="preserve">
+    <value>GivenCreditPopup</value>
+  </data>
+  <data name="LoginInfo" xml:space="preserve">
+    <value>Login Info</value>
+  </data>
 </root>

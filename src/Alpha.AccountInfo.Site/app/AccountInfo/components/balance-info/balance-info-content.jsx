@@ -6,12 +6,15 @@ import CustomizedAccordionItem from '../common/customized-accordion-item';
 export default class BalanceInfoContent extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            resources: this.props.resources
+        }
         this.handleOpen = this.handleOpen.bind(this);
     }
 
     handleOpen(e) {
         let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${this.props.custId}&SearchAccountName=${this.props.username}&SearchAccountRoleId=${this.props.roleId}&CurrentGivenCredit=${this.props.balanceInfo.GivenCredit}`;
-        window.top.ageWnd.open(givenCreditUrl, "resources.UpdateGivenCredit");
+        window.top.ageWnd.open(givenCreditUrl, this.state.resources.GivenCreditPopupTitle);
     };
 
     render() {

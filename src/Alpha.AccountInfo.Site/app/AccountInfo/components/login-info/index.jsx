@@ -16,7 +16,7 @@ export default class LoginInfoBlock extends React.Component{
 
         return (
             <CustomizedAccordionItem
-                title="resources.LoginInfo"
+                title={resources.LoginInfo}
                 iconClassname="icon-login"
                 accordionItemBodyClassName="accordion__body block-login-info"
                 expanded={expanded}

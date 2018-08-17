@@ -175,80 +175,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppResources\GivenCredit.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GivenCredit.resx</DependentUpon>
+    </Compile>
     <Compile Include="AppResources\ProductStatus.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductStatus.resx</DependentUpon>
     </Compile>
-    <Compile Include="AppResources\ProductStatus.ja-JP.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.ja-JP.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.ko-KR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.ko-KR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.th-TH.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.th-TH.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.vi-VN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.vi-VN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.zh-CN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.zh-CN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.zh-TW.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.zh-TW.resx</DependentUpon>
-    </Compile>
     <Compile Include="AppResources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.ja-JP.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ja-JP.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.ko-KR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ko-KR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.th-TH.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.th-TH.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.th-TH1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.th-TH.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.vi-VN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.vi-VN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.zh-CN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.zh-CN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.zh-TW.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\BetTypeConstants.cs" />
@@ -326,62 +266,36 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources\ProductStatus.ja-JP.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.ja-JP.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.ko-KR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.ko-KR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\ProductStatus.ja-JP.resx" />
+    <EmbeddedResource Include="AppResources\ProductStatus.ko-KR.resx" />
     <EmbeddedResource Include="AppResources\ProductStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProductStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.th-TH.resx">
+    <EmbeddedResource Include="AppResources\ProductStatus.th-TH.resx" />
+    <EmbeddedResource Include="AppResources\ProductStatus.vi-VN.resx" />
+    <EmbeddedResource Include="AppResources\ProductStatus.zh-CN.resx" />
+    <EmbeddedResource Include="AppResources\ProductStatus.zh-TW.resx" />
+    <EmbeddedResource Include="AppResources\GivenCredit.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.th-TH.Designer.cs</LastGenOutput>
+      <LastGenOutput>GivenCredit.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.vi-VN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.vi-VN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.zh-CN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.zh-CN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.zh-TW.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.ja-JP.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ja-JP.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.ko-KR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ko-KR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\GivenCredit.ja-JP.resx" />
+    <EmbeddedResource Include="AppResources\Resources.ja-JP.resx" />
+    <EmbeddedResource Include="AppResources\GivenCredit.ko-KR.resx" />
+    <EmbeddedResource Include="AppResources\Resources.ko-KR.resx" />
     <EmbeddedResource Include="AppResources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.th-TH.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.th-TH1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.vi-VN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.vi-VN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.zh-CN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.zh-CN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.zh-TW.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\GivenCredit.th-TH.resx" />
+    <EmbeddedResource Include="AppResources\Resources.th-TH.resx" />
+    <EmbeddedResource Include="AppResources\GivenCredit.vi-VN.resx" />
+    <EmbeddedResource Include="AppResources\Resources.vi-VN.resx" />
+    <EmbeddedResource Include="AppResources\GivenCredit.zh-CN.resx" />
+    <EmbeddedResource Include="AppResources\Resources.zh-CN.resx" />
+    <EmbeddedResource Include="AppResources\GivenCredit.zh-TW.resx" />
+    <EmbeddedResource Include="AppResources\Resources.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

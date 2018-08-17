@@ -376,6 +376,15 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GivenCreditPopup.
+        /// </summary>
+        public static string GivenCreditPopupTitle {
+            get {
+                return ResourceManager.GetString("GivenCreditPopupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
         public static string IP {
@@ -399,6 +408,15 @@ namespace Alpha.AccountInfo.AppResources {
         public static string LastTxn {
             get {
                 return ResourceManager.GetString("LastTxn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login Info.
+        /// </summary>
+        public static string LoginInfo {
+            get {
+                return ResourceManager.GetString("LoginInfo", resourceCulture);
             }
         }
         
@@ -696,15 +714,6 @@ namespace Alpha.AccountInfo.AppResources {
         public static string TransferViewModelText {
             get {
                 return ResourceManager.GetString("TransferViewModelText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Given Credit Successfully !.
-        /// </summary>
-        public static string UpdateGivenCreditSuccessfully {
-            get {
-                return ResourceManager.GetString("UpdateGivenCreditSuccessfully", resourceCulture);
             }
         }
         

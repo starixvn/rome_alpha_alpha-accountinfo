@@ -77,12 +77,12 @@ export default class GivenCredit extends React.Component {
                     <span className={updateSuccess ? 'msg-success' : 'msg-error'}>  {message} </span>
                 </div>
                 <div className={rowClasses}>
-                    <div className="col-xs-7">resources.CurrentGivenCredit</div>
+                    <div className="col-xs-7">{resources.CurrentGivenCredit}</div>
                     <CellContainNumberFormat title={currentGivenCredit} classNames="col-right" />
                 </div>
 
                 <div className={rowClasses}>
-                    <div className="col-xs-7">resources.NewGivenCredit</div>
+                    <div className="col-xs-7">{resources.NewGivenCredit}</div>
                     <NumberFormat value={this.state.newGivenCredit} thousandSeparator={true} decimalScale="2" onValueChange={(values) => {
                         const { formattedValue, value, floatValue } = values;
                         this.setState({ newGivenCredit: (floatValue === undefined ? 0 : floatValue) })
@@ -90,7 +90,7 @@ export default class GivenCredit extends React.Component {
                 </div>
 
                 <div className={rowClasses}>
-                    <div className="col-xs-7">resources.Difference</div>
+                        <div className="col-xs-7">{resources.Difference}</div>
                     <CellContainNumberFormat title={newGivenCredit - currentGivenCredit} classNames="col-right" />
                 </div>
                 <div className="col-xs-12 row-info popup-bottom list-button">

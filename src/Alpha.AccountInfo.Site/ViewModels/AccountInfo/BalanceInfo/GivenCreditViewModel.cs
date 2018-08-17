@@ -12,59 +12,32 @@
 
     public class GivenCreditViewModel
     {
-        private readonly GivenCreditQuery query;
+        private readonly GivenCreditQuery message;
 
-        public GivenCreditViewModel(GivenCreditQuery query)
+        public GivenCreditViewModel(GivenCreditQuery message)
         {
-            this.query = query;
+            this.message = message;
         }
 
-        public int SearchAccountId => query.SearchAccountId;
+        public int SearchAccountId => message.SearchAccountId;
 
-        public string SearchAccountName => query.SearchAccountName;
+        public string SearchAccountName => message.SearchAccountName;
 
-        public byte SearchAccountRoleId => query.SearchAccountRoleId;
+        public byte SearchAccountRoleId => message.SearchAccountRoleId;
 
-        public decimal CurrentGivenCredit => query.CurrentGivenCredit;
+        public decimal CurrentGivenCredit => message.CurrentGivenCredit;
 
         public string AccountInfoSiteAppPath => UrlHelper.MapAccountInfoPath("~/");
 
-        public string AccountInfoResources
+        public string GivenCreditResources
         {
             get
             {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(query.Language);
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(message.Language);
                 Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+                ResourceSet resourceSet = GivenCredit.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
 
-                ResourceSet resourceSet = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-                StringBuilder builder = new StringBuilder();
-                builder.Append("{");
-
-                var count = 1;
-                var aa = resourceSet.Cast<DictionaryEntry>().ToList();
-                var length = aa.Count;
-                resourceSet.Cast<DictionaryEntry>().ToList().ForEach(x =>
-                {
-
-                    //builder.Append("'"x.Key.ToString());
-                    //builder.Append(":" +  x.Value + ",");
-                    builder.Append($"\"{x.Key.ToString()}\":\"{x.Value}\"");
-                    if (count < length)
-                    {
-                        builder.Append(",");
-                    }
-
-                    count++;
-
-                    //var output = new ExpandoObject();
-                    //AddProperty(output, x.Key.ToString(), x.Value);
-                    //return output;
-                });
-
-                builder.Append("}");
-                // var model = JsonConvert.SerializeObject(aa);
-
-                return builder.ToString();
+                return string.Format("{0}{1}{2}", "{", string.Join(",", resourceSet.Cast<DictionaryEntry>().Select(x => $"\"{x.Key.ToString()}\":\"{x.Value}\"")), "}");
             }
         }
     }
