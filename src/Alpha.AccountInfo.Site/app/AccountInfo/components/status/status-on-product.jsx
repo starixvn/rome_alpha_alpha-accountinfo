@@ -4,9 +4,6 @@ import CellContainLink from '../common/cell-contain-link';
 export default class StatusOnProduct extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            value : ''
-        }
         this.handleOpen = this.handleOpen.bind(this);
     }
 

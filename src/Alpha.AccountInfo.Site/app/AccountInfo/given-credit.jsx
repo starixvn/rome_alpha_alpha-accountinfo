@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
+import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
 import { accountInfoAPI } from './api-client';
 import $ from 'jquery';
