@@ -683,8 +683,14 @@ hr {
     font-weight: bold;
 }
 
-.closed {
+.closed-byUpline {
     color: #f60;
     background-color: #f79646;
+    font-weight: bold;
+}
+
+.closed-byAdmin {
+    color: #f60;
+    background-color: #b3a2c7;
     font-weight: bold;
 }

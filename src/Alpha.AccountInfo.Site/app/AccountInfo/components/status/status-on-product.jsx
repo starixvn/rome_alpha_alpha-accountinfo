@@ -11,7 +11,7 @@ export default class StatusOnProduct extends React.Component {
     };
 
     render() {
-        const { resources, disabled, statusId, title, confirmMessage, url } = this.props;
+        const { title } = this.props;
 
         return (
             <div className="col">

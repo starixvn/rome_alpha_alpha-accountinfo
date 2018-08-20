@@ -142,6 +142,42 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This account was closed by admin..
+        /// </summary>
+        public static string ClosedByAdmin {
+            get {
+                return ResourceManager.GetString("ClosedByAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account was closed by failed login or account expired..
+        /// </summary>
+        public static string ClosedByFailedLoginOrAccountExpired {
+            get {
+                return ResourceManager.GetString("ClosedByFailedLoginOrAccountExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account was closed by false input of OTP/Security Code..
+        /// </summary>
+        public static string ClosedByFailedOTPOrSC {
+            get {
+                return ResourceManager.GetString("ClosedByFailedOTPOrSC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account was closed by upline..
+        /// </summary>
+        public static string ClosedByUpline {
+            get {
+                return ResourceManager.GetString("ClosedByUpline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commission.
         /// </summary>
         public static string CommissionViewModelText {

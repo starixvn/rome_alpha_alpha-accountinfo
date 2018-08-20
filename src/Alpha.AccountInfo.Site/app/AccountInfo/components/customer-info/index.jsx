@@ -13,7 +13,7 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Master}</div>
                 <div className={secondCellClass}>
-                    <span className={data.RoleId == 3 && `${data.Suspended && "suspended"} ${data.Closed && "closed"}`} 
+                    <span className={data.RoleId == 3 && `${data.Suspended && "suspended"} ${data.Closed && (data.ClosedReason != "" ? "closed-byUpline" : "closed-byAdmin")}`} 
                         onClick={handleSearchFromUserLevel}
                         data-username={data.MasterName}>
                         {data.MasterName}

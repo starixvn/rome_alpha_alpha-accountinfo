@@ -26,45 +26,49 @@ export default class FeatureList extends React.Component {
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
         this.ShowHideContactInfoButton = this.ShowHideContactInfoButton.bind(this);
         this.getCustomerAllStatus = this.getCustomerAllStatus.bind(this);
+        this.fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer.bind(this);
     }
 
     getCustomerAllStatus(e) {
-        this.state.settingData === null && this.fetchCustomerAllStatusFromServer();
+        this.state.settingData === null && this.fetchCustomerAllStatusFromServer(e);
         this.handleCollapExpandBlock(e);
     }
 
-    fetchCustomerAllStatusFromServer() {
+    fetchCustomerAllStatusFromServer(e) {
         let uplineId = null;
         let uplineName = null;
-        switch (this.props.customerInfo.RoleId) {
+        let customerInfo = this.props.customerInfo;
+        let self = this;
+
+        switch (customerInfo.RoleId) {
             case 3:
-                uplineId = this.props.customerInfo.SuperId;
-                uplineName = this.props.customerInfo.SuperName;
+                uplineId = customerInfo.SuperId;
+                uplineName = customerInfo.SuperName;
                 break;
             case 2:
-                uplineId = this.props.customerInfo.MasterId;
-                uplineName = this.props.customerInfo.MasterName;
+                uplineId = customerInfo.MasterId;
+                uplineName = customerInfo.MasterName;
                 break;
             default:
-                uplineId = this.props.customerInfo.AgentId;
-                uplineName = this.props.customerInfo.AgentName;
+                uplineId = customerInfo.AgentId;
+                uplineName = customerInfo.AgentName;
                 break;
         }
 
         var params = {
-            SearchAccountId: this.props.customerInfo.CustId,
-            SearchAccountName: this.props.customerInfo.UserName,
-            SearchAccountRoleId: this.props.customerInfo.RoleId,
+            SearchAccountId: customerInfo.CustId,
+            SearchAccountName: customerInfo.UserName,
+            SearchAccountRoleId: customerInfo.RoleId,
             UplientId: uplineId,
             UplineName: uplineName,
-            UplineRoleId: this.props.customerInfo.RoleId + 1
+            UplineRoleId: customerInfo.RoleId + 1
         };
 
         accountInfoAPI.getCustomerAllStatus(params).then((data) => {
-            this.setState({
+            self.setState(() => ({
                 settingData: data.Setting,
                 statusData: data.Status
-            });
+            }));
         });
     }
 
@@ -207,6 +211,7 @@ export default class FeatureList extends React.Component {
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         getCustomerAllStatus={this.getCustomerAllStatus}
                         fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                        fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}
                         username={customerInfo.UserName}
                         statusData={statusData}
                         expanded={expandedItems.status}

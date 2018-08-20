@@ -42,7 +42,7 @@
 
         public bool Closed => customerInfo.Closed;
 
-        public bool ClosedReason => customerInfo.ClosedReason;
+        public byte ClosedReason => customerInfo.ClosedReason;
 
         public bool Suspended => customerInfo.Suspended;
 

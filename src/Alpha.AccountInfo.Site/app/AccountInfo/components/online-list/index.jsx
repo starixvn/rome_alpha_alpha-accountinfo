@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
-import OnlineListContent from './online-list-content';
 import { accountInfoAPI } from '../../api-client';
 
 export default class OnlineListBlock extends React.Component{
@@ -15,8 +14,8 @@ export default class OnlineListBlock extends React.Component{
     }
 
     handleClick(e) {
-        this.props.handleCollapExpandBlock(e);
         this.loadOnlineListFromServer();
+        this.props.handleCollapExpandBlock(e);
     }
 
     loadOnlineListFromServer() {
@@ -44,7 +43,22 @@ export default class OnlineListBlock extends React.Component{
                             <th>{resources.IP}</th>
                             <th>{resources.LoginTime}</th>
                         </thead>
-                        <OnlineListContent resources={resources} data={data} />
+
+                        {
+                            (data === null || data.length == 0) &&
+                            <tr>
+                                <td colSpan="3">{resources.ThisUserIsNotOnline}</td>
+                            </tr>
+                        }
+
+                        {
+                            data != null && data.map((online, index) =>
+                                <tr key={index}>
+                                    <td className="text-center">{index + 1}</td>
+                                    <td>{online.IP}</td>
+                                    <td className="text-center"> {online.Reload_Time}</td>
+                                </tr>)
+                        }
                     </table>
                 }
             </CustomizedAccordionItem>

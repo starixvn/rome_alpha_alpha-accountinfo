@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
 import { accountInfoAPI } from './api-client';
-import $ from 'jquery';
 
 window.renderGivenCredit = function (searchAccountId, searchAccountRoleId, currentGivenCredit, resources) {
     ReactDOM.render(
@@ -49,11 +48,8 @@ export default class GivenCredit extends React.Component {
             });
 
             if (data.IsSuccess) {
-                setTimeout(() => {
-                    var iframe = parent.document.getElementById("accountinfo-content");
-                    iframe.src = iframe.src;
-                    window.top.ageWnd.close();
-                }, 3000);
+                window.top.UpdateGivenCreditSuccessully = true;
+                window.top.ageWnd.close();
             }
         });
     };
@@ -83,7 +79,7 @@ export default class GivenCredit extends React.Component {
                 </div>
 
                 <div className={rowClasses}>
-                        <div className="col-xs-7">{resources.Difference}</div>
+                    <div className="col-xs-7">{resources.Difference}</div>
                     <CellContainNumberFormat title={newGivenCredit - currentGivenCredit} classNames="col-right" />
                 </div>
                 <div className="col-xs-12 row-info popup-bottom list-button">

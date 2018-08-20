@@ -4,49 +4,37 @@ import { accountInfoAPI } from '../../api-client';
 export default class StatusCheckbox extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            checked: this.props.checked
-        }
         this.handleOpen = this.handleOpen.bind(this);
     }
 
     handleOpen(e) {
-        var url = this.props.url;
         var self = this;
+        var url = this.props.status.Url;
+        var param = self.props.status.Paramself.props.status.Param;
+        var confirmMessage = this.props.status.ConfirmMessage;
 
-        this.props.confirmMessage == undefined ? window.top.ageWnd.open(self.props.url) :
-            window.top.bootboxConfirm(self.props.confirmMessage, e,
+        confirmMessage == undefined ? window.top.ageWnd.open(url) :
+            window.top.bootboxConfirm(confirmMessage, e,
                 function () {
-                    accountInfoAPI.updateStatus(url, JSON.parse(self.props.param)).then((data) => {
-                        self.setState(previousState => ({
-                            checked: !previousState.checked
-                        }));
-                        self.props.fetchCustomerInfoFromServer(e, self.props.username);
-                        //if (data.IsSuccess) {
-                        //    self
-                        //    setTimeout(() => {
-                        //        var iframe = parent.document.getElementById("accountinfo-content");
-                        //        iframe.src = iframe.src;
-                        //        window.top.ageWnd.close();
-                        //    }, 3000);
-                        //}
+                    accountInfoAPI.updateStatus(url, JSON.parse(param)).then((data) => {
+                        if (data.IsSuccess) {
+                            setTimeout(() => {
+                                self.props.fetchCustomerAllStatusFromServer();
+                                self.props.fetchCustomerInfoFromServer(e, self.props.username);
+                            }, 2000);
+                        }
                     });
                 });
     };
 
     render() {
-        const { resources, classNames, disabled, title, id, confirmMessage, url } = this.props;
-        const checkBoxClass = disabled ? `${classNames} disabled` : classNames;
+        const { status, displayOrder } = this.props;
 
         return (
             <div>
-                <div className={checkBoxClass} onClick={this.handleOpen}>
-                    <input id={id}
-                        type="checkbox"
-                        disabled={disabled}
-                        checked={this.state.checked}
-                        onChange={this.handleOpen} />
-                    <label className="label-text" htmlFor={id}>{title}</label>
+                <div className={`${status.Disabled && "disabled"} col checkbox`} onClick={this.handleOpen}>
+                    <input id={displayOrder} type="checkbox" disabled={status.Disabled} checked={status.Checked} onChange={this.handleOpen} />
+                    <label className="label-text" htmlFor={displayOrder}>{status.Text}</label>
                 </div>
             </div>
         );

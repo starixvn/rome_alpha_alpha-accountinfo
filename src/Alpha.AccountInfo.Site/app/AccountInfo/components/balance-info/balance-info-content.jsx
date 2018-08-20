@@ -15,6 +15,19 @@ export default class BalanceInfoContent extends React.Component{
     handleOpen(e) {
         let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${this.props.custId}&SearchAccountName=${this.props.username}&SearchAccountRoleId=${this.props.roleId}&CurrentGivenCredit=${this.props.balanceInfo.GivenCredit}`;
         window.top.ageWnd.open(givenCreditUrl, this.state.resources.GivenCreditPopupTitle);
+
+        window.top.UpdateGivenCreditSuccessully = false;
+        var timer = setInterval(reloadBalanceInfo, 1000);
+        let self = this;
+
+        function reloadBalanceInfo(e) {
+            if (window.top.UpdateGivenCreditSuccessully) {
+                setTimeout(() => {
+                    self.props.fetchCustomerInfoFromServer(e, self.props.username);
+                }, 2000);
+                clearInterval(timer);
+            }
+        }
     };
 
     render() {

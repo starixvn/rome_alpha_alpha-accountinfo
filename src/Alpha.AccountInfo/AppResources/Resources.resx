@@ -351,6 +351,18 @@
   <data name="LoginInfo" xml:space="preserve">
     <value>Login Info</value>
   </data>
+  <data name="ClosedByAdmin" xml:space="preserve">
+    <value>This account was closed by admin.</value>
+  </data>
+  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
+    <value>This account was closed by failed login or account expired.</value>
+  </data>
+  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
+    <value>This account was closed by false input of OTP/Security Code.</value>
+  </data>
+  <data name="ClosedByUpline" xml:space="preserve">
+    <value>This account was closed by upline.</value>
+  </data>
   <data name="Viewlog" xml:space="preserve">
     <value>Viewlog</value>
   </data>

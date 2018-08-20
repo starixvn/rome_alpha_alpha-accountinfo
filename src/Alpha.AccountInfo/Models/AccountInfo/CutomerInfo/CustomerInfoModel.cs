@@ -19,7 +19,7 @@
          string phone,
          string mobilePhone,
          string fax,
-         bool closedReason,
+         byte closedReason,
          bool enabled,
          bool uplineEnabled,
          bool closed,
@@ -92,7 +92,7 @@
 
         public string Fax { get; }
 
-        public bool ClosedReason { get; }
+        public byte ClosedReason { get; }
 
         public bool Enabled { get; }
 
