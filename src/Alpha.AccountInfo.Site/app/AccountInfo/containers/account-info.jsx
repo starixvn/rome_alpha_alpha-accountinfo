@@ -37,7 +37,7 @@ export default class AccountInfo extends React.Component {
       this.state = {
             showInfoStatus: false,
             searchCounter: 0,
-          username: lastSearchUsername,
+            username: lastSearchUsername,
             customerInfo: null,
             suggestions: []
         };
@@ -51,8 +51,6 @@ export default class AccountInfo extends React.Component {
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
         this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
-       // this.searchAcccount = React.createRef();
-      
     }
 
     getCustomerInfo(e) {

@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import CellContainLink from '../common/cell-contain-link';
 
 export default class StatusOnProduct extends React.Component {
     constructor(props) {
@@ -15,14 +14,10 @@ export default class StatusOnProduct extends React.Component {
         const { resources, disabled, statusId, title, confirmMessage, url } = this.props;
 
         return (
-            <div>
-                <CellContainLink title={title}
-                    statusId={statusId}
-                    handleClick={this.handleOpen}
-                    classNames="col"
-                    iconClassname="icon-ic_list"
-                    hrefLink="#" />
-            </div>  
+            <div className="col">
+                <a onClick={this.handleOpen}>{title}</a>
+                <span className="icon-ic_list"></span>
+            </div>
         );
     }
 }

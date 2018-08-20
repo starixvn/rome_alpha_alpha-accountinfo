@@ -40,6 +40,12 @@
 
         public byte ActorRoleId => message.ActorRoleId;
 
+        public bool Closed => customerInfo.Closed;
+
+        public bool ClosedReason => customerInfo.ClosedReason;
+
+        public bool Suspended => customerInfo.Suspended;
+
         public string UserName => customerInfo.UserName;
 
         public string NickName => customerInfo.UserName2;

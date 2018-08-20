@@ -21,7 +21,7 @@ export default class StatusCheckbox extends React.Component {
                         self.setState(previousState => ({
                             checked: !previousState.checked
                         }));
-
+                        self.props.fetchCustomerInfoFromServer(e, self.props.username);
                         //if (data.IsSuccess) {
                         //    self
                         //    setTimeout(() => {

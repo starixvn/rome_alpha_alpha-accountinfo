@@ -677,10 +677,14 @@ hr {
     }
 }
 
-.modal-container {
-    position: relative;
+.suspended {
+    color: #d45f12;
+    background-color: #f8ded7;
+    font-weight: bold;
 }
 
-.modal-container .modal, .modal-container .modal-backdrop {
-    position: absolute;
+.closed {
+    color: #f60;
+    background-color: #f79646;
+    font-weight: bold;
 }

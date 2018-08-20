@@ -3,7 +3,7 @@ import StatusCheckbox from './status-checkbox';
 import StatusOnProduct from './status-on-product';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
 
-const StatusBlock = ({ resources, getCustomerAllStatus, blockId, expanded, statusData }) =>
+const StatusBlock = ({ resources, username, getCustomerAllStatus, fetchCustomerInfoFromServer, blockId, expanded, statusData }) =>
     <CustomizedAccordionItem
         title={resources.Status}
         iconClassname="icon-status"
@@ -22,6 +22,8 @@ const StatusBlock = ({ resources, getCustomerAllStatus, blockId, expanded, statu
                         key={index}
                         statusId={status.DisplayOrder} />) :
                     (status.Visible && <StatusCheckbox resources={resources}
+                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                        username={username}
                         classNames='col checkbox'
                         title={status.Text}
                         url={status.Url}

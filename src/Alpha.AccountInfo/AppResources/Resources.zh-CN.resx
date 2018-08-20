@@ -354,4 +354,7 @@
   <data name="LoginInfo" xml:space="preserve">
     <value>Login Info</value>
   </data>
+  <data name="Viewlog" xml:space="preserve">
+    <value>Viewlog</value>
+  </data>
 </root>

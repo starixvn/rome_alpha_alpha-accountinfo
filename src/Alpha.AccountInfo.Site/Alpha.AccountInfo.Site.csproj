@@ -511,7 +511,6 @@
     <Compile Include="ViewModels\AccountInfo\DownlineListViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\Integration\ProductJsonConverter.cs" />
     <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\OnlineListViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\SettingViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\CustomererAllStatusViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\StatusViewModel.cs" />
@@ -576,9 +575,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\AccountInfo\components\customer-info\index.jsx" />
-    <Content Include="app\AccountInfo\components\common\cell-contain-link.jsx" />
     <Content Include="app\AccountInfo\components\common\cell-contain-number-format.jsx" />
-    <Content Include="app\AccountInfo\components\customer-info\user-level.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-list.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\downline-name.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\total-downlines.jsx" />

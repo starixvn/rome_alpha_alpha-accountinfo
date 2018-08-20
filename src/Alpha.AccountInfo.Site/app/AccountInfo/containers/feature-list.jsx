@@ -206,6 +206,8 @@ export default class FeatureList extends React.Component {
                         resources={resources}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         getCustomerAllStatus={this.getCustomerAllStatus}
+                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                        username={customerInfo.UserName}
                         statusData={statusData}
                         expanded={expandedItems.status}
                         blockId="status" />

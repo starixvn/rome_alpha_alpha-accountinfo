@@ -45,7 +45,7 @@ export default class GivenCredit extends React.Component {
             this.setState({
                 hideMessages: false,
                 message: data.Message,
-                updateSuccess: data.Code == 0
+                updateSuccess: data.IsSuccess
             });
 
             if (data.IsSuccess) {

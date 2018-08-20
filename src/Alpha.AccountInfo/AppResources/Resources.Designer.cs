@@ -745,6 +745,15 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Viewlog.
+        /// </summary>
+        public static string Viewlog {
+            get {
+                return ResourceManager.GetString("Viewlog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yesterday Balance.
         /// </summary>
         public static string YesterdayBalance {
