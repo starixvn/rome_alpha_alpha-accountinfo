@@ -10,7 +10,7 @@ export default class StatusCheckbox extends React.Component {
     handleOpen(e) {
         var self = this;
         var url = this.props.status.Url;
-        var param = self.props.status.Paramself.props.status.Param;
+        var param = self.props.status.Param;
         var confirmMessage = this.props.status.ConfirmMessage;
 
         confirmMessage == undefined ? window.top.ageWnd.open(url) :

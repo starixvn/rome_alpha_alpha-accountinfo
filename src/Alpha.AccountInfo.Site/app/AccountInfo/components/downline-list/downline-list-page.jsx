@@ -1,10 +1,11 @@
 ﻿import React from 'react';
-import DownlineName from './downline-name';
 
-const DownlineListPage = ({ usernames, fetchCustomerInfoFromServer  }) =>
+const DownlineListPage = ({ usernames, handleSearchFromUserLevel  }) =>
     <div className="swiper-slide" >
-        {usernames.map((username, index) => {
-            return <DownlineName username={username.UserName} key={index} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
+        {usernames.map((row, index) => {
+            return <div data-username={row.UserName} className="two-col" onClick={handleSearchFromUserLevel} key={index}>
+                <a href="#">{row.UserName}</a>
+            </div>
         })}
     </div>
 

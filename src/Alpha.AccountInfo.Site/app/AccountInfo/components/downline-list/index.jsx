@@ -22,10 +22,6 @@ export default class DownlineListBlock extends React.Component{
         }
     }
 
-    componentDidMount() {
-    
-    }
-
     handleClick(e) {
         this.state.data === null && accountInfoAPI.getDownlineList({ custid: this.props.custId }).then((data) => {
             this.setState({ data: data });
@@ -35,7 +31,7 @@ export default class DownlineListBlock extends React.Component{
     }
 
     render() {
-        const { resources, blockId, expanded, fetchCustomerInfoFromServer } = this.props;
+        const { resources, blockId, expanded, handleSearchFromUserLevel } = this.props;
         const { data } = this.state;
 
         const content = data == null || data.DownlineList.length == 0 ?
@@ -43,7 +39,7 @@ export default class DownlineListBlock extends React.Component{
             <DownlineListContent
                 resources={resources}
                 downlineList={data}
-                fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
+                handleSearchFromUserLevel={handleSearchFromUserLevel} />;
            
         return (
             <CustomizedAccordionItem

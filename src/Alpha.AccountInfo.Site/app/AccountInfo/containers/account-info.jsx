@@ -70,6 +70,13 @@ export default class AccountInfo extends React.Component {
         });
     }
 
+    handleSearchFromUserLevel(e) {
+        e.preventDefault();
+        const username = e.currentTarget.dataset.username;
+
+        this.setState({ username: username }, this.fetchCustomerInfoFromServer(e, username));
+    }
+
     handleShowContactInfo() {
         this.setState((prevStatus) => { showInfoStatus: !prevStatus })
     }
@@ -98,13 +105,6 @@ export default class AccountInfo extends React.Component {
 
     shouldRenderSuggestions(value) {
         return value.trim().length > 1;
-    }
-
-    handleSearchFromUserLevel(e) {
-        e.preventDefault();
-        const username = e.currentTarget.dataset.username;
-
-        this.setState({ username: username }, this.fetchCustomerInfoFromServer(e, username));
     }
 
     onSuggestionSelected(e, suggestion) {
@@ -159,6 +159,7 @@ export default class AccountInfo extends React.Component {
                         handleShowContactInfo={this.handleShowContactInfo}
                         showInfoStatus={this.showInfoStatus}
                         customerInfo={customerInfo}
+                        handleSearchFromUserLevel={this.handleSearchFromUserLevel}
                         fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} />}
                        
             </div>

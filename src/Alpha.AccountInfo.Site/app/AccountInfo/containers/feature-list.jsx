@@ -143,7 +143,7 @@ export default class FeatureList extends React.Component {
     }
 
     render() {
-        const { resources, customerInfo, fetchCustomerInfoFromServer } = this.props;
+        const { resources, customerInfo, fetchCustomerInfoFromServer, handleSearchFromUserLevel } = this.props;
         const { expandedItems, collapseAll, firstLoadSearch, statusData, settingData} = this.state;
         let collapseExpandClassName = 'account-info-group';
 
@@ -199,7 +199,7 @@ export default class FeatureList extends React.Component {
                         customerInfo.RoleId > 1 &&
                         <DownlineListBlock
                             resources={resources}
-                            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} 
+                            handleSearchFromUserLevel={handleSearchFromUserLevel} 
                             handleCollapExpandBlock={this.handleCollapExpandBlock}
                             expanded={expandedItems.downlineList}
                             blockId="downlineList"

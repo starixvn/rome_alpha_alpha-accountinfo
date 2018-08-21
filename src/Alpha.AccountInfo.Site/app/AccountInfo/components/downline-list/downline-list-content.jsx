@@ -15,9 +15,9 @@ export default class DownlineListContent extends React.Component {
     }
 
     chunkArray(myArray, chunk_size) {
-        var index = 0;
-        var arrayLength = myArray.length;
-        var tempArray = [];
+        let index = 0;
+        let arrayLength = myArray.length;
+        let tempArray = [];
 
         for (index = 0; index < arrayLength; index += chunk_size) {
             let myChunk = myArray.slice(index, index + chunk_size);
@@ -28,14 +28,14 @@ export default class DownlineListContent extends React.Component {
     }
 
     slideTo(e) {
-        const value = e.target.value;
+        let value = e.target.value;
         this.setState({ slideTo: value });
         const pageNumber = value - 1;
         if (this.swiper) this.swiper.slideTo(pageNumber);
     }
     
     render() {
-        const { resources, downlineList, fetchCustomerInfoFromServer } = this.props;
+        const { resources, downlineList, handleSearchFromUserLevel } = this.props;
         const { slideTo } = this.state;
 
         const params = {
@@ -52,14 +52,14 @@ export default class DownlineListContent extends React.Component {
             containerClass: 'swiper-container block-downline-list'
         }
 
-        var results = this.chunkArray(downlineList.DownlineList, 10);
+        let results = this.chunkArray(downlineList.DownlineList, 10);
 
         return (
             <div>
                 <div className="downline-list-container">
                 <Swiper {...params} ref={node => { if (node) this.swiper = node.swiper } }>
                     {results.map((result, index) => {
-                        return <DownlineListPage usernames={result} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} key={index} />
+                            return <DownlineListPage usernames={result} handleSearchFromUserLevel={handleSearchFromUserLevel} key={index} />
                     })}
                 </Swiper>
                 <div className="page-control">

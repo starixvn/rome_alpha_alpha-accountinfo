@@ -38,8 +38,7 @@ export default class BalanceInfoContent extends React.Component{
             custId,
             username,
             roleId,
-            balanceInfo,
-            fetchCustomerInfoFromServer
+            balanceInfo
         } = this.props;
 
 
