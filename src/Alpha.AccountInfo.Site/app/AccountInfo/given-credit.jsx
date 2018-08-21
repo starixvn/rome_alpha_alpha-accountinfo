@@ -29,6 +29,7 @@ export default class GivenCredit extends React.Component {
     }
 
     handleClose(e) {
+        window.top.closeGivenCreditPopup = true;
         window.top.ageWnd.close();
     };
 
@@ -48,7 +49,7 @@ export default class GivenCredit extends React.Component {
             });
 
             if (data.IsSuccess) {
-                window.top.UpdateGivenCreditSuccessully = true;
+                window.top.closeGivenCreditPopup = true;
                 window.top.ageWnd.close();
             }
         });

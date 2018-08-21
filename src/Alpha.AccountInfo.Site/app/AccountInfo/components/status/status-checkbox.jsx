@@ -32,7 +32,7 @@ export default class StatusCheckbox extends React.Component {
 
         return (
             <div>
-                <div className={`${status.Disabled && "disabled"} col checkbox`} onClick={this.handleOpen}>
+                <div className={`${status.Disabled && "disabled"} col checkbox`} >
                     <input id={displayOrder} type="checkbox" disabled={status.Disabled} checked={status.Checked} onChange={this.handleOpen} />
                     <label className="label-text" htmlFor={displayOrder}>{status.Text}</label>
                 </div>
