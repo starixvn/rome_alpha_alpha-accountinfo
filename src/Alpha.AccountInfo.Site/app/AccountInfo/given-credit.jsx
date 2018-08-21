@@ -55,7 +55,7 @@ export default class GivenCredit extends React.Component {
     };
 
     render() {
-        const rowClasses = "col-xs-12 row-info";
+        const rowClasses = "col-xs-12 form-group";
         const { newGivenCredit, updateSuccess, message, hideMessages } = this.state;
         const { resources, currentGivenCredit} = this.props;
 
@@ -63,16 +63,16 @@ export default class GivenCredit extends React.Component {
 
             <div className={rowClasses}>
                 <div className={hideMessages && 'hidden'}>
-                    <span className={updateSuccess ? 'msg-success' : 'msg-error'}>  {message} </span>
+                    <span className={updateSuccess ? 'msg msg-success' : 'msg msg-error'}>  {message} </span>
                 </div>
                 <div className={rowClasses}>
                     <div className="col-xs-7">{resources.CurrentGivenCredit}</div>
-                    <CellContainNumberFormat title={currentGivenCredit} classNames="col-right" />
+                    <CellContainNumberFormat title={currentGivenCredit} classNames="value col-xs-5" />
                 </div>
 
                 <div className={rowClasses}>
                     <div className="col-xs-7">{resources.NewGivenCredit}</div>
-                    <NumberFormat value={this.state.newGivenCredit} thousandSeparator={true} decimalScale="2" onValueChange={(values) => {
+                    <NumberFormat className="textbox col-xs-5" value={this.state.newGivenCredit} thousandSeparator={true} decimalScale="2" onValueChange={(values) => {
                         const { formattedValue, value, floatValue } = values;
                         this.setState({ newGivenCredit: (floatValue === undefined ? 0 : floatValue) })
                     }} />
@@ -80,11 +80,11 @@ export default class GivenCredit extends React.Component {
 
                 <div className={rowClasses}>
                     <div className="col-xs-7">{resources.Difference}</div>
-                    <CellContainNumberFormat title={newGivenCredit - currentGivenCredit} classNames="col-right" />
+                    <CellContainNumberFormat title={newGivenCredit - currentGivenCredit} classNames="value col-xs-5" />
                 </div>
-                <div className="col-xs-12 row-info popup-bottom list-button">
-                    <a className="btn-default with-level" onClick={this.handleClose}>{resources.Cancel}</a>
-                    <a className="btn-default with-level" onClick={this.handleSubmit}>{resources.Submit}</a>
+                <div className="col-xs-12 row-info popup-bottom list-button">                    
+                    <button className="btn-submit" onClick={this.handleSubmit}>{resources.Submit}</button>
+                    <button className="btn-cancel" onClick={this.handleClose}>{resources.Cancel}</button>
                 </div>
             </div>
         );

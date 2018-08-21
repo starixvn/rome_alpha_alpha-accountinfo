@@ -57,106 +57,131 @@ hr {
 
 .row-info {
     line-height: 30px;
+
     [class^="col"] {
         padding: 0 0 0 0;
     }
 }
 
+.col-right {
+    text-align: right;
+    font-weight: bold;
+}
+
+.highlight .col-right {
+    font-family: "Roboto Bold";
+}
+
 .accountinfo-container {
     position: relative;
     height: 100%;
+}
 
-    .col-right {
-        text-align: right;
+// Search box
+.search-box {
+    position: relative;
+    height: 40px;
+    margin: 7px 12px 0;
+    z-index: 1000;
+
+    .txt-search {
+        border: none;
+        border-bottom: 1px solid #888;
+        font-style: italic;
+        height: 30px;
+        margin-left: 0;
+        padding: 10px 30px 4px 0;
+        width: 100%;
+        @include transition('all .3s');
+        @include border-radius(0);
+        @include box-shadow-multiple(none);
+
+        &:focus {
+            border-bottom: 2px solid #67151b;
+        }
+    }
+
+    .icon-search {
+        @include ripple-effect-icon($top: 3px, $margin-left: -1px);
+        color: $text-color;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 6px;
+        position: absolute;
+        top: 3px;
+        right: 0;
+    }
+}
+
+.block-info {
+    display: table;
+    width: 100%;
+    max-height: initial;
+    transition: max-height 0.25s ease-in;
+
+    .txt-name {
+        color: $link-color;
+    }
+
+    .icon-viewlog {
+        margin-left: 4px;
+        cursor: pointer;
+    }
+
+    .no-information-search {
+        padding: 8px 12px;
+    }
+
+    // User status for business
+    .actived, .closed, .suspended {
+        font-weight: bold;
+        padding: 0 2px;
+    }
+
+    .actived {
+        color: #045ace;
+    }
+
+    .closed-wrongPwdOthers,
+    .closed-byAdmin,
+    .closed-byUpline,
+    .closed-wrongOTPSC {
+        color: #B50000;
         font-weight: bold;
     }
 
-    .highlight .col-right {
-        font-family: "Roboto Bold";
+    .closed-wrongPwdOthers {
+        background-color: #ccc7ba;
     }
 
-    // Search box
-    .search-box {
-        position: relative;
-        height: 40px;
-        margin: 7px 12px 0;
-        z-index: 1000;
-
-        .txt-search {
-            border: none;
-            border-bottom: 1px solid #888;
-            font-style: italic;
-            height: 30px;
-            margin-left: 0;
-            padding: 10px 30px 4px 0;
-            width: 100%;
-            @include transition('all .3s');
-            @include border-radius(0);
-            @include box-shadow-multiple(none);
-
-            &:focus {
-                border-bottom: 2px solid #67151b;
-            }
-        }
-
-        .icon-search {
-            @include ripple-effect-icon($top: 3px, $margin-left: -1px);
-            color: $text-color;
-            cursor: pointer;
-            font-weight: bold;
-            padding: 6px;
-            position: absolute;
-            top: 3px;
-            right: 0;
-        }
+    .closed-byAdmin {
+        background-color: #b3a2c7;
     }
 
-    .block-info {
-        display: table;
-        width: 100%;
-        max-height: initial;
-        transition: max-height 0.25s ease-in;
-
-        .txt-name {
-            color: $link-color;
-        }
-
-        .icon-viewlog {
-            margin-left: 4px;
-            cursor: pointer;
-        }
-
-        .no-information-search {
-            padding: 8px 12px;
-        }
+    .closed-byUpline {
+        background-color: #f79646;
     }
 
-    // Settings
-    .product {
-        display: table;
+    .closed-wrongOTPSC {
+        background-color: #86c5e4;
     }
 
-    .block-setting {
-        ul {
-            li {
-                float: left;
-                width: 50%;
-                padding: 0;
-                line-height: 30px;
-                @include box-sizing;
+    .suspended {
+        color: #d45f12;
+        background-color: #f8ded7;
+        font-weight: bold;
+    }
 
-                a {
-                    @extend %linkColor;
-                }
-            }
-        }
+    .disabled {
+        color: #f3a847;
+        background-color: #A0A97A;
+        font-weight: bold;
     }
 }
 
 // Buttons
 
 .list-button {
-
     padding-top: 8px;
     padding-bottom: 8px;
     text-align: center;
@@ -173,66 +198,8 @@ hr {
     }
 }
 
-.number {
-    color: $link-color;
-    &-red {
-        color: #e92819;
-    }
-}
 
-.status {
-    &-closed {
-        color: #e92819;
-    }
-
-    &-suspended {
-        color: #fc6b00;
-    }
-}
-
-.given-credit {
-    .icon-edited {
-        @include ripple-effect-icon($top: -2px, $margin-left: -5px);
-        color: $icon-color;
-
-        font: {
-            size: 16px;
-            weight: 100;
-        }
-
-        position: absolute;
-        left: 0;
-        top: 9px;
-        cursor: pointer;
-    }
-
-    .txt-number-edited {
-        @include box-shadow-multiple(none);
-        border: none;
-        width: 100%;
-        height: $height-normal;
-        padding-left: 24px;
-        padding-right: 0;
-        background: none;
-        color: #049bac;
-        text-align: right;
-
-        &.grey {
-            color: $text-color;
-        }
-
-        &:before {
-            content: '\e937';
-            position: absolute;
-            left: 0;
-        }
-
-        &:focus + .icon-edited {
-            color: $icon-hover-color;
-        }
-    }
-}
-
+// List features
 .account-info-group {
     width: 100%;
     background-color: #fff;
@@ -351,12 +318,46 @@ hr {
             padding-right: 2px;
         }
 
-        .row-info:hover {
+        /*.row-info:hover {
             background-color: #f2f2f2;
+        }*/
+
+        .number {
+            color: #333;
+
+            &-red {
+                color: #ff0000;
+            }
+
+            &-link {
+                color: $link-color;
+                cursor: pointer;
+
+                &:hover {
+                    color: $link-hover-color;
+                }
+            }
+
+            &-edited {
+                color: #049bac;
+            }
         }
 
-        .link {
-            color: #049bac;
+        .given-credit {
+            cursor: pointer;
+        }
+
+        .icon-edited {
+            @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+            position: absolute;
+            left: 0;
+            top: 9px;
+            color: $icon-color;
+
+            font: {
+                size: 16px;
+                weight: 100;
+            }
         }
     }
 
@@ -378,6 +379,17 @@ hr {
             line-height: 24px;
             border: 1px solid #b9b9b9;
             box-shadow: none;
+        }
+
+
+        .status {
+            &-closed {
+                color: #e92819;
+            }
+
+            &-suspended {
+                color: #fc6b00;
+            }
         }
     }
 
@@ -427,7 +439,6 @@ hr {
         }
     }
 }
-//---
 
 // Using Swiper to change pages
 
@@ -590,6 +601,7 @@ hr {
     }
 }
 
+
 // custom checkbox
 
 .checkbox + .checkbox {
@@ -668,29 +680,4 @@ hr {
     &:hover {
         background-color: #ddd;
     }
-}
-
-
-.popup {
-    .list-actions {
-        padding-top: 15px;
-    }
-}
-
-.suspended {
-    color: #d45f12;
-    background-color: #f8ded7;
-    font-weight: bold;
-}
-
-.closed-byUpline {
-    color: #f60;
-    background-color: #f79646;
-    font-weight: bold;
-}
-
-.closed-byAdmin {
-    color: #f60;
-    background-color: #b3a2c7;
-    font-weight: bold;
 }

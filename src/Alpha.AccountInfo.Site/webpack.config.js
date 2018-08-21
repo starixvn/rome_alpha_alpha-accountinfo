@@ -12,7 +12,7 @@ module.exports = {
         ],
         "bundles/account-info/given-credit": [
             "./app/AccountInfo/given-credit.jsx",
-            "./assets/styles/account-info.css"
+            "./assets/styles/given-credit.css"
         ],
         "bundles/productstatus/productstatus": [
             "./assets/scripts/productstatus/productstatus.ts",

@@ -14,7 +14,7 @@ export default class BalanceInfoContent extends React.Component{
 
     handleOpen(e) {
         let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${this.props.custId}&SearchAccountName=${this.props.username}&SearchAccountRoleId=${this.props.roleId}&CurrentGivenCredit=${this.props.balanceInfo.GivenCredit}`;
-        window.top.ageWnd.open(givenCreditUrl, this.state.resources.GivenCreditPopupTitle);
+        window.top.ageWnd.open(givenCreditUrl, this.state.resources.GivenCreditPopupTitle, undefined, undefined, 330, 238);
 
         window.top.UpdateGivenCreditSuccessully = false;
         var timer = setInterval(reloadBalanceInfo, 1000);
@@ -105,16 +105,16 @@ export default class BalanceInfoContent extends React.Component{
 
                 <div className={rowClasses}>
                     <div className="col-xs-6">{resources.GivenCredit}</div>
-                    <div className="col-xs-6 col-right given-credit" title={`<= ${balanceInfo.GivenCredit}`} >
+                    <div className="col-xs-6 col-right given-credit" title={`<= ${balanceInfo.GivenCredit}`} onClick={this.handleOpen} >
                         <NumberFormat
-                            className="link"
+                            className="number-edited"
                             value={balanceInfo.GivenCredit}
                             displayType={'text'}
                             decimalScale="2"
                             fixedDecimalScale={true}
                             thousandSeparator={true} />
 
-                        <span className="icon-border-color icon-edited" onClick={this.handleOpen} />
+                        <span className="icon-border-color icon-edited" />
                     </div>
                 </div>
 
