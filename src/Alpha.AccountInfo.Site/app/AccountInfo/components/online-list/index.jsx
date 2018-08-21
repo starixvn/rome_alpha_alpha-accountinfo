@@ -39,11 +39,13 @@ export default class OnlineListBlock extends React.Component{
                 {
                     <table className="tblRpt tblRpt-bordered width-100per online-list">
                         <thead>
-                            <th>{resources.NumberOrder}</th>
-                            <th>{resources.IP}</th>
-                            <th>{resources.LoginTime}</th>
+                            <tr>
+                                <th>{resources.NumberOrder}</th>
+                                <th>{resources.IP}</th>
+                                <th>{resources.LoginTime}</th>
+                            </tr>
                         </thead>
-
+                        <tbody>
                         {
                             (data === null || data.length == 0) &&
                             <tr>
@@ -59,6 +61,7 @@ export default class OnlineListBlock extends React.Component{
                                     <td className="text-center"> {online.Reload_Time}</td>
                                 </tr>)
                         }
+                        </tbody>
                     </table>
                 }
             </CustomizedAccordionItem>
