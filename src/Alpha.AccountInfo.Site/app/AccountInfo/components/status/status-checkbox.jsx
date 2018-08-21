@@ -14,7 +14,7 @@ export default class StatusCheckbox extends React.Component {
         var confirmMessage = this.props.status.ConfirmMessage;
 
         confirmMessage == undefined ? window.top.ageWnd.open(url) :
-            window.top.bootboxConfirm(confirmMessage, e,
+            window.top.bootboxConfirm(confirmMessage, e.target,
                 function () {
                     accountInfoAPI.updateStatus(url, JSON.parse(param)).then((data) => {
                         if (data.IsSuccess) {
