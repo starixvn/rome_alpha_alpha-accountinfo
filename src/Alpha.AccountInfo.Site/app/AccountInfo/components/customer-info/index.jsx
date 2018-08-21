@@ -19,7 +19,9 @@ const CustomerInfoBlock = ({
                         data-username={data.MasterName}>
                         {data.MasterName}
                     </span>
-                    {data.RoleId == 3 && <span className="icon-viewlog" title={resources.Viewlog}></span>}
+                    {data.RoleId == 3 && <span>
+                        <a className="icon-viewlog" title={resources.Viewlog} className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
+                    </span>}
                 </div>
             </div>
         }
@@ -35,7 +37,9 @@ const CustomerInfoBlock = ({
                         data-username={data.AgentName}>
                         {data.AgentName}
                     </span>
-                    {data.RoleId == 2 && <span className="icon-viewlog" title={resources.Viewlog}></span>}
+                    {data.RoleId == 2 && <span className="icon-viewlog" title={resources.Viewlog}>
+                        <a className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
+                    </span>}
                 </div>
             </div>
         }
@@ -51,7 +55,9 @@ const CustomerInfoBlock = ({
                         data-username={data.MemberName}>
                         {data.MemberName}
                     </span>
-                    <span className="icon-viewlog" title={resources.Viewlog}></span>
+                    <span className="icon-viewlog" title={resources.Viewlog}>
+                        <a className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
+                    </span>
                 </div>
             </div>
         }

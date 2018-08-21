@@ -145,7 +145,7 @@
         {
             get
             {
-                return mapViewLogsPath ?? MicroSites.BetListsUrl; // TO DO Viewlogs
+                return mapViewLogsPath ?? MicroSites.ViewLogUrl;
             }
 
             internal set
