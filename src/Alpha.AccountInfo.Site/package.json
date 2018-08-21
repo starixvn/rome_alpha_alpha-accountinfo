@@ -7,8 +7,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "allowJs": true,
-    "paths": {
-    }
+    "paths": {}
   },
   "scripts": {
     "build-css": "node-sass-chokidar assets/styles/ -o assets/styles/",
