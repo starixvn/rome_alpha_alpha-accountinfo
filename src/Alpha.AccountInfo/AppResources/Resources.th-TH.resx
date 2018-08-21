@@ -369,4 +369,10 @@
   <data name="Viewlog" xml:space="preserve">
     <value>Viewlog</value>
   </data>
+  <data name="ThisAccountWasDisabled" xml:space="preserve">
+    <value>บัญชีนี้ได้ถูกปิดไปแล้ว</value>
+  </data>
+  <data name="ThisAccountWasSuspended" xml:space="preserve">
+    <value>This account was suspended.</value>
+  </data>
 </root>

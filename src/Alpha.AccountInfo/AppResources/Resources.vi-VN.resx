@@ -369,4 +369,10 @@
   <data name="Viewlog" xml:space="preserve">
     <value>Viewlog</value>
   </data>
+  <data name="ThisAccountWasDisabled" xml:space="preserve">
+    <value>Tài khoản bị vô hiệu hóa.</value>
+  </data>
+  <data name="ThisAccountWasSuspended" xml:space="preserve">
+    <value>Tài khoản bị đình chỉ.</value>
+  </data>
 </root>

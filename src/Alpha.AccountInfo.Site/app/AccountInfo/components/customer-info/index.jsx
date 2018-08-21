@@ -13,7 +13,8 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Master}</div>
                 <div className={secondCellClass}>
-                    <span className={data.RoleId == 3 && `${data.Suspended && "suspended"} ${data.Closed && (data.ClosedReason != "" ? "closed-byUpline" : "closed-byAdmin")}`} 
+                    <span className={data.RoleId == 3 && data.StatusCss}
+                        title={data.StatusMessage}
                         onClick={handleSearchFromUserLevel}
                         data-username={data.MasterName}>
                         {data.MasterName}
@@ -28,7 +29,8 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Agent}</div>
                 <div className={secondCellClass}>
-                    <span className={data.RoleId == 2 && `${data.Suspended && "suspended"} ${data.Closed && "closed"}`} 
+                    <span className={data.RoleId == 2 && data.StatusCss}
+                        title={data.StatusMessage}
                         onClick={handleSearchFromUserLevel}
                         data-username={data.AgentName}>
                         {data.AgentName}
@@ -43,7 +45,8 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Customer}</div>
                 <div className={secondCellClass}>
-                    <span className={`${data.Suspended && "suspended"} ${data.Closed && "closed"}`} 
+                    <span className={data.StatusCss}
+                        title={data.StatusMessage}
                         onClick={handleSearchFromUserLevel}
                         data-username={data.MemberName}>
                         {data.MemberName}

@@ -700,6 +700,24 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This account was disabled..
+        /// </summary>
+        public static string ThisAccountWasDisabled {
+            get {
+                return ResourceManager.GetString("ThisAccountWasDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account was suspended..
+        /// </summary>
+        public static string ThisAccountWasSuspended {
+            get {
+                return ResourceManager.GetString("ThisAccountWasSuspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This user is not online.
         /// </summary>
         public static string ThisUserIsNotOnline {

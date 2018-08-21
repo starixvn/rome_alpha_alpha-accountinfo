@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     using System.Collections.Generic;
+    using Alpha.AccountInfo.AppResources;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Helpers;
@@ -19,6 +20,24 @@
                 { UserLevel.Master, "_MemberInfo/CustomerList/Super/AgentList.aspx"},
                 { UserLevel.Agent,  "_MemberInfo/CustomerList/Super/MemberList.aspx"}
             };
+
+        private readonly Dictionary<byte, string> ClosedReasonClassDict
+            = new Dictionary<byte, string>
+            {
+                { 0, "closed-wrongPwdOthers"},
+                { 1, "closed-byAdmin"},
+                { 2, "closed-byUpline"},
+                { 3, "closed-wrongOTPSC"}
+            };
+
+        private readonly Dictionary<byte, string> ClosedReasonMessageDict
+           = new Dictionary<byte, string>
+           {
+                { 0, Resources.ClosedByFailedLoginOrAccountExpired},
+                { 1, Resources.ClosedByAdmin},
+                { 2, Resources.ClosedByUpline},
+                { 3, Resources.ClosedByFailedOTPOrSC}
+           };
 
         public CustomerInfoViewModel()
         {
@@ -39,12 +58,6 @@
         public byte RoleId => customerInfo.RoleId;
 
         public byte ActorRoleId => message.ActorRoleId;
-
-        public bool Closed => customerInfo.Closed;
-
-        public byte ClosedReason => customerInfo.ClosedReason;
-
-        public bool Suspended => customerInfo.Suspended;
 
         public string UserName => customerInfo.UserName;
 
@@ -137,5 +150,51 @@
         private static string OldMainPath => UrlHelper.MapOldMainPath("~/");
 
         public string AccountinfoPath => UrlHelper.MapAccountInfoPath("~/");
+
+        public string StatusCss
+        {
+            get
+            {
+                if (customerInfo.Closed)
+                {
+                    return ClosedReasonClassDict[customerInfo.ClosedReason];
+                }
+
+                if (customerInfo.Suspended)
+                {
+                    return Resources.ThisAccountWasSuspended;
+                }
+
+                if (customerInfo.Enabled)
+                {
+                    return string.Empty;
+                }
+
+                return Resources.ThisAccountWasDisabled;
+            }
+        }
+
+        public string StatusMessage
+        {
+            get
+            {
+                if (customerInfo.Closed)
+                {
+                    return ClosedReasonMessageDict[customerInfo.ClosedReason];
+                }
+
+                if (customerInfo.Suspended)
+                {
+                    return "suspended";
+                }
+
+                if (customerInfo.Enabled)
+                {
+                    return "enabled";
+                }
+
+                return "disabled";
+            }
+        }
     }
 }
