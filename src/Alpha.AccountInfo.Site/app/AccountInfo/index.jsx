@@ -1,5 +1,4 @@
-﻿import * as React from 'react';
-import ReactDOM from 'react-dom';
+﻿import ReactDOM from 'react-dom';
 import AccountInfo from './containers/account-info';
 
 window.renderAccountInfo = function (accountInfoResources) {

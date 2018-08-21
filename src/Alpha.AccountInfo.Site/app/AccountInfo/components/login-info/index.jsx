@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
-import { Button, Modal } from 'react-bootstrap';
 
 const LoginInfoBlock = ({ resources, handleCollapExpandBlock, blockId, expanded, loginInfo }) =>
     <CustomizedAccordionItem
