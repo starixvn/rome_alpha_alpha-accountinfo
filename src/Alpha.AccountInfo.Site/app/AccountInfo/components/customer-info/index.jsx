@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import Tooltip from 'rc-tooltip';
 
 const CustomerInfoBlock = ({
     data,
@@ -13,12 +14,20 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Master}</div>
                 <div className={secondCellClass}>
-                    <span className={data.RoleId == 3 ? data.StatusCss : 'link'}
-                        title={data.StatusMessage}
-                        onClick={handleSearchFromUserLevel}
-                        data-username={data.MasterName}>
-                        {data.MasterName}
-                    </span>
+                    <Tooltip
+                        placement="bottom"
+                        trigger={['hover']}
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0.1}
+                        overlay={data.StatusMessage}>
+                        <span className={data.RoleId == 3 ? data.StatusCss : 'link'}
+                            title={data.StatusMessage}
+                            onClick={handleSearchFromUserLevel}
+                            data-username={data.MasterName}>
+                            {data.MasterName}
+                        </span>
+                    </Tooltip>
+                    
                     {data.RoleId == 3 && <span>
                         <a className="icon-viewlog" title={resources.Viewlog} className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
                     </span>}
@@ -31,12 +40,19 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Agent}</div>
                 <div className={secondCellClass}>
-                    <span className={data.RoleId == 2 && data.StatusCss}
-                        title={data.StatusMessage}
-                        onClick={handleSearchFromUserLevel}
-                        data-username={data.AgentName}>
-                        {data.AgentName}
-                    </span>
+                    <Tooltip
+                        placement="bottom"
+                        trigger={['hover']}
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0.1}
+                        overlay={data.StatusMessage}>
+                        <span className={data.RoleId == 2 && data.StatusCss}
+                            onClick={handleSearchFromUserLevel}
+                            data-username={data.AgentName}>
+                            {data.AgentName}
+                        </span>
+                    </Tooltip>
+                    
                     {data.RoleId == 2 && <span className="icon-viewlog" title={resources.Viewlog}>
                         <a className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
                     </span>}
@@ -49,12 +65,19 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Customer}</div>
                 <div className={secondCellClass}>
-                    <span className={data.StatusCss}
-                        title={data.StatusMessage}
-                        onClick={handleSearchFromUserLevel}
-                        data-username={data.MemberName}>
-                        {data.MemberName}
-                    </span>
+                    <Tooltip
+                        placement="bottom"
+                        trigger={['hover']}
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0.1}
+                        overlay={data.StatusMessage}>
+                        <span className={data.StatusCss}
+                            onClick={handleSearchFromUserLevel}
+                            data-username={data.MemberName}>
+                            {data.MemberName}
+                        </span>
+                    </Tooltip>
+                    
                     <span className="icon-viewlog" title={resources.Viewlog}>
                         <a className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
                     </span>

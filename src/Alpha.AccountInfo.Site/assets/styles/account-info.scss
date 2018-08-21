@@ -125,6 +125,7 @@ hr {
 
     .link {
         color: $link-color;
+        cursor: pointer;
 
         &:hover {
             color: $link-hover-color;
@@ -324,13 +325,12 @@ hr {
             padding-left: 2px;
             padding-right: 2px;
         }
-
         /*.row-info:hover {
             background-color: #f2f2f2;
         }*/
 
         .number {
-            color: #333;
+            color: #004080;
 
             &-red {
                 color: #ff0000;
@@ -690,3 +690,105 @@ hr {
         background-color: #ddd;
     }
 }
+
+/* Customize*/
+
+.rc-tooltip-hidden {
+    display: none;
+}
+
+.rc-tooltip {
+    position: absolute;
+    z-index: 1070;
+    margin-top: 4px;
+    visibility: visible;
+    line-height: 1.5;
+    background-color: rgba(0,0,0,.05);
+    font-size: 12px;
+    opacity: 1;
+}
+
+.rc-tooltip-placement-top .rc-tooltip-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 1px;
+    margin-left: -4px;
+    background: #fff;
+
+    &:after, &:before {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    &:after {
+        border-color: rgba(0, 0, 0, 0);
+        border-top-color: #fff;
+        border-width: 6px;
+        margin-left: -6px;
+    }
+
+    &:before {
+        border-color: rgba(6, 135, 255, 0);
+        border-top-color: #0687ff;
+        border-width: 7px;
+        margin-left: -7px;
+    }
+}
+
+.rc-tooltip-placement-bottom .rc-tooltip-arrow {
+    position: absolute;
+    right: 20px;
+    top: 1px;
+    background: #fff;
+    margin-left: -4px;
+
+    &:after, &:before {
+        bottom: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    &:after {
+        border-color: rgba(0, 0, 0, 0);
+        border-bottom-color: #fff;
+        border-width: 6px;
+        margin-left: -6px;
+    }
+
+    &:before {
+        border-color: rgba(6, 135, 255, 0);
+        border-bottom-color: #0687ff;
+        border-width: 7px;
+        margin-left: -7px;
+    }
+}
+
+.rc-tooltip-content {
+    position: relative;
+}
+
+.rc-tooltip-inner {
+    padding: 4px 6px;
+    color: #333;
+    text-align: left;
+    text-decoration: none;
+    border-radius: 2px;
+    min-height: 34px;
+    border: 1px solid #0687ff;
+    background-color: #fff;
+    width: 220px;
+}
+
+
+
