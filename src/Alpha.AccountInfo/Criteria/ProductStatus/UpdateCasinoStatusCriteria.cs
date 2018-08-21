@@ -14,10 +14,14 @@
         {
             Language = language;
             Disable = disable;
+            IP = ip;
         }
 
         [SpParam(SqlParamName = "DisabledCS")]
         public bool Disable { get; }
+
+        [SpParam(SqlParamName = "LoginIP")]
+        public new string IP { get; }
 
         public bool SyncCS { get; } = true;
 
