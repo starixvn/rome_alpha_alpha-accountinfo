@@ -21,7 +21,7 @@ const CellContainNumberFormat = ({ classNames = null, title = '', hrefLink = nul
                 thousandSeparator={true}
                 renderText={value => hrefLink == null ?
                     (<span>{value}</span>) :
-                    (<a className={linkClass} href={hrefLink} target={target}>{value}</a>)} />
+                    (<a href={hrefLink} target={target}>{value}</a>)} />
         </div>
     );
 }    

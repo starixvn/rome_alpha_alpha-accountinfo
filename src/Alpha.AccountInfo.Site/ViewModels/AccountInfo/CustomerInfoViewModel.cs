@@ -151,13 +151,13 @@
 
         public string AccountinfoPath => UrlHelper.MapAccountInfoPath("~/");
 
-        public string StatusCss
+        public string StatusMessage 
         {
             get
             {
                 if (customerInfo.Closed)
                 {
-                    return ClosedReasonClassDict[customerInfo.ClosedReason];
+                    return ClosedReasonMessageDict[customerInfo.ClosedReason];
                 }
 
                 if (customerInfo.Suspended)
@@ -174,13 +174,13 @@
             }
         }
 
-        public string StatusMessage
+        public string StatusCss
         {
             get
             {
                 if (customerInfo.Closed)
                 {
-                    return ClosedReasonMessageDict[customerInfo.ClosedReason];
+                    return ClosedReasonClassDict[customerInfo.ClosedReason];
                 }
 
                 if (customerInfo.Suspended)

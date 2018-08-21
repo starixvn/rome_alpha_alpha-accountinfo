@@ -123,6 +123,14 @@ hr {
         color: $link-color;
     }
 
+    .link {
+        color: $link-color;
+
+        &:hover {
+            color: $link-hover-color;
+        }
+    }
+
     .icon-viewlog {
         margin-left: 4px;
         cursor: pointer;
@@ -131,7 +139,6 @@ hr {
     .no-information-search {
         padding: 8px 12px;
     }
-
     // User status for business
     .actived, .closed, .suspended {
         font-weight: bold;
@@ -613,6 +620,8 @@ hr {
 
     &.disabled {
         opacity: .4;
+
+        
     }
 
     label {

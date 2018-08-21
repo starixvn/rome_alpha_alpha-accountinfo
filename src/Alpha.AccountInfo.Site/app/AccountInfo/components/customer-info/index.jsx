@@ -13,7 +13,7 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Master}</div>
                 <div className={secondCellClass}>
-                    <span className={data.RoleId == 3 && data.StatusCss}
+                    <span className={data.RoleId == 3 ? data.StatusCss : 'link'}
                         title={data.StatusMessage}
                         onClick={handleSearchFromUserLevel}
                         data-username={data.MasterName}>

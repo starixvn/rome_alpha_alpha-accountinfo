@@ -105,7 +105,7 @@ export default class BalanceInfoContent extends React.Component{
 
                 <div className={rowClasses}>
                     <div className="col-xs-6">{resources.GivenCredit}</div>
-                    <div className="col-xs-6 col-right given-credit" title={`<= ${balanceInfo.GivenCredit}`} onClick={this.handleOpen} >
+                    <div className="col-xs-6 col-right given-credit" title={balanceInfo.GivenCreditLimit} onClick={this.handleOpen} >
                         <NumberFormat
                             className="number-edited"
                             value={balanceInfo.GivenCredit}
