@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import Tooltip from 'rc-tooltip';
+import UserNameViewLog from './username-viewlog';
 
 const CustomerInfoBlock = ({
     data,
@@ -24,26 +25,26 @@ const CustomerInfoBlock = ({
                     {
                         data.RoleId == 3 && data.StatusMessage != '' &&
                         <Tooltip
-                            placement="bottom"
+                            placement="top"
                             trigger={['hover']}
                             mouseEnterDelay={0}
                             mouseLeaveDelay={0.1}
-                            overlay={data.StatusMessage}>
-                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
-                                <span className={data.StatusCss} data-username={data.MasterName}>
-                                    {data.MasterName}
-                                </span>
-                                <span className="icon-viewlog"></span>
-                            </a>
+                            overlayClassName="user-status"
+                                overlay={data.StatusMessage}>
+                                <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                    <span className={data.StatusCss} data-username={data.MemberName}> {data.MasterName} </span>
+                                    <span className="icon-viewlog"></span>
+                                </a>                            
                         </Tooltip>
                     }
 
                     {
                         data.RoleId == 3 && data.StatusMessage == '' &&
-                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
-                                <span className={data.StatusCss} data-username={data.MasterName}> {data.MasterName} </span>
-                                <span className="icon-viewlog"></span>
-                            </a>
+                            <UserNameViewLog
+                                viewLogTitle={resources.Viewlog}
+                                viewLogLink={data.ViewLogLink}
+                                statusCSS={data.StatusCss}
+                                username={data.MasterName} /> 
                     }
                 </div>
             </div>
@@ -64,34 +65,27 @@ const CustomerInfoBlock = ({
 
                     {
                         data.RoleId == 2 && data.StatusMessage != '' &&
-                        <div>
-                            <Tooltip
-                                placement="bottom"
-                                trigger={['hover']}
-                                mouseEnterDelay={0}
-                                mouseLeaveDelay={0.1}
-                                overlay={data.StatusMessage}>
-
-                                <span className={data.StatusCss}
-                                    data-username={data.AgentName}>
-                                    {data.AgentName}
-                                </span>
-
-                            </Tooltip>
-                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
-                                <span className="icon-viewlog"></span>
-                            </a>
-                        </div>
+                        <Tooltip
+                            placement="top"
+                            trigger={['hover']}
+                            mouseEnterDelay={0}
+                            mouseLeaveDelay={0.1}
+                            overlayClassName="user-status"
+                            overlay={data.StatusMessage}>
+                                <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                    <span className={data.StatusCss} data-username={data.AgentName}> {data.AgentName} </span>
+                                    <span className="icon-viewlog"></span>
+                                </a>
+                        </Tooltip>
                     }
 
                     {
                         data.RoleId == 2 && data.StatusMessage == '' &&
-                        <div>
-                            <span className={data.StatusCss} data-username={data.AgentName}> {data.AgentName} </span>
-                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
-                                <span className="icon-viewlog"></span>
-                            </a>
-                        </div>
+                        <UserNameViewLog
+                            viewLogTitle={resources.Viewlog}
+                            viewLogLink={data.ViewLogLink}
+                            statusCSS={data.StatusCss}
+                            username={data.AgentName} />
                     }
                 </div>
             </div>
@@ -104,34 +98,27 @@ const CustomerInfoBlock = ({
                 <div className={secondCellClass}>
                     {
                         data.StatusMessage != '' &&
-                        <div>
-                            <Tooltip
-                                placement="bottom"
-                                trigger={['hover']}
-                                mouseEnterDelay={0}
-                                mouseLeaveDelay={0.1}
-                                overlay={data.StatusMessage}>
-
-                                <span className={data.StatusCss}
-                                    data-username={data.MemberName}>
-                                    {data.MemberName}
-                                </span>
-
-                            </Tooltip>
-                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
-                                <span className="icon-viewlog"></span>
-                            </a>
-                        </div>
+                        <Tooltip
+                            placement="top"
+                            trigger={['hover']}
+                            mouseEnterDelay={0}
+                            mouseLeaveDelay={0.1}
+                            overlayClassName="user-status"
+                            overlay={data.StatusMessage}>
+                                <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                    <span className={data.StatusCss} data-username={data.MemberName}> {data.MemberName} </span>
+                                    <span className="icon-viewlog"></span>
+                                </a>
+                        </Tooltip>
                     }
 
                     {
                         data.StatusMessage == '' &&
-                        <div>
-                            <span className={data.StatusCss} data-username={data.MemberName}> {data.MemberName} </span>
-                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
-                                <span className="icon-viewlog"></span>
-                            </a>
-                        </div>
+                        <UserNameViewLog
+                            viewLogTitle={resources.Viewlog}
+                            viewLogLink={data.ViewLogLink}
+                            statusCSS={data.StatusCss}
+                            username={data.MemberName} />
                     }
                 </div>
             </div>

@@ -14,8 +14,8 @@ export default class StatusOnProduct extends React.Component {
         const { title } = this.props;
 
         return (
-            <div className="col">
-                <a onClick={this.handleOpen}>{title}</a>
+            <div className="col pointer" onClick={this.handleOpen}>
+                <span className="link">{title}</span>
                 <span className="icon-ic_list"></span>
             </div>
         );

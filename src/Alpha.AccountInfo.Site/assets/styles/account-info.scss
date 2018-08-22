@@ -22,6 +22,9 @@ a {
     }
 }
 
+.pointer {
+    cursor: pointer;
+}
 
 .font-weight-normal {
     font-weight: normal !important;
@@ -35,8 +38,8 @@ hr {
 }
 
 .px-0 {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .visible-mobile {
@@ -57,6 +60,8 @@ hr {
 
 .row-info {
     line-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     [class^="col"] {
         padding: 0 0 0 0;
@@ -81,7 +86,7 @@ hr {
 .search-box {
     position: relative;
     height: 40px;
-    margin: 7px 12px 0;
+    margin: 7px 10px 0;
     z-index: 1000;
 
     .txt-search {
@@ -124,16 +129,15 @@ hr {
     }
 
     .enabled {
-        color: $link-color;
+        @extend %linkColor;
         cursor: pointer;
+    }
 
-        &:hover {
-            color: $link-hover-color;
-        }
+    .icon-viewlog {
+        margin-left: 4px;
     }
 
     .link-viewlog {
-        margin-left: 4px;
         cursor: pointer;
     }
 
@@ -206,7 +210,6 @@ hr {
     }
 }
 
-
 // List features
 .account-info-group {
     width: 100%;
@@ -255,7 +258,7 @@ hr {
 
 .accordion__title {
     position: relative;
-    padding: 10px 25px 10px 15px;
+    padding: 10px 25px 10px 10px;
     line-height: 20px;
     font-size: 12px;
     font-weight: bold;
@@ -265,14 +268,15 @@ hr {
     cursor: pointer;
 
     @media (min-device-width: 1025px) {
-        padding: 8px 25px 8px 15px;
+        padding-top: 8px;
+        padding-bottom: 8px;
     }
 
     &:after {
         font-family: "Iconalpha";
         content: '\e942';
         position: absolute;
-        right: 9px;
+        right: 4px;
         font-size: 19px;
         font-weight: normal;
     }
@@ -317,7 +321,7 @@ hr {
 .accordion__body {
     overflow: hidden;
     border-bottom: 1px solid #cecece;
-    padding: 6px 15px 4px;
+    padding: 6px 10px 4px;
     margin-bottom: 2px;
 
     &.balance-info {
@@ -337,12 +341,8 @@ hr {
             }
 
             &-link {
-                color: $link-color;
+                @extend %linkColor;
                 cursor: pointer;
-
-                &:hover {
-                    color: $link-hover-color;
-                }
             }
 
             &-edited {
@@ -386,17 +386,6 @@ hr {
             line-height: 24px;
             border: 1px solid #b9b9b9;
             box-shadow: none;
-        }
-
-
-        .status {
-            &-closed {
-                color: #e92819;
-            }
-
-            &-suspended {
-                color: #fc6b00;
-            }
         }
     }
 
@@ -620,15 +609,12 @@ hr {
 
     &.disabled {
         opacity: .4;
-
-        
     }
 
     label {
         transition: all .3s ease-in-out;
         padding-top: 2px;
         padding-left: 22px;
-        cursor: pointer;
 
         &:before {
             content: "";
@@ -684,7 +670,7 @@ hr {
 }
 
 .react-autosuggest__suggestion {
-    padding: 8px 12px;
+    padding: 8px 10px;
 
     &:hover {
         background-color: #ddd;
@@ -700,95 +686,101 @@ hr {
 .rc-tooltip {
     position: absolute;
     z-index: 1070;
-    margin-top: 4px;
     visibility: visible;
     line-height: 1.5;
     background-color: rgba(0,0,0,.05);
-    font-size: 12px;
     opacity: 1;
-}
 
-.rc-tooltip-placement-top .rc-tooltip-arrow {
-    position: absolute;
-    right: 20px;
-    bottom: 1px;
-    margin-left: -4px;
-    background: #fff;
+    &.user-status.rc-tooltip-placement-top {
+        margin-top: 2px;
+    }
 
-    &:after, &:before {
-        top: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
+    &.total-downline.rc-tooltip-placement-top {
+        margin-top: 6px;
+    }
+
+    .rc-tooltip-content {
+        position: relative;
+    }
+
+    .rc-tooltip-arrow {
         position: absolute;
-        pointer-events: none;
+        right: 40px;
+        bottom: 1px;
+
+        &:after, &:before {
+            top: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
     }
 
-    &:after {
-        border-color: rgba(0, 0, 0, 0);
-        border-top-color: #fff;
-        border-width: 6px;
-        margin-left: -6px;
-    }
-
-    &:before {
-        border-color: rgba(6, 135, 255, 0);
-        border-top-color: #0687ff;
-        border-width: 7px;
-        margin-left: -7px;
-    }
-}
-
-.rc-tooltip-placement-bottom .rc-tooltip-arrow {
-    position: absolute;
-    right: 20px;
-    top: 1px;
-    background: #fff;
-    margin-left: -4px;
-
-    &:after, &:before {
-        bottom: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-    }
-
-    &:after {
-        border-color: rgba(0, 0, 0, 0);
-        border-bottom-color: #fff;
-        border-width: 6px;
-        margin-left: -6px;
-    }
-
-    &:before {
-        border-color: rgba(6, 135, 255, 0);
-        border-bottom-color: #0687ff;
-        border-width: 7px;
-        margin-left: -7px;
+    .rc-tooltip-inner {
+        @include border-radius(2px);
+        padding: 4px 6px;
+        text-align: left;
+        text-decoration: none;
     }
 }
 
-.rc-tooltip-content {
-    position: relative;
+.user-status.rc-tooltip-placement-top {
+
+    .rc-tooltip-arrow {
+        &:before {
+            border-color: rgba(6, 135, 255, 0);
+            border-top-color: #000;
+            border-width: 7px;
+            margin-left: -7px;
+        }
+    }
+
+    .rc-tooltip-inner {
+        color: #fff;
+        background-color: #000;
+    }
 }
 
-.rc-tooltip-inner {
-    padding: 4px 6px;
-    color: #333;
-    text-align: left;
-    text-decoration: none;
-    border-radius: 2px;
-    min-height: 34px;
-    border: 1px solid #0687ff;
-    background-color: #fff;
-    width: 220px;
-}
+.total-downline.rc-tooltip-placement-top {
+    .rc-tooltip-arrow {
+        &:after {
+            border-color: rgba(0, 0, 0, 0);
+            border-top-color: #f2f2f2;
+            border-width: 6px;
+            margin-left: -6px;
+        }
 
+        &:before {
+            border-color: rgba(6, 135, 255, 0);
+            border-top-color: #ccc;
+            border-width: 7px;
+            margin-left: -7px;
+        }
+    }
+
+    .rc-tooltip-inner {
+        color: #333;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+    }
+}
+// Total Downline
+.status {
+    &-active {
+        color: #045ace;
+    }
+
+    &-closed {
+        color: #fe0000;
+    }
+
+    &-suspended {
+        color: #ff6100;
+    }
+}
 
 
