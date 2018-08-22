@@ -40,12 +40,21 @@ export default class DownlineListContent extends React.Component {
 
         let results = this.chunkArray(downlineList.DownlineList, 10);
 
-        let params = results.length > 1 ?
+        let length = results.length;
+        let params = length > 1 ?
             {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
                 paginationBulletRender: (swiper, index, className) => {
-                    return `<span class="${className}">${index + 1}</span>`
+                    if (index < 2 || index == length - 1) {
+                        return `<span class="${className}">${index + 1}</span>`;
+                    }
+
+                    if (index > 2 && index < length - 3) {
+                        return '';
+                    }
+
+                    return '.';
                 },
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
@@ -58,7 +67,7 @@ export default class DownlineListContent extends React.Component {
                 observer: true,
                 observeParents: true,
                 grabCursor: true,
-                    containerClass: 'swiper-container block-downline-list'
+                containerClass: 'swiper-container block-downline-list'
             } ;
 
         return (
@@ -69,7 +78,7 @@ export default class DownlineListContent extends React.Component {
                             return <DownlineListPage usernames={result} handleSearchFromUserLevel={handleSearchFromUserLevel} key={index} />
                     })}
                     </Swiper>
-                    {results.length > 1 &&
+                    {results.length > 4 &&
                         <div className="page-control">
                             <span>{resources.Page}</span>
                             <input type="text" ref="slideTo" className="number" value={slideTo} onChange={this.slideTo} />

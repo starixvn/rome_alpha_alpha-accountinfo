@@ -37,21 +37,28 @@ export default class SettingContent extends React.Component {
         const { resources, settings } = this.props;
         const { slideTo } = this.state;
 
-        const params = {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            paginationBulletRender: (swiper, index, className) => {
-                return `<span class="${className}">${index + 1}</span>`
-            },
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            observer: true,
-            observeParents: true,
-            grabCursor: true,
-            containerClass: 'swiper-container block-downline-list'
-        }
-
         var results = this.chunkArray(settings, 10);
+
+        let params = results.length > 1 ?
+            {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                paginationBulletRender: (swiper, index, className) => {
+                    return `<span class="${className}">${index + 1}</span>`
+                },
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                observer: true,
+                observeParents: true,
+                grabCursor: true,
+                containerClass: 'swiper-container block-downline-list'
+            } :
+            {
+                observer: true,
+                observeParents: true,
+                grabCursor: true,
+                containerClass: 'swiper-container block-downline-list'
+            };
 
         return (
             <div className="downline-list-container">
@@ -60,10 +67,12 @@ export default class SettingContent extends React.Component {
                         return <SettingPaging models={result} key={index} />
                     })}
                 </Swiper>
-                <div className="page-control">
-                    <span>{resources.Page}</span>
-                    <input type="text" ref="slideTo" className="number" value={slideTo} onChange={this.slideTo} />
-                </div>
+                {results.length > 4 &&
+                    <div className="page-control">
+                        <span>{resources.Page}</span>
+                        <input type="text" ref="slideTo" className="number" value={slideTo} onChange={this.slideTo} />
+                    </div>
+                }
             </div>
         )
     }
