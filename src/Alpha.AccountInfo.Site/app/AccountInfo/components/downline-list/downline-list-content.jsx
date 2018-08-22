@@ -38,21 +38,28 @@ export default class DownlineListContent extends React.Component {
         const { resources, downlineList, handleSearchFromUserLevel } = this.props;
         const { slideTo } = this.state;
 
-        const params = {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            paginationBulletRender: (swiper, index, className) => {
-                return `<span class="${className}">${index + 1}</span>`
-            },
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            observer: true,
-            observeParents: true,
-            grabCursor: true,
-            containerClass: 'swiper-container block-downline-list'
-        }
-
         let results = this.chunkArray(downlineList.DownlineList, 10);
+
+        let params = results.length > 1 ?
+            {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                paginationBulletRender: (swiper, index, className) => {
+                    return `<span class="${className}">${index + 1}</span>`
+                },
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                observer: true,
+                observeParents: true,
+                grabCursor: true,
+                containerClass: 'swiper-container block-downline-list'
+            } :
+            {
+                observer: true,
+                observeParents: true,
+                grabCursor: true,
+                    containerClass: 'swiper-container block-downline-list'
+            } ;
 
         return (
             <div>
@@ -61,11 +68,13 @@ export default class DownlineListContent extends React.Component {
                     {results.map((result, index) => {
                             return <DownlineListPage usernames={result} handleSearchFromUserLevel={handleSearchFromUserLevel} key={index} />
                     })}
-                </Swiper>
-                <div className="page-control">
-                    <span>{resources.Page}</span>
-                    <input type="text" ref="slideTo" className="number" value={slideTo} onChange={this.slideTo} />
-                </div>
+                    </Swiper>
+                    {results.length > 1 &&
+                        <div className="page-control">
+                            <span>{resources.Page}</span>
+                            <input type="text" ref="slideTo" className="number" value={slideTo} onChange={this.slideTo} />
+                        </div>
+                    }
                 </div>
                 <div><hr /></div>
                 {

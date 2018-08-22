@@ -320,7 +320,6 @@
     <Content Include="app\AccountInfo\components\customer-info\username-viewlog.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-content.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-paging.jsx" />
-    <Content Include="app\AccountInfo\components\status\status-on-product.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />
     <Content Include="app\AccountInfo\given-credit.jsx" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
@@ -576,7 +575,6 @@
     <Content Include="app\AccountInfo\components\online-list\index.jsx" />
     <Content Include="app\AccountInfo\components\setting\index.jsx" />
     <Content Include="app\AccountInfo\components\login-info\index.jsx" />
-    <Content Include="app\AccountInfo\components\status\status-checkbox.jsx" />
     <Content Include="app\AccountInfo\components\status\index.jsx" />
     <Content Include="app\AccountInfo\components\downline-list\index.jsx" />
     <Content Include="app\AccountInfo\api-client.jsx" />

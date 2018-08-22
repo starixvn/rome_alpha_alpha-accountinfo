@@ -6,7 +6,6 @@ export default class OnlineListBlock extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            custId: this.props.custId,
             data: null
         }
 
@@ -26,6 +25,15 @@ export default class OnlineListBlock extends React.Component{
         e.preventDefault();
         window.top.ageWnd.open(`${this.props.viewIpInfoLink}${e.currentTarget.dataset.ip}`);
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.custId != this.props.custId) {
+            this.setState({
+                custId: this.props.custId,
+                data: null
+            });
+        }
+    }
 
     render() {
         const { resources, expanded, handleCollapExpandBlock, blockId } = this.props;
