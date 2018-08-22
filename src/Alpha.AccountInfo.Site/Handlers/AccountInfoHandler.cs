@@ -19,7 +19,7 @@
         IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
         IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>,
-        IRequestHandler<OnlineListQuery, IEnumerable<OnlineListModel>>,
+        IRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IRequestHandler<GivenCreditCommand, Result>,
         IRequestHandler<OutrightCommand, Result>,
@@ -158,7 +158,7 @@
             return customerProductStatus;
         }
 
-        public IEnumerable<OnlineListModel> Handle(OnlineListQuery message)
+        public IEnumerable<OnlineUserModel> Handle(OnlineListQuery message)
             => accountInfoService.GetOnlineList(message.CustId);
 
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)

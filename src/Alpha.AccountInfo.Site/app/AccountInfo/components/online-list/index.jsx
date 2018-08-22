@@ -11,18 +11,21 @@ export default class OnlineListBlock extends React.Component{
         }
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
     }
 
     handleClick(e) {
-        this.loadOnlineListFromServer();
+        this.state.data === null && accountInfoAPI.getOnlineList({ custid: this.props.custId }).then((data) => {
+            this.setState({ data: data });
+        });
+
         this.props.handleCollapExpandBlock(e);
     }
 
-    loadOnlineListFromServer() {
-        accountInfoAPI.getOnlineList({ custid: this.props.custId }).then((data) => {
-            this.setState({ data: data });
-        });
-    }
+    handleOpenIPInfo(e) {
+        e.preventDefault();
+        window.top.ageWnd.open(`${this.props.viewIpInfoLink}${e.currentTarget.dataset.ip}`);
+    };
 
     render() {
         const { resources, expanded, handleCollapExpandBlock, blockId } = this.props;
@@ -57,8 +60,8 @@ export default class OnlineListBlock extends React.Component{
                             data != null && data.map((online, index) =>
                                 <tr key={index}>
                                     <td className="text-center">{index + 1}</td>
-                                    <td>{online.IP}</td>
-                                    <td className="text-center"> {online.Reload_Time}</td>
+                                        <td><a onClick={this.handleOpenIPInfo} data-ip={online.IP}>{online.IP}</a></td>
+                                        <td className="text-center"> {online.LoginTime}</td>
                                 </tr>)
                         }
                         </tbody>

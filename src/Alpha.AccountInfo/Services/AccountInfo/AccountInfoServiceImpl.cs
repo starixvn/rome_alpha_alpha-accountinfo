@@ -29,21 +29,21 @@
             => repository.Fetch<UsernameSuggestion>(new SelectAutoSuggestion(actorId, suggestionQuery, isInternal));
 
         public BalanceInfoModel GetBalanceInfoModelAsync(int custId, byte roleId)
-            => accountInfoDataAccess.GetBalanceInfoModelAsync(
+            => accountInfoDataAccess.GetBalanceInfoModel(
                new SelectBalanceInfoCriteria(custId), roleId);
 
         public CustomerAllStatusModel GetCustomerAllStatusModelAsync(int custId)
-            => accountInfoDataAccess.GetCustomerAllStatusModelAsync(
+            => accountInfoDataAccess.GetCustomerAllStatusModel(
                 new SelectCustomerAllStatusModelCriteria(custId));
 
         public CustomerInfoModel GetCustomerInfoModelAsync(string username, int uplineId)
             =>  repository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
 
         public DownlineListModel GetDownlineListModelAsync(int custId)
-            =>  accountInfoDataAccess.GetDownlineListModelAsync(new SelectDownlineListCriteria(custId));
+            =>  accountInfoDataAccess.GetDownlineListModel(new SelectDownlineListCriteria(custId));
 
-        public IEnumerable<OnlineListModel> GetOnlineList(int custid)
-            =>  repository.Fetch<OnlineListModel>(new SelectOnlineListCriteria(custid));
+        public IEnumerable<OnlineUserModel> GetOnlineList(int custid)
+            => accountInfoDataAccess.GetOnlineList(new SelectOnlineListCriteria(custid));
 
         public Result UpdateGivenCredit(UpdateGivenCreditParam param)
             => accountInfoDataAccess.UpdateGivenCredit(

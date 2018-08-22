@@ -141,6 +141,8 @@
 
         public string ViewLogLink => $"{ViewLogsPath}setting/index?username={UserName}";
 
+        public string ViewLoginIPLink => $"{UrlHelper.MapOldMainPath("~/")}_IPInfo/IpInfo.aspx?ip=";
+
         private static string ViewLogsPath => UrlHelper.MapViewLogsPath("~/");
 
         private static string ReportPath => UrlHelper.MapReportsPath("~/");

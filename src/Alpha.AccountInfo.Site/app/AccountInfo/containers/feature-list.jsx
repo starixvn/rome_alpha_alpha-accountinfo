@@ -227,7 +227,8 @@ export default class FeatureList extends React.Component {
 
                     <LoginInfoBlock
                         resources={resources}
-                        loginInfo={this.props.customerInfo.LoginInfo}
+                        loginInfo={customerInfo.LoginInfo}
+                        viewIpInfoLink={customerInfo.ViewLoginIPLink}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.loginInfo}
                         blockId="loginInfo" />
@@ -237,6 +238,7 @@ export default class FeatureList extends React.Component {
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.onlineList}
                         blockId="onlineList"
+                        viewIpInfoLink={customerInfo.ViewLoginIPLink}
                         custId={this.props.customerInfo.CustId}/>
                 </Accordion>
             </div>

@@ -5,7 +5,7 @@
     using MediatR;
     using System.Collections.Generic;
 
-    public class OnlineListQuery : BaseRequest, IRequest<IEnumerable<OnlineListModel>>
+    public class OnlineListQuery : BaseRequest, IRequest<IEnumerable<OnlineUserModel>>
     {
         public OnlineListQuery(IUser viewer)
             : base(viewer)
