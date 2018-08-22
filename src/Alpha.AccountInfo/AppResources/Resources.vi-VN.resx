@@ -375,4 +375,7 @@
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>Tài khoản bị đình chỉ.</value>
   </data>
+  <data name="Phone1" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
 </root>

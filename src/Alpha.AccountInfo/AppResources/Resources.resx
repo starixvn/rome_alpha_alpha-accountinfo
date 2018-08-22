@@ -372,4 +372,7 @@
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>This account was suspended.</value>
   </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
 </root>

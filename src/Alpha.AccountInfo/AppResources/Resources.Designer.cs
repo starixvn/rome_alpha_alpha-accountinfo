@@ -610,6 +610,15 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove OTP.
         /// </summary>
         public static string RemoveOtpViewModelText {
