@@ -34,6 +34,7 @@ export default class GivenCredit extends React.Component {
     };
 
     handleSubmit(e) {
+        $.blockUI();
         var params = {
             SearchAccountId: this.props.searchAccountId,
             SearchAccountRoleId: this.props.searchAccountRoleId,
@@ -42,15 +43,18 @@ export default class GivenCredit extends React.Component {
 
         accountInfoAPI.updateGivenCredit(params).then((data) => {
             let self = this;
-            this.setState({
-                hideMessages: false,
-                message: data.Message,
-                updateSuccess: data.IsSuccess
-            });
-
             if (data.IsSuccess) {
-                window.top.closeGivenCreditPopup = true;
-                window.top.ageWnd.close();
+                $.unblockUI();
+                self.setState({
+                    hideMessages: false,
+                    message: data.Message,
+                    updateSuccess: data.IsSuccess
+                });
+
+                setTimeout(() => {
+                    window.top.closeGivenCreditPopup = true;
+                    window.top.ageWnd.close();
+                }, 2000);
             }
         });
     };

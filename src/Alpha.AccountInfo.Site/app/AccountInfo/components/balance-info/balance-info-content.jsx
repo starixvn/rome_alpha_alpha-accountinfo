@@ -22,9 +22,7 @@ export default class BalanceInfoContent extends React.Component{
 
         function reloadBalanceInfo(e) {
             if (window.top.closeGivenCreditPopup) {
-                setTimeout(() => {
-                    self.props.fetchCustomerInfoFromServer(e, self.props.username);
-                }, 2000);
+                self.props.fetchCustomerInfoFromServer(e, self.props.username);
                 clearInterval(timer);
             }
         }

@@ -16,9 +16,11 @@ export default class StatusCheckbox extends React.Component {
         confirmMessage == undefined ? window.top.ageWnd.open(url) :
             window.top.bootboxConfirm(confirmMessage, e.target,
                 function () {
+                    $.blockUI();
                     accountInfoAPI.updateStatus(url, JSON.parse(param)).then((data) => {
                         if (data.IsSuccess) {
                             setTimeout(() => {
+                                $.unblockUI();
                                 self.props.fetchCustomerAllStatusFromServer();
                                 self.props.fetchCustomerInfoFromServer(e, self.props.username);
                             }, 2000);
