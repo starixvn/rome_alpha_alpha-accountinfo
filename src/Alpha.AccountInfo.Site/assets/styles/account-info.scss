@@ -123,7 +123,7 @@ hr {
         color: $link-color;
     }
 
-    .link {
+    .enabled {
         color: $link-color;
         cursor: pointer;
 
@@ -132,7 +132,7 @@ hr {
         }
     }
 
-    .icon-viewlog {
+    .link-viewlog {
         margin-left: 4px;
         cursor: pointer;
     }
@@ -150,11 +150,23 @@ hr {
         color: #045ace;
     }
 
+    .suspended {
+        color: #d45f12;
+        background-color: #f8ded7;
+        font-weight: bold;
+    }
+
+    .disabled {
+        color: #f3a847;
+        background-color: #A0A97A;
+        font-weight: bold;
+    }
+
     .closed-wrongPwdOthers,
     .closed-byAdmin,
     .closed-byUpline,
     .closed-wrongOTPSC {
-        color: #B50000;
+        color: #B50000 !important;
         font-weight: bold;
     }
 
@@ -172,18 +184,6 @@ hr {
 
     .closed-wrongOTPSC {
         background-color: #86c5e4;
-    }
-
-    .suspended {
-        color: #d45f12;
-        background-color: #f8ded7;
-        font-weight: bold;
-    }
-
-    .disabled {
-        color: #f3a847;
-        background-color: #A0A97A;
-        font-weight: bold;
     }
 }
 

@@ -7,30 +7,44 @@ const CustomerInfoBlock = ({
     handleSearchFromUserLevel,
     rowClasses = "col-xs-12 row-info",
     firstCellClass = "col-xs-5",
-    secondCellClass = "col-xs-7 col-right"}) =>
-    <div >
+    secondCellClass = "col-xs-7 col-right" }) => {
+    return (
+        <div>
         {
             data.ShowMasterName &&
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Master}</div>
                 <div className={secondCellClass}>
-                    <Tooltip
-                        placement="bottom"
-                        trigger={['hover']}
-                        mouseEnterDelay={0}
-                        mouseLeaveDelay={0.1}
-                        overlay={data.StatusMessage}>
-                        <span className={data.RoleId == 3 ? data.StatusCss : 'link'}
-                            title={data.StatusMessage}
-                            onClick={handleSearchFromUserLevel}
-                            data-username={data.MasterName}>
+                    {
+                        data.RoleId < 3 && <span className="enabled" onClick={handleSearchFromUserLevel} data-username={data.MasterName}>
                             {data.MasterName}
                         </span>
-                    </Tooltip>
-                    
-                    {data.RoleId == 3 && <span>
-                        <a className="icon-viewlog" title={resources.Viewlog} className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
-                    </span>}
+                    }
+
+                    {
+                        data.RoleId == 3 && data.StatusMessage != '' &&
+                        <Tooltip
+                            placement="bottom"
+                            trigger={['hover']}
+                            mouseEnterDelay={0}
+                            mouseLeaveDelay={0.1}
+                            overlay={data.StatusMessage}>
+                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                <span className={data.StatusCss} data-username={data.MasterName}>
+                                    {data.MasterName}
+                                </span>
+                                <span className="icon-viewlog"></span>
+                            </a>
+                        </Tooltip>
+                    }
+
+                    {
+                        data.RoleId == 3 && data.StatusMessage == '' &&
+                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                <span className={data.StatusCss} data-username={data.MasterName}> {data.MasterName} </span>
+                                <span className="icon-viewlog"></span>
+                            </a>
+                    }
                 </div>
             </div>
         }
@@ -40,22 +54,45 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Agent}</div>
                 <div className={secondCellClass}>
-                    <Tooltip
-                        placement="bottom"
-                        trigger={['hover']}
-                        mouseEnterDelay={0}
-                        mouseLeaveDelay={0.1}
-                        overlay={data.StatusMessage}>
-                        <span className={data.RoleId == 2 && data.StatusCss}
+                    {
+                        data.RoleId < 2 && <span className="enabled"
                             onClick={handleSearchFromUserLevel}
                             data-username={data.AgentName}>
                             {data.AgentName}
                         </span>
-                    </Tooltip>
-                    
-                    {data.RoleId == 2 && <span className="icon-viewlog" title={resources.Viewlog}>
-                        <a className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
-                    </span>}
+                    }
+
+                    {
+                        data.RoleId == 2 && data.StatusMessage != '' &&
+                        <div>
+                            <Tooltip
+                                placement="bottom"
+                                trigger={['hover']}
+                                mouseEnterDelay={0}
+                                mouseLeaveDelay={0.1}
+                                overlay={data.StatusMessage}>
+
+                                <span className={data.StatusCss}
+                                    data-username={data.AgentName}>
+                                    {data.AgentName}
+                                </span>
+
+                            </Tooltip>
+                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                <span className="icon-viewlog"></span>
+                            </a>
+                        </div>
+                    }
+
+                    {
+                        data.RoleId == 2 && data.StatusMessage == '' &&
+                        <div>
+                            <span className={data.StatusCss} data-username={data.AgentName}> {data.AgentName} </span>
+                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                <span className="icon-viewlog"></span>
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         }
@@ -65,22 +102,37 @@ const CustomerInfoBlock = ({
             <div className={rowClasses}>
                 <div className={firstCellClass}>{resources.Customer}</div>
                 <div className={secondCellClass}>
-                    <Tooltip
-                        placement="bottom"
-                        trigger={['hover']}
-                        mouseEnterDelay={0}
-                        mouseLeaveDelay={0.1}
-                        overlay={data.StatusMessage}>
-                        <span className={data.StatusCss}
-                            onClick={handleSearchFromUserLevel}
-                            data-username={data.MemberName}>
-                            {data.MemberName}
-                        </span>
-                    </Tooltip>
-                    
-                    <span className="icon-viewlog" title={resources.Viewlog}>
-                        <a className="btn-default with-level" href={data.ViewLogLink} target="main"></a>
-                    </span>
+                    {
+                        data.StatusMessage != '' &&
+                        <div>
+                            <Tooltip
+                                placement="bottom"
+                                trigger={['hover']}
+                                mouseEnterDelay={0}
+                                mouseLeaveDelay={0.1}
+                                overlay={data.StatusMessage}>
+
+                                <span className={data.StatusCss}
+                                    data-username={data.MemberName}>
+                                    {data.MemberName}
+                                </span>
+
+                            </Tooltip>
+                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                <span className="icon-viewlog"></span>
+                            </a>
+                        </div>
+                    }
+
+                    {
+                        data.StatusMessage == '' &&
+                        <div>
+                            <span className={data.StatusCss} data-username={data.MemberName}> {data.MemberName} </span>
+                            <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+                                <span className="icon-viewlog"></span>
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         }
@@ -118,6 +170,7 @@ const CustomerInfoBlock = ({
 
             <a className="btn-default with-level" href={data.StatemenLink} target="main">{resources.Statement}</a>
         </div>
-    </div>
+    </div>);
+}
 
 export default CustomerInfoBlock;
