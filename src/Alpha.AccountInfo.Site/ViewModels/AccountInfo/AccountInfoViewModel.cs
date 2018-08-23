@@ -19,6 +19,7 @@
         {
             this.message = message;
         }
+
         public string AccountInfoSiteAppPath => UrlHelper.MapAccountInfoPath("~/");
 
         public string ActorLevelName => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;

@@ -21,24 +21,6 @@
                 { UserLevel.Agent,  "_MemberInfo/CustomerList/Super/MemberList.aspx"}
             };
 
-        private readonly Dictionary<byte, string> ClosedReasonClassDict
-            = new Dictionary<byte, string>
-            {
-                { 0, "closed-wrongPwdOthers"},
-                { 1, "closed-byAdmin"},
-                { 2, "closed-byUpline"},
-                { 3, "closed-wrongOTPSC"}
-            };
-
-        private readonly Dictionary<byte, string> ClosedReasonMessageDict
-           = new Dictionary<byte, string>
-           {
-                { 0, Resources.ClosedByFailedLoginOrAccountExpired},
-                { 1, Resources.ClosedByAdmin},
-                { 2, Resources.ClosedByUpline},
-                { 3, Resources.ClosedByFailedOTPOrSC}
-           };
-
         public CustomerInfoViewModel()
         {
         }
@@ -68,6 +50,14 @@
         public string Phone => customerInfo.Phone;
 
         public string Fax => customerInfo.Fax;
+
+        public bool Closed => customerInfo.Closed;
+
+        public byte ClosedReason => customerInfo.ClosedReason;
+
+        public bool Suspended => customerInfo.Suspended;
+
+        public bool Enabled => customerInfo.Enabled;
 
         public bool ShowMemberName => RoleId.Equals(1);
 
@@ -112,36 +102,22 @@
             Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel() ?
             new MemberBalanceInfoViewModel(message, balanceInfo, customerInfo) : null;
 
-        public string CustomerListLink
-        {
-            get
-            {
-                return !Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ? 
-                    $"{OldMainPath}{CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)]}?custid={CustId}" : string.Empty;
-            }
-        }
+        public string CustomerListLink =>
+            !Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
+            $"{OldMainPath}{CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)]}?custid={CustId}" : string.Empty;
 
-        public string BetListLink
-        {
-            get
-            {
-                return Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ? 
-                    $"{BetListPath}MemberBetList/Index?CustID={CustId}&amp;CustName={UserName}" : string.Empty;
-            }
-        }
+        public string BetListLink =>
+            Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
+            $"{BetListPath}MemberBetList/Index?CustID={CustId}&amp;CustName={UserName}" : string.Empty;
 
-        public string StatemenLink
-        {
-            get
-            {
-                var memberStatementLink = $"{ReportPath}Statement/MemberStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}";
-                var SMAStatementLink = $"{ReportPath}Statement/SMAStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}";
-
-                return Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ? memberStatementLink : SMAStatementLink;
-            }
-        }
+        public string StatemenLink =>
+            Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
+            $"{ReportPath}Statement/MemberStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}" :
+            $"{ReportPath}Statement/SMAStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}";
 
         public string ViewLogLink => $"{ViewLogsPath}setting/index?username={UserName}";
+
+        public string AccountinfoPath => UrlHelper.MapAccountInfoPath("~/");
 
         public string ViewLoginIPLink => $"{UrlHelper.MapOldMainPath("~/")}_IPInfo/IpInfo.aspx?ip=";
 
@@ -152,53 +128,5 @@
         private static string BetListPath => UrlHelper.MapBetListPath("~/");
 
         private static string OldMainPath => UrlHelper.MapOldMainPath("~/");
-
-        public string AccountinfoPath => UrlHelper.MapAccountInfoPath("~/");
-
-        public string StatusMessage 
-        {
-            get
-            {
-                if (customerInfo.Closed)
-                {
-                    return ClosedReasonMessageDict[customerInfo.ClosedReason];
-                }
-
-                if (customerInfo.Suspended)
-                {
-                    return Resources.ThisAccountWasSuspended;
-                }
-
-                if (customerInfo.Enabled)
-                {
-                    return string.Empty;
-                }
-
-                return Resources.ThisAccountWasDisabled;
-            }
-        }
-
-        public string StatusCss
-        {
-            get
-            {
-                if (customerInfo.Closed)
-                {
-                    return ClosedReasonClassDict[customerInfo.ClosedReason];
-                }
-
-                if (customerInfo.Suspended)
-                {
-                    return "suspended";
-                }
-
-                if (customerInfo.Enabled)
-                {
-                    return "enabled";
-                }
-
-                return "disabled";
-            }
-        }
     }
 }

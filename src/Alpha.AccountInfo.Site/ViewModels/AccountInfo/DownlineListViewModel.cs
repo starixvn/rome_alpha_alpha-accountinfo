@@ -19,8 +19,5 @@
 
         public TotalStatusDownline TotalStatusMember
              => new TotalStatusDownline(model.TotalMemActive, model.TotalMemClosed, model.TotalMemSuspended);
-
-        public static string BuildDownlineInfoLink(string username)
-            => $"AccountInfo.aspx?username={username}";
     }
 }

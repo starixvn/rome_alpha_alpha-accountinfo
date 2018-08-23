@@ -39,6 +39,18 @@ export default class BalanceInfoContent extends React.Component{
         } = this.props;
 
 
+        const memberMaxCreditContent = <div className={rowClasses}>
+            <div className="col-xs-6">{resources.MemberMaxCredit}</div>
+            <div className="col-xs-6 col-right">
+                <Tooltip
+                    title={balanceInfo.MemberMaxCreditLimit}
+                    position="bottom"
+                    trigger="mouseenter"
+                    arrow="true">
+                    <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
+                </Tooltip>
+            </div>
+        </div>;
         return (
             <div>
                 {
@@ -101,7 +113,8 @@ export default class BalanceInfoContent extends React.Component{
                 <div className={rowClasses}>
                     <div className="col-xs-6">{resources.GivenCredit}</div>
                     <div className="col-xs-6 col-right given-credit" onClick={this.handleOpen} >
-                        <Tooltip title={balanceInfo.GivenCreditLimit}
+                        <Tooltip
+                            title={balanceInfo.GivenCreditLimit}
                             position="bottom"
                             trigger="mouseenter"
                             arrow="true">
@@ -119,16 +132,23 @@ export default class BalanceInfoContent extends React.Component{
                 </div>
 
                 {
-                    roleId == 2 &&
+                    roleId == 2 && 
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.MemberMaxCredit}</div>
                         <div className="col-xs-6 col-right">
-                            <Tooltip title={balanceInfo.MemberMaxCreditLimit}
+                            {
+                                balanceInfo.MemberMaxCreditLimit != '' && <Tooltip
+                                title={balanceInfo.MemberMaxCreditLimit}
                                 position="bottom"
                                 trigger="mouseenter"
-                                arrow="true">
+                                arrow="true"> 
                                 <CellContainNumberFormat title={balanceInfo.MemberMaxCredit}/>
                             </Tooltip>
+                            }
+                            {
+                                balanceInfo.MemberMaxCreditLimit == '' &&
+                                <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
+                            }
                         </div>
                     </div>
                 }
