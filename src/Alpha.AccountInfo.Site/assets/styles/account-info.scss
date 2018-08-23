@@ -677,97 +677,52 @@ hr {
     }
 }
 
-/* Customize*/
+/* Customize tooltip*/
 
-.rc-tooltip-hidden {
-    display: none;
+.tippy-tooltip {
+    @include border-radius(2px);    
+    font-size: $font-size;
 }
 
-.rc-tooltip {
-    position: absolute;
-    z-index: 1070;
-    visibility: visible;
-    line-height: 1.5;
-    background-color: rgba(0,0,0,.05);
-    opacity: 1;
+.tippy-popper .tippy-tooltip.light-theme {
+    @include box-shadow-multiple(none);
+    border: 1px solid #ccc;
+    min-width: 106px;
+    background-color: #f2f2f2;
+    color: $text-color;
+    text-align: left;
+}
 
-    &.user-status.rc-tooltip-placement-top {
-        margin-top: 2px;
-    }
+.tippy-popper[x-placement^=top] .tippy-tooltip.light-theme [x-arrow] {
+    border: none;
+    bottom: 0;
 
-    &.total-downline.rc-tooltip-placement-top {
-        margin-top: 6px;
-    }
-
-    .rc-tooltip-content {
-        position: relative;
-    }
-
-    .rc-tooltip-arrow {
+    &:after, &:before {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
         position: absolute;
-        right: 40px;
-        bottom: 1px;
-
-        &:after, &:before {
-            top: 100%;
-            left: 50%;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-        }
+        pointer-events: none;
     }
 
-    .rc-tooltip-inner {
-        @include border-radius(2px);
-        padding: 4px 6px;
-        text-align: left;
-        text-decoration: none;
+    &:after {
+        border-color: rgba(136, 183, 213, 0);
+        border-top-color: #f2f2f2;
+        border-width: 7px;
+        margin-left: -7px;
+    }
+
+    &:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-top-color: #ccc;
+        border-width: 8px;
+        margin-left: -8px;
     }
 }
 
-.user-status.rc-tooltip-placement-top {
-
-    .rc-tooltip-arrow {
-        &:before {
-            border-color: rgba(6, 135, 255, 0);
-            border-top-color: #000;
-            border-width: 7px;
-            margin-left: -7px;
-        }
-    }
-
-    .rc-tooltip-inner {
-        color: #fff;
-        background-color: #000;
-    }
-}
-
-.total-downline.rc-tooltip-placement-top {
-    .rc-tooltip-arrow {
-        &:after {
-            border-color: rgba(0, 0, 0, 0);
-            border-top-color: #f2f2f2;
-            border-width: 6px;
-            margin-left: -6px;
-        }
-
-        &:before {
-            border-color: rgba(6, 135, 255, 0);
-            border-top-color: #ccc;
-            border-width: 7px;
-            margin-left: -7px;
-        }
-    }
-
-    .rc-tooltip-inner {
-        color: #333;
-        background-color: #f2f2f2;
-        border: 1px solid #ccc;
-    }
-}
 // Total Downline
 .status {
     &-active {
