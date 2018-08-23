@@ -19,7 +19,7 @@ const CellContainNumberFormat = ({ classNames = null, title = '', hrefLink = nul
                 decimalScale="2"
                 fixedDecimalScale={true}
                 thousandSeparator={true}
-                renderText={value => hrefLink == null ?
+                renderText={value => hrefLink == null || hrefLink == '' ?
                     (<span>{value}</span>) :
                     (<a href={hrefLink} target={target}>{value}</a>)} />
         </div>

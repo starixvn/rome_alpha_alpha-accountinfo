@@ -62,7 +62,7 @@ export default class BalanceInfoContent extends React.Component{
                     <CellContainNumberFormat
                         title={balanceInfo.TotalBalance}
                         classNames="col-xs-6 col-right"
-                        hrefLink={balanceInfo.ShowTransferLink && balanceInfo.AllowedTotalBalanceTransfer ? balanceInfo.TransferLink : null}
+                        hrefLink={balanceInfo.TransferLinkOnTotalBalance}
                         target="main"/>
                 </div>
 
@@ -71,7 +71,7 @@ export default class BalanceInfoContent extends React.Component{
                     <CellContainNumberFormat
                         title={balanceInfo.YesterdayBalance}
                         classNames="col-xs-6 col-right"
-                        hrefLink={balanceInfo.ShowTransferLink && !balanceInfo.AllowedTotalBalanceTransfer ? balanceInfo.TransferLink : null}
+                        hrefLink={balanceInfo.TransferLinkOnYesterdayBalance}
                         target="main" />
                 </div>
 
