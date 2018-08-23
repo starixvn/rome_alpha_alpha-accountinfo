@@ -1,5 +1,6 @@
 ﻿import React from 'react';
-import Tooltip from 'rc-tooltip';
+import 'react-tippy/dist/tippy.css';
+import { Tooltip } from 'react-tippy';
 
 const TotalDownlines = ({ resources, levelName, totalActive, totalClosed, totalSuspended }) => {
     const totalDownline = <div>
@@ -13,20 +14,16 @@ const TotalDownlines = ({ resources, levelName, totalActive, totalClosed, totalS
             <div className="col-xs-6 px-0">{levelName} (A/C/S)</div>
             <div className="col-xs-6 col-right px-0">
                 <div className="pull-right">
+
                     <Tooltip
-                        placement="top"
-                        trigger={['hover']}
-                        mouseEnterDelay={0}
-                        mouseLeaveDelay={0}
-                        overlayClassName="total-downline"
-                        overlay={totalDownline}>
-                        <div>
-                            <span className="status-active">{totalActive}</span>
-                            /<span className="status-closed">{totalClosed}</span>
-                            /<span className="status-suspended">{totalSuspended}</span>
-                        </div>                        
+                        html={totalDownline}
+                        position="bottom"
+                        trigger="mouseenter"
+                        arrow="true">
+                        <span className="status-active">{totalActive}</span>
+                        /<span className="status-closed">{totalClosed}</span>
+                        /<span className="status-suspended">{totalSuspended}</span>
                     </Tooltip>
-                    
                 </div>
             </div>
         </div>

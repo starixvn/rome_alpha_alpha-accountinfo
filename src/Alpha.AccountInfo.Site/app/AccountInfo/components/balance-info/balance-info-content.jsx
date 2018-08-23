@@ -2,6 +2,8 @@
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from '../common/cell-contain-number-format';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
+import 'react-tippy/dist/tippy.css';
+import { Tooltip } from 'react-tippy';
 
 export default class BalanceInfoContent extends React.Component{
     constructor(props) {
@@ -40,7 +42,6 @@ export default class BalanceInfoContent extends React.Component{
         } = this.props;
 
 
-        // TO DO : lblMemberMaxCredit
         return (
             <div>
                 {
@@ -115,6 +116,22 @@ export default class BalanceInfoContent extends React.Component{
                         <span className="icon-border-color icon-edited" />
                     </div>
                 </div>
+
+                {
+                    roleId == 2 &&
+                    <div className={rowClasses}>
+                        <div className="col-xs-6">{resources.MemberMaxCredit}</div>
+                        <div className="col-xs-6 col-right">
+                            <Tooltip title={balanceInfo.MemberMaxCreditLimit}
+                                position="bottom"
+                                trigger="mouseenter"
+                                arrow="true">
+                                <CellContainNumberFormat title={balanceInfo.MemberMaxCredit}/>
+                            </Tooltip>
+                        </div>
+                    </div>
+                }
+
 
                 {
                     roleId == 1 &&

@@ -32,7 +32,7 @@
 
         public string GivenCreditLimit => $">={AgentCredit_Min} and <={AgentCredit_Max}";
 
-        public bool ShowTransferLink => !message.AllDayBalTransfer && !IsSuperLevel && message.AllowTransfer;
+        public bool ShowTransferLink => !message.AllDayBalTransfer && !ActorIsSuperLevel && message.AllowTransfer;
 
         // Show TransferLink On TotalBalance or YesterdayBalance
         public bool AllowedTotalBalanceTransfer => message.AllowedTotalBalanceTransfer;
@@ -45,7 +45,7 @@
                 return $"{OldMainPath}_Transfer/Master/AgentTransfer.aspx?amt={atm}&custid={model.CustId}&status=1&CallBack=false&username={message.UserName}&isyesterday=1";
             }
         }
-        public string MemberMaxCreditLimit => IsSuperLevel ? string.Empty : $">={MemMaxCredit_Min} and <={GivenCredit}";
+        public string MemberMaxCreditLimit => ActorIsSuperLevel ? string.Empty : $">={MemMaxCredit_Min} and <={GivenCredit}";
 
         public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
 
@@ -57,6 +57,6 @@
 
         private decimal AgentCredit_Max => model.AgentCredit_Max;
 
-        private bool IsSuperLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsSuperLevel();
+        private bool ActorIsSuperLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsSuperLevel();
     }
 }
