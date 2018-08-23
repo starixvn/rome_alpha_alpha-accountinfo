@@ -45,11 +45,12 @@
                 return $"{OldMainPath}_Transfer/Master/AgentTransfer.aspx?amt={atm}&custid={model.CustId}&status=1&CallBack=false&username={message.UserName}&isyesterday=1";
             }
         }
+
         public string MemberMaxCreditLimit => ActorIsSuperLevel ? string.Empty : $">={MemMaxCredit_Min} and <={GivenCredit}";
 
-        public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
-
-        public string OutstandingLink => $"{ReportPath}outstanding/Agent?CustId={model.CustId}&CustName={message.UserName}&CustLevelId=2&BreadcrumbLevelJson={BreadcrumbLevelJson}";
+        public string OutstandingLink => message.ViewReports && Outstanding > 0 ?
+            $@"{ReportPath}outstanding/Agent?CustId={model.CustId}&CustName={message.UserName}
+                &CustLevelId=2&BreadcrumbLevelJson={BreadcrumbLevelJson}" : string.Empty;
 
         private decimal MemMaxCredit_Min => model.MemMaxCredit_Min;
 

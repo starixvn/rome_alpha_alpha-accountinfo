@@ -40,9 +40,9 @@
             }
         }
 
-        public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
-
-        public string OutstandingLink => $"{ReportPath}outstanding/Master?CustId={model.CustId}&CustName={message.UserName}&CustLevelId=3&BreadcrumbLevelJson={BreadcrumbLevelJson}";
+        public string OutstandingLink => message.ViewReports && Outstanding > 0 ?
+            $@"{ReportPath}outstanding/Master?CustId={model.CustId}&CustName={message.UserName}
+                &CustLevelId=3&BreadcrumbLevelJson={BreadcrumbLevelJson}" : string.Empty;
 
         public string GivenCreditLimit => $">={MasterCredit_Min} and <={MasterCredit_Max}";
 

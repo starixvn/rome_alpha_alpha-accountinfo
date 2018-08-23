@@ -36,9 +36,9 @@
 
         public string TransferLink => $"{OldMainPath}_Transfer/Agent/MemberTransfer.aspx?custid={model.CustId}&CallBack=false";
 
-        public bool ShowBetListLink => message.ViewReports && Outstanding > 0;
-        
-        public string BetListLink => $"{BetListPath}RunningBetList/Index?CustID={model.CustId}&amp;CustName=ACGUUS3838033&amp;GetAll=True";
+        public string BetListLink => message.ViewReports && Outstanding > 0 ?
+            $@"{BetListPath}RunningBetList/Index?CustID={model.CustId}
+                &amp;CustName=ACGUUS3838033&amp;GetAll=True" : string.Empty;
 
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
 

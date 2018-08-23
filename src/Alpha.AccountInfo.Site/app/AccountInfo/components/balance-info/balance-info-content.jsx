@@ -86,7 +86,7 @@ export default class BalanceInfoContent extends React.Component{
                     <CellContainNumberFormat
                         title={balanceInfo.Outstanding}
                         classNames="col-xs-6 col-right"
-                        hrefLink={balanceInfo.ShowOutstandingLink ? balanceInfo.OutstandingLink : null}
+                        hrefLink={roleId > 1 ? balanceInfo.OutstandingLink : balanceInfo.BetListLink}
                         target="main" />
                 </div>
 

@@ -317,7 +317,7 @@
   <ItemGroup>
     <Content Include="app\AccountInfo\components\balance-info\balance-info-content.jsx" />
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
-    <Content Include="app\AccountInfo\components\customer-info\username-viewlog.jsx" />
+    <Content Include="app\AccountInfo\components\customer-info\user-level-info.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-content.jsx" />
     <Content Include="app\AccountInfo\components\setting\setting-list-paging.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />
