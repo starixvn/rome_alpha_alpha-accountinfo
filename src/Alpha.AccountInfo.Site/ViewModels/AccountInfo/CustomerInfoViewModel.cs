@@ -63,6 +63,8 @@
 
         public string NickName => customerInfo.UserName2;
 
+        public string FullName => $"{customerInfo.FirstName} {customerInfo.LastName}";
+
         public string Phone => customerInfo.Phone;
 
         public string Fax => customerInfo.Fax;

@@ -8,15 +8,12 @@ import { Tooltip } from 'react-tippy';
 export default class BalanceInfoContent extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {
-            resources: this.props.resources
-        }
         this.handleOpen = this.handleOpen.bind(this);
     }
 
     handleOpen(e) {
         let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${this.props.custId}&SearchAccountName=${this.props.username}&SearchAccountRoleId=${this.props.roleId}&CurrentGivenCredit=${this.props.balanceInfo.GivenCredit}`;
-        window.top.ageWnd.open(givenCreditUrl, this.state.resources.GivenCreditPopupTitle, undefined, undefined, 330, 248);
+        window.top.ageWnd.open(givenCreditUrl, this.props.resources.GivenCreditPopupTitle, undefined, undefined, 330, 248);
 
         window.top.closeGivenCreditPopup = false;
         let timer = setInterval(reloadBalanceInfo, 1000);
@@ -80,18 +77,17 @@ export default class BalanceInfoContent extends React.Component{
 
                 <div className={rowClasses}>
                     <div className="col-xs-6">
-                    {
-                            (roleId == 3 && resources.MasterOutstanding) ||
-                            (roleId == 2 && resources.AgentOutstanding) ||
-                            (roleId == 1 && resources.Outstanding)
-                    }
+                        {
+                                (roleId == 3 && resources.MasterOutstanding) ||
+                                (roleId == 2 && resources.AgentOutstanding) ||
+                                (roleId == 1 && resources.Outstanding)
+                        }
                     </div>
                     <CellContainNumberFormat
                         title={balanceInfo.Outstanding}
                         classNames="col-xs-6 col-right"
                         hrefLink={balanceInfo.ShowOutstandingLink ? balanceInfo.OutstandingLink : null}
                         target="main" />
-                    
                 </div>
 
                 {
@@ -104,14 +100,19 @@ export default class BalanceInfoContent extends React.Component{
 
                 <div className={rowClasses}>
                     <div className="col-xs-6">{resources.GivenCredit}</div>
-                    <div className="col-xs-6 col-right given-credit" title={balanceInfo.GivenCreditLimit} onClick={this.handleOpen} >
-                        <NumberFormat
-                            className="number-edited"
-                            value={balanceInfo.GivenCredit}
-                            displayType={'text'}
-                            decimalScale="2"
-                            fixedDecimalScale={true}
-                            thousandSeparator={true} />
+                    <div className="col-xs-6 col-right given-credit" onClick={this.handleOpen} >
+                        <Tooltip title={balanceInfo.GivenCreditLimit}
+                            position="bottom"
+                            trigger="mouseenter"
+                            arrow="true">
+                            <NumberFormat
+                                className="number-edited"
+                                value={balanceInfo.GivenCredit}
+                                displayType={'text'}
+                                decimalScale="2"
+                                fixedDecimalScale={true}
+                                thousandSeparator={true} />
+                        </Tooltip>
 
                         <span className="icon-border-color icon-edited" />
                     </div>
@@ -131,7 +132,6 @@ export default class BalanceInfoContent extends React.Component{
                         </div>
                     </div>
                 }
-
 
                 {
                     roleId == 1 &&
