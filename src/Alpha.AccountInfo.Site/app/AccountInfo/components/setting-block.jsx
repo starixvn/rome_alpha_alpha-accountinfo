@@ -1,6 +1,6 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from '../common/customized-accordion-item';
-import Paging from '../common/paging';
+import CustomizedAccordionItem from './common/customized-accordion-item';
+import Paging from './common/paging';
 
 export default class SettingBlock extends React.Component {
     constructor(props) {

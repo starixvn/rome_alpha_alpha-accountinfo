@@ -1,11 +1,10 @@
 ﻿import * as React from 'react';
-import CustomerInfoBlock from '../components/customer-info/index';
-import BalanceInfoBlock from '../components/balance-info/index';
-import DownlineListBlock from '../components/downline-list/index';
-import StatusBlock from '../components/status/index';
-import SettingBlock from '../components/setting/index';
-import LoginInfoBlock from '../components/login-info/index';
-import OnlineListBlock from '../components/online-list/index';
+import BalanceInfoBlock from '../components/balance-info-block';
+import DownlineListBlock from '../components/downline-list-block';
+import StatusBlock from '../components/status-block';
+import SettingBlock from '../components/setting-block';
+import LoginInfoBlock from '../components/login-info-block';
+import OnlineListBlock from '../components/online-list-block';
 import { Accordion } from 'react-accessible-accordion';
 import { accountInfoAPI } from '../api-client';
 

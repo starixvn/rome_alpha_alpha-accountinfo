@@ -1,6 +1,6 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from '../common/customized-accordion-item';
-import { accountInfoAPI } from '../../api-client';
+import CustomizedAccordionItem from './common/customized-accordion-item';
+import { accountInfoAPI } from '../api-client';
 
 export default class OnlineListBlock extends React.Component{
     constructor(props) {

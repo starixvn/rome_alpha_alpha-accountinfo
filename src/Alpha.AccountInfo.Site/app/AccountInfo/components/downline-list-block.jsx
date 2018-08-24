@@ -1,7 +1,7 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from '../common/customized-accordion-item';
-import { accountInfoAPI } from '../../api-client';
-import Paging from '../common/paging';
+import CustomizedAccordionItem from './common/customized-accordion-item';
+import Paging from './common/paging';
+import { accountInfoAPI } from '../api-client';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 

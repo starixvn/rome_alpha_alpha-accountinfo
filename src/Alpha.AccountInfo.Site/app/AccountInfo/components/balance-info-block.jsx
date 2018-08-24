@@ -1,7 +1,7 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from '../common/customized-accordion-item';
+import CustomizedAccordionItem from './common/customized-accordion-item';
+import CellContainNumberFormat from './common/cell-contain-number-format';
 import NumberFormat from 'react-number-format';
-import CellContainNumberFormat from '../common/cell-contain-number-format';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 

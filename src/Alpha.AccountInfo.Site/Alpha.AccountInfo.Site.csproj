@@ -317,7 +317,6 @@
   <ItemGroup>
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
     <Content Include="app\AccountInfo\components\common\paging.jsx" />
-    <Content Include="app\AccountInfo\components\customer-info\user-level-info.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />
     <Content Include="app\AccountInfo\given-credit.jsx" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
@@ -565,17 +564,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\AccountInfo\components\customer-info\index.jsx" />
+    <Content Include="app\AccountInfo\components\customer-info-block.jsx" />
     <Content Include="app\AccountInfo\components\common\cell-contain-number-format.jsx" />
-    <Content Include="app\AccountInfo\components\online-list\index.jsx" />
-    <Content Include="app\AccountInfo\components\setting\index.jsx" />
-    <Content Include="app\AccountInfo\components\login-info\index.jsx" />
-    <Content Include="app\AccountInfo\components\status\index.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list\index.jsx" />
+    <Content Include="app\AccountInfo\components\online-list-block.jsx" />
+    <Content Include="app\AccountInfo\components\setting-block.jsx" />
+    <Content Include="app\AccountInfo\components\login-info-block.jsx" />
+    <Content Include="app\AccountInfo\components\status-block.jsx" />
+    <Content Include="app\AccountInfo\components\downline-list-block.jsx" />
     <Content Include="app\AccountInfo\api-client.jsx" />
     <Content Include="app\AccountInfo\index.jsx" />
     <Content Include="app\AccountInfo\containers\account-info.jsx" />
-    <Content Include="app\AccountInfo\components\balance-info\index.jsx" />
+    <Content Include="app\AccountInfo\components\balance-info-block.jsx" />
     <TypeScriptCompile Include="assets\scripts\productstatus\productstatus.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />

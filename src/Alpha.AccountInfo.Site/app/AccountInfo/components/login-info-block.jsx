@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from '../common/customized-accordion-item';
+import CustomizedAccordionItem from './common/customized-accordion-item';
 
 export default class LoginInfoBlock extends React.Component {
     constructor(props) {
