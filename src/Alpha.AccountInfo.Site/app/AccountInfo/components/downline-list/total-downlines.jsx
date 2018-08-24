@@ -29,6 +29,5 @@ const TotalDownlines = ({ resources, levelName, totalActive, totalClosed, totalS
         </div>
         );
 }
-    
 
 export default TotalDownlines;

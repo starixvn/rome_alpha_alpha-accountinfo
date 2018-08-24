@@ -5,7 +5,7 @@ const CellContainNumberFormat = ({ classNames = null, title = '', hrefLink = nul
     let formatClassNames = null;
     if (title < 0) {
         formatClassNames = `${classNames} number-red`;
-    } else if (title >= 0 && hrefLink != null) {
+    } else if (title >= 0 && hrefLink != null && hrefLink != '') {
         formatClassNames = `${classNames} number-link`;
     } else {
         formatClassNames = `${classNames} number`;

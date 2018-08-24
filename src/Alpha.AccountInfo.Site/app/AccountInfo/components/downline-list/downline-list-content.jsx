@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import Swiper from 'react-id-swiper';
-import DownlineListPage from './downline-list-page';
 import TotalDownlines from './total-downlines';
 
 export default class DownlineListContent extends React.Component {
@@ -74,8 +73,14 @@ export default class DownlineListContent extends React.Component {
             <div>
                 <div className="downline-list-container">
                 <Swiper {...params} ref={node => { if (node) this.swiper = node.swiper } }>
-                    {results.map((result, index) => {
-                            return <DownlineListPage usernames={result} handleSearchFromUserLevel={handleSearchFromUserLevel} key={index} />
+                        {results.map((downlinePaging, pagingIndex) => {
+                            return <div className="swiper-slide" key={pagingIndex}>
+                                {downlinePaging.map((downline, index) => {
+                                    return <div data-username={downline.UserName} className="two-col" onClick={handleSearchFromUserLevel} key={index}>
+                                        <a href="#">{downline.UserName}</a>
+                                    </div>
+                                })}
+                            </div>
                     })}
                     </Swiper>
                     {results.length > 4 &&
