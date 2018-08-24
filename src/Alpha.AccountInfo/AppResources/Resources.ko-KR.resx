@@ -378,4 +378,7 @@
   <data name="Phone1" xml:space="preserve">
     <value>전화</value>
   </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
 </root>

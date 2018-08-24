@@ -138,7 +138,7 @@
                              uplineClosed: Converter.ToBool(customerStatusRow["upLineClosed"]),
                              suspended: Converter.ToBool(customerStatusRow["suspended"]),
                              uplineSuspend: Converter.ToBool(customerStatusRow["upLineSuspend"]),
-                             transferOption: Converter.ToBool(customerStatusRow["TransferOption"]),
+                             transferOption: Converter.ToString2(customerStatusRow["TransferOption"]),
                              doubleCommLosing: Converter.ToBool(customerStatusRow["DoubleCommLosing"]),
                              uplineDoubleCommLosing: Converter.ToBool(customerStatusRow["uplineDoubleCommLosing"]),
                              disableOutright: Converter.ToBool(customerStatusRow["DisableOutright"]),

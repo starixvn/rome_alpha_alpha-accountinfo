@@ -83,79 +83,10 @@
                 GetSearchAccountProductStatus(model.NonDCSProduct, model.DCSProducts.ToList()), 
                 upline);
 
-            var setting = new SettingViewModel(message, model, actor, searchAccount);
+            var setting = new SettingViewModel(message, model.CustomerStatus.TransferDaily, actor, searchAccount);
             var status = new StatusViewModel(message, model.CustomerStatus, actor, searchAccount);
 
             return new CustomererAllStatusViewModel(status, setting);
-        }
-
-        private static IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
-            NonDCSProductModel nonDCSProduct,
-            List<DCSProductModel> dcsProducts)
-        {
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductIdConstants.NumberGame, nonDCSProduct.DisableNumber),
-                new CustomerProductStatus(ProductIdConstants.RNGCasino, nonDCSProduct.DisableCasino, synced: nonDCSProduct.SyncCasino),
-                new CustomerProductStatus(ProductIdConstants.ESport, nonDCSProduct.DisableEsports),
-                new CustomerProductStatus(ProductIdConstants.ColossusBets, nonDCSProduct.DisableColossusBet, hidden: nonDCSProduct.HideColossusBet),
-                new CustomerProductStatus(ProductIdConstants.Keno, nonDCSProduct.HideKeno)
-            };
-
-            dcsProducts.ForEach(product => {
-                customerProductStatus.Add(
-                    new CustomerProductStatus(product.ProductId, product.IsDisabled, product.IsHidden, product.IsSync));
-            });
-
-            return customerProductStatus;
-        }
-
-        private static IEnumerable<CustomerProductStatus> GetUplineProductStatus(
-            NonDCSProductModel nonDCSProduct,
-            List<DCSProductModel> dcsProducts)
-        {
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductIdConstants.NumberGame, nonDCSProduct.UplineDisableNumber),
-                new CustomerProductStatus(ProductIdConstants.RNGCasino, nonDCSProduct.UplineDisableCS),
-                new CustomerProductStatus(ProductIdConstants.ESport, nonDCSProduct.UplineDisableEsports),
-                new CustomerProductStatus(ProductIdConstants.ColossusBets, nonDCSProduct.UplineDisableColossusBet, hidden: nonDCSProduct.UplineDisableColossusBet),
-                new CustomerProductStatus(ProductIdConstants.Keno, nonDCSProduct.HideKeno)
-            };
-
-            dcsProducts.ForEach(product => {
-                customerProductStatus.Add(
-                    new CustomerProductStatus(product.ProductId, product.IsDisabledUpline, product.IsHiddenUpline, product.IsSyncedUpline));
-            });
-
-            return customerProductStatus;
-        }
-
-        private static IEnumerable<CustomerProductStatus> GetActorProductStatus(
-            CustomerAllStatusQuery message,
-            List<DCSProductModel> dcsProducts)
-        {
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductIdConstants.NumberGame, message.IsNumberGameDisabled),
-                new CustomerProductStatus(ProductIdConstants.RNGCasino, message.IsCasinoDisabled, synced: message.IsCasinoSync),
-                new CustomerProductStatus(ProductIdConstants.ESport, message.IsDisabledESports),
-                new CustomerProductStatus(ProductIdConstants.ColossusBets, message.DisableColossusBets, hidden: message.IsHideColossusBets),
-                new CustomerProductStatus(ProductIdConstants.Keno, message.IsHideKeno)
-            };
-
-            dcsProducts.ForEach(product =>
-            {
-                var productId = product.ProductId;
-                customerProductStatus.Add(
-                    new CustomerProductStatus(
-                        productId,
-                        message.GetDisabledProduct(productId),
-                        message.GetHideProduct(productId),
-                        message.GetSyncedProduct(productId)));
-            });
-
-            return customerProductStatus;
         }
 
         public IEnumerable<OnlineUserModel> Handle(OnlineListQuery message)
@@ -229,6 +160,74 @@
                   command.SubAccountId,
                   command.Language,
                   command.IP));
-        
+
+        private static IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
+    NonDCSProductModel nonDCSProduct,
+    List<DCSProductModel> dcsProducts)
+        {
+            var customerProductStatus = new List<CustomerProductStatus>
+            {
+                new CustomerProductStatus(ProductIdConstants.NumberGame, nonDCSProduct.DisableNumber),
+                new CustomerProductStatus(ProductIdConstants.RNGCasino, nonDCSProduct.DisableCasino, synced: nonDCSProduct.SyncCasino),
+                new CustomerProductStatus(ProductIdConstants.ESport, nonDCSProduct.DisableEsports),
+                new CustomerProductStatus(ProductIdConstants.ColossusBets, nonDCSProduct.DisableColossusBet, hidden: nonDCSProduct.HideColossusBet),
+                new CustomerProductStatus(ProductIdConstants.Keno, nonDCSProduct.HideKeno)
+            };
+
+            dcsProducts.ForEach(product => {
+                customerProductStatus.Add(
+                    new CustomerProductStatus(product.ProductId, product.IsDisabled, product.IsHidden, product.IsSync));
+            });
+
+            return customerProductStatus;
+        }
+
+        private static IEnumerable<CustomerProductStatus> GetUplineProductStatus(
+            NonDCSProductModel nonDCSProduct,
+            List<DCSProductModel> dcsProducts)
+        {
+            var customerProductStatus = new List<CustomerProductStatus>
+            {
+                new CustomerProductStatus(ProductIdConstants.NumberGame, nonDCSProduct.UplineDisableNumber),
+                new CustomerProductStatus(ProductIdConstants.RNGCasino, nonDCSProduct.UplineDisableCS),
+                new CustomerProductStatus(ProductIdConstants.ESport, nonDCSProduct.UplineDisableEsports),
+                new CustomerProductStatus(ProductIdConstants.ColossusBets, nonDCSProduct.UplineDisableColossusBet, hidden: nonDCSProduct.UplineDisableColossusBet),
+                new CustomerProductStatus(ProductIdConstants.Keno, nonDCSProduct.HideKeno)
+            };
+
+            dcsProducts.ForEach(product => {
+                customerProductStatus.Add(
+                    new CustomerProductStatus(product.ProductId, product.IsDisabledUpline, product.IsHiddenUpline, product.IsSyncedUpline));
+            });
+
+            return customerProductStatus;
+        }
+
+        private static IEnumerable<CustomerProductStatus> GetActorProductStatus(
+            CustomerAllStatusQuery message,
+            List<DCSProductModel> dcsProducts)
+        {
+            var customerProductStatus = new List<CustomerProductStatus>
+            {
+                new CustomerProductStatus(ProductIdConstants.NumberGame, message.IsNumberGameDisabled),
+                new CustomerProductStatus(ProductIdConstants.RNGCasino, message.IsCasinoDisabled, synced: message.IsCasinoSync),
+                new CustomerProductStatus(ProductIdConstants.ESport, message.IsDisabledESports),
+                new CustomerProductStatus(ProductIdConstants.ColossusBets, message.DisableColossusBets, hidden: message.IsHideColossusBets),
+                new CustomerProductStatus(ProductIdConstants.Keno, message.IsHideKeno)
+            };
+
+            dcsProducts.ForEach(product =>
+            {
+                var productId = product.ProductId;
+                customerProductStatus.Add(
+                    new CustomerProductStatus(
+                        productId,
+                        message.GetDisabledProduct(productId),
+                        message.GetHideProduct(productId),
+                        message.GetSyncedProduct(productId)));
+            });
+
+            return customerProductStatus;
+        }
     }
 }

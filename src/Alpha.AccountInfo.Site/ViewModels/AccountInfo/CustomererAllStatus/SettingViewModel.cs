@@ -14,7 +14,7 @@
     {
         public SettingViewModel(
             CustomerAllStatusQuery message,
-            CustomerAllStatusModel model,
+            bool transferDaily,
             Customer actor,
             Customer searchAccount)
         {
@@ -29,7 +29,7 @@
             var request = new SettingSearchAccountRequest(actor, searchAccount, micrositePaths);
 
             request
-                 .AddData(DataKey.Actor.CanEditDailyTransferOption, true) // TO DO
+                 .AddData(DataKey.Actor.CanEditDailyTransferOption, transferDaily)
                  .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount);
 
             Settings = viewModelfactory.GetViewModels(request);

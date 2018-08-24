@@ -14,9 +14,9 @@
         {
         }
 
-        public decimal TotalBalance => RoundNumber(model.CustomerCash);
+        public override decimal TotalBalance => RoundNumber(model.CustomerCash);
 
-        public decimal YesterdayBalance => RoundNumber(model.Yesterday_CustomerCash);
+        public override decimal YesterdayBalance => RoundNumber(model.Yesterday_CustomerCash);
 
         public decimal Outstanding => RoundNumber(model.CustomerOutstanding);
 
@@ -26,22 +26,20 @@
 
         public decimal BetCredit => RoundNumber(GivenCredit + model.CustomerCash - Outstanding + NetPosition);
 
-        public bool ShowTransferLink =>
-            Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsAgentLevel() 
-            && !message.AllDayBalTransfer
-            && message.AllowTransfer;
-
-        // Show TransferLink On TotalBalance or YesterdayBalance
-        public bool AllowedTotalBalanceTransfer => message.AllowedTotalBalanceTransfer;
-
-        public string TransferLink => $"{OldMainPath}_Transfer/Agent/MemberTransfer.aspx?custid={model.CustId}&CallBack=false";
-
         public string BetListLink => message.ViewReports && Outstanding > 0 ?
             $@"{BetListPath}RunningBetList/Index?CustID={model.CustId}
-                &amp;CustName=ACGUUS3838033&amp;GetAll=True" : string.Empty;
+            &amp;CustName=ACGUUS3838033&amp;GetAll=True" : string.Empty;
 
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
 
         private decimal MemMaxCredit_Max => model.MemMaxCredit_Max;
+
+        protected override bool ShowTransferLink =>
+          Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsAgentLevel()
+          && !message.AllDayBalTransfer
+          && message.AllowTransfer;
+
+        protected override string BuildTransferLink(decimal transferValue) =>
+           $"{OldMainPath}_Transfer/Agent/MemberTransfer.aspx?custid={model.CustId}&CallBack=false";
     }
 }

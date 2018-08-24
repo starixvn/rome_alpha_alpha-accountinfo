@@ -8,13 +8,13 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class BalanceInfoViewModelBase
+    public abstract class BalanceInfoViewModelBase
     {
         protected readonly BalanceInfoModel model;
         protected readonly CustomerInfoQuery message;
         protected readonly CustomerInfoModel customerInfoModel;
 
-        public BalanceInfoViewModelBase(
+        protected BalanceInfoViewModelBase(
             CustomerInfoQuery message, 
             BalanceInfoModel model,
             CustomerInfoModel customerInfoModel)
@@ -29,6 +29,22 @@
         protected static string ReportPath => UrlHelper.MapReportsPath("~/");
 
         protected static string BetListPath => UrlHelper.MapBetListPath("~/");
+
+        public abstract decimal TotalBalance { get; }
+
+        public abstract decimal YesterdayBalance { get; }
+
+        protected abstract bool ShowTransferLink { get; }
+
+        protected abstract string BuildTransferLink(decimal transferValue);
+
+        public string TransferLinkOnTotalBalance =>
+            ShowTransferLink && message.AllowedTotalBalanceTransfer && !TotalBalance.Equals(0) ?
+            BuildTransferLink(TotalBalance) : string.Empty;
+
+        public string TransferLinkOnYesterdayBalance =>
+            ShowTransferLink && !message.AllowedTotalBalanceTransfer && !YesterdayBalance.Equals(0) ?
+            BuildTransferLink(YesterdayBalance) : string.Empty;
 
         protected string BreadcrumbLevelJson
         {

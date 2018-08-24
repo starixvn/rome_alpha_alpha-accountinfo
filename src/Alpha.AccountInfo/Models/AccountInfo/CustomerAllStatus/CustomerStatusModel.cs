@@ -9,7 +9,7 @@
             bool uplineClosed,
             bool suspended,
             bool uplineSuspend,
-            bool transferOption,
+            string transferOption,
             bool doubleCommLosing,
             bool uplineDoubleCommLosing,
             bool disableOutright,
@@ -43,7 +43,9 @@
 
         public bool UplineSuspend { get; }
 
-        public bool TransferOption { get; }
+        public string TransferOption { get; }
+
+        public bool TransferDaily => TransferOption[7].Equals(0);
 
         public bool DoubleCommLosing { get; }
 
