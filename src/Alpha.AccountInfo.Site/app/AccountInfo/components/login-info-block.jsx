@@ -38,7 +38,7 @@ export default class LoginInfoBlock extends React.Component {
                 </div>
                 <div className="group">
                     <div className="row-info bold">{resources.LoginIP}:</div>
-                    <div className="row-info"><a onClick={this.handleOpenIPInfo}>{loginInfo.LoginIP}</a></div>
+                    <div className="row-info"><span className="link" onClick={this.handleOpenIPInfo}>{loginInfo.LoginIP}</span></div>
                 </div>
             </CustomizedAccordionItem>
         );

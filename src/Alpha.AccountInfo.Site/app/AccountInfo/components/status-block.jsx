@@ -58,7 +58,7 @@ export default class StatusBlock extends React.Component {
                         return status.IsEditOnProductLevel != undefined && !status.IsEditOnProductLevel ?
                             (status.Visible &&
                                 <div key={index} className="col">
-                                    <a onClick={this.handleOpenPopupForProductStatus} data-url={status.Url}>{status.Text}</a>
+                                    <span className="link" onClick={this.handleOpenPopupForProductStatus} data-url={status.Url}>{status.Text}</span>
                                     <span className="icon-ic_list"></span>
                                 </div>) :
                             (status.Visible &&

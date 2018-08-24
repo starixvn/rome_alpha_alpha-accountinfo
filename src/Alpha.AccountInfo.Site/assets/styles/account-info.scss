@@ -13,14 +13,24 @@ body {
     }
 }
 
-a {
+
+%linkColor {
     color: $link-color;
 
-    &:hover, &:active, &:focus {
+    &:hover {
         color: $link-hover-color;
+    }
+}
+
+a, .link {
+    @extend %linkColor;
+    cursor: pointer;
+
+    &:hover, &:active, &:focus {
         text-decoration: none;
     }
 }
+
 
 .pointer {
     cursor: pointer;
@@ -50,13 +60,6 @@ hr {
     }
 }
 
-%linkColor {
-    color: $link-color;
-
-    &:hover {
-        color: $link-hover-color;
-    }
-}
 
 .row-info {
     line-height: 30px;
@@ -135,10 +138,6 @@ hr {
 
     .icon-viewlog {
         margin-left: 4px;
-    }
-
-    .link-viewlog {
-        cursor: pointer;
     }
 
     .no-information-search {
@@ -332,7 +331,6 @@ hr {
         /*.row-info:hover {
             background-color: #f2f2f2;
         }*/
-
         .number {
             color: #004080;
 

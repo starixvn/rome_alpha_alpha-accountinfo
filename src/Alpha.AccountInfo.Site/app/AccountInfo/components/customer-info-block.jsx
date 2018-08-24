@@ -122,7 +122,7 @@ const UserLevelLevelInfo = ({
         }
     }
 
-    const contentWithViewlogLink = <a title={resources.Viewlog} className="link-viewlog" href={data.ViewLogLink} target="main">
+    const contentWithViewlogLink = <a title={resources.Viewlog} className="pointer" href={data.ViewLogLink} target="main">
         <span className={statusCss} data-username={username}> {username} </span>
         <span className="icon-viewlog"></span>
     </a>;

@@ -80,8 +80,8 @@ export default class DownlineListBlock extends React.Component{
 const TotalDownlines = ({ resources, levelName, totalActive, totalClosed, totalSuspended }) => {
     const totalDownline = <div>
         <div className='nowrap bold'>{resources.Active}: <span className='status-active'>{totalActive}</span></div>
-        <div className='nowrap bold'>{resources.Closed}: <span className='status-closed'>{totalClosed}</span></div>
-        <div className='nowrap bold'>{resources.Suspended}: <span className='status-suspended'>{totalSuspended}</span></div>
+        <div className='nowrap bold'>{resources.ConfirmClosedViewModelText}: <span className='status-closed'>{totalClosed}</span></div>
+        <div className='nowrap bold'>{resources.ConfirmSuspendedViewModelText}: <span className='status-suspended'>{totalSuspended}</span></div>
     </div>;
 
     return (
@@ -92,9 +92,10 @@ const TotalDownlines = ({ resources, levelName, totalActive, totalClosed, totalS
 
                     <Tooltip
                         html={totalDownline}
-                        position="bottom"
+                        position="top"
                         trigger="mouseenter"
-                        arrow="true">
+                        arrow="true"
+                        theme="light">
                         <span className="status-active">{totalActive}</span>
                         /<span className="status-closed">{totalClosed}</span>
                         /<span className="status-suspended">{totalSuspended}</span>
