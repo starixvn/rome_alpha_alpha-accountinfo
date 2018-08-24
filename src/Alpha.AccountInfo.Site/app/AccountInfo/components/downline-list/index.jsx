@@ -1,7 +1,9 @@
 ﻿import React from 'react';
 import CustomizedAccordionItem from '../common/customized-accordion-item';
-import DownlineListContent from './downline-list-content';
 import { accountInfoAPI } from '../../api-client';
+import Paging from '../common/paging';
+import 'react-tippy/dist/tippy.css';
+import { Tooltip } from 'react-tippy';
 
 export default class DownlineListBlock extends React.Component{
     constructor(props) {
@@ -10,6 +12,7 @@ export default class DownlineListBlock extends React.Component{
             data: null
         }
         this.handleClick = this.handleClick.bind(this);
+        this.renderCallback = this.renderCallback.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -29,17 +32,37 @@ export default class DownlineListBlock extends React.Component{
         this.props.handleCollapExpandBlock(e);
     }
 
+    renderCallback(downline) {
+        return <a href="#" data-username={downline.UserName} onClick={this.props.handleSearchFromUserLevel}>{downline.UserName}</a>;
+    }
+
     render() {
         const { resources, blockId, expanded, handleSearchFromUserLevel } = this.props;
         const { data } = this.state;
 
         const content = data == null || data.DownlineList.length == 0 ?
             <div>{resources.NoInfo}</div> :
-            <DownlineListContent
-                resources={resources}
-                downlineList={data}
-                handleSearchFromUserLevel={handleSearchFromUserLevel} />;
-           
+            <div>
+                <Paging resourcePage={this.props.resources.Page} values={data.DownlineList} renderCallback={this.renderCallback} />
+                <div><hr /></div>
+                {
+                    data.TotalStatusAgent != null &&
+                    <TotalDownlines levelName="Agents"
+                        resources={resources}
+                        totalActive={data.TotalStatusAgent.TotalActive}
+                        totalClosed={data.TotalStatusAgent.TotalClosed}
+                        totalSuspended={data.TotalStatusAgent.TotalSuspend} />
+                }
+                {
+                    data.TotalStatusMember != null &&
+                    <TotalDownlines levelName="Members"
+                        resources={resources}
+                        totalActive={data.TotalStatusMember.TotalActive}
+                        totalClosed={data.TotalStatusMember.TotalClosed}
+                        totalSuspended={data.TotalStatusMember.TotalSuspend} />
+                }
+            </div>    
+
         return (
             <CustomizedAccordionItem
                 title={resources.DownlineList}
@@ -51,4 +74,33 @@ export default class DownlineListBlock extends React.Component{
             </CustomizedAccordionItem>    
         );
     }
+}
+
+
+const TotalDownlines = ({ resources, levelName, totalActive, totalClosed, totalSuspended }) => {
+    const totalDownline = <div>
+        <div className='nowrap bold'>{resources.Active}: <span className='status-active'>{totalActive}</span></div>
+        <div className='nowrap bold'>{resources.Closed}: <span className='status-closed'>{totalClosed}</span></div>
+        <div className='nowrap bold'>{resources.Suspended}: <span className='status-suspended'>{totalSuspended}</span></div>
+    </div>;
+
+    return (
+        <div className="col-xs-12 row-info">
+            <div className="col-xs-6 px-0">{levelName} (A/C/S)</div>
+            <div className="col-xs-6 col-right px-0">
+                <div className="pull-right">
+
+                    <Tooltip
+                        html={totalDownline}
+                        position="bottom"
+                        trigger="mouseenter"
+                        arrow="true">
+                        <span className="status-active">{totalActive}</span>
+                        /<span className="status-closed">{totalClosed}</span>
+                        /<span className="status-suspended">{totalSuspended}</span>
+                    </Tooltip>
+                </div>
+            </div>
+        </div>
+    );
 }

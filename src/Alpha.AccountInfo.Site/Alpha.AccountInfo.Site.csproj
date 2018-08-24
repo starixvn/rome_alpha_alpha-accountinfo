@@ -316,6 +316,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
+    <Content Include="app\AccountInfo\components\common\paging.jsx" />
     <Content Include="app\AccountInfo\components\customer-info\user-level-info.jsx" />
     <Content Include="app\AccountInfo\containers\feature-list.jsx" />
     <Content Include="app\AccountInfo\given-credit.jsx" />
@@ -566,8 +567,6 @@
   <ItemGroup>
     <Content Include="app\AccountInfo\components\customer-info\index.jsx" />
     <Content Include="app\AccountInfo\components\common\cell-contain-number-format.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list\downline-list-content.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list\total-downlines.jsx" />
     <Content Include="app\AccountInfo\components\online-list\index.jsx" />
     <Content Include="app\AccountInfo\components\setting\index.jsx" />
     <Content Include="app\AccountInfo\components\login-info\index.jsx" />
