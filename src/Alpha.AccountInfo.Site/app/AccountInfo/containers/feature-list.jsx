@@ -150,27 +150,7 @@ export default class FeatureList extends React.Component {
             collapseExpandClassName = 'account-info-group scroll-top';
         }
 
-        let balanceInfo = null;
-        let uplineId = null;
-        let uplineName = null;
-
-        switch (this.props.customerInfo.RoleId) {
-            case 3:
-                uplineId = customerInfo.SuperId;
-                uplineName = customerInfo.SuperName;
-                balanceInfo = customerInfo.MasterBalanceInfo;
-                break;
-            case 2:
-                uplineId = customerInfo.MasterId;
-                uplineName = customerInfo.MasterName;
-                balanceInfo = customerInfo.AgentBalanceInfo;
-                break;
-            default:
-                uplineId = customerInfo.AgentId;
-                uplineName = customerInfo.AgentName;
-                balanceInfo = customerInfo.MemberBalanceInfo;
-                break;
-        }
+        let balanceInfo = customerInfo.BalanceInfo;
 
         return (
             <div className={collapseExpandClassName}>

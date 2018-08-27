@@ -7,32 +7,35 @@
 
     public class MemberBalanceInfoViewModel : BalanceInfoViewModelBase
     {
+        private readonly MemberBalanceInfoModel balanceInfoModel;
+
         public MemberBalanceInfoViewModel(
             CustomerInfoQuery message,
-            BalanceInfoModel model,
-            CustomerInfoModel customerInfoModel) : base(message, model, customerInfoModel)
+            IBalanceInfoModel balanceInfoModel,
+            CustomerInfoModel customerInfoModel) : base(message, customerInfoModel)
         {
+            this.balanceInfoModel = (MemberBalanceInfoModel)balanceInfoModel;
         }
 
-        public override decimal TotalBalance => RoundNumber(model.CustomerCash);
+        public override decimal TotalBalance => RoundNumber(balanceInfoModel.CustomerCash);
 
-        public override decimal YesterdayBalance => RoundNumber(model.Yesterday_CustomerCash);
+        public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.Yesterday_CustomerCash);
 
-        public decimal Outstanding => RoundNumber(model.CustomerOutstanding);
+        public decimal Outstanding => RoundNumber(balanceInfoModel.CustomerOutstanding);
 
-        public decimal NetPosition => RoundNumber(model.NetPosition);
+        public decimal NetPosition => RoundNumber(balanceInfoModel.NetPosition);
 
-        public decimal GivenCredit => RoundNumber(model.Credit);
+        public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
 
-        public decimal BetCredit => RoundNumber(GivenCredit + model.CustomerCash - Outstanding + NetPosition);
+        public decimal BetCredit => RoundNumber(GivenCredit + balanceInfoModel.CustomerCash - Outstanding + NetPosition);
 
         public string BetListLink => message.ViewReports && Outstanding > 0 ?
-            $@"{BetListPath}RunningBetList/Index?CustID={model.CustId}
+            $@"{BetListPath}RunningBetList/Index?CustID={balanceInfoModel.CustId}
             &amp;CustName=ACGUUS3838033&amp;GetAll=True" : string.Empty;
 
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
 
-        private decimal MemMaxCredit_Max => model.MemMaxCredit_Max;
+        private decimal MemMaxCredit_Max => balanceInfoModel.MemMaxCredit_Max;
 
         protected override bool ShowTransferLink =>
           Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsAgentLevel()
@@ -40,6 +43,6 @@
           && message.AllowTransfer;
 
         protected override string BuildTransferLink(decimal transferValue) =>
-           $"{OldMainPath}_Transfer/Agent/MemberTransfer.aspx?custid={model.CustId}&CallBack=false";
+           $"{OldMainPath}_Transfer/Agent/MemberTransfer.aspx?custid={balanceInfoModel.CustId}&CallBack=false";
     }
 }

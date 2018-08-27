@@ -8,18 +8,15 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public abstract class BalanceInfoViewModelBase
+    public abstract class BalanceInfoViewModelBase : IBalanceInfoViewModel
     {
-        protected readonly BalanceInfoModel model;
         protected readonly CustomerInfoQuery message;
         protected readonly CustomerInfoModel customerInfoModel;
 
         protected BalanceInfoViewModelBase(
             CustomerInfoQuery message, 
-            BalanceInfoModel model,
             CustomerInfoModel customerInfoModel)
         {
-            this.model = model;
             this.message = message;
             this.customerInfoModel = customerInfoModel;
         }

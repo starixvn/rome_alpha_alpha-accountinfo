@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
     using Alpha.AccountInfo.Constants;
+    using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Params.ProductStatus;
@@ -8,6 +9,7 @@
     using MediatR;
     using Requests.ProductStatus;
     using Services.AccountInfo;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -29,10 +31,25 @@
         IRequestHandler<DoubleCommCommand, Result> 
     {
         private readonly AccountInfoService accountInfoService;
+        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
 
-        public AccountInfoHandler(AccountInfoService accountInfoService)
+        public AccountInfoHandler(AccountInfoService accountInfoService) : this(accountInfoService, null)
+        {
+        }
+
+        internal AccountInfoHandler(
+            AccountInfoService accountInfoService,
+             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel)
         {
             this.accountInfoService = accountInfoService;
+
+            this.getBalanceInfoViewModelByLevel = getBalanceInfoViewModelByLevel ??
+                new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>>
+                {
+                    {UserLevel.Master, BuildMasterBalanceInfoViewModel},
+                    {UserLevel.Agent, BuildAgentBalanceInfoViewModel},
+                    {UserLevel.Member, BuildMemberBalanceInfoViewModel}
+                };
         }
 
         public async Task<AccountInfoViewModel> Handle(AccountInfoQuery message)
@@ -43,23 +60,21 @@
 
         public CustomerInfoViewModel Handle(CustomerInfoQuery message)
         {
-            var custormerinfo = accountInfoService.GetCustomerInfoModelAsync(message.UserName, message.ActorId);
-            if (custormerinfo != null)
-            {
-                var balanceinfo = accountInfoService.GetBalanceInfoModelAsync(custormerinfo.CustId, custormerinfo.RoleId);
-
-                return new CustomerInfoViewModel(message, custormerinfo, balanceinfo);
-            }
-
-            return new CustomerInfoViewModel();
+            var customerInfo = accountInfoService.GetCustomerInfoModel(message.UserName, message.ActorId);
+            var balanceInfo = getBalanceInfoViewModelByLevel[Enumeration.FromValue<UserLevel>(customerInfo.RoleId)](
+                message, 
+                customerInfo, 
+                accountInfoService.GetBalanceInfoModel(customerInfo.CustId, customerInfo.RoleId));
+    
+            return new CustomerInfoViewModel(message,customerInfo, balanceInfo);
         }
 
         public DownlineListViewModel Handle(DownlineListQuery message)
-            => new DownlineListViewModel(accountInfoService.GetDownlineListModelAsync(message.CustId));
+            => new DownlineListViewModel(accountInfoService.GetDownlineListModel(message.CustId));
 
         public CustomererAllStatusViewModel Handle(CustomerAllStatusQuery message)
         {
-            var model = accountInfoService.GetCustomerAllStatusModelAsync(message.SearchAccountId);
+            var model = accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId);
 
             var actor = new Customer(
                 message.ActorId,
@@ -162,8 +177,8 @@
                   command.IP));
 
         private static IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
-    NonDCSProductModel nonDCSProduct,
-    List<DCSProductModel> dcsProducts)
+            NonDCSProductModel nonDCSProduct,
+            List<DCSProductModel> dcsProducts)
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
@@ -229,5 +244,23 @@
 
             return customerProductStatus;
         }
+
+        internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
+            CustomerInfoQuery message,
+            CustomerInfoModel customerInfo,
+            IBalanceInfoModel balanceInfoModel)
+            => new MasterBalanceInfoViewModel(message, balanceInfoModel, customerInfo);
+
+        internal static IBalanceInfoViewModel BuildAgentBalanceInfoViewModel(
+            CustomerInfoQuery message,
+            CustomerInfoModel customerInfo,
+            IBalanceInfoModel balanceInfoModel)
+            => new AgentBalanceInfoViewModel(message, balanceInfoModel, customerInfo);
+
+        internal static IBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
+            CustomerInfoQuery message,
+            CustomerInfoModel customerInfo,
+            IBalanceInfoModel balanceInfoModel)
+            => new MemberBalanceInfoViewModel(message, balanceInfoModel, customerInfo);
     }
 }

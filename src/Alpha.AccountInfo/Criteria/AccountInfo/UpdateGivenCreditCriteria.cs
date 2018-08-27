@@ -1,12 +1,19 @@
 ﻿namespace Alpha.AccountInfo.Criteria.AccountInfo
 {
+    using Alpha.AccountInfo.Enumerations;
+    using Alpha.AccountInfo.Models;
     using Fanex.Data;
     using Fanex.Data.Repository;
     using System.Collections.Generic;
 
     public class UpdateGivenCreditCriteria : CriteriaBase
     {
-        private readonly IDictionary<byte, string> settingKeys;
+        private readonly IDictionary<UserLevel, string> settingKeys = new Dictionary<UserLevel, string>
+            {
+                {UserLevel.Super, "Age_CustomerUpdCredit_SAg" },
+                {UserLevel.Master, "Age_CustomerUpdCredit_MAg" },
+                {UserLevel.Agent, "Age_CustomerUpdCredit_Ag" }
+            };
 
         public UpdateGivenCreditCriteria(
             int custId,
@@ -26,13 +33,6 @@
             SubAccountId = subAccountId;
             Language = language;
             IP = ip;
-
-            settingKeys = new Dictionary<byte, string>
-            {
-                {4, "Age_CustomerUpdCredit_SAg" },
-                {3, "Age_CustomerUpdCredit_MAg" },
-                {2, "Age_CustomerUpdCredit_Ag" }
-            };
         }
 
         public int CustId { get; }
@@ -60,7 +60,7 @@
 
         public string ErrMsg { get; set; }
 
-        public override string GetSettingKey() => settingKeys[ActorRoleId];
+        public override string GetSettingKey() => settingKeys[Enumeration.FromValue<UserLevel>(ActorRoleId)];
 
         public override bool IsValid() => CustId > 0;
     }

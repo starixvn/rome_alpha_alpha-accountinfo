@@ -1,8 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Models.AccountInfo
 {
-    using System;
-
-    public class BalanceInfoModel
+    public class BalanceInfoModel : IBalanceInfoModel
     {
         public BalanceInfoModel()
         {

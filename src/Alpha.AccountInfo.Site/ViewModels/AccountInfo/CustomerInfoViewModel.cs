@@ -12,7 +12,6 @@
     {
         private readonly CustomerInfoQuery message;
         private readonly CustomerInfoModel customerInfo;
-        private readonly BalanceInfoModel balanceInfo;
 
         private readonly Dictionary<UserLevel, string> CustomerListLinkDict
             = new Dictionary<UserLevel, string>
@@ -28,11 +27,11 @@
         public CustomerInfoViewModel(
             CustomerInfoQuery message, 
             CustomerInfoModel customerInfo,
-            BalanceInfoModel balanceInfo)
+            IBalanceInfoViewModel balanceInfo)
         {
             this.message = message;
             this.customerInfo = customerInfo;
-            this.balanceInfo = balanceInfo;
+            this.BalanceInfo = balanceInfo;
         }
 
         public int CustId => customerInfo.CustId;
@@ -90,17 +89,7 @@
             }
         }
 
-        public MasterBalanceInfoViewModel MasterBalanceInfo => 
-            Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMasterLevel() ?
-            new MasterBalanceInfoViewModel(message, balanceInfo, customerInfo) : null;
-
-        public AgentBalanceInfoViewModel AgentBalanceInfo =>
-            Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsAgentLevel() ?
-            new AgentBalanceInfoViewModel(message, balanceInfo, customerInfo) : null;
-
-        public MemberBalanceInfoViewModel MemberBalanceInfo =>
-            Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel() ?
-            new MemberBalanceInfoViewModel(message, balanceInfo, customerInfo) : null;
+        public IBalanceInfoViewModel BalanceInfo { get; }
 
         public string CustomerListLink =>
             !Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?

@@ -224,6 +224,10 @@
     <Compile Include="DataAccess\AccountInfoDataAccess.cs" />
     <Compile Include="Enumerations\Enumeration.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\AccountInfo\BalanceInfo\AgentBalanceInfoModel.cs" />
+    <Compile Include="Models\AccountInfo\BalanceInfo\IBalanceInfoModel.cs" />
+    <Compile Include="Models\AccountInfo\BalanceInfo\MemberBalanceInfoModel.cs" />
+    <Compile Include="Models\AccountInfo\BalanceInfo\MasterBalanceInfoModel.cs" />
     <Compile Include="Models\AccountInfo\CustomerAllStatus\CustomerAllStatusModel.cs" />
     <Compile Include="Models\AccountInfo\BalanceInfo\BalanceInfoModel.cs" />
     <Compile Include="Models\AccountInfo\CutomerInfo\UsernameSuggestion.cs" />

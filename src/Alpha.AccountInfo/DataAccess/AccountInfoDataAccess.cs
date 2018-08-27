@@ -9,8 +9,6 @@
     {
         CustomerAllStatusModel GetCustomerAllStatusModel(ICriteria criteria);
 
-        BalanceInfoModel GetBalanceInfoModel(ICriteria criteria, byte roleId);
-
         DownlineListModel GetDownlineListModel(ICriteria criteria);
 
         IEnumerable<OnlineUserModel> GetOnlineList(ICriteria criteria);

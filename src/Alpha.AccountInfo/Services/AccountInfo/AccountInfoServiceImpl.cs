@@ -2,11 +2,13 @@
 {
     using Alpha.AccountInfo.Criteria.AccountInfo;
     using Alpha.AccountInfo.DataAccess;
+    using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Params.ProductStatus;
     using Alpha.AccountInfo.Services.ProductStatus;
     using Fanex.Data.Repository;
+    using System;
     using System.Collections.Generic;
 
     public class AccountInfoServiceImpl : AccountInfoService
@@ -14,32 +16,48 @@
         private readonly IDynamicRepository repository;
         private readonly AccountInfoDataAccess accountInfoDataAccess;
         private readonly RnGCasinoService rnGCasinoService;
+        private readonly IDictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>> getBalanceInfoModelByLevel;
 
         public AccountInfoServiceImpl(
-            IDynamicRepository dynamicRepository, 
-            AccountInfoDataAccess accountInfoDataAccess,
-            RnGCasinoService rnGCasinoService)
+        IDynamicRepository dynamicRepository, 
+        AccountInfoDataAccess accountInfoDataAccess,
+        RnGCasinoService rnGCasinoService) : this(dynamicRepository, accountInfoDataAccess, rnGCasinoService, null)
+        {
+        }
+
+        internal AccountInfoServiceImpl(
+           IDynamicRepository dynamicRepository,
+           AccountInfoDataAccess accountInfoDataAccess,
+           RnGCasinoService rnGCasinoService,
+           IDictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>> getBalanceInfoModelByLevel)
         {
             repository = dynamicRepository;
             this.accountInfoDataAccess = accountInfoDataAccess;
             this.rnGCasinoService = rnGCasinoService;
+
+            this.getBalanceInfoModelByLevel = getBalanceInfoModelByLevel ??
+                new Dictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>>
+                {
+                    {UserLevel.Master,  GetMasterBalanceInfoModel},
+                    {UserLevel.Agent,  GetAgentBalanceInfoModel},
+                    {UserLevel.Member,  GetMemberBalanceInfoModel}
+                };
         }
 
         public IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
             => repository.Fetch<UsernameSuggestion>(new SelectAutoSuggestion(actorId, suggestionQuery, isInternal));
 
-        public BalanceInfoModel GetBalanceInfoModelAsync(int custId, byte roleId)
-            => accountInfoDataAccess.GetBalanceInfoModel(
-               new SelectBalanceInfoCriteria(custId), roleId);
+        public IBalanceInfoModel GetBalanceInfoModel(int custId, byte roleId)
+            => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
 
-        public CustomerAllStatusModel GetCustomerAllStatusModelAsync(int custId)
+        public CustomerAllStatusModel GetCustomerAllStatusModel(int custId)
             => accountInfoDataAccess.GetCustomerAllStatusModel(
                 new SelectCustomerAllStatusModelCriteria(custId));
 
-        public CustomerInfoModel GetCustomerInfoModelAsync(string username, int uplineId)
+        public CustomerInfoModel GetCustomerInfoModel(string username, int uplineId)
             =>  repository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
 
-        public DownlineListModel GetDownlineListModelAsync(int custId)
+        public DownlineListModel GetDownlineListModel(int custId)
             =>  accountInfoDataAccess.GetDownlineListModel(new SelectDownlineListCriteria(custId));
 
         public IEnumerable<OnlineUserModel> GetOnlineList(int custid)
@@ -134,5 +152,14 @@
                    param.DoubleComm,
                    param.Language,
                    param.IP));
+
+        internal IBalanceInfoModel GetMasterBalanceInfoModel(ICriteria criteria)
+          => repository.Get<MasterBalanceInfoModel>(criteria);
+
+        internal IBalanceInfoModel GetAgentBalanceInfoModel(ICriteria criteria)
+          => repository.Get<AgentBalanceInfoModel>(criteria);
+
+        internal IBalanceInfoModel GetMemberBalanceInfoModel(ICriteria criteria)
+         => repository.Get<MemberBalanceInfoModel>(criteria);
     }
 }

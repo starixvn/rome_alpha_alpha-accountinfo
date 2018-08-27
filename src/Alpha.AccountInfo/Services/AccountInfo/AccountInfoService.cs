@@ -9,13 +9,13 @@
     {
        IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
 
-       CustomerInfoModel GetCustomerInfoModelAsync(string username, int uplineId);
+       CustomerInfoModel GetCustomerInfoModel(string username, int uplineId);
 
-        BalanceInfoModel GetBalanceInfoModelAsync(int custId, byte roleId);
+        IBalanceInfoModel GetBalanceInfoModel(int custId, byte roleId);
 
-        DownlineListModel GetDownlineListModelAsync(int custId);
+        DownlineListModel GetDownlineListModel(int custId);
 
-       CustomerAllStatusModel GetCustomerAllStatusModelAsync(int custId);
+        CustomerAllStatusModel GetCustomerAllStatusModel(int custId);
 
         IEnumerable<OnlineUserModel> GetOnlineList(int custid);
 

@@ -9,8 +9,7 @@
     {
         private readonly IUser viewer;
 
-        public CustomerInfoQuery(IUser viewer)
-            : base(viewer)
+        public CustomerInfoQuery(IUser viewer): base(viewer)
         {
             this.viewer = viewer;
         }
@@ -33,6 +32,6 @@
 
         public bool ViewReports => viewer.CanViewReports;
 
-        public override bool IsValid() => !string.IsNullOrEmpty(UserName) && ActorId > 0;
+        public override bool IsValid() => !string.IsNullOrEmpty(UserName) && !UserName.Equals(viewer.Name) && ActorId > 0 ;
     }
 }

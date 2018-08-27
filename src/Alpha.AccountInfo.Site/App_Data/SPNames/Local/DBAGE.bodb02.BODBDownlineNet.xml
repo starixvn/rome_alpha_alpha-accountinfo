@@ -7,7 +7,10 @@
   <Function Name="Account Info">
     <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustomerBalanceSel" SpName="Age_CustomerBalanceSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+
+    <Setting Key="Age_BalanceMasterSel" SpName="Age_BalanceMasterSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BalanceAgentSel" SpName="Age_BalanceAgentSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BalanceMemberSel" SpName="Age_BalanceMemberSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

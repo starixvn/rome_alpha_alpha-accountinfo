@@ -491,6 +491,7 @@
     <Compile Include="Requests\ProductStatus\ProductStatusCommand.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusQuery.cs" />
     <Compile Include="ViewModels\AccountInfo\AccountInfoViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\BalanceInfo\IBalanceInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\BalanceInfoViewModelBase.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\GivenCreditViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\BreadcrumbLevel.cs" />
