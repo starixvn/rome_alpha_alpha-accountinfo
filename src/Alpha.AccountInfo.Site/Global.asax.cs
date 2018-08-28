@@ -42,8 +42,6 @@
 
             DependencyConfig.Init();
 
-            AppSettings.Verify();
-
             DbSettingProviderManager
                 .StartNewSession()
                 .Use(new OldConnectionStringProvider())
@@ -51,13 +49,15 @@
                 .Use((settingKey, commandTimeout) => new WrappingExceptionObjectDb(settingKey, commandTimeout))
                 .Run();
 
-            StartConfiguration();
-
             ShareSession.Init();
 
             GlobalFilters.Filters.Add(new CheckUMFilter());
-            GlobalFilters.Filters.Add(new CheckBelongingFilter());
+            //GlobalFilters.Filters.Add(new CheckBelongingFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
+
+            AppSettings.Verify();
+
+            StartConfiguration();
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
 

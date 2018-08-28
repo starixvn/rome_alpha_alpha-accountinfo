@@ -50,7 +50,6 @@
   <ItemGroup>
     <Reference Include="Alpha.Auth, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Auth.3.0.2.1\lib\net461\Alpha.Auth.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Products.AccountInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Products.AccountInfo.1.0.0-beta6\lib\net40\Alpha.Products.AccountInfo.dll</HintPath>
@@ -595,6 +594,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\styles\given-credit.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\AuthorizationSection.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
