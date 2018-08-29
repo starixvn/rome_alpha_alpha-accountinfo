@@ -39,7 +39,7 @@
         public string MemberMaxCreditLimit => ActorIsSuperLevel ? string.Empty : $">={MemMaxCredit_Min} {Resources.And} <={GivenCredit}";
 
         public string OutstandingLink => message.ViewReports && Outstanding > 0 ?
-                $@"{ReportPath}outstanding/Agent?CustId={balanceInfoModel.CustId}&CustName={message.UserName}
+                $@"{ReportsUrl}outstanding/Agent?CustId={balanceInfoModel.CustId}&CustName={message.UserName}
                 &CustLevelId=2&BreadcrumbLevelJson={BreadcrumbLevelJson}" : string.Empty;
 
         protected override bool ShowTransferLink => !message.AllDayBalTransfer && !ActorIsSuperLevel && message.AllowTransfer;
@@ -53,7 +53,7 @@
         private bool ActorIsSuperLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsSuperLevel();
 
         protected override string BuildTransferLink(decimal transferValue) =>
-            $@"{OldMainPath}_Transfer/Master/AgentTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
+            $@"{OldMainUrl}_Transfer/Master/AgentTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
             &CallBack=false&username={message.UserName}&isyesterday=1&&amt={transferValue}";
 
     }

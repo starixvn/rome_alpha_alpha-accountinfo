@@ -1,17 +1,19 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using System.Collections.Generic;
-    using Alpha.AccountInfo.AppResources;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.Products.Core.Services;
     using Enumerations;
+    using System;
+    using System.Collections.Generic;
 
     public class CustomerInfoViewModel
     {
         private readonly CustomerInfoQuery message;
         private readonly CustomerInfoModel customerInfo;
+        private readonly Func<string, string, string> GetMicroSiteUrl;
 
         private readonly Dictionary<UserLevel, string> CustomerListLinkDict
             = new Dictionary<UserLevel, string>
@@ -27,11 +29,13 @@
         public CustomerInfoViewModel(
             CustomerInfoQuery message, 
             CustomerInfoModel customerInfo,
-            IBalanceInfoViewModel balanceInfo)
+            IBalanceInfoViewModel balanceInfo,
+            Func<string, string, string> getMicroSiteUrl = null)
         {
             this.message = message;
             this.customerInfo = customerInfo;
             this.BalanceInfo = balanceInfo;
+            GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
         public int CustId => customerInfo.CustId;
@@ -93,29 +97,29 @@
 
         public string CustomerListLink =>
             !Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $"{OldMainPath}{CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)]}?custid={CustId}" : string.Empty;
+            $"{OldMainUrl}{CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)]}?custid={CustId}" : string.Empty;
 
         public string BetListLink =>
             Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $"{BetListPath}MemberBetList/Index?CustID={CustId}&amp;CustName={UserName}" : string.Empty;
+            $"{BetListUrl}MemberBetList/Index?CustID={CustId}&amp;CustName={UserName}" : string.Empty;
 
         public string StatemenLink =>
             Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $"{ReportPath}Statement/MemberStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}" :
-            $"{ReportPath}Statement/SMAStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}";
+            $"{ReportsUrl}Statement/MemberStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}" :
+            $"{ReportsUrl}Statement/SMAStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}";
 
-        public string ViewLogLink => $"{ViewLogsPath}setting/index?username={UserName}";
+        public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
 
-        public string AccountinfoPath => UrlHelper.MapAccountInfoPath("~/");
+        public string AccountinfoUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.AccountInfo, "~/");
 
-        public string ViewLoginIPLink => $"{UrlHelper.MapOldMainPath("~/")}_IPInfo/IpInfo.aspx?ip=";
+        public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx?ip=";
 
-        private static string ViewLogsPath => UrlHelper.MapViewLogsPath("~/");
+        private string ViewLogUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.ViewLog, "~/");
 
-        private static string ReportPath => UrlHelper.MapReportsPath("~/");
+        private string ReportsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.Reports, "~/");
 
-        private static string BetListPath => UrlHelper.MapBetListPath("~/");
+        private string BetListUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.BetLists, "~/");
 
-        private static string OldMainPath => UrlHelper.MapOldMainPath("~/");
+        private string OldMainUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.OldMain, "~/");
     }
 }

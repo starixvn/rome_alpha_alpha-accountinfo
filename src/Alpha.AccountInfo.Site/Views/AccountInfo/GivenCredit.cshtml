@@ -20,6 +20,6 @@
 @StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
 @StaticResources.RenderScripts("~/assets/bundles/account-info/given-credit")
 <script>
-     var accountInfoSiteAppPath = '@Model.AccountInfoSiteAppPath';
+     var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
      renderGivenCredit("@Model.SearchAccountId", "@Model.SearchAccountRoleId", "@Model.CurrentGivenCredit", JSON.parse('@Model.GivenCreditResources'.replace(/&quot;/g, '\"')));
 </script>

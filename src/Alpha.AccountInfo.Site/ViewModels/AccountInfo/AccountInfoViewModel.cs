@@ -5,6 +5,8 @@
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.Products.Core.Services;
+    using System;
     using System.Collections;
     using System.Globalization;
     using System.Linq;
@@ -14,13 +16,15 @@
     public class AccountInfoViewModel
     {
         private readonly AccountInfoQuery message;
+        private readonly Func<string, string, string> GetMicroSiteUrl;
 
-        public AccountInfoViewModel(AccountInfoQuery message)
+        public AccountInfoViewModel(AccountInfoQuery message, Func<string, string, string> getMicroSiteUrl = null)
         {
             this.message = message;
+             GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
-        public string AccountInfoSiteAppPath => UrlHelper.MapAccountInfoPath("~/");
+        public string AccountInfoUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.AccountInfo, "~/");
 
         public string ActorLevelName => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
 

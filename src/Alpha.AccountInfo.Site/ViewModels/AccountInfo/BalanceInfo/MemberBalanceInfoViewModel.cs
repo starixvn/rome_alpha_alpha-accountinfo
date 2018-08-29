@@ -30,7 +30,7 @@
         public decimal BetCredit => RoundNumber(GivenCredit + balanceInfoModel.CustomerCash - Outstanding + NetPosition);
 
         public string BetListLink => message.ViewReports && Outstanding > 0 ?
-            $@"{BetListPath}RunningBetList/Index?CustID={balanceInfoModel.CustId}
+            $@"{BetListsUrl}RunningBetList/Index?CustID={balanceInfoModel.CustId}
             &amp;CustName=ACGUUS3838033&amp;GetAll=True" : string.Empty;
 
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
@@ -43,6 +43,6 @@
           && message.AllowTransfer;
 
         protected override string BuildTransferLink(decimal transferValue) =>
-           $"{OldMainPath}_Transfer/Agent/MemberTransfer.aspx?custid={balanceInfoModel.CustId}&CallBack=false";
+           $"{OldMainUrl}_Transfer/Agent/MemberTransfer.aspx?custid={balanceInfoModel.CustId}&CallBack=false";
     }
 }

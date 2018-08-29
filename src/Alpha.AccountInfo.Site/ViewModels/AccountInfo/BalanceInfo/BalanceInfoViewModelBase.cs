@@ -3,6 +3,7 @@
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.Products.Core.Services;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -12,20 +13,23 @@
     {
         protected readonly CustomerInfoQuery message;
         protected readonly CustomerInfoModel customerInfoModel;
+        private readonly Func<string, string, string> GetMicroSiteUrl;
 
         protected BalanceInfoViewModelBase(
             CustomerInfoQuery message, 
-            CustomerInfoModel customerInfoModel)
+            CustomerInfoModel customerInfoModel,
+            Func<string, string, string> getMicroSiteUrl = null)
         {
             this.message = message;
             this.customerInfoModel = customerInfoModel;
+            GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
-        protected static string OldMainPath => UrlHelper.MapOldMainPath("~/");
+        protected string OldMainUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.OldMain, "~/");
 
-        protected static string ReportPath => UrlHelper.MapReportsPath("~/");
+        protected string ReportsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.Reports, "~/");
 
-        protected static string BetListPath => UrlHelper.MapBetListPath("~/");
+        protected string BetListsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.BetLists, "~/");
 
         public abstract decimal TotalBalance { get; }
 

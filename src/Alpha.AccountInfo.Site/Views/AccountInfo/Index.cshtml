@@ -20,6 +20,6 @@
 @StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
 @StaticResources.RenderScripts("~/assets/bundles/account-info/index")
 <script>
-    var accountInfoSiteAppPath = '@Model.AccountInfoSiteAppPath';
+    var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
     renderAccountInfo(JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"')))
 </script>

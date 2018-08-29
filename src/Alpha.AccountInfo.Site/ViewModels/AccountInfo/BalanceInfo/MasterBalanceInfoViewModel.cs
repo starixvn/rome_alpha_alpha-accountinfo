@@ -35,7 +35,7 @@
         public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
 
         public string OutstandingLink => message.ViewReports && Outstanding > 0 ?
-               $@"{ReportPath}outstanding/Master?CustId={balanceInfoModel.CustId}&CustName={message.UserName}
+               $@"{ReportsUrl}outstanding/Master?CustId={balanceInfoModel.CustId}&CustName={message.UserName}
                 &CustLevelId=3&BreadcrumbLevelJson={BreadcrumbLevelJson}" : string.Empty;
 
         protected override bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
@@ -45,7 +45,7 @@
         private decimal MasterCredit_Max => balanceInfoModel.MasterCredit_Max;
 
         protected override string BuildTransferLink(decimal transferValue) =>
-            $@"{OldMainPath}_Transfer/Super/MasterTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
+            $@"{OldMainUrl}_Transfer/Super/MasterTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
             &CallBack=false&username={message.UserName}&isyesterday=1&amt={transferValue}";
     }
 }
