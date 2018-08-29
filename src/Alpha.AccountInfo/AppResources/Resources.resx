@@ -378,4 +378,7 @@
   <data name="And" xml:space="preserve">
     <value>and</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>

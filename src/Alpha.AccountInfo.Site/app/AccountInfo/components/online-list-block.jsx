@@ -23,7 +23,7 @@ export default class OnlineListBlock extends React.Component{
 
     handleOpenIPInfo(e) {
         e.preventDefault();
-        window.top.ageWnd.open(`${this.props.viewIpInfoLink}${e.currentTarget.dataset.ip}`);
+        window.top.ageWnd.open(`${this.props.viewIpInfoLink}?ip=${e.currentTarget.dataset.ip}`);
     }
 
     componentWillReceiveProps(nextProps) {

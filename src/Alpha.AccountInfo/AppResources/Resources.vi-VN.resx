@@ -381,4 +381,7 @@
   <data name="And" xml:space="preserve">
     <value>và</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
 </root>

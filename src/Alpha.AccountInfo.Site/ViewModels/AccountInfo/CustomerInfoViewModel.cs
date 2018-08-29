@@ -62,17 +62,11 @@
 
         public bool Enabled => customerInfo.Enabled;
 
-        public bool ShowMemberName => RoleId.Equals(1);
-
         public string MemberName => customerInfo.MemberName;
-
-        public bool ShowAgentName => (ActorRoleId.Equals(4) || ActorRoleId.Equals(3)) && RoleId < 3;
 
         public int AgentId => customerInfo.AgentId;
 
         public string AgentName => customerInfo.AgentName;
-
-        public bool ShowMasterName => ActorRoleId.Equals(4) && RoleId < 4;
 
         public int MasterId => customerInfo.MasterId;
 
@@ -82,44 +76,37 @@
 
         public string SuperName => customerInfo.SuperName;
 
-        public LoginInfoViewModel LoginInfo {
-            get
-            {
-                return new LoginInfoViewModel(
-                    customerInfo.CreatDate,
-                    customerInfo.LastLogged,
-                    customerInfo.LastTxn,
-                    customerInfo.LastLoginIP);
-            }
-        }
+        public LoginInfoViewModel LoginInfo => 
+            new LoginInfoViewModel(
+                customerInfo.CreatDate,
+                customerInfo.LastLogged,
+                customerInfo.LastTxn,
+                customerInfo.LastLoginIP);
 
         public IBalanceInfoViewModel BalanceInfo { get; }
 
         public string CustomerListLink =>
             !Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $"{OldMainUrl}{CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)]}?custid={CustId}" : string.Empty;
+            $@"{GetMicroSiteUrl(AccountInfoDataKey.Microsites.OldMain, "~/")}
+               {CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)]}?custid={CustId}" : string.Empty;
 
         public string BetListLink =>
             Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $"{BetListUrl}MemberBetList/Index?CustID={CustId}&amp;CustName={UserName}" : string.Empty;
+            $@"{GetMicroSiteUrl(AccountInfoDataKey.Microsites.BetLists, "~/")}
+            MemberBetList/Index?CustID={CustId}&amp;CustName={UserName}" : string.Empty;
 
         public string StatemenLink =>
-            Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $"{ReportsUrl}Statement/MemberStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}" :
-            $"{ReportsUrl}Statement/SMAStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}";
+            GetMicroSiteUrl(AccountInfoDataKey.Microsites.Reports, "~/") + 
+            (Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
+            $"Statement/MemberStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}" :
+            $"Statement/SMAStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}");
 
-        public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
+        public string ViewLogLink => 
+            $"{GetMicroSiteUrl(AccountInfoDataKey.Microsites.ViewLog, "~/")}setting/index?username={UserName}";
 
         public string AccountinfoUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.AccountInfo, "~/");
 
-        public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx?ip=";
-
-        private string ViewLogUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.ViewLog, "~/");
-
-        private string ReportsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.Reports, "~/");
-
-        private string BetListUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.BetLists, "~/");
-
-        private string OldMainUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.OldMain, "~/");
+        public string ViewLoginIPLink 
+            => $"{GetMicroSiteUrl(AccountInfoDataKey.Microsites.OldMain, "~/")}_IPInfo/IpInfo.aspx";
     }
 }

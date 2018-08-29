@@ -1,13 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.AccountInfo.Requests;
     using Alpha.Products.AccountInfo.Status;
     using Alpha.Products.AccountInfo.Status.ViewModels.Base;
     using Alpha.Products.Core.Models;
     using System.Collections.Generic;
+    using System.Linq;
     using static Alpha.Products.AccountInfo.DataKey;
 
     public class StatusViewModel
@@ -38,7 +38,7 @@
                 .AddData(SearchAccount.Upline.IsSuspended, customerStatus.UplineSuspend)
                 .AddData(SearchAccount.IsSuspended, customerStatus.Suspended);
 
-            Settings = viewModelfactory.GetViewModels(request);
+            Settings = viewModelfactory.GetViewModels(request).Where(status => status.Visible);
         }
 
         public IEnumerable<IStatusItemViewModel> Settings { get; }

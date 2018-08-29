@@ -77,7 +77,12 @@ export default class GivenCredit extends React.Component {
 
                 <div className={rowClasses}>
                     <div className="col-xs-7">{resources.NewGivenCredit}</div>
-                    <NumberFormat className="textbox col-xs-5" value={this.state.newGivenCredit} thousandSeparator={true} decimalScale="2" onValueChange={(values) => {
+                    <NumberFormat className="textbox col-xs-5"
+                        value={this.state.newGivenCredit}
+                        fixedDecimalScale={true}
+                        thousandSeparator={true}
+                        decimalScale="2"
+                        onValueChange={(values) => {
                         const { formattedValue, value, floatValue } = values;
                         this.setState({ newGivenCredit: (floatValue === undefined ? 0 : floatValue) })
                     }} />

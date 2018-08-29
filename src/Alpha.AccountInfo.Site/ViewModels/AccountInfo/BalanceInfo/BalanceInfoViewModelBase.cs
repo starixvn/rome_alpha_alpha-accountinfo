@@ -25,12 +25,6 @@
             GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
-        protected string OldMainUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.OldMain, "~/");
-
-        protected string ReportsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.Reports, "~/");
-
-        protected string BetListsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.BetLists, "~/");
-
         public abstract decimal TotalBalance { get; }
 
         public abstract decimal YesterdayBalance { get; }
@@ -66,5 +60,11 @@
 
         protected static decimal RoundNumber(decimal value, byte decimalScale = 2)
             => Math.Round(value, decimalScale, MidpointRounding.AwayFromZero);
+
+        protected string OldMainUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.OldMain, "~/");
+
+        protected string ReportsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.Reports, "~/");
+
+        protected string BetListsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.BetLists, "~/");
     }
 }

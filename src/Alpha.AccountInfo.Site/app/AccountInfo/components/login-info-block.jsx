@@ -9,7 +9,7 @@ export default class LoginInfoBlock extends React.Component {
 
     handleOpenIPInfo(e) {
         e.preventDefault();
-        window.top.ageWnd.open(`${this.props.viewIpInfoLink}${this.props.loginInfo.LoginIP}`);
+        window.top.ageWnd.open(`${this.props.viewIpInfoLink}?ip=${this.props.loginInfo.LoginIP}`);
     };
 
     render() {

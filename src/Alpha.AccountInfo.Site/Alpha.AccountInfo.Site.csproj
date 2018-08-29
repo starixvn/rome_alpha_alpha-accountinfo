@@ -359,7 +359,6 @@
     <Content Include="typings\globals\jquery\typings.json" />
     <Content Include="typings\globals\jquery.blockui\typings.json" />
     <Content Include="assets\scripts\tests\chutzpah.json" />
-    <Content Include="Views\Shared\account-info.html" />
     <Content Include="Web.AppSettings.backupMNL.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>

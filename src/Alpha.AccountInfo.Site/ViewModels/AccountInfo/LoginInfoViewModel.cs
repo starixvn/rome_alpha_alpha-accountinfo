@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.Site.Helpers;
     using System;
 
     public class LoginInfoViewModel

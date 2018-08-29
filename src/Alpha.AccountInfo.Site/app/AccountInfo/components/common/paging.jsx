@@ -34,14 +34,22 @@ export default class Paging extends React.Component {
         const { resourcePage, values, renderCallback } = this.props;
         const { slideTo } = this.state;
 
-        var pageArray = this.chunkArray(values, 10);
-
-        let params = pageArray.length > 1 ?
+        let pageArray = this.chunkArray(values, 10);
+        let length = pageArray.length 
+        let params = length > 1 ?
             {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
                 paginationBulletRender: (swiper, index, className) => {
-                    return `<span class="${className}">${index + 1}</span>`
+                    if (index < 2 || index == length - 1) {
+                        return `<span class="${className}">${index + 1}</span>`;
+                    }
+
+                    if (index > 2 && index < length - 3) {
+                        return '';
+                    }
+
+                    return '.';
                 },
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',

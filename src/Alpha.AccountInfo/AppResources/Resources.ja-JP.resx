@@ -381,4 +381,7 @@
   <data name="And" xml:space="preserve">
     <value>and</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
 </root>

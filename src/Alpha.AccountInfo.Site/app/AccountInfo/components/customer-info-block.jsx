@@ -10,18 +10,15 @@ const CustomerInfoBlock = ({
     firstCellClass = "col-xs-5",
     secondCellClass = "col-xs-7 col-right" }) =>
     <div>
-        {
-            data.ShowMasterName &&
-            <UserLevelLevelInfo data={data}
-                userLevelName={resources.Master}
-                userLevelId="3"
-                username={data.MasterName}
-                resources={resources}
-                handleSearchFromUserLevel={handleSearchFromUserLevel} />
-        }
+        <UserLevelLevelInfo data={data}
+            userLevelName={resources.Master}
+            userLevelId="3"
+            username={data.MasterName}
+            resources={resources}
+            handleSearchFromUserLevel={handleSearchFromUserLevel} />
 
         {
-            data.ShowAgentName &&
+            data.RoleId < 3 &&
             <UserLevelLevelInfo data={data}
                 userLevelName={resources.Agent}
                 userLevelId="2"
@@ -31,7 +28,7 @@ const CustomerInfoBlock = ({
         }
 
         {
-            data.ShowMemberName &&
+            data.RoleId == 1 &&
             <UserLevelLevelInfo data={data}
                 userLevelName={resources.Customer}
                 userLevelId="1"
