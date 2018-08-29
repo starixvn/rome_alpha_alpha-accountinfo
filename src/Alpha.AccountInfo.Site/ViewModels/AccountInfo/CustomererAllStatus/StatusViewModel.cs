@@ -19,15 +19,7 @@
               Customer searchAccount)
         {
             var viewModelfactory = new StatusViewModelFactory();
-
-            var micrositePaths = new Dictionary<string, string>
-            {
-               {"MainPath",  UrlHelper.MapMainPath("~/")},
-               {"OldMainPath",  UrlHelper.MapOldMainPath("~/")},
-               {"AccountInfoPath",  UrlHelper.MapAccountInfoPath("~/")},
-            };
-
-            var request = new StatusSearchAccountRequest(actor, searchAccount, micrositePaths);
+            var request = new StatusSearchAccountRequest(actor, searchAccount);
 
             request
                 .AddData(Actor.HasUpdateAccountPermission, message.CanUpdateAccount)

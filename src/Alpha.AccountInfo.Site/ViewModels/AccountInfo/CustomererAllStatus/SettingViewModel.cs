@@ -19,14 +19,7 @@
             Customer searchAccount)
         {
             var viewModelfactory = new SettingViewModelFactory();
-
-            var micrositePaths = new Dictionary<string, string>
-            {
-                {"MainPath",  UrlHelper.MapMainPath("~/")},
-                {"OldMainPath",  UrlHelper.MapOldMainPath("~/")}
-            };
-
-            var request = new SettingSearchAccountRequest(actor, searchAccount, micrositePaths);
+            var request = new SettingSearchAccountRequest(actor, searchAccount);
 
             request
                  .AddData(DataKey.Actor.CanEditDailyTransferOption, transferDaily)

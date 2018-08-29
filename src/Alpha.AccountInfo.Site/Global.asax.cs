@@ -104,7 +104,8 @@
             .Instance
             .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter()))
             .Register<Func<int, string>>(CacheRef.GetProductName)
-            .Register<Func<string, string>>(Resources.ResourceManager.GetString);
+            .Register<Func<string, string>>(Resources.ResourceManager.GetString)
+            .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl);
         }
     }
 }
