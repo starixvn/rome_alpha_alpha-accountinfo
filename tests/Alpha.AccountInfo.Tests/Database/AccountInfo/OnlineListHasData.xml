@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OnlineList>
+  <Row>
+    <ip>192.168.1.1</ip>
+    <reload_time>2018-08-29</reload_time>
+  </Row>
+  <Row>
+    <ip>192.168.1.2</ip>
+    <reload_time>2018-08-30</reload_time>
+  </Row>
+</OnlineList>

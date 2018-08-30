@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DataSet>
+  <Downline><UserName>User 1</UserName></Downline>
+  <Downline><UserName>User 2</UserName></Downline>
+  <TotalDownlinesTable>
+    <TotalAgActive>1</TotalAgActive>
+    <TotalAgClosed>2</TotalAgClosed>
+    <TotalAgSuspended>3</TotalAgSuspended>
+    <TotalMemActive>4</TotalMemActive>
+    <TotalMemClosed>5</TotalMemClosed>
+    <TotalMemSuspended>6</TotalMemSuspended>
+  </TotalDownlinesTable>
+
+</DataSet>

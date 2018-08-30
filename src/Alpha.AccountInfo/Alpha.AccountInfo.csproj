@@ -222,6 +222,7 @@
     <Compile Include="Criteria\ProductStatus\UpdateKenoStatusCriteria.cs" />
     <Compile Include="DataAccess\AccountInfoDataAccessImpl.cs" />
     <Compile Include="DataAccess\AccountInfoDataAccess.cs" />
+    <Compile Include="DataAccess\ObjectDbFactory.cs" />
     <Compile Include="Enumerations\Enumeration.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\AccountInfo\BalanceInfo\AgentBalanceInfoModel.cs" />
@@ -236,7 +237,6 @@
     <Compile Include="Models\AccountInfo\CustomerAllStatus\NonDCSProductModel.cs" />
     <Compile Include="Models\AccountInfo\CustomerAllStatus\DCSProductModel.cs" />
     <Compile Include="Models\AccountInfo\OnlineList\OnlineUserModel.cs" />
-    <Compile Include="Models\AccountInfo\DownlineList\DownlineInfoModel.cs" />
     <Compile Include="Models\AccountInfo\DownlineList\DownlineListModel.cs" />
     <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\IUser.cs" />

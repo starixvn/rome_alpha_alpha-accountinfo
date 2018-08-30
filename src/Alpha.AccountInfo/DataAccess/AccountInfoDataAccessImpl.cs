@@ -4,7 +4,6 @@
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Fanex.Common;
-    using Fanex.Data;
     using Fanex.Data.Repository;
     using System;
     using System.Collections.Generic;
@@ -15,9 +14,9 @@
     {
         private readonly int failErrorCode = 100;
 
-        public CustomerAllStatusModel GetCustomerAllStatusModel(ICriteria criteria)
+        public CustomerAllStatusModel GetCustomerAllStatus(ICriteria criteria)
         {
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            using (var db = AccountObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
                 using (var dataset = db.ExecuteDataSet(criteria.GetSpParams()))
                 {
@@ -77,23 +76,20 @@
             }
         }
 
-        public DownlineListModel GetDownlineListModel(ICriteria criteria)
+        public DownlineListModel GetDownlineList(ICriteria criteria)
         {
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            using (var db = AccountObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
                 using (var dataset = db.ExecuteDataSet(criteria.GetSpParams()))
                 {
                     var downlineListTable = dataset.Tables[0];
                     var totalDownlineRow = dataset.Tables[1].Rows[0];
 
-                    var downlineList = new List<DownlineInfoModel>();
+                    var downlineList = new List<string>();
                     foreach(DataRow row in downlineListTable.Rows)
                     {
-                        downlineList.Add(new DownlineInfoModel(
-                            Converter.ToString2(row["UserName"]),
-                             Converter.ToString2(row["ClosedReason"])));
+                        downlineList.Add(Converter.ToString2(row["UserName"]));
                     }
-
 
                     return new DownlineListModel(
                           downlines: downlineList,
@@ -110,7 +106,7 @@
 
         public IEnumerable<OnlineUserModel> GetOnlineList(ICriteria criteria)
         {
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            using (var db = AccountObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
                 using (var reader = db.ExecuteReader(criteria.GetSpParams()))
                 {
@@ -129,7 +125,7 @@
 
         public Result UpdateGivenCredit(ICriteria criteria)
         {
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            using (var db = AccountObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
                 db.ExecuteNonQuery(criteria.GetSpParams());
                 var outputParams = db.GetOuputParams();
@@ -144,7 +140,7 @@
 
         public Result ExecuteNonQuery(ICriteria criteria)
         {
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            using (var db = AccountObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
                 db.ExecuteNonQuery(criteria.GetSpParams());
                 var outputParams = db.GetOuputParams();

@@ -33,7 +33,7 @@ export default class DownlineListBlock extends React.Component{
     }
 
     renderCallback(downline) {
-        return <a href="#" data-username={downline.UserName} onClick={this.props.handleSearchFromUserLevel}>{downline.UserName}</a>;
+        return <a href="#" data-username={downline} onClick={this.props.handleSearchFromUserLevel}>{downline}</a>;
     }
 
     render() {

@@ -12,7 +12,7 @@
             this.model = model;
         }
 
-        public IEnumerable<DownlineInfoModel> DownlineList => model.Downlines;
+        public IEnumerable<string> DownlineList => model.Downlines;
 
         public TotalStatusDownline TotalStatusAgent
             => new TotalStatusDownline(model.TotalAgActive, model.TotalAgClosed, model.TotalAgSuspended);

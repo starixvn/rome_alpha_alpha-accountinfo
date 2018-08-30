@@ -51,14 +51,14 @@
             => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
 
         public CustomerAllStatusModel GetCustomerAllStatusModel(int custId)
-            => accountInfoDataAccess.GetCustomerAllStatusModel(
+            => accountInfoDataAccess.GetCustomerAllStatus(
                 new SelectCustomerAllStatusModelCriteria(custId));
 
         public CustomerInfoModel GetCustomerInfoModel(string username, int uplineId)
             =>  repository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
 
         public DownlineListModel GetDownlineListModel(int custId)
-            =>  accountInfoDataAccess.GetDownlineListModel(new SelectDownlineListCriteria(custId));
+            =>  accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
 
         public IEnumerable<OnlineUserModel> GetOnlineList(int custid)
             => accountInfoDataAccess.GetOnlineList(new SelectOnlineListCriteria(custid));

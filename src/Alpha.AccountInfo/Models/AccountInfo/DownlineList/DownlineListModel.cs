@@ -5,7 +5,7 @@
     public class DownlineListModel
     {
         public DownlineListModel(
-         IEnumerable<DownlineInfoModel> downlines,
+         IEnumerable<string> downlines,
          int totalAgActive,
          int totalAgClosed,
          int totalAgSuspended,
@@ -24,7 +24,7 @@
             TotalMemSuspended = totalMemSuspended;
         }
 
-        public IEnumerable<DownlineInfoModel> Downlines{ get; }
+        public IEnumerable<string> Downlines{ get; }
 
         public int TotalAgActive { get; }
 

@@ -4,9 +4,7 @@
 
     public class SelectCustomerInfoCriteria : CriteriaBase
     {
-        public SelectCustomerInfoCriteria(
-            string username, 
-            int uplineId)
+        public SelectCustomerInfoCriteria(string username, int uplineId)
         {
             Username = username;
             UplineId = uplineId;

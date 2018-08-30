@@ -7,9 +7,9 @@
 
     public interface AccountInfoDataAccess
     {
-        CustomerAllStatusModel GetCustomerAllStatusModel(ICriteria criteria);
+        CustomerAllStatusModel GetCustomerAllStatus(ICriteria criteria);
 
-        DownlineListModel GetDownlineListModel(ICriteria criteria);
+        DownlineListModel GetDownlineList(ICriteria criteria);
 
         IEnumerable<OnlineUserModel> GetOnlineList(ICriteria criteria);
 
