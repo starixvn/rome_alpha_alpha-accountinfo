@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria
 {
-    using AccountInfo.Criteria;
+    using Alpha.AccountInfo.Criteria;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]

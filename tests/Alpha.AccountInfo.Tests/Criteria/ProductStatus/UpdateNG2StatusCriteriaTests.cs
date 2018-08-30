@@ -1,8 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
-    using System.Collections.Specialized;
-    using AccountInfo.Configurations;
-    using AccountInfo.Criteria.ProductStatus;
+    using Alpha.AccountInfo.Criteria.ProductStatus;
     using Params.ProductStatus;
     using Xunit;
 

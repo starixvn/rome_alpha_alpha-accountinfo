@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettingsTests.cs" />
+    <Compile Include="Criteria\AccountInfo\AccountInfoCriteriaTest.cs" />
     <Compile Include="Criteria\ProductStatus\NonQueryProductStatusCriteriaForTesting.cs" />
     <Compile Include="Criteria\ProductStatus\NonQueryProductStatusCriteriaTests.cs" />
     <Compile Include="Criteria\ProductStatus\SelectDCSProductStatusCriteriaTests.cs" />

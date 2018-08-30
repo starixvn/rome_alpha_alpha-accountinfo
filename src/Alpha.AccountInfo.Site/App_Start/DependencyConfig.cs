@@ -94,7 +94,6 @@
 
         private static void RegisterStaticInstances(Container container)
         {
-            ////ReportDateServiceImpl.Instance = container.GetInstance<ReportDateService>();
         }
     }
 }

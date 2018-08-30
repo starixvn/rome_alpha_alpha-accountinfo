@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
+    using Alpha.AccountInfo.Criteria.ProductStatus;
     using System;
-    using AccountInfo.Criteria.ProductStatus;
 
     public class NonQueryProductStatusCriteriaForTesting : NonQueryProductStatusCriteria
     {
