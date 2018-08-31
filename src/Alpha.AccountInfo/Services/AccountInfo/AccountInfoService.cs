@@ -21,14 +21,6 @@
 
         Result UpdateGivenCredit(UpdateGivenCreditParam param);
 
-        Result UpdateOutright(UpdateOutrightParam param);
-
-        Result UpdateClosed(UpdateClosedParam param);
-
-        Result UpdateSuspended(UpdateSuspendedParam param);
-
-        Result UpdateAutoMasterPT(UpdateAutoMasterPTParam param);
-
-        Result UpdateDoubleComm(UpdateDoubleCommParam param);
+        Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
     }
 }

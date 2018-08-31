@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Site.Helpers;
+    using Alpha.AccountInfo.Constants;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Services;
     using System;

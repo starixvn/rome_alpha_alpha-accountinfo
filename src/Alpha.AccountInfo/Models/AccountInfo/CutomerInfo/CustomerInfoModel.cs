@@ -30,13 +30,13 @@
          string lastLoginIP,
          DateTime pwdExpiry,
          int memberId,
-        string memberName,
-        int agentId,
-        string agentName,
-        int masterId,
-        string masterName,
-        int superId,
-        string superName)
+         string memberName,
+         int agentId,
+         string agentName,
+         int masterId,
+         string masterName,
+         int superId,
+         string superName)
         {
             CustId = custId;
             RoleId = roleId;

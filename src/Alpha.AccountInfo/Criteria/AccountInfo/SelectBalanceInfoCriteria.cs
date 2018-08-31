@@ -15,14 +15,15 @@
                 {UserLevel.Member, "Age_BalanceMemberSel" }
             };
 
-        public SelectBalanceInfoCriteria(int custId, byte roleId) : base(custId)
+        public SelectBalanceInfoCriteria(int searchAccountId, byte searchAccountRoleId) 
+            : base(searchAccountId)
         {
-            RoleId = roleId;
+            SearchAccountRoleId = searchAccountRoleId;
         }
 
         [SpParam(Ignored = true)]
-        public byte RoleId { get; }
+        public byte SearchAccountRoleId { get; }
 
-        public override string GetSettingKey() => settingKeys[Enumeration.FromValue<UserLevel>(RoleId)];
+        public override string GetSettingKey() => settingKeys[Enumeration.FromValue<UserLevel>(SearchAccountRoleId)];
     }
 }

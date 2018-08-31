@@ -3,6 +3,7 @@
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Fanex.Data.Repository;
+    using System.Collections;
     using System.Collections.Generic;
 
     public interface AccountInfoDataAccess
@@ -15,6 +16,6 @@
 
         Result UpdateGivenCredit(ICriteria criteria);
 
-        Result ExecuteNonQuery(ICriteria criteria);
+        Result ExecuteNonQuery(string settingKey, Hashtable param);
     }
 }

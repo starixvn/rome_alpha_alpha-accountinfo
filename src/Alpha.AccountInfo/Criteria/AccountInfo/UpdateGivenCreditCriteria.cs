@@ -16,7 +16,7 @@
             };
 
         public UpdateGivenCreditCriteria(
-            int custId,
+            int searchAccountId,
             byte roleId,
             decimal creditAmount,
             int actorId,
@@ -25,8 +25,8 @@
             string language,
             string ip)
         {
-            CustId = custId;
-            RoleId = roleId;
+            SearchAccountId = searchAccountId;
+            SearchAccountRoleId = roleId;
             CreditAmount = creditAmount;
             ActorId = actorId;
             ActorRoleId = actorRoleId;
@@ -35,10 +35,11 @@
             IP = ip;
         }
 
-        public int CustId { get; }
+        [SpParam(SqlParamName = "CustId")]
+        public int SearchAccountId { get; }
 
         [SpParam(Ignored = true)]
-        public byte RoleId { get; }
+        public byte SearchAccountRoleId { get; }
 
         [SpParam(Ignored = true)]
         public byte ActorRoleId { get; }
@@ -62,6 +63,6 @@
 
         public override string GetSettingKey() => settingKeys[Enumeration.FromValue<UserLevel>(ActorRoleId)];
 
-        public override bool IsValid() => CustId > 0;
+        public override bool IsValid() => SearchAccountId > 0;
     }
 }

@@ -9,6 +9,7 @@
     using Alpha.AccountInfo.Services.ProductStatus;
     using Fanex.Data.Repository;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
 
     public class AccountInfoServiceImpl : AccountInfoService
@@ -45,17 +46,16 @@
         }
 
         public IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
-            => repository.Fetch<UsernameSuggestion>(new SelectAutoSuggestion(actorId, suggestionQuery, isInternal));
-
-        public IBalanceInfoModel GetBalanceInfoModel(int custId, byte roleId)
-            => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
-
-        public CustomerAllStatusModel GetCustomerAllStatusModel(int custId)
-            => accountInfoDataAccess.GetCustomerAllStatus(
-                new SelectCustomerAllStatusModelCriteria(custId));
+            => repository.Fetch<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
 
         public CustomerInfoModel GetCustomerInfoModel(string username, int uplineId)
             =>  repository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
+
+        public IBalanceInfoModel GetBalanceInfoModel(int custId, byte roleId)
+           => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
+
+        public CustomerAllStatusModel GetCustomerAllStatusModel(int custId)
+          => accountInfoDataAccess.GetCustomerAllStatus(new SelectCustomerAllStatusModelCriteria(custId));
 
         public DownlineListModel GetDownlineListModel(int custId)
             =>  accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
@@ -75,83 +75,27 @@
                     param.Language,
                     param.IP));
 
-        public Result UpdateOutright(UpdateOutrightParam param)
-            => accountInfoDataAccess.ExecuteNonQuery(
-               new UpdateOutrightCriteria(
+        public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
+        {
+            var criteria = new UpdateCustomerStatusCriteria(
                    param.SearchAccountId,
                    param.ActorId,
                    param.SubAccountId,
-                   param.DisableOutright,
                    param.Language,
-                   param.IP));
+                   param.IP,
+                   param.StatusName);
 
-        public Result UpdateClosed(UpdateClosedParam param)
-        {
             var result = accountInfoDataAccess.ExecuteNonQuery(
-                new UpdateClosedCriteria(
-                    param.SearchAccountId,
-                    param.ActorId,
-                    param.SubAccountId,
-                    param.Closed,
-                    param.Language,
-                    param.IP));
+                criteria.GetSettingKey(),
+                criteria.AddSpParams(new Hashtable { { param.StatusName, param.StatusValue } }));
 
-            if(result.IsSuccess && param.SyncedCasino)
+            if (result.IsSuccess && param.SyncedCasino3rd)
             {
-                rnGCasinoService.Update3rdRnGCasinoClosed(
-                    param.SearchAccountId,
-                    param.Closed,
-                    param.IP,
-                    param.ActorId,
-                    param.ActorName);
+                rnGCasinoService.SyncedTo3rdRnGCasinoByStatus(param);
             }
 
             return result;
         }
-
-        public Result UpdateSuspended(UpdateSuspendedParam param)
-        {
-            var result = accountInfoDataAccess.ExecuteNonQuery(
-                new UpdateSuspendedCriteria(
-                    param.SearchAccountId,
-                    param.ActorId,
-                    param.SubAccountId,
-                    param.Suspended,
-                    param.Language,
-                    param.IP));
-
-            if (result.IsSuccess && param.SyncedCasino)
-            {
-                rnGCasinoService.Update3rdRnGCasinoSuspended(
-                    param.SearchAccountId,
-                    param.Suspended,
-                    param.IP,
-                    param.ActorId,
-                    param.ActorName);
-            }
-
-            return result;
-        }
-
-        public Result UpdateAutoMasterPT(UpdateAutoMasterPTParam param)
-            => accountInfoDataAccess.ExecuteNonQuery(
-               new UpdateAutoMasterPTCriteria(
-                   param.SearchAccountId,
-                   param.ActorId,
-                   param.SubAccountId,
-                   param.DisableAutoMasterPT,
-                   param.Language,
-                   param.IP));
-
-        public Result UpdateDoubleComm(UpdateDoubleCommParam param)
-            => accountInfoDataAccess.ExecuteNonQuery(
-                new UpdateDoubleCommCriteria(
-                   param.SearchAccountId,
-                   param.ActorId,
-                   param.SubAccountId,
-                   param.DoubleComm,
-                   param.Language,
-                   param.IP));
 
         internal IBalanceInfoModel GetMasterBalanceInfoModel(ICriteria criteria)
           => repository.Get<MasterBalanceInfoModel>(criteria);

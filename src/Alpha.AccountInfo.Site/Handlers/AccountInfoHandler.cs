@@ -24,11 +24,7 @@
         IRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IRequestHandler<GivenCreditCommand, Result>,
-        IRequestHandler<OutrightCommand, Result>,
-        IRequestHandler<ClosedCommand, Result>,
-        IRequestHandler<SuspendedCommand, Result>,
-        IRequestHandler<AutoMasterPTCommand, Result>,
-        IRequestHandler<DoubleCommCommand, Result> 
+        IRequestHandler<CustomerStatusCommand, Result>
     {
         private readonly AccountInfoService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
@@ -122,59 +118,18 @@
                     command.Language,
                     command.IP));
 
-        public Result Handle(OutrightCommand command)
-           => accountInfoService.UpdateOutright(
-               new UpdateOutrightParam(
+        public Result Handle(CustomerStatusCommand command)
+           => accountInfoService.UpdateCustomerStatus(
+               new UpdateCustomerStatusParam(
                    command.SearchAccountId,
                    command.ActorId,
-                   command.DisableOutright,
                    command.SubAccountId,
                    command.Language,
-                   command.IP));
-
-        public Result Handle(ClosedCommand command)
-           => accountInfoService.UpdateClosed(
-               new UpdateClosedParam(
-                   command.SearchAccountId,
+                   command.IP,
+                   command.StatusValue,
+                   command.StatusName,
                    command.ActorName,
-                   command.ActorId,
-                   command.Closed,
-                   command.SyncedCasino,
-                   command.SubAccountId,
-                   command.Language,
-                   command.IP));
-
-        public Result Handle(SuspendedCommand command)
-          => accountInfoService.UpdateSuspended(
-              new UpdateSuspendedParam(
-                  command.SearchAccountId,
-                  command.ActorName,
-                  command.ActorId,
-                  command.Suspended,
-                  command.SyncedCasino,
-                  command.SubAccountId,
-                  command.Language,
-                  command.IP));
-
-        public Result Handle(AutoMasterPTCommand command)
-           => accountInfoService.UpdateAutoMasterPT(
-               new UpdateAutoMasterPTParam(
-                   command.SearchAccountId,
-                   command.ActorId,
-                   command.DisableAutoMasterPT,
-                   command.SubAccountId,
-                   command.Language,
-                   command.IP));
-
-        public Result Handle(DoubleCommCommand command)
-          => accountInfoService.UpdateDoubleComm(
-              new UpdateDoubleCommParam(
-                  command.SearchAccountId,
-                  command.ActorId,
-                  command.DoubleComm,
-                  command.SubAccountId,
-                  command.Language,
-                  command.IP));
+                   command.SyncedCasino3rd));
 
         private static IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
             NonDCSProductModel nonDCSProduct,

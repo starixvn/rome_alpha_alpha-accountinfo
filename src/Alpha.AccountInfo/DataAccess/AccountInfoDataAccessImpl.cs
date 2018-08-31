@@ -6,6 +6,7 @@
     using Fanex.Common;
     using Fanex.Data.Repository;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
@@ -136,11 +137,11 @@
             }
         }
 
-        public Result ExecuteNonQuery(ICriteria criteria)
+        public Result ExecuteNonQuery(string settingKey, Hashtable param)
         {
-            using (var db = AccountObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            using (var db = AccountObjectDbFactory.CreateInstance(settingKey))
             {
-                db.ExecuteNonQuery(criteria.GetSpParams());
+                db.ExecuteNonQuery(param);
                 var outputParams = db.GetOuputParams();
 
                 return new Result(Convert.ToInt32(outputParams["errcode"]), Converter.ToString2(outputParams["ErrMsg"]));

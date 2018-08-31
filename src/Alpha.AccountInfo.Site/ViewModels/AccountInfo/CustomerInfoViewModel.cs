@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
+    using Alpha.AccountInfo.Constants;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Services;
     using Enumerations;
@@ -62,11 +62,17 @@
 
         public bool Enabled => customerInfo.Enabled;
 
+        public bool ShowMemberName => RoleId.Equals(1);
+
         public string MemberName => customerInfo.MemberName;
+
+        public bool ShowAgentName => (ActorRoleId.Equals(4) || ActorRoleId.Equals(3)) && RoleId < 3;
 
         public int AgentId => customerInfo.AgentId;
 
         public string AgentName => customerInfo.AgentName;
+
+        public bool ShowMasterName => ActorRoleId.Equals(4) && RoleId < 4;
 
         public int MasterId => customerInfo.MasterId;
 

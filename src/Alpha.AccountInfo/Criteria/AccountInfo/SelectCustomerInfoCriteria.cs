@@ -1,16 +1,18 @@
 ﻿namespace Alpha.AccountInfo.Criteria.AccountInfo
 {
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     public class SelectCustomerInfoCriteria : CriteriaBase
     {
-        public SelectCustomerInfoCriteria(string username, int uplineId)
+        public SelectCustomerInfoCriteria(string searchAccountName, int uplineId)
         {
-            Username = username;
+            SearchAccountName = searchAccountName;
             UplineId = uplineId;
         }
 
-        public string Username { get; }
+        [SpParam(SqlParamName = "Username")]
+        public string SearchAccountName { get; }
 
         public int UplineId { get; }
 
@@ -18,6 +20,6 @@
 
         public override string GetSettingKey() => "Age_CustomerSelAllInfo";
 
-        public override bool IsValid() => !string.IsNullOrEmpty(Username) && UplineId > 0;
+        public override bool IsValid() => !string.IsNullOrEmpty(SearchAccountName) && UplineId > 0;
     }
 }

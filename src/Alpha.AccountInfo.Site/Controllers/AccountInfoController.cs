@@ -47,23 +47,7 @@
           => JsonData(command, JsonRequestBehavior.DenyGet);
 
         [HttpPost]
-        public ActionResult UpdateOutright(OutrightCommand command)
+        public ActionResult UpdateCustomerStatus(CustomerStatusCommand command)
            => JsonData(command, JsonRequestBehavior.DenyGet);
-
-        [HttpPost]
-        public ActionResult UpdateClosed(ClosedCommand command)
-          => JsonData(command, JsonRequestBehavior.DenyGet);
-
-        [HttpPost]
-        public ActionResult UpdateSuspended(SuspendedCommand command)
-        => JsonData(command, JsonRequestBehavior.DenyGet);
-
-        [HttpPost]
-        public ActionResult UpdateAutoMasterPT(AutoMasterPTCommand command)
-          => JsonData(command, JsonRequestBehavior.DenyGet);
-
-        [HttpPost]
-        public ActionResult UpdateDoubleComm(DoubleCommCommand command)
-          => JsonData(command, JsonRequestBehavior.DenyGet);
     }
 }

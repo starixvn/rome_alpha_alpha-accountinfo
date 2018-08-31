@@ -2,7 +2,7 @@
 {
     public class SelectOnlineListCriteria : AccountInfoCriteria
     {
-        public SelectOnlineListCriteria(int custId) : base(custId)
+        public SelectOnlineListCriteria(int searchAccountId) : base(searchAccountId)
         {
         }
 

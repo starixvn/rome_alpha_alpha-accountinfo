@@ -7,13 +7,20 @@
     {
         private readonly IUser viewer;
 
-        public CustomerStatusCommand(IUser viewer)
-            : base(viewer)
+        public CustomerStatusCommand(IUser viewer): base(viewer)
         {
             this.viewer = viewer;
         }
 
+        public string ActorName => viewer.Name;
+
+        public bool SyncedCasino3rd { get; set; }
+
         public int SearchAccountId { get; set; }
+
+        public bool StatusValue { get; set; }
+
+        public string StatusName { get; set; }
 
         public int ActorId => viewer.Id;
 

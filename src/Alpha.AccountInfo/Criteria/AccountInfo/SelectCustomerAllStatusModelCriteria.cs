@@ -2,7 +2,8 @@
 {
     public class SelectCustomerAllStatusModelCriteria : AccountInfoCriteria
     {
-        public SelectCustomerAllStatusModelCriteria(int custId) : base(custId)
+        public SelectCustomerAllStatusModelCriteria(int searchAccountId) 
+            : base(searchAccountId)
         {
         }
 

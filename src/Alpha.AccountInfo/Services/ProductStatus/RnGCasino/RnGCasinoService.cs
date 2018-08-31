@@ -1,10 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
+    using Alpha.AccountInfo.Params.ProductStatus;
     using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Fanex.Logging.Extensions.Web;
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
+    using static Alpha.AccountInfo.Constants.AccountInfoDataKey;
 
     public interface RnGCasinoService
     {
@@ -15,25 +18,27 @@
             int ModifyBy, 
             string ModifyUserName);
 
-        void Update3rdRnGCasinoClosed(
-            int IBCCustID, 
-            bool Closed, 
-            string FromIP, 
-            int ModifyBy, 
-            string ModifyUserName);
-
-        void Update3rdRnGCasinoSuspended(
-           int IBCCustID,
-           bool Suspended,
-           string FromIP,
-           int ModifyBy,
-           string ModifyUserName);
+        void SyncedTo3rdRnGCasinoByStatus(UpdateCustomerStatusParam param);
     }
 
     public class RnGCasinoServiceImpl : RnGCasinoService
     {
         private readonly byte AlphaSystemId = 2;
+        private readonly IDictionary<string, Action<UpdateCustomerStatusParam>> SyncedCasinoByStatus;
 
+        public RnGCasinoServiceImpl(): this(null)
+        {
+        }
+
+        internal RnGCasinoServiceImpl(IDictionary<string, Action<UpdateCustomerStatusParam>> SyncedCasinoByStatus)
+        {
+            this.SyncedCasinoByStatus = SyncedCasinoByStatus ?? 
+            new Dictionary<string, Action<UpdateCustomerStatusParam>>
+            {
+                {StatusMapping.Closed,  Update3rdRnGCasinoClosed},
+                {StatusMapping.Suspended,  Update3rdRnGCasinoSuspended}
+            };
+        }
         public void Update3rdRnGCasinoStatus(
             int IBCCustID, 
             bool EnableCasino,
@@ -63,24 +68,12 @@
             }
         }
 
-        public void Update3rdRnGCasinoClosed(
-            int IBCCustID, 
-            bool Closed, 
-            string FromIP, 
-            int ModifyBy, 
-            string ModifyUserName)
+        public void SyncedTo3rdRnGCasinoByStatus(UpdateCustomerStatusParam param)
         {
-            var customer = new Customer();
-
             try
             {
-                customer.UpdateCustClosed(
-                       IBCCustID,
-                       Closed,
-                       FromIP,
-                       ModifyBy,
-                       ModifyUserName,
-                       AlphaSystemId);
+                SyncedCasinoByStatus[param.StatusName](param);
+
             }
             catch (ErrorException ex)
             {
@@ -92,33 +85,30 @@
             }
         }
 
-        public void Update3rdRnGCasinoSuspended(
-           int IBCCustID,
-           bool Suspended,
-           string FromIP,
-           int ModifyBy,
-           string ModifyUserName)
+        public void Update3rdRnGCasinoClosed(UpdateCustomerStatusParam param)
         {
             var customer = new Customer();
 
-            try
-            {
-                customer.UpdateCustSuspend(
-                       IBCCustID,
-                       Suspended,
-                       FromIP,
-                       ModifyBy,
-                       ModifyUserName,
-                       AlphaSystemId);
-            }
-            catch (ErrorException ex)
-            {
-                ExceptionHandler.Handle(new Exception(ex.Message, ex), TraceEventType.Information);
-            }
-            catch (Exception e)
-            {
-                ExceptionHandler.Handle(e, TraceEventType.Information);
-            }
+            customer.UpdateCustClosed(
+                        param.SearchAccountId,
+                        param.StatusValue,
+                        param.IP,
+                        param.ActorId,
+                        param.ActorName,
+                        AlphaSystemId);
+        }
+
+        public void Update3rdRnGCasinoSuspended(UpdateCustomerStatusParam param)
+        {
+            var customer = new Customer();
+
+            customer.UpdateCustSuspend(
+                     param.SearchAccountId,
+                     param.StatusValue,
+                     param.IP,
+                     param.ActorId,
+                     param.ActorName,
+                     AlphaSystemId);
         }
     }
 }

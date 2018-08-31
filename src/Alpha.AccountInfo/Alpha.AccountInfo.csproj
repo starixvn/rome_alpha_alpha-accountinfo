@@ -191,16 +191,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Constants\AccountInfoDataKey.cs" />
     <Compile Include="Constants\BetTypeConstants.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
-    <Compile Include="Criteria\AccountInfo\Base\UpdateCustomerStatusCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateAutoMasterPTCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateClosedCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateDoubleCommCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateSuspendedCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateOutrightCriteria.cs" />
+    <Compile Include="Criteria\AccountInfo\SelectAutoSuggestionCriteria.cs" />
+    <Compile Include="Criteria\AccountInfo\UpdateCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateGivenCreditCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\SelectAutoSuggestion.cs" />
     <Compile Include="Criteria\AccountInfo\SelectCustomerAllStatusModelCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\Base\AccountInfoCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\SelectOnlineListCriteria.cs" />
@@ -230,7 +226,6 @@
     <Compile Include="Models\AccountInfo\BalanceInfo\MemberBalanceInfoModel.cs" />
     <Compile Include="Models\AccountInfo\BalanceInfo\MasterBalanceInfoModel.cs" />
     <Compile Include="Models\AccountInfo\CustomerAllStatus\CustomerAllStatusModel.cs" />
-    <Compile Include="Models\AccountInfo\BalanceInfo\BalanceInfoModel.cs" />
     <Compile Include="Models\AccountInfo\CutomerInfo\UsernameSuggestion.cs" />
     <Compile Include="Models\AccountInfo\CutomerInfo\CustomerInfoModel.cs" />
     <Compile Include="Models\AccountInfo\CustomerAllStatus\CustomerStatusModel.cs" />
@@ -244,12 +239,7 @@
     <Compile Include="Models\ProductStatus\ProductStatusModel.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Params\AccountInfo\Base\UpdateCustomerStatusParam.cs" />
-    <Compile Include="Params\AccountInfo\UpdateDoubleCommParam.cs" />
-    <Compile Include="Params\AccountInfo\UpdateSuspendedParam.cs" />
-    <Compile Include="Params\AccountInfo\UpdateClosedParam.cs" />
-    <Compile Include="Params\AccountInfo\UpdateAutoMasterPTParam.cs" />
-    <Compile Include="Params\AccountInfo\UpdateOutrightParam.cs" />
+    <Compile Include="Params\AccountInfo\UpdateCustomerStatusParam.cs" />
     <Compile Include="Params\AccountInfo\UpdateGivenCreditParam.cs" />
     <Compile Include="Params\ProductStatus\ProductStatusAuthorizationParam.cs" />
     <Compile Include="Params\ProductStatus\BetTypeStatusParam.cs" />

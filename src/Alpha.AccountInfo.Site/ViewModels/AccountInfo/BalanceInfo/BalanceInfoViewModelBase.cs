@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
+    using Alpha.AccountInfo.Constants;
     using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Services;
     using Newtonsoft.Json;
@@ -12,16 +12,16 @@
     public abstract class BalanceInfoViewModelBase : IBalanceInfoViewModel
     {
         protected readonly CustomerInfoQuery message;
-        protected readonly CustomerInfoModel customerInfoModel;
+        protected readonly CustomerInfoModel customerInfo;
         private readonly Func<string, string, string> GetMicroSiteUrl;
 
         protected BalanceInfoViewModelBase(
             CustomerInfoQuery message, 
-            CustomerInfoModel customerInfoModel,
+            CustomerInfoModel customerInfo,
             Func<string, string, string> getMicroSiteUrl = null)
         {
             this.message = message;
-            this.customerInfoModel = customerInfoModel;
+            this.customerInfo = customerInfo;
             GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
@@ -47,13 +47,13 @@
             {
                 var custInfos = new List<BreadcrumbLevel>
                 {
-                    new BreadcrumbLevel(customerInfoModel.SuperId, customerInfoModel.SuperName, 4),
-                    new BreadcrumbLevel(customerInfoModel.MasterId, customerInfoModel.MasterName, 3),
-                    new BreadcrumbLevel(customerInfoModel.AgentId, customerInfoModel.AgentName, 2)
+                    new BreadcrumbLevel(customerInfo.SuperId, customerInfo.SuperName, 4),
+                    new BreadcrumbLevel(customerInfo.MasterId, customerInfo.MasterName, 3),
+                    new BreadcrumbLevel(customerInfo.AgentId, customerInfo.AgentName, 2)
                 };
 
                 return JsonConvert.SerializeObject(
-                    custInfos.Where(custInfo => custInfo.CustLevelId > customerInfoModel.RoleId 
+                    custInfos.Where(custInfo => custInfo.CustLevelId > customerInfo.RoleId 
                     && custInfo.CustLevelId <= message.ActorRoleId)).Replace("\"", "'");
             }
         }

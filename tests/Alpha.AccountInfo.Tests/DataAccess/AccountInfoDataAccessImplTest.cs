@@ -150,58 +150,58 @@
             AssertExtension.Equal(expectedData, actualData);
         }
 
-        [Fact]
-        public void ExecuteNonQuery_SuccessCode_ReturnSuccessResult()
-        {
-            // Arrange
-            var criteria = new UpdateClosedCriteria(
-                searchAccountId: 1,
-                actorId: 2,
-                subAccountId:0,
-                closed: true,
-                language: "E",
-                ip: "192.168.1.1");
+        //[Fact]
+        //public void ExecuteNonQuery_SuccessCode_ReturnSuccessResult()
+        //{
+        //    // Arrange
+        //    var criteria = new UpdateClosedCriteria(
+        //        searchAccountId: 1,
+        //        actorId: 2,
+        //        subAccountId:0,
+        //        closed: true,
+        //        language: "E",
+        //        ip: "192.168.1.1");
 
 
-            var expectedResult = Result.CreateSuccessResult();
-            objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 0 }, { "ErrMsg", string.Empty } });
+        //    var expectedResult = Result.CreateSuccessResult();
+        //    objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 0 }, { "ErrMsg", string.Empty } });
 
-            // Act
-            var actualResult = accountInfoDataAccessImpl.ExecuteNonQuery(criteria);
+        //    // Act
+        //    var actualResult = accountInfoDataAccessImpl.ExecuteNonQuery(criteria);
 
-            // Assert
-            AssertExtension.Equal(expectedResult, actualResult);
-        }
+        //    // Assert
+        //    AssertExtension.Equal(expectedResult, actualResult);
+        //}
 
-        [Fact]
-        public void ExecuteNonQuery_ErrorCode_ReturnErrorResult()
-        {
-            // Arrange
-            var criteria = new UpdateClosedCriteria(
-                searchAccountId: 1,
-                actorId: 2,
-                subAccountId: 0,
-                closed: true,
-                language: "E",
-                ip: "192.168.1.1");
+        //[Fact]
+        //public void ExecuteNonQuery_ErrorCode_ReturnErrorResult()
+        //{
+        //    // Arrange
+        //    var criteria = new UpdateClosedCriteria(
+        //        searchAccountId: 1,
+        //        actorId: 2,
+        //        subAccountId: 0,
+        //        closed: true,
+        //        language: "E",
+        //        ip: "192.168.1.1");
 
-            var errorMsg = "Update Failed !";
-            var expectedResult = Result.CreateErrorResult(100, errorMsg);
-            objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 100 }, { "ErrMsg", errorMsg } });
+        //    var errorMsg = "Update Failed !";
+        //    var expectedResult = Result.CreateErrorResult(100, errorMsg);
+        //    objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 100 }, { "ErrMsg", errorMsg } });
 
-            // Act
-            var actualResult = accountInfoDataAccessImpl.ExecuteNonQuery(criteria);
+        //    // Act
+        //    var actualResult = accountInfoDataAccessImpl.ExecuteNonQuery(criteria);
 
-            // Assert
-            AssertExtension.Equal(expectedResult, actualResult);
-        }
+        //    // Assert
+        //    AssertExtension.Equal(expectedResult, actualResult);
+        //}
 
         [Fact]
         public void UpdateGivenCredit_NonCreditProblem_ReturnSuccessResult()
         {
             // Arrange
             var criteria = new UpdateGivenCreditCriteria(
-                custId: 1,
+                searchAccountId: 1,
                 roleId: 2,
                 creditAmount: 500000,
                 actorId: 56,
@@ -225,7 +225,7 @@
         {
             // Arrange
             var criteria = new UpdateGivenCreditCriteria(
-                custId: 1,
+                searchAccountId: 1,
                 roleId: 2,
                 creditAmount: 500000,
                 actorId: 56,

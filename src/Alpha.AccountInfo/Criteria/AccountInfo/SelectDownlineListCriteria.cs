@@ -2,7 +2,7 @@
 {
     public class SelectDownlineListCriteria : AccountInfoCriteria
     {
-        public SelectDownlineListCriteria(int custId) : base(custId)
+        public SelectDownlineListCriteria(int searchAccountId) : base(searchAccountId)
         {
         }
 

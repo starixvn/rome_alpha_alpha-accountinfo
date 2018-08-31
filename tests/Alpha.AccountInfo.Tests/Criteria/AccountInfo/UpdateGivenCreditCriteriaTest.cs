@@ -13,7 +13,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey(byte actorRoleId, string expectedSettingKey)
         {
             var criteria = new UpdateGivenCreditCriteria(
-                custId: 1, 
+                searchAccountId: 1, 
                 roleId: 1,
                 creditAmount: 999,
                 actorId:2,
@@ -33,7 +33,7 @@
         public void IsValid_CustId_Should_ReturnsValidSettingKey(int custid, bool expectedIsValid)
         {
             var criteria = new UpdateGivenCreditCriteria(
-               custId: custid,
+               searchAccountId: custid,
                roleId: 2,
                creditAmount: 999,
                actorId: 2,

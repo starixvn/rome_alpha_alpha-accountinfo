@@ -3,9 +3,9 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class SelectAutoSuggestion : CriteriaBase
+    public class SelectAutoSuggestionCriteria : CriteriaBase
     {
-        public SelectAutoSuggestion(int actorId, string suggestionQuery, bool isInternal)
+        public SelectAutoSuggestionCriteria(int actorId, string suggestionQuery, bool isInternal)
         {
             ActorId = actorId;
             SuggestionQuery = suggestionQuery;
