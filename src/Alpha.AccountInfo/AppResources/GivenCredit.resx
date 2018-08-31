@@ -132,4 +132,7 @@
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
+    <value>Update Given Credit Successfully !</value>
+  </data>
 </root>

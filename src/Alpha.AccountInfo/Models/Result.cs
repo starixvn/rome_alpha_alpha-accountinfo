@@ -15,7 +15,7 @@
 
         public string Message { get; }
 
-        public static Result CreateSuccessResult(string message = null)
+        public static Result CreateSuccessResult(string message = "")
             => new Result(0, message);
 
         public static Result CreateErrorResult(int code, string message)

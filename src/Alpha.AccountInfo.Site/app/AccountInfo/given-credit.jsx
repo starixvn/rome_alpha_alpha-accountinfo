@@ -47,7 +47,7 @@ export default class GivenCredit extends React.Component {
                 $.unblockUI();
                 self.setState({
                     hideMessages: false,
-                    message: data.Message,
+                    message: this.props.resources.UpdateGivenCreditSuccessfully,
                     updateSuccess: data.IsSuccess
                 });
 

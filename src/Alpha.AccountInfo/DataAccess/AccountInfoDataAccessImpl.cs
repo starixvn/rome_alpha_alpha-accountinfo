@@ -130,11 +130,9 @@
                 db.ExecuteNonQuery(criteria.GetSpParams());
                 var outputParams = db.GetOuputParams();
 
-                var creditProblem = Converter.ToBool(outputParams["CreditProblem"]);
-
-                return creditProblem ?
+                return Converter.ToBool(outputParams["CreditProblem"]) ?
                     Result.CreateErrorResult(failErrorCode, Converter.ToString2(outputParams["ErrMsg"])) :
-                    Result.CreateSuccessResult(Resources.UpdateSuccessfully);
+                    Result.CreateSuccessResult();
             }
         }
 
@@ -145,11 +143,7 @@
                 db.ExecuteNonQuery(criteria.GetSpParams());
                 var outputParams = db.GetOuputParams();
 
-                var success = Convert.ToInt32(outputParams["errcode"]).Equals(0);
-
-                return success ? 
-                    Result.CreateSuccessResult(Resources.UpdateSuccessfully) :
-                    Result.CreateErrorResult(failErrorCode, Converter.ToString2(outputParams["ErrMsg"]));
+                return new Result(Convert.ToInt32(outputParams["errcode"]), Converter.ToString2(outputParams["ErrMsg"]));
             }
         }
     }
