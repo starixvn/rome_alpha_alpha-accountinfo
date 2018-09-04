@@ -6,12 +6,12 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
     entry: {
         "bundles/account-info/index": [
-            "./app/AccountInfo/index.jsx",
+            "./assets/scripts/account-info/index.jsx",
             "./assets/styles/vendors/swiper/swiper.css",
             "./assets/styles/account-info.css"
         ],
         "bundles/account-info/given-credit": [
-            "./app/AccountInfo/given-credit.jsx",
+            "./assets/scripts/account-info/given-credit.jsx",
             "./assets/styles/given-credit.css"
         ],
         "bundles/productstatus/productstatus": [

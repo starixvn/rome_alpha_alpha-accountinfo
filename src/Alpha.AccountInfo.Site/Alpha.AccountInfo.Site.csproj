@@ -314,10 +314,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\AccountInfo\components\common\customized-accordion-item.jsx" />
-    <Content Include="app\AccountInfo\components\common\paging.jsx" />
-    <Content Include="app\AccountInfo\containers\feature-list.jsx" />
-    <Content Include="app\AccountInfo\given-credit.jsx" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
@@ -339,6 +335,21 @@
     <Content Include="assets\bundles\productstatus\productstatus.min.js">
       <DependentUpon>productstatus.js</DependentUpon>
     </Content>
+    <Content Include="assets\scripts\account-info\api-client.jsx" />
+    <Content Include="assets\scripts\account-info\components\balance-info-block.jsx" />
+    <Content Include="assets\scripts\account-info\components\common\cell-contain-number-format.jsx" />
+    <Content Include="assets\scripts\account-info\components\common\customized-accordion-item.jsx" />
+    <Content Include="assets\scripts\account-info\components\common\paging.jsx" />
+    <Content Include="assets\scripts\account-info\components\customer-info-block.jsx" />
+    <Content Include="assets\scripts\account-info\components\downline-list-block.jsx" />
+    <Content Include="assets\scripts\account-info\components\login-info-block.jsx" />
+    <Content Include="assets\scripts\account-info\components\online-list-block.jsx" />
+    <Content Include="assets\scripts\account-info\components\setting-block.jsx" />
+    <Content Include="assets\scripts\account-info\components\status-block.jsx" />
+    <Content Include="assets\scripts\account-info\containers\account-info.jsx" />
+    <Content Include="assets\scripts\account-info\containers\feature-list.jsx" />
+    <Content Include="assets\scripts\account-info\given-credit.jsx" />
+    <Content Include="assets\scripts\account-info\index.jsx" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
@@ -557,17 +568,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\AccountInfo\components\customer-info-block.jsx" />
-    <Content Include="app\AccountInfo\components\common\cell-contain-number-format.jsx" />
-    <Content Include="app\AccountInfo\components\online-list-block.jsx" />
-    <Content Include="app\AccountInfo\components\setting-block.jsx" />
-    <Content Include="app\AccountInfo\components\login-info-block.jsx" />
-    <Content Include="app\AccountInfo\components\status-block.jsx" />
-    <Content Include="app\AccountInfo\components\downline-list-block.jsx" />
-    <Content Include="app\AccountInfo\api-client.jsx" />
-    <Content Include="app\AccountInfo\index.jsx" />
-    <Content Include="app\AccountInfo\containers\account-info.jsx" />
-    <Content Include="app\AccountInfo\components\balance-info-block.jsx" />
     <TypeScriptCompile Include="assets\scripts\productstatus\productstatus.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
