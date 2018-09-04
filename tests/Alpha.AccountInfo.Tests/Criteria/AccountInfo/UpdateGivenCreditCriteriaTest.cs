@@ -44,5 +44,23 @@
 
             Assert.Equal(expectedIsValid, criteria.IsValid());
         }
+
+        [Theory]
+        [InlineData(1, true)]
+        [InlineData(-1, false)]
+        public void IsValid_ActorId_Should_ReturnsCorrectValue(int actorId, bool expectedValue)
+        {
+            var criteria = new UpdateGivenCreditCriteria(
+                  searchAccountId: 1,
+                  roleId: 2,
+                  creditAmount: 999,
+                  actorId: actorId,
+                  actorRoleId: 4,
+                  subAccountId: 0,
+                  language: "E",
+                  ip: "192.196.10.1");
+
+            Assert.Equal(expectedValue, criteria.IsValid());
+        }
     }
 }

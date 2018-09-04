@@ -492,7 +492,7 @@
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\MasterBalanceInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomerInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\DownlineListViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\Integration\ProductJsonConverter.cs" />
+    <Compile Include="Helpers\ProductJsonConverter.cs" />
     <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\SettingViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\CustomererAllStatusViewModel.cs" />

@@ -1,8 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site
 {
     using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Site.Integration;
-    using Alpha.Auth.Filters;
     using Alpha.Products.AccountInfo;
     using Alpha.Products.Core.Configuration;
     using Alpha.Products.Core.Services;

@@ -55,6 +55,5 @@
         protected override string BuildTransferLink(decimal transferValue) =>
             $@"{OldMainUrl}_Transfer/Master/AgentTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
             &CallBack=false&username={message.UserName}&isyesterday=1&&amt={transferValue}";
-
     }
 }

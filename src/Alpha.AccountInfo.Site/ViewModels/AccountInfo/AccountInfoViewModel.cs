@@ -25,7 +25,7 @@
 
         public string AccountInfoUrl => GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
 
-        public string ActorLevelName => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
+        public string ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
 
         public string AccountInfoResources
         {

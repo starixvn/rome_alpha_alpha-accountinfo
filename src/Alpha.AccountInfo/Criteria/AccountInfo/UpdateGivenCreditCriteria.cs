@@ -64,6 +64,6 @@
 
         public override string GetSettingKey() => settingKeys[Enumeration.FromValue<UserLevel>(ActorRoleId)];
 
-        public override bool IsValid() => SearchAccountId > 0;
+        public override bool IsValid() => SearchAccountId > 0 && ActorId > 0;
     }
 }
