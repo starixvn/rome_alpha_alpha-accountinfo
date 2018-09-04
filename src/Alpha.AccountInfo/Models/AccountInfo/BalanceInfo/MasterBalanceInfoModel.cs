@@ -74,6 +74,5 @@
         public decimal CasinoTransfer { get; }
 
         public decimal MasterUsedCredit { get; }
-
     }
 }

@@ -15,9 +15,15 @@
         public IEnumerable<string> DownlineList => model.Downlines;
 
         public TotalStatusDownline TotalStatusAgent
-            => new TotalStatusDownline(model.TotalAgActive, model.TotalAgClosed, model.TotalAgSuspended);
+            => new TotalStatusDownline(
+                model.TotalAgActive, 
+                model.TotalAgClosed, 
+                model.TotalAgSuspended);
 
         public TotalStatusDownline TotalStatusMember
-             => new TotalStatusDownline(model.TotalMemActive, model.TotalMemClosed, model.TotalMemSuspended);
+             => new TotalStatusDownline(
+                 model.TotalMemActive, 
+                 model.TotalMemClosed, 
+                 model.TotalMemSuspended);
     }
 }

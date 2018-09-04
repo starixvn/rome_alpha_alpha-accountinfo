@@ -17,11 +17,12 @@ export default class BalanceInfoBlock extends React.Component {
         window.top.ageWnd.open(givenCreditUrl, this.props.resources.GivenCreditPopupTitle, undefined, undefined, 330, 248);
 
         window.top.closeGivenCreditPopup = false;
+        window.top.realoadLeftPanel = false;
         let timer = setInterval(reloadBalanceInfo, 1000);
 
         function reloadBalanceInfo(e) {
             if (window.top.closeGivenCreditPopup) {
-                self.props.fetchCustomerInfoFromServer(e, self.props.username);
+                window.top.realoadLeftPanel && self.props.fetchCustomerInfoFromServer(e, self.props.username);
                 clearInterval(timer);
             }
         }
@@ -37,6 +38,8 @@ export default class BalanceInfoBlock extends React.Component {
             handleCollapExpandBlock,
             balanceInfo } = this.props;
 
+        const memberLevel = 1, agentLevel = 2, masterLevel = 3;
+
         return (
             <CustomizedAccordionItem
                 title={resources.BalanceInfo}
@@ -46,7 +49,7 @@ export default class BalanceInfoBlock extends React.Component {
                 handleClick={handleCollapExpandBlock}
                 blockId={blockId}>
                 {
-                    roleId > 1 &&
+                    roleId > memberLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.TotalCash}</div>
                         <CellContainNumberFormat title={balanceInfo.TotalCash} classNames="col-xs-6 col-right" />
@@ -54,7 +57,7 @@ export default class BalanceInfoBlock extends React.Component {
                 }
 
                 {
-                    roleId > 1 &&
+                    roleId > memberLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.YesterdayCash}</div>
                         <CellContainNumberFormat title={balanceInfo.YesterdayCash} classNames="col-xs-6 col-right" />
@@ -95,7 +98,7 @@ export default class BalanceInfoBlock extends React.Component {
                 </div>
 
                 {
-                    roleId > 1 &&
+                    roleId > memberLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.UsedCredit}</div>
                         <CellContainNumberFormat title={balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
@@ -124,7 +127,7 @@ export default class BalanceInfoBlock extends React.Component {
                 </div>
 
                 {
-                    roleId == 2 &&
+                    roleId == agentLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.MemberMaxCredit}</div>
                         <div className="col-xs-6 col-right">
@@ -146,7 +149,7 @@ export default class BalanceInfoBlock extends React.Component {
                 }
 
                 {
-                    roleId == 1 &&
+                    roleId == memberLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.NetPosition}</div>
                         <CellContainNumberFormat title={balanceInfo.NetPosition} classNames="col-xs-6 col-right" />
@@ -154,7 +157,7 @@ export default class BalanceInfoBlock extends React.Component {
                 }
 
                 {
-                    roleId == 1 &&
+                    roleId == memberLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.BetCredit}</div>
                         <CellContainNumberFormat title={balanceInfo.BetCredit} classNames="col-xs-6 col-right" />

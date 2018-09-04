@@ -493,9 +493,10 @@
     <Compile Include="Requests\ProductStatus\BetTypeStatus.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusCommand.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusQuery.cs" />
+    <Compile Include="ViewModels\AccountInfo\Base\AccountInfoViewModelBase.cs" />
     <Compile Include="ViewModels\AccountInfo\AccountInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\IBalanceInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\BalanceInfo\BalanceInfoViewModelBase.cs" />
+    <Compile Include="ViewModels\AccountInfo\Base\BalanceInfoViewModelBase.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\GivenCreditViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\BreadcrumbLevel.cs" />
     <Compile Include="ViewModels\AccountInfo\BalanceInfo\AgentBalanceInfoViewModel.cs" />
@@ -505,9 +506,7 @@
     <Compile Include="ViewModels\AccountInfo\DownlineListViewModel.cs" />
     <Compile Include="Helpers\ProductJsonConverter.cs" />
     <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\SettingViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\CustomererAllStatusViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\CustomererAllStatus\StatusViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\CustomererAllStatusViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\TotalStatusDownline.cs" />
     <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />
   </ItemGroup>

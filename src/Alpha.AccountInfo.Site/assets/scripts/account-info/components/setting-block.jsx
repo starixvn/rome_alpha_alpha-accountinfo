@@ -22,7 +22,7 @@ export default class SettingBlock extends React.Component {
                 blockId={blockId}>
                 {
                     settingData != null &&
-                    <Paging resourcePage={this.props.resources.Page} values={settingData.Settings} renderCallback={this.renderCallback} />
+                    <Paging resourcePage={this.props.resources.Page} values={settingData} renderCallback={this.renderCallback} />
                 }
 
             </CustomizedAccordionItem>

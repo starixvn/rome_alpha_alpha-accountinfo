@@ -29,7 +29,7 @@ export default class StatusBlock extends React.Component {
         window.top.bootboxConfirm(e.currentTarget.dataset.message, e.target,
             function () {
                 $.blockUI();
-                accountInfoAPI.updateStatus(url, JSON.parse(param)).then((data) => {
+                accountInfoAPI.updateCustomerStatus(url, JSON.parse(param)).then((data) => {
                     if (data.IsSuccess) {
                         setTimeout(() => {
                             $.unblockUI();
@@ -77,7 +77,7 @@ export default class StatusBlock extends React.Component {
                 handleClick={getCustomerAllStatus}
                 blockId={blockId}>
                 {
-                    statusData != null && statusData.Settings.map((status, index) => {
+                    statusData != null && statusData.map((status, index) => {
                         return status.IsEditOnProductLevel != undefined && !status.IsEditOnProductLevel ?
                             <div key={index}
                                 className="col"

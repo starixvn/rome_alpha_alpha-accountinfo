@@ -57,12 +57,19 @@
         {
             var customerInfo = accountInfoService.GetCustomerInfoModel(message.UserName, message.ActorId);
 
-            var balanceInfo = getBalanceInfoViewModelByLevel[Enumeration.FromValue<UserLevel>(customerInfo.RoleId)](
-                message, 
-                customerInfo, 
-                accountInfoService.GetBalanceInfoModel(customerInfo.CustId, customerInfo.RoleId));
-    
-            return new CustomerInfoViewModel(message,customerInfo, balanceInfo);
+            if (customerInfo != null)
+            {
+                var searchAccountLevel = Enumeration.FromValue<UserLevel>(customerInfo.RoleId);
+
+                var balanceInfo = getBalanceInfoViewModelByLevel[searchAccountLevel](
+                    message,
+                    customerInfo,
+                    accountInfoService.GetBalanceInfoModel(customerInfo.CustId, customerInfo.RoleId));
+
+                return new CustomerInfoViewModel(message, customerInfo, balanceInfo);
+            }
+
+            return null;
         }
 
         public DownlineListViewModel Handle(DownlineListQuery message)
@@ -94,10 +101,7 @@
                 GetSearchAccountProductStatus(model.NonDCSProduct, model.DCSProducts.ToList()), 
                 upline);
 
-            var setting = new SettingViewModel(message, model.CustomerStatus.TransferDaily, actor, searchAccount);
-            var status = new StatusViewModel(message, model.CustomerStatus, actor, searchAccount);
-
-            return new CustomererAllStatusViewModel(status, setting);
+            return new CustomererAllStatusViewModel(message, model.CustomerStatus, actor, searchAccount);
         }
 
         public IEnumerable<OnlineUserModel> Handle(OnlineListQuery message)

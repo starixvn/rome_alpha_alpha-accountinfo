@@ -62,6 +62,18 @@
 
         public bool IsSuperLevel() => this == Super;
 
+        public bool IsSuperOrMasterLevel() => IsSuperLevel() || IsMasterLevel();
+
+        public bool IsNotSuperLevel() => !IsSuperLevel();
+
+        public bool IsDownlineOfSuperLevel() => IsMasterLevel() || IsAgentLevel() || IsMemberLevel();
+
+        public bool IsNotMasterLevel() => !IsMasterLevel();
+
+        public bool IsDownlineOfMasterLevel() => IsAgentLevel() || IsMemberLevel();
+
+        public bool IsNotAgentLevel() => !IsAgentLevel();
+
         public bool IsDirectDownlineOf(Enumeration uplineLevel)
             => (uplineLevel != null) && GapBetweenTwoLevels(uplineLevel.Value, Value) == 1;
 

@@ -52,6 +52,7 @@ export default class GivenCredit extends React.Component {
                 });
 
                 setTimeout(() => {
+                    window.top.realoadLeftPanel = true;
                     window.top.closeGivenCreditPopup = true;
                     window.top.ageWnd.close();
                 }, 2000);

@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import CustomerInfoBlock from '../components/customer-info-block';
 import FeatureList from './feature-list';
 import Autosuggest from 'react-autosuggest';
-
 import { accountInfoAPI } from '../api-client';
 
-const getSuggestions = (value, usernames) => {
+const getSuggestions = (value, suggestions) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
-    return inputLength === 0 ? [] : usernames.filter(user =>
-        user.UserName.toLowerCase().indexOf(inputValue) != -1
+    return inputLength === 0 ? [] : suggestions.filter(suggestion =>
+        suggestion.UserName.toLowerCase().indexOf(inputValue) != -1
     );
 };
 
@@ -20,13 +19,14 @@ const getSuggestionValue = suggestion => suggestion.UserName;
 const renderSuggestion = suggestion => (
     <div>
         {suggestion.UserName}
+        <div>{suggestion.FirstName} {suggestion.LastName}</div>
     </div>
 );
 
 export default class AccountInfo extends React.Component {
     constructor(props) {
-        super(props);
-        let lastSearchUsername = localStorage.getItem("lastSearchUsername") != null ? localStorage.getItem("lastSearchUsername") : '';
+      super(props);
+      let lastSearchUsername = localStorage.getItem("lastSearchUsername") != null ? localStorage.getItem("lastSearchUsername") : '';
 
       this.state = {
             showInfoStatus: false,
@@ -39,9 +39,11 @@ export default class AccountInfo extends React.Component {
         this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
         this.onChangeSearchBox = this.onChangeSearchBox.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
+
         this.getCustomerInfo = this.getCustomerInfo.bind(this);        
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
         this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
@@ -59,6 +61,7 @@ export default class AccountInfo extends React.Component {
                 searchCounter: prevState.searchCounter + 1,
                 customerInfo: data
             }));
+
             localStorage.setItem('lastSearchUsername', username);
             self.handleShowContactInfo(e);
         });
@@ -155,7 +158,6 @@ export default class AccountInfo extends React.Component {
                         customerInfo={customerInfo}
                         handleSearchFromUserLevel={this.handleSearchFromUserLevel}
                         fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} />}
-                       
             </div>
         );
     }

@@ -2,24 +2,19 @@
 {
     using Alpha.AccountInfo.AppResources;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.Products.Core.Services;
-    using Alpha.Products.Core.Shared;
-    using System;
     using System.Collections;
     using System.Globalization;
     using System.Linq;
     using System.Resources;
     using System.Threading;
 
-    public class GivenCreditViewModel
+    public class GivenCreditViewModel : AccountInfoViewModelBase
     {
         private readonly GivenCreditQuery message;
-        private readonly Func<string, string, string> GetMicroSiteUrl;
 
-        public GivenCreditViewModel(GivenCreditQuery message, Func<string, string, string> getMicroSiteUrl = null)
+        public GivenCreditViewModel(GivenCreditQuery message)
         {
             this.message = message;
-            GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
         public int SearchAccountId => message.SearchAccountId;
@@ -29,8 +24,6 @@
         public byte SearchAccountRoleId => message.SearchAccountRoleId;
 
         public decimal CurrentGivenCredit => message.CurrentGivenCredit;
-
-        public string AccountInfoUrl => GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
 
         public string GivenCreditResources
         {

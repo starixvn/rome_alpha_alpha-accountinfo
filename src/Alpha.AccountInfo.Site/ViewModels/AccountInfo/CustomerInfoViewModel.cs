@@ -3,16 +3,13 @@
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
-    using System;
     using System.Collections.Generic;
 
-    public class CustomerInfoViewModel
+    public class CustomerInfoViewModel : AccountInfoViewModelBase
     {
         private readonly CustomerInfoQuery message;
         private readonly CustomerInfoModel customerInfo;
-        private readonly Func<string, string, string> GetMicroSiteUrl;
 
         private readonly Dictionary<UserLevel, string> CustomerListLinkDict
             = new Dictionary<UserLevel, string>
@@ -21,20 +18,14 @@
                 { UserLevel.Agent,  "_MemberInfo/CustomerList/Super/MemberList.aspx"}
             };
 
-        public CustomerInfoViewModel()
-        {
-        }
-
         public CustomerInfoViewModel(
             CustomerInfoQuery message, 
             CustomerInfoModel customerInfo,
-            IBalanceInfoViewModel balanceInfo,
-            Func<string, string, string> getMicroSiteUrl = null)
+            IBalanceInfoViewModel balanceInfo)
         {
             this.message = message;
             this.customerInfo = customerInfo;
             this.BalanceInfo = balanceInfo;
-            GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
         public int CustId => customerInfo.CustId;
@@ -61,17 +52,17 @@
 
         public bool Enabled => customerInfo.Enabled;
 
-        public bool ShowMember => RoleId.Equals(1);
+        public bool ShowMember => SearchAccountLevel.IsMemberLevel();
 
         public string MemberName => customerInfo.MemberName;
 
-        public bool ShowAgent => (ActorRoleId.Equals(4) || ActorRoleId.Equals(3)) && RoleId < 3;
+        public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel() && SearchAccountLevel.IsDownlineOfMasterLevel();
 
         public int AgentId => customerInfo.AgentId;
 
         public string AgentName => customerInfo.AgentName;
 
-        public bool ShowMaster => ActorRoleId.Equals(4) && RoleId < 4;
+        public bool ShowMaster => ActorLevel.IsSuperLevel() && SearchAccountLevel.IsDownlineOfSuperLevel();
 
         public int MasterId => customerInfo.MasterId;
 
@@ -90,28 +81,23 @@
 
         public IBalanceInfoViewModel BalanceInfo { get; }
 
-        public string CustomerListLink =>
-            !Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $@"{GetMicroSiteUrl(MicroSiteConstants.OldMain, "~/")}
-               {CustomerListLinkDict[Enumeration.FromValue<UserLevel>(RoleId)]}?custid={CustId}" : string.Empty;
+        public string CustomerListLink => !SearchAccountLevel.IsMemberLevel() ?
+            $"{OldMainUrl}{CustomerListLinkDict[SearchAccountLevel]}?custid={CustId}" : string.Empty;
 
-        public string BetListLink =>
-            Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $@"{GetMicroSiteUrl(MicroSiteConstants.BetLists, "~/")}
-            MemberBetList/Index?CustID={CustId}&amp;CustName={UserName}" : string.Empty;
+        public string BetListLink => SearchAccountLevel.IsMemberLevel() ?
+            $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}" : string.Empty;
 
-        public string StatemenLink =>
-            GetMicroSiteUrl(MicroSiteConstants.Reports, "~/") + 
-            (Enumeration.FromValue<UserLevel>(RoleId).IsMemberLevel() ?
-            $"Statement/MemberStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}" :
-            $"Statement/SMAStatement?CustID={CustId}&amp;CustName={UserName}&amp;CustLevelId={RoleId}");
+        public string StatemenLink 
+            => SearchAccountLevel.IsMemberLevel() ?
+            $"{ReportsUrl}Statement/MemberStatement?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}" :
+            $"{ReportsUrl}Statement/SMAStatement?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
 
-        public string ViewLogLink => 
-            $"{GetMicroSiteUrl(MicroSiteConstants.ViewLog, "~/")}setting/index?username={UserName}";
+        public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
 
-        public string AccountinfoUrl => GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
+        public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
 
-        public string ViewLoginIPLink 
-            => $"{GetMicroSiteUrl(MicroSiteConstants.OldMain, "~/")}_IPInfo/IpInfo.aspx";
+        private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(RoleId);
+
+        private UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ActorRoleId);
     }
 }

@@ -36,13 +36,15 @@
 
         public string GivenCreditLimit => $">={AgentCredit_Min} {Resources.And} <={AgentCredit_Max}";
 
-        public string MemberMaxCreditLimit => ActorIsSuperLevel ? string.Empty : $">={MemMaxCredit_Min} {Resources.And} <={GivenCredit}";
+        public string MemberMaxCreditLimit 
+            => ActorLevel.IsMasterLevel() ? $">={MemMaxCredit_Min} {Resources.And} <={GivenCredit}" : string.Empty;
 
         public string OutstandingLink => message.ViewReports && Outstanding > 0 ?
                 $@"{ReportsUrl}outstanding/Agent?CustId={balanceInfoModel.CustId}&CustName={message.UserName}
                 &CustLevelId=2&BreadcrumbLevelJson={BreadcrumbLevelJson}" : string.Empty;
 
-        protected override bool ShowTransferLink => !message.AllDayBalTransfer && !ActorIsSuperLevel && message.AllowTransfer;
+        protected override bool ShowTransferLink 
+            => !message.AllDayBalTransfer && ActorLevel.IsNotSuperLevel() && message.AllowTransfer;
 
         private decimal MemMaxCredit_Min => balanceInfoModel.MemMaxCredit_Min;
 
@@ -50,7 +52,7 @@
 
         private decimal AgentCredit_Max => balanceInfoModel.AgentCredit_Max;
 
-        private bool ActorIsSuperLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsSuperLevel();
+        private UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId);
 
         protected override string BuildTransferLink(decimal transferValue) =>
             $@"{OldMainUrl}_Transfer/Master/AgentTransfer.aspx?custid={balanceInfoModel.CustId}&status=1

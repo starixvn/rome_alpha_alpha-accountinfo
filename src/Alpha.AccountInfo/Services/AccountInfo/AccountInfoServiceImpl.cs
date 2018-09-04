@@ -39,9 +39,9 @@
             this.getBalanceInfoModelByLevel = getBalanceInfoModelByLevel ??
                 new Dictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>>
                 {
-                    {UserLevel.Master,  GetMasterBalanceInfoModel},
-                    {UserLevel.Agent,  GetAgentBalanceInfoModel},
-                    {UserLevel.Member,  GetMemberBalanceInfoModel}
+                    {UserLevel.Master, GetMasterBalanceInfoModel},
+                    {UserLevel.Agent, GetAgentBalanceInfoModel},
+                    {UserLevel.Member, GetMemberBalanceInfoModel}
                 };
         }
 
@@ -49,7 +49,7 @@
             => repository.Fetch<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
 
         public CustomerInfoModel GetCustomerInfoModel(string username, int uplineId)
-            =>  repository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
+            => repository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
 
         public IBalanceInfoModel GetBalanceInfoModel(int custId, byte roleId)
            => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
@@ -58,7 +58,7 @@
           => accountInfoDataAccess.GetCustomerAllStatus(new SelectCustomerAllStatusModelCriteria(custId));
 
         public DownlineListModel GetDownlineListModel(int custId)
-            =>  accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
+            => accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
 
         public IEnumerable<OnlineUserModel> GetOnlineList(int custid)
             => accountInfoDataAccess.GetOnlineList(new SelectOnlineListCriteria(custid));
@@ -111,6 +111,6 @@
           => repository.Get<AgentBalanceInfoModel>(criteria);
 
         internal IBalanceInfoModel GetMemberBalanceInfoModel(ICriteria criteria)
-         => repository.Get<MemberBalanceInfoModel>(criteria);
+          => repository.Get<MemberBalanceInfoModel>(criteria);
     }
 }

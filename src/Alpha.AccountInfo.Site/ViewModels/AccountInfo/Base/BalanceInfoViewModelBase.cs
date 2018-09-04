@@ -2,27 +2,20 @@
 {
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.Products.Core.Services;
-    using Alpha.Products.Core.Shared;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    public abstract class BalanceInfoViewModelBase : IBalanceInfoViewModel
+    public abstract class BalanceInfoViewModelBase : AccountInfoViewModelBase, IBalanceInfoViewModel
     {
         protected readonly CustomerInfoQuery message;
         protected readonly CustomerInfoModel customerInfo;
-        private readonly Func<string, string, string> GetMicroSiteUrl;
 
-        protected BalanceInfoViewModelBase(
-            CustomerInfoQuery message, 
-            CustomerInfoModel customerInfo,
-            Func<string, string, string> getMicroSiteUrl = null)
+        protected BalanceInfoViewModelBase(CustomerInfoQuery message, CustomerInfoModel customerInfo)
         {
             this.message = message;
             this.customerInfo = customerInfo;
-            GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
         public abstract decimal TotalBalance { get; }
@@ -60,11 +53,5 @@
 
         protected static decimal RoundNumber(decimal value, byte decimalScale = 2)
             => Math.Round(value, decimalScale, MidpointRounding.AwayFromZero);
-
-        protected string OldMainUrl => GetMicroSiteUrl(MicroSiteConstants.OldMain, "~/");
-
-        protected string ReportsUrl => GetMicroSiteUrl(MicroSiteConstants.Reports, "~/");
-
-        protected string BetListsUrl => GetMicroSiteUrl(MicroSiteConstants.BetLists, "~/");
     }
 }

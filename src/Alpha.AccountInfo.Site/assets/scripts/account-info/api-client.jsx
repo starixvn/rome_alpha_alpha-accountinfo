@@ -1,6 +1,7 @@
 ﻿import axios from 'axios';
 
 const handleErrors = (err) => {
+    $.unblockUI();
     console.error(err);
     throw err;
 };
@@ -23,5 +24,5 @@ export const accountInfoAPI = {
     getCustomerAllStatus: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetCustomerAllStatus", data),
     getOnlineList: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetOnlineList", data),
     updateGivenCredit: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/UpdateGivenCredit", data),
-    updateStatus: (url, data) => requests.post(url, data)
+    updateCustomerStatus: (url, data) => requests.post(url, data)
 }

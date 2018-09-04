@@ -12,18 +12,14 @@
     using System.Resources;
     using System.Threading;
 
-    public class AccountInfoViewModel
+    public class AccountInfoViewModel : AccountInfoViewModelBase
     {
         private readonly AccountInfoQuery message;
-        private readonly Func<string, string, string> GetMicroSiteUrl;
 
-        public AccountInfoViewModel(AccountInfoQuery message, Func<string, string, string> getMicroSiteUrl = null)
+        public AccountInfoViewModel(AccountInfoQuery message) 
         {
             this.message = message;
-             GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
-
-        public string AccountInfoUrl => GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
 
         public string ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
 

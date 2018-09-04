@@ -65,7 +65,7 @@ export default class FeatureList extends React.Component {
 
         accountInfoAPI.getCustomerAllStatus(params).then((data) => {
             self.setState(() => ({
-                settingData: data.Setting,
+                settingData: data.Settings,
                 statusData: data.Status
             }));
         });
@@ -151,6 +151,7 @@ export default class FeatureList extends React.Component {
         }
 
         let balanceInfo = customerInfo.BalanceInfo;
+        const memberLevel = 1;
 
         return (
             <div className={collapseExpandClassName}>
@@ -175,7 +176,7 @@ export default class FeatureList extends React.Component {
                         balanceInfo={balanceInfo} />
 
                     {
-                        customerInfo.RoleId > 1 &&
+                        customerInfo.RoleId > memberLevel &&
                         <DownlineListBlock
                             resources={resources}
                             handleSearchFromUserLevel={handleSearchFromUserLevel} 
