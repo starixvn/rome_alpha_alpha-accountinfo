@@ -93,7 +93,7 @@ export default class StatusBlock extends React.Component {
                                 onClick={this.handleOpenPopupForCheckbox}
                                 data-enabled={!status.Disabled}
                                 data-url={status.Url}
-                                data-param={status.Param}
+                                data-param={status.JsonParams}
                                 data-message={status.ConfirmMessage}
                                 data-name={status.Text}>
                                 <input id={status.displayOrder}
