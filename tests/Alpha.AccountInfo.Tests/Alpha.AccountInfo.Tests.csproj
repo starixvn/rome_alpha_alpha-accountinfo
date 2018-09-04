@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0-beta9\lib\net461\Alpha.Products.Core.dll</HintPath>
+    </Reference>
     <Reference Include="AutoFixture, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoFixture.4.0.0\lib\net452\AutoFixture.dll</HintPath>
       <Private>True</Private>
@@ -149,17 +152,12 @@
     <Compile Include="Collections\ObjectDbCollection.cs" />
     <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Criteria\AccountInfo\Base\AccountInfoCriteriaTest.cs" />
-    <Compile Include="Criteria\AccountInfo\Base\UpdateCustomerStatusCriteriaTest.cs" />
+    <Compile Include="Criteria\AccountInfo\UpdateCustomerStatusCriteriaTestTest.cs" />
     <Compile Include="Criteria\AccountInfo\SelectAutoSuggestionTest.cs" />
     <Compile Include="Criteria\AccountInfo\SelectBalanceInfoCriteriaTest.cs" />
     <Compile Include="Criteria\AccountInfo\SelectCustomerAllStatusModelCriteriaTest.cs" />
     <Compile Include="Criteria\AccountInfo\SelectCustomerInfoCriteriaTest.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateSuspendedCriteriaTest.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateOutrightCriteriaTest.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateGivenCreditCriteriaTest.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateDoubleCommCriteriaTest.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateClosedCriteriaTest.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateAutoMasterPTCriteriaTest.cs" />
     <Compile Include="Criteria\AccountInfo\SelectOnlineListCriteriaCriteriaTest.cs" />
     <Compile Include="Criteria\AccountInfo\SelectDownlineListCriteriaTest.cs" />
     <Compile Include="Criteria\ProductStatus\NonQueryProductStatusCriteriaForTesting.cs" />

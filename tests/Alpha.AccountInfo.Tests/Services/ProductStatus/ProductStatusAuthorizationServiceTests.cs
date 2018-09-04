@@ -1,14 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
-    using System;
     using AccountInfo.Criteria;
-    using AccountInfo.Enumerations;
     using AccountInfo.Models;
     using AccountInfo.Services.ProductStatus;
-    using Constants;
+    using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
     using NSubstitute;
     using Params.ProductStatus;
+    using System;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
@@ -68,7 +67,7 @@
             var expectedResult = true;
             var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086, true);
             var param = new ProductStatusAuthorizationParam(
-                ProductIdConstants.Keno,
+                ProductConstants.Keno,
                 custId,
                 Enumeration.FromValue<UserLevel>(custRoleId),
                 uplineId,
@@ -175,7 +174,7 @@
             // Arrange
             var expectedResult = false;
             var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0, false);
-            var param = new ProductStatusAuthorizationParam(ProductIdConstants.RNGCasino, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(ProductConstants.RNGCasino, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -216,7 +215,7 @@
             // Arrange
             var expectedResult = false;
             var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0, true);
-            var param = new ProductStatusAuthorizationParam(ProductIdConstants.Keno, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(ProductConstants.Keno, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())

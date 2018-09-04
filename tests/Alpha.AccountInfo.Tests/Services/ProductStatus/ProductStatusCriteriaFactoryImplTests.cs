@@ -1,12 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
-    using System.Linq;
     using AccountInfo.Criteria.ProductStatus;
-    using AccountInfo.Enumerations;
     using AccountInfo.Models;
     using AccountInfo.Services.ProductStatus;
-    using Constants;
+    using Alpha.Products.Core.Shared;
     using Params.ProductStatus;
+    using System.Linq;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
@@ -31,9 +30,9 @@
         }
 
         [Theory]
-        [InlineData(ProductIdConstants.RNGCasino)]
-        [InlineData(ProductIdConstants.Keno)]
-        [InlineData(ProductIdConstants.ColossusBets)]
+        [InlineData(ProductConstants.RNGCasino)]
+        [InlineData(ProductConstants.Keno)]
+        [InlineData(ProductConstants.ColossusBets)]
         public void CreateSelectCriteria_ValidProductId_ReturnsSelectProductStatusCriteria(int productId)
         {
             // Arrange
@@ -50,10 +49,10 @@
         public void CreateSelectCriteria_ValidProductId_ReturnsSelectNG2ProductStatusCriteria()
         {
             // Arrange
-            var expectedCriteria = new SelectNG2StatusCriteria(ProductIdConstants.NG2, CustIdTest);
+            var expectedCriteria = new SelectNG2StatusCriteria(ProductConstants.NG2, CustIdTest);
 
             // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(ProductIdConstants.NG2, CustIdTest, CustRoleTest.Value);
+            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(ProductConstants.NG2, CustIdTest, CustRoleTest.Value);
 
             // Assert
             Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
@@ -101,7 +100,7 @@
             var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
             var productStatus = new[] { new BetTypeStatusParam(208, 2101, false) };
             var param = new ProductStatusCommandParam(
-                ProductIdConstants.RNGCasino,
+                ProductConstants.RNGCasino,
                 CustIdTest, 
                 CustRoleTest,
                 UplineIdTest,
@@ -127,7 +126,7 @@
             var expectedCriteria = new UpdateColossusBetStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
             var productStatus = new[] { new BetTypeStatusParam(204, 18000, false) };
             var param = new ProductStatusCommandParam(
-                ProductIdConstants.ColossusBets,
+                ProductConstants.ColossusBets,
                 CustIdTest,
                 CustRoleTest,
                 UplineIdTest,
@@ -152,7 +151,7 @@
             // Arrange
             var productStatus = new[] { new BetTypeStatusParam(213, 2501, false) };
             var param = new ProductStatusCommandParam(
-                ProductIdConstants.NG2,
+                ProductConstants.NG2,
                 CustIdTest,
                 CustRoleTest,
                 UplineIdTest,
@@ -210,7 +209,7 @@
                 new BetTypeStatusParam(202, 1503, true)
             };
             var param = new ProductStatusCommandParam(
-                ProductIdConstants.NG2,
+                ProductConstants.NG2,
                 CustIdTest,
                 CustRoleTest,
                 UplineIdTest,

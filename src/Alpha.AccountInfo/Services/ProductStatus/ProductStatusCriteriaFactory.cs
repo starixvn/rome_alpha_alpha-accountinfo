@@ -1,11 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Constants;
+    using Alpha.Products.Core.Shared;
     using Criteria.ProductStatus;
     using Fanex.Data.Repository;
     using Params.ProductStatus;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public interface ProductStatusCriteriaFactory
     {
@@ -24,12 +24,12 @@
         {
             switch (productId)
             {
-                case ProductIdConstants.RNGCasino:
-                case ProductIdConstants.Keno:
-                case ProductIdConstants.ColossusBets:
+                case ProductConstants.RNGCasino:
+                case ProductConstants.Keno:
+                case ProductConstants.ColossusBets:
                     return new SelectProductStatusCriteria(productId, customerId);
 
-                case ProductIdConstants.NG2:
+                case ProductConstants.NG2:
                     return new SelectNG2StatusCriteria(productId, customerId);
 
                 default:
@@ -41,13 +41,13 @@
         {
             switch (param.ProductId)
             {
-                case ProductIdConstants.RNGCasino:
+                case ProductConstants.RNGCasino:
                     return CreateUpdateCasinoStatusCriteria(param);
 
-                case ProductIdConstants.ColossusBets:
+                case ProductConstants.ColossusBets:
                     return CreateUpdateColossusBetStatusCriteria(param);
 
-                case ProductIdConstants.NG2:
+                case ProductConstants.NG2:
                     return CreateUpdateNG2StatusCriteria(param);
 
                 default:

@@ -1,16 +1,15 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
-    using Enumerations;
+    using Alpha.Products.Core.Shared;
     using MediatR;
-    using Newtonsoft.Json;
     using Params.ProductStatus;
     using Requests.ProductStatus;
     using Services.ProductStatus;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using ViewModels.ProductStatus;
 
     public class ProductStatusHandler :

@@ -1,11 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Constants;
-    using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Services;
+    using Alpha.Products.Core.Shared;
     using System;
     using System.Collections;
     using System.Globalization;
@@ -24,7 +23,7 @@
              GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
-        public string AccountInfoUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.AccountInfo, "~/");
+        public string AccountInfoUrl => GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
 
         public string ActorLevelName => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
 

@@ -1,19 +1,19 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using AccountInfo.Criteria.ProductStatus;
-    using AccountInfo.Enumerations;
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
     using AccountInfo.Services;
     using AccountInfo.Services.ProductStatus;
-    using Constants;
+    using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
     using NSubstitute;
     using Params.ProductStatus;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Xunit;
+    using static Alpha.AccountInfo.Constants.AccountInfoDataKey;
 
     [Trait("Category", "ProductStatus")]
     public class ProductStatusServiceImplTests
@@ -48,12 +48,19 @@
                 rnGCasinoService,
                 productProfileService);
 
-            rnGCasinoService.Update3rdRnGCasinoStatus(CustIdTest, true, "127.0.0.1", 1176070, "User Test");
+            rnGCasinoService.SyncedToRnGCasino3rdByStatus(
+                new UpdateRnGCasino3rdParam(
+                CustIdTest, 
+                StatusMapping.EnableRnGCasino3rd, 
+                true, 
+                1176070, 
+                "User Test",
+                "127.0.0.1"));
         }
 
         [Theory]
-        [InlineData(ProductIdConstants.RNGCasino, "Casino")]
-        [InlineData(ProductIdConstants.ColossusBets, "Colossus Bets")]
+        [InlineData(ProductConstants.RNGCasino, "Casino")]
+        [InlineData(ProductConstants.ColossusBets, "Colossus Bets")]
         public async Task GetProductStatusAsync_CasinoColossusBets_ReturnsDataFromDynamicRepository(int productId, string productName)
         {
             // Arrange
@@ -96,7 +103,7 @@
         public async Task GetProductStatusAsync_Keno_ReturnsDataFromDynamicRepository()
         {
             // Arrange
-            var productId = ProductIdConstants.Keno;
+            var productId = ProductConstants.Keno;
             var sportType = 202;
             var expectedResults = new List<ProductStatusModel>
             {
@@ -174,7 +181,7 @@
         public async Task GetProductStatusAsync_NG2_ReturnsDataFromDynamicRepository()
         {
             // Arrange
-            var productId = ProductIdConstants.NG2;
+            var productId = ProductConstants.NG2;
             var productName = "NG2";
             var expectedResults = new List<ProductStatusModel>
             {
@@ -327,7 +334,7 @@
                 .Returns(false);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(ProductIdConstants.RNGCasino, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(ProductConstants.RNGCasino, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
 
             // Assert
             Assert.False(actualData.Any());
@@ -337,7 +344,7 @@
         public async Task GetProductStatusAsync_NoData_ReturnsEmptyModel()
         {
             // Arrange
-            var productId = ProductIdConstants.RNGCasino;
+            var productId = ProductConstants.RNGCasino;
             var expectedResult = Enumerable.Empty<ProductStatusModel>();
 
             var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
@@ -363,7 +370,7 @@
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
-                ProductIdConstants.Keno,
+                ProductConstants.Keno,
                 CustIdTest,
                 CustRoleTest,
                 0,
@@ -401,7 +408,7 @@
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
-                ProductIdConstants.Keno,
+                ProductConstants.Keno,
                 CustIdTest,
                 CustRoleTest,
                 0,
@@ -451,7 +458,7 @@
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
-                ProductIdConstants.RNGCasino,
+                ProductConstants.RNGCasino,
                 CustIdTest,
                 CustRoleTest,
                 0,
@@ -485,7 +492,7 @@
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
-                ProductIdConstants.RNGCasino,
+                ProductConstants.RNGCasino,
                 CustIdTest,
                 CustRoleTest,
                 0,
@@ -524,7 +531,7 @@
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
-                ProductIdConstants.ColossusBets,
+                ProductConstants.ColossusBets,
                 CustIdTest,
                 CustRoleTest,
                 0,
@@ -558,7 +565,7 @@
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
-                ProductIdConstants.ColossusBets,
+                ProductConstants.ColossusBets,
                 CustIdTest,
                 CustRoleTest,
                 0,

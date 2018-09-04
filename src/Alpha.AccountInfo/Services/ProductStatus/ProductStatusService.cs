@@ -1,16 +1,18 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml.Linq;
+    using Alpha.Products.Core.Shared;
     using AppResources;
     using Constants;
     using Fanex.Data.Repository;
     using Models;
     using Models.ProductStatus;
     using Params.ProductStatus;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml.Linq;
+    using static Alpha.AccountInfo.Constants.AccountInfoDataKey;
 
     public interface ProductStatusService
     {
@@ -87,9 +89,9 @@
 
             switch(commandParam.ProductId)
             {
-                case ProductIdConstants.Keno:
+                case ProductConstants.Keno:
                     return await UpdateKenoStatusAsync(commandParam);
-                case ProductIdConstants.RNGCasino:
+                case ProductConstants.RNGCasino:
                     return await UpdateCasinoStatus(commandParam);
                 default:
                     return await UpdateStatusAsync(commandParam);
@@ -186,12 +188,15 @@
 
             if (criteria.Success)
             {
-                rnGCasinoService.Update3rdRnGCasinoStatus(
-                    criteria.CustId,
-                    !criteria.Disable,
-                    criteria.IP,
-                    criteria.ActorId,
-                    param.ActorName);
+                rnGCasinoService.SyncedToRnGCasino3rdByStatus(
+                 new UpdateRnGCasino3rdParam(
+                     criteria.CustId,
+                     StatusMapping.EnableRnGCasino3rd,
+                     !criteria.Disable,
+                     criteria.ActorId,
+                      param.ActorName,
+                      criteria.IP
+                     ));
 
                 return Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully);
             }
@@ -212,7 +217,7 @@
                     errMsgFromResource ?? xmlRoot.Attributes("Msg").First().Value
                 };
 
-                if (productId == ProductIdConstants.Allbet)
+                if (productId == ProductConstants.AllBet)
                 {
                     errors.AddRange(xmlRoot.Elements()
                         .Select(row => GetBetTypeName(int.Parse(row.Attributes("BetType").First().Value))));

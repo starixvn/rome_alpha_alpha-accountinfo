@@ -2,11 +2,11 @@
 {
     using Alpha.AccountInfo.Criteria.AccountInfo;
     using Alpha.AccountInfo.DataAccess;
-    using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Params.ProductStatus;
     using Alpha.AccountInfo.Services.ProductStatus;
+    using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
     using System;
     using System.Collections;
@@ -91,7 +91,14 @@
 
             if (result.IsSuccess && param.SyncedCasino3rd)
             {
-                rnGCasinoService.SyncedTo3rdRnGCasinoByStatus(param);
+                rnGCasinoService.SyncedToRnGCasino3rdByStatus(
+                    new UpdateRnGCasino3rdParam(
+                        param.SearchAccountId,
+                        param.StatusName,
+                        param.StatusValue,
+                        param.ActorId,
+                        param.ActorName,
+                        param.IP));
             }
 
             return result;

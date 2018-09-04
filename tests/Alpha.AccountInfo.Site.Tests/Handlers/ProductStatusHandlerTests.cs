@@ -1,17 +1,16 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Handlers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
-    using Constants;
-    using Enumerations;
+    using Alpha.Products.Core.Shared;
     using NSubstitute;
     using Params.ProductStatus;
     using Requests.ProductStatus;
     using Services.ProductStatus;
     using Site.Handlers;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using ViewModels.ProductStatus;
     using Xunit;
 
@@ -110,7 +109,7 @@
             user.LevelId.Returns(UplineLevelTest.Value);
             var message = new ProductStatusCommand(user)
             {
-                ProductId = ProductIdConstants.Keno,
+                ProductId = ProductConstants.Keno,
                 CustId = CustIdTest,
                 CustRoleId = CustRoleTest.Value,
                 BetTypeStatus = new[]
@@ -139,7 +138,7 @@
             user.LevelId.Returns(UplineLevelTest.Value);
             var message = new ProductStatusCommand(user)
             {
-                ProductId = ProductIdConstants.Keno,
+                ProductId = ProductConstants.Keno,
                 CustId = CustIdTest,
                 CustRoleId = CustRoleTest.Value,
                 BetTypeStatus = new[]

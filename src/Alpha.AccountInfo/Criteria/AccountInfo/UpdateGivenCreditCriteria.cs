@@ -1,14 +1,15 @@
 ﻿namespace Alpha.AccountInfo.Criteria.AccountInfo
 {
-    using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
+    using Alpha.Products.Core.Shared;
     using Fanex.Data;
     using Fanex.Data.Repository;
     using System.Collections.Generic;
 
     public class UpdateGivenCreditCriteria : CriteriaBase
     {
-        private readonly IDictionary<UserLevel, string> settingKeys = new Dictionary<UserLevel, string>
+        private readonly IDictionary<UserLevel, string> settingKeys = 
+            new Dictionary<UserLevel, string>
             {
                 {UserLevel.Super, "Age_CustomerUpdCredit_SAg" },
                 {UserLevel.Master, "Age_CustomerUpdCredit_MAg" },

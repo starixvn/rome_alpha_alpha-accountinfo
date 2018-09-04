@@ -1,13 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Controllers
 {
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
     using AccountInfo.Models;
-    using Enumerations;
+    using Alpha.Products.Core.Shared;
     using MediatR;
     using NSubstitute;
     using Requests.ProductStatus;
     using Site.Controllers;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
     using ViewModels.ProductStatus;
     using Xunit;
 

@@ -1,12 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using System;
-    using Constants;
+    using Alpha.Products.Core.Shared;
     using Criteria;
-    using Enumerations;
     using Fanex.Data.Repository;
     using Models;
     using Params.ProductStatus;
+    using System;
 
     public interface ProductStatusAuthorizationService
     {
@@ -33,7 +32,7 @@
             var customerInformation = GetCustomerInformation(param.CustId);
             var canView = IsMasterAgentMemberOfViewerUser(customerInformation, param.UplineId, param.UplineLevel);
 
-            if (canView && param.ProductId != ProductIdConstants.Keno)
+            if (canView && param.ProductId != ProductConstants.Keno)
             {
                 canView = IsDirectDownlineOfViewerUser(customerInformation, param.UplineLevel);
             }
@@ -100,7 +99,7 @@
         {
             var canView = canViewProduct(productId);
 
-            return canView && productId == ProductIdConstants.RNGCasino ? syncCasino : canView;
+            return canView && productId == ProductConstants.RNGCasino ? syncCasino : canView;
         }
 
         private CustomerInformation GetCustomerInformation(int custId)

@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Tests.Models
 {
-    using AccountInfo.Enumerations;
     using AccountInfo.Models;
+    using Alpha.Products.Core.Shared;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]

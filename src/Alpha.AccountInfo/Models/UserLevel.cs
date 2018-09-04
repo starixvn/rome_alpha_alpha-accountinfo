@@ -2,8 +2,8 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Alpha.Products.Core.Shared;
     using AppResources;
-    using Enumerations;
 
     [Serializable]
     public class UserLevel : Enumeration

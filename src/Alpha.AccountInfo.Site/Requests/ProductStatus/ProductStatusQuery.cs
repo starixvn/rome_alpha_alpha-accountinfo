@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
     using AccountInfo.Models;
-    using Enumerations;
+    using Alpha.Products.Core.Shared;
     using MediatR;
     using ViewModels.ProductStatus;
 

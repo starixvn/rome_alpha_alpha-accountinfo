@@ -1,13 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
     using Alpha.AccountInfo.Criteria.ProductStatus;
-    using Constants;
+    using Alpha.Products.Core.Shared;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
     public class SelectProductStatusCriteriaTests
     {
-        private const int ProductIdTest = ProductIdConstants.Keno;
+        private const int ProductIdTest = ProductConstants.Keno;
         private const int CustIdTest = 1176083;
 
         [Fact]

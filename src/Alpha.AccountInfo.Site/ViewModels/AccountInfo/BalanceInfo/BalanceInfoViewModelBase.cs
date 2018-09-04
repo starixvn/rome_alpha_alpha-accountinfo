@@ -1,9 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.Constants;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Services;
+    using Alpha.Products.Core.Shared;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -61,10 +61,10 @@
         protected static decimal RoundNumber(decimal value, byte decimalScale = 2)
             => Math.Round(value, decimalScale, MidpointRounding.AwayFromZero);
 
-        protected string OldMainUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.OldMain, "~/");
+        protected string OldMainUrl => GetMicroSiteUrl(MicroSiteConstants.OldMain, "~/");
 
-        protected string ReportsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.Reports, "~/");
+        protected string ReportsUrl => GetMicroSiteUrl(MicroSiteConstants.Reports, "~/");
 
-        protected string BetListsUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.BetLists, "~/");
+        protected string BetListsUrl => GetMicroSiteUrl(MicroSiteConstants.BetLists, "~/");
     }
 }

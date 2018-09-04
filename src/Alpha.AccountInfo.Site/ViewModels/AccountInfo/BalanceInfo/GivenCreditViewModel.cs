@@ -1,9 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Constants;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Services;
+    using Alpha.Products.Core.Shared;
     using System;
     using System.Collections;
     using System.Globalization;
@@ -30,7 +30,7 @@
 
         public decimal CurrentGivenCredit => message.CurrentGivenCredit;
 
-        public string AccountInfoUrl => GetMicroSiteUrl(AccountInfoDataKey.Microsites.AccountInfo, "~/");
+        public string AccountInfoUrl => GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
 
         public string GivenCreditResources
         {

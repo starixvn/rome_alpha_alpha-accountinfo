@@ -1,13 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.ProductStatus
 {
     using Alpha.AccountInfo.Criteria.ProductStatus;
-    using Constants;
+    using Alpha.Products.Core.Shared;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
     public class SelectNG2ProductStatusCriteriaTests
     {
-        private const int ProductIdTest = ProductIdConstants.NG2;
+        private const int ProductIdTest = ProductConstants.NG2;
         private const int CustIdTest = 1176083;
 
         [Fact]

@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
     using AccountInfo.Models;
-    using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
+    using Alpha.Products.Core.Shared;
     using MediatR;
 
     public class CustomerInfoQuery : BaseRequest, IRequest<CustomerInfoViewModel>

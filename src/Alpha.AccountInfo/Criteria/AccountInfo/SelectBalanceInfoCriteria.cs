@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Criteria.AccountInfo
 {
-    using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
+    using Alpha.Products.Core.Shared;
     using Fanex.Data;
     using System.Collections.Generic;
 

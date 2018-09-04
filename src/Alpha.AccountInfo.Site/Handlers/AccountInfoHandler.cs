@@ -1,11 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
-    using Alpha.AccountInfo.Constants;
-    using Alpha.AccountInfo.Enumerations;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Params.ProductStatus;
     using Alpha.Products.Core.Models;
+    using Alpha.Products.Core.Shared;
     using MediatR;
     using Requests.ProductStatus;
     using Services.AccountInfo;
@@ -57,6 +56,7 @@
         public CustomerInfoViewModel Handle(CustomerInfoQuery message)
         {
             var customerInfo = accountInfoService.GetCustomerInfoModel(message.UserName, message.ActorId);
+
             var balanceInfo = getBalanceInfoViewModelByLevel[Enumeration.FromValue<UserLevel>(customerInfo.RoleId)](
                 message, 
                 customerInfo, 
@@ -137,11 +137,11 @@
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
-                new CustomerProductStatus(ProductIdConstants.NumberGame, nonDCSProduct.DisableNumber),
-                new CustomerProductStatus(ProductIdConstants.RNGCasino, nonDCSProduct.DisableCasino, synced: nonDCSProduct.SyncCasino),
-                new CustomerProductStatus(ProductIdConstants.ESport, nonDCSProduct.DisableEsports),
-                new CustomerProductStatus(ProductIdConstants.ColossusBets, nonDCSProduct.DisableColossusBet, hidden: nonDCSProduct.HideColossusBet),
-                new CustomerProductStatus(ProductIdConstants.Keno, nonDCSProduct.HideKeno)
+                new CustomerProductStatus(ProductConstants.NumberGame, nonDCSProduct.DisableNumber),
+                new CustomerProductStatus(ProductConstants.RNGCasino, nonDCSProduct.DisableCasino, synced: nonDCSProduct.SyncCasino),
+                new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.DisableEsports),
+                new CustomerProductStatus(ProductConstants.ColossusBets, nonDCSProduct.DisableColossusBet, hidden: nonDCSProduct.HideColossusBet),
+                new CustomerProductStatus(ProductConstants.Keno, nonDCSProduct.HideKeno)
             };
 
             dcsProducts.ForEach(product => {
@@ -158,11 +158,11 @@
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
-                new CustomerProductStatus(ProductIdConstants.NumberGame, nonDCSProduct.UplineDisableNumber),
-                new CustomerProductStatus(ProductIdConstants.RNGCasino, nonDCSProduct.UplineDisableCS),
-                new CustomerProductStatus(ProductIdConstants.ESport, nonDCSProduct.UplineDisableEsports),
-                new CustomerProductStatus(ProductIdConstants.ColossusBets, nonDCSProduct.UplineDisableColossusBet, hidden: nonDCSProduct.UplineDisableColossusBet),
-                new CustomerProductStatus(ProductIdConstants.Keno, nonDCSProduct.HideKeno)
+                new CustomerProductStatus(ProductConstants.NumberGame, nonDCSProduct.UplineDisableNumber),
+                new CustomerProductStatus(ProductConstants.RNGCasino, nonDCSProduct.UplineDisableCS),
+                new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.UplineDisableEsports),
+                new CustomerProductStatus(ProductConstants.ColossusBets, nonDCSProduct.UplineDisableColossusBet, hidden: nonDCSProduct.UplineDisableColossusBet),
+                new CustomerProductStatus(ProductConstants.Keno, nonDCSProduct.HideKeno)
             };
 
             dcsProducts.ForEach(product => {
@@ -179,11 +179,11 @@
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
-                new CustomerProductStatus(ProductIdConstants.NumberGame, message.IsNumberGameDisabled),
-                new CustomerProductStatus(ProductIdConstants.RNGCasino, message.IsCasinoDisabled, synced: message.IsCasinoSync),
-                new CustomerProductStatus(ProductIdConstants.ESport, message.IsDisabledESports),
-                new CustomerProductStatus(ProductIdConstants.ColossusBets, message.DisableColossusBets, hidden: message.IsHideColossusBets),
-                new CustomerProductStatus(ProductIdConstants.Keno, message.IsHideKeno)
+                new CustomerProductStatus(ProductConstants.NumberGame, message.IsNumberGameDisabled),
+                new CustomerProductStatus(ProductConstants.RNGCasino, message.IsCasinoDisabled, synced: message.IsCasinoSync),
+                new CustomerProductStatus(ProductConstants.ESport, message.IsDisabledESports),
+                new CustomerProductStatus(ProductConstants.ColossusBets, message.DisableColossusBets, hidden: message.IsHideColossusBets),
+                new CustomerProductStatus(ProductConstants.Keno, message.IsHideKeno)
             };
 
             dcsProducts.ForEach(product =>
