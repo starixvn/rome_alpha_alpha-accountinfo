@@ -3,9 +3,7 @@
     using Alpha.AccountInfo.AppResources;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
-    using System;
     using System.Collections;
     using System.Globalization;
     using System.Linq;

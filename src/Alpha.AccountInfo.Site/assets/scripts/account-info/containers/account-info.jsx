@@ -54,6 +54,7 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerInfoFromServer(e, username) {
+        $.blockUI();
         let self = this;
         accountInfoAPI.getCustomerInfo({ username: username}).then((data) => {
             self.setState((prevState) => ({
@@ -64,6 +65,7 @@ export default class AccountInfo extends React.Component {
 
             localStorage.setItem('lastSearchUsername', username);
             self.handleShowContactInfo(e);
+            $.unblockUI();
         });
     }
 
@@ -129,7 +131,10 @@ export default class AccountInfo extends React.Component {
 
         const customerInfoContent = customerInfo == null ?
             <div className="no-information-search">{resources.NoInfo}</div> :
-            <CustomerInfoBlock resources={resources} data={customerInfo} handleSearchFromUserLevel={this.handleSearchFromUserLevel} />;
+            <CustomerInfoBlock
+                resources={resources}
+                data={customerInfo}
+                handleSearchFromUserLevel={this.handleSearchFromUserLevel} />;
 
         return (
             <div className="accountinfo-container">
