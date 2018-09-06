@@ -675,6 +675,11 @@ hr {
     }
 }
 
+
+.react-autosuggest__suggestion--highlighted {
+    background-color: #ddd;
+}
+
 /* Customize tooltip*/
 
 .tippy-tooltip {
@@ -735,5 +740,3 @@ hr {
         color: #ff6100;
     }
 }
-
-
