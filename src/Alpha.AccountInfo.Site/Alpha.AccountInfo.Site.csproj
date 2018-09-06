@@ -350,6 +350,7 @@
     <Content Include="assets\scripts\account-info\containers\feature-list.jsx" />
     <Content Include="assets\scripts\account-info\given-credit.jsx" />
     <Content Include="assets\scripts\account-info\index.jsx" />
+    <Content Include="assets\scripts\helpers\base64-helper.jsx" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
@@ -477,6 +478,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\AccountInfoHandler.cs" />
     <Compile Include="Handlers\ProductStatusHandler.cs" />
+    <Compile Include="Helpers\ResourcesJsonConverter.cs" />
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

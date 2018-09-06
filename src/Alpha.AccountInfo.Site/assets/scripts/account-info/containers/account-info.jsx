@@ -4,6 +4,7 @@ import CustomerInfoBlock from '../components/customer-info-block';
 import FeatureList from './feature-list';
 import Autosuggest from 'react-autosuggest';
 import { accountInfoAPI } from '../api-client';
+import { base64Helper } from '../../helpers/base64-helper';
 
 const getSuggestions = (value, suggestions) => {
     const inputValue = value.trim().toLowerCase();
@@ -33,7 +34,8 @@ export default class AccountInfo extends React.Component {
             searchCounter: 0,
             username: lastSearchUsername,
             customerInfo: null,
-            suggestions: []
+            suggestions: [],
+          resources: base64Helper.decodeResources(this.props.resources)
         };
 
         this.handleShowContactInfo = this.handleShowContactInfo.bind(this);
@@ -117,9 +119,7 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const { showInfoStatus, username, url, customerInfo, suggestions, searchCounter } = this.state;
-        const { resources } = this.props;
-
+        const { showInfoStatus, username, url, customerInfo, suggestions, searchCounter, resources } = this.state;
         const inputProps = {
             type: 'text',
             className: 'txt-search',

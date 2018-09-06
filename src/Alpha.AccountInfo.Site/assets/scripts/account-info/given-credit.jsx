@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
 import { accountInfoAPI } from './api-client';
+import { base64Helper } from '../helpers/base64-helper';
 
 window.renderGivenCredit = function (searchAccountId, searchAccountRoleId, currentGivenCredit, resources) {
     ReactDOM.render(
@@ -21,7 +22,8 @@ export default class GivenCredit extends React.Component {
             newGivenCredit: this.props.currentGivenCredit,
             hideMessages: true,
             updateSuccess: false,
-            message: ''
+            message: '',
+            resources: base64Helper.decodeResources(this.props.resources)
         };
 
         this.handleClose = this.handleClose.bind(this);
@@ -29,7 +31,7 @@ export default class GivenCredit extends React.Component {
     }
 
     handleClose(e) {
-        window.top.closeGivenCreditPopup = true;
+        window.top.closedPopup = true;
         window.top.ageWnd.close();
     };
 
@@ -53,17 +55,17 @@ export default class GivenCredit extends React.Component {
 
                 setTimeout(() => {
                     window.top.realoadLeftPanel = true;
-                    window.top.closeGivenCreditPopup = true;
+                    window.top.closedPopup = true;
                     window.top.ageWnd.close();
-                }, 2000);
+                }, 3000);
             }
         });
     };
 
     render() {
         const rowClasses = "col-xs-12 form-group";
-        const { newGivenCredit, updateSuccess, message, hideMessages } = this.state;
-        const { resources, currentGivenCredit} = this.props;
+        const { newGivenCredit, updateSuccess, message, hideMessages, resources } = this.state;
+        const { currentGivenCredit} = this.props;
 
         return (
 

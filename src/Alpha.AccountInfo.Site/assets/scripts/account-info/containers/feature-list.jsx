@@ -7,8 +7,6 @@ import LoginInfoBlock from '../components/login-info-block';
 import OnlineListBlock from '../components/online-list-block';
 import { Accordion } from 'react-accessible-accordion';
 import { accountInfoAPI } from '../api-client';
-
-// Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/fancy-example.css';
 
 export default class FeatureList extends React.Component {
@@ -19,7 +17,12 @@ export default class FeatureList extends React.Component {
             collapseAll: false,
             firstLoadSearch: true,
             statusData: null,
-            settingData: null
+            settingData: null,
+            levels: {
+                Master: 3,
+                Agent: 2,
+                Member: 1
+            }
         }
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
@@ -40,11 +43,11 @@ export default class FeatureList extends React.Component {
         let self = this;
 
         switch (customerInfo.RoleId) {
-            case 3:
+            case this.state.levels.Master:
                 uplineId = customerInfo.SuperId;
                 uplineName = customerInfo.SuperName;
                 break;
-            case 2:
+            case this.state.levels.Agent:
                 uplineId = customerInfo.MasterId;
                 uplineName = customerInfo.MasterName;
                 break;
@@ -143,7 +146,7 @@ export default class FeatureList extends React.Component {
 
     render() {
         const { resources, customerInfo, fetchCustomerInfoFromServer, handleSearchFromUserLevel } = this.props;
-        const { expandedItems, collapseAll, firstLoadSearch, statusData, settingData} = this.state;
+        const { expandedItems, collapseAll, firstLoadSearch, statusData, settingData, levels } = this.state;
         let collapseExpandClassName = 'account-info-group';
 
         if (firstLoadSearch === false && collapseAll === false) {
@@ -151,7 +154,6 @@ export default class FeatureList extends React.Component {
         }
 
         let balanceInfo = customerInfo.BalanceInfo;
-        const memberLevel = 1;
 
         return (
             <div className={collapseExpandClassName}>
@@ -176,7 +178,7 @@ export default class FeatureList extends React.Component {
                         balanceInfo={balanceInfo} />
 
                     {
-                        customerInfo.RoleId > memberLevel &&
+                        customerInfo.RoleId > levels.Member &&
                         <DownlineListBlock
                             resources={resources}
                             handleSearchFromUserLevel={handleSearchFromUserLevel} 

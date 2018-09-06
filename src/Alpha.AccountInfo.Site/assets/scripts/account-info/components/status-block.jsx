@@ -35,7 +35,7 @@ export default class StatusBlock extends React.Component {
                             $.unblockUI();
                             self.props.fetchCustomerAllStatusFromServer();
                             self.props.fetchCustomerInfoFromServer(e, self.props.username);
-                        }, 2000);
+                        }, 3000);
                     }
                 });
             });
