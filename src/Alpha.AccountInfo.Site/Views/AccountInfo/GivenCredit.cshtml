@@ -6,7 +6,6 @@
     <title></title>
     <meta charset="utf-8" />
     @section Styles {
-        @StaticResources.RenderStyles("/assets/bundles/common/common")
         @StaticResources.RenderStyles("~/assets/bundles/account-info/given-credit")
     }
 </head>
@@ -16,10 +15,15 @@
 </body>
 </html>
 
-@StaticResources.RenderScripts("~/node_modules/react/dist/react")
-@StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
-@StaticResources.RenderScripts("~/assets/bundles/account-info/given-credit")
-<script>
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/account-info/given-credit")
+    <script>
      var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
-     renderGivenCredit("@Model.SearchAccountId", "@Model.SearchAccountRoleId", "@Model.CurrentGivenCredit", JSON.parse('@Model.GivenCreditResources'.replace(/&quot;/g, '\"')));
-</script>
+    renderGivenCredit(
+        "@Model.SearchAccountId",
+        "@Model.SearchAccountRoleId",
+        "@Model.CurrentGivenCredit",
+        JSON.parse('@Model.GivenCreditResources'.replace(/&quot;/g, '\"')));
+    </script>
+}
+

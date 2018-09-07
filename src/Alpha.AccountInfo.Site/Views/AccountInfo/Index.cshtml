@@ -5,21 +5,25 @@
     <title></title>
     <meta charset="utf-8" />
     @section Styles {
-        @StaticResources.RenderStyles("/assets/bundles/common/common")
         @StaticResources.RenderStyles("/assets/bundles/common/common-" + Model.ActorLevel)
         @StaticResources.RenderStyles("/assets/bundles/site-accountinfo/index")
         @StaticResources.RenderStyles("~/assets/bundles/account-info/index")
     }
 </head>
 <body>
-    <div id="account-info">
-    </div>
+    <div id="account-info"></div>
 </body>
 </html>
-@StaticResources.RenderScripts("~/node_modules/react/dist/react")
-@StaticResources.RenderScripts("~/node_modules/react-dom/dist/react-dom")
-@StaticResources.RenderScripts("~/assets/bundles/account-info/index")
-<script>
-    var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
-    renderAccountInfo(JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"')))
-</script>
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/account-info/index")
+
+    <script>
+        var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
+        if (localStorage.getItem("actorName") != '@Model.ActoreName') {
+            localStorage.setItem('actorName', '@Model.ActoreName');
+            localStorage.removeItem('lastSearchUsername');
+        }
+        renderAccountInfo(JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"')));
+    </script>
+}
+

@@ -10,9 +10,12 @@
             : base(viewer)
         {
             ActorRoleId = viewer.LevelId;
+            ActorName = viewer.Name;
             Language = viewer.Language;
         }
         public byte ActorRoleId { get; }
+
+        public string ActorName { get; }
 
         public string Language { get; }
 
