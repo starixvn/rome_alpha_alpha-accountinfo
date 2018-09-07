@@ -344,6 +344,7 @@
     <Content Include="assets\scripts\account-info\components\downline-list-block.jsx" />
     <Content Include="assets\scripts\account-info\components\login-info-block.jsx" />
     <Content Include="assets\scripts\account-info\components\online-list-block.jsx" />
+    <Content Include="assets\scripts\account-info\components\searching-block.jsx" />
     <Content Include="assets\scripts\account-info\components\setting-block.jsx" />
     <Content Include="assets\scripts\account-info\components\status-block.jsx" />
     <Content Include="assets\scripts\account-info\containers\account-info.jsx" />

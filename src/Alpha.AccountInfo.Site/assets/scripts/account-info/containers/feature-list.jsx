@@ -26,7 +26,7 @@ export default class FeatureList extends React.Component {
         }
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
-        this.ShowHideContactInfoButton = this.ShowHideContactInfoButton.bind(this);
+        this.toogleContactInfoButton = this.toogleContactInfoButton.bind(this);
         this.getCustomerAllStatus = this.getCustomerAllStatus.bind(this);
         this.fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer.bind(this);
     }
@@ -132,15 +132,13 @@ export default class FeatureList extends React.Component {
         this.updateState(blockId);
     }
 
-    ShowHideContactInfoButton(e) {
+    toogleContactInfoButton(e) {
         const { expandedItems } = this.state;
         const emptyObject = this.resetColllapseAll(expandedItems);
 
         this.setState({
             expandedItems: emptyObject,
             collapseAll: true
-        }, function () {
-            console.log(this.state.expandedItems.balanceInfo, "updated");
         });
     }
 
@@ -160,7 +158,7 @@ export default class FeatureList extends React.Component {
                 {
                     !this.state.collapseAll &&
                     <div className="visible-mobile show-more-container">
-                        <button className="btn-default show-more" onClick={this.ShowHideContactInfoButton}>
+                        <button className="btn-default show-more" onClick={this.toogleContactInfoButton}>
                             {resources.ShowContactInfo}
                         </button>
                     </div>

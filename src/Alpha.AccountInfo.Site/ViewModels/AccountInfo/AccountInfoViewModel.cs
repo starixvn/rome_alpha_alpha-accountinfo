@@ -2,7 +2,6 @@
 {
     using Alpha.AccountInfo.AppResources;
     using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Shared;
 
@@ -17,7 +16,6 @@
 
         public string ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
 
-        public string AccountInfoResources 
-            => ResourcesJsonConverter.ToConvert(message.Language, Resources.ResourceManager);
+        public string AccountInfoResources => ConvertResourcesJson(message.Language, Resources.ResourceManager);
     }
 }

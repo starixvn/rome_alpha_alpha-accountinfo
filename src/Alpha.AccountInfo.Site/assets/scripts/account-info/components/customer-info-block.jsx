@@ -132,7 +132,8 @@ const UserLevelLevelInfo = ({
     </a>;
 
     return (
-        <div className={rowClasses}>
+
+        <div className={rowClasses} >
             <div className={firstCellClass}>{userLevelName}</div>
             <div className={secondCellClass}>
                 {
@@ -157,5 +158,6 @@ const UserLevelLevelInfo = ({
                     </Tooltip>
                 }
             </div>
-        </div>);
+        </div>
+    );
 }

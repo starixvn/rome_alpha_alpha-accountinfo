@@ -18,7 +18,7 @@ export default class DownlineListBlock extends React.Component{
     componentWillReceiveProps(nextProps) {
         if (nextProps.custId != this.props.custId) {
             this.setState({
-                custId: this.props.custId,
+                custId: nextProps.custId,
                 data: null
             });
         }

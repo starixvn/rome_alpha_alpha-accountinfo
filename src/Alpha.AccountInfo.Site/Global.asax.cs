@@ -21,6 +21,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
+    using System.Resources;
     using System.Web.Mvc;
     using System.Web.Routing;
     using Web;
@@ -103,7 +104,8 @@
             .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter()))
             .Register<Func<int, string>>(CacheRef.GetProductName)
             .Register<Func<string, string>>(Resources.ResourceManager.GetString)
-            .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl);
+            .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
+            .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert);
         }
     }
 }

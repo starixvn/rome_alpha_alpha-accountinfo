@@ -1,7 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
     using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Site.Helpers;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
     public class GivenCreditViewModel : AccountInfoViewModelBase
@@ -21,7 +20,6 @@
 
         public decimal CurrentGivenCredit => message.CurrentGivenCredit;
 
-        public string GivenCreditResources 
-            => ResourcesJsonConverter.ToConvert(message.Language, GivenCredit.ResourceManager);
+        public string GivenCreditResources => ConvertResourcesJson(message.Language, GivenCredit.ResourceManager);
     }
 }
