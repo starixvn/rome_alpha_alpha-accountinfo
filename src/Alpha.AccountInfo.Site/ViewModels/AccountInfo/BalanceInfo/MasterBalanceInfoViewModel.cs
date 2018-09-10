@@ -40,12 +40,12 @@
 
         protected override bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
 
-        private decimal MasterCredit_Min => balanceInfoModel.MasterCredit_Min;
-
-        private decimal MasterCredit_Max => balanceInfoModel.MasterCredit_Max;
-
         protected override string BuildTransferLink(decimal transferValue) =>
             $@"{OldMainUrl}_Transfer/Super/MasterTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
             &CallBack=false&username={message.UserName}&isyesterday=1&amt={transferValue}";
+
+        private decimal MasterCredit_Min => balanceInfoModel.MasterCredit_Min;
+
+        private decimal MasterCredit_Max => balanceInfoModel.MasterCredit_Max;
     }
 }

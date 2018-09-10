@@ -35,14 +35,14 @@
 
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
 
-        private decimal MemMaxCredit_Max => balanceInfoModel.MemMaxCredit_Max;
-
-        private UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId);
-
-        protected override bool ShowTransferLink 
-            => ActorLevel.IsAgentLevel()&& !message.AllDayBalTransfer && message.AllowTransfer;
+        protected override bool ShowTransferLink
+          => ActorLevel.IsAgentLevel() && !message.AllDayBalTransfer && message.AllowTransfer;
 
         protected override string BuildTransferLink(decimal transferValue) =>
            $"{OldMainUrl}_Transfer/Agent/MemberTransfer.aspx?custid={balanceInfoModel.CustId}&CallBack=false";
+
+        private decimal MemMaxCredit_Max => balanceInfoModel.MemMaxCredit_Max;
+
+        private UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId);
     }
 }

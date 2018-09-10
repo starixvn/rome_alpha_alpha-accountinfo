@@ -5,12 +5,10 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    // TO DO: Check belonging
+
     [SessionState(SessionStateBehavior.Default)]
     public class AccountInfoController : AccountInfoBaseController
     {
-        protected readonly IMediator mediator;
-
         public AccountInfoController(IMediator mediator)
             : base(mediator)
         {

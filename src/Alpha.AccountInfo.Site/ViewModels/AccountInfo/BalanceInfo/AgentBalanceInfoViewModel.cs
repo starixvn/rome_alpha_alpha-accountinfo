@@ -46,6 +46,10 @@
         protected override bool ShowTransferLink 
             => !message.AllDayBalTransfer && ActorLevel.IsNotSuperLevel() && message.AllowTransfer;
 
+        protected override string BuildTransferLink(decimal transferValue) =>
+           $@"{OldMainUrl}_Transfer/Master/AgentTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
+            &CallBack=false&username={message.UserName}&isyesterday=1&&amt={transferValue}";
+
         private decimal MemMaxCredit_Min => balanceInfoModel.MemMaxCredit_Min;
 
         private decimal AgentCredit_Min => balanceInfoModel.AgentCredit_Min;
@@ -53,9 +57,5 @@
         private decimal AgentCredit_Max => balanceInfoModel.AgentCredit_Max;
 
         private UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId);
-
-        protected override string BuildTransferLink(decimal transferValue) =>
-            $@"{OldMainUrl}_Transfer/Master/AgentTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
-            &CallBack=false&username={message.UserName}&isyesterday=1&&amt={transferValue}";
     }
 }
