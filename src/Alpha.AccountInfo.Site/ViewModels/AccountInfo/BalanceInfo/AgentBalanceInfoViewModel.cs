@@ -5,6 +5,8 @@
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Shared;
+    using System;
+    using System.Resources;
 
     public class AgentBalanceInfoViewModel : BalanceInfoViewModelBase
     {
@@ -13,7 +15,10 @@
         public AgentBalanceInfoViewModel( 
             CustomerInfoQuery message,
             IBalanceInfoModel balanceInfoModel,
-            CustomerInfoModel customerInfoModel) : base(message, customerInfoModel)
+            CustomerInfoModel customerInfoModel,
+            Func<string, string, string> getMicroSiteUrl = null,
+            Func<string, ResourceManager, string> convertResourcesJson = null)
+            : base(message, customerInfoModel, getMicroSiteUrl, convertResourcesJson)
         {
             this.balanceInfoModel = (AgentBalanceInfoModel)balanceInfoModel;
         }
@@ -26,7 +31,7 @@
 
         public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.Yesterday_AgentCash + balanceInfoModel.Yesterday_CustomerCash);
 
-        public decimal Outstanding => RoundNumber(balanceInfoModel.AgentPositionTaking);
+        public override decimal Outstanding => RoundNumber(balanceInfoModel.AgentPositionTaking);
 
         public decimal MemberMaxCredit => RoundNumber(balanceInfoModel.MemberMaxCredit);
 
@@ -39,16 +44,16 @@
         public string MemberMaxCreditLimit 
             => ActorLevel.IsMasterLevel() ? $">={MemMaxCredit_Min} {Resources.And} <={GivenCredit}" : string.Empty;
 
-        public string OutstandingLink => message.ViewReports && Outstanding > 0 ?
-                $@"{ReportsUrl}outstanding/Agent?CustId={balanceInfoModel.CustId}&CustName={message.UserName}
-                &CustLevelId=2&BreadcrumbLevelJson={BreadcrumbLevelJson}" : string.Empty;
+        public string OutstandingLink => ShowReportLink ?
+            $"{ReportsUrl}outstanding/Agent?CustId={balanceInfoModel.CustId}" + 
+            $"&CustName={message.UserName}&CustLevelId=2&BreadcrumbLevelJson={BreadcrumbLevelJson}" 
+            : string.Empty;
 
-        protected override bool ShowTransferLink 
-            => !message.AllDayBalTransfer && ActorLevel.IsNotSuperLevel() && message.AllowTransfer;
+        internal override bool ShowTransferLink => ActorLevel.IsMasterLevel() && base.ShowTransferLink;
 
         protected override string BuildTransferLink(decimal transferValue) =>
-           $@"{OldMainUrl}_Transfer/Master/AgentTransfer.aspx?custid={balanceInfoModel.CustId}&status=1
-            &CallBack=false&username={message.UserName}&isyesterday=1&&amt={transferValue}";
+           $"{OldMainUrl}_Transfer/Master/AgentTransfer.aspx?custid={balanceInfoModel.CustId}" + 
+           $"&status=1&CallBack=false&username={message.UserName}&isyesterday=1&amt={transferValue}";
 
         private decimal MemMaxCredit_Min => balanceInfoModel.MemMaxCredit_Min;
 

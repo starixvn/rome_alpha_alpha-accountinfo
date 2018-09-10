@@ -183,10 +183,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ProductStatusControllerTests.cs" />
+    <Compile Include="Extensions\AssertExtension.cs" />
     <Compile Include="Handlers\ProductStatusHandlerTests.cs" />
     <Compile Include="Helpers\QueryEntityModelBinderTests.cs" />
     <Compile Include="Models\UserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BalanceInfo\AgentBalanceInfoViewModelTest.cs" />
+    <Compile Include="ViewModels\BalanceInfo\MasterBalanceInfoViewModelTest.cs" />
+    <Compile Include="ViewModels\BalanceInfo\MemberBalanceInfoViewModelTest.cs" />
+    <Compile Include="Stub\StubAccountInfo.cs" />
+    <Compile Include="ViewModels\Base\BalanceInfoViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

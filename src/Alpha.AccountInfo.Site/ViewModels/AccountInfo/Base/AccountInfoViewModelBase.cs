@@ -8,6 +8,7 @@
     public class AccountInfoViewModelBase
     {
         private readonly Func<string, string, string> GetMicroSiteUrl;
+
         public AccountInfoViewModelBase(
             Func<string, string, string> getMicroSiteUrl = null,
             Func<string, ResourceManager, string> convertResourcesJson = null)

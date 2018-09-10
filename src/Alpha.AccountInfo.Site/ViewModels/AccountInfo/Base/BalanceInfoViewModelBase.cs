@@ -6,13 +6,18 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Resources;
 
     public abstract class BalanceInfoViewModelBase : AccountInfoViewModelBase, IBalanceInfoViewModel
     {
         protected readonly CustomerInfoQuery message;
         protected readonly CustomerInfoModel customerInfo;
 
-        protected BalanceInfoViewModelBase(CustomerInfoQuery message, CustomerInfoModel customerInfo)
+        protected BalanceInfoViewModelBase(
+            CustomerInfoQuery message, 
+            CustomerInfoModel customerInfo,
+            Func<string, string, string> getMicroSiteUrl = null,
+            Func<string, ResourceManager, string> convertResourcesJson = null) : base(getMicroSiteUrl, convertResourcesJson)
         {
             this.message = message;
             this.customerInfo = customerInfo;
@@ -22,9 +27,11 @@
 
         public abstract decimal YesterdayBalance { get; }
 
-        protected abstract bool ShowTransferLink { get; }
+        public abstract decimal Outstanding { get; }
 
-        protected abstract string BuildTransferLink(decimal transferValue);
+        internal virtual bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
+
+        internal virtual bool ShowReportLink => message.ViewReports && Outstanding > 0;
 
         public string TransferLinkOnTotalBalance =>
             ShowTransferLink && message.AllowedTotalBalanceTransfer && !TotalBalance.Equals(0) ?
@@ -33,6 +40,8 @@
         public string TransferLinkOnYesterdayBalance =>
             ShowTransferLink && !message.AllowedTotalBalanceTransfer && !YesterdayBalance.Equals(0) ?
             BuildTransferLink(YesterdayBalance) : string.Empty;
+
+        protected abstract string BuildTransferLink(decimal transferValue);
 
         protected string BreadcrumbLevelJson
         {

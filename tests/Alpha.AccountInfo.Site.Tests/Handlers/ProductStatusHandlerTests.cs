@@ -2,6 +2,7 @@
 {
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
+    using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
     using Alpha.Products.Core.Shared;
     using NSubstitute;
     using Params.ProductStatus;
@@ -11,7 +12,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ViewModels.ProductStatus;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]

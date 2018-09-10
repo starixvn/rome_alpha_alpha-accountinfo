@@ -4,6 +4,8 @@
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Shared;
+    using System;
+    using System.Resources;
 
     public class MemberBalanceInfoViewModel : BalanceInfoViewModelBase
     {
@@ -12,7 +14,10 @@
         public MemberBalanceInfoViewModel(
             CustomerInfoQuery message,
             IBalanceInfoModel balanceInfoModel,
-            CustomerInfoModel customerInfoModel) : base(message, customerInfoModel)
+            CustomerInfoModel customerInfoModel,
+            Func<string, string, string> getMicroSiteUrl = null,
+            Func<string, ResourceManager, string> convertResourcesJson = null) 
+            : base(message, customerInfoModel, getMicroSiteUrl, convertResourcesJson)
         {
             this.balanceInfoModel = (MemberBalanceInfoModel)balanceInfoModel;
         }
@@ -21,7 +26,7 @@
 
         public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.Yesterday_CustomerCash);
 
-        public decimal Outstanding => RoundNumber(balanceInfoModel.CustomerOutstanding);
+        public override decimal Outstanding => RoundNumber(balanceInfoModel.CustomerOutstanding);
 
         public decimal NetPosition => RoundNumber(balanceInfoModel.NetPosition);
 
@@ -29,14 +34,13 @@
 
         public decimal BetCredit => RoundNumber(GivenCredit + balanceInfoModel.CustomerCash - Outstanding + NetPosition);
 
-        public string BetListLink => message.ViewReports && Outstanding > 0 ?
-            $@"{BetListsUrl}RunningBetList/Index?CustID={balanceInfoModel.CustId}
-            &amp;CustName=ACGUUS3838033&amp;GetAll=True" : string.Empty;
+        public string BetListLink => ShowReportLink ?
+            $@"{BetListsUrl}RunningBetList/Index?CustID={balanceInfoModel.CustId}&amp;CustName=ACGUUS3838033&amp;GetAll=True" 
+            : string.Empty;
 
         public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
 
-        protected override bool ShowTransferLink
-          => ActorLevel.IsAgentLevel() && !message.AllDayBalTransfer && message.AllowTransfer;
+        internal override bool ShowTransferLink => ActorLevel.IsAgentLevel() && base.ShowTransferLink;
 
         protected override string BuildTransferLink(decimal transferValue) =>
            $"{OldMainUrl}_Transfer/Agent/MemberTransfer.aspx?custid={balanceInfoModel.CustId}&CallBack=false";
