@@ -4,7 +4,6 @@
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using System;
-    using System.Resources;
 
     public class MasterBalanceInfoViewModel : BalanceInfoViewModelBase
     {
@@ -14,9 +13,8 @@
             CustomerInfoQuery message,
             IBalanceInfoModel balanceInfoModel,
             CustomerInfoModel customerInfoModel,
-            Func<string, string, string> getMicroSiteUrl = null,
-            Func<string, ResourceManager, string> convertResourcesJson = null)
-            : base(message, customerInfoModel, getMicroSiteUrl, convertResourcesJson)
+            Func<string, string, string> getMicroSiteUrl = null)
+            : base(message, customerInfoModel, getMicroSiteUrl)
         {
             this.balanceInfoModel = (MasterBalanceInfoModel)balanceInfoModel;
         }
@@ -38,15 +36,6 @@
         public string GivenCreditLimit => $">={MasterCredit_Min} {Resources.And} <={MasterCredit_Max}";
 
         public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
-
-        public string OutstandingLink => ShowReportLink ?
-            $"{ReportsUrl}outstanding/Master?CustId={balanceInfoModel.CustId}&CustName={message.UserName}"
-            + $"&CustLevelId=3&BreadcrumbLevelJson={BreadcrumbLevelJson}" 
-            : string.Empty;
-
-        protected override string BuildTransferLink(decimal transferValue) =>
-            $"{OldMainUrl}_Transfer/Super/MasterTransfer.aspx?custid={balanceInfoModel.CustId}&status=1"
-            + $"&CallBack=false&username={message.UserName}&isyesterday=1&amt={transferValue}";
 
         private decimal MasterCredit_Min => balanceInfoModel.MasterCredit_Min;
 

@@ -2,14 +2,21 @@
 {
     using Alpha.AccountInfo.AppResources;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.Products.Core.Services;
+    using System;
+    using System.Resources;
 
     public class GivenCreditViewModel : AccountInfoViewModelBase
     {
         private readonly GivenCreditQuery message;
+        private readonly Func<string, ResourceManager, string> ConvertResourcesJson;
 
-        public GivenCreditViewModel(GivenCreditQuery message)
+        public GivenCreditViewModel(
+            GivenCreditQuery message,
+            Func<string, ResourceManager, string> convertResourcesJson = null)
         {
             this.message = message;
+            ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
         }
 
         public int SearchAccountId => message.SearchAccountId;

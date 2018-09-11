@@ -69,7 +69,7 @@ export default class BalanceInfoBlock extends React.Component {
                     <CellContainNumberFormat
                         title={balanceInfo.TotalBalance}
                         classNames="col-xs-6 col-right"
-                        hrefLink={balanceInfo.TransferLinkOnTotalBalance}
+                        hrefLink={balanceInfo.ShowTotalBalanceTransferLink && balanceInfo.TotalBalanceTransferLink}
                         target="main" />
                 </div>
 
@@ -78,22 +78,18 @@ export default class BalanceInfoBlock extends React.Component {
                     <CellContainNumberFormat
                         title={balanceInfo.YesterdayBalance}
                         classNames="col-xs-6 col-right"
-                        hrefLink={balanceInfo.TransferLinkOnYesterdayBalance}
+                        hrefLink={balanceInfo.ShowYesterdayBalanceTransferLink && balanceInfo.YesterdayBalanceTransferLink}
                         target="main" />
                 </div>
 
                 <div className={rowClasses}>
                     <div className="col-xs-6">
-                        {
-                            (roleId == 3 && resources.MasterOutstanding) ||
-                            (roleId == 2 && resources.AgentOutstanding) ||
-                            (roleId == 1 && resources.Outstanding)
-                        }
+                        {balanceInfo.ReportLink.Text}
                     </div>
                     <CellContainNumberFormat
                         title={balanceInfo.Outstanding}
                         classNames="col-xs-6 col-right"
-                        hrefLink={roleId > 1 ? balanceInfo.OutstandingLink : balanceInfo.BetListLink}
+                        hrefLink={balanceInfo.ShowOutstandingLink && balanceInfo.ReportLink.Url}
                         target="main" />
                 </div>
 
@@ -127,12 +123,12 @@ export default class BalanceInfoBlock extends React.Component {
                 </div>
 
                 {
-                    roleId == agentLevel &&
+                    roleId === agentLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.MemberMaxCredit}</div>
                         <div className="col-xs-6 col-right">
                             {
-                                balanceInfo.MemberMaxCreditLimit != '' && <Tooltip
+                                balanceInfo.MemberMaxCreditLimit !== '' && <Tooltip
                                     title={balanceInfo.MemberMaxCreditLimit}
                                     position="bottom"
                                     trigger="mouseenter"
@@ -141,7 +137,7 @@ export default class BalanceInfoBlock extends React.Component {
                                 </Tooltip>
                             }
                             {
-                                balanceInfo.MemberMaxCreditLimit == '' &&
+                                balanceInfo.MemberMaxCreditLimit === '' &&
                                 <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
                             }
                         </div>
@@ -149,7 +145,7 @@ export default class BalanceInfoBlock extends React.Component {
                 }
 
                 {
-                    roleId == memberLevel &&
+                    roleId === memberLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.NetPosition}</div>
                         <CellContainNumberFormat title={balanceInfo.NetPosition} classNames="col-xs-6 col-right" />
@@ -157,7 +153,7 @@ export default class BalanceInfoBlock extends React.Component {
                 }
 
                 {
-                    roleId == memberLevel &&
+                    roleId === memberLevel &&
                     <div className={rowClasses}>
                         <div className="col-xs-6">{resources.BetCredit}</div>
                         <CellContainNumberFormat title={balanceInfo.BetCredit} classNames="col-xs-6 col-right" />

@@ -6,8 +6,8 @@
 
         decimal YesterdayBalance { get; }
 
-        string TransferLinkOnTotalBalance { get; }
+        string TotalBalanceTransferLink { get; }
 
-        string TransferLinkOnYesterdayBalance { get; }
+        string YesterdayBalanceTransferLink { get; }
     }
 }

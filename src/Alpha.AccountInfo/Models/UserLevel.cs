@@ -56,23 +56,25 @@
 
         public bool IsMemberLevel() => this == Member;
 
+        public bool IsNotMemberLevel() => !IsMemberLevel();
+
         public bool IsAgentLevel() => this == Agent;
+
+        public bool IsNotAgentLevel() => !IsAgentLevel();
 
         public bool IsMasterLevel() => this == Master;
 
-        public bool IsSuperLevel() => this == Super;
+        public bool IsNotMasterLevel() => !IsMasterLevel();
 
-        public bool IsSuperOrMasterLevel() => IsSuperLevel() || IsMasterLevel();
+        public bool IsSuperLevel() => this == Super;
 
         public bool IsNotSuperLevel() => !IsSuperLevel();
 
+        public bool IsSuperOrMasterLevel() => IsSuperLevel() || IsMasterLevel();
+
         public bool IsDownlineOfSuperLevel() => IsMasterLevel() || IsAgentLevel() || IsMemberLevel();
 
-        public bool IsNotMasterLevel() => !IsMasterLevel();
-
         public bool IsDownlineOfMasterLevel() => IsAgentLevel() || IsMemberLevel();
-
-        public bool IsNotAgentLevel() => !IsAgentLevel();
 
         public bool IsDirectDownlineOf(Enumeration uplineLevel)
             => (uplineLevel != null) && GapBetweenTwoLevels(uplineLevel.Value, Value) == 1;

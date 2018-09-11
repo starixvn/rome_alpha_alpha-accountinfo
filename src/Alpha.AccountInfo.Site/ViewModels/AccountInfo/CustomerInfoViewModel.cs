@@ -1,9 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
+    using Alpha.AccountInfo.AppResources;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Shared;
+    using System;
     using System.Collections.Generic;
 
     public class CustomerInfoViewModel : AccountInfoViewModelBase
@@ -11,22 +13,20 @@
         private readonly CustomerInfoQuery message;
         private readonly CustomerInfoModel customerInfo;
 
-        private readonly Dictionary<UserLevel, string> CustomerListLinkDict
-            = new Dictionary<UserLevel, string>
-            {
-                { UserLevel.Master, "_MemberInfo/CustomerList/Super/AgentList.aspx"},
-                { UserLevel.Agent,  "_MemberInfo/CustomerList/Super/MemberList.aspx"}
-            };
-
         public CustomerInfoViewModel(
             CustomerInfoQuery message, 
             CustomerInfoModel customerInfo,
-            IBalanceInfoViewModel balanceInfo)
+            IBalanceInfoViewModel balanceInfo,
+            Func<string, string, string> getMicroSiteUrl = null) : base(getMicroSiteUrl)
         {
             this.message = message;
             this.customerInfo = customerInfo;
-            this.BalanceInfo = balanceInfo;
+            BalanceInfo = balanceInfo;
         }
+
+        private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(RoleId);
+
+        private UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ActorRoleId);
 
         public int CustId => customerInfo.CustId;
 
@@ -56,13 +56,15 @@
 
         public string MemberName => customerInfo.MemberName;
 
-        public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel() && SearchAccountLevel.IsDownlineOfMasterLevel();
+        public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel() 
+            && SearchAccountLevel.IsDownlineOfMasterLevel();
 
         public int AgentId => customerInfo.AgentId;
 
         public string AgentName => customerInfo.AgentName;
 
-        public bool ShowMaster => ActorLevel.IsSuperLevel() && SearchAccountLevel.IsDownlineOfSuperLevel();
+        public bool ShowMaster => ActorLevel.IsSuperLevel() 
+            && SearchAccountLevel.IsDownlineOfSuperLevel();
 
         public int MasterId => customerInfo.MasterId;
 
@@ -81,11 +83,23 @@
 
         public IBalanceInfoViewModel BalanceInfo { get; }
 
-        public string CustomerListLink => !SearchAccountLevel.IsMemberLevel() ?
-            $"{OldMainUrl}{CustomerListLinkDict[SearchAccountLevel]}?custid={CustId}" : string.Empty;
+        public Link CustomerListOrBetListLink {
+            get
+            {
+                var labels = new Dictionary<UserLevel, string>
+                {
+                    {UserLevel.Master, Resources.AgentList },
+                    {UserLevel.Agent, Resources.MemberList },
+                    {UserLevel.Member, Resources.BetList },
+                };
 
-        public string BetListLink => SearchAccountLevel.IsMemberLevel() ?
-            $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}" : string.Empty;
+                var link = SearchAccountLevel.IsMemberLevel() ?
+                     $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}" :
+                     $"{OldMainUrl}_MemberInfo/CustomerList/{ActorLevel.DisplayName}/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}List.aspx";
+
+                return new Link(labels[SearchAccountLevel], link);
+            }
+        }
 
         public string StatemenLink 
             => SearchAccountLevel.IsMemberLevel() ?
@@ -95,9 +109,5 @@
         public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
 
         public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
-
-        private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(RoleId);
-
-        private UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ActorRoleId);
     }
 }

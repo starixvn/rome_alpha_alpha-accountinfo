@@ -515,6 +515,7 @@
     <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\CustomererAllStatusViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\TotalStatusDownline.cs" />
+    <Compile Include="ViewModels\Link.cs" />
     <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

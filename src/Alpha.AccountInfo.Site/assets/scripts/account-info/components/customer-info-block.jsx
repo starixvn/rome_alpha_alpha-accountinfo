@@ -60,26 +60,13 @@ const CustomerInfoBlock = ({
             </div>
 
             <div className={rowClasses + " text-center list-button"}>
-                {
-                    data.RoleId == memberLevel &&
-                    <a className="btn-default with-level" href={data.BetListLink} target="main">{resources.BetList}</a>
-                }
-
-                {
-                    data.RoleId == agentLevel &&
-                    <a className="btn-default with-level" href={data.CustomerListLink} target="main">{resources.MemberList}</a>
-                }
-
-                {
-                    data.RoleId == masterLevel &&
-                    <a className="btn-default with-level" href={data.CustomerListLink} target="main">{resources.AgentList}</a>
-                }
-
+                <a className="btn-default with-level" href={data.CustomerListOrBetListLink.Url} target="main">{data.CustomerListOrBetListLink.Text}</a>
                 <a className="btn-default with-level" href={data.StatemenLink} target="main">{resources.Statement}</a>
             </div>
         </div>);
 }
 export default CustomerInfoBlock;
+
 
 const UserLevelLevelInfo = ({
     data,
@@ -95,7 +82,7 @@ const UserLevelLevelInfo = ({
     let statusCss = 'enabled';
     let statusMessage = '';
 
-    if (data.RoleId == userLevelId) {
+    if (data.RoleId === userLevelId) {
         if (data.Closed) {
             switch (data.ClosedReason) {
                 case 0:
@@ -144,11 +131,11 @@ const UserLevelLevelInfo = ({
                 }
 
                 {
-                    data.RoleId == userLevelId && statusMessage == '' && contentWithViewlogLink
+                    data.RoleId === userLevelId && statusMessage === '' && contentWithViewlogLink
                 }
 
                 {
-                    data.RoleId == userLevelId && statusMessage != '' &&
+                    data.RoleId === userLevelId && statusMessage !== '' &&
                     <Tooltip
                         title={statusMessage}
                         position="bottom"

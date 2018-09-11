@@ -2,7 +2,6 @@
 {
     using AccountInfo.Models;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
-    using Alpha.Products.Core.Shared;
     using MediatR;
 
     public class CustomerInfoQuery : BaseRequest, IRequest<CustomerInfoViewModel>
@@ -21,8 +20,6 @@
         public int ActorId => viewer.Id;
 
         public byte ActorRoleId => viewer.LevelId;
-
-        public UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(viewer.LevelId);
 
         public bool AllDayBalTransfer => viewer.AllowedAllDayBalTransfer;
 
