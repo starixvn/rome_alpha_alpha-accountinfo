@@ -2,7 +2,7 @@
 import {
     AccordionItem,
     AccordionItemTitle,
-    AccordionItemBody,
+    AccordionItemBody
 } from 'react-accessible-accordion';
 
 const CustomizedAccordionItem = ({ title, iconClassname, accordionItemBodyClassName, expanded, handleClick, blockId, children }) =>

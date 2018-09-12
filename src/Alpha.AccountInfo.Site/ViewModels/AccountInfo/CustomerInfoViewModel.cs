@@ -101,10 +101,14 @@
             }
         }
 
-        public string StatemenLink 
-            => SearchAccountLevel.IsMemberLevel() ?
-            $"{ReportsUrl}Statement/MemberStatement?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}" :
-            $"{ReportsUrl}Statement/SMAStatement?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
+        public string StatemenLink
+        {
+            get
+            {
+                var actionName = SearchAccountLevel.IsMemberLevel() ? "MemberStatement" : "SMAStatement";
+                return $"{ReportsUrl}Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
+            }
+        }
 
         public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
 

@@ -19,56 +19,30 @@
         }
 
         protected ActionResult View<TResponse>(IRequest<TResponse> message)
-        {
-            var baseRequest = message as BaseRequest;
-            var isValid = baseRequest?.IsValid();
-
-            if (isValid != true)
-            {
-                return View(NoInformationPageViewPath);
-            }
-
-            return View(mediator.Send(message));
-        }
-
+            => (message as BaseRequest).IsValid() ? 
+                View(mediator.Send(message)) : View(NoInformationPageViewPath);
 
         protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message)
-        {
-            var baseRequest = message as BaseRequest;
-            var isValid = baseRequest?.IsValid();
-
-            if (isValid != true)
-            {
-                return View(NoInformationPageViewPath);
-            }
-
-            return View(await mediator.Send(message));
-        }
+             => (message as BaseRequest).IsValid() ?
+                View(await mediator.Send(message)) : View(NoInformationPageViewPath);
 
         protected ActionResult JsonData<TResponse>(
            IRequest<TResponse> message,
            JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
         {
-            var baseRequest = message as BaseRequest;
-            var isValid = baseRequest?.IsValid();
-
-            if (isValid != true)
+            if (!(message as BaseRequest).IsValid())
             {
                 return Json(Result.CreateForbiddenResult());
             }
 
-            var model = mediator.Send(message);
-            return Json(model, jsonRequestBehavior);
+            return Json(mediator.Send(message), jsonRequestBehavior);
         }
 
         protected async Task<ActionResult> JsonDataAsync<TResponse>(
             IRequest<TResponse> message,
             JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
         {
-            var baseRequest = message as BaseRequest;
-            var isValid = baseRequest?.IsValid();
-
-            if (isValid != true)
+            if (!(message as BaseRequest).IsValid())
             {
                 return Json(Result.CreateForbiddenResult());
             }
