@@ -29,6 +29,6 @@
 
         public bool ViewReports => viewer.CanViewReports;
 
-        public override bool IsValid() => !string.IsNullOrEmpty(UserName) && !UserName.Equals(viewer.Name) && ActorId > 0 ;
+        public override bool IsValid() => !string.IsNullOrEmpty(UserName) && !UserName.Equals(viewer.Name);
     }
 }

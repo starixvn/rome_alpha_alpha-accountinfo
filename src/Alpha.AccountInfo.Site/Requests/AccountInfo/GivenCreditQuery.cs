@@ -22,6 +22,10 @@
 
         public string Language { get; }
 
-        public override bool IsValid() => SearchAccountId > 0;
+        public override bool IsValid() 
+            => SearchAccountId > 0 
+            && SearchAccountRoleId > 0 
+            && SearchAccountRoleId < 4 
+            && !string.IsNullOrEmpty(SearchAccountName);
     }
 }

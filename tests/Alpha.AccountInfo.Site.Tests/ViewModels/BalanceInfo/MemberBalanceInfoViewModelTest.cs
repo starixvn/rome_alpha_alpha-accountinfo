@@ -10,8 +10,8 @@
     [Trait("Category", "AccountInfo-ViewModel")]
     public class MemberBalanceInfoViewModelTest
     {
-        private readonly IUser viewer = BalanceInfoHelper.ViewerFixture(UserLevel.Agent.Value);
-        private readonly CustomerInfoModel customerInfo = BalanceInfoHelper.BuildCustomerInfo();
+        private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
+        private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo();
 
         [Theory]
         [InlineData(4, false)]
@@ -22,7 +22,7 @@
             viewer.LevelId.Returns(actorLevel);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.ShowTransferLink, expectedShowTransferLink);
         }
@@ -33,7 +33,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedBetCredit = 29;
 
-            var viewModel = BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.BetCredit, expectedBetCredit);
         }

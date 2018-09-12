@@ -25,7 +25,7 @@ export default class DownlineListBlock extends React.Component{
     }
 
     handleClick(e) {
-        this.state.data === null && accountInfoAPI.getDownlineList({ custid: this.props.custId }).then((data) => {
+        this.state.data === null && accountInfoAPI.getDownlineList({ SearchAccountId: this.props.custId }).then((data) => {
             this.setState({ data: data });
         });
 

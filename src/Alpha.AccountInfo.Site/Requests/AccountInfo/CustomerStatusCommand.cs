@@ -30,6 +30,6 @@
 
         public string IP => viewer.IP;
 
-        public override bool IsValid() => SearchAccountId > 0;
+        public override bool IsValid() => SearchAccountId > 0 && !string.IsNullOrEmpty(StatusName);
     }
 }

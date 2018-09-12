@@ -23,7 +23,7 @@ export default class OnlineListBlock extends React.Component{
     }
 
     handleClick(e) {
-        this.state.data === null && accountInfoAPI.getOnlineList({ custid: this.props.custId }).then((data) => {
+        this.state.data === null && accountInfoAPI.getOnlineList({ SearchAccountId: this.props.custId }).then((data) => {
             this.setState({ data: data });
         });
 

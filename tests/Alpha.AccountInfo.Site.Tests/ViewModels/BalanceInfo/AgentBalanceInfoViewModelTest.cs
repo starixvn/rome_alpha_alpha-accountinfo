@@ -10,8 +10,8 @@
     [Trait("Category", "AccountInfo-ViewModel")]
     public class AgentBalanceInfoViewModelTest
     {
-        private readonly IUser viewer = BalanceInfoHelper.ViewerFixture(UserLevel.Master.Value);
-        private readonly CustomerInfoModel customerInfo = BalanceInfoHelper.BuildCustomerInfo(UserLevel.Agent.Value);
+        private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Master.Value);
+        private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo(UserLevel.Agent.Value);
 
         [Fact]
         public void TotalBalance_Always_ReturnCorrectValue()
@@ -19,7 +19,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedTotalBalance = 28;
 
-            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.TotalBalance, expectedTotalBalance);
         }
@@ -30,7 +30,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedYesterdayBalance = 30;
 
-            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.YesterdayBalance, expectedYesterdayBalance);
         }
@@ -41,7 +41,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedGivenCreditLimit = ">=23 and <=85";
 
-            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.GivenCreditLimit, expectedGivenCreditLimit);
         }
@@ -52,7 +52,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedMemberMaxCreditLimit = ">=25 and <=120";
 
-            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.MemberMaxCreditLimit, expectedMemberMaxCreditLimit);
         }
@@ -65,7 +65,7 @@
             viewer.LevelId.Returns(actorLevel);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.ShowMemberMaxCreditLimit, expectedValue);
         }
@@ -79,7 +79,7 @@
             viewer.LevelId.Returns(actorLevel);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.ShowTransferLink, expectedShowTransferLink);
         }

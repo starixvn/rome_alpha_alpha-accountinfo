@@ -7,8 +7,9 @@
     using NSubstitute;
     using System;
     using System.Collections.Generic;
+    using System.Resources;
 
-    public static class BalanceInfoHelper
+    public static class AccountInfoHelper
     {
         public static Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, BalanceInfoViewModelBase>> BalanceInfoViewModels 
             => new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, BalanceInfoViewModelBase>>
@@ -53,6 +54,7 @@
             var viewer = Substitute.For<IUser>();
             viewer.SubAccId.Returns(0);
             viewer.Id.Returns(1);
+            viewer.Name.Returns("ActorName");
             viewer.LevelId.Returns(actorRoleId);
             viewer.CanViewReports.Returns(true);
             viewer.AllowedTotalBalanceTransfer.Returns(true);
@@ -99,6 +101,7 @@
                      GetMicroSiteUrl);
 
         public static string GetMicroSiteUrl(string microSiteName, string virtualPath) => "MicroSiteUrl/";
+
 
         private static MemberBalanceInfoModel MemberBalanceInfo
           => new MemberBalanceInfoModel(

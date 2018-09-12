@@ -11,8 +11,8 @@
         {
          
         }
-        public int CustId { get; set; }
+        public int SearchAccountId { get; set; }
 
-        public override bool IsValid() => CustId > 0;
+        public override bool IsValid() => SearchAccountId > 0;
     }
 }

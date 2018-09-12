@@ -9,8 +9,8 @@
     [Trait("Category", "AccountInfo-ViewModel")]
     public class MasterBalanceInfoViewModelTest
     {
-        private readonly IUser viewer = BalanceInfoHelper.ViewerFixture(UserLevel.Super.Value);
-        private readonly CustomerInfoModel customerInfo = BalanceInfoHelper.BuildCustomerInfo(UserLevel.Master.Value);
+        private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Super.Value);
+        private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo(UserLevel.Master.Value);
 
         [Fact]
         public void TotalBalance_Always_ReturnCorrectValue()
@@ -18,7 +18,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedTotalBalance = 47;
 
-            var viewModel = BalanceInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.TotalBalance, expectedTotalBalance);
         }
@@ -29,7 +29,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedYesterdayBalance = 50;
 
-            var viewModel = BalanceInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.YesterdayBalance, expectedYesterdayBalance);
         }
@@ -40,7 +40,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedGivenCreditLimit = ">=24 and <=85";
 
-            var viewModel = BalanceInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.GivenCreditLimit, expectedGivenCreditLimit);
         }

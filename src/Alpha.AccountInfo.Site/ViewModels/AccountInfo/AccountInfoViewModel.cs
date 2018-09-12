@@ -15,7 +15,9 @@
 
         public AccountInfoViewModel(
             AccountInfoQuery message,
-            Func<string, ResourceManager, string> convertResourcesJson = null) 
+            Func<string, string, string> getMicroSiteUrl = null,
+            Func<string, ResourceManager, string> convertResourcesJson = null)
+            : base(getMicroSiteUrl)
         {
             this.message = message;
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();

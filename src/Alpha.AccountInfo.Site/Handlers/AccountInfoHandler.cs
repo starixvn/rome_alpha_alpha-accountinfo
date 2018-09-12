@@ -34,7 +34,7 @@
 
         internal AccountInfoHandler(
             AccountInfoService accountInfoService,
-             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel)
+            IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel)
         {
             this.accountInfoService = accountInfoService;
 
@@ -73,7 +73,7 @@
         }
 
         public DownlineListViewModel Handle(DownlineListQuery message)
-            => new DownlineListViewModel(accountInfoService.GetDownlineListModel(message.CustId));
+            => new DownlineListViewModel(accountInfoService.GetDownlineListModel(message.SearchAccountId));
 
         public CustomererAllStatusViewModel Handle(CustomerAllStatusQuery message)
         {
@@ -105,7 +105,7 @@
         }
 
         public IEnumerable<OnlineUserModel> Handle(OnlineListQuery message)
-            => accountInfoService.GetOnlineList(message.CustId);
+            => accountInfoService.GetOnlineList(message.SearchAccountId);
 
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
            => new GivenCreditViewModel(message);

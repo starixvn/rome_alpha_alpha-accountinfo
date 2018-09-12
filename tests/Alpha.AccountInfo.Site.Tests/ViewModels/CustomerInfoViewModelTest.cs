@@ -9,7 +9,7 @@
     [Trait("Category", "AccountInfo-ViewModel")]
     public class CustomerInfoViewModelTest
     {
-        private readonly IUser viewer = BalanceInfoHelper.ViewerFixture(UserLevel.Agent.Value);
+        private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
 
         [Theory]
         [InlineData(4, 3, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=3")]
@@ -23,7 +23,7 @@
             byte searchAccountRoleId,
             string expectedStatementLink)
         {
-            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.StatemenLink, expectedStatementLink);
@@ -41,7 +41,7 @@
            byte searchAccountRoleId,
            string expectedStatementLink)
         {
-            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.CustomerListOrBetListLink.Url, expectedStatementLink);
@@ -81,7 +81,7 @@
            byte searchAccountRoleId,
            bool expectedShowMember)
         {
-            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.ShowMember, expectedShowMember);
@@ -99,7 +99,7 @@
             byte searchAccountRoleId,
             bool expectedShowAgent)
         {
-            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.ShowAgent, expectedShowAgent);
@@ -117,7 +117,7 @@
             byte searchAccountRoleId,
             bool expectedShowMaster)
         {
-            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.ShowMaster, expectedShowMaster);
@@ -126,8 +126,8 @@
         private CustomerInfoViewModel BuildCustomerInfoViewModel(CustomerInfoQuery messages, byte searchAccountRoleId = 1)
             => new CustomerInfoViewModel(
                 messages,
-                BalanceInfoHelper.BuildCustomerInfo(searchAccountRoleId),
-                BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, BalanceInfoHelper.BuildCustomerInfo()),
-                BalanceInfoHelper.GetMicroSiteUrl);
+                AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId),
+                AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, AccountInfoHelper.BuildCustomerInfo()),
+                AccountInfoHelper.GetMicroSiteUrl);
     }
 }
