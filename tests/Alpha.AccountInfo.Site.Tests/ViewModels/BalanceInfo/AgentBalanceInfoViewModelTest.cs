@@ -10,8 +10,8 @@
     [Trait("Category", "AccountInfo-ViewModel")]
     public class AgentBalanceInfoViewModelTest
     {
-        private readonly IUser viewer = AccountInfoHelper.ViewerFixture(3);
-        private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo(2);
+        private readonly IUser viewer = BalanceInfoHelper.ViewerFixture(UserLevel.Master.Value);
+        private readonly CustomerInfoModel customerInfo = BalanceInfoHelper.BuildCustomerInfo(UserLevel.Agent.Value);
 
         [Fact]
         public void TotalBalance_Always_ReturnCorrectValue()
@@ -19,7 +19,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedTotalBalance = 28;
 
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.TotalBalance, expectedTotalBalance);
         }
@@ -30,7 +30,7 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedYesterdayBalance = 30;
 
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.YesterdayBalance, expectedYesterdayBalance);
         }
@@ -41,23 +41,35 @@
             var messages = new CustomerInfoQuery(viewer);
             var expectedGivenCreditLimit = ">=23 and <=85";
 
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.GivenCreditLimit, expectedGivenCreditLimit);
         }
 
+        [Fact]
+        public void MemberMaxCreditLimit_Always_ReturnCorrectValue()
+        {
+            var messages = new CustomerInfoQuery(viewer);
+            var expectedMemberMaxCreditLimit = ">=25 and <=120";
+
+            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+
+            Assert.Equal(viewModel.MemberMaxCreditLimit, expectedMemberMaxCreditLimit);
+        }
+
         [Theory]
-        [InlineData(4, "")]
-        [InlineData(3, ">=25 and <=120")]
-        public void MemberMaxCreditLimit_Always_ReturnCorrectValue(byte actorLevel, string expectedMemberMaxCreditLimit)
+        [InlineData(4, false)]
+        [InlineData(3, true)]
+        public void ShowMemberMaxCreditLimit_Always_ReturnCorrectValue(byte actorLevel, bool expectedValue)
         {
             viewer.LevelId.Returns(actorLevel);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
-            Assert.Equal(viewModel.MemberMaxCreditLimit, expectedMemberMaxCreditLimit);
+            Assert.Equal(viewModel.ShowMemberMaxCreditLimit, expectedValue);
         }
+
 
         [Theory]
         [InlineData(4, false)]
@@ -67,33 +79,9 @@
             viewer.LevelId.Returns(actorLevel);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = BalanceInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
             Assert.Equal(viewModel.ShowTransferLink, expectedShowTransferLink);
-        }
-
-        [Fact]
-        public void TransferLinkOnYesterdayBalance_YesterdayBalanceGreaterThanZero_And_ShowTransferLink_Is_True_And_AllowedTotalBalanceTransfer_Is_False_ReturnsCorrectLink()
-        {
-            viewer.AllowedTotalBalanceTransfer.Returns(false);
-            var messages = new CustomerInfoQuery(viewer);
-
-            var expectedTransferLink = "MicroSiteUrl/_Transfer/Master/AgentTransfer.aspx?custid=1&status=1&CallBack=false&username=UserTest&isyesterday=1&amt=30";
-
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
-
-            Assert.Equal(viewModel.YesterdayBalanceTransferLink, expectedTransferLink);
-        }
-
-        [Fact]
-        public void TransferLinkOnTotalBalance_TotaBalanceGreaterThanZero_And_ShowTransferLink_Is_True_And_AllowedTotalBalanceTransfer_Is_True_ReturnsCorrectLink()
-        {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(3));
-            var expectedTransferLink = "MicroSiteUrl/_Transfer/Master/AgentTransfer.aspx?custid=1&status=1&CallBack=false&username=UserTest&isyesterday=1&amt=28";
-
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
-
-            Assert.Equal(viewModel.TotalBalanceTransferLink, expectedTransferLink);
         }
     }
 }

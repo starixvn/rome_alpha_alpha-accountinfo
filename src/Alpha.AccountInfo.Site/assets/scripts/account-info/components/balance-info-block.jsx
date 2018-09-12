@@ -128,7 +128,7 @@ export default class BalanceInfoBlock extends React.Component {
                         <div className="col-xs-6">{resources.MemberMaxCredit}</div>
                         <div className="col-xs-6 col-right">
                             {
-                                balanceInfo.MemberMaxCreditLimit !== '' && <Tooltip
+                                balanceInfo.ShowMemberMaxCreditLimit && <Tooltip
                                     title={balanceInfo.MemberMaxCreditLimit}
                                     position="bottom"
                                     trigger="mouseenter"
@@ -137,7 +137,7 @@ export default class BalanceInfoBlock extends React.Component {
                                 </Tooltip>
                             }
                             {
-                                balanceInfo.MemberMaxCreditLimit === '' &&
+                                !balanceInfo.ShowMemberMaxCreditLimit &&
                                 <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
                             }
                         </div>

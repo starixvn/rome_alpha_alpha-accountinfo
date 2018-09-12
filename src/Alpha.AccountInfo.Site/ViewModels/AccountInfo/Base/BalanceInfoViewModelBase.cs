@@ -47,7 +47,8 @@
 
                 var betListLink = $"{BetListsUrl}RunningBetList/Index?CustID={customerInfo.CustId}&amp;CustName=ACGUUS3838033&amp;GetAll=True";
 
-                var outstandingLink = $"{ReportsUrl}outstanding/{Enumeration.FromValue<UserLevel>((byte)(message.ActorRoleId - 1)).DisplayName}?" +
+                var directDownlineLevelName = Enumeration.FromValue<UserLevel>((byte)(message.ActorRoleId - 1)).DisplayName;
+                var outstandingLink = $"{ReportsUrl}outstanding/{directDownlineLevelName}?" +
                         $"CustId={customerInfo.CustId}&CustName={message.UserName}" +
                         $"&CustLevelId={customerInfo.RoleId}&BreadcrumbLevelJson={BreadcrumbLevelJson}";
 
@@ -63,7 +64,7 @@
 
         public string YesterdayBalanceTransferLink => BuildTransferLink(YesterdayBalance);
 
-        protected string BuildTransferLink(decimal transferValue)
+        internal string BuildTransferLink(decimal transferValue)
             => SearchAccountLevel.IsMemberLevel() ?
              $"{OldMainUrl}_Transfer/Agent/MemberTransfer.aspx?custid={customerInfo.CustId}&CallBack=false" :
              $"{OldMainUrl}_Transfer/{ActorLevel.DisplayName}/{SearchAccountLevel.DisplayName}Transfer.aspx?custid={customerInfo.CustId}" +

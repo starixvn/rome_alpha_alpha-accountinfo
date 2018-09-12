@@ -110,30 +110,30 @@
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
            => new GivenCreditViewModel(message);
 
-        public Result Handle(GivenCreditCommand command)
+        public Result Handle(GivenCreditCommand message)
             => accountInfoService.UpdateGivenCredit(
                 new UpdateGivenCreditParam(
-                    command.SearchAccountId,
-                    command.SearchAccountRoleId,
-                    command.CreditAmount,
-                    command.ActorId,
-                    command.ActorRoleId,
-                    command.SubAccountId,
-                    command.Language,
-                    command.IP));
+                    message.SearchAccountId,
+                    message.SearchAccountRoleId,
+                    message.CreditAmount,
+                    message.ActorId,
+                    message.ActorRoleId,
+                    message.SubAccountId,
+                    message.Language,
+                    message.IP));
 
-        public Result Handle(CustomerStatusCommand command)
+        public Result Handle(CustomerStatusCommand message)
            => accountInfoService.UpdateCustomerStatus(
                new UpdateCustomerStatusParam(
-                   command.SearchAccountId,
-                   command.ActorId,
-                   command.SubAccountId,
-                   command.Language,
-                   command.IP,
-                   command.StatusValue,
-                   command.StatusName,
-                   command.ActorName,
-                   command.SyncedCasino3rd));
+                   message.SearchAccountId,
+                   message.ActorId,
+                   message.SubAccountId,
+                   message.Language,
+                   message.IP,
+                   message.StatusValue,
+                   message.StatusName,
+                   message.ActorName,
+                   message.SyncedCasino3rd));
 
         private static IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
             NonDCSProductModel nonDCSProduct,

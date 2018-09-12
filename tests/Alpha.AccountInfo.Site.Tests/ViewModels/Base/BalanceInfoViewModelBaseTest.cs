@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.ViewModels.Base
 {
     using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using Alpha.Products.Core.Shared;
@@ -10,16 +11,17 @@
     [Trait("Category", "AccountInfo-ViewModel")]
     public class BalanceInfoViewModelBaseTest
     {
+        private readonly IUser viewer = BalanceInfoHelper.ViewerFixture(UserLevel.Agent.Value);
+
         [Fact]
         public void ShowTransferLink_Allow_AllDay_Balance_Transfer_ReturnFalse()
         {
-            var viewer = AccountInfoHelper.ViewerFixture(2);
             viewer.AllowedAllDayBalTransfer.Returns(true);
             var messages = new CustomerInfoQuery(viewer);
 
-            var customerInfo = AccountInfoHelper.BuildCustomerInfo();
+            var customerInfo = BalanceInfoHelper.BuildCustomerInfo();
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
 
             Assert.False(viewModel.ShowTransferLink);
         }
@@ -27,15 +29,104 @@
         [Fact]
         public void ShowTransferLink_Does_Not_Allow_Transfer_ReturnFalse()
         {
-            var viewer = AccountInfoHelper.ViewerFixture(2);
             viewer.AllowTransfer.Returns(false);
             var messages = new CustomerInfoQuery(viewer);
 
-            var customerInfo = AccountInfoHelper.BuildCustomerInfo();
+            var customerInfo = BalanceInfoHelper.BuildCustomerInfo();
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
 
             Assert.False(viewModel.ShowTransferLink);
+        }
+
+        [Theory]
+        [InlineData(true, true)]
+        [InlineData(false, false)]
+        public void ShowTotalBalanceTransferLink_AllowedTotalBalanceTransfer_ReturnCorrectValue(
+            bool allowedTotalBalanceTransfer,
+            bool expectedValue)
+        {
+            viewer.AllowedTotalBalanceTransfer.Returns(allowedTotalBalanceTransfer);
+            var messages = new CustomerInfoQuery(viewer);
+
+            var customerInfo = BalanceInfoHelper.BuildCustomerInfo();
+
+            var viewModel = BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
+
+            Assert.Equal(viewModel.ShowTotalBalanceTransferLink, expectedValue);
+        }
+
+        [Theory]
+        [InlineData(10, true)]
+        [InlineData(0, false)]
+        [InlineData(-10, true)]
+        public void ShowTotalBalanceTransferLink_TotalBalance_ReturnCorrectValue(
+         decimal totalBalance,
+         bool expectedValue)
+        {
+            var balanceInfo = new MemberBalanceInfoModel(
+             custId: 1,
+             credit: 12,
+             agentPositionTaking: 13,
+             customerCash: totalBalance,
+             yesterday_CustomerCash: 15,
+             customerOutstanding: 16,
+             casinoOutstanding: 17,
+             casinoTransfer: 18,
+             netPosition: 19,
+             memMaxCredit_Max: 20);
+
+            var messages = new CustomerInfoQuery(viewer);
+
+            var viewModel = BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, balanceInfo);
+
+            Assert.Equal(viewModel.ShowTotalBalanceTransferLink, expectedValue);
+        }
+
+        [Theory]
+        [InlineData(true, false)]
+        [InlineData(false, true)]
+        public void ShowYesterdayBalanceTransferLink_AllowedTotalBalanceTransfer_ReturnCorrectValue(
+         bool allowedTotalBalanceTransfer,
+         bool expectedValue)
+        {
+            viewer.AllowedTotalBalanceTransfer.Returns(allowedTotalBalanceTransfer);
+            var messages = new CustomerInfoQuery(viewer);
+
+            var customerInfo = BalanceInfoHelper.BuildCustomerInfo();
+
+            var viewModel = BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
+
+            Assert.Equal(viewModel.ShowYesterdayBalanceTransferLink, expectedValue);
+        }
+
+        [Theory]
+        [InlineData(10, true)]
+        [InlineData(0, false)]
+        [InlineData(-10, true)]
+        public void ShowYesterdayBalanceTransferLink_YesterdayBalance_ReturnCorrectValue(
+         decimal yesterday_CustomerCash,
+         bool expectedValue)
+        {
+            viewer.AllowedTotalBalanceTransfer.Returns(false);
+            var messages = new CustomerInfoQuery(viewer);
+
+            var balanceInfo = new MemberBalanceInfoModel(
+                     custId: 1,
+                     credit: 12,
+                     agentPositionTaking: 13,
+                     customerCash: 14,
+                     yesterday_CustomerCash: yesterday_CustomerCash,
+                     customerOutstanding: 16,
+                     casinoOutstanding: 17,
+                     casinoTransfer: 18,
+                     netPosition: 19,
+                     memMaxCredit_Max: 20);
+
+
+            var viewModel = BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, balanceInfo);
+
+            Assert.Equal(viewModel.ShowYesterdayBalanceTransferLink, expectedValue);
         }
 
         [Theory]
@@ -51,30 +142,31 @@
             string expectedText,
             string expectedLink)
         {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
-            var customerInfo = AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId);
-            var viewModel = AccountInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customerInfo);
+            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
+            var customerInfo = BalanceInfoHelper.BuildCustomerInfo(searchAccountRoleId);
+            var viewModel = BalanceInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customerInfo);
 
             Assert.Equal(viewModel.ReportLink.Text, expectedText);
             Assert.Equal(viewModel.ReportLink.Url, expectedLink);
         }
 
-        //[Theory]
-        //[InlineData(4, 3, "MicroSiteUrl/_MemberInfo/CustomerList/Super/AgentList.aspx")]
-        //[InlineData(4, 2, "MicroSiteUrl/_MemberInfo/CustomerList/Super/MemberList.aspx")]
-        //[InlineData(3, 2, "MicroSiteUrl/_MemberInfo/CustomerList/Master/MemberList.aspx")]
-        //[InlineData(4, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
-        //[InlineData(3, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
-        //[InlineData(2, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
-        //public void TransferLink_Always_ReturnsCorrectStatementLink(
-        //   byte actorRoleId,
-        //   byte searchAccountRoleId,
-        //   string expectedStatementLink)
-        //{
-        //    var messages = new CustomerInfoQuery(StubAccountInfo.ViewerFixture(actorRoleId));
-        //    var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
+        [Theory]
+        [InlineData(4, 3, "MicroSiteUrl/_Transfer/Super/MasterTransfer.aspx?custid=1&status=1&CallBack=false&username=UserTest&isyesterday=1&amt=30")]
+        [InlineData(3, 2, "MicroSiteUrl/_Transfer/Master/AgentTransfer.aspx?custid=1&status=1&CallBack=false&username=UserTest&isyesterday=1&amt=30")]
+        [InlineData(2, 1, "MicroSiteUrl/_Transfer/Agent/MemberTransfer.aspx?custid=1&CallBack=false")]
+        public void BuildTransferLink_Always_ReturnsCorrectStatementLink(
+           byte actorRoleId,
+           byte searchAccountRoleId,
+           string expectedStatementLink)
+        {
+            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
+            var customerInfo = BalanceInfoHelper.BuildCustomerInfo(searchAccountRoleId);
+            var transferValue = 30;
 
-        //    Assert.Equal(viewModel.CustomerListOrBetListLink.Url, expectedStatementLink);
-        //}
+            var viewModel = BalanceInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customerInfo);
+            var actualLink = viewModel.BuildTransferLink(transferValue);
+
+            Assert.Equal(actualLink, expectedStatementLink);
+        }
     }
 }

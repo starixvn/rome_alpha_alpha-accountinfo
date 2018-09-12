@@ -37,8 +37,9 @@
 
         public string GivenCreditLimit => $">={AgentCredit_Min} {Resources.And} <={AgentCredit_Max}";
 
-        public string MemberMaxCreditLimit 
-            => ActorLevel.IsMasterLevel() ? $">={MemMaxCredit_Min} {Resources.And} <={GivenCredit}" : string.Empty;
+        public bool ShowMemberMaxCreditLimit => ActorLevel.IsMasterLevel();
+
+        public string MemberMaxCreditLimit => $">={MemMaxCredit_Min} {Resources.And} <={GivenCredit}";
 
         internal override bool ShowTransferLink => ActorLevel.IsMasterLevel() && base.ShowTransferLink;
 

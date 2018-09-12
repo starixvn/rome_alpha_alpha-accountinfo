@@ -191,7 +191,7 @@
     <Compile Include="ViewModels\BalanceInfo\AgentBalanceInfoViewModelTest.cs" />
     <Compile Include="ViewModels\BalanceInfo\MasterBalanceInfoViewModelTest.cs" />
     <Compile Include="ViewModels\BalanceInfo\MemberBalanceInfoViewModelTest.cs" />
-    <Compile Include="Stub\AccountInfoHelper.cs" />
+    <Compile Include="Helpers\BalanceInfoHelper.cs" />
     <Compile Include="ViewModels\Base\BalanceInfoViewModelBaseTest.cs" />
     <Compile Include="ViewModels\CustomerInfoViewModelTest.cs" />
   </ItemGroup>

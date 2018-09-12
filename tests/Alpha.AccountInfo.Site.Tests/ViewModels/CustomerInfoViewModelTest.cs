@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.ViewModels
 {
+    using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
@@ -8,6 +9,8 @@
     [Trait("Category", "AccountInfo-ViewModel")]
     public class CustomerInfoViewModelTest
     {
+        private readonly IUser viewer = BalanceInfoHelper.ViewerFixture(UserLevel.Agent.Value);
+
         [Theory]
         [InlineData(4, 3, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=3")]
         [InlineData(4, 2, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=2")]
@@ -20,7 +23,7 @@
             byte searchAccountRoleId,
             string expectedStatementLink)
         {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.StatemenLink, expectedStatementLink);
@@ -38,7 +41,7 @@
            byte searchAccountRoleId,
            string expectedStatementLink)
         {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.CustomerListOrBetListLink.Url, expectedStatementLink);
@@ -47,7 +50,7 @@
         [Fact]
         public void ViewLogLink_Always_ReturnsCorrectLink()
         {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(2));
+            var messages = new CustomerInfoQuery(viewer);
             var expectedViewLogLink = "MicroSiteUrl/setting/index?username=UserTest";
 
             var viewModel = BuildCustomerInfoViewModel(messages);
@@ -58,7 +61,7 @@
         [Fact]
         public void ViewLoginIPLink_Always_ReturnsCorrectLink()
         {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(2));
+            var messages = new CustomerInfoQuery(viewer);
             var expectedViewLoginIPLink = "MicroSiteUrl/_IPInfo/IpInfo.aspx";
 
             var viewModel = BuildCustomerInfoViewModel(messages);
@@ -78,7 +81,7 @@
            byte searchAccountRoleId,
            bool expectedShowMember)
         {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.ShowMember, expectedShowMember);
@@ -96,7 +99,7 @@
             byte searchAccountRoleId,
             bool expectedShowAgent)
         {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.ShowAgent, expectedShowAgent);
@@ -114,20 +117,17 @@
             byte searchAccountRoleId,
             bool expectedShowMaster)
         {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
+            var messages = new CustomerInfoQuery(BalanceInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
             Assert.Equal(viewModel.ShowMaster, expectedShowMaster);
         }
 
         private CustomerInfoViewModel BuildCustomerInfoViewModel(CustomerInfoQuery messages, byte searchAccountRoleId = 1)
-        {
-            messages.UserName = "UserTest";
-            return new CustomerInfoViewModel(
+            => new CustomerInfoViewModel(
                 messages,
-                AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId),
-                AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, AccountInfoHelper.BuildCustomerInfo()),
-                AccountInfoHelper.GetMicroSiteUrl);
-        }
+                BalanceInfoHelper.BuildCustomerInfo(searchAccountRoleId),
+                BalanceInfoHelper.BuildMemberBalanceInfoViewModel(messages, BalanceInfoHelper.BuildCustomerInfo()),
+                BalanceInfoHelper.GetMicroSiteUrl);
     }
 }
