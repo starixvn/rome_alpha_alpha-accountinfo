@@ -86,9 +86,10 @@ export default class GivenCredit extends React.Component {
                         thousandSeparator={true}
                         decimalScale="2"
                         onValueChange={(values) => {
-                        const { formattedValue, value, floatValue } = values;
-                        this.setState({ newGivenCredit: (floatValue === undefined ? 0 : floatValue) })
-                    }} />
+                            const { formattedValue, value, floatValue } = values;
+                            this.setState({ newGivenCredit: floatValue === undefined ? 0 : floatValue });
+                        }}
+                    />
                 </div>
 
                 <div className={rowClasses}>

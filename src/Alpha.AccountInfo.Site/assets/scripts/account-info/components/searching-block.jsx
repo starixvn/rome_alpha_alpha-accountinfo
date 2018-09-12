@@ -1,25 +1,8 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Autosuggest from 'react-autosuggest';
+import { getSuggestions, getSuggestionValue, renderSuggestion } from './auto-suggestion';
 import { accountInfoAPI } from '../api-client';
-
-const getSuggestions = (value, suggestions) => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-
-    return inputLength === 0 ? [] : suggestions.filter(suggestion =>
-        suggestion.UserName.toLowerCase().indexOf(inputValue) != -1
-    );
-};
-
-const getSuggestionValue = suggestion => suggestion.UserName;
-
-const renderSuggestion = suggestion => (
-    <div>
-        {suggestion.UserName}
-        <div>{suggestion.FirstName} {suggestion.LastName}</div>
-    </div>
-);
 
 export default class SearchingBlock extends React.Component {
     constructor(props) {
@@ -38,9 +21,23 @@ export default class SearchingBlock extends React.Component {
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     }
 
+    componentDidMount() {
+        if (this.state.username !== '') {
+            ReactDOM.findDOMNode(this.refs.searchAccount).click();
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.username !== this.props.username) {
+            this.setState({
+                username: nextProps.username
+            });
+        }
+    }
+
     onChangeSearchBox(e, input) {
         this.setState({ username: input.newValue });
-    };
+    }
 
     handleSearchKeyPress(e) {
         if (e.key === 'Enter') {
@@ -74,19 +71,6 @@ export default class SearchingBlock extends React.Component {
         this.props.fetchCustomerInfoFromServer(e, suggestion.suggestionValue);
     }
 
-    componentDidMount() {
-        if (this.state.username != '') {
-            ReactDOM.findDOMNode(this.refs.searchAccount).click();
-        }
-    }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.username != this.props.username) {
-            this.setState({
-                username: nextProps.username
-            });
-        }
-    }
-
     render() {
         const { username, suggestions } = this.state;
         const inputProps = {
@@ -96,7 +80,7 @@ export default class SearchingBlock extends React.Component {
             onKeyPress: this.handleSearchKeyPress,
             placeholder: this.props.userNamePlaceHolder,
             value: username
-        }
+        };
 
         return (
             <div className="search-box">
@@ -108,9 +92,10 @@ export default class SearchingBlock extends React.Component {
                     getSuggestionValue={getSuggestionValue}
                     renderSuggestion={renderSuggestion}
                     shouldRenderSuggestions={this.shouldRenderSuggestions}
-                    inputProps={inputProps} />
+                    inputProps={inputProps}
+                />
 
-                <span className="icon-search" onClick={this.handleSearchClick} ref="searchAccount"></span>
+                <span className="icon-search" onClick={this.handleSearchClick} ref="searchAccount" />
             </div>
         );
     }

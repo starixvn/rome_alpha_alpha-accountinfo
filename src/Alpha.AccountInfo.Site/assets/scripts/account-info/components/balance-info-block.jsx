@@ -26,7 +26,7 @@ export default class BalanceInfoBlock extends React.Component {
                 clearInterval(timer);
             }
         }
-    };
+    }
 
     render() {
         const rowClasses = "col-xs-12 row-info";
@@ -47,7 +47,8 @@ export default class BalanceInfoBlock extends React.Component {
                 accordionItemBodyClassName="accordion__body balance-info"
                 expanded={expanded}
                 handleClick={handleCollapExpandBlock}
-                blockId={blockId}>
+                blockId={blockId}
+            >
                 {
                     roleId > memberLevel &&
                     <div className={rowClasses}>
@@ -70,7 +71,8 @@ export default class BalanceInfoBlock extends React.Component {
                         title={balanceInfo.TotalBalance}
                         classNames="col-xs-6 col-right"
                         hrefLink={balanceInfo.ShowTotalBalanceTransferLink && balanceInfo.TotalBalanceTransferLink}
-                        target="main" />
+                        target="main"
+                    />
                 </div>
 
                 <div className={rowClasses}>
@@ -79,7 +81,8 @@ export default class BalanceInfoBlock extends React.Component {
                         title={balanceInfo.YesterdayBalance}
                         classNames="col-xs-6 col-right"
                         hrefLink={balanceInfo.ShowYesterdayBalanceTransferLink && balanceInfo.YesterdayBalanceTransferLink}
-                        target="main" />
+                        target="main"
+                    />
                 </div>
 
                 <div className={rowClasses}>
@@ -90,7 +93,8 @@ export default class BalanceInfoBlock extends React.Component {
                         title={balanceInfo.Outstanding}
                         classNames="col-xs-6 col-right"
                         hrefLink={balanceInfo.ShowOutstandingLink && balanceInfo.ReportLink.Url}
-                        target="main" />
+                        target="main"
+                    />
                 </div>
 
                 {
@@ -115,7 +119,8 @@ export default class BalanceInfoBlock extends React.Component {
                                 displayType={'text'}
                                 decimalScale="2"
                                 fixedDecimalScale={true}
-                                thousandSeparator={true} />
+                                thousandSeparator={true}
+                            />
                         </Tooltip>
 
                         <span className="icon-border-color icon-edited" />
@@ -128,11 +133,13 @@ export default class BalanceInfoBlock extends React.Component {
                         <div className="col-xs-6">{resources.MemberMaxCredit}</div>
                         <div className="col-xs-6 col-right">
                             {
-                                balanceInfo.ShowMemberMaxCreditLimit && <Tooltip
+                                balanceInfo.ShowMemberMaxCreditLimit &&
+                                <Tooltip
                                     title={balanceInfo.MemberMaxCreditLimit}
                                     position="bottom"
                                     trigger="mouseenter"
-                                    arrow="true">
+                                    arrow="true"
+                                >
                                     <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
                                 </Tooltip>
                             }

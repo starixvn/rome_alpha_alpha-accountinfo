@@ -14,7 +14,7 @@ const requests = {
         .catch(handleErrors),
     post: (url, data) => axios.post(url, data)
         .then(responseData)
-        .catch(handleErrors),
+        .catch(handleErrors)
 };
 
 export const accountInfoAPI = {
@@ -25,4 +25,4 @@ export const accountInfoAPI = {
     getOnlineList: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/GetOnlineList", data),
     updateGivenCredit: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/UpdateGivenCredit", data),
     updateCustomerStatus: (url, data) => requests.post(url, data)
-}
+};

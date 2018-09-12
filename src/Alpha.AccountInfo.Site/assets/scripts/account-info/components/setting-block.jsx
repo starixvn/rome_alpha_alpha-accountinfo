@@ -19,14 +19,15 @@ export default class SettingBlock extends React.Component {
                 iconClassname="icon-settings"
                 expanded={expanded}
                 handleClick={getCustomerAllStatus}
-                blockId={blockId}>
+                blockId={blockId}
+            >
                 {
-                    settingData != null &&
+                    settingData !== null &&
                     <Paging resourcePage={this.props.resources.Page} values={settingData} renderCallback={this.renderCallback} />
                 }
 
             </CustomizedAccordionItem>
-           
-        )
+
+        );
     }
 }

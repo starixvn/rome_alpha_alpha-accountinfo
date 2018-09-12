@@ -5,14 +5,14 @@ import {
     AccordionItemBody,
 } from 'react-accessible-accordion';
 
-const CustomizedAccordionItem = ({ title, iconClassname, accordionItemBodyClassName, expanded, handleClick, blockId, children}) =>
+const CustomizedAccordionItem = ({ title, iconClassname, accordionItemBodyClassName, expanded, handleClick, blockId, children }) =>
     <AccordionItem expanded={expanded}>
         <AccordionItemTitle onClick={handleClick} data-blockid={blockId}>
-            <span className={iconClassname}></span> {title}
+            <span className={iconClassname} /> {title}
         </AccordionItemTitle>
         <AccordionItemBody className={accordionItemBodyClassName}>
             {children}
         </AccordionItemBody>
-    </AccordionItem>
+    </AccordionItem>;
 
 export default CustomizedAccordionItem;

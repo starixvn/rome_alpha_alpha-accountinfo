@@ -23,7 +23,7 @@ export default class FeatureList extends React.Component {
                 Agent: 2,
                 Member: 1
             }
-        }
+        };
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
         this.toogleContactInfoButton = this.toogleContactInfoButton.bind(this);
@@ -31,9 +31,25 @@ export default class FeatureList extends React.Component {
         this.fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer.bind(this);
     }
 
-    getCustomerAllStatus(e) {
-        this.state.settingData === null && this.fetchCustomerAllStatusFromServer(e);
-        this.handleCollapExpandBlock(e);
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.customerInfo.CustId !== this.props.customerInfo.CustId) {
+            this.setState({
+                expandedItems: this.initialExpandedItems(),
+                statusData: null,
+                settingData: null
+            });
+        }
+    }
+
+    initialExpandedItems() {
+        return {
+            balanceInfo: true,
+            downlineList: false,
+            status: false,
+            setting: false,
+            loginInfo: false,
+            onlineList: false
+        };
     }
 
     fetchCustomerAllStatusFromServer(e) {
@@ -74,25 +90,9 @@ export default class FeatureList extends React.Component {
         });
     }
 
-    initialExpandedItems() {
-        return {
-            balanceInfo: true,
-            downlineList: false,
-            status: false,
-            setting: false,
-            loginInfo: false,
-            onlineList: false
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.customerInfo.CustId != this.props.customerInfo.CustId) {
-            this.setState({
-                expandedItems: this.initialExpandedItems(),
-                statusData: null,
-                settingData: null
-            });
-        }
+    getCustomerAllStatus(e) {
+        this.state.settingData === null && this.fetchCustomerAllStatusFromServer(e);
+        this.handleCollapExpandBlock(e);
     }
 
     resetColllapseAll(expandedItems) {
@@ -195,7 +195,8 @@ export default class FeatureList extends React.Component {
                         username={customerInfo.UserName}
                         statusData={statusData}
                         expanded={expandedItems.status}
-                        blockId="status" />
+                        blockId="status"
+                    />
 
                     <SettingBlock
                         resources={resources}
@@ -203,7 +204,8 @@ export default class FeatureList extends React.Component {
                         getCustomerAllStatus={this.getCustomerAllStatus}
                         settingData={settingData}
                         expanded={expandedItems.setting}
-                        blockId="setting" />
+                        blockId="setting"
+                    />
 
                     <LoginInfoBlock
                         resources={resources}
@@ -211,7 +213,8 @@ export default class FeatureList extends React.Component {
                         viewIpInfoLink={customerInfo.ViewLoginIPLink}
                         handleCollapExpandBlock={this.handleCollapExpandBlock}
                         expanded={expandedItems.loginInfo}
-                        blockId="loginInfo" />
+                        blockId="loginInfo"
+                    />
 
                     <OnlineListBlock
                         resources={resources}
@@ -219,7 +222,8 @@ export default class FeatureList extends React.Component {
                         expanded={expandedItems.onlineList}
                         blockId="onlineList"
                         viewIpInfoLink={customerInfo.ViewLoginIPLink}
-                        custId={this.props.customerInfo.CustId}/>
+                        custId={this.props.customerInfo.CustId}
+                    />
                 </Accordion>
             </div>
         );

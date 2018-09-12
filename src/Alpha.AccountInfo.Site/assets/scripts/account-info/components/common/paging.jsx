@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import Swiper from 'react-id-swiper'
+import Swiper from 'react-id-swiper';
 
 export default class Paging extends React.Component {
     constructor(props) {
@@ -35,13 +35,13 @@ export default class Paging extends React.Component {
         const { slideTo } = this.state;
 
         let pageArray = this.chunkArray(values, 10);
-        let length = pageArray.length 
+        let length = pageArray.length;
         let params = length > 1 ?
             {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
                 paginationBulletRender: (swiper, index, className) => {
-                    if (index < 2 || index == length - 1) {
+                    if (index < 2 || index === length - 1) {
                         return `<span class="${className}">${index + 1}</span>`;
                     }
 
@@ -73,18 +73,18 @@ export default class Paging extends React.Component {
                             {page.map((value, index) => {
                                 return <div className="two-col" key={index}>
                                     {renderCallback(value)}
-                                </div>
+                                </div>;
                             })}
-                        </div>
+                        </div>;
                     })}
                 </Swiper>
                 {pageArray.length > 4 &&
                     <div className="page-control">
-                    <span>{resourcePage}</span>
+                        <span>{resourcePage}</span>
                         <input type="text" ref="slideTo" className="number" value={slideTo} onChange={this.slideTo} />
                     </div>
                 }
             </div>
-        )
+        );
     }
 }

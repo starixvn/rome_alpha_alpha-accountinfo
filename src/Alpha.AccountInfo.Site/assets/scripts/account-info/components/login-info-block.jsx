@@ -10,7 +10,7 @@ export default class LoginInfoBlock extends React.Component {
     handleOpenIPInfo(e) {
         e.preventDefault();
         window.top.ageWnd.open(`${this.props.viewIpInfoLink}?ip=${this.props.loginInfo.LoginIP}`);
-    };
+    }
 
     render() {
         const { resources, handleCollapExpandBlock, blockId, expanded, loginInfo } = this.props;
@@ -22,7 +22,8 @@ export default class LoginInfoBlock extends React.Component {
                 accordionItemBodyClassName="accordion__body block-login-info"
                 expanded={expanded}
                 handleClick={handleCollapExpandBlock}
-                blockId={blockId}>
+                blockId={blockId}
+            >
 
                 <div className="group">
                     <div className="row-info bold">{resources.CreatedDate}:</div>

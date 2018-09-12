@@ -15,7 +15,7 @@ export default class StatusBlock extends React.Component {
         let productName = e.currentTarget.dataset.name;
         let resources = this.props.resources;
         if (JSON.parse(e.currentTarget.dataset.enabled)) {
-            e.currentTarget.dataset.message == undefined ?
+            e.currentTarget.dataset.message === undefined ?
                 window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`) :
                 this.handleOpenConfirmPopup(e);
         }
@@ -75,18 +75,20 @@ export default class StatusBlock extends React.Component {
                 accordionItemBodyClassName="accordion__body block-status"
                 expanded={expanded}
                 handleClick={getCustomerAllStatus}
-                blockId={blockId}>
+                blockId={blockId}
+            >
                 {
-                    statusData != null && statusData.map((status, index) => {
-                        return status.IsEditOnProductLevel != undefined && !status.IsEditOnProductLevel ?
+                    statusData !== null && statusData.map((status, index) => {
+                        return status.IsEditOnProductLevel !== undefined && !status.IsEditOnProductLevel ?
                             <div key={index}
                                 className="col"
                                 data-id={status.ProductId}
                                 data-name={status.Text}
                                 onClick={this.handleOpenPopupForProductStatus}
-                                data-url={status.Url}>
+                                data-url={status.Url}
+                            >
                                 <span className="link">{status.Text}</span>
-                                <span className="icon-ic_list"></span>
+                                <span className="icon-ic_list" />
                             </div> :
                             <div key={index}
                                 className={`${status.Disabled && "disabled"} col checkbox`}
@@ -95,13 +97,15 @@ export default class StatusBlock extends React.Component {
                                 data-url={status.Url}
                                 data-param={status.JsonParams}
                                 data-message={status.ConfirmMessage}
-                                data-name={status.Text}>
+                                data-name={status.Text}
+                            >
                                 <input id={status.displayOrder}
                                     type="checkbox"
                                     disabled={status.Disabled}
-                                    checked={status.Checked} />
+                                    checked={status.Checked}
+                                />
                                 <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
-                            </div>
+                            </div>;
                     })
                 }
             </CustomizedAccordionItem>

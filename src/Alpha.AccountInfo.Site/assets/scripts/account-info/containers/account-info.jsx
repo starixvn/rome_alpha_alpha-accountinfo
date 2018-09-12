@@ -9,7 +9,7 @@ import { base64Helper } from '../../helpers/base64-helper';
 export default class AccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        let lastSearchUsername = localStorage.getItem("lastSearchUsername") != null ? localStorage.getItem("lastSearchUsername") : '';
+        let lastSearchUsername = localStorage.getItem("lastSearchUsername") !== null ? localStorage.getItem("lastSearchUsername") : '';
         this.state = {
             username: lastSearchUsername,
             searchCounter: 0,
@@ -45,17 +45,18 @@ export default class AccountInfo extends React.Component {
     }
 
     handleShowContactInfo() {
-        this.setState((prevStatus) => { showInfoStatus: !prevStatus })
+        this.setState((prevStatus) => { showInfoStatus: !prevStatus; });
     }
 
     render() {
         const { showInfoStatus, customerInfo, resources, searchCounter, username } = this.state;
 
-        const customerInfoContent = customerInfo != null ?
+        const customerInfoContent = customerInfo !== null ?
             <CustomerInfoBlock
                 resources={resources}
                 data={customerInfo}
-                handleSearchFromUserLevel={this.handleSearchFromUserLevel} /> :
+                handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+            /> :
             <div className="no-information-search">{resources.NoInfo}</div>;
 
         return (
@@ -63,19 +64,21 @@ export default class AccountInfo extends React.Component {
                 <SearchingBlock
                     userNamePlaceHolder={resources.UserNamePlaceHolder}
                     fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} 
-                    username = {username}/>
+                    username={username}
+                />
 
                 <div id="blockInfo" className="block-info">
                     {searchCounter > 0 && customerInfoContent}
                 </div>
 
-                {customerInfo != null &&
+                {customerInfo !== null &&
                     <FeatureList resources={resources}
                         handleShowContactInfo={this.handleShowContactInfo}
                         showInfoStatus={this.showInfoStatus}
                         customerInfo={customerInfo}
                         handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                        fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} />}
+                        fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
+                    />}
             </div>
         );
     }

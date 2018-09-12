@@ -19,7 +19,7 @@
 
     <script>
         var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
-        if (localStorage.getItem("actorName") != '@Model.ActoreName') {
+        if (localStorage.getItem("actorName") !== '@Model.ActoreName') {
             localStorage.setItem('actorName', '@Model.ActoreName');
             localStorage.removeItem('lastSearchUsername');
         }

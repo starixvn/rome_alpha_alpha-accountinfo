@@ -567,7 +567,6 @@
   <ItemGroup>
     <Folder Include="assets\bundles\account-info\" />
     <Folder Include="assets\styles\images\" />
-    <Folder Include="Web.Configuration\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alpha.AccountInfo\Alpha.AccountInfo.csproj">
@@ -598,9 +597,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AuthorizationSection.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\ProductConfiguration.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

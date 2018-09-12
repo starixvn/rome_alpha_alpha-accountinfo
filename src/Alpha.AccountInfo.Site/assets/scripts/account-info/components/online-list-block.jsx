@@ -7,10 +7,19 @@ export default class OnlineListBlock extends React.Component{
         super(props);
         this.state = {
             data: null
-        }
+        };
 
         this.handleClick = this.handleClick.bind(this);
         this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.custId !== this.props.custId) {
+            this.setState({
+                custId: nextProps.custId,
+                data: null
+            });
+        }
     }
 
     handleClick(e) {
@@ -26,15 +35,6 @@ export default class OnlineListBlock extends React.Component{
         window.top.ageWnd.open(`${this.props.viewIpInfoLink}?ip=${e.currentTarget.dataset.ip}`);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.custId != this.props.custId) {
-            this.setState({
-                custId: nextProps.custId,
-                data: null
-            });
-        }
-    }
-
     render() {
         const { resources, expanded, handleCollapExpandBlock, blockId } = this.props;
         const { data } = this.state;
@@ -45,7 +45,8 @@ export default class OnlineListBlock extends React.Component{
                 iconClassname="icon-onlinelist"
                 expanded={expanded}
                 handleClick={this.handleClick}
-                blockId={blockId}>
+                blockId={blockId}
+            >
 
                 {
                     <table className="tblRpt tblRpt-bordered width-100per online-list">
@@ -58,14 +59,14 @@ export default class OnlineListBlock extends React.Component{
                         </thead>
                         <tbody>
                         {
-                            (data === null || data.length == 0) &&
+                            (data === null || data.length === 0) &&
                             <tr>
                                 <td colSpan="3">{resources.ThisUserIsNotOnline}</td>
                             </tr>
                         }
 
                         {
-                            data != null && data.map((online, index) =>
+                            data !== null && data.map((online, index) =>
                                 <tr key={index}>
                                     <td className="text-center">{index + 1}</td>
                                         <td><a onClick={this.handleOpenIPInfo} data-ip={online.IP}>{online.IP}</a></td>
