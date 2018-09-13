@@ -60,7 +60,7 @@
         public DownlineListModel GetDownlineListModel(int custId)
             => accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
 
-        public IEnumerable<OnlineUserModel> GetOnlineList(int custid)
+        public IEnumerable<OnlineUserModel> GetOnlineListModel(int custid)
             => accountInfoDataAccess.GetOnlineList(new SelectOnlineListCriteria(custid));
 
         public Result UpdateGivenCredit(UpdateGivenCreditParam param)

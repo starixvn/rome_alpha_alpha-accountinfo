@@ -6,7 +6,7 @@
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using Xunit;
 
-    [Trait("Category", "AccountInfo-ViewModel")]
+    [Trait("Category", "AccountInfo")]
     public class MasterBalanceInfoViewModelTest
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Super.Value);

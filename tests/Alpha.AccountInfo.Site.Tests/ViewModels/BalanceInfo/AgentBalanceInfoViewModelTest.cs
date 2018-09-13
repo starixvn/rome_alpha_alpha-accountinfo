@@ -7,7 +7,7 @@
     using NSubstitute;
     using Xunit;
 
-    [Trait("Category", "AccountInfo-ViewModel")]
+    [Trait("Category", "AccountInfo")]
     public class AgentBalanceInfoViewModelTest
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Master.Value);

@@ -1,10 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
-    using AccountInfo.Criteria.ProductStatus;
-    using AccountInfo.Models;
-    using AccountInfo.Models.ProductStatus;
+    using Alpha.AccountInfo.Criteria.ProductStatus;
+    using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Models.ProductStatus;
     using AccountInfo.Services;
-    using AccountInfo.Services.ProductStatus;
+    using Alpha.AccountInfo.Services.ProductStatus;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
     using NSubstitute;

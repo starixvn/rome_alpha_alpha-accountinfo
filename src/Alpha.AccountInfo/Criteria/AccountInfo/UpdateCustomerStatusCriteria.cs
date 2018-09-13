@@ -62,9 +62,8 @@
             {
                 return CustomerStatusSettingKeys[StatusName];
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ExceptionHandler.Handle(exception, TraceEventType.Error);
                 return string.Empty;
             }
         }

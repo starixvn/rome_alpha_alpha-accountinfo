@@ -10,7 +10,7 @@
     using System.Web.Mvc;
     using Xunit;
 
-    [Trait("Category", "AccountInfoController")]
+    [Trait("Category", "AccountInfo")]
     public class AccountInfoControllerTest
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);

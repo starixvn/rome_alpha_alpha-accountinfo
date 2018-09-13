@@ -183,6 +183,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CacheRefServiceImplTests.cs" />
     <Compile Include="Services\ProductProfileServiceTests.cs" />
+    <Compile Include="Services\AccountInfo\AccountInfoServiceImplTest.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusAuthorizationServiceTests.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusCriteriaFactoryImplTests.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusServiceImplTests.cs" />

@@ -21,7 +21,7 @@ namespace Alpha.AccountInfo.Site.Tests.Handlers
     using System.Threading.Tasks;
     using Xunit;
 
-    [Trait("Category", "AccountInfoHandler")]
+    [Trait("Category", "AccountInfo")]
     public class AccountInfoHandlerTest
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
@@ -162,7 +162,7 @@ namespace Alpha.AccountInfo.Site.Tests.Handlers
             };
 
             var model = Enumerable.Empty<OnlineUserModel>();
-            accountInfoService.GetOnlineList(1).Returns(model);
+            accountInfoService.GetOnlineListModel(1).Returns(model);
 
             var actualViewModel = accountInfoHandler.Handle(message);
 

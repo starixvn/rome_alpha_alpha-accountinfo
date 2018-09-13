@@ -6,7 +6,7 @@
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using Xunit;
 
-    [Trait("Category", "AccountInfo-ViewModel")]
+    [Trait("Category", "AccountInfo")]
     public class CustomerInfoViewModelTest
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);

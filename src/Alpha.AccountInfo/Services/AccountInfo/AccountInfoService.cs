@@ -17,7 +17,7 @@
 
         CustomerAllStatusModel GetCustomerAllStatusModel(int custId);
 
-        IEnumerable<OnlineUserModel> GetOnlineList(int custid);
+        IEnumerable<OnlineUserModel> GetOnlineListModel(int custid);
 
         Result UpdateGivenCredit(UpdateGivenCreditParam param);
 

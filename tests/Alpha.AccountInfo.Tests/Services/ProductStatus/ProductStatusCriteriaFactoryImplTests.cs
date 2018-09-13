@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
-    using AccountInfo.Criteria.ProductStatus;
-    using AccountInfo.Models;
-    using AccountInfo.Services.ProductStatus;
+    using Alpha.AccountInfo.Criteria.ProductStatus;
+    using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Services.ProductStatus;
     using Alpha.Products.Core.Shared;
     using Params.ProductStatus;
     using System.Linq;

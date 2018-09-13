@@ -77,7 +77,7 @@
             => new CustomererAllStatusViewModel(message, accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId));
 
         public IEnumerable<OnlineUserModel> Handle(OnlineListQuery message)
-            => accountInfoService.GetOnlineList(message.SearchAccountId);
+            => accountInfoService.GetOnlineListModel(message.SearchAccountId);
 
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
            => new GivenCreditViewModel(message);
