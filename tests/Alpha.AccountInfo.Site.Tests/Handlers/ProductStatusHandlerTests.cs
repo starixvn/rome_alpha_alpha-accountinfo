@@ -2,11 +2,11 @@
 {
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
     using Alpha.Products.Core.Shared;
     using NSubstitute;
     using Params.ProductStatus;
-    using Requests.ProductStatus;
     using Services.ProductStatus;
     using Site.Handlers;
     using System.Collections.Generic;

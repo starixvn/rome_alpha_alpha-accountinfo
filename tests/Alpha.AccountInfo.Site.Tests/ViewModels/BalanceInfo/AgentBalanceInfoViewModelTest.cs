@@ -14,47 +14,22 @@
         private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo(UserLevel.Agent.Value);
 
         [Fact]
-        public void TotalBalance_Always_ReturnCorrectValue()
+        public void MasterBalanceInfoViewModel_Always_ReturnCorrectValue()
         {
             var messages = new CustomerInfoQuery(viewer);
-            var expectedTotalBalance = 28;
-
             var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
 
-            Assert.Equal(viewModel.TotalBalance, expectedTotalBalance);
-        }
-
-        [Fact]
-        public void YesterdayBalance_Always_ReturnCorrectValue()
-        {
-            var messages = new CustomerInfoQuery(viewer);
-            var expectedYesterdayBalance = 30;
-
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
-
-            Assert.Equal(viewModel.YesterdayBalance, expectedYesterdayBalance);
-        }
-
-        [Fact]
-        public void GivenCreditLimit_Always_ReturnCorrectValue()
-        {
-            var messages = new CustomerInfoQuery(viewer);
-            var expectedGivenCreditLimit = ">=23 and <=85";
-
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
-
-            Assert.Equal(viewModel.GivenCreditLimit, expectedGivenCreditLimit);
-        }
-
-        [Fact]
-        public void MemberMaxCreditLimit_Always_ReturnCorrectValue()
-        {
-            var messages = new CustomerInfoQuery(viewer);
-            var expectedMemberMaxCreditLimit = ">=25 and <=120";
-
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
-
-            Assert.Equal(viewModel.MemberMaxCreditLimit, expectedMemberMaxCreditLimit);
+            Assert.True(
+                viewModel.TotalCash.Equals(13) &&
+                viewModel.YesterdayCash.Equals(14) &&
+                viewModel.TotalBalance.Equals(28) &&
+                viewModel.YesterdayBalance.Equals(30) &&
+                viewModel.Outstanding.Equals(19) &&
+                viewModel.MemberMaxCredit.Equals(26) &&
+                viewModel.UsedCredit.Equals(22) &&
+                viewModel.GivenCredit.Equals(120) &&
+                viewModel.GivenCreditLimit.Equals(">=23 and <=85") &&
+                viewModel.MemberMaxCreditLimit.Equals(">=25 and <=120"));
         }
 
         [Theory]

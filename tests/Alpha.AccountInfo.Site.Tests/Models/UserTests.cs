@@ -21,7 +21,23 @@
             userSession.UserId.Returns(8);
             userSession.UserLoginIp.Returns("::1");
             userSession.LangKey.Returns("E");
+            userSession.Language.Returns("En");
             userSession.IsInternal.Returns(false);
+            userSession.IsAllDayBalTransfer.Returns(true);
+            userSession.IsAllowedTotalBalanceTransfer.Returns(true);
+
+            userSession.SubPageAccess.Returns(new PageAccess { Transfer = true, ViewReports = true});
+
+            userSession.GetDisabledProduct(Arg.Any<int>()).Returns(true);
+            userSession.GetHideProduct(Arg.Any<int>()).Returns(true);
+            userSession.GetSyncedProduct(Arg.Any<int>()).Returns(true);
+            userSession.IsHideKeno.Returns(true);
+            userSession.IsCasinoSync.Returns(true);
+            userSession.IsCasinoDisabled.Returns(true);
+            userSession.IsHideColossusBets.Returns(true);
+            userSession.DisableColossusBets.Returns(true);
+            userSession.IsDisabledESports.Returns(true);
+            userSession.IsNumberGameDisabled.Returns(true);
 
             // Act
             var user = new User(userSession);
@@ -36,7 +52,22 @@
                 user.UserId == 8 &&
                 user.IP == "::1" &&
                 user.LangKey == "E" &&
-                user.IsInternal == false);
+                user.Language == "En" &&
+                user.IsInternal == false &&
+                user.AllowedAllDayBalTransfer == true &&
+                user.AllowedTotalBalanceTransfer == true &&
+                user.CanViewReports == true &&
+                user.AllowTransfer == true &&
+                user.GetDisabledProduct(1) == true &&
+                user.GetHideProduct(1) == true &&
+                user.GetSyncedProduct(1) == true &&
+                user.IsHideKeno == true &&
+                user.IsCasinoSync == true &&
+                user.IsCasinoDisabled == true &&
+                user.IsHideColossusBets == true &&
+                user.DisableColossusBets == true &&
+                user.IsDisabledESports == true &&
+                user.IsNumberGameDisabled == true);
         }
 
         [Fact]

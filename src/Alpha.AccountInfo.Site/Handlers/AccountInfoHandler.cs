@@ -53,7 +53,7 @@
 
         public CustomerInfoViewModel Handle(CustomerInfoQuery message)
         {
-            var customerInfo = accountInfoService.GetCustomerInfoModel(message.UserName, message.ActorId);
+            var customerInfo = accountInfoService.GetCustomerInfoModel(message.SearchAccountName, message.ActorId);
 
             if (customerInfo != null)
             {

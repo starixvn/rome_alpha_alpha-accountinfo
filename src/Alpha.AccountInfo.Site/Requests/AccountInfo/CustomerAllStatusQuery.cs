@@ -20,7 +20,7 @@
 
         public byte SearchAccountRoleId { get; set; }
 
-        public int UplientId { get; set; }
+        public int UplineId { get; set; }
 
         public string UplineName { get; set; }
 

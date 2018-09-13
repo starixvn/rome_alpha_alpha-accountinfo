@@ -77,7 +77,7 @@ export default class FeatureList extends React.Component {
             SearchAccountId: customerInfo.CustId,
             SearchAccountName: customerInfo.UserName,
             SearchAccountRoleId: customerInfo.RoleId,
-            UplientId: uplineId,
+            UplineId: uplineId,
             UplineName: uplineName,
             UplineRoleId: customerInfo.RoleId + 1
         };

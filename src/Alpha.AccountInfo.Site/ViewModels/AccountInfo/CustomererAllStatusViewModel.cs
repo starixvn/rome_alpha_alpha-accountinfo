@@ -79,7 +79,7 @@
 
         private Customer Upline 
             => new Customer(
-                 message.UplientId,
+                 message.UplineId,
                  message.SubAccountId,
                  message.UplineName,
                  message.UplineRoleId,

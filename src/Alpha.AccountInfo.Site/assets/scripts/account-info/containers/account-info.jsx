@@ -28,7 +28,7 @@ export default class AccountInfo extends React.Component {
         let self = this;
         accountInfoAPI.getCustomerInfo({ username: username }).then((data) => {
             self.setState((prevState) => ({
-                username: username,
+                searchAccountName: username,
                 searchCounter: prevState.searchCounter + 1,
                 customerInfo: data
             }));

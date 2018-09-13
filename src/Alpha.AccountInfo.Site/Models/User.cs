@@ -2,7 +2,6 @@
 {
     using AccountInfo.Models;
     using Sunplus.Agent.Model.Entities;
-    using System.Threading.Tasks;
 
     public class User : IUser
     {

@@ -54,6 +54,9 @@
                         param.ActorName,
                         AlphaSystemId);
                         break;
+
+                    default:
+                        break;
                 }
 
             }

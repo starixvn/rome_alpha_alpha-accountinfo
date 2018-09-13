@@ -51,14 +51,30 @@
         public static IUser ViewerFixture(byte actorRoleId)
         {
             var viewer = Substitute.For<IUser>();
-            viewer.SubAccId.Returns(0);
             viewer.Id.Returns(1);
             viewer.Name.Returns("ActorName");
             viewer.LevelId.Returns(actorRoleId);
-            viewer.CanViewReports.Returns(true);
+            viewer.SubAccId.Returns(0);
+            viewer.SubAccName.Returns("subaccname");
+            viewer.UserId.Returns(8);
+            viewer.IP.Returns("::1");
+            viewer.LangKey.Returns("E");
+            viewer.Language.Returns("En");
+            viewer.IsInternal.Returns(false);
             viewer.AllowedTotalBalanceTransfer.Returns(true);
             viewer.AllowedAllDayBalTransfer.Returns(false);
+            viewer.CanViewReports.Returns(true);
             viewer.AllowTransfer.Returns(true);
+            viewer.GetDisabledProduct(Arg.Any<int>()).Returns(true);
+            viewer.GetHideProduct(Arg.Any<int>()).Returns(true);
+            viewer.GetSyncedProduct(Arg.Any<int>()).Returns(true);
+            viewer.IsHideKeno.Returns(true);
+            viewer.IsCasinoSync.Returns(true);
+            viewer.IsCasinoDisabled.Returns(true);
+            viewer.IsHideColossusBets.Returns(true);
+            viewer.DisableColossusBets.Returns(true);
+            viewer.IsDisabledESports.Returns(true);
+            viewer.IsNumberGameDisabled.Returns(true);
 
             return viewer;
         }
@@ -153,7 +169,7 @@
 
         private static CustomerInfoQuery AssignMessagesUsername(CustomerInfoQuery messages)
         {
-            messages.UserName = "UserTest";
+            messages.SearchAccountName = "UserTest";
             return messages;
         }
     }

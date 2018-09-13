@@ -1,11 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Controllers
 {
     using AccountInfo.Models;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
     using Alpha.Products.Core.Shared;
     using MediatR;
     using NSubstitute;
-    using Requests.ProductStatus;
     using Site.Controllers;
     using System.Threading.Tasks;
     using System.Web.Mvc;

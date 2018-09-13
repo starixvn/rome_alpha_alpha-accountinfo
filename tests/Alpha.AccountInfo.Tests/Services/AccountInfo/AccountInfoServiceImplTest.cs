@@ -76,7 +76,35 @@
         [Fact]
         public void GetCustomerInfoModel_Always_ReturnsCorrectModel()
         {
-            var model = fixture.Create<CustomerInfoModel>();
+            var model = new CustomerInfoModel(
+                custId: 1,
+                roleId: 1,
+                userName: "UserTest",
+                userName2: "NickName",
+                firstName: "James",
+                lastName: "Bond",
+                phone: "+896245361",
+                mobilePhone: "+963256475",
+                fax: "456795312",
+                closedReason: 2,
+                enabled: true,
+                uplineEnabled: true,
+                closed: true,
+                suspended: true,
+                creatDate: DateTime.Now,
+                lastLogged: DateTime.Now,
+                lastTxn: DateTime.Now,
+                lastLoginIP: string.Empty,
+                pwdExpiry: DateTime.Now,
+                memberId: 11,
+                memberName: "MemberTest",
+                agentId: 12,
+                agentName: "AgentTest",
+                masterId: 13,
+                masterName: "MasterTest",
+                superId: 14,
+                superName: "SuperTest");
+
             dynamicRepository.Get<CustomerInfoModel>(Arg.Any<SelectCustomerInfoCriteria>()).Returns(model);
 
             var actualModel = accountInfoService.GetCustomerInfoModel("test", 1);

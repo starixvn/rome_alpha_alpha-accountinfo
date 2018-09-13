@@ -48,7 +48,7 @@ namespace Alpha.AccountInfo.Site.Tests.Handlers
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {
-                UserName = "test"
+                SearchAccountName = "test"
             };
 
             SimpleServiceLocator
@@ -228,7 +228,12 @@ namespace Alpha.AccountInfo.Site.Tests.Handlers
         {
             var message = new CustomerAllStatusQuery(viewer)
             {
-                SearchAccountId = 1
+                SearchAccountId = 1,
+                SearchAccountName = "SearchAccountName",
+                SearchAccountRoleId = 3,
+                UplineId = 2,
+                UplineName = "UplineName",
+                UplineRoleId = 4
             };
 
             var model = fixture.Create<CustomerAllStatusModel>();

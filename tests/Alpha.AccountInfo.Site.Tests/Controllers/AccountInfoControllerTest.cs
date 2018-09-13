@@ -68,7 +68,7 @@
         {
             var message = new CustomerInfoQuery(viewer)
             {
-                UserName = "test"
+                SearchAccountName = "test"
             };
 
             accountInfoController.GetCustomerInfo(message);
@@ -83,7 +83,7 @@
         {
             var message = new CustomerInfoQuery(viewer)
             {
-                UserName = userName
+                SearchAccountName = userName
             };
 
             var actualResult = accountInfoController.GetCustomerInfo(message) as JsonResult;
@@ -97,7 +97,7 @@
         {
             var message = new CustomerInfoQuery(viewer)
             {
-                UserName = "ActorName"
+                SearchAccountName = "ActorName"
             };
 
             var actualResult = accountInfoController.GetCustomerInfo(message) as JsonResult;
@@ -169,7 +169,12 @@
         {
             var message = new CustomerAllStatusQuery(viewer)
             {
-                SearchAccountId = 1
+                SearchAccountId = 1,
+                SearchAccountName = "SearchAccountName",
+                SearchAccountRoleId = 3,
+                UplineId = 2,
+                UplineName = "UplineName",
+                UplineRoleId = 4
             };
 
             accountInfoController.GetCustomerAllStatus(message);
@@ -184,7 +189,12 @@
         {
             var message = new CustomerAllStatusQuery(viewer)
             {
-                SearchAccountId = searchAccountId
+                SearchAccountId = searchAccountId,
+                SearchAccountName = "SearchAccountName",
+                SearchAccountRoleId = 3,
+                UplineId = 2,
+                UplineName = "UplineName",
+                UplineRoleId = 4
             };
 
             var actualResult = accountInfoController.GetCustomerAllStatus(message) as JsonResult;

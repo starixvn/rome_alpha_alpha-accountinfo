@@ -28,14 +28,19 @@
         }
 
         [Fact]
-        public void BetCredit_Always_ReturnCorrectValue()
+        public void MemberBalanceInfoViewModel_Always_ReturnCorrectValue()
         {
             var messages = new CustomerInfoQuery(viewer);
-            var expectedBetCredit = 29;
-
             var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
 
-            Assert.Equal(viewModel.BetCredit, expectedBetCredit);
+            Assert.True(
+                viewModel.TotalBalance.Equals(14) &&
+                viewModel.YesterdayBalance.Equals(15) &&
+                viewModel.Outstanding.Equals(16) &&
+                viewModel.NetPosition.Equals(19) &&
+                viewModel.GivenCredit.Equals(12) &&
+                viewModel.BetCredit.Equals(29) &&
+                viewModel.GivenCreditLimit.Equals("<=20") );
         }
     }
 }

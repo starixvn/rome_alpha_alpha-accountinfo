@@ -49,7 +49,7 @@
 
                 var directDownlineLevelName = Enumeration.FromValue<UserLevel>((byte)(message.ActorRoleId - 1)).DisplayName;
                 var outstandingLink = $"{ReportsUrl}outstanding/{directDownlineLevelName}?" +
-                        $"CustId={customerInfo.CustId}&CustName={message.UserName}" +
+                        $"CustId={customerInfo.CustId}&CustName={message.SearchAccountName}" +
                         $"&CustLevelId={customerInfo.RoleId}&BreadcrumbLevelJson={BreadcrumbLevelJson}";
 
                 return new Link(labels[SearchAccountLevel], SearchAccountLevel.IsMemberLevel() ? betListLink : outstandingLink);
@@ -68,7 +68,7 @@
             => SearchAccountLevel.IsMemberLevel() ?
              $"{OldMainUrl}_Transfer/Agent/MemberTransfer.aspx?custid={customerInfo.CustId}&CallBack=false" :
              $"{OldMainUrl}_Transfer/{ActorLevel.DisplayName}/{SearchAccountLevel.DisplayName}Transfer.aspx?custid={customerInfo.CustId}" +
-             $"&status=1&CallBack=false&username={message.UserName}&isyesterday=1&amt={transferValue}";
+             $"&status=1&CallBack=false&username={message.SearchAccountName}&isyesterday=1&amt={transferValue}";
 
         protected static decimal RoundNumber(decimal value, byte decimalScale = 2)
             => Math.Round(value, decimalScale, MidpointRounding.AwayFromZero);

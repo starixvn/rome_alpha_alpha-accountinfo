@@ -19,6 +19,6 @@
 
         public string Language { get; }
 
-        public override bool IsValid() => ActorRoleId > 0;
+        public override bool IsValid() => ActorRoleId > 0 && ActorRoleId < 5;
     }
 }
