@@ -3,14 +3,12 @@
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Params.ProductStatus;
-    using Alpha.Products.Core.Models;
     using Alpha.Products.Core.Shared;
     using MediatR;
     using Requests.ProductStatus;
     using Services.AccountInfo;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using ViewModels.AccountInfo;
 
@@ -76,33 +74,7 @@
             => new DownlineListViewModel(accountInfoService.GetDownlineListModel(message.SearchAccountId));
 
         public CustomererAllStatusViewModel Handle(CustomerAllStatusQuery message)
-        {
-            var model = accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId);
-
-            var actor = new Customer(
-                message.ActorId,
-                message.SubAccountId, 
-                message.ActorName, 
-                message.ActorRoleId, 
-                GetActorProductStatus(message, model.DCSProducts.ToList()));
-
-            var upline = new Customer(
-                message.UplientId,
-                message.SubAccountId,
-                message.UplineName,
-                message.UplineRoleId,
-                GetUplineProductStatus(model.NonDCSProduct, model.DCSProducts.ToList()));
-
-            var searchAccount = new Customer(
-                message.SearchAccountId,
-                message.SubAccountId,
-                message.SearchAccountName,
-                message.SearchAccountRoleId,
-                GetSearchAccountProductStatus(model.NonDCSProduct, model.DCSProducts.ToList()), 
-                upline);
-
-            return new CustomererAllStatusViewModel(message, model.CustomerStatus, actor, searchAccount);
-        }
+            => new CustomererAllStatusViewModel(message, accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId));
 
         public IEnumerable<OnlineUserModel> Handle(OnlineListQuery message)
             => accountInfoService.GetOnlineList(message.SearchAccountId);
@@ -135,88 +107,19 @@
                    message.ActorName,
                    message.SyncedCasino3rd));
 
-        private static IEnumerable<CustomerProductStatus> GetSearchAccountProductStatus(
-            NonDCSProductModel nonDCSProduct,
-            List<DCSProductModel> dcsProducts)
-        {
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductConstants.NumberGame, nonDCSProduct.DisableNumber),
-                new CustomerProductStatus(ProductConstants.RNGCasino, nonDCSProduct.DisableCasino, synced: nonDCSProduct.SyncCasino),
-                new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.DisableEsports),
-                new CustomerProductStatus(ProductConstants.ColossusBets, nonDCSProduct.DisableColossusBet, hidden: nonDCSProduct.HideColossusBet),
-                new CustomerProductStatus(ProductConstants.Keno, nonDCSProduct.HideKeno)
-            };
-
-            dcsProducts.ForEach(product => {
-                customerProductStatus.Add(
-                    new CustomerProductStatus(product.ProductId, product.IsDisabled, product.IsHidden, product.IsSync));
-            });
-
-            return customerProductStatus;
-        }
-
-        private static IEnumerable<CustomerProductStatus> GetUplineProductStatus(
-            NonDCSProductModel nonDCSProduct,
-            List<DCSProductModel> dcsProducts)
-        {
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductConstants.NumberGame, nonDCSProduct.UplineDisableNumber),
-                new CustomerProductStatus(ProductConstants.RNGCasino, nonDCSProduct.UplineDisableCS),
-                new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.UplineDisableEsports),
-                new CustomerProductStatus(ProductConstants.ColossusBets, nonDCSProduct.UplineDisableColossusBet, hidden: nonDCSProduct.UplineDisableColossusBet),
-                new CustomerProductStatus(ProductConstants.Keno, nonDCSProduct.HideKeno)
-            };
-
-            dcsProducts.ForEach(product => {
-                customerProductStatus.Add(
-                    new CustomerProductStatus(product.ProductId, product.IsDisabledUpline, product.IsHiddenUpline, product.IsSyncedUpline));
-            });
-
-            return customerProductStatus;
-        }
-
-        private static IEnumerable<CustomerProductStatus> GetActorProductStatus(
-            CustomerAllStatusQuery message,
-            List<DCSProductModel> dcsProducts)
-        {
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductConstants.NumberGame, message.IsNumberGameDisabled),
-                new CustomerProductStatus(ProductConstants.RNGCasino, message.IsCasinoDisabled, synced: message.IsCasinoSync),
-                new CustomerProductStatus(ProductConstants.ESport, message.IsDisabledESports),
-                new CustomerProductStatus(ProductConstants.ColossusBets, message.DisableColossusBets, hidden: message.IsHideColossusBets),
-                new CustomerProductStatus(ProductConstants.Keno, message.IsHideKeno)
-            };
-
-            dcsProducts.ForEach(product =>
-            {
-                var productId = product.ProductId;
-                customerProductStatus.Add(
-                    new CustomerProductStatus(
-                        productId,
-                        message.GetDisabledProduct(productId),
-                        message.GetHideProduct(productId),
-                        message.GetSyncedProduct(productId)));
-            });
-
-            return customerProductStatus;
-        }
-
-        internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
+        private static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             IBalanceInfoModel balanceInfoModel)
             => new MasterBalanceInfoViewModel(message, balanceInfoModel, customerInfo);
 
-        internal static IBalanceInfoViewModel BuildAgentBalanceInfoViewModel(
+        private static IBalanceInfoViewModel BuildAgentBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             IBalanceInfoModel balanceInfoModel)
             => new AgentBalanceInfoViewModel(message, balanceInfoModel, customerInfo);
 
-        internal static IBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
+        private static IBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             IBalanceInfoModel balanceInfoModel)

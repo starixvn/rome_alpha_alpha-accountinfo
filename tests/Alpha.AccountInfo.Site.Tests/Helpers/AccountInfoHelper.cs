@@ -7,7 +7,6 @@
     using NSubstitute;
     using System;
     using System.Collections.Generic;
-    using System.Resources;
 
     public static class AccountInfoHelper
     {
@@ -102,8 +101,7 @@
 
         public static string GetMicroSiteUrl(string microSiteName, string virtualPath) => "MicroSiteUrl/";
 
-
-        private static MemberBalanceInfoModel MemberBalanceInfo
+        public static MemberBalanceInfoModel MemberBalanceInfo
           => new MemberBalanceInfoModel(
                   custId: 1,
                   credit: 12,
@@ -116,7 +114,7 @@
                   netPosition: 19,
                   memMaxCredit_Max: 20);
 
-        private static AgentBalanceInfoModel AgentBalanceInfo
+        public static AgentBalanceInfoModel AgentBalanceInfo
             => new AgentBalanceInfoModel(
                       custId: 1,
                       credit: 120,
@@ -135,7 +133,7 @@
                       memMaxCredit_Min: 25,
                       memberMaxCredit: 26);
 
-        private static MasterBalanceInfoModel MasterBalanceInfo
+        public static MasterBalanceInfoModel MasterBalanceInfo
             => new MasterBalanceInfoModel(
                     custId: 1,
                     credit: 12,
