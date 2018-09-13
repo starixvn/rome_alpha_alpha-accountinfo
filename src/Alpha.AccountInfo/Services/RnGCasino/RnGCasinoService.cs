@@ -1,4 +1,4 @@
-﻿namespace Alpha.AccountInfo.Services.ProductStatus
+﻿namespace Alpha.AccountInfo.Services
 {
     using Alpha.AccountInfo.Params.ProductStatus;
     using CasinoLibrary.Model.UserException;

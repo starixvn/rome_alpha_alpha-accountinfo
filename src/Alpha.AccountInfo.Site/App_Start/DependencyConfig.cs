@@ -2,6 +2,7 @@
 {
     using AccountInfo.Models;
     using Alpha.AccountInfo.DataAccess;
+    using Alpha.AccountInfo.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Controllers;
     using Fanex.Data.Repository;

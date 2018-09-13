@@ -5,8 +5,8 @@
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.AccountInfo;
     using Alpha.AccountInfo.Params.ProductStatus;
+    using Alpha.AccountInfo.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
-    using Alpha.AccountInfo.Services.ProductStatus;
     using Alpha.AccountInfo.Tests.Extensions;
     using AutoFixture;
     using Fanex.Data.Repository;
@@ -61,7 +61,11 @@
         [Fact]
         public void GetUsernamesSuggestion_Always_ReturnsCorrectModel()
         {
-            var model = Enumerable.Empty<UsernameSuggestion>();
+            var model = new List<UsernameSuggestion>
+            {
+                new UsernameSuggestion("UserName", "FirstName", "LastName")
+            };
+ 
             dynamicRepository.Fetch<UsernameSuggestion>(Arg.Any<SelectAutoSuggestionCriteria>()).Returns(model);
 
             var actualModel = accountInfoService.GetUsernamesSuggestion(1, "test", false);
@@ -165,7 +169,14 @@
 
             var actualResutl = accountInfoService.UpdateCustomerStatus(param);
         
-            rnGCasinoService.Received().SyncedToRnGCasino3rdByStatus(Arg.Any<UpdateRnGCasino3rdParam>());
+            rnGCasinoService.Received().SyncedToRnGCasino3rdByStatus(
+                Arg.Is<UpdateRnGCasino3rdParam>(rngParam => 
+                rngParam.SearchAccountId.Equals(1) &&
+                rngParam.StatusName.Equals("ouright") &&
+                rngParam.StatusValue.Equals(true) &&
+                rngParam.ActorId.Equals(1) &&
+                rngParam.ActorName.Equals("Actor") &&
+                rngParam.IP.Equals("192.168.1.1") ));
         }
 
         [Fact]

@@ -251,7 +251,7 @@
     <Compile Include="Services\ProductStatus\ProductStatusAuthorizationService.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusCriteriaFactory.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusService.cs" />
-    <Compile Include="Services\ProductStatus\RnGCasino\RnGCasinoService.cs" />
+    <Compile Include="Services\RnGCasino\RnGCasinoService.cs" />
     <Compile Include="Utils\SystemTime.cs" />
   </ItemGroup>
   <ItemGroup>
