@@ -26,9 +26,9 @@ export default class AccountInfo extends React.Component {
     fetchCustomerInfoFromServer(e, username) {
         $.blockUI();
         let self = this;
-        accountInfoAPI.getCustomerInfo({ username: username }).then((data) => {
+        accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then((data) => {
             self.setState((prevState) => ({
-                searchAccountName: username,
+                username: username,
                 searchCounter: prevState.searchCounter + 1,
                 customerInfo: data
             }));

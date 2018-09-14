@@ -18,10 +18,6 @@
             this.mediator = mediator;
         }
 
-        protected ActionResult View<TResponse>(IRequest<TResponse> message)
-            => (message as BaseRequest).IsValid() ? 
-                View(mediator.Send(message)) : View(NoInformationPageViewPath);
-
         protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message)
              => (message as BaseRequest).IsValid() ?
                 View(await mediator.Send(message)) : View(NoInformationPageViewPath);

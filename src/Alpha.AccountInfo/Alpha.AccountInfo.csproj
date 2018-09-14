@@ -197,7 +197,7 @@
     <Compile Include="Criteria\AccountInfo\UpdateCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\UpdateGivenCreditCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\SelectCustomerAllStatusModelCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\Base\AccountInfoCriteria.cs" />
+    <Compile Include="Criteria\AccountInfo\Base\AccountInfoCriteriaBase.cs" />
     <Compile Include="Criteria\AccountInfo\SelectOnlineListCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\SelectDownlineListCriteria.cs" />
     <Compile Include="Criteria\AccountInfo\SelectBalanceInfoCriteria.cs" />
@@ -252,7 +252,6 @@
     <Compile Include="Services\ProductStatus\ProductStatusCriteriaFactory.cs" />
     <Compile Include="Services\ProductStatus\ProductStatusService.cs" />
     <Compile Include="Services\RnGCasino\RnGCasinoService.cs" />
-    <Compile Include="Utils\SystemTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Alpha.AccountInfo.Debug.ruleset" />

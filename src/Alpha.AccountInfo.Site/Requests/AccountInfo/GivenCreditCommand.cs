@@ -3,7 +3,7 @@
     using AccountInfo.Models;
     using MediatR;
 
-    public class GivenCreditCommand : BaseRequest, IRequest<Result>
+    public class GivenCreditCommand : AccountInfoQueryBase, IRequest<Result>
     {
         private readonly IUser viewer;
 
@@ -12,13 +12,9 @@
             this.viewer = viewer;
         }
 
-        public int SearchAccountId { get; set; }
-
         public byte SearchAccountRoleId { get; set; }
 
         public decimal CreditAmount { get; set; }
-
-        public byte ActorRoleId => viewer.LevelId;
 
         public int ActorId => viewer.Id;
 
@@ -28,9 +24,8 @@
 
         public string IP => viewer.IP;
 
-        public override bool IsValid()
-           => SearchAccountId > 0 
-            && SearchAccountRoleId > 0
-            && SearchAccountRoleId < 4;
+        public override bool IsValid() => 
+            base.IsValid() &&
+            IsValidSearchAccountRoleId(SearchAccountRoleId);
     }
 }

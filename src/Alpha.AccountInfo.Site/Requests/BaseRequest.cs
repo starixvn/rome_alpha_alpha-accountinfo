@@ -9,5 +9,7 @@
         }
 
         public abstract bool IsValid();
+
+        internal bool IsValidName(string name) => !string.IsNullOrEmpty(name);
     }
 }

@@ -9,8 +9,7 @@
     {
         private readonly IUser viewer;
 
-        public UserNameSuggestionQuery(IUser viewer)
-            : base(viewer)
+        public UserNameSuggestionQuery(IUser viewer) : base(viewer)
         {
             this.viewer = viewer;
         }
@@ -21,6 +20,6 @@
 
         public bool IsInternal => viewer.IsInternal;
 
-        public override bool IsValid() => !string.IsNullOrEmpty(SuggestionQuery);
+        public override bool IsValid() => IsValidName(SuggestionQuery);
     }
 }

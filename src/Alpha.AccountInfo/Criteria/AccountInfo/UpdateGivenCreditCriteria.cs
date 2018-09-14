@@ -11,26 +11,24 @@
         private readonly IDictionary<UserLevel, string> settingKeys = 
             new Dictionary<UserLevel, string>
             {
-                {UserLevel.Super, "Age_CustomerUpdCredit_SAg" },
-                {UserLevel.Master, "Age_CustomerUpdCredit_MAg" },
-                {UserLevel.Agent, "Age_CustomerUpdCredit_Ag" }
+                {UserLevel.Master, "Age_CustomerUpdCredit_SAg" },
+                {UserLevel.Agent, "Age_CustomerUpdCredit_MAg" },
+                {UserLevel.Member, "Age_CustomerUpdCredit_Ag" }
             };
 
         public UpdateGivenCreditCriteria(
             int searchAccountId,
-            byte roleId,
+            byte searchAccountRoleId,
             decimal creditAmount,
             int actorId,
-            byte actorRoleId,
             int subAccountId,
             string language,
             string ip)
         {
             SearchAccountId = searchAccountId;
-            SearchAccountRoleId = roleId;
+            SearchAccountRoleId = searchAccountRoleId;
             CreditAmount = creditAmount;
             ActorId = actorId;
-            ActorRoleId = actorRoleId;
             SubAccountId = subAccountId;
             Language = language;
             IP = ip;
@@ -41,9 +39,6 @@
 
         [SpParam(Ignored = true)]
         public byte SearchAccountRoleId { get; }
-
-        [SpParam(Ignored = true)]
-        public byte ActorRoleId { get; }
 
         [SpParam(SqlParamName = "CreditAmt")]
         public decimal CreditAmount { get; }
@@ -62,8 +57,10 @@
 
         public string ErrMsg { get; set; }
 
-        public override string GetSettingKey() => settingKeys[Enumeration.FromValue<UserLevel>(ActorRoleId)];
+        public override string GetSettingKey() => settingKeys[SearchAccountLevel];
 
-        public override bool IsValid() => SearchAccountId > 0 && ActorId > 0;
+        public override bool IsValid() =>  SearchAccountId > 0 && ActorId > 0;
+
+        private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(SearchAccountRoleId);
     }
 }

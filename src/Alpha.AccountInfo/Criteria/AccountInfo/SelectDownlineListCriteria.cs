@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Criteria.AccountInfo
 {
-    public class SelectDownlineListCriteria : AccountInfoCriteria
+    public class SelectDownlineListCriteria : AccountInfoCriteriaBase
     {
         public SelectDownlineListCriteria(int searchAccountId) : base(searchAccountId)
         {

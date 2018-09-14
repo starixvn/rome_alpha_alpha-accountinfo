@@ -3,16 +3,14 @@
     using AccountInfo.Models;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
+    using System.Linq;
 
-    public class GivenCreditQuery : BaseRequest, IRequest<GivenCreditViewModel>
+    public class GivenCreditQuery : AccountInfoQueryBase, IRequest<GivenCreditViewModel>
     {
-        public GivenCreditQuery(IUser viewer)
-            : base(viewer)
+        public GivenCreditQuery(IUser viewer) : base(viewer)
         {
             Language = viewer.Language;
         }
-
-        public int SearchAccountId { get; set; }
 
         public string SearchAccountName { get; set; }
 
@@ -22,10 +20,9 @@
 
         public string Language { get; }
 
-        public override bool IsValid() 
-            => SearchAccountId > 0 
-            && SearchAccountRoleId > 0 
-            && SearchAccountRoleId < 4 
-            && !string.IsNullOrEmpty(SearchAccountName);
+        public override bool IsValid() => 
+            base.IsValid() &&
+            IsValidSearchAccountRoleId(SearchAccountRoleId) && 
+            !string.IsNullOrEmpty(SearchAccountName);
     }
 }

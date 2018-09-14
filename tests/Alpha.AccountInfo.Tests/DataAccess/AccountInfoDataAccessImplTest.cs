@@ -207,10 +207,9 @@
             // Arrange
             var criteria = new UpdateGivenCreditCriteria(
                 searchAccountId: 1,
-                roleId: 2,
+                searchAccountRoleId: 2,
                 creditAmount: 500000,
                 actorId: 56,
-                actorRoleId: 4,
                 subAccountId: 0,
                 language: "E",
                 ip: "192.168.1.1");
@@ -231,10 +230,9 @@
             // Arrange
             var criteria = new UpdateGivenCreditCriteria(
                 searchAccountId: 1,
-                roleId: 2,
+                searchAccountRoleId: 2,
                 creditAmount: 500000,
                 actorId: 56,
-                actorRoleId: 4,
                 subAccountId: 0,
                 language: "E",
                 ip: "192.168.1.1");

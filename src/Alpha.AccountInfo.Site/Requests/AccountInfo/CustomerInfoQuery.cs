@@ -8,7 +8,7 @@
     {
         private readonly IUser viewer;
 
-        public CustomerInfoQuery(IUser viewer): base(viewer)
+        public CustomerInfoQuery(IUser viewer) : base(viewer)
         {
             this.viewer = viewer;
         }
@@ -27,6 +27,8 @@
 
         public bool ViewReports => viewer.CanViewReports;
 
-        public override bool IsValid() => !string.IsNullOrEmpty(SearchAccountName) && !SearchAccountName.Equals(viewer.Name);
+        public override bool IsValid() =>
+            IsValidName(SearchAccountName) && 
+            SearchAccountName != viewer.Name;
     }
 }

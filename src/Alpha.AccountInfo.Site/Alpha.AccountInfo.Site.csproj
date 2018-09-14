@@ -491,6 +491,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\AccountInfo\AccountInfoQuery.cs" />
+    <Compile Include="Requests\AccountInfo\Base\AccountInfoQueryBase.cs" />
     <Compile Include="Requests\AccountInfo\CustomerStatusCommand.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditQuery.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditCommand.cs" />
@@ -570,6 +571,7 @@
   <ItemGroup>
     <Folder Include="assets\bundles\account-info\" />
     <Folder Include="assets\styles\images\" />
+    <Folder Include="validSearchAccountRoleId\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alpha.AccountInfo\Alpha.AccountInfo.csproj">

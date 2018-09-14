@@ -199,12 +199,14 @@
     <Compile Include="Helpers\QueryEntityModelBinderTests.cs" />
     <Compile Include="Models\UserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\AccountInfo\GivenCreditQueryTest.cs" />
     <Compile Include="Requests\AccountInfo\AccountInfoQueryTest.cs" />
+    <Compile Include="Requests\AccountInfo\Base\AccountInfoQueryBaseTest.cs" />
     <Compile Include="Requests\AccountInfo\CustomerAllStatusQueryTest.cs" />
     <Compile Include="Requests\AccountInfo\CustomerInfoQueryTest.cs" />
     <Compile Include="Requests\AccountInfo\CustomerStatusCommandTest.cs" />
+    <Compile Include="Requests\AccountInfo\UserNameSuggestionQueryTest.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditCommandTest.cs" />
-    <Compile Include="Requests\AccountInfo\DownlineListQueryTest.cs" />
     <Compile Include="ViewModels\BalanceInfo\AgentBalanceInfoViewModelTest.cs" />
     <Compile Include="ViewModels\BalanceInfo\MasterBalanceInfoViewModelTest.cs" />
     <Compile Include="ViewModels\BalanceInfo\MemberBalanceInfoViewModelTest.cs" />

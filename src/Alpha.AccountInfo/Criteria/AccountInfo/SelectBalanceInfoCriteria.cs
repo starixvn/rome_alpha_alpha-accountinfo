@@ -5,7 +5,7 @@
     using Fanex.Data;
     using System.Collections.Generic;
 
-    public class SelectBalanceInfoCriteria : AccountInfoCriteria
+    public class SelectBalanceInfoCriteria : AccountInfoCriteriaBase
     {
         private readonly IDictionary<UserLevel, string> settingKeys = 
             new Dictionary<UserLevel, string>

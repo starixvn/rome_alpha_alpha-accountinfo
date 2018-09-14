@@ -42,6 +42,23 @@
         }
 
         [Theory]
+        [InlineData(4, true)]
+        [InlineData(3, true)]
+        [InlineData(2, true)]
+        [InlineData(1, false)]
+        public void IsNotMemberLevel_Always_ReturnsExpectedResult(byte roleId, bool expectedResult)
+        {
+            // Arrange
+            var userLevel = Enumeration.FromValue<UserLevel>(roleId);
+
+            // Act
+            var result = userLevel.IsNotMemberLevel();
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
         [InlineData(4, false)]
         [InlineData(3, false)]
         [InlineData(2, true)]
@@ -53,6 +70,23 @@
 
             // Act
             var result = userLevel.IsAgentLevel();
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(4, true)]
+        [InlineData(3, true)]
+        [InlineData(2, false)]
+        [InlineData(1, true)]
+        public void IsNotAgentLevel_Always_ReturnsExpectedResult(byte roleId, bool expectedResult)
+        {
+            // Arrange
+            var userLevel = Enumeration.FromValue<UserLevel>(roleId);
+
+            // Act
+            var result = userLevel.IsNotAgentLevel();
 
             // Assert
             Assert.Equal(expectedResult, result);
@@ -78,6 +112,23 @@
         [Theory]
         [InlineData(4, true)]
         [InlineData(3, false)]
+        [InlineData(2, true)]
+        [InlineData(1, true)]
+        public void IsNotMasterLevel_Always_ReturnsExpectedResult(byte roleId, bool expectedResult)
+        {
+            // Arrange
+            var userLevel = Enumeration.FromValue<UserLevel>(roleId);
+
+            // Act
+            var result = userLevel.IsNotMasterLevel();
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData(4, true)]
+        [InlineData(3, false)]
         [InlineData(2, false)]
         [InlineData(1, false)]
         public void IsSuperLevel_Always_ReturnsExpectedResult(byte roleId, bool expectedResult)
@@ -92,6 +143,23 @@
             Assert.Equal(expectedResult, result);
         }
 
+        [Theory]
+        [InlineData(4, false)]
+        [InlineData(3, true)]
+        [InlineData(2, true)]
+        [InlineData(1, true)]
+        public void IsNotSuperLevel_Always_ReturnsExpectedResult(byte roleId, bool expectedResult)
+        {
+            // Arrange
+            var userLevel = Enumeration.FromValue<UserLevel>(roleId);
+
+            // Act
+            var result = userLevel.IsNotSuperLevel();
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+    
         [Theory]
         [InlineData(1, 3, false)]
         [InlineData(1, 4, false)]

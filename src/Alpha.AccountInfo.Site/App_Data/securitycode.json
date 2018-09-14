@@ -3,7 +3,8 @@
   "siteMainApp": "/site-main",
   "paths": [
     "productstatus?productid=23",
-    "productstatus/index?productid=23"
+    "productstatus/index?productid=23",
+    "AccountInfo/GivenCredit"
   ],
   "sites": [
   ],

@@ -3,9 +3,9 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class AccountInfoCriteria : CriteriaBase
+    public class AccountInfoCriteriaBase : CriteriaBase
     {
-        public AccountInfoCriteria(int searchAccountId)
+        public AccountInfoCriteriaBase(int searchAccountId)
         {
             SearchAccountId = searchAccountId;
         }

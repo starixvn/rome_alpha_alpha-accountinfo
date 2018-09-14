@@ -7,17 +7,16 @@
     public class UpdateGivenCreditCriteriaTest
     {
         [Theory]
-        [InlineData(2, "Age_CustomerUpdCredit_Ag")]
-        [InlineData(3, "Age_CustomerUpdCredit_MAg")]
-        [InlineData(4, "Age_CustomerUpdCredit_SAg")]
-        public void GetSettingKey_Always_ReturnsValidSettingKey(byte actorRoleId, string expectedSettingKey)
+        [InlineData(1, "Age_CustomerUpdCredit_Ag")]
+        [InlineData(2, "Age_CustomerUpdCredit_MAg")]
+        [InlineData(3, "Age_CustomerUpdCredit_SAg")]
+        public void GetSettingKey_Always_ReturnsValidSettingKey(byte searchAccountRoleId, string expectedSettingKey)
         {
             var criteria = new UpdateGivenCreditCriteria(
-                searchAccountId: 1, 
-                roleId: 1,
+                searchAccountId: 1,
+                searchAccountRoleId: searchAccountRoleId,
                 creditAmount: 999,
                 actorId:2,
-                actorRoleId: actorRoleId,
                 subAccountId: 0,
                 language: "E",
                 ip: "192.196.10.1");
@@ -34,10 +33,9 @@
         {
             var criteria = new UpdateGivenCreditCriteria(
                searchAccountId: custid,
-               roleId: 2,
+               searchAccountRoleId: 2,
                creditAmount: 999,
                actorId: 2,
-               actorRoleId: 4,
                subAccountId: 0,
                language: "E",
                ip: "192.196.10.1");
@@ -52,10 +50,9 @@
         {
             var criteria = new UpdateGivenCreditCriteria(
                   searchAccountId: 1,
-                  roleId: 2,
+                  searchAccountRoleId: 2,
                   creditAmount: 999,
                   actorId: actorId,
-                  actorRoleId: 4,
                   subAccountId: 0,
                   language: "E",
                   ip: "192.196.10.1");

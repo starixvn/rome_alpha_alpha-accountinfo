@@ -3,11 +3,11 @@
     using AccountInfo.Models;
     using MediatR;
 
-    public class CustomerStatusCommand : BaseRequest, IRequest<Result>
+    public class CustomerStatusCommand : AccountInfoQueryBase, IRequest<Result>
     {
         private readonly IUser viewer;
 
-        public CustomerStatusCommand(IUser viewer): base(viewer)
+        public CustomerStatusCommand(IUser viewer) : base(viewer)
         {
             this.viewer = viewer;
         }
@@ -15,8 +15,6 @@
         public string ActorName => viewer.Name;
 
         public bool SyncedCasino3rd { get; set; }
-
-        public int SearchAccountId { get; set; }
 
         public bool StatusValue { get; set; }
 
@@ -30,6 +28,6 @@
 
         public string IP => viewer.IP;
 
-        public override bool IsValid() => SearchAccountId > 0 && !string.IsNullOrEmpty(StatusName);
+        public override bool IsValid() => base.IsValid() && IsValidName(StatusName);
     }
 }

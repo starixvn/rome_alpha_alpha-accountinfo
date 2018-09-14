@@ -6,8 +6,7 @@
 
     public class AccountInfoQuery : BaseRequest, IRequest<AccountInfoViewModel>
     {
-        public AccountInfoQuery(IUser viewer)
-            : base(viewer)
+        public AccountInfoQuery(IUser viewer) : base(viewer)
         {
             ActorRoleId = viewer.LevelId;
             ActorName = viewer.Name;
@@ -19,6 +18,6 @@
 
         public string Language { get; }
 
-        public override bool IsValid() => ActorRoleId > 0 && ActorRoleId < 5;
+        public override bool IsValid() => true;
     }
 }

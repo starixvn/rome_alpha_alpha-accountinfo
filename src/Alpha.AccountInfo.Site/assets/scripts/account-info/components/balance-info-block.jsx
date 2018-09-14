@@ -14,7 +14,7 @@ export default class BalanceInfoBlock extends React.Component {
     handleOpenGivenCreditPopup(e) {
         let self = this;
         let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${this.props.custId}&SearchAccountName=${this.props.username}&SearchAccountRoleId=${this.props.roleId}&CurrentGivenCredit=${this.props.balanceInfo.GivenCredit}`;
-        window.top.ageWnd.open(givenCreditUrl, this.props.resources.GivenCreditPopupTitle, undefined, undefined, 330, 248);
+        window.top.ageWnd.open(givenCreditUrl, this.props.resources.GivenCreditPopupTitle, undefined, undefined, 350, 270);
 
         window.top.closedPopup = false;
         window.top.realoadLeftPanel = false;
@@ -39,6 +39,9 @@ export default class BalanceInfoBlock extends React.Component {
             balanceInfo } = this.props;
 
         const memberLevel = 1, agentLevel = 2, masterLevel = 3;
+        const totalBalanceTransferLink = balanceInfo.ShowTotalBalanceTransferLink ? balanceInfo.TotalBalanceTransferLink : "";
+        const yesterdayBalanceTransferLink = balanceInfo.ShowYesterdayBalanceTransferLink ? balanceInfo.YesterdayBalanceTransferLink : "";
+        const outstandingLink = balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : "";
 
         return (
             <CustomizedAccordionItem
@@ -70,7 +73,7 @@ export default class BalanceInfoBlock extends React.Component {
                     <CellContainNumberFormat
                         title={balanceInfo.TotalBalance}
                         classNames="col-xs-6 col-right"
-                        hrefLink={balanceInfo.ShowTotalBalanceTransferLink && balanceInfo.TotalBalanceTransferLink}
+                        hrefLink={totalBalanceTransferLink}
                         target="main"
                     />
                 </div>
@@ -80,7 +83,7 @@ export default class BalanceInfoBlock extends React.Component {
                     <CellContainNumberFormat
                         title={balanceInfo.YesterdayBalance}
                         classNames="col-xs-6 col-right"
-                        hrefLink={balanceInfo.ShowYesterdayBalanceTransferLink && balanceInfo.YesterdayBalanceTransferLink}
+                        hrefLink={yesterdayBalanceTransferLink}
                         target="main"
                     />
                 </div>
@@ -92,7 +95,7 @@ export default class BalanceInfoBlock extends React.Component {
                     <CellContainNumberFormat
                         title={balanceInfo.Outstanding}
                         classNames="col-xs-6 col-right"
-                        hrefLink={balanceInfo.ShowOutstandingLink && balanceInfo.ReportLink.Url}
+                        hrefLink={outstandingLink}
                         target="main"
                     />
                 </div>

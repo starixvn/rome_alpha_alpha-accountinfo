@@ -4,17 +4,14 @@
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
 
-    public class CustomerAllStatusQuery : BaseRequest, IRequest<CustomererAllStatusViewModel>
+    public class CustomerAllStatusQuery : AccountInfoQueryBase, IRequest<CustomererAllStatusViewModel>
     {
         private readonly IUser viewer;
 
-        public CustomerAllStatusQuery(IUser viewer)
-            : base(viewer)
+        public CustomerAllStatusQuery(IUser viewer) : base(viewer)
         {
             this.viewer = viewer;
         }
-
-        public int SearchAccountId { get; set; }
 
         public string SearchAccountName { get; set; }
 
@@ -56,6 +53,15 @@
 
         public bool IsNumberGameDisabled => viewer.IsNumberGameDisabled;
 
-        public override bool IsValid() => SearchAccountId > 0;
+        public override bool IsValid() => IsValidSearchAccount && IsValidUpline;
+
+        internal bool IsValidSearchAccount => 
+            base.IsValid() &&
+            IsValidName(SearchAccountName) &&
+            IsValidSearchAccountRoleId(SearchAccountRoleId);
+
+        internal bool IsValidUpline => 
+            IsValidName(UplineName) &&
+            UplineRoleId > SearchAccountRoleId;
     }
 }

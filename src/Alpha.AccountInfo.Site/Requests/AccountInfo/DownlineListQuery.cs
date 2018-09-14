@@ -4,15 +4,10 @@
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
 
-    public class DownlineListQuery : BaseRequest, IRequest<DownlineListViewModel>
+    public class DownlineListQuery : AccountInfoQueryBase, IRequest<DownlineListViewModel>
     {
-        public DownlineListQuery(IUser viewer)
-            : base(viewer)
+        public DownlineListQuery(IUser viewer) : base(viewer)
         {
-         
         }
-        public int SearchAccountId { get; set; }
-
-        public override bool IsValid() => SearchAccountId > 0;
     }
 }

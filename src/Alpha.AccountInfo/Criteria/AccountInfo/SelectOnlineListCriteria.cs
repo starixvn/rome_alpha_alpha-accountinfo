@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Criteria.AccountInfo
 {
-    public class SelectOnlineListCriteria : AccountInfoCriteria
+    public class SelectOnlineListCriteria : AccountInfoCriteriaBase
     {
         public SelectOnlineListCriteria(int searchAccountId) : base(searchAccountId)
         {

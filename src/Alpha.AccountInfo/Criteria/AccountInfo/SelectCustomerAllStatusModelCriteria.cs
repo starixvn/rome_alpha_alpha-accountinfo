@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Criteria.AccountInfo
 {
-    public class SelectCustomerAllStatusModelCriteria : AccountInfoCriteria
+    public class SelectCustomerAllStatusModelCriteria : AccountInfoCriteriaBase
     {
         public SelectCustomerAllStatusModelCriteria(int searchAccountId) 
             : base(searchAccountId)

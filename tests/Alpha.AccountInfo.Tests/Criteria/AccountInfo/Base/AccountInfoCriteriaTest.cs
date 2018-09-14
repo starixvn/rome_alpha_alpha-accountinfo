@@ -11,7 +11,7 @@
         [InlineData(-1, false)]
         public void IsValid_Should_ReturnsCorrectValue(int custId, bool expectedValue)
         {
-            var criteria = new AccountInfoCriteria(custId);
+            var criteria = new AccountInfoCriteriaBase(custId);
 
             Assert.Equal(expectedValue, criteria.IsValid());
         }

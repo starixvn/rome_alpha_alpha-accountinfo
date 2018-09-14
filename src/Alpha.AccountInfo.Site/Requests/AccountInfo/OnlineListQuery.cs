@@ -5,15 +5,10 @@
     using MediatR;
     using System.Collections.Generic;
 
-    public class OnlineListQuery : BaseRequest, IRequest<IEnumerable<OnlineUserModel>>
+    public class OnlineListQuery : AccountInfoQueryBase, IRequest<IEnumerable<OnlineUserModel>>
     {
-        public OnlineListQuery(IUser viewer)
-            : base(viewer)
+        public OnlineListQuery(IUser viewer) : base(viewer)
         {
-
         }
-        public int SearchAccountId { get; set; }
-
-        public override bool IsValid() => SearchAccountId > 0;
     }
 }

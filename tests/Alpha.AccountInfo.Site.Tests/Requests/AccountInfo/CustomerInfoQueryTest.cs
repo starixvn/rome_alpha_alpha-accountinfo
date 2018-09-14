@@ -31,9 +31,7 @@
         [Theory]
         [InlineData("SearchAccountName", true)]
         [InlineData("ActorName", false)]
-        [InlineData(null, false)]
-        [InlineData("", false)]
-        public void IsValid_UserName_ReturnsInvalidPageView(string userName, bool expectedValue)
+        public void IsValid_Always_ReturnsCorrectValue(string userName, bool expectedValue)
         {
             var messages = new CustomerInfoQuery(viewer)
             {
