@@ -2,7 +2,7 @@
 import { render } from 'react-dom';
 import { accountInfoAPI } from '../api-client';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter, Route, Link, withRouter } from 'react-router-dom';
 import Drilldown from 'react-router-drilldown';
 
 import BalanceInfoBlock from '../components/balance-info-block';
@@ -11,6 +11,8 @@ import StatusBlock from '../components/status-block';
 import SettingBlock from '../components/setting-block';
 import LoginInfoBlock from '../components/login-info-block';
 import OnlineListBlock from '../components/online-list-block';
+
+import UserLevel from '../constants/user-level';
 
 export default class FeatureList extends React.Component {
     constructor(props) {
@@ -212,31 +214,116 @@ export default class FeatureList extends React.Component {
 
         return (
 
-            <div className={collapseExpandClassName}>
-                {
-                    !this.state.collapseAll &&
-                    <div className="visible-mobile show-more-container">
-                        <button className="btn-default show-more" onClick={this.toogleContactInfoButton}>
-                            {resources.ShowContactInfo}
-                        </button>
-                    </div>
-                }
-                <Router>
-                    <Drilldown>
-                        <Route exact path="/" component={balanceInfoComponent} />
-                        {
-                            customerInfo.RoleId > levels.Member &&
-                            <Route exact path="/" component={downlineComponent} />
-                        }
+            <HashRouter>
+                <Drilldown>
+                    <Route key={0} exact path="/" component={Home} />
+                    <Route key={1}
+                        exact path="/balanceInfo"
+                        render={(props) => <BalanceInfoBlock {...props} resources={resources}
+                            handleCollapExpandBlock={this.handleCollapExpandBlock}
+                            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                            expanded={expandedItems.balanceInfo}
+                            blockId="balanceInfo"
+                            username={customerInfo.UserName}
+                            custId={customerInfo.CustId}
+                            roleId={customerInfo.RoleId}
+                            balanceInfo={balanceInfo} />}
+                    />
+                    {
+                        customerInfo.RoleId > levels.Member &&
+                        <Route key={2}
+                            exact path="/downlineList"
+                            render={(props) => <DownlineListBlock
+                                resources={resources}
+                                handleSearchFromUserLevel={handleSearchFromUserLevel}
+                                handleCollapExpandBlock={this.handleCollapExpandBlock}
+                                expanded={expandedItems.downlineList}
+                                blockId="downlineList"
+                                custId={this.props.customerInfo.CustId} />}
+                        />
+                    }
 
-                        <Route exact path="/" component={statusComponent} />
-                        <Route exact path="/" component={settingComponent} />
-                        <Route exact path="/" component={loginInfoComponent} />
-                        <Route exact path="/" component={onlineListComponent} />
-                    </Drilldown>
-                </Router>
-            </div>
+                    <Route key={3}
+                        exact path="/status"
+                        render={(props) => <StatusBlock
+                            resources={resources}
+                            handleCollapExpandBlock={this.handleCollapExpandBlock}
+                            getCustomerAllStatus={this.getCustomerAllStatus}
+                            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                            fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}
+                            username={customerInfo.UserName}
+                            statusData={statusData}
+                            expanded={expandedItems.status}
+                            blockId="status"/>}
+                    />
 
+                    <Route key={4}
+                        exact path="/settings"
+                        render={(props) => <SettingBlock
+                            resources={resources}
+                            handleCollapExpandBlock={this.handleCollapExpandBlock}
+                            getCustomerAllStatus={this.getCustomerAllStatus}
+                            settingData={settingData}
+                            expanded={expandedItems.setting}
+                            blockId="setting"/>}
+                    />
+
+                    <Route key={5}
+                        exact path="/loginInfo"
+                        render={(props) => <LoginInfoBlock
+                            resources={resources}
+                            loginInfo={customerInfo.LoginInfo}
+                            viewIpInfoLink={customerInfo.ViewLoginIPLink}
+                            handleCollapExpandBlock={this.handleCollapExpandBlock}
+                            expanded={expandedItems.loginInfo}
+                            blockId="loginInfo" />}
+                    />
+
+                    <Route key={6}
+                        exact path="/onlineList"
+                        render={(props) => <OnlineListBlock
+                            resources={resources}
+                            handleCollapExpandBlock={this.handleCollapExpandBlock}
+                            expanded={expandedItems.onlineList}
+                            blockId="onlineList"
+                            viewIpInfoLink={customerInfo.ViewLoginIPLink}
+                            custId={this.props.customerInfo.CustId}/>}
+                    />
+                </Drilldown>
+            </HashRouter>
         );
     }
 }
+
+
+const Home = ({ roleId }) => (
+    <div className="feature-list">
+        <nav>
+
+
+            <Link to="/balanceInfo" className="feature-item">
+                <span className="icon-balance"></span>
+                Banlance Info</Link>
+
+            <Link to="/downlineList" className="feature-item">
+                <span className="icon-downline"></span>
+                Downline List</Link>
+
+            <Link to="/status" className="feature-item">
+                <span className="icon-status"></span>
+                Status</Link>
+
+            <Link to="/settings" className="feature-item">
+                <span className="icon-settings"></span>
+                Settings</Link>
+
+            <Link to="/loginInfo" className="feature-item">
+                <span className="icon-login"></span>
+                Login Info</Link>
+
+            <Link to="/onlineList" className="feature-item">
+                <span className="icon-onlinelist"></span>
+                Online List</Link>
+        </nav>
+    </div>
+)

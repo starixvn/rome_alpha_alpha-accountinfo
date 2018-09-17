@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../api-client';
+import { Link } from 'react-router-dom';
 
 export default class OnlineListBlock extends React.Component{
     constructor(props) {
@@ -39,14 +40,10 @@ export default class OnlineListBlock extends React.Component{
         const { data } = this.state;
         
         return (
-            <div
-                title={resources.OnlineList}
-                iconClassname="icon-onlinelist"
-                expanded={expanded}
-                handleClick={this.handleClick}
-                blockId={blockId}
-            >
-
+            <div>
+                <Link to="/" className="feature-item">
+                    <span className="icon-onlinelist" />
+                    {resources.OnlineList}</Link>
                 {
                     <table className="tblRpt tblRpt-bordered width-100per online-list">
                         <thead>

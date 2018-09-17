@@ -2,33 +2,32 @@
 import Paging from './common/paging';
 import { accountInfoAPI } from '../api-client';
 import TotalDownlines from './total-downlines';
+import { Link } from 'react-router-dom';
 
 export default class DownlineListBlock extends React.Component{
     constructor(props) {
         super(props);
+
         this.state = {
             data: null
         };
 
-        this.handleClick = this.handleClick.bind(this);
+        this.handleClick();
         this.renderCallback = this.renderCallback.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.custId !== this.props.custId) {
-            this.setState({
-                custId: nextProps.custId,
-                data: null
-            });
+            this.handleClick();
         }
     }
 
-    handleClick(e) {
-        this.state.data === null && accountInfoAPI.getDownlineList({ SearchAccountId: this.props.custId }).then((data) => {
-            this.setState({ data: data });
+    handleClick() {
+            accountInfoAPI
+            .getDownlineList({ SearchAccountId: this.props.custId })
+            .then((responeData) => {
+                this.setState({ data: responeData });
         });
-
-        this.props.handleCollapExpandBlock(e);
     }
 
     renderCallback(downline) {
@@ -36,6 +35,7 @@ export default class DownlineListBlock extends React.Component{
     }
 
     render() {
+
         const { resources, blockId, expanded, handleSearchFromUserLevel } = this.props;
         const { data } = this.state;
 
@@ -65,13 +65,10 @@ export default class DownlineListBlock extends React.Component{
             </div>;   
 
         return (
-            <div
-                title={resources.DownlineList}
-                iconClassname="icon-downline"
-                expanded={expanded}
-                handleClick={this.handleClick}
-                blockId={blockId}
-            >
+            <div>
+                <Link to="/" className="feature-item">
+                    <span className="icon-downline" />
+                    {resources.DownlineList}</Link>
                 {content}
             </div>    
         );

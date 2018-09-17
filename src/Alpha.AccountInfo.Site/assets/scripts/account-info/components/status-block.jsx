@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../api-client';
+import { Link } from 'react-router-dom';
 
 export default class StatusBlock extends React.Component {
     constructor(props) {
@@ -68,14 +69,10 @@ export default class StatusBlock extends React.Component {
             statusData } = this.props;
 
         return (
-            <div
-                title={resources.Status}
-                iconClassname="icon-status"
-                accordionItemBodyClassName="accordion__body block-status"
-                expanded={expanded}
-                handleClick={getCustomerAllStatus}
-                blockId={blockId}
-            >
+            <div>
+                <Link to="/" className="feature-item">
+                    <span className="icon-status" />
+                    {resources.Status}</Link>
                 {
                     statusData !== null && statusData.map((status, index) => {
                         return status.IsEditOnProductLevel !== undefined && !status.IsEditOnProductLevel ?

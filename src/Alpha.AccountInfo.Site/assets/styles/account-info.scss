@@ -744,3 +744,45 @@ hr {
 .accountinfo-content{
       overflow-x:auto;
 }
+
+.feature-list {
+    position: relative;
+}
+
+.feature-item {
+    position: relative;
+    width: 100%;
+    display: block;
+    padding: 14px 25px 14px 10px;
+    font-size: 13px;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:hover {
+        background-color: #ddd;
+    }
+
+    &:after {
+        position: absolute;
+        top: 16px;
+        right: 4px;
+        font-family: Iconalpha;
+        font-size: 19px;
+        font-weight: 400;
+        content: "\E942";
+    }
+}
+
+.feature-detail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    transform: translateX(-100%);
+
+    &.active {
+        transform: translateX(0);
+        transition: all .2s ease-in-out .1s;
+    }
+}

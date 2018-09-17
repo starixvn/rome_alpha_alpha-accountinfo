@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class LoginInfoBlock extends React.Component {
     constructor(props) {
@@ -15,14 +16,10 @@ export default class LoginInfoBlock extends React.Component {
         const { resources, handleCollapExpandBlock, blockId, expanded, loginInfo } = this.props;
 
         return (
-            <div
-                title={resources.LoginInfo}
-                iconClassname="icon-login"
-                accordionItemBodyClassName="accordion__body block-login-info"
-                expanded={expanded}
-                handleClick={handleCollapExpandBlock}
-                blockId={blockId}
-            >
+            <div>
+                <Link to="/" className="feature-item">
+                    <span className="icon-login" />
+                    {resources.LoginInfo}</Link>
                 <div className="group">
                     <div className="row-info bold">{resources.CreatedDate}:</div>
                     <div className="row-info">{loginInfo.CreatedDate}</div>

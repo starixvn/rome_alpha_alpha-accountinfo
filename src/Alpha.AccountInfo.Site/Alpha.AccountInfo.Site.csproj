@@ -354,6 +354,7 @@
     <Content Include="assets\scripts\account-info\components\searching-block.jsx" />
     <Content Include="assets\scripts\account-info\components\setting-block.jsx" />
     <Content Include="assets\scripts\account-info\components\status-block.jsx" />
+    <Content Include="assets\scripts\account-info\constants\user-level.jsx" />
     <Content Include="assets\scripts\account-info\containers\account-info.jsx" />
     <Content Include="assets\scripts\account-info\containers\feature-list.jsx" />
     <Content Include="assets\scripts\account-info\given-credit.jsx" />

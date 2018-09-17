@@ -3,6 +3,7 @@ import CellContainNumberFormat from './common/cell-contain-number-format';
 import NumberFormat from 'react-number-format';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
+import { Link } from 'react-router-dom';
 
 export default class BalanceInfoBlock extends React.Component {
     constructor(props) {
@@ -43,14 +44,10 @@ export default class BalanceInfoBlock extends React.Component {
         const outstandingLink = balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : "";
 
         return (
-            <div
-                title={resources.BalanceInfo}
-                iconClassname="icon-balance"
-                accordionItemBodyClassName="accordion__body balance-info"
-                expanded={expanded}
-                handleClick={handleCollapExpandBlock}
-                blockId={blockId}
-            >
+            <div>
+                <Link to="/" className="feature-item">
+                    <span className="icon-balance" />
+                    {resources.BalanceInfo}</Link>
                 {
                     roleId > memberLevel &&
                     <div className={rowClasses}>

@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import Paging from './common/paging';
+import { Link } from 'react-router-dom';
 
 export default class SettingBlock extends React.Component {
     constructor(props) {
@@ -13,13 +14,10 @@ export default class SettingBlock extends React.Component {
     render() {
         const { resources, blockId, expanded, settingData, getCustomerAllStatus } = this.props;
         return (
-            <div
-                title={resources.Setting}
-                iconClassname="icon-settings"
-                expanded={expanded}
-                handleClick={getCustomerAllStatus}
-                blockId={blockId}
-            >
+            <div>
+                <Link to="/" className="feature-item">
+                    <span className="icon-settings" />
+                    {resources.Setting}</Link>
                 {
                     settingData !== null &&
                     <Paging resourcePage={this.props.resources.Page} values={settingData} renderCallback={this.renderCallback} />
