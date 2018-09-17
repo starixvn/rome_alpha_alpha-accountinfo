@@ -1,13 +1,16 @@
 ﻿import * as React from 'react';
+import { render } from 'react-dom';
+import { accountInfoAPI } from '../api-client';
+
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Drilldown from 'react-router-drilldown';
+
 import BalanceInfoBlock from '../components/balance-info-block';
 import DownlineListBlock from '../components/downline-list-block';
 import StatusBlock from '../components/status-block';
 import SettingBlock from '../components/setting-block';
 import LoginInfoBlock from '../components/login-info-block';
 import OnlineListBlock from '../components/online-list-block';
-import { Accordion } from 'react-accessible-accordion';
-import { accountInfoAPI } from '../api-client';
-import 'react-accessible-accordion/dist/fancy-example.css';
 
 export default class FeatureList extends React.Component {
     constructor(props) {
@@ -153,7 +156,62 @@ export default class FeatureList extends React.Component {
 
         let balanceInfo = customerInfo.BalanceInfo;
 
+        const balanceInfoComponent = <BalanceInfoBlock
+            resources={resources}
+            handleCollapExpandBlock={this.handleCollapExpandBlock}
+            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+            expanded={expandedItems.balanceInfo}
+            blockId="balanceInfo"
+            username={customerInfo.UserName}
+            custId={customerInfo.CustId}
+            roleId={customerInfo.RoleId}
+            balanceInfo={balanceInfo} />;
+
+        const downlineComponent = <DownlineListBlock
+            resources={resources}
+            handleSearchFromUserLevel={handleSearchFromUserLevel}
+            handleCollapExpandBlock={this.handleCollapExpandBlock}
+            expanded={expandedItems.downlineList}
+            blockId="downlineList"
+            custId={this.props.customerInfo.CustId} />;
+
+        const statusComponent = <StatusBlock
+            resources={resources}
+            handleCollapExpandBlock={this.handleCollapExpandBlock}
+            getCustomerAllStatus={this.getCustomerAllStatus}
+            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+            fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}
+            username={customerInfo.UserName}
+            statusData={statusData}
+            expanded={expandedItems.status}
+            blockId="status" />;
+
+        const settingComponent = <SettingBlock
+            resources={resources}
+            handleCollapExpandBlock={this.handleCollapExpandBlock}
+            getCustomerAllStatus={this.getCustomerAllStatus}
+            settingData={settingData}
+            expanded={expandedItems.setting}
+            blockId="setting" />;
+
+        const loginInfoComponent = <LoginInfoBlock
+            resources={resources}
+            loginInfo={customerInfo.LoginInfo}
+            viewIpInfoLink={customerInfo.ViewLoginIPLink}
+            handleCollapExpandBlock={this.handleCollapExpandBlock}
+            expanded={expandedItems.loginInfo}
+            blockId="loginInfo" />;
+
+        const onlineListComponent = <OnlineListBlock
+            resources={resources}
+            handleCollapExpandBlock={this.handleCollapExpandBlock}
+            expanded={expandedItems.onlineList}
+            blockId="onlineList"
+            viewIpInfoLink={customerInfo.ViewLoginIPLink}
+            custId={this.props.customerInfo.CustId} />;
+
         return (
+
             <div className={collapseExpandClassName}>
                 {
                     !this.state.collapseAll &&
@@ -163,69 +221,22 @@ export default class FeatureList extends React.Component {
                         </button>
                     </div>
                 }
-                <Accordion>
-                    <BalanceInfoBlock
-                        resources={resources}
-                        handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                        expanded={expandedItems.balanceInfo}
-                        blockId="balanceInfo"
-                        username={customerInfo.UserName}
-                        custId={customerInfo.CustId}
-                        roleId={customerInfo.RoleId}
-                        balanceInfo={balanceInfo} />
+                <Router>
+                    <Drilldown>
+                        <Route exact path="/" component={balanceInfoComponent} />
+                        {
+                            customerInfo.RoleId > levels.Member &&
+                            <Route exact path="/" component={downlineComponent} />
+                        }
 
-                    {
-                        customerInfo.RoleId > levels.Member &&
-                        <DownlineListBlock
-                            resources={resources}
-                            handleSearchFromUserLevel={handleSearchFromUserLevel} 
-                            handleCollapExpandBlock={this.handleCollapExpandBlock}
-                            expanded={expandedItems.downlineList}
-                            blockId="downlineList"
-                            custId={this.props.customerInfo.CustId} />
-                    }
-
-                    <StatusBlock
-                        resources={resources}
-                        handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        getCustomerAllStatus={this.getCustomerAllStatus}
-                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                        fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}
-                        username={customerInfo.UserName}
-                        statusData={statusData}
-                        expanded={expandedItems.status}
-                        blockId="status"
-                    />
-
-                    <SettingBlock
-                        resources={resources}
-                        handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        getCustomerAllStatus={this.getCustomerAllStatus}
-                        settingData={settingData}
-                        expanded={expandedItems.setting}
-                        blockId="setting"
-                    />
-
-                    <LoginInfoBlock
-                        resources={resources}
-                        loginInfo={customerInfo.LoginInfo}
-                        viewIpInfoLink={customerInfo.ViewLoginIPLink}
-                        handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        expanded={expandedItems.loginInfo}
-                        blockId="loginInfo"
-                    />
-
-                    <OnlineListBlock
-                        resources={resources}
-                        handleCollapExpandBlock={this.handleCollapExpandBlock}
-                        expanded={expandedItems.onlineList}
-                        blockId="onlineList"
-                        viewIpInfoLink={customerInfo.ViewLoginIPLink}
-                        custId={this.props.customerInfo.CustId}
-                    />
-                </Accordion>
+                        <Route exact path="/" component={statusComponent} />
+                        <Route exact path="/" component={settingComponent} />
+                        <Route exact path="/" component={loginInfoComponent} />
+                        <Route exact path="/" component={onlineListComponent} />
+                    </Drilldown>
+                </Router>
             </div>
+
         );
     }
 }

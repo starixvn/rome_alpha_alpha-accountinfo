@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from './common/customized-accordion-item';
 import CellContainNumberFormat from './common/cell-contain-number-format';
 import NumberFormat from 'react-number-format';
 import 'react-tippy/dist/tippy.css';
@@ -44,7 +43,7 @@ export default class BalanceInfoBlock extends React.Component {
         const outstandingLink = balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : "";
 
         return (
-            <CustomizedAccordionItem
+            <div
                 title={resources.BalanceInfo}
                 iconClassname="icon-balance"
                 accordionItemBodyClassName="accordion__body balance-info"
@@ -169,7 +168,7 @@ export default class BalanceInfoBlock extends React.Component {
                         <CellContainNumberFormat title={balanceInfo.BetCredit} classNames="col-xs-6 col-right" />
                     </div>
                 }
-            </CustomizedAccordionItem>
+            </div>
         );
     }
 }

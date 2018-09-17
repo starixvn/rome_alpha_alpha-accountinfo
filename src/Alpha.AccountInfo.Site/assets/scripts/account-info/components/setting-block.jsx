@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from './common/customized-accordion-item';
 import Paging from './common/paging';
 
 export default class SettingBlock extends React.Component {
@@ -14,7 +13,7 @@ export default class SettingBlock extends React.Component {
     render() {
         const { resources, blockId, expanded, settingData, getCustomerAllStatus } = this.props;
         return (
-            <CustomizedAccordionItem
+            <div
                 title={resources.Setting}
                 iconClassname="icon-settings"
                 expanded={expanded}
@@ -26,8 +25,7 @@ export default class SettingBlock extends React.Component {
                     <Paging resourcePage={this.props.resources.Page} values={settingData} renderCallback={this.renderCallback} />
                 }
 
-            </CustomizedAccordionItem>
-
+            </div>
         );
     }
 }

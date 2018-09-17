@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from './common/customized-accordion-item';
 import { accountInfoAPI } from '../api-client';
 
 export default class OnlineListBlock extends React.Component{
@@ -40,7 +39,7 @@ export default class OnlineListBlock extends React.Component{
         const { data } = this.state;
         
         return (
-            <CustomizedAccordionItem
+            <div
                 title={resources.OnlineList}
                 iconClassname="icon-onlinelist"
                 expanded={expanded}
@@ -76,7 +75,7 @@ export default class OnlineListBlock extends React.Component{
                         </tbody>
                     </table>
                 }
-            </CustomizedAccordionItem>
+            </div>
       );
     }
 }

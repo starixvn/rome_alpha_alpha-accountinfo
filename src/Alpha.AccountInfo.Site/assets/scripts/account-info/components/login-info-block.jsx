@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from './common/customized-accordion-item';
 
 export default class LoginInfoBlock extends React.Component {
     constructor(props) {
@@ -16,7 +15,7 @@ export default class LoginInfoBlock extends React.Component {
         const { resources, handleCollapExpandBlock, blockId, expanded, loginInfo } = this.props;
 
         return (
-            <CustomizedAccordionItem
+            <div
                 title={resources.LoginInfo}
                 iconClassname="icon-login"
                 accordionItemBodyClassName="accordion__body block-login-info"
@@ -24,7 +23,6 @@ export default class LoginInfoBlock extends React.Component {
                 handleClick={handleCollapExpandBlock}
                 blockId={blockId}
             >
-
                 <div className="group">
                     <div className="row-info bold">{resources.CreatedDate}:</div>
                     <div className="row-info">{loginInfo.CreatedDate}</div>
@@ -41,7 +39,7 @@ export default class LoginInfoBlock extends React.Component {
                     <div className="row-info bold">{resources.LoginIP}:</div>
                     <div className="row-info"><span className="link" onClick={this.handleOpenIPInfo}>{loginInfo.LoginIP}</span></div>
                 </div>
-            </CustomizedAccordionItem>
+            </div>
         );
     }
 }

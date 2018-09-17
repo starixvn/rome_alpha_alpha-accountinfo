@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from './common/customized-accordion-item';
 import { accountInfoAPI } from '../api-client';
 
 export default class StatusBlock extends React.Component {
@@ -69,7 +68,7 @@ export default class StatusBlock extends React.Component {
             statusData } = this.props;
 
         return (
-            <CustomizedAccordionItem
+            <div
                 title={resources.Status}
                 iconClassname="icon-status"
                 accordionItemBodyClassName="accordion__body block-status"
@@ -108,7 +107,7 @@ export default class StatusBlock extends React.Component {
                             </div>;
                     })
                 }
-            </CustomizedAccordionItem>
+            </div>
         );
     }
 }

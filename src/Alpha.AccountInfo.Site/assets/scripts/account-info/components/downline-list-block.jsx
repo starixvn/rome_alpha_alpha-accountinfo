@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import CustomizedAccordionItem from './common/customized-accordion-item';
 import Paging from './common/paging';
 import { accountInfoAPI } from '../api-client';
 import TotalDownlines from './total-downlines';
@@ -66,7 +65,7 @@ export default class DownlineListBlock extends React.Component{
             </div>;   
 
         return (
-            <CustomizedAccordionItem
+            <div
                 title={resources.DownlineList}
                 iconClassname="icon-downline"
                 expanded={expanded}
@@ -74,7 +73,7 @@ export default class DownlineListBlock extends React.Component{
                 blockId={blockId}
             >
                 {content}
-            </CustomizedAccordionItem>    
+            </div>    
         );
     }
 }

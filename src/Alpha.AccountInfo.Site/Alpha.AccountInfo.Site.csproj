@@ -343,7 +343,6 @@
     <Content Include="assets\scripts\account-info\api-client.jsx" />
     <Content Include="assets\scripts\account-info\components\balance-info-block.jsx" />
     <Content Include="assets\scripts\account-info\components\common\cell-contain-number-format.jsx" />
-    <Content Include="assets\scripts\account-info\components\common\customized-accordion-item.jsx" />
     <Content Include="assets\scripts\account-info\components\common\paging.jsx" />
     <Content Include="assets\scripts\account-info\components\user-level-info.jsx" />
     <Content Include="assets\scripts\account-info\components\customer-info-block.jsx" />
