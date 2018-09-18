@@ -2,7 +2,7 @@
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 
-const UserLevelLevelInfo = ({
+const UserLevelInfo = ({
     data,
     userLevelName,
     userLevelId,
@@ -84,4 +84,4 @@ const UserLevelLevelInfo = ({
     );
 };
 
-export default UserLevelLevelInfo;
+export default UserLevelInfo;

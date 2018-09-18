@@ -5,12 +5,13 @@ import { accountInfoAPI } from '../api-client';
 import { HashRouter, Route, Link, withRouter } from 'react-router-dom';
 import Drilldown from 'react-router-drilldown';
 
+import OnlineListBlock from '../components/online-list-block';
 import BalanceInfoBlock from '../components/balance-info-block';
 import DownlineListBlock from '../components/downline-list-block';
 import StatusBlock from '../components/status-block';
 import SettingBlock from '../components/setting-block';
 import LoginInfoBlock from '../components/login-info-block';
-import OnlineListBlock from '../components/online-list-block';
+import ContactInfoBlock from '../components/contact-info-block';
 
 import UserLevel from '../constants/user-level';
 
@@ -18,8 +19,6 @@ export default class FeatureList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expandedItems: this.initialExpandedItems(),
-            collapseAll: false,
             firstLoadSearch: true,
             statusData: null,
             settingData: null,
@@ -30,8 +29,6 @@ export default class FeatureList extends React.Component {
             }
         };
 
-        this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
-        this.toogleContactInfoButton = this.toogleContactInfoButton.bind(this);
         this.getCustomerAllStatus = this.getCustomerAllStatus.bind(this);
         this.fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer.bind(this);
     }
@@ -39,22 +36,10 @@ export default class FeatureList extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.customerInfo.CustId !== this.props.customerInfo.CustId) {
             this.setState({
-                expandedItems: this.initialExpandedItems(),
                 statusData: null,
                 settingData: null
             });
         }
-    }
-
-    initialExpandedItems() {
-        return {
-            balanceInfo: true,
-            downlineList: false,
-            status: false,
-            setting: false,
-            loginInfo: false,
-            onlineList: false
-        };
     }
 
     fetchCustomerAllStatusFromServer(e) {
@@ -97,195 +82,78 @@ export default class FeatureList extends React.Component {
 
     getCustomerAllStatus(e) {
         this.state.settingData === null && this.fetchCustomerAllStatusFromServer(e);
-        this.handleCollapExpandBlock(e);
-    }
-
-    resetColllapseAll(expandedItems) {
-        const emptyObject = {};
-        const keys = Object.keys(expandedItems);
-        for (let i = 0; i < keys.length; i++) {
-            emptyObject[keys[i]] = false;
-        }
-
-        return emptyObject;
-    }
-
-    updateState(blockId) {
-        const { expandedItems } = this.state;
-        const currentStatus = expandedItems[blockId];
-        const emptyObject = this.resetColllapseAll(expandedItems);
-
-        const newExpandedItems = Object.assign({}, emptyObject, { [blockId]: !currentStatus });
-        const collapseAll = Object.keys(expandedItems).filter(key => newExpandedItems[key] === true).length === 0;
-
-        if (this.state.firstLoadSearch) {
-            this.setState({
-                firstLoadSearch: false
-            });
-        }
-
-        this.setState({
-            expandedItems: newExpandedItems,
-            collapseAll
-        });
-    }
-
-    handleCollapExpandBlock(e) {
-        e.preventDefault();
-        const blockId = e.currentTarget.dataset.blockid;
-
-        this.updateState(blockId);
-    }
-
-    toogleContactInfoButton(e) {
-        const { expandedItems } = this.state;
-        const emptyObject = this.resetColllapseAll(expandedItems);
-
-        this.setState({
-            expandedItems: emptyObject,
-            collapseAll: true
-        });
     }
 
     render() {
         const { resources, customerInfo, fetchCustomerInfoFromServer, handleSearchFromUserLevel } = this.props;
-        const { expandedItems, collapseAll, firstLoadSearch, statusData, settingData, levels } = this.state;
+        const { firstLoadSearch, statusData, settingData, levels } = this.state;
         let collapseExpandClassName = 'account-info-group';
 
-        if (firstLoadSearch === false && collapseAll === false) {
+        if (firstLoadSearch === false) {
             collapseExpandClassName = 'account-info-group scroll-top';
         }
 
-        let balanceInfo = customerInfo.BalanceInfo;
-
-        const balanceInfoComponent = <BalanceInfoBlock
-            resources={resources}
-            handleCollapExpandBlock={this.handleCollapExpandBlock}
-            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-            expanded={expandedItems.balanceInfo}
-            blockId="balanceInfo"
-            username={customerInfo.UserName}
-            custId={customerInfo.CustId}
-            roleId={customerInfo.RoleId}
-            balanceInfo={balanceInfo} />;
-
-        const downlineComponent = <DownlineListBlock
-            resources={resources}
-            handleSearchFromUserLevel={handleSearchFromUserLevel}
-            handleCollapExpandBlock={this.handleCollapExpandBlock}
-            expanded={expandedItems.downlineList}
-            blockId="downlineList"
-            custId={this.props.customerInfo.CustId} />;
-
-        const statusComponent = <StatusBlock
-            resources={resources}
-            handleCollapExpandBlock={this.handleCollapExpandBlock}
-            getCustomerAllStatus={this.getCustomerAllStatus}
-            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-            fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}
-            username={customerInfo.UserName}
-            statusData={statusData}
-            expanded={expandedItems.status}
-            blockId="status" />;
-
-        const settingComponent = <SettingBlock
-            resources={resources}
-            handleCollapExpandBlock={this.handleCollapExpandBlock}
-            getCustomerAllStatus={this.getCustomerAllStatus}
-            settingData={settingData}
-            expanded={expandedItems.setting}
-            blockId="setting" />;
-
-        const loginInfoComponent = <LoginInfoBlock
-            resources={resources}
-            loginInfo={customerInfo.LoginInfo}
-            viewIpInfoLink={customerInfo.ViewLoginIPLink}
-            handleCollapExpandBlock={this.handleCollapExpandBlock}
-            expanded={expandedItems.loginInfo}
-            blockId="loginInfo" />;
-
-        const onlineListComponent = <OnlineListBlock
-            resources={resources}
-            handleCollapExpandBlock={this.handleCollapExpandBlock}
-            expanded={expandedItems.onlineList}
-            blockId="onlineList"
-            viewIpInfoLink={customerInfo.ViewLoginIPLink}
-            custId={this.props.customerInfo.CustId} />;
-
         return (
-
             <HashRouter>
                 <Drilldown>
                     <Route key={0} exact path="/" component={Home} />
                     <Route key={1}
+                        exact path="/contactInfo"
+                        render={(props) => <ContactInfoBlock
+                            resources={resources}
+                            data={customerInfo}/>}
+                    />
+                    <Route key={2}
                         exact path="/balanceInfo"
                         render={(props) => <BalanceInfoBlock {...props} resources={resources}
-                            handleCollapExpandBlock={this.handleCollapExpandBlock}
                             fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                            expanded={expandedItems.balanceInfo}
-                            blockId="balanceInfo"
                             username={customerInfo.UserName}
                             custId={customerInfo.CustId}
                             roleId={customerInfo.RoleId}
-                            balanceInfo={balanceInfo} />}
+                            balanceInfo={customerInfo.BalanceInfo} />}
                     />
                     {
                         customerInfo.RoleId > levels.Member &&
-                        <Route key={2}
+                        <Route key={3}
                             exact path="/downlineList"
                             render={(props) => <DownlineListBlock
                                 resources={resources}
                                 handleSearchFromUserLevel={handleSearchFromUserLevel}
-                                handleCollapExpandBlock={this.handleCollapExpandBlock}
-                                expanded={expandedItems.downlineList}
-                                blockId="downlineList"
                                 custId={this.props.customerInfo.CustId} />}
                         />
                     }
 
-                    <Route key={3}
+                    <Route key={4}
                         exact path="/status"
                         render={(props) => <StatusBlock
                             resources={resources}
-                            handleCollapExpandBlock={this.handleCollapExpandBlock}
                             getCustomerAllStatus={this.getCustomerAllStatus}
                             fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                             fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}
                             username={customerInfo.UserName}
-                            statusData={statusData}
-                            expanded={expandedItems.status}
-                            blockId="status"/>}
-                    />
-
-                    <Route key={4}
-                        exact path="/settings"
-                        render={(props) => <SettingBlock
-                            resources={resources}
-                            handleCollapExpandBlock={this.handleCollapExpandBlock}
-                            getCustomerAllStatus={this.getCustomerAllStatus}
-                            settingData={settingData}
-                            expanded={expandedItems.setting}
-                            blockId="setting"/>}
+                            statusData={statusData}/>}
                     />
 
                     <Route key={5}
+                        exact path="/settings"
+                        render={(props) => <SettingBlock
+                            resources={resources}
+                            getCustomerAllStatus={this.getCustomerAllStatus}
+                            settingData={settingData}/>}
+                    />
+
+                    <Route key={6}
                         exact path="/loginInfo"
                         render={(props) => <LoginInfoBlock
                             resources={resources}
                             loginInfo={customerInfo.LoginInfo}
-                            viewIpInfoLink={customerInfo.ViewLoginIPLink}
-                            handleCollapExpandBlock={this.handleCollapExpandBlock}
-                            expanded={expandedItems.loginInfo}
-                            blockId="loginInfo" />}
+                            viewIpInfoLink={customerInfo.ViewLoginIPLink}/>}
                     />
 
                     <Route key={6}
                         exact path="/onlineList"
                         render={(props) => <OnlineListBlock
                             resources={resources}
-                            handleCollapExpandBlock={this.handleCollapExpandBlock}
-                            expanded={expandedItems.onlineList}
-                            blockId="onlineList"
                             viewIpInfoLink={customerInfo.ViewLoginIPLink}
                             custId={this.props.customerInfo.CustId}/>}
                     />
@@ -299,8 +167,10 @@ export default class FeatureList extends React.Component {
 const Home = ({ roleId }) => (
     <div className="feature-list">
         <nav>
-
-
+            <Link to="/contactInfo" className="feature-item">
+                <span className="icon-contact-info" />
+                Contact Info
+            </Link>
             <Link to="/balanceInfo" className="feature-item">
                 <span className="icon-balance"></span>
                 Banlance Info</Link>

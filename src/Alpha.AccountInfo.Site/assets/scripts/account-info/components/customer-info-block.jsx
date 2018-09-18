@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
-import UserLevelLevelInfo from './user-level-info';
+import UserLevelInfo from './user-level-info';
 
 const CustomerInfoBlock = ({
     data,
@@ -17,7 +17,7 @@ const CustomerInfoBlock = ({
         <div>
             {
                 data.ShowMaster &&
-                <UserLevelLevelInfo data={data}
+                <UserLevelInfo data={data}
                     userLevelName={resources.Master}
                     userLevelId={masterLevel}
                     username={data.MasterName}
@@ -28,7 +28,7 @@ const CustomerInfoBlock = ({
 
             {
                 data.ShowAgent &&
-                <UserLevelLevelInfo data={data}
+                <UserLevelInfo data={data}
                     userLevelName={resources.Agent}
                     userLevelId={agentLevel}
                     username={data.AgentName}
@@ -39,7 +39,7 @@ const CustomerInfoBlock = ({
 
             {
                 data.ShowMember &&
-                <UserLevelLevelInfo data={data}
+                <UserLevelInfo data={data}
                     userLevelName={resources.Customer}
                     userLevelId={memberLevel}
                     username={data.MemberName}
@@ -47,21 +47,6 @@ const CustomerInfoBlock = ({
                     handleSearchFromUserLevel={handleSearchFromUserLevel}
                 />
             }
-
-            <div className={rowClasses}>
-                <div className={firstCellClass}>{resources.Name}</div>
-                <div className={secondCellClass}>{data.FullName}</div>
-            </div>
-
-            <div className={rowClasses}>
-                <div className={firstCellClass}>{resources.Phone}</div>
-                <div className={secondCellClass}>{data.Phone}</div>
-            </div>
-
-            <div className={rowClasses}>
-                <div className={firstCellClass}>{resources.Fax}</div>
-                <div className={secondCellClass}>{data.Fax}</div>
-            </div>
 
             <div className={rowClasses + " text-center list-button"}>
                 <a className="btn-default with-level" href={data.CustomerListOrBetListLink.Url} target="main">{data.CustomerListOrBetListLink.Text}</a>

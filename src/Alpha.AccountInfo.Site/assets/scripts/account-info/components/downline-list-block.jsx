@@ -36,7 +36,7 @@ export default class DownlineListBlock extends React.Component{
 
     render() {
 
-        const { resources, blockId, expanded, handleSearchFromUserLevel } = this.props;
+        const { resources, handleSearchFromUserLevel } = this.props;
         const { data } = this.state;
 
         const content = data === null || data.DownlineList.length === 0 ?
