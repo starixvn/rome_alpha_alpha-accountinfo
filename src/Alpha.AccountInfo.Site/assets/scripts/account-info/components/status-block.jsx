@@ -69,7 +69,7 @@ export default class StatusBlock extends React.Component {
             statusData } = this.props;
 
         return (
-            <div>
+            <div className="feature-detail">
                 <Link to="/" className="feature-item">
                     <span className="icon-status" />
                     {resources.Status}</Link>

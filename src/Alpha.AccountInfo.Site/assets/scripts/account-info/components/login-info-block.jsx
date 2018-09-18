@@ -16,7 +16,7 @@ export default class LoginInfoBlock extends React.Component {
         const { resources, handleCollapExpandBlock, blockId, expanded, loginInfo } = this.props;
 
         return (
-            <div>
+            <div className="feature-detail login-info">
                 <Link to="/" className="feature-item">
                     <span className="icon-login" />
                     {resources.LoginInfo}</Link>

@@ -14,7 +14,7 @@ export default class SettingBlock extends React.Component {
     render() {
         const { resources, blockId, expanded, settingData, getCustomerAllStatus } = this.props;
         return (
-            <div>
+            <div className="feature-detail block-settings">
                 <Link to="/" className="feature-item">
                     <span className="icon-settings" />
                     {resources.Setting}</Link>

@@ -44,7 +44,7 @@ export default class BalanceInfoBlock extends React.Component {
         const outstandingLink = balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : "";
 
         return (
-            <div>
+            <div className="feature-detail balance-info">
                 <Link to="/" className="feature-item">
                     <span className="icon-balance" />
                     {resources.BalanceInfo}</Link>
@@ -107,6 +107,7 @@ export default class BalanceInfoBlock extends React.Component {
                 <div className={rowClasses}>
                     <div className="col-xs-6">{resources.GivenCredit}</div>
                     <div className="col-xs-6 col-right given-credit" onClick={this.handleOpenGivenCreditPopup} >
+                        <span className="icon-border-color icon-edited" />
                         <Tooltip
                             title={balanceInfo.GivenCreditLimit}
                             position="bottom"
@@ -121,8 +122,6 @@ export default class BalanceInfoBlock extends React.Component {
                                 thousandSeparator={true}
                             />
                         </Tooltip>
-
-                        <span className="icon-border-color icon-edited" />
                     </div>
                 </div>
 

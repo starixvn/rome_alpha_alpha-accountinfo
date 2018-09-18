@@ -40,7 +40,7 @@ export default class OnlineListBlock extends React.Component{
         const { data } = this.state;
         
         return (
-            <div>
+            <div className="feature-detail">
                 <Link to="/" className="feature-item">
                     <span className="icon-onlinelist" />
                     {resources.OnlineList}</Link>

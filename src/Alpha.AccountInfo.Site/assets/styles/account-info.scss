@@ -4,6 +4,7 @@
 @include keyframes-ripple;
 
 body {
+    height: auto;
     font-family: $font-family;
     font-size: $font-size + 2;
     background-color: #fff;
@@ -83,14 +84,19 @@ hr {
 .accountinfo-container {
     position: relative;
     height: 100%;
+    padding-top: 52px;
 }
 
 // Search box
 .search-box {
-    position: relative;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
     height: 40px;
-    margin: 7px 10px 0;
     z-index: 1000;
+    padding: 10px;
+    background-color: #fff;
 
     .txt-search {
         border: none;
@@ -143,6 +149,7 @@ hr {
     .no-information-search {
         padding: 8px 12px;
     }
+
     // User status for business
     .actived, .closed, .suspended {
         font-weight: bold;
@@ -208,393 +215,6 @@ hr {
         }
     }
 }
-
-// List features
-.account-info-group {
-    width: 100%;
-    background-color: #fff;
-    transform: translateY(0);
-    transition: .2s transform ease-in-out .1s;
-
-    .show-more-container {
-        display: none !important;
-        width: 100%;
-        padding: 4px 16px;
-    }
-
-    &.scroll-top {
-        position: absolute;
-        top: 167px;
-        transform: translateY(-33px);
-
-        .show-more-container {
-            display: block !important;
-        }
-
-        .show-more {
-            @include box-shadow-multiple(none);
-            width: 100%;
-            line-height: 26px;
-            border: 1px solid #888;
-            background-color: #fff;
-        }
-
-        .show-more:hover {
-            background-color: darken(#fff, 5%);
-        }
-    }
-}
-
-// Customize Accordion
-
-.accordion {
-    border: none;
-}
-
-.accordion__item + .accordion__item {
-    border-top: none;
-}
-
-.accordion__title {
-    position: relative;
-    padding: 10px 25px 10px 10px;
-    line-height: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #222;
-    background-color: #fff;
-    cursor: pointer;
-
-    @media (min-device-width: 1025px) {
-        padding-top: 8px;
-        padding-bottom: 8px;
-    }
-
-    &:after {
-        font-family: "Iconalpha";
-        content: '\e942';
-        position: absolute;
-        right: 4px;
-        font-size: 19px;
-        font-weight: normal;
-    }
-
-    &:hover, &:active, &:focus {
-        color: #333;
-    }
-
-    @media (min-width: 1025px) {
-        &:hover {
-            background-color: #e5e5e5;
-        }
-    }
-
-    [class^="icon"] {
-        font-size: 14px;
-        position: relative;
-        top: 2px;
-        margin-right: 6px;
-    }
-
-    .icon-status {
-        font-size: 16px;
-        margin-right: 4px;
-    }
-
-    .icon-login {
-        font-size: 13px;
-        margin-right: 5px;
-    }
-}
-
-.accordion__title[aria-selected="true"] {
-    background-color: #e5e5e5;
-    color: #333;
-
-    &:after {
-        content: '\e954';
-    }
-}
-
-.accordion__body {
-    overflow: hidden;
-    border-bottom: 1px solid #cecece;
-    padding: 6px 10px 4px;
-    margin-bottom: 2px;
-
-    &.balance-info {
-        .row-info {
-            padding-left: 2px;
-            padding-right: 2px;
-        }
-        /*.row-info:hover {
-            background-color: #f2f2f2;
-        }*/
-        .number {
-            color: #004080;
-
-            &-red {
-                color: #ff0000;
-            }
-
-            &-link {
-                @extend %linkColor;
-                cursor: pointer;
-            }
-
-            &-edited {
-                color: #049bac;
-            }
-        }
-
-        .given-credit {
-            cursor: pointer;
-        }
-
-        .icon-edited {
-            @include ripple-effect-icon($top: -2px, $margin-left: -5px);
-            position: absolute;
-            left: 0;
-            top: 9px;
-            color: $icon-color;
-
-            font: {
-                size: 16px;
-                weight: 100;
-            }
-        }
-    }
-
-    .downline-list-container {
-        position: relative;
-
-        .page-control {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            float: right;
-            z-index: 10000;
-        }
-
-        .page-control .number {
-            width: 36px;
-            height: 24px;
-            margin-left: 2px;
-            line-height: 24px;
-            border: 1px solid #b9b9b9;
-            box-shadow: none;
-        }
-    }
-
-    &.block-status {
-        .col {
-            float: left;
-            width: 50%;
-            line-height: 28px;
-        }
-
-        .checkbox {
-            line-height: initial;
-            margin: 4px 0;
-        }
-
-        .checkbox:hover label {
-            color: $link-color;
-        }
-
-        .icon-ic_list {
-            color: #67151b;
-            font-size: 15px;
-            float: left;
-            margin-right: 8px;
-            margin-top: 6px;
-            @include ripple-effect-icon($top: -2px, $margin-left: -5px);
-        }
-    }
-
-    &.block-login-info {
-        .group {
-            margin-bottom: 6px;
-        }
-
-        .row-info {
-            line-height: 20px;
-        }
-    }
-
-    .online-list {
-        margin-top: 6px;
-        margin-bottom: 6px;
-        font-size: 12px;
-
-        .datetime {
-            font-size: 11px;
-        }
-    }
-}
-
-// Using Swiper to change pages
-
-.swiper-container {
-    width: 230px;
-
-    &.block-downline-list {
-        overflow: hidden;
-
-        .two-col {
-            line-height: 32px;
-        }
-
-        @media (min-device-width: 768px) {
-            .two-col {
-                height: auto;
-                width: 50%;
-                float: left;
-            }
-        }
-    }
-
-    &.block-settings {
-        overflow: hidden;
-
-        @media (max-device-width: 767px) {
-            .settings {
-                padding-bottom: 0;
-            }
-
-            .swiper-bottom {
-                bottom: auto;
-                left: auto;
-                right: 0;
-                top: 50%;
-                height: 64px;
-                margin-top: -32px;
-            }
-
-            .swiper-pagination {
-                display: none;
-            }
-
-            .page-control {
-                display: none;
-            }
-
-            .swiper-button-prev, .swiper-button-next {
-                left: auto;
-                bottom: auto;
-                right: 0;
-                border-radius: 50%;
-            }
-
-            .swiper-button-next {
-                bottom: 0;
-            }
-
-            .swiper-button-prev {
-                top: 0;
-            }
-        }
-
-        .two-col {
-            line-height: 32px;
-        }
-
-        @media (min-device-width: 1025px) {
-            .two-col {
-                width: 50%;
-                float: left;
-            }
-        }
-    }
-}
-
-.swiper-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px 0 5px;
-}
-
-.swiper-pagination-fraction,
-.swiper-pagination-custom,
-.swiper-container-horizontal .swiper-pagination-bullets {
-    float: left;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: auto;
-    width: 164px;
-    height: 24px;
-    margin: 0;
-    padding-left: 58px;
-}
-
-.swiper-container-horizontal .swiper-pagination-bullets {
-    text-align: left;
-
-    .swiper-pagination-bullet {
-        border-radius: 0;
-        width: auto;
-        height: 24px;
-        width: 18px;
-        text-align: center;
-        line-height: 24px;
-        color: #000;
-        opacity: 1;
-        background: none;
-        text-align: center;
-    }
-
-    .swiper-pagination-bullet-active {
-        color: #67151b;
-        background: none;
-        text-decoration: underline;
-    }
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-    position: absolute;
-    top: auto;
-    bottom: auto;
-    width: 24px;
-    height: 24px;
-    margin-top: 0;
-    z-index: 100;
-    cursor: pointer;
-    background: #67151b;
-    color: #fff;
-    font-size: 16px;
-    text-align: center;
-
-    &:before {
-        position: relative;
-        top: 1px;
-        font-family: Iconalpha;
-        color: #fff;
-    }
-}
-
-.swiper-button-next {
-    left: 34px;
-
-    &:before {
-        content: '\e942';
-        display: inline-block;
-    }
-}
-
-.swiper-button-prev {
-    left: 0;
-
-    &:before {
-        content: '\e93f';
-        display: inline-block;
-    }
-}
-
 
 // custom checkbox
 
@@ -755,34 +375,216 @@ hr {
     display: block;
     padding: 14px 25px 14px 10px;
     font-size: 13px;
-    color: #333;
+    color: $text-color;
     text-transform: uppercase;
     font-weight: bold;
 
     &:hover {
         background-color: #ddd;
+        color: $text-color;
     }
 
     &:after {
         position: absolute;
-        top: 16px;
+        top: 9px;
         right: 4px;
         font-family: Iconalpha;
         font-size: 19px;
         font-weight: 400;
         content: "\E942";
     }
+
+    [class^=icon] {
+        position: relative;
+        top: 2px;
+        line-height: 0;
+    }
+
+    .icon-contact-info {
+        margin-right: 6px;
+        font-size: 16px;
+    }
+
+    .icon-balance {
+        font-size: 14px;
+        margin-right: 9px;
+        left: 1px;
+    }
+
+    .icon-status {
+        margin-right: 5px;
+        font-size: 19px;
+    }
+
+    .icon-settings,
+    .icon-login,
+    .icon-downline,
+    .icon-onlinelist {
+        margin-right: 7px;
+        font-size: 16px;
+    }
 }
 
 .feature-detail {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: #fff;
-    transform: translateX(-100%);
-
-    &.active {
-        transform: translateX(0);
-        transition: all .2s ease-in-out .1s;
+    .feature-item:after {
+        content: "\e93f";
     }
+
+    &.balance-info {
+        .row-info {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .number {
+            color: #004080;
+
+            &-red {
+                color: #ff0000;
+            }
+
+            &-link {
+                @extend %linkColor;
+                cursor: pointer;
+            }
+
+            &-edited {
+                color: #049bac;
+            }
+        }
+
+        .given-credit {
+            cursor: pointer;
+        }
+
+        .icon-edited {
+            @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+            position: absolute;
+            left: 0;
+            top: 9px;
+            color: $icon-color;
+
+            font: {
+                size: 16px;
+                weight: 100;
+            }
+        }
+    }
+
+
+
+    &.block-status {
+        .col {
+            float: left;
+            width: 50%;
+            line-height: 28px;
+        }
+
+        .checkbox {
+            line-height: initial;
+            margin: 4px 0;
+        }
+
+        .checkbox:hover label {
+            color: $link-color;
+        }
+
+        .icon-ic_list {
+            color: #67151b;
+            font-size: 15px;
+            float: left;
+            margin-right: 8px;
+            margin-top: 6px;
+            @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+        }
+    }
+
+
+
+    &.block-settings {
+        overflow: hidden;
+
+        @media (max-device-width: 767px) {
+            .settings {
+                padding-bottom: 0;
+            }
+
+            .swiper-bottom {
+                bottom: auto;
+                left: auto;
+                right: 0;
+                top: 50%;
+                height: 64px;
+                margin-top: -32px;
+            }
+
+            .swiper-pagination {
+                display: none;
+            }
+
+            .page-control {
+                display: none;
+            }
+
+            .swiper-button-prev, .swiper-button-next {
+                left: auto;
+                bottom: auto;
+                right: 0;
+                border-radius: 50%;
+            }
+
+            .swiper-button-next {
+                bottom: 0;
+            }
+
+            .swiper-button-prev {
+                top: 0;
+            }
+        }
+
+        .two-col {
+            line-height: 32px;
+        }
+
+        @media (min-device-width: 1025px) {
+            .two-col {
+                width: 50%;
+                float: left;
+            }
+        }
+    }
+
+    .customer-list {
+        padding: 6px 10px 4px;
+
+        [class^="col"] {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &.login-info {
+        .group {
+            margin-bottom: 8px;
+        }
+
+        .row-info {
+            line-height: 20px;
+        }
+    }
+    
+    .online-list {
+        margin-top: 6px;
+        margin-bottom: 6px;
+        font-size: 12px;
+
+        .datetime {
+            font-size: 11px;
+        }
+    }
+}
+
+.customer-list a,
+.setting-block a {
+    line-height: 28px;
 }

@@ -42,8 +42,6 @@ export default class DownlineListBlock extends React.Component{
         const content = data === null || data.DownlineList.length === 0 ?
             <div>{resources.NoInfo}</div> :
             <div>
-                <Paging resourcePage={this.props.resources.Page} values={data.DownlineList} renderCallback={this.renderCallback} />
-                <div><hr /></div>
                 {
                     data.TotalStatusAgent !== null &&
                     <TotalDownlines levelName="Agents"
@@ -62,10 +60,21 @@ export default class DownlineListBlock extends React.Component{
                         totalSuspended={data.TotalStatusMember.TotalSuspend}
                     />
                 }
+
+                <div><hr /></div>
+                <div className="col-xs-12 customer-list">
+                    {data.DownlineList.map((value, index) => {
+                        return <div className="col-xs-6" key={index}>
+                            {this.renderCallback(value)}
+                        </div>;
+                    })}
+                </div>
+                
+                
             </div>;   
 
         return (
-            <div>
+            <div className="feature-detail">
                 <Link to="/" className="feature-item">
                     <span className="icon-downline" />
                     {resources.DownlineList}</Link>
