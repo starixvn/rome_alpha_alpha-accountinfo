@@ -337,7 +337,7 @@
     <value>重置保安码</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
-    <value>Show Contact Info</value>
+    <value>Contact Info</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>体育博彩最低占成</value>

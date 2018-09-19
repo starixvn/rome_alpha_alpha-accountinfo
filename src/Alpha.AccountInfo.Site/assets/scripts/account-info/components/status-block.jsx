@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../api-client';
 import { Link } from 'react-router-dom';
+import { NoInfo } from '../components/common/no-info';
 
 export default class StatusBlock extends React.Component {
     constructor(props) {
@@ -59,53 +60,58 @@ export default class StatusBlock extends React.Component {
     }
 
     render() {
-        const { resources,
-            username,
-            getCustomerAllStatus,
-            fetchCustomerAllStatusFromServer,
-            fetchCustomerInfoFromServer,
-            blockId,
-            expanded,
-            statusData } = this.props;
+        const { resources, username, statusData } = this.props;
+        const header = <Link to="/" className="feature-item">
+            <span className="icon-status" />
+            {resources.Status}
+        </Link>;
 
-        return (
-            <div className="feature-detail block-status">
-                <Link to="/" className="feature-item">
-                    <span className="icon-status"/>
-                    {resources.Status}</Link>
-                {
-                    statusData !== null && statusData.map((status, index) => {
-                        const disabled = status.Disabled ? "disabled" : "";
-                        return status.IsEditOnProductLevel !== undefined && !status.IsEditOnProductLevel ?
-                            <div key={index}
-                                className="col-xs-6"
-                                data-id={status.ProductId}
-                                data-name={status.Text}
-                                onClick={this.handleOpenPopupForProductStatus}
-                                data-url={status.Url}
-                            >
-                                <span className="link">{status.Text}</span>
-                                <span className="icon-ic_list" />
-                            </div> :
-                            <div key={index}
-                                className={`col-xs-6 checkbox ${disabled}`}
-                                onClick={this.handleOpenPopupForCheckbox}
-                                data-enabled={!status.Disabled}
-                                data-url={status.Url}
-                                data-param={status.JsonParams}
-                                data-message={status.ConfirmMessage}
-                                data-name={status.Text}
-                            >
-                                <input id={status.displayOrder}
-                                    type="checkbox"
-                                    disabled={status.Disabled}
-                                    checked={status.Checked}
-                                />
-                                <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
-                            </div>;
-                    })
-                }
-            </div>
-        );
+        if (statusData !== null) {
+            return (
+                <div className="feature-detail block-status">
+                    {header}
+                    {
+                        statusData !== null && statusData.map((status, index) => {
+                            const disabled = status.Disabled ? "disabled" : "";
+                            return status.IsEditOnProductLevel !== undefined && !status.IsEditOnProductLevel ?
+                                <div key={index}
+                                    className="col-xs-6"
+                                    data-id={status.ProductId}
+                                    data-name={status.Text}
+                                    onClick={this.handleOpenPopupForProductStatus}
+                                    data-url={status.Url}
+                                >
+                                    <span className="link">{status.Text}</span>
+                                    <span className="icon-ic_list" />
+                                </div> :
+                                <div key={index}
+                                    className={`col-xs-6 checkbox ${disabled}`}
+                                    onClick={this.handleOpenPopupForCheckbox}
+                                    data-enabled={!status.Disabled}
+                                    data-url={status.Url}
+                                    data-param={status.JsonParams}
+                                    data-message={status.ConfirmMessage}
+                                    data-name={status.Text}
+                                >
+                                    <input id={status.displayOrder}
+                                        type="checkbox"
+                                        disabled={status.Disabled}
+                                        checked={status.Checked}
+                                    />
+                                    <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
+                                </div>;
+                        })
+                    }
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    {header}
+                    <NoInfo text={resources.NoInfo} />
+                </div>
+            );
+        }
     }
 }

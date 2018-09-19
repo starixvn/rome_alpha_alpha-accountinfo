@@ -337,7 +337,7 @@
     <value>Thay đổi Mã bảo mật</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
-    <value>Show Contact Info</value>
+    <value>Contact Info</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>PT nhỏ nhất cho Sportsbook</value>

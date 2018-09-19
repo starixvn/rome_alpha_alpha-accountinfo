@@ -46,7 +46,9 @@ export default class SearchingBlock extends React.Component {
     }
 
     handleSearchClick(e) {
-        this.props.fetchCustomerInfoFromServer(e, this.state.username);
+        if (this.state.username != '') {
+            this.props.fetchCustomerInfoFromServer(e, this.state.username);
+        }
     }
 
     onSuggestionsFetchRequested(input) {

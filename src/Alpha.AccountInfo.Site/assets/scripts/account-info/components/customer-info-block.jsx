@@ -2,6 +2,7 @@
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import UserLevelInfo from './user-level-info';
+import { NoInfo } from '../components/common/no-info';
 
 const CustomerInfoBlock = ({
     data,
@@ -10,11 +11,9 @@ const CustomerInfoBlock = ({
     rowClasses = "col-xs-12 row-info",
     firstCellClass = "col-xs-5",
     secondCellClass = "col-xs-7 col-right" }) => {
-
     const memberLevel = 1, agentLevel = 2, masterLevel = 3;
-
     return (
-        <div>
+        <div id="blockInfo" className="block-info">
             {
                 data.ShowMaster &&
                 <UserLevelInfo data={data}
@@ -52,7 +51,8 @@ const CustomerInfoBlock = ({
                 <a className="btn-default with-level" href={data.CustomerListOrBetListLink.Url} target="main">{data.CustomerListOrBetListLink.Text}</a>
                 <a className="btn-default with-level" href={data.StatemenLink} target="main">{resources.Statement}</a>
             </div>
-        </div>);
+        </div>
+    );
 };
 
 export default CustomerInfoBlock;

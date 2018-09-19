@@ -337,7 +337,7 @@
     <value>Reset Security Code</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
-    <value>Show Contact Info</value>
+    <value>Contact Info</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>최소조건 수정</value>

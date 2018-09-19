@@ -664,7 +664,7 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Contact Info.
+        ///   Looks up a localized string similar to Contact Info.
         /// </summary>
         public static string ShowContactInfo {
             get {

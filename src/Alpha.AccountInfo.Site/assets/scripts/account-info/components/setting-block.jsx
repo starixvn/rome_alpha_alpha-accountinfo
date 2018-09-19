@@ -1,28 +1,26 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
+import { NoInfo } from '../components/common/no-info';
 
-export default class SettingBlock extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+const SettingBlock = ({ resources, settingData }) => {
+    const header = <Link to="/" className="feature-item">
+        <span className="icon-settings" />
+        {resources.Setting}
+    </Link>;
 
-    render() {
-        const { resources, blockId, expanded, settingData, getCustomerAllStatus } = this.props;
-        return (
-            <div className="feature-detail block-settings">
-                <Link to="/" className="feature-item">
-                    <span className="icon-settings" />
-                    {resources.Setting}</Link>
-                {
-                    settingData !== null &&
-                    settingData.map((value, index) => {
-                        return <div className="two-col" key={index}>
-                            <a href={value.Url} target="main">{value.Text}</a>
-                        </div>;
-                    })
-                }
+    const content = settingData !== null ?
+        settingData.map((value, index) => {
+            return <div className="two-col" key={index}>
+                <a href={value.Url} target="main">{value.Text}</a>
+            </div>;
+        }) : <NoInfo text={resources.NoInfo} />;
 
-            </div>
-        );
-    }
-}
+    return (
+        <div className="feature-detail block-settings">
+            {header}
+            {content}
+        </div>
+    );
+};
+
+export default SettingBlock;
