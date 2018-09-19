@@ -7,37 +7,16 @@ import { NoInfo } from '../components/common/no-info';
 export default class DownlineListBlock extends React.Component{
     constructor(props) {
         super(props);
-
-        this.state = {
-            data: null
-        };
-
-        this.handleClick();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.custId !== this.props.customerInfo.CustId ) {
-            this.handleClick();
-        }
-    }
-
-    handleClick() {
-            accountInfoAPI
-                .getDownlineList({ SearchAccountId: this.props.customerInfo.CustId })
-                .then((responeData) => {
-                    this.setState({ data: responeData });
-        });
     }
 
     render() {
-        const { resources, customerInfo, handleSearchFromUserLevel } = this.props;
+        const { resources, data, handleSearchFromUserLevel } = this.props;
         const header = <Link to="/" className="feature-item">
                 <span className="icon-downline" />
                 {resources.DownlineList}
             </Link>;
 
-        if (customerInfo !== null) {
-            const { data } = this.state;
+        if (data !== null ) {
             return (
                 <div className="feature-detail customer-list">
                     {header}

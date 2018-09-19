@@ -3,7 +3,7 @@ import { HashRouter, Switch, Route, Link } from 'react-router-dom';
 
 import UserLevel from '../constants/user-level';
 
-const FeatureList = ({ resources, getCustomerAllStatus }) => {
+const FeatureList = ({ resources, getCustomerAllStatus, fetchDownlineListFromServer }) => {
     return (
         <div className="feature-list">
             <nav>
@@ -17,7 +17,7 @@ const FeatureList = ({ resources, getCustomerAllStatus }) => {
                     {resources.BalanceInfo}
                 </Link>
 
-                <Link to="/downlineList" className="feature-item">
+                <Link to="/downlineList" className="feature-item" onClick={fetchDownlineListFromServer}>
                     <span className="icon-downline" />
                     {resources.DownlineList}
                 </Link>

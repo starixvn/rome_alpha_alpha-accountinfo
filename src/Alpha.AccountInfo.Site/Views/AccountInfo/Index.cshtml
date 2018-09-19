@@ -24,7 +24,7 @@
             localStorage.setItem('actorName', '@Model.ActoreName');
             localStorage.removeItem('lastSearchUsername');
         }
-        renderAccountInfo(JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"')));
+        renderAccountInfo('@Model.ActorRoleId', JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"')));
     </script>
 }
 

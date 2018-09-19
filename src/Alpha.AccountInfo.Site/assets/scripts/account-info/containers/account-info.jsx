@@ -23,11 +23,13 @@ export default class AccountInfo extends React.Component {
         let lastSearchUsername = localStorage.getItem("lastSearchUsername") !== null ? localStorage.getItem("lastSearchUsername") : '';
         this.state = {
             username: lastSearchUsername,
-            searchCounter: 0,
+            custId: 0,
+            actorRoleId: this.props.actorRoleId,
             showInfoStatus: false,
             customerInfo: null,
             statusData: null,
             settingData: null,
+            downlineList: null,
             resources: this.props.resources
         };
 
@@ -35,17 +37,21 @@ export default class AccountInfo extends React.Component {
         this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
 
         this.fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer.bind(this);
+        this.fetchDownlineListFromServer = this.fetchDownlineListFromServer.bind(this);
     }
 
     fetchCustomerInfoFromServer(e, username) {
         $.blockUI();
         let self = this;
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then((data) => {
-            self.setState((prevState) => ({
+            self.setState({
                 username: username,
-                searchCounter: prevState.searchCounter + 1,
-                customerInfo: data
-            }));
+                custId: data.CustId,
+                customerInfo: data,
+                downlineList: null,
+                settingData: null,
+                statusData: null
+            });
 
             localStorage.setItem('lastSearchUsername', username);
             $.unblockUI();
@@ -63,7 +69,7 @@ export default class AccountInfo extends React.Component {
         let self = this;
         let customerInfo = this.state.customerInfo;
 
-        if (customerInfo !== null) {
+        if (customerInfo !== null && this.state.settingData === null) {
             switch (customerInfo.RoleId) {
                 case UserLevel.Master:
                     uplineId = customerInfo.SuperId;
@@ -97,8 +103,19 @@ export default class AccountInfo extends React.Component {
         }
     }
 
+    fetchDownlineListFromServer(e) {
+        let self = this;
+        if (this.state.custId > 0 && this.state.downlineList === null) {
+            accountInfoAPI
+                .getDownlineList({ SearchAccountId: this.state.custId })
+                .then((responeData) => {
+                    self.setState({ downlineList: responeData });
+                });
+        }
+    }
+
     render() {
-        const { customerInfo, resources, username, statusData, settingData} = this.state;
+        const { actorRoleId, custId, customerInfo, downlineList, resources, username, statusData, settingData } = this.state;
 
         return (
             <div className="accountinfo-container">
@@ -122,7 +139,8 @@ export default class AccountInfo extends React.Component {
                         <Route key={0} exact path="/" render={(props) => <FeatureList
                             resources={resources}
                             getCustomerAllStatus={this.fetchCustomerAllStatusFromServer}
-                            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} />}
+                            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
+                            fetchDownlineListFromServer={this.fetchDownlineListFromServer}/>}
                         />
                         <Route key={1}
                             exact path="/contactInfo"
@@ -136,13 +154,13 @@ export default class AccountInfo extends React.Component {
                         />
 
                         {
-                            customerInfo !== null && customerInfo.RoleId > UserLevel.Member &&
+                            actorRoleId > UserLevel.Agent  &&
                             <Route key={3}
                                 exact path="/downlineList"
                                 render={(props) => <DownlineListBlock
                                     resources={resources}
                                     handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                                    customerInfo={customerInfo} />}
+                                    data={downlineList} />}
                             />
                         }
 

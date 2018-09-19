@@ -25,6 +25,8 @@
 
         public string ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
 
+        public byte ActorRoleId => message.ActorRoleId;
+
         public string ActoreName => message.ActorName;
 
         public string AccountInfoResources => ConvertResourcesJson(message.Language, Resources.ResourceManager);
