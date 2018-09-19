@@ -61,8 +61,9 @@ export default class AccountInfo extends React.Component {
         let uplineId = null;
         let uplineName = null;
         let self = this;
+        let customerInfo = this.state.customerInfo;
 
-        if (this.state.customerInfo !== null) {
+        if (customerInfo !== null) {
             switch (customerInfo.RoleId) {
                 case UserLevel.Master:
                     uplineId = customerInfo.SuperId;

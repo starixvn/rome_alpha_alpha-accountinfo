@@ -367,8 +367,6 @@
     <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="assets\styles\account-info.css" />
     <Content Include="assets\styles\productstatus\productstatus.css" />
-    <Content Include="assets\styles\vendors\swiper\swiper.css" />
-    <Content Include="assets\styles\vendors\swiper\swiper.min.css" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
     <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
@@ -603,6 +601,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AuthorizationSection.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\styles\account-info-mobile-calculate-07.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
