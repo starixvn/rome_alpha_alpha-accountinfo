@@ -1,14 +1,9 @@
 ﻿import React from 'react';
-import Paging from './common/paging';
 import { Link } from 'react-router-dom';
 
 export default class SettingBlock extends React.Component {
     constructor(props) {
         super(props);
-    }
-
-    renderCallback(value) {
-        return <a href={value.Url} target="main">{value.Text}</a>;
     }
 
     render() {
@@ -20,7 +15,11 @@ export default class SettingBlock extends React.Component {
                     {resources.Setting}</Link>
                 {
                     settingData !== null &&
-                    <Paging resourcePage={this.props.resources.Page} values={settingData} renderCallback={this.renderCallback} />
+                    settingData.map((value, index) => {
+                        return <div className="two-col" key={index}>
+                            <a href={value.Url} target="main">{value.Text}</a>
+                        </div>;
+                    })
                 }
 
             </div>

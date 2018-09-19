@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import Paging from './common/paging';
 import { accountInfoAPI } from '../api-client';
 import TotalDownlines from './total-downlines';
 import { Link } from 'react-router-dom';
@@ -13,7 +12,6 @@ export default class DownlineListBlock extends React.Component{
         };
 
         this.handleClick();
-        this.renderCallback = this.renderCallback.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -28,10 +26,6 @@ export default class DownlineListBlock extends React.Component{
             .then((responeData) => {
                 this.setState({ data: responeData });
         });
-    }
-
-    renderCallback(downline) {
-        return <a href="#" data-username={downline} onClick={this.props.handleSearchFromUserLevel}>{downline}</a>;
     }
 
     render() {
@@ -63,18 +57,20 @@ export default class DownlineListBlock extends React.Component{
 
                 <div><hr /></div>
                 <div className="col-xs-12 customer-list">
-                    {data.DownlineList.map((value, index) => {
-                        return <div className="col-xs-6" key={index}>
-                            {this.renderCallback(value)}
-                        </div>;
-                    })}
+                    {
+                        data.DownlineList.map((downline, index) => {
+                            return <div className="col-xs-6" key={index}>
+                                <a href="#" data-username={downline} onClick={this.props.handleSearchFromUserLevel}>{downline}</a>
+                            </div>;
+                        })
+                    }
                 </div>
                 
                 
             </div>;   
 
         return (
-            <div className="feature-detail">
+            <div className="feature-detail customer-list">
                 <Link to="/" className="feature-item">
                     <span className="icon-downline" />
                     {resources.DownlineList}</Link>

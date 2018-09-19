@@ -81,7 +81,7 @@ export default class FeatureList extends React.Component {
     }
 
     getCustomerAllStatus(e) {
-        this.state.settingData === null && this.fetchCustomerAllStatusFromServer(e);
+        this.fetchCustomerAllStatusFromServer(e);
     }
 
     render() {
@@ -96,7 +96,12 @@ export default class FeatureList extends React.Component {
         return (
             <HashRouter>
                 <Drilldown>
-                    <Route key={0} exact path="/" component={Home} />
+                    <Route key={0} exact path="/" render={(props) => <Home {...props}
+                        resources={resources}
+                        getCustomerAllStatus={this.getCustomerAllStatus}
+                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                        fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}/>}
+                    />
                     <Route key={1}
                         exact path="/contactInfo"
                         render={(props) => <ContactInfoBlock
@@ -164,7 +169,7 @@ export default class FeatureList extends React.Component {
 }
 
 
-const Home = ({ roleId }) => (
+const Home = ({ getCustomerAllStatus }) => (
     <div className="feature-list">
         <nav>
             <Link to="/contactInfo" className="feature-item">
@@ -179,11 +184,11 @@ const Home = ({ roleId }) => (
                 <span className="icon-downline"></span>
                 Downline List</Link>
 
-            <Link to="/status" className="feature-item">
+            <Link to="/status" className="feature-item" onClick={getCustomerAllStatus}>
                 <span className="icon-status"></span>
                 Status</Link>
 
-            <Link to="/settings" className="feature-item">
+            <Link to="/settings" className="feature-item" onClick={getCustomerAllStatus}>
                 <span className="icon-settings"></span>
                 Settings</Link>
 

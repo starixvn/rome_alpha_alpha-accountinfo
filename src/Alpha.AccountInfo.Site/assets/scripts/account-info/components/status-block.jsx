@@ -19,7 +19,7 @@ export default class StatusBlock extends React.Component {
                 window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`) :
                 this.handleOpenConfirmPopup(e);
         }
-    };
+    }
 
     handleOpenConfirmPopup(e) {
         let self = this;
@@ -56,7 +56,7 @@ export default class StatusBlock extends React.Component {
         }
 
         window.top.ageWnd.open(e.currentTarget.dataset.url, popupTitle, left, top, width, height);
-    };
+    }
 
     render() {
         const { resources,
@@ -69,15 +69,16 @@ export default class StatusBlock extends React.Component {
             statusData } = this.props;
 
         return (
-            <div className="feature-detail">
+            <div className="feature-detail block-status">
                 <Link to="/" className="feature-item">
-                    <span className="icon-status" />
+                    <span className="icon-status"/>
                     {resources.Status}</Link>
                 {
                     statusData !== null && statusData.map((status, index) => {
+                        const disabled = status.Disabled ? "disabled" : "";
                         return status.IsEditOnProductLevel !== undefined && !status.IsEditOnProductLevel ?
                             <div key={index}
-                                className="col"
+                                className="col-xs-6"
                                 data-id={status.ProductId}
                                 data-name={status.Text}
                                 onClick={this.handleOpenPopupForProductStatus}
@@ -87,7 +88,7 @@ export default class StatusBlock extends React.Component {
                                 <span className="icon-ic_list" />
                             </div> :
                             <div key={index}
-                                className={`${status.Disabled && "disabled"} col checkbox`}
+                                className={`col-xs-6 checkbox ${disabled}`}
                                 onClick={this.handleOpenPopupForCheckbox}
                                 data-enabled={!status.Disabled}
                                 data-url={status.Url}

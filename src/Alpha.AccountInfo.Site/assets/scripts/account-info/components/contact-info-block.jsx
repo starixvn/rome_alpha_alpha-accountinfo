@@ -8,7 +8,7 @@ const ContactInfoBlock = ({
     firstCellClass = "col-xs-5",
     secondCellClass = "col-xs-7 col-right" }) => <div>
         <Link to="/" className="feature-item">
-            <span className="icon-icon-contact-info" />
+            <span className="icon-contact-info" />
             {resources.ShowContactInfo}
         </Link>
 
