@@ -68,40 +68,43 @@ export default class StatusBlock extends React.Component {
 
         if (statusData !== null) {
             return (
-                <div className="feature-detail block-status">
+                <div className="feature-detail">
                     {header}
-                    {
-                        statusData !== null && statusData.map((status, index) => {
-                            const disabled = status.Disabled ? "disabled" : "";
-                            return status.IsEditOnProductLevel !== undefined && !status.IsEditOnProductLevel ?
-                                <div key={index}
-                                    className="col-xs-6"
-                                    data-id={status.ProductId}
-                                    data-name={status.Text}
-                                    onClick={this.handleOpenPopupForProductStatus}
-                                    data-url={status.Url}
-                                >
-                                    <span className="link">{status.Text}</span>
-                                    <span className="icon-ic_list" />
-                                </div> :
-                                <div key={index}
-                                    className={`col-xs-6 checkbox ${disabled}`}
-                                    onClick={this.handleOpenPopupForCheckbox}
-                                    data-enabled={!status.Disabled}
-                                    data-url={status.Url}
-                                    data-param={status.JsonParams}
-                                    data-message={status.ConfirmMessage}
-                                    data-name={status.Text}
-                                >
-                                    <input id={status.displayOrder}
-                                        type="checkbox"
-                                        disabled={status.Disabled}
-                                        checked={status.Checked}
-                                    />
-                                    <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
-                                </div>;
-                        })
-                    }
+                    <div className="status-setting">
+                        {
+                            statusData !== null && statusData.map((status, index) => {
+                                const disabled = status.Disabled ? "disabled" : "";
+                                return status.IsEditOnProductLevel !== undefined && !status.IsEditOnProductLevel ?
+                                    <div key={index}
+                                        className="col"
+                                        data-id={status.ProductId}
+                                        data-name={status.Text}
+                                        onClick={this.handleOpenPopupForProductStatus}
+                                        data-url={status.Url}
+                                    >
+                                        <span className="icon-ic_list" />
+                                        <span className="link">{status.Text}</span>                                        
+                                    </div> :
+                                    <div key={index}
+                                        className={`col checkbox ${disabled}`}
+                                        onClick={this.handleOpenPopupForCheckbox}
+                                        data-enabled={!status.Disabled}
+                                        data-url={status.Url}
+                                        data-param={status.JsonParams}
+                                        data-message={status.ConfirmMessage}
+                                        data-name={status.Text}
+                                    >
+                                        <input id={status.displayOrder}
+                                            type="checkbox"
+                                            disabled={status.Disabled}
+                                            checked={status.Checked}
+                                        />
+                                        <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
+                                    </div>;
+                            })
+                        }
+                    </div>
+                    
                 </div>
             );
         }
