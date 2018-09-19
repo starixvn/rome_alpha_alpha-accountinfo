@@ -12,7 +12,8 @@ const CustomerInfoBlock = ({
     firstCellClass = "col-xs-5",
     secondCellClass = "col-xs-7 col-right" }) => {
     const memberLevel = 1, agentLevel = 2, masterLevel = 3;
-    return (
+
+    const content = data === null ? <NoInfo text={resources.NoInfo} /> :
         <div id="blockInfo" className="block-info">
             {
                 data.ShowMaster &&
@@ -51,8 +52,9 @@ const CustomerInfoBlock = ({
                 <a className="btn-default with-level" href={data.CustomerListOrBetListLink.Url} target="main">{data.CustomerListOrBetListLink.Text}</a>
                 <a className="btn-default with-level" href={data.StatemenLink} target="main">{resources.Statement}</a>
             </div>
-        </div>
-    );
+        </div>;
+
+    return content;
 };
 
 export default CustomerInfoBlock;

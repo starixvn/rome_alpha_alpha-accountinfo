@@ -119,10 +119,10 @@ export default class AccountInfo extends React.Component {
 
                 <HashRouter>
                     <Switch>
-                        <Route key={0} exact path="/" render={(props) => <FeatureList {...props}
+                        <Route key={0} exact path="/" render={(props) => <FeatureList
                             resources={resources}
                             getCustomerAllStatus={this.fetchCustomerAllStatusFromServer}
-                            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}/>}
+                            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} />}
                         />
                         <Route key={1}
                             exact path="/contactInfo"
