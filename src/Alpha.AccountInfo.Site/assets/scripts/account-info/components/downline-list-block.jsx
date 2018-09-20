@@ -3,14 +3,17 @@ import TotalDownlines from './total-downlines';
 import { Link } from 'react-router-dom';
 import { NoInfo } from '../components/common/no-info';
 import { UserLevel } from '../constants/user-level';
+import { Redirect } from 'react-router-dom';
 
-const DownlineListBlock = ({ resources, data, handleSearchFromUserLevel }) => {
+const DownlineListBlock = ({ resources, data, searchAccountRoleId, handleSearchFromUserLevel }) => {
     const header = <Link to="/" className="feature-item">
         <span className="icon-downline" />
         {resources.DownlineList}
     </Link>;
 
-    // TO DO: Remove when drill down to member
+    if (searchAccountRoleId === 1) {
+        return <Redirect to='/' />;
+    }
 
     if (data !== null && data.DownlineList.length > 0) {
         return (

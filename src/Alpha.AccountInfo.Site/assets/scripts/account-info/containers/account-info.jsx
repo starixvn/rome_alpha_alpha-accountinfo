@@ -21,11 +21,13 @@ export default class AccountInfo extends React.Component {
     constructor(props) {
         super(props);
         let lastSearchUsername = localStorage.getItem("lastSearchUsername") !== null ? localStorage.getItem("lastSearchUsername") : '';
+        let { resources, actorRoleId } = this.props;
         this.state = {
             username: lastSearchUsername,
-            resources: this.props.resources,
+            resources: resources,
             custId: 0,
-            actorRoleId: this.props.actorRoleId,
+            actorRoleId: actorRoleId,
+            searchAccountRoleId: actorRoleId - 1,
             searchCounter: 0,
             showInfoStatus: false,
             customerInfo: null,
@@ -63,6 +65,7 @@ export default class AccountInfo extends React.Component {
                 username: username,
                 customerInfo: data,
                 searchCounter: prevState.searchCounter + 1,
+                searchAccountRoleId: data !== null ? data.RoleId : 0,
                 custId: data !== null ? data.CustId : 0
             }));
 
@@ -81,7 +84,7 @@ export default class AccountInfo extends React.Component {
         let uplineName = null;
         let { customerInfo, settingData } = this.state;
 
-        if (customerInfo !== null && settingData === null) {
+        if (customerInfo !== null) {
             switch (customerInfo.RoleId) {
                 case UserLevel.Master:
                     uplineId = customerInfo.SuperId;
@@ -143,7 +146,9 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const { actorRoleId, resources, username, searchCounter, custId, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
+        const {
+            actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
+            customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
         return (
             <div className="accountinfo-container">
@@ -154,17 +159,18 @@ export default class AccountInfo extends React.Component {
                 />
 
                 {
-                   searchCounter > 0 &&  <CustomerInfoBlock
-                    resources={resources}
-                    data={customerInfo}
-                    handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                    />
+                    searchCounter > 0 && <CustomerInfoBlock
+                        resources={resources}
+                        data={customerInfo}
+                        handleSearchFromUserLevel={this.handleSearchFromUserLevel} />
                 }
 
                 <HashRouter>
                     <Switch>
                         <Route key={0} exact path="/" render={(props) => <FeatureList
                             resources={resources}
+                            actorRoleId={actorRoleId}
+                            searchAccountRoleId={searchAccountRoleId}
                             getCustomerAllStatus={this.fetchCustomerAllStatusFromServer}
                             fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
                             fetchDownlineListFromServer={this.fetchDownlineListFromServer}
@@ -181,16 +187,14 @@ export default class AccountInfo extends React.Component {
                                 customerInfo={customerInfo} />}
                         />
 
-                        {
-                            actorRoleId > UserLevel.Agent  &&
-                            <Route key={3}
-                                exact path="/downlineList"
-                                render={(props) => <DownlineListBlock
-                                    resources={resources}
-                                    handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                                    data={downlineList} />}
-                            />
-                        }
+                        <Route key={3}
+                            exact path="/downlineList"
+                            render={(props) => <DownlineListBlock
+                                searchAccountRoleId={searchAccountRoleId}
+                                resources={resources}
+                                handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                                data={downlineList} />}
+                        />
 
                         <Route key={4}
                             exact path="/status"

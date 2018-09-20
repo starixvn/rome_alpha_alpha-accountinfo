@@ -1,8 +1,11 @@
 ﻿import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { UserLevel } from '../constants/user-level';
 
 const FeatureList = ({
     resources,
+    actorRoleId,
+    searchAccountRoleId,
     getCustomerAllStatus,
     fetchDownlineListFromServer,
     fetchOnlineListFromServer
@@ -18,10 +21,13 @@ const FeatureList = ({
                 {resources.BalanceInfo}
             </Link>
 
-            <Link to="/downlineList" className="feature-item" onClick={fetchDownlineListFromServer}>
-                <span className="icon-downline" />
-                {resources.DownlineList}
-            </Link>
+            {
+                actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member &&
+                <Link to="/downlineList" className="feature-item" onClick={fetchDownlineListFromServer}>
+                    <span className="icon-downline" />
+                    {resources.DownlineList}
+                </Link>
+            }
 
             <Link to="/status" className="feature-item" onClick={getCustomerAllStatus}>
                 <span className="icon-status" />
