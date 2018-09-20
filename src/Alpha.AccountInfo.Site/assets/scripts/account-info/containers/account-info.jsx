@@ -38,6 +38,21 @@ export default class AccountInfo extends React.Component {
 
         this.fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer.bind(this);
         this.fetchDownlineListFromServer = this.fetchDownlineListFromServer.bind(this);
+        this.fetchOnlineListFromServer = this.fetchOnlineListFromServer.bind(this);
+
+        this.handleOpenIPInfo = this.fetchDownlineListFromServer.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { customerInfo, custId} = this.state;
+        if (customerInfo !== prevState.customerInfo) {
+            this.fetchCustomerAllStatusFromServer();
+            if (custId !== prevState.custId) {
+                this.fetchDownlineListFromServer();
+                this.fetchOnlineListFromServer();
+            } 
+        }
+
     }
 
     fetchCustomerInfoFromServer(e, username) {
@@ -49,6 +64,7 @@ export default class AccountInfo extends React.Component {
                 custId: data.CustId,
                 customerInfo: data,
                 downlineList: null,
+                onlineList: null,
                 settingData: null,
                 statusData: null
             });
@@ -63,7 +79,7 @@ export default class AccountInfo extends React.Component {
         this.fetchCustomerInfoFromServer(e, e.currentTarget.dataset.username);
     }
 
-    fetchCustomerAllStatusFromServer(e) {
+    fetchCustomerAllStatusFromServer() {
         let uplineId = null;
         let uplineName = null;
         let self = this;
@@ -103,7 +119,7 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchDownlineListFromServer(e) {
+    fetchDownlineListFromServer() {
         let self = this;
         if (this.state.custId > 0 && this.state.downlineList === null) {
             accountInfoAPI
@@ -114,8 +130,24 @@ export default class AccountInfo extends React.Component {
         }
     }
 
+    fetchOnlineListFromServer() {
+        let self = this;
+        if (this.state.custId > 0 && this.state.onlineList === null) {
+            accountInfoAPI
+                .getOnlineList({ SearchAccountId: this.state.custId  })
+                .then((responeData) => {
+                    self.setState({ onlineList: responeData });
+                });
+        }
+    }
+
+    handleOpenIPInfo(e) {
+        e.preventDefault();
+        window.top.ageWnd.open(`${this.props.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`);
+    }
+
     render() {
-        const { actorRoleId, custId, customerInfo, downlineList, resources, username, statusData, settingData } = this.state;
+        const { actorRoleId, resources, username, custId, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
         return (
             <div className="accountinfo-container">
@@ -140,7 +172,8 @@ export default class AccountInfo extends React.Component {
                             resources={resources}
                             getCustomerAllStatus={this.fetchCustomerAllStatusFromServer}
                             fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                            fetchDownlineListFromServer={this.fetchDownlineListFromServer}/>}
+                            fetchDownlineListFromServer={this.fetchDownlineListFromServer}
+                            fetchOnlineListFromServer={this.fetchOnlineListFromServer}/>}
                         />
                         <Route key={1}
                             exact path="/contactInfo"
@@ -180,12 +213,12 @@ export default class AccountInfo extends React.Component {
 
                         <Route key={6}
                             exact path="/loginInfo"
-                            render={(props) => <LoginInfoBlock resources={resources} customerInfo={customerInfo} />}
+                            render={(props) => <LoginInfoBlock resources={resources} customerInfo={customerInfo} handleOpenIPInfo={this.handleOpenIPInfo}/>}
                         />
 
                         <Route key={6}
                             exact path="/onlineList"
-                            render={(props) => <OnlineListBlock resources={resources} customerInfo={customerInfo} />}
+                            render={(props) => <OnlineListBlock resources={resources} custId={custId} data={onlineList} handleOpenIPInfo={this.handleOpenIPInfo}/>}
                         />
                     </Switch>
                 </HashRouter>

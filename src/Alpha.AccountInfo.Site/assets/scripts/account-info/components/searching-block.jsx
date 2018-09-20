@@ -46,7 +46,7 @@ export default class SearchingBlock extends React.Component {
     }
 
     handleSearchClick(e) {
-        if (this.state.username != '') {
+        if (this.state.username !== '') {
             this.props.fetchCustomerInfoFromServer(e, this.state.username);
         }
     }

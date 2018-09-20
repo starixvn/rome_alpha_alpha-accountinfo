@@ -34,7 +34,6 @@ export default class StatusBlock extends React.Component {
                     if (data.IsSuccess) {
                         setTimeout(() => {
                             $.unblockUI();
-                            self.props.fetchCustomerAllStatusFromServer();
                             self.props.fetchCustomerInfoFromServer(e, self.props.username);
                         }, 3000);
                     }
