@@ -6,7 +6,7 @@ const SettingBlock = ({ resources, settingData }) => {
     if (settingData !== null) {
         return (
             <div className="feature-detail block-settings">
-                <HeaderFeature  />
+                <HeaderFeature url="/" iconClass="icon-status" featureText={resources.Setting} />
                 <div className="setting">
                     {settingData.map((value, index) => {
                         return <div className="col-xs-6" key={index}>
