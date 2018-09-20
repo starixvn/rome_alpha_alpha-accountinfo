@@ -40,7 +40,7 @@ export default class BalanceInfoBlock extends React.Component {
         </Link>;
 
         if (customerInfo !== null) {
-            const rowClasses = "col-xs-12 row-info";
+            const rowClasses = "row-info";
             const { resources } = this.props;
             const roleId = this.props.customerInfo.RoleId;
             const balanceInfo = this.props.customerInfo.BalanceInfo;
@@ -51,124 +51,128 @@ export default class BalanceInfoBlock extends React.Component {
             const outstandingLink = balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : "";
 
             return (
-                <div className="feature-detail balance-info">
+                <div className="feature-detail">
                     {header}
-                    {
-                        roleId > memberLevel &&
+                    <div className="balance-info">
+                        {
+                            roleId > memberLevel &&
+                            <div className={rowClasses}>
+                                <div className="col">{resources.TotalCash}</div>
+                                <CellContainNumberFormat title={balanceInfo.TotalCash} classNames="col col-right" />
+                            </div>
+                        }
+
+                        {
+                            roleId > memberLevel &&
+                            <div className={rowClasses}>
+                                <div className="col">{resources.YesterdayCash}</div>
+                                <CellContainNumberFormat title={balanceInfo.YesterdayCash} classNames="col col-right" />
+                            </div>
+                        }
+
                         <div className={rowClasses}>
-                            <div className="col-xs-6">{resources.TotalCash}</div>
-                            <CellContainNumberFormat title={balanceInfo.TotalCash} classNames="col-xs-6 col-right" />
+                            <div className="col">{resources.TotalBalance}</div>
+                            <CellContainNumberFormat
+                                title={balanceInfo.TotalBalance}
+                                classNames="col col-right"
+                                hrefLink={totalBalanceTransferLink}
+                                target="main"
+                            />
                         </div>
-                    }
 
-                    {
-                        roleId > memberLevel &&
                         <div className={rowClasses}>
-                            <div className="col-xs-6">{resources.YesterdayCash}</div>
-                            <CellContainNumberFormat title={balanceInfo.YesterdayCash} classNames="col-xs-6 col-right" />
+                            <div className="col">{resources.YesterdayBalance}</div>
+                            <CellContainNumberFormat
+                                title={balanceInfo.YesterdayBalance}
+                                classNames="col col-right"
+                                hrefLink={yesterdayBalanceTransferLink}
+                                target="main"
+                            />
                         </div>
-                    }
 
-                    <div className={rowClasses}>
-                        <div className="col-xs-6">{resources.TotalBalance}</div>
-                        <CellContainNumberFormat
-                            title={balanceInfo.TotalBalance}
-                            classNames="col-xs-6 col-right"
-                            hrefLink={totalBalanceTransferLink}
-                            target="main"
-                        />
-                    </div>
-
-                    <div className={rowClasses}>
-                        <div className="col-xs-6">{resources.YesterdayBalance}</div>
-                        <CellContainNumberFormat
-                            title={balanceInfo.YesterdayBalance}
-                            classNames="col-xs-6 col-right"
-                            hrefLink={yesterdayBalanceTransferLink}
-                            target="main"
-                        />
-                    </div>
-
-                    <div className={rowClasses}>
-                        <div className="col-xs-6">
-                            {balanceInfo.ReportLink.Text}
-                        </div>
-                        <CellContainNumberFormat
-                            title={balanceInfo.Outstanding}
-                            classNames="col-xs-6 col-right"
-                            hrefLink={outstandingLink}
-                            target="main"
-                        />
-                    </div>
-
-                    {
-                        roleId > memberLevel &&
                         <div className={rowClasses}>
-                            <div className="col-xs-6">{resources.UsedCredit}</div>
-                            <CellContainNumberFormat title={balanceInfo.UsedCredit} classNames="col-xs-6 col-right" />
+                            <div className="col">
+                                {balanceInfo.ReportLink.Text}
+                            </div>
+                            <CellContainNumberFormat
+                                title={balanceInfo.Outstanding}
+                                classNames="col col-right"
+                                hrefLink={outstandingLink}
+                                target="main"
+                            />
                         </div>
-                    }
 
-                    <div className={rowClasses}>
-                        <div className="col-xs-6">{resources.GivenCredit}</div>
-                        <div className="col-xs-6 col-right given-credit" onClick={this.handleOpenGivenCreditPopup} >
-                            <span className="icon-border-color icon-edited" />
-                            <Tooltip
-                                title={balanceInfo.GivenCreditLimit}
-                                position="bottom"
-                                trigger="mouseenter"
-                                arrow="true">
-                                <NumberFormat
-                                    className="number-edited"
-                                    value={balanceInfo.GivenCredit}
-                                    displayType={'text'}
-                                    decimalScale="2"
-                                    fixedDecimalScale={true}
-                                    thousandSeparator={true}
-                                />
-                            </Tooltip>
-                        </div>
-                    </div>
+                        {
+                            roleId > memberLevel &&
+                            <div className={rowClasses}>
+                                <div className="col">{resources.UsedCredit}</div>
+                                <CellContainNumberFormat title={balanceInfo.UsedCredit} classNames="col col-right" />
+                            </div>
+                        }
 
-                    {
-                        roleId === agentLevel &&
                         <div className={rowClasses}>
-                            <div className="col-xs-6">{resources.MemberMaxCredit}</div>
-                            <div className="col-xs-6 col-right">
-                                {
-                                    balanceInfo.ShowMemberMaxCreditLimit &&
+                            <div className="col">{resources.GivenCredit}</div>
+                            <div className="col col-right" onClick={this.handleOpenGivenCreditPopup} >
+                                <div className="given-credit">
+                                    <span className="icon-border-color icon-edited" />
                                     <Tooltip
-                                        title={balanceInfo.MemberMaxCreditLimit}
+                                        title={balanceInfo.GivenCreditLimit}
                                         position="bottom"
                                         trigger="mouseenter"
-                                        arrow="true"
-                                    >
-                                        <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
+                                        arrow="true">
+                                        <NumberFormat
+                                            className="number-edited"
+                                            value={balanceInfo.GivenCredit}
+                                            displayType={'text'}
+                                            decimalScale="2"
+                                            fixedDecimalScale={true}
+                                            thousandSeparator={true}
+                                        />
                                     </Tooltip>
-                                }
-                                {
-                                    !balanceInfo.ShowMemberMaxCreditLimit &&
-                                    <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
-                                }
+                                </div>                                
                             </div>
                         </div>
-                    }
 
-                    {
-                        roleId === memberLevel &&
-                        <div className={rowClasses}>
-                            <div className="col-xs-6">{resources.NetPosition}</div>
-                            <CellContainNumberFormat title={balanceInfo.NetPosition} classNames="col-xs-6 col-right" />
-                        </div>
-                    }
+                        {
+                            roleId === agentLevel &&
+                            <div className={rowClasses}>
+                                <div className="col">{resources.MemberMaxCredit}</div>
+                                <div className="col col-right">
+                                    {
+                                        balanceInfo.ShowMemberMaxCreditLimit &&
+                                        <Tooltip
+                                            title={balanceInfo.MemberMaxCreditLimit}
+                                            position="bottom"
+                                            trigger="mouseenter"
+                                            arrow="true"
+                                        >
+                                            <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
+                                        </Tooltip>
+                                    }
+                                    {
+                                        !balanceInfo.ShowMemberMaxCreditLimit &&
+                                        <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
+                                    }
+                                </div>
+                            </div>
+                        }
 
-                    {
-                        roleId === memberLevel &&
-                        <div className={rowClasses}>
-                            <div className="col-xs-6">{resources.BetCredit}</div>
-                            <CellContainNumberFormat title={balanceInfo.BetCredit} classNames="col-xs-6 col-right" />
-                        </div>
-                    }
+                        {
+                            roleId === memberLevel &&
+                            <div className={rowClasses}>
+                                <div className="col">{resources.NetPosition}</div>
+                                <CellContainNumberFormat title={balanceInfo.NetPosition} classNames="col col-right" />
+                            </div>
+                        }
+
+                        {
+                            roleId === memberLevel &&
+                            <div className={rowClasses}>
+                                <div className="col">{resources.BetCredit}</div>
+                                <CellContainNumberFormat title={balanceInfo.BetCredit} classNames="col col-right" />
+                            </div>
+                        }
+                    </div>                    
                 </div>
             );
         }

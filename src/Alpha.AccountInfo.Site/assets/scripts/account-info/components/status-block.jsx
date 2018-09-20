@@ -76,7 +76,7 @@ export default class StatusBlock extends React.Component {
                                 const disabled = status.Disabled ? "disabled" : "";
                                 return status.IsEditOnProductLevel !== undefined && !status.IsEditOnProductLevel ?
                                     <div key={index}
-                                        className="col"
+                                        className="col-xs-6"
                                         data-id={status.ProductId}
                                         data-name={status.Text}
                                         onClick={this.handleOpenPopupForProductStatus}
@@ -86,7 +86,7 @@ export default class StatusBlock extends React.Component {
                                         <span className="link">{status.Text}</span>                                        
                                     </div> :
                                     <div key={index}
-                                        className={`col checkbox ${disabled}`}
+                                        className={`col-xs-6 checkbox ${disabled}`}
                                         onClick={this.handleOpenPopupForCheckbox}
                                         data-enabled={!status.Disabled}
                                         data-url={status.Url}

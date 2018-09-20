@@ -10,6 +10,10 @@ body {
     background-color: #fff;
 }
 
+[class^='col'] {
+    padding-left: 0;
+    padding-right: 0;
+}
 
 %linkColor {
     color: $link-color;
@@ -65,10 +69,6 @@ hr {
     line-height: 30px;
     padding-left: 10px;
     padding-right: 10px;
-
-    [class^="col"] {
-        padding: 0 0 0 0;
-    }
 }
 
 .col-right {
@@ -208,9 +208,11 @@ hr {
         width: 48%;
         line-height: 28px;
         margin-right: 0;
+        padding-left: calculateScale(6px);
+        padding-right: calculateScale(6px);
 
         &:last-child {
-            margin-left: 8px;
+            margin-left: 4%;
         }
     }
 }
@@ -369,7 +371,6 @@ hr {
     width: 100%;
     display: block;
     padding: 14px 25px 14px 10px;
-    font-size: 13px;
     color: $text-color;
     text-transform: uppercase;
     font-weight: bold;
@@ -407,6 +408,7 @@ hr {
     }
 
     .icon-status {
+        top: 4px;
         margin-right: 5px;
         font-size: 19px;
     }
@@ -425,10 +427,19 @@ hr {
         content: "\e93f";
     }
 
-    &.balance-info {
+    .balance-info {
+        padding-left: 10px;
+        padding-right: 10px;
+
         .row-info {
-            padding-left: 10px;
-            padding-right: 10px;
+            display: table;
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .col {
+            display: table-cell;
         }
 
         .number {
@@ -449,6 +460,9 @@ hr {
         }
 
         .given-credit {
+            position: relative;
+            float: right;
+            padding-left: 24px;
             cursor: pointer;
         }
 
@@ -457,12 +471,14 @@ hr {
             position: absolute;
             left: 0;
             top: 9px;
+            line-height: 0;
             color: $icon-color;
+            font-size: 16px;
+        }
 
-            font: {
-                size: 16px;
-                weight: 100;
-            }
+        div[data-tooltipped] {
+            float: left;
+            line-height: 1;
         }
     }
 
@@ -470,15 +486,9 @@ hr {
         padding-left: 10px;
         padding-right: 10px;
 
-        .col {
-            float: left;
-            width: 50%;
+        [class^='col'] {
             line-height: 20px;
             margin: 6px 0;
-        }
-
-        .checkbox {
-            line-height: 20px;
         }
 
         .checkbox:hover label {
@@ -499,11 +509,6 @@ hr {
         padding-left: 10px;
         padding-right: 10px;
 
-        [class^='col'] {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
         a {
             line-height: 32px;
         }
@@ -511,11 +516,6 @@ hr {
 
     .customer-list {
         padding: 6px 10px 4px;
-
-        [class^="col"] {
-            padding-left: 0;
-            padding-right: 0;
-        }
     }
 
     &.login-info {
