@@ -26,6 +26,7 @@ export default class AccountInfo extends React.Component {
             resources: this.props.resources,
             custId: 0,
             actorRoleId: this.props.actorRoleId,
+            searchCounter: 0,
             showInfoStatus: false,
             customerInfo: null,
             statusData: null,
@@ -58,11 +59,12 @@ export default class AccountInfo extends React.Component {
         $.blockUI();
         let self = this;
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then((data) => {
-            self.setState({
+            self.setState((prevState) => ({
                 username: username,
-                custId: data.CustId,
-                customerInfo: data
-            });
+                customerInfo: data,
+                searchCounter: prevState.searchCounter + 1,
+                custId: data !== null ? data.CustId : 0
+            }));
 
             localStorage.setItem('lastSearchUsername', username);
             $.unblockUI();
@@ -141,7 +143,7 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const { actorRoleId, resources, username, custId, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
+        const { actorRoleId, resources, username, searchCounter, custId, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
         return (
             <div className="accountinfo-container">
@@ -152,11 +154,10 @@ export default class AccountInfo extends React.Component {
                 />
 
                 {
-                    customerInfo !== null &&
-                    <CustomerInfoBlock
-                        resources={resources}
-                        data={customerInfo}
-                        handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                   searchCounter > 0 &&  <CustomerInfoBlock
+                    resources={resources}
+                    data={customerInfo}
+                    handleSearchFromUserLevel={this.handleSearchFromUserLevel}
                     />
                 }
 
