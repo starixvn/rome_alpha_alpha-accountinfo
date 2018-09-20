@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { NoInfo } from '../components/common/no-info';
 
-const DownlineListBlock = ({ resources, custId, data, handleOpenIPInfo }) => {
+const OnlineListBlock = ({ resources, data, handleOpenIPInfo }) => {
     const header = <Link to="/" className="feature-item">
         <span className="icon-login" />
         {resources.OnlineList}
@@ -53,4 +53,4 @@ const DownlineListBlock = ({ resources, custId, data, handleOpenIPInfo }) => {
     }
 };
 
-export default DownlineListBlock;
+export default OnlineListBlock;

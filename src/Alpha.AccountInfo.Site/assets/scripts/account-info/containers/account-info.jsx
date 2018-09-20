@@ -23,14 +23,14 @@ export default class AccountInfo extends React.Component {
         let lastSearchUsername = localStorage.getItem("lastSearchUsername") !== null ? localStorage.getItem("lastSearchUsername") : '';
         this.state = {
             username: lastSearchUsername,
+            resources: this.props.resources,
             custId: 0,
             actorRoleId: this.props.actorRoleId,
             showInfoStatus: false,
             customerInfo: null,
             statusData: null,
             settingData: null,
-            downlineList: null,
-            resources: this.props.resources
+            downlineList: null
         };
 
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
@@ -40,7 +40,7 @@ export default class AccountInfo extends React.Component {
         this.fetchDownlineListFromServer = this.fetchDownlineListFromServer.bind(this);
         this.fetchOnlineListFromServer = this.fetchOnlineListFromServer.bind(this);
 
-        this.handleOpenIPInfo = this.fetchDownlineListFromServer.bind(this);
+        this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -52,7 +52,6 @@ export default class AccountInfo extends React.Component {
                 this.fetchOnlineListFromServer();
             } 
         }
-
     }
 
     fetchCustomerInfoFromServer(e, username) {
@@ -62,11 +61,7 @@ export default class AccountInfo extends React.Component {
             self.setState({
                 username: username,
                 custId: data.CustId,
-                customerInfo: data,
-                downlineList: null,
-                onlineList: null,
-                settingData: null,
-                statusData: null
+                customerInfo: data
             });
 
             localStorage.setItem('lastSearchUsername', username);
@@ -82,10 +77,9 @@ export default class AccountInfo extends React.Component {
     fetchCustomerAllStatusFromServer() {
         let uplineId = null;
         let uplineName = null;
-        let self = this;
-        let customerInfo = this.state.customerInfo;
+        let { customerInfo, settingData } = this.state;
 
-        if (customerInfo !== null && this.state.settingData === null) {
+        if (customerInfo !== null && settingData === null) {
             switch (customerInfo.RoleId) {
                 case UserLevel.Master:
                     uplineId = customerInfo.SuperId;
@@ -111,39 +105,39 @@ export default class AccountInfo extends React.Component {
             };
 
             accountInfoAPI.getCustomerAllStatus(params).then((data) => {
-                self.setState(() => ({
+                this.setState({
                     settingData: data.Settings,
                     statusData: data.Status
-                }));
+                });
             });
         }
     }
 
     fetchDownlineListFromServer() {
-        let self = this;
-        if (this.state.custId > 0 && this.state.downlineList === null) {
+        let { custId } = this.state;
+        if (custId > 0) {
             accountInfoAPI
-                .getDownlineList({ SearchAccountId: this.state.custId })
+                .getDownlineList({ SearchAccountId: custId })
                 .then((responeData) => {
-                    self.setState({ downlineList: responeData });
+                    this.setState({ downlineList: responeData });
                 });
         }
     }
 
     fetchOnlineListFromServer() {
-        let self = this;
-        if (this.state.custId > 0 && this.state.onlineList === null) {
+        let { custId } = this.state;
+        if (custId > 0) {
             accountInfoAPI
-                .getOnlineList({ SearchAccountId: this.state.custId  })
+                .getOnlineList({ SearchAccountId: custId  })
                 .then((responeData) => {
-                    self.setState({ onlineList: responeData });
+                    this.setState({ onlineList: responeData });
                 });
         }
     }
 
     handleOpenIPInfo(e) {
         e.preventDefault();
-        window.top.ageWnd.open(`${this.props.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`);
+        window.top.ageWnd.open(`${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`);
     }
 
     render() {
@@ -213,12 +207,12 @@ export default class AccountInfo extends React.Component {
 
                         <Route key={6}
                             exact path="/loginInfo"
-                            render={(props) => <LoginInfoBlock resources={resources} customerInfo={customerInfo} handleOpenIPInfo={this.handleOpenIPInfo}/>}
+                            render={(props) => <LoginInfoBlock handleOpenIPInfo={this.handleOpenIPInfo} resources={resources} customerInfo={customerInfo} />}
                         />
 
                         <Route key={6}
                             exact path="/onlineList"
-                            render={(props) => <OnlineListBlock resources={resources} custId={custId} data={onlineList} handleOpenIPInfo={this.handleOpenIPInfo}/>}
+                            render={(props) => <OnlineListBlock handleOpenIPInfo={this.handleOpenIPInfo} resources={resources} data={onlineList} />}
                         />
                     </Switch>
                 </HashRouter>
