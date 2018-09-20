@@ -2,7 +2,6 @@
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import UserLevelInfo from './user-level-info';
-import { NoInfo } from '../components/common/no-info';
 
 const CustomerInfoBlock = ({
     data,
@@ -13,7 +12,7 @@ const CustomerInfoBlock = ({
     secondCellClass = "col-xs-7 col-right" }) => {
     const memberLevel = 1, agentLevel = 2, masterLevel = 3;
 
-    const content = data === null ? <NoInfo text={resources.NoInfo} /> :
+    const content = data === null ? <div className="no-information">{resources.NoInfo}</div> :
         <div id="blockInfo" className="block-info">
             {
                 data.ShowMaster &&

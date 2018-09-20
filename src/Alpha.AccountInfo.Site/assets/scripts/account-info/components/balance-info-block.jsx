@@ -3,8 +3,8 @@ import CellContainNumberFormat from './common/cell-contain-number-format';
 import NumberFormat from 'react-number-format';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
-import { Link } from 'react-router-dom';
-import { NoInfo } from '../components/common/no-info';
+import { NoInformFeature } from '../components/common/no-inform-feature';
+import { HeaderFeature } from '../components/common/header-feature';
 
 export default class BalanceInfoBlock extends React.Component {
     constructor(props) {
@@ -34,11 +34,6 @@ export default class BalanceInfoBlock extends React.Component {
 
     render() {
         const { resources, customerInfo } = this.props;
-        const header = <Link to="/" className="feature-item">
-            <span className="icon-balance" />
-            {resources.BalanceInfo}
-        </Link>;
-
         if (customerInfo !== null) {
             const rowClasses = "row-info";
             const { resources } = this.props;
@@ -52,7 +47,7 @@ export default class BalanceInfoBlock extends React.Component {
 
             return (
                 <div className="feature-detail">
-                    {header}
+                    <HeaderFeature url="/" iconClass="icon-balance" featureText={resources.BalanceInfo} />
                     <div className="balance-info">
                         {
                             roleId > memberLevel &&
@@ -177,12 +172,8 @@ export default class BalanceInfoBlock extends React.Component {
             );
         }
         else {
-            return (
-                <div>
-                    {header}
-                    <NoInfo text={resources.NoInfo} />
-                </div>
-            );
+            return <NoInformFeature url="/" iconClass="icon-balance" featureText={resources.BalanceInfo} noInform={resources.NoInfo} />;
+
         }
     }
 }

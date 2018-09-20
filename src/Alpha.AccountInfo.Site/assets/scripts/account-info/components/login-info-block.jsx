@@ -1,18 +1,14 @@
 ﻿import React from 'react';
-import { Link } from 'react-router-dom';
-import { NoInfo } from '../components/common/no-info';
+import { NoInformFeature } from '../components/common/no-inform-feature';
+import { HeaderFeature } from '../components/common/header-feature';
 
 const LoginInfoBlock = ({ resources, customerInfo, handleOpenIPInfo }) => {
-    const header = <Link to="/" className="feature-item">
-        <span className="icon-login" />
-        {resources.LoginInfo}
-    </Link>;
 
     if (customerInfo !== null) {
         const loginInfo = customerInfo.LoginInfo;
         return (
             <div className="feature-detail login-info">
-                {header}
+                <HeaderFeature url="/" iconClass="icon-login" featureText={resources.LoginInfo} />
                 <div className="group">
                     <div className="row-info bold">{resources.CreatedDate}:</div>
                     <div className="row-info">{loginInfo.CreatedDate}</div>
@@ -37,12 +33,7 @@ const LoginInfoBlock = ({ resources, customerInfo, handleOpenIPInfo }) => {
         );
     }
     else {
-        return (
-            <div>
-                {header}
-                <NoInfo text={resources.NoInfo} />
-            </div>
-        );
+        return <NoInformFeature url="/" iconClass="icon-login" featureText={resources.LoginInfo} noInform={resources.NoInfo} />
     }
 };
 

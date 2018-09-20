@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../api-client';
-import { Link } from 'react-router-dom';
-import { NoInfo } from '../components/common/no-info';
+import { NoInformFeature } from '../components/common/no-inform-feature';
+import { HeaderFeature } from '../components/common/header-feature';
 
 export default class StatusBlock extends React.Component {
     constructor(props) {
@@ -60,15 +60,11 @@ export default class StatusBlock extends React.Component {
 
     render() {
         const { resources, username, statusData } = this.props;
-        const header = <Link to="/" className="feature-item">
-            <span className="icon-status" />
-            {resources.Status}
-        </Link>;
 
         if (statusData !== null) {
             return (
                 <div className="feature-detail">
-                    {header}
+                    <HeaderFeature url="/" iconClass="icon-status" featureText={resources.Status} />
                     <div className="status-setting">
                         {
                             statusData !== null && statusData.map((status, index) => {
@@ -108,12 +104,7 @@ export default class StatusBlock extends React.Component {
             );
         }
         else {
-            return (
-                <div>
-                    {header}
-                    <NoInfo text={resources.NoInfo} />
-                </div>
-            );
+            return <NoInformFeature url="/" iconClass="icon-status" featureText={resources.Status} noInform={resources.NoInfo} />;
         }
     }
 }

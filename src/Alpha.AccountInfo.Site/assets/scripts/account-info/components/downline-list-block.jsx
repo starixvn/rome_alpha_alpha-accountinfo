@@ -1,15 +1,11 @@
 ﻿import React from 'react';
 import TotalDownlines from './total-downlines';
-import { Link } from 'react-router-dom';
-import { NoInfo } from '../components/common/no-info';
+import { NoInformFeature } from '../components/common/no-inform-feature';
+import { HeaderFeature } from '../components/common/header-feature';
 import { UserLevel } from '../constants/user-level';
 import { Redirect } from 'react-router-dom';
 
 const DownlineListBlock = ({ resources, data, searchAccountRoleId, handleSearchFromUserLevel }) => {
-    const header = <Link to="/" className="feature-item">
-        <span className="icon-downline" />
-        {resources.DownlineList}
-    </Link>;
 
     if (searchAccountRoleId === 1) {
         return <Redirect to='/' />;
@@ -18,7 +14,7 @@ const DownlineListBlock = ({ resources, data, searchAccountRoleId, handleSearchF
     if (data !== null && data.DownlineList.length > 0) {
         return (
             <div className="feature-detail customer-list">
-                {header}
+                <HeaderFeature url="/" iconClass="icon-downline" featureText={resources.DownlineList} />
                 <div>
                     {
                         data.TotalStatusAgent !== null &&
@@ -54,12 +50,7 @@ const DownlineListBlock = ({ resources, data, searchAccountRoleId, handleSearchF
         );
     }
     else {
-        return (
-            <div>
-                {header}
-                <NoInfo text={resources.NoInfo} />
-            </div>
-        );
+        return <NoInformFeature url="/" iconClass="icon-downline" featureText={resources.DownlineList} noInform={resources.NoInfo} />
     }
 };
 

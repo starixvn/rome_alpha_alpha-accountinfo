@@ -364,6 +364,7 @@ hr {
 
 .feature-list {
     position: relative;
+    //animation: TranslateFromLeft 0.1s;
 }
 
 .feature-item {
@@ -423,6 +424,8 @@ hr {
 }
 
 .feature-detail {
+    animation: TranslateFromLeft 0.4s;
+
     .feature-item:after {
         content: "\e93f";
     }
@@ -542,4 +545,14 @@ hr {
 .customer-list a,
 .setting-block a {
     line-height: 28px;
+}
+
+@keyframes TranslateFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }

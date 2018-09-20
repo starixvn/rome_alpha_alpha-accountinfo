@@ -1,17 +1,13 @@
 ﻿import React from 'react';
-import { Link } from 'react-router-dom';
-import { NoInfo } from '../components/common/no-info';
+import { NoInformFeature } from '../components/common/no-inform-feature';
+import { HeaderFeature } from '../components/common/header-feature';
 
 const OnlineListBlock = ({ resources, data, handleOpenIPInfo }) => {
-    const header = <Link to="/" className="feature-item">
-        <span className="icon-login" />
-        {resources.OnlineList}
-    </Link>;
 
     if (data !== null) {
         return (
             <div className="feature-detail">
-                {header}
+                <HeaderFeature url="/" iconClass="icon-onlinelist" featureText={resources.OnlineList} />
                 {
                     <table className="tblRpt tblRpt-bordered width-100per online-list">
                         <thead>
@@ -44,12 +40,7 @@ const OnlineListBlock = ({ resources, data, handleOpenIPInfo }) => {
         );
     }
     else {
-        return (
-            <div>
-                {header}
-                <NoInfo text={resources.NoInfo} />
-            </div>
-        );
+        return <NoInformFeature url="/" iconClass="icon-onlinelist" featureText={resources.OnlineList} noInform={resources.NoInfo} />
     }
 };
 
