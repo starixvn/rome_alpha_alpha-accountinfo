@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Controllers
 {
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.Web.Filters;
     using MediatR;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -17,25 +18,20 @@
         public async Task<ActionResult> Index(AccountInfoQuery message)
           => await ViewAsync(message);
 
-        [HttpPost]
         public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
-           => JsonData(message, JsonRequestBehavior.DenyGet);
+           => JsonData(message);
 
-        [HttpPost]
         public ActionResult GetCustomerInfo(CustomerInfoQuery message)
-            => JsonData(message, JsonRequestBehavior.DenyGet);
+            => JsonData(message);
 
-        [HttpPost]
         public ActionResult GetDownlineList(DownlineListQuery message)
-            =>  JsonData(message, JsonRequestBehavior.DenyGet);
+            =>  JsonData(message);
 
-        [HttpPost]
         public ActionResult GetCustomerAllStatus(CustomerAllStatusQuery message)
-            => JsonData(message, JsonRequestBehavior.DenyGet);
+            => JsonData(message);
 
-        [HttpPost]
         public ActionResult GetOnlineList(OnlineListQuery message)
-           => JsonData(message, JsonRequestBehavior.DenyGet);
+           => JsonData(message);
 
         public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
            => await ViewAsync(message);
@@ -44,7 +40,7 @@
         public ActionResult UpdateGivenCredit(GivenCreditCommand command)
           => JsonData(command, JsonRequestBehavior.DenyGet);
 
-        [HttpPost]
+        [HttpPost, AntiXsrfFilter]
         public ActionResult UpdateCustomerStatus(CustomerStatusCommand command)
            => JsonData(command, JsonRequestBehavior.DenyGet);
     }

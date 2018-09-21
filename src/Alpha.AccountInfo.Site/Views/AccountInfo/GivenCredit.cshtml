@@ -10,20 +10,21 @@
     }
 </head>
 <body>
-    <div id="given-credit" class="given-credit">
-    </div>
+    <div id="given-credit" class="given-credit" />
+    @Html.AntiForgeryToken()
 </body>
 </html>
 
 @section Scripts {
     @StaticResources.RenderScripts("~/assets/bundles/account-info/given-credit")
     <script>
-     var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
-    renderGivenCredit(
-        "@Model.SearchAccountId",
-        "@Model.SearchAccountRoleId",
-        "@Model.CurrentGivenCredit",
-        JSON.parse('@Model.GivenCreditResources'.replace(/&quot;/g, '\"')));
+        var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
+        var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
+        renderGivenCredit(
+            "@Model.SearchAccountId",
+            "@Model.SearchAccountRoleId",
+            "@Model.CurrentGivenCredit",
+            JSON.parse('@Model.GivenCreditResources'.replace(/&quot;/g, '\"')));
     </script>
 }
 

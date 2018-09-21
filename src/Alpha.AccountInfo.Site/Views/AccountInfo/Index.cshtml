@@ -12,8 +12,8 @@
     }
 </head>
 <body>
+    <div id="account-info" />
     @Html.AntiForgeryToken()
-    <div id="account-info"></div>
 </body>
 </html>
 @section Scripts {
@@ -21,7 +21,7 @@
 
     <script>
         var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
-        var token = $("input[name=\"__RequestVerificationToken\"]").val();
+        var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
         if (localStorage.getItem("actorName") !== '@Model.ActoreName') {
             localStorage.setItem('actorName', '@Model.ActoreName');
             localStorage.removeItem('lastSearchUsername');
