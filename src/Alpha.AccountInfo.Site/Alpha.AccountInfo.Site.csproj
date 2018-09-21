@@ -332,14 +332,6 @@
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
-    <Content Include="assets\bundles\productstatus\productstatus.css" />
-    <Content Include="assets\bundles\productstatus\productstatus.js" />
-    <Content Include="assets\bundles\productstatus\productstatus.min.css">
-      <DependentUpon>productstatus.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\productstatus\productstatus.min.js">
-      <DependentUpon>productstatus.js</DependentUpon>
-    </Content>
     <Content Include="assets\scripts\account-info\api-client.jsx" />
     <Content Include="assets\scripts\account-info\components\balance-info-block.jsx" />
     <Content Include="assets\scripts\account-info\components\common\cell-contain-number-format.jsx" />
@@ -569,7 +561,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\bundles\account-info\" />
     <Folder Include="assets\styles\images\" />
     <Folder Include="validSearchAccountRoleId\" />
   </ItemGroup>
@@ -605,6 +596,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\styles\account-info-mobile-calculate-07.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -657,4 +651,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterBuild">
+    <Exec Command="npm run build" />
+  </Target>
 </Project>
