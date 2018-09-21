@@ -9,4 +9,4 @@ export const NoInformFeature = ({ url, iconClass, featureText, noInform }) => {
             <div className="no-information">{noInform}</div>
         </div>
     );
-}
+};

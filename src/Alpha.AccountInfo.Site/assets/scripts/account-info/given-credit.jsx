@@ -33,7 +33,7 @@ export default class GivenCredit extends React.Component {
     handleClose(e) {
         window.top.closedPopup = true;
         window.top.ageWnd.close();
-    };
+    }
 
     handleSubmit(e) {
         $.blockUI();
@@ -60,7 +60,7 @@ export default class GivenCredit extends React.Component {
                 }, 3000);
             }
         });
-    };
+    }
 
     render() {
         const rowClasses = "col-xs-12 form-group";

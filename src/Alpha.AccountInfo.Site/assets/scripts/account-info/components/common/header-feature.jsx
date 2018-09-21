@@ -8,4 +8,4 @@ export const HeaderFeature = ({ url, iconClass, featureText, onClick = null }) =
             {featureText}
         </Link>
     );
-}
+};
