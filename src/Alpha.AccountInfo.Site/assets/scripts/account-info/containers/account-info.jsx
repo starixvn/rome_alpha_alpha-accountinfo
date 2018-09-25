@@ -9,13 +9,13 @@ import { UserLevel } from '../constants/user-level';
 import SearchingBlock from '../components/searching-block';
 import CustomerInfoBlock from '../components/customer-info-block';
 import FeatureList from './feature-list';
-import OnlineListBlock from '../components/online-list-block';
-import BalanceInfoBlock from '../components/balance-info-block';
-import DownlineListBlock from '../components/downline-list-block';
-import StatusBlock from '../components/status-block';
-import SettingBlock from '../components/setting-block';
-import LoginInfoBlock from '../components/login-info-block';
-import ContactInfoBlock from '../components/contact-info-block';
+import OnlineListBlock from '../components/online-list/online-list-block';
+import BalanceInfoBlock from '../components/balance-info/balance-info-block';
+import DownlineListBlock from '../components/downline-list/downline-list-block';
+import StatusBlock from '../components/status/status-block';
+import SettingBlock from '../components/setting/setting-block';
+import LoginInfoBlock from '../components/login-info/login-info-block';
+import ContactInfoBlock from '../components/contact-info/contact-info-block';
 
 export default class AccountInfo extends React.Component {
     constructor(props) {

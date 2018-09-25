@@ -36,7 +36,7 @@
         public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
            => await ViewAsync(message);
 
-        [HttpPost]
+        [HttpPost, AntiXsrfFilter]
         public ActionResult UpdateGivenCredit(GivenCreditCommand command)
           => JsonData(command, JsonRequestBehavior.DenyGet);
 

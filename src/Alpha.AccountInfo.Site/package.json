@@ -14,7 +14,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar assets/styles/ -o assets/styles/ --watch --recursive",
     "start": "webpack-dev-server --config webpack.config.js --hot --progress --colors --devtool source-map",
     "build-js": "webpack --config webpack.config.js --mode production --progress --profile --colors",
-    "build": "npm install && npm run build-css && npm run build-js "
+    "build": "npm run build-css && npm run build-js "
   },
   "dependencies": {
     "axios": "^0.16.2",
