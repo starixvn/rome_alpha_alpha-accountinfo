@@ -15,13 +15,17 @@ export default class AccountInfoMobile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirectToBalanceInfoPage: false
+            redirectToBalanceInfoPage: false,
+            firstLoad: true
         };
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.customerInfo !== null && nextProps.customerInfo !== this.props.customerInfo) {
-            this.setState({ redirectToBalanceInfoPage: true });
+            this.setState({
+                redirectToBalanceInfoPage: true,
+                firstLoad: false
+            });
         }
     }
 
@@ -39,7 +43,8 @@ export default class AccountInfoMobile extends React.Component {
             resources={resources}
             actorRoleId={actorRoleId}
             searchAccountRoleId={searchAccountRoleId}
-            customerInfo={customerInfo} />;
+            customerInfo={customerInfo}
+            firstLoad={firstLoad}/>;
 
         const contactInfoPage = <ContactInfoPage resources={resources} customerInfo={customerInfo} />;
 

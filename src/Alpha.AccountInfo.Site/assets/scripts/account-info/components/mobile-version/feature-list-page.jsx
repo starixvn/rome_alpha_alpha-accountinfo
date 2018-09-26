@@ -6,24 +6,22 @@ const FeatureListPage = ({
     resources,
     actorRoleId,
     searchAccountRoleId,
-    getCustomerAllStatus,
-    fetchDownlineListFromServer,
-    fetchOnlineListFromServer
-}) => <div className="feature-list">
+    firstLoad
+}) => <div className={`${firstLoad ? "" : ""} feature-list`}>
         <nav>
             <HeaderFeature url="/contactInfo" iconClass="icon-contact-info" featureText={resources.ShowContactInfo} />
             <HeaderFeature url="/balanceInfo" iconClass="icon-balance" featureText={resources.BalanceInfo} />
 
             {
                 actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member &&
-                <HeaderFeature url="/downlineList" iconClass="icon-downline" featureText={resources.DownlineList} onClick={fetchDownlineListFromServer} />
+                <HeaderFeature url="/downlineList" iconClass="icon-downline" featureText={resources.DownlineList} />
                 
             }
 
-            <HeaderFeature url="/status" iconClass="icon-status" featureText={resources.Status} onClick={getCustomerAllStatus} />
-            <HeaderFeature url="/settings" iconClass="icon-settings" featureText={resources.Setting} onClick={getCustomerAllStatus} />
+            <HeaderFeature url="/status" iconClass="icon-status" featureText={resources.Status} />
+            <HeaderFeature url="/settings" iconClass="icon-settings" featureText={resources.Setting} />
             <HeaderFeature url="/loginInfo" iconClass="icon-login" featureText={resources.LoginInfo} />
-            <HeaderFeature url="/onlineList" iconClass="icon-onlinelist" featureText={resources.OnlineList} onClick={fetchOnlineListFromServer} />
+            <HeaderFeature url="/onlineList" iconClass="icon-onlinelist" featureText={resources.OnlineList} />
         </nav>
     </div>;
 
