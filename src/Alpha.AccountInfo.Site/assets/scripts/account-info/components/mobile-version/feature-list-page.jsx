@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
-import { UserLevel } from '../constants/user-level';
-import { HeaderFeature } from '../components/common/header-feature';
+import { UserLevel } from '../../constants/user-level';
+import { HeaderFeature } from '../../components/common/header-feature';
 
-const FeatureList = ({
+const FeatureListPage = ({
     resources,
     actorRoleId,
     searchAccountRoleId,
@@ -27,4 +27,4 @@ const FeatureList = ({
         </nav>
     </div>;
 
-export default FeatureList;
+export default FeatureListPage;

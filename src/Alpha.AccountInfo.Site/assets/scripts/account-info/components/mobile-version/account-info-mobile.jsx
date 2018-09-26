@@ -1,22 +1,15 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Switch, Route, Link } from 'react-router-dom';
-
-import { accountInfoAPI } from '../api-client';
-import { base64Helper } from '../../helpers/base64-helper';
-import { UserLevel } from '../constants/user-level';
-
-import SearchingBlock from '../components/searching-block';
-import CustomerInfoBlock from '../components/customer-info-block';
-import FeatureList from './feature-list';
-import OnlineListBlock from '../components/online-list/online-list-block';
-import BalanceInfoBlock from '../components/balance-info/balance-info-block';
-import DownlineListBlock from '../components/downline-list/downline-list-block';
-import StatusBlock from '../components/status/status-block';
-import SettingBlock from '../components/setting/setting-block';
-import LoginInfoBlock from '../components/login-info/login-info-block';
-import ContactInfoBlock from '../components/contact-info/contact-info-block';
-import DebugRouter from '../../helpers/RouterDebugger';
+import FeatureListPage from './feature-list-page';
+import ContactInfoPage from './contact-info-page';
+import OnlineListPage from './online-list-page';
+import BalanceInfoPage from './balance-info-page';
+import DownlineListPage from './downline-list-page';
+import StatusPage from './status-page';
+import SettingPage from './setting-page';
+import LoginInfoPage from './login-info-page';
+import DebugRouter from '../../../helpers/RouterDebugger';
 
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {
@@ -34,7 +27,7 @@ export default class AccountInfoMobile extends React.Component {
         return (
             <DebugRouter>
                 <Switch>
-                    <Route key={0} exact path="/" render={(props) => <FeatureList
+                    <Route key={0} exact path="/" render={(props) => <FeatureListPage
                         resources={resources}
                         actorRoleId={actorRoleId}
                         searchAccountRoleId={searchAccountRoleId}
@@ -42,18 +35,18 @@ export default class AccountInfoMobile extends React.Component {
                     />
                     <Route key={1}
                         exact path="/contactInfo"
-                        render={(props) => <ContactInfoBlock resources={resources} customerInfo={customerInfo} />}
+                        render={(props) => <ContactInfoPage resources={resources} customerInfo={customerInfo} />}
                     />
                     <Route key={2}
                         exact path="/balanceInfo"
-                        render={(props) => <BalanceInfoBlock resources={resources}
+                        render={(props) => <BalanceInfoPage resources={resources}
                             fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                             customerInfo={customerInfo} />}
                     />
 
                     <Route key={3}
                         exact path="/downlineList"
-                        render={(props) => <DownlineListBlock
+                        render={(props) => <DownlineListPage
                             searchAccountRoleId={searchAccountRoleId}
                             resources={resources}
                             handleSearchFromUserLevel={handleSearchFromUserLevel}
@@ -62,7 +55,7 @@ export default class AccountInfoMobile extends React.Component {
 
                     <Route key={4}
                         exact path="/status"
-                        render={(props) => <StatusBlock
+                        render={(props) => <StatusPage
                             resources={resources}
                             fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                             username={username}
@@ -71,17 +64,17 @@ export default class AccountInfoMobile extends React.Component {
 
                     <Route key={5}
                         exact path="/settings"
-                        render={(props) => <SettingBlock resources={resources} settingData={settingData} />}
+                        render={(props) => <SettingPage resources={resources} settingData={settingData} />}
                     />
 
                     <Route key={6}
                         exact path="/loginInfo"
-                        render={(props) => <LoginInfoBlock handleOpenIPInfo={handleOpenIPInfo} resources={resources} customerInfo={customerInfo} />}
+                        render={(props) => <LoginInfoPage handleOpenIPInfo={handleOpenIPInfo} resources={resources} customerInfo={customerInfo} />}
                     />
 
                     <Route key={6}
                         exact path="/onlineList"
-                        render={(props) => <OnlineListBlock handleOpenIPInfo={handleOpenIPInfo} resources={resources} data={onlineList} />}
+                        render={(props) => <OnlineListPage handleOpenIPInfo={handleOpenIPInfo} resources={resources} data={onlineList} />}
                     />
                 </Switch>
             </DebugRouter>

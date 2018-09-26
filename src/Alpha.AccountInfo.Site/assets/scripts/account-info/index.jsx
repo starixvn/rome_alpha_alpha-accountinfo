@@ -6,7 +6,11 @@ import { base64Helper } from '../helpers/base64-helper';
 window.renderAccountInfo = function (actorRoleId, accountInfoResources) {
     localStorage.removeItem('lastSearchUsername');
     ReactDOM.render(
-        <AccountInfo actorRoleId={actorRoleId} resources={base64Helper.decodeResources(accountInfoResources)} />,
+        <AccountInfo
+            actorRoleId={actorRoleId}
+            resources={base64Helper.decodeResources(accountInfoResources)}
+            mobileView={window.top.alpha.isMobile}
+        />,
         document.getElementById('account-info')
     );
 };

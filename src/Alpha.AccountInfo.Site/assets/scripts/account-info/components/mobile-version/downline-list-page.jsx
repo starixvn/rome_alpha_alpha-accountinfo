@@ -1,10 +1,10 @@
 ﻿import * as React from 'react';
 import { NoInformFeature } from '../../components/common/no-inform-feature';
 import { HeaderFeature } from '../../components/common/header-feature';
-import DownlineListContent from './downline-list-content';
+import DownlineListContent from '../contents/downline-list-content';
 import { Redirect } from 'react-router-dom';
 
-const DownlineListBlock = ({ resources, data, searchAccountRoleId, handleSearchFromUserLevel }) => {
+const DownlineListPage = ({ resources, data, searchAccountRoleId, handleSearchFromUserLevel }) => {
     if (searchAccountRoleId === 1) {
         return <Redirect to='/' />;
     }
@@ -13,8 +13,8 @@ const DownlineListBlock = ({ resources, data, searchAccountRoleId, handleSearchF
         <NoInformFeature url="/" iconClass="icon-downline" featureText={resources.DownlineList} noInform={resources.NoInfo} /> :
         <div className="feature-detail">
             <HeaderFeature url="/" iconClass="icon-downline" featureText={resources.DownlineList} />
-            <DownlineListContent resources={resources} data={data} searchAccountRoleId={searchAccountRoleId} handleSearchFromUserLevel={handleSearchFromUserLevel} />
+            <DownlineListContent resources={resources} data={data} handleSearchFromUserLevel={handleSearchFromUserLevel} />
         </div>;
 };
 
-export default DownlineListBlock;
+export default DownlineListPage;
