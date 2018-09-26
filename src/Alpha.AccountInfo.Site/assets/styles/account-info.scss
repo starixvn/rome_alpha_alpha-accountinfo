@@ -364,16 +364,22 @@ hr {
 
 .feature-list {
     position: relative;
+
+    &.translate-from-left {
+        animation: TranslateFromLeft 0.4s;
+    }
 }
 
 .accordion-item {
-    transition: all 0.4s ease-out;
+    transition: all 0.3s;
     max-height: 46px;
     overflow: hidden;
+    transform-origin: top center;
+    transform: rotate(0.1deg);
 
     &.expanded {
-        transition: all 1s ease-out;
-        max-height: 800px;
+        transition: all 0.6s;
+        max-height: 500px;
 
         .feature-item:after {
             transform: rotate(90deg);
@@ -443,7 +449,7 @@ hr {
     display: block;
     width: 100%;
 
-    &.with-push-menu {
+    &.translate-from-left {
         animation: TranslateFromLeft 0.4s;
     }
 

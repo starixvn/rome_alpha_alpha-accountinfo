@@ -6,7 +6,7 @@ import OnlineListContent from '../contents/online-list-content';
 const OnlineListPage = ({ resources, data, handleOpenIPInfo, redirectToBalanceInfoPage }) =>
     data === null ?
         <NoInformFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} noInform={resources.NoInfo} /> :
-        <div className="feature-detail with-push-menu">
+        <div className="feature-detail translate-from-left">
             <HeaderFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />
             <OnlineListContent resources={resources} data={data} handleOpenIPInfo={handleOpenIPInfo} />
         </div>;

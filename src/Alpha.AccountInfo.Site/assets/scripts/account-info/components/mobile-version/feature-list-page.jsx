@@ -2,15 +2,14 @@
 import { UserLevel } from '../../constants/user-level';
 import { HeaderFeature } from './header-feature';
 
-const FeatureListPage = ({ resources, customerInfo, actorRoleId, redirectToBalanceInfoPage }) => {
-    let searchAccountRoleId = actorRoleId - 1, headerCss = '';
+const FeatureListPage = ({ resources, customerInfo, actorRoleId, redirectToBalanceInfoPage, addAnimation = true }) => {
+    let searchAccountRoleId = actorRoleId - 1;
     if (customerInfo !== null) {
         searchAccountRoleId = customerInfo.RoleId;
-        headerCss = 'translate-from-left';
     }
 
     return (
-        <div className={`${headerCss} feature-list`}>
+        <div className={`${addAnimation ? 'translate-from-left' : ''} feature-list`}>
             <nav>
                 <HeaderFeature url="/contactInfo" iconClass="icon-contact-info" featureText={resources.ShowContactInfo} />
                 <HeaderFeature url="/balanceInfo" iconClass="icon-balance" featureText={resources.BalanceInfo} />

@@ -17,7 +17,7 @@ export default class BalanceInfoContent extends React.Component {
         let customerInfo = this.props.customerInfo;
 
         let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}`;
-        window.top.ageWnd.open(givenCreditUrl, resources.GivenCreditPopupTitle, undefined, undefined, 350, 270);
+        window.top.ageWnd.open(givenCreditUrl, resources.GivenCreditPopupTitle, undefined, undefined, 370, 270);
 
         window.top.closedPopup = false;
         window.top.realoadLeftPanel = false;

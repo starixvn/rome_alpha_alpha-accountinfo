@@ -32,11 +32,12 @@ export default class AccountInfoMobile extends React.Component {
 
         const { redirectToBalanceInfoPage} = this.state;
 
-        const featureListPage =
+        let buildFeatureListPage = (addAnimation = true) =>
             <FeatureListPage resources={resources}
                 actorRoleId={actorRoleId}
                 customerInfo={customerInfo}
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                addAnimation={addAnimation}
             />;
 
         const contactInfoPage = <ContactInfoPage resources={resources} customerInfo={customerInfo} redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
@@ -73,7 +74,7 @@ export default class AccountInfoMobile extends React.Component {
         return (
             <HashRouter>
                 <Switch>
-                    <Route key={0} exact path="/featureList" render={(props) => featureListPage} />
+                    <Route key={0} exact path="/featureList" render={(props) => buildFeatureListPage()} />
                     <Route key={1} exact path="/contactInfo" render={(props) => contactInfoPage}/>
                     <Route key={2} exact path="/balanceInfo" render={(props) => balanceInfoPage}/>
                     <Route key={3} exact path="/downlineList" render={(props) => downlineListPage} />
@@ -81,7 +82,7 @@ export default class AccountInfoMobile extends React.Component {
                     <Route key={5} exact path="/settings" render={(props) => settingPage} />
                     <Route key={6} exact path="/loginInfo" render={(props) => loginInfoPage} />
                     <Route key={6} exact path="/onlineList" render={(props) => onlineListPage} />
-                    <Route key={7} exact path="/" render={(props) => customerInfo !== null ? balanceInfoPage : featureListPage} />
+                    <Route key={7} exact path="/" render={(props) => customerInfo !== null ? balanceInfoPage : buildFeatureListPage(false)} />
                 </Switch>
             </HashRouter>
         );
