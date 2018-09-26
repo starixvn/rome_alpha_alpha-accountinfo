@@ -1,6 +1,5 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Switch, Route, Link } from 'react-router-dom';
 
 import { accountInfoAPI } from '../api-client';
 import { base64Helper } from '../../helpers/base64-helper';
@@ -8,15 +7,9 @@ import { UserLevel } from '../constants/user-level';
 
 import SearchingBlock from '../components/searching-block';
 import CustomerInfoBlock from '../components/customer-info-block';
-import FeatureList from './feature-list';
-import OnlineListBlock from '../components/online-list/online-list-block';
-import BalanceInfoBlock from '../components/balance-info/balance-info-block';
-import DownlineListBlock from '../components/downline-list/downline-list-block';
-import StatusBlock from '../components/status/status-block';
-import SettingBlock from '../components/setting/setting-block';
-import LoginInfoBlock from '../components/login-info/login-info-block';
-import ContactInfoBlock from '../components/contact-info/contact-info-block';
-import DebugRouter from '../../helpers/RouterDebugger';
+
+import AccountInfoMobile from './account-info-mobile';
+import AccountInfoDesktop from './account-info-desktop';
 
 export default class AccountInfo extends React.Component {
     constructor(props) {
@@ -34,7 +27,8 @@ export default class AccountInfo extends React.Component {
             customerInfo: null,
             statusData: null,
             settingData: null,
-            downlineList: null
+            downlineList: null,
+            onlineList: null
         };
 
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
@@ -48,13 +42,13 @@ export default class AccountInfo extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { customerInfo, custId} = this.state;
+        const { customerInfo, custId } = this.state;
         if (customerInfo !== prevState.customerInfo) {
             this.fetchCustomerAllStatusFromServer();
             if (custId !== prevState.custId) {
                 this.fetchDownlineListFromServer();
                 this.fetchOnlineListFromServer();
-            } 
+            }
         }
     }
 
@@ -134,7 +128,7 @@ export default class AccountInfo extends React.Component {
         let { custId } = this.state;
         if (custId > 0) {
             accountInfoAPI
-                .getOnlineList({ SearchAccountId: custId  })
+                .getOnlineList({ SearchAccountId: custId })
                 .then((responeData) => {
                     this.setState({ onlineList: responeData });
                 });
@@ -151,17 +145,11 @@ export default class AccountInfo extends React.Component {
             actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
             customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
-        const featureList = <FeatureList
-            resources={resources}
-            actorRoleId={actorRoleId}
-            searchAccountRoleId={searchAccountRoleId}
-            customerInfo={customerInfo} />;
-
         return (
             <div className="accountinfo-container">
                 <SearchingBlock
                     userNamePlaceHolder={resources.UserNamePlaceHolder}
-                    fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer} 
+                    fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
                     username={username}
                 />
 
@@ -172,55 +160,21 @@ export default class AccountInfo extends React.Component {
                         handleSearchFromUserLevel={this.handleSearchFromUserLevel} />
                 }
 
-                <DebugRouter>
-                    <Switch>
-                        <Route key={0} exact path="/" render={(props) => featureList} />
-                        <Route key={1}
-                            exact path="/contactInfo"
-                            render={(props) => <ContactInfoBlock resources={resources} customerInfo={customerInfo} />}
-                        />
-                        <Route key={2}
-                            exact path="/balanceInfo"
-                            render={(props) => <BalanceInfoBlock {...props} resources={resources}
-                                fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                                customerInfo={customerInfo} />}
-                        />
-
-                        <Route key={3}
-                            exact path="/downlineList"
-                            render={(props) => <DownlineListBlock
-                                searchAccountRoleId={searchAccountRoleId}
-                                resources={resources}
-                                handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                                data={downlineList} />}
-                        />
-
-                        <Route key={4}
-                            exact path="/status"
-                            render={(props) => <StatusBlock
-                                resources={resources}
-                                fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                                username={username}
-                                statusData={statusData} />}
-                        />
-
-                        <Route key={5}
-                            exact path="/settings"
-                            render={(props) => <SettingBlock resources={resources} settingData={settingData} />}
-                        />
-
-                        <Route key={6}
-                            exact path="/loginInfo"
-                            render={(props) => <LoginInfoBlock handleOpenIPInfo={this.handleOpenIPInfo} resources={resources} customerInfo={customerInfo} />}
-                        />
-
-                        <Route key={6}
-                            exact path="/onlineList"
-                            render={(props) => <OnlineListBlock handleOpenIPInfo={this.handleOpenIPInfo} resources={resources} data={onlineList} />}
-                        />
-                    </Switch>
-                </DebugRouter>
-            </div>
-        );
+                <AccountInfoDesktop
+                    actorRoleId={actorRoleId}
+                    resources={resources}
+                    username={username}
+                    searchCounter={searchCounter}
+                    custId={custId}
+                    searchAccountRoleId={searchAccountRoleId}
+                    customerInfo={customerInfo}
+                    downlineList={downlineList}
+                    onlineList={onlineList}
+                    statusData={statusData}
+                    settingData={settingData}
+                    fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
+                    handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                    handleOpenIPInfo={this.handleOpenIPInfo} />
+            </div>);
     }
 }

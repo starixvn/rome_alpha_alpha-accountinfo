@@ -49,6 +49,7 @@
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "raw-loader": "^0.5.1",
     "react": "^16.5.1",
+    "react-accessible-accordion": "^2.4.4",
     "react-dom": "^16.5.1",
     "react-number-format": "^3.4.2",
     "react-router": "^4.3.1",
