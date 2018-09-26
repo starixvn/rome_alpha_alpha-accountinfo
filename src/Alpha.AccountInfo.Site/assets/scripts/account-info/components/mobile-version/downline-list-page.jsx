@@ -11,7 +11,7 @@ const DownlineListPage = ({ resources, data, searchAccountRoleId, handleSearchFr
 
     return data === null ?
         <NoInformFeature url="/" iconClass="icon-downline" featureText={resources.DownlineList} noInform={resources.NoInfo} /> :
-        <div className="feature-detail">
+        <div className="feature-detail with-push-menu">
             <HeaderFeature url="/" iconClass="icon-downline" featureText={resources.DownlineList} />
             <DownlineListContent resources={resources} data={data} handleSearchFromUserLevel={handleSearchFromUserLevel} />
         </div>;

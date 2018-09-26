@@ -5,7 +5,7 @@ import ContactInfoContent from '../contents/contact-info-content';
 
 const ContactInfoPage = ({ customerInfo, resources }) => customerInfo === null ?
     <NoInformFeature url="/" iconClass="icon-contact-info" featureText={resources.ShowContactInfo} noInform={resources.NoInfo} /> :
-    <div className="feature-detail">
+    <div className="feature-detail with-push-menu">
         <HeaderFeature url="/" iconClass="icon-contact-info" featureText={resources.ShowContactInfo} />
         <ContactInfoContent resources={resources} customerInfo={customerInfo} />
     </div>;

@@ -83,11 +83,6 @@ export default class AccountInfoDesktop extends React.Component {
     render() {
 
         const { expandedItems, collapseAll, firstLoadSearch } = this.state;
-        let collapseExpandClassName = 'account-info-group';
-
-        if (firstLoadSearch === false && collapseAll === false) {
-            collapseExpandClassName = 'account-info-group scroll-top';
-        }
 
         const {
             actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
@@ -100,12 +95,11 @@ export default class AccountInfoDesktop extends React.Component {
 
         return customerInfo === null ?
             <div className="no-information">{resources.NoInfo}</div> :
-            <div className={collapseExpandClassName}>
-                <Accordion>
+            <div className="accordions">                
                     <CustomizedAccordionItem
                         title={resources.ShowContactInfo}
                         iconClassname="icon-contact-info"
-                        accordionItemBodyClassName="accordion__body contact-info"
+                        accordionItemBodyClassName="contact-info"
                         expanded={expandedItems.contactInfo}
                         handleClick={this.handleCollapExpandBlock}
                         blockId="contactInfo"
@@ -116,7 +110,7 @@ export default class AccountInfoDesktop extends React.Component {
                     <CustomizedAccordionItem
                         title={resources.BalanceInfo}
                         iconClassname="icon-balance"
-                        accordionItemBodyClassName="accordion__body balance-info"
+                        accordionItemBodyClassName="balance-info"
                         expanded={expandedItems.balanceInfo}
                         handleClick={this.handleCollapExpandBlock}
                         blockId="balanceInfo"
@@ -130,7 +124,7 @@ export default class AccountInfoDesktop extends React.Component {
                         <CustomizedAccordionItem
                             title={resources.DownlineList}
                             iconClassname="icon-downline"
-                            accordionItemBodyClassName="accordion__body downline-list"
+                            accordionItemBodyClassName="downline-list"
                             expanded={expandedItems.downlineList}
                             handleClick={this.handleCollapExpandBlock}
                             blockId="downlineList"
@@ -146,7 +140,7 @@ export default class AccountInfoDesktop extends React.Component {
                     <CustomizedAccordionItem
                         title={resources.Status}
                         iconClassname="icon-status"
-                        accordionItemBodyClassName="accordion__body status"
+                        accordionItemBodyClassName="status"
                         expanded={expandedItems.status}
                         handleClick={this.handleCollapExpandBlock}
                         blockId="status"
@@ -165,7 +159,7 @@ export default class AccountInfoDesktop extends React.Component {
                     <CustomizedAccordionItem
                         title={resources.Setting}
                         iconClassname="icon-settings"
-                        accordionItemBodyClassName="accordion__body settings"
+                        accordionItemBodyClassName="settings"
                         expanded={expandedItems.setting}
                         handleClick={this.handleCollapExpandBlock}
                         blockId="setting"
@@ -177,7 +171,7 @@ export default class AccountInfoDesktop extends React.Component {
                     <CustomizedAccordionItem
                         title={resources.LoginInfo}
                         iconClassname="icon-login"
-                        accordionItemBodyClassName="accordion__body login-info"
+                        accordionItemBodyClassName="login-info"
                         expanded={expandedItems.loginInfo}
                         handleClick={this.handleCollapExpandBlock}
                         blockId="loginInfo"
@@ -191,7 +185,7 @@ export default class AccountInfoDesktop extends React.Component {
                     <CustomizedAccordionItem
                         title={resources.OnlineList}
                         iconClassname="icon-onlinelist"
-                        accordionItemBodyClassName="accordion__body online-list"
+                        accordionItemBodyClassName="online-list"
                         expanded={expandedItems.onlineList}
                         handleClick={this.handleCollapExpandBlock}
                         blockId="onlineList"
@@ -201,7 +195,6 @@ export default class AccountInfoDesktop extends React.Component {
                                 <OnlineListContent resources={resources} data={onlineList} handleOpenIPInfo={handleOpenIPInfo} />
                         }
                     </CustomizedAccordionItem>
-                </Accordion>
             </div>;
     }
 }

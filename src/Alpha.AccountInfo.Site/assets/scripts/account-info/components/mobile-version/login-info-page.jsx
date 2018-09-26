@@ -5,7 +5,7 @@ import LoginInfoContent from '../contents/login-info-content';
 
 const LoginInfoPage = ({ resources, customerInfo, handleOpenIPInfo }) => customerInfo === null ?
     <NoInformFeature url="/" iconClass="icon-login" featureText={resources.LoginInfo} noInform={resources.NoInfo} /> :
-    <div className="feature-detail">
+    <div className="feature-detail login-info with-push-menu">
         <HeaderFeature url="/" iconClass="icon-login" featureText={resources.LoginInfo} />
         <LoginInfoContent resources={resources} loginInfo={customerInfo.LoginInfo} handleOpenIPInfo={handleOpenIPInfo} />
     </div>;

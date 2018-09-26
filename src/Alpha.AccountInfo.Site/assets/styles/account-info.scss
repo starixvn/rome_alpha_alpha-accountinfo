@@ -364,7 +364,21 @@ hr {
 
 .feature-list {
     position: relative;
-    //animation: TranslateFromLeft 0.1s;
+}
+
+.accordion-item {
+    transition: all 0.4s ease-out;
+    max-height: 46px;
+    overflow: hidden;
+
+    &.expanded {
+        transition: all 1s ease-out;
+        max-height: 800px;
+
+        .feature-item:after {
+            transform: rotate(90deg);
+        }
+    }
 }
 
 .feature-item {
@@ -375,6 +389,7 @@ hr {
     color: $text-color;
     text-transform: uppercase;
     font-weight: bold;
+    cursor: pointer;
 
     &:hover {
         background-color: #ddd;
@@ -389,6 +404,7 @@ hr {
         font-size: 19px;
         font-weight: 400;
         content: "\E942";
+        transition: transform 0.3s ease-out;
     }
 
     [class^=icon] {
@@ -424,7 +440,12 @@ hr {
 }
 
 .feature-detail {
-    animation: TranslateFromLeft 0.4s;
+    display: block;
+    width: 100%;
+
+    &.with-push-menu {
+        animation: TranslateFromLeft 0.4s;
+    }
 
     .feature-item:after {
         content: "\e93f";
@@ -519,6 +540,8 @@ hr {
 
     .customer-list {
         padding: 6px 10px 4px;
+        max-height: 290px;
+        overflow: auto;
     }
 
     &.login-info {

@@ -5,7 +5,7 @@ import BalanceInfoContent from '../contents/balance-info-content';
 
 const BalanceInfoPage = ({ customerInfo, resources, fetchCustomerInfoFromServer }) => customerInfo === null ?
     <NoInformFeature url="/" iconClass="icon-balance" featureText={resources.BalanceInfo} noInform={resources.NoInfo} /> :
-    <div className="feature-detail">
+    <div className="feature-detail with-push-menu">
         <HeaderFeature url="/" iconClass="icon-balance" featureText={resources.BalanceInfo} />
         <BalanceInfoContent resources={resources} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
     </div>;

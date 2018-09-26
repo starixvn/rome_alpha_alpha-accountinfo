@@ -4,7 +4,7 @@ import { HeaderFeature } from './header-feature';
 
 export const NoInformFeature = ({ url, iconClass, featureText, noInform }) => {
     return (
-        <div className="feature-detail">
+        <div className="feature-detail with-push-menu">
             <HeaderFeature url={url} iconClass={iconClass} featureText={featureText} />
             <div className="no-information">{noInform}</div>
         </div>

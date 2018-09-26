@@ -5,7 +5,7 @@ import SettingContent from '../contents/setting-content';
 
 const SettingPage = ({ resources, settingData }) => settingData === null ?
     <NoInformFeature url="/" iconClass="icon-settings" featureText={resources.Setting} noInform={resources.NoInfo} /> :
-    <div className="feature-detail block-settings">
+    <div className="feature-detail with-push-menu">
         <HeaderFeature url="/" iconClass="icon-status" featureText={resources.Setting} />
         <SettingContent resources={resources} settingData={settingData} />
     </div>;

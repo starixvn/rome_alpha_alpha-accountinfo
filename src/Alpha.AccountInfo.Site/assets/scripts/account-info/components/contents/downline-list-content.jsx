@@ -23,7 +23,7 @@ const DownlineListContent = ({ resources, data, handleSearchFromUserLevel }) => 
         />
     }
 
-    <div><hr /></div>
+    <div className="col-xs-12 row-info"><hr /></div>
     <div className="col-xs-12 customer-list">
         {
             data.DownlineList.map((downline, index) => {
