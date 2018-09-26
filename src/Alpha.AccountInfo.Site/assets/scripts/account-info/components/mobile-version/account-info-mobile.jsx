@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Switch, Route, Link } from 'react-router-dom';
+import { HashRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 import FeatureListPage from './feature-list-page';
 import ContactInfoPage from './contact-info-page';
 import OnlineListPage from './online-list-page';
@@ -14,6 +14,15 @@ import DebugRouter from '../../../helpers/RouterDebugger';
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            redirectToBalanceInfoPage: false
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.customerInfo !== null && nextProps.customerInfo !== this.props.customerInfo) {
+            this.setState({ redirectToBalanceInfoPage: true });
+        }
     }
 
     render() {
@@ -24,58 +33,51 @@ export default class AccountInfoMobile extends React.Component {
             handleSearchFromUserLevel,
             handleOpenIPInfo } = this.props;
 
+        const { redirectToBalanceInfoPage } = this.state;
+
+        const featureListPage = <FeatureListPage
+            resources={resources}
+            actorRoleId={actorRoleId}
+            searchAccountRoleId={searchAccountRoleId}
+            customerInfo={customerInfo} />;
+
+        const contactInfoPage = <ContactInfoPage resources={resources} customerInfo={customerInfo} />;
+
+        const balanceInfoPage = <BalanceInfoPage resources={resources}
+            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+            customerInfo={customerInfo} />;
+
+        const downlineListPage = <DownlineListPage
+            searchAccountRoleId={searchAccountRoleId}
+            resources={resources}
+            handleSearchFromUserLevel={handleSearchFromUserLevel}
+            data={downlineList}
+            redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
+
+        const statusPage = <StatusPage
+            resources={resources}
+            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+            username={username}
+            statusData={statusData} />;
+
+        const settingPage = <SettingPage resources={resources} settingData={settingData} />;
+
+        const loginInfoPage = <LoginInfoPage handleOpenIPInfo={handleOpenIPInfo} resources={resources} customerInfo={customerInfo} />;
+
+        const onlineListPage = <OnlineListPage handleOpenIPInfo={handleOpenIPInfo} resources={resources} data={onlineList} />;
+
         return (
             <DebugRouter>
                 <Switch>
-                    <Route key={0} exact path="/" render={(props) => <FeatureListPage
-                        resources={resources}
-                        actorRoleId={actorRoleId}
-                        searchAccountRoleId={searchAccountRoleId}
-                        customerInfo={customerInfo} />}
-                    />
-                    <Route key={1}
-                        exact path="/contactInfo"
-                        render={(props) => <ContactInfoPage resources={resources} customerInfo={customerInfo} />}
-                    />
-                    <Route key={2}
-                        exact path="/balanceInfo"
-                        render={(props) => <BalanceInfoPage resources={resources}
-                            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                            customerInfo={customerInfo} />}
-                    />
-
-                    <Route key={3}
-                        exact path="/downlineList"
-                        render={(props) => <DownlineListPage
-                            searchAccountRoleId={searchAccountRoleId}
-                            resources={resources}
-                            handleSearchFromUserLevel={handleSearchFromUserLevel}
-                            data={downlineList} />}
-                    />
-
-                    <Route key={4}
-                        exact path="/status"
-                        render={(props) => <StatusPage
-                            resources={resources}
-                            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                            username={username}
-                            statusData={statusData} />}
-                    />
-
-                    <Route key={5}
-                        exact path="/settings"
-                        render={(props) => <SettingPage resources={resources} settingData={settingData} />}
-                    />
-
-                    <Route key={6}
-                        exact path="/loginInfo"
-                        render={(props) => <LoginInfoPage handleOpenIPInfo={handleOpenIPInfo} resources={resources} customerInfo={customerInfo} />}
-                    />
-
-                    <Route key={6}
-                        exact path="/onlineList"
-                        render={(props) => <OnlineListPage handleOpenIPInfo={handleOpenIPInfo} resources={resources} data={onlineList} />}
-                    />
+                    <Route key={0} exact path="/featureList" render={(props) => featureListPage} />
+                    <Route key={1} exact path="/contactInfo" render={(props) => contactInfoPage}/>
+                    <Route key={2} exact path="/balanceInfo" render={(props) => balanceInfoPage}/>
+                    <Route key={3} exact path="/downlineList" render={(props) => downlineListPage} />
+                    <Route key={4} exact path="/status" render={(props) => statusPage}  />
+                    <Route key={5} exact path="/settings" render={(props) => settingPage} />
+                    <Route key={6} exact path="/loginInfo" render={(props) => loginInfoPage} />
+                    <Route key={6} exact path="/onlineList" render={(props) => onlineListPage} />
+                    <Route key={7} exact path="/" render={(props) => customerInfo !== null ? balanceInfoPage : featureListPage} />
                 </Switch>
             </DebugRouter>
         );

@@ -93,7 +93,7 @@ export default class AccountInfoDesktop extends React.Component {
 
         const noInfoContent = <div className="no-information">{resources.NoInfo}</div>;
 
-        return <div className={collapseExpandClassName}>
+        return <div className="accordions">
                     <CustomizedAccordionItem
                         title={resources.ShowContactInfo}
                         iconClassname="icon-contact-info"
@@ -164,7 +164,6 @@ export default class AccountInfoDesktop extends React.Component {
                     >
                         {  settingData === null ? noInfoContent :<SettingContent resources={resources} settingData={settingData} /> }
                     </CustomizedAccordionItem>
-            
 
                     <CustomizedAccordionItem
                         title={resources.LoginInfo}

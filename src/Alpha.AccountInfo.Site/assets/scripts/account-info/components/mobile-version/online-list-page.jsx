@@ -4,9 +4,9 @@ import { HeaderFeature } from '../../components/common/header-feature';
 import OnlineListContent from '../contents/online-list-content';
 
 const OnlineListPage = ({ resources, data, handleOpenIPInfo }) => data === null ?
-    <NoInformFeature url="/" iconClass="icon-onlinelist" featureText={resources.OnlineList} noInform={resources.NoInfo} /> :
+    <NoInformFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} noInform={resources.NoInfo} /> :
     <div className="feature-detail with-push-menu">
-        <HeaderFeature url="/" iconClass="icon-onlinelist" featureText={resources.OnlineList} />
+        <HeaderFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} />
         <OnlineListContent resources={resources} data={data} handleOpenIPInfo={handleOpenIPInfo}/>
     </div>;
 
