@@ -174,7 +174,7 @@ export default class AccountInfo extends React.Component {
                             fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
                             handleSearchFromUserLevel={this.handleSearchFromUserLevel}
                             handleOpenIPInfo={this.handleOpenIPInfo} /> :
-                        <AccountInfoDesktop
+                        (customerInfo !== null && <AccountInfoDesktop
                             actorRoleId={actorRoleId}
                             resources={resources}
                             username={username}
@@ -188,7 +188,7 @@ export default class AccountInfo extends React.Component {
                             settingData={settingData}
                             fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
                             handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                            handleOpenIPInfo={this.handleOpenIPInfo} />
+                            handleOpenIPInfo={this.handleOpenIPInfo} />)
                 }
               
             </div>);

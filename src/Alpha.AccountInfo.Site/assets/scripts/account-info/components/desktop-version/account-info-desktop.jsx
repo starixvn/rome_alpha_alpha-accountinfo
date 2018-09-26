@@ -93,9 +93,7 @@ export default class AccountInfoDesktop extends React.Component {
 
         const noInfoContent = <div className="no-information">{resources.NoInfo}</div>;
 
-        return customerInfo === null ?
-            <div className="no-information">{resources.NoInfo}</div> :
-            <div className="accordions">                
+        return <div className={collapseExpandClassName}>
                     <CustomizedAccordionItem
                         title={resources.ShowContactInfo}
                         iconClassname="icon-contact-info"
