@@ -16,6 +16,7 @@ import StatusBlock from '../components/status/status-block';
 import SettingBlock from '../components/setting/setting-block';
 import LoginInfoBlock from '../components/login-info/login-info-block';
 import ContactInfoBlock from '../components/contact-info/contact-info-block';
+import DebugRouter from '../../helpers/RouterDebugger';
 
 export default class AccountInfo extends React.Component {
     constructor(props) {
@@ -150,6 +151,12 @@ export default class AccountInfo extends React.Component {
             actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
             customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
+        const featureList = <FeatureList
+            resources={resources}
+            actorRoleId={actorRoleId}
+            searchAccountRoleId={searchAccountRoleId}
+            customerInfo={customerInfo} />;
+
         return (
             <div className="accountinfo-container">
                 <SearchingBlock
@@ -165,17 +172,9 @@ export default class AccountInfo extends React.Component {
                         handleSearchFromUserLevel={this.handleSearchFromUserLevel} />
                 }
 
-                <HashRouter>
+                <DebugRouter>
                     <Switch>
-                        <Route key={0} exact path="/" render={(props) => <FeatureList
-                            resources={resources}
-                            actorRoleId={actorRoleId}
-                            searchAccountRoleId={searchAccountRoleId}
-                            getCustomerAllStatus={this.fetchCustomerAllStatusFromServer}
-                            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                            fetchDownlineListFromServer={this.fetchDownlineListFromServer}
-                            fetchOnlineListFromServer={this.fetchOnlineListFromServer}/>}
-                        />
+                        <Route key={0} exact path="/" render={(props) => featureList} />
                         <Route key={1}
                             exact path="/contactInfo"
                             render={(props) => <ContactInfoBlock resources={resources} customerInfo={customerInfo} />}
@@ -220,7 +219,7 @@ export default class AccountInfo extends React.Component {
                             render={(props) => <OnlineListBlock handleOpenIPInfo={this.handleOpenIPInfo} resources={resources} data={onlineList} />}
                         />
                     </Switch>
-                </HashRouter>
+                </DebugRouter>
             </div>
         );
     }
