@@ -70,7 +70,7 @@ export default class GivenCredit extends React.Component {
         return (
 
             <div>
-                <div className={hideMessages && 'hidden'}>
+                <div className={hideMessages ?  `hidden` : ``}>
                     <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
                 </div>
                 <div className={rowClasses}>

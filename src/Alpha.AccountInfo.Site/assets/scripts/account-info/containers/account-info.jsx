@@ -19,7 +19,7 @@ export default class AccountInfo extends React.Component {
             actorRoleId: actorRoleId,
             searchAccountRoleId: actorRoleId - 1,
             mobileView: mobileView,
-            redirectToBalanceInfoPage: false,
+            redirectToBalanceInfoPage: true,
             searchCounter: 0,
             showInfoStatus: false,
             customerInfo: null,
@@ -50,7 +50,7 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchCustomerInfoFromServer(e, username) {
+    fetchCustomerInfoFromServer(e, username, redirectToBalanceInfoPage = true) {
         $.blockUI();
         let self = this;
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then((data) => {
@@ -58,7 +58,7 @@ export default class AccountInfo extends React.Component {
                 username: username,
                 customerInfo: data,
                 searchCounter: prevState.searchCounter + 1,
-                redirectToBalanceInfoPage: data !== null,
+                redirectToBalanceInfoPage: redirectToBalanceInfoPage,
                 searchAccountRoleId: data !== null ? data.RoleId : 0,
                 custId: data !== null ? data.CustId : 0
             }));
@@ -140,7 +140,7 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const { actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
+        const { actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId, redirectToBalanceInfoPage ,
                 mobileView, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
         const accountInfoMobile = <AccountInfoMobile
@@ -150,6 +150,7 @@ export default class AccountInfo extends React.Component {
             searchCounter={searchCounter}
             custId={custId}
             searchAccountRoleId={searchAccountRoleId}
+            redirectToBalanceInfoPage={redirectToBalanceInfoPage}
             customerInfo={customerInfo}
             downlineList={downlineList}
             onlineList={onlineList}
@@ -166,6 +167,7 @@ export default class AccountInfo extends React.Component {
             searchCounter={searchCounter}
             custId={custId}
             searchAccountRoleId={searchAccountRoleId}
+            redirectToBalanceInfoPage={redirectToBalanceInfoPage}
             customerInfo={customerInfo}
             downlineList={downlineList}
             onlineList={onlineList}

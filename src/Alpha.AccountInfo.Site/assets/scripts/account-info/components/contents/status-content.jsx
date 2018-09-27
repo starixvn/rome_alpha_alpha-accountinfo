@@ -32,7 +32,7 @@ export default class StatusContent extends React.Component {
                     if (data.IsSuccess) {
                         setTimeout(() => {
                             $.unblockUI();
-                            self.props.fetchCustomerInfoFromServer(e, self.props.username);
+                            self.props.fetchCustomerInfoFromServer(e, self.props.username, false);
                         }, 3000);
                     }
                 });

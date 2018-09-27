@@ -21,7 +21,7 @@ export default class AccountInfoMobile extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.customerInfo !== null && nextProps.customerInfo !== this.props.customerInfo) {
+        if (nextProps.redirectToBalanceInfoPage) {
             this.setState({
                 redirectToBalanceInfoPage: true,
                 firstLoad: false

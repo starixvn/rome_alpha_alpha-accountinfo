@@ -24,7 +24,7 @@ export default class AccountInfoDesktop extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.customerInfo !== this.props.customerInfo) {
+        if (nextProps.redirectToBalanceInfoPage){
             this.setState({
                 expandedItems: this.initialExpandedItems()
             });
@@ -86,7 +86,7 @@ export default class AccountInfoDesktop extends React.Component {
 
         const {
             actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
-            customerInfo, downlineList, onlineList, statusData, settingData,
+            customerInfo, downlineList, onlineList, statusData, settingData, redirectToBalanceInfoPage,
             fetchCustomerInfoFromServer,
             handleSearchFromUserLevel,
             handleOpenIPInfo } = this.props;
