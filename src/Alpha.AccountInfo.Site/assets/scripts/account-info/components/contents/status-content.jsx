@@ -87,6 +87,7 @@ export default class StatusContent extends React.Component {
                                     type="checkbox"
                                     disabled={status.Disabled}
                                     checked={status.Checked}
+                                    onChange={() => { }}
                                 />
                                 <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
                             </div>;

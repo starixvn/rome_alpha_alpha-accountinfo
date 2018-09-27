@@ -75,7 +75,7 @@ export default class GivenCredit extends React.Component {
                 </div>
                 <div className={rowClasses}>
                     <div className="col-xs-7">{resources.CurrentGivenCredit}</div>
-                    <CellContainNumberFormat title={currentGivenCredit} classNames="value col-xs-5" />
+                    <CellContainNumberFormat value={currentGivenCredit} classNames="value col-xs-5" />
                 </div>
 
                 <div className={rowClasses}>
@@ -84,7 +84,7 @@ export default class GivenCredit extends React.Component {
                         value={this.state.newGivenCredit}
                         fixedDecimalScale={true}
                         thousandSeparator={true}
-                        decimalScale="2"
+                        decimalScale={2}
                         onValueChange={(values) => {
                             const { formattedValue, value, floatValue } = values;
                             this.setState({ newGivenCredit: floatValue === undefined ? 0 : floatValue });
@@ -94,7 +94,7 @@ export default class GivenCredit extends React.Component {
 
                 <div className={rowClasses}>
                     <div className="col-xs-7">{resources.Difference}</div>
-                    <CellContainNumberFormat title={newGivenCredit - currentGivenCredit} classNames="value col-xs-5" />
+                    <CellContainNumberFormat value={newGivenCredit - currentGivenCredit} classNames="value col-xs-5" />
                 </div>
                 <div className="col-xs-12 row-info popup-bottom list-button">                    
                     <button className="btn-submit" onClick={this.handleSubmit}>{resources.Submit}</button>

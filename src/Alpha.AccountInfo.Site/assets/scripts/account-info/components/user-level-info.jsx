@@ -3,7 +3,7 @@ import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 
 const UserLevelInfo = ({
-    data,
+    customerInfo,
     userLevelName,
     userLevelId,
     username,
@@ -16,9 +16,9 @@ const UserLevelInfo = ({
     let statusCss = 'enabled';
     let statusMessage = '';
 
-    if (data.RoleId === userLevelId) {
-        if (data.Closed) {
-            switch (data.ClosedReason) {
+    if (customerInfo.RoleId === userLevelId) {
+        if (customerInfo.Closed) {
+            switch (customerInfo.ClosedReason) {
                 case 0:
                     statusCss = "closed-wrongPwdOthers";
                     statusMessage = resources.ClosedByFailedLoginOrAccountExpired;
@@ -37,17 +37,17 @@ const UserLevelInfo = ({
                     break;
             }
         }
-        else if (data.Suspended) {
+        else if (customerInfo.Suspended) {
             statusCss = "suspended";
             statusMessage = resources.ThisAccountWasSuspended;
         }
-        else if (!data.Enabled) {
+        else if (!customerInfo.Enabled) {
             statusCss = "disabled";
             statusMessage = resources.ThisAccountWasDisabled;
         }
     }
 
-    const contentWithViewlogLink = <a title={resources.Viewlog} className="pointer" href={data.ViewLogLink} target="main">
+    const contentWithViewlogLink = <a title={resources.Viewlog} className="pointer" href={customerInfo.ViewLogLink} target="main">
         <span className={statusCss} data-username={username}> {username} </span>
         <span className="icon-viewlog" />
     </a>;
@@ -58,18 +58,18 @@ const UserLevelInfo = ({
             <div className={firstCellClass}>{userLevelName}</div>
             <div className={secondCellClass}>
                 {
-                    data.RoleId < userLevelId &&
+                    customerInfo.RoleId < userLevelId &&
                     <span className="enabled" onClick={handleSearchFromUserLevel} data-username={username}>
                         {username}
                     </span>
                 }
 
                 {
-                    data.RoleId === userLevelId && statusMessage === '' && contentWithViewlogLink
+                    customerInfo.RoleId === userLevelId && statusMessage === '' && contentWithViewlogLink
                 }
 
                 {
-                    data.RoleId === userLevelId && statusMessage !== '' &&
+                    customerInfo.RoleId === userLevelId && statusMessage !== '' &&
                     <Tooltip
                         title={statusMessage}
                         position="bottom"

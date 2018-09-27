@@ -1,11 +1,11 @@
 ﻿import * as React from 'react';
 import NumberFormat from 'react-number-format';
 
-const CellContainNumberFormat = ({ classNames = null, title = '', hrefLink = null, target = null }) => {
+const CellContainNumberFormat = ({ classNames = null, value = 0, hrefLink = null, target = null }) => {
     let formatClassNames = null;
-    if (title < 0) {
+    if (value < 0) {
         formatClassNames = `${classNames} number-red`;
-    } else if (title >= 0 && hrefLink !== null && hrefLink !== '') {
+    } else if (value >= 0 && hrefLink !== null && hrefLink !== '') {
         formatClassNames = `${classNames} number-link`;
     } else {
         formatClassNames = `${classNames} number`;
@@ -14,9 +14,9 @@ const CellContainNumberFormat = ({ classNames = null, title = '', hrefLink = nul
     return (
         <div className={formatClassNames}>
             <NumberFormat
-                value={title}
+                value={value}
                 displayType={'text'}
-                decimalScale="2"
+                decimalScale={2}
                 fixedDecimalScale={true}
                 thousandSeparator={true}
                 renderText={value => hrefLink === null || hrefLink === '' ?

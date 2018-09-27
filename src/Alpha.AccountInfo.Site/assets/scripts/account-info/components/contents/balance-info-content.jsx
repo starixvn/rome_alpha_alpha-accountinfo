@@ -3,6 +3,7 @@ import CellContainNumberFormat from '../common/cell-contain-number-format';
 import NumberFormat from 'react-number-format';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
+import { UserLevel } from '../../constants/user-level';
 
 export default class BalanceInfoContent extends React.Component {
     constructor(props) {
@@ -24,8 +25,8 @@ export default class BalanceInfoContent extends React.Component {
 
         function reloadBalanceInfo(e) {
             if (window.top.closedPopup) {
-                window.top.realoadLeftPanel && self.props.fetchCustomerInfoFromServer(e, customerInfo.UserName);
                 clearInterval(timer);
+                window.top.realoadLeftPanel && self.props.fetchCustomerInfoFromServer(e, customerInfo.UserName);
             }
         }
     }
@@ -36,7 +37,6 @@ export default class BalanceInfoContent extends React.Component {
         const roleId = this.props.customerInfo.RoleId;
         const balanceInfo = this.props.customerInfo.BalanceInfo;
 
-        const memberLevel = 1, agentLevel = 2, masterLevel = 3;
         const totalBalanceTransferLink = balanceInfo.ShowTotalBalanceTransferLink ? balanceInfo.TotalBalanceTransferLink : "";
         const yesterdayBalanceTransferLink = balanceInfo.ShowYesterdayBalanceTransferLink ? balanceInfo.YesterdayBalanceTransferLink : "";
         const outstandingLink = balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : "";
@@ -44,25 +44,25 @@ export default class BalanceInfoContent extends React.Component {
         return (
             <div className="balance-info">
                 {
-                    roleId > memberLevel &&
+                    roleId > UserLevel.Member &&
                     <div className={rowClasses}>
                         <div className="col">{resources.TotalCash}</div>
-                        <CellContainNumberFormat title={balanceInfo.TotalCash} classNames="col col-right" />
+                        <CellContainNumberFormat value={balanceInfo.TotalCash} classNames="col col-right" />
                     </div>
                 }
 
                 {
-                    roleId > memberLevel &&
+                    roleId > UserLevel.Member &&
                     <div className={rowClasses}>
                         <div className="col">{resources.YesterdayCash}</div>
-                        <CellContainNumberFormat title={balanceInfo.YesterdayCash} classNames="col col-right" />
+                        <CellContainNumberFormat value={balanceInfo.YesterdayCash} classNames="col col-right" />
                     </div>
                 }
 
                 <div className={rowClasses}>
                     <div className="col">{resources.TotalBalance}</div>
                     <CellContainNumberFormat
-                        title={balanceInfo.TotalBalance}
+                        value={balanceInfo.TotalBalance}
                         classNames="col col-right"
                         hrefLink={totalBalanceTransferLink}
                         target="main"
@@ -72,7 +72,7 @@ export default class BalanceInfoContent extends React.Component {
                 <div className={rowClasses}>
                     <div className="col">{resources.YesterdayBalance}</div>
                     <CellContainNumberFormat
-                        title={balanceInfo.YesterdayBalance}
+                        value={balanceInfo.YesterdayBalance}
                         classNames="col col-right"
                         hrefLink={yesterdayBalanceTransferLink}
                         target="main"
@@ -84,7 +84,7 @@ export default class BalanceInfoContent extends React.Component {
                         {balanceInfo.ReportLink.Text}
                     </div>
                     <CellContainNumberFormat
-                        title={balanceInfo.Outstanding}
+                        value={balanceInfo.Outstanding}
                         classNames="col col-right"
                         hrefLink={outstandingLink}
                         target="main"
@@ -92,10 +92,10 @@ export default class BalanceInfoContent extends React.Component {
                 </div>
 
                 {
-                    roleId > memberLevel &&
+                    roleId > UserLevel.Member &&
                     <div className={rowClasses}>
                         <div className="col">{resources.UsedCredit}</div>
-                        <CellContainNumberFormat title={balanceInfo.UsedCredit} classNames="col col-right" />
+                        <CellContainNumberFormat value={balanceInfo.UsedCredit} classNames="col col-right" />
                     </div>
                 }
 
@@ -113,7 +113,7 @@ export default class BalanceInfoContent extends React.Component {
                                     className="number-edited"
                                     value={balanceInfo.GivenCredit}
                                     displayType={'text'}
-                                    decimalScale="2"
+                                    decimalScale={2}
                                     fixedDecimalScale={true}
                                     thousandSeparator={true}
                                 />
@@ -123,7 +123,7 @@ export default class BalanceInfoContent extends React.Component {
                 </div>
 
                 {
-                    roleId === agentLevel &&
+                    roleId === UserLevel.Agent &&
                     <div className={rowClasses}>
                         <div className="col">{resources.MemberMaxCredit}</div>
                         <div className="col col-right">
@@ -135,30 +135,30 @@ export default class BalanceInfoContent extends React.Component {
                                     trigger="mouseenter"
                                     arrow="true"
                                 >
-                                    <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
+                                    <CellContainNumberFormat value={balanceInfo.MemberMaxCredit} />
                                 </Tooltip>
                             }
                             {
                                 !balanceInfo.ShowMemberMaxCreditLimit &&
-                                <CellContainNumberFormat title={balanceInfo.MemberMaxCredit} />
+                                <CellContainNumberFormat value={balanceInfo.MemberMaxCredit} />
                             }
                         </div>
                     </div>
                 }
 
                 {
-                    roleId === memberLevel &&
+                    roleId === UserLevel.Member &&
                     <div className={rowClasses}>
                         <div className="col">{resources.NetPosition}</div>
-                        <CellContainNumberFormat title={balanceInfo.NetPosition} classNames="col col-right" />
+                        <CellContainNumberFormat value={balanceInfo.NetPosition} classNames="col col-right" />
                     </div>
                 }
 
                 {
-                    roleId === memberLevel &&
+                    roleId === UserLevel.Member  &&
                     <div className={rowClasses}>
                         <div className="col">{resources.BetCredit}</div>
-                        <CellContainNumberFormat title={balanceInfo.BetCredit} classNames="col col-right" />
+                        <CellContainNumberFormat value={balanceInfo.BetCredit} classNames="col col-right" />
                     </div>
                 }
             </div>

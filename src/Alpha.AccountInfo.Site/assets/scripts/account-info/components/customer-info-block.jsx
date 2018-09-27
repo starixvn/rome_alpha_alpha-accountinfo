@@ -4,7 +4,7 @@ import { Tooltip } from 'react-tippy';
 import UserLevelInfo from './user-level-info';
 
 const CustomerInfoBlock = ({
-    data,
+    customerInfo,
     resources,
     handleSearchFromUserLevel,
     rowClasses = "col-xs-12 row-info",
@@ -12,44 +12,44 @@ const CustomerInfoBlock = ({
     secondCellClass = "col-xs-7 col-right" }) => {
     const memberLevel = 1, agentLevel = 2, masterLevel = 3;
 
-    const content = data === null ? <div className="no-information">{resources.NoInfo}</div> :
+    const content = customerInfo === null ? <div className="no-information">{resources.NoInfo}</div> :
         <div id="blockInfo" className="block-info">
             {
-                data.ShowMaster &&
-                <UserLevelInfo data={data}
+                customerInfo.ShowMaster &&
+                <UserLevelInfo customerInfo={customerInfo}
                     userLevelName={resources.Master}
                     userLevelId={masterLevel}
-                    username={data.MasterName}
+                    username={customerInfo.MasterName}
                     resources={resources}
                     handleSearchFromUserLevel={handleSearchFromUserLevel}
                 />
             }
 
             {
-                data.ShowAgent &&
-                <UserLevelInfo data={data}
+                customerInfo.ShowAgent &&
+                <UserLevelInfo customerInfo={customerInfo}
                     userLevelName={resources.Agent}
                     userLevelId={agentLevel}
-                    username={data.AgentName}
+                    username={customerInfo.AgentName}
                     resources={resources}
                     handleSearchFromUserLevel={handleSearchFromUserLevel}
                 />
             }
 
             {
-                data.ShowMember &&
-                <UserLevelInfo data={data}
+                customerInfo.ShowMember &&
+                <UserLevelInfo customerInfo={customerInfo}
                     userLevelName={resources.Customer}
                     userLevelId={memberLevel}
-                    username={data.MemberName}
+                    username={customerInfo.MemberName}
                     resources={resources}
                     handleSearchFromUserLevel={handleSearchFromUserLevel}
                 />
             }
 
             <div className={rowClasses + " text-center list-button"}>
-                <a className="btn-default with-level" href={data.CustomerListOrBetListLink.Url} target="main">{data.CustomerListOrBetListLink.Text}</a>
-                <a className="btn-default with-level" href={data.StatemenLink} target="main">{resources.Statement}</a>
+                <a className="btn-default with-level" href={customerInfo.CustomerListOrBetListLink.Url} target="main">{customerInfo.CustomerListOrBetListLink.Text}</a>
+                <a className="btn-default with-level" href={customerInfo.StatemenLink} target="main">{resources.Statement}</a>
             </div>
         </div>;
 

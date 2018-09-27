@@ -19,6 +19,7 @@ export default class AccountInfo extends React.Component {
             actorRoleId: actorRoleId,
             searchAccountRoleId: actorRoleId - 1,
             mobileView: mobileView,
+            redirectToBalanceInfoPage: false,
             searchCounter: 0,
             showInfoStatus: false,
             customerInfo: null,
@@ -57,6 +58,7 @@ export default class AccountInfo extends React.Component {
                 username: username,
                 customerInfo: data,
                 searchCounter: prevState.searchCounter + 1,
+                redirectToBalanceInfoPage: data !== null,
                 searchAccountRoleId: data !== null ? data.RoleId : 0,
                 custId: data !== null ? data.CustId : 0
             }));
@@ -138,9 +140,40 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const {
-            actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
-            mobileView, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
+        const { actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
+                mobileView, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
+
+        const accountInfoMobile = <AccountInfoMobile
+            actorRoleId={actorRoleId}
+            resources={resources}
+            username={username}
+            searchCounter={searchCounter}
+            custId={custId}
+            searchAccountRoleId={searchAccountRoleId}
+            customerInfo={customerInfo}
+            downlineList={downlineList}
+            onlineList={onlineList}
+            statusData={statusData}
+            settingData={settingData}
+            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
+            handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+            handleOpenIPInfo={this.handleOpenIPInfo} />;
+
+        const accountInfoDesktop = <AccountInfoDesktop
+            actorRoleId={actorRoleId}
+            resources={resources}
+            username={username}
+            searchCounter={searchCounter}
+            custId={custId}
+            searchAccountRoleId={searchAccountRoleId}
+            customerInfo={customerInfo}
+            downlineList={downlineList}
+            onlineList={onlineList}
+            statusData={statusData}
+            settingData={settingData}
+            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
+            handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+            handleOpenIPInfo={this.handleOpenIPInfo} />;
 
         return (
             <div className="accountinfo-container">
@@ -153,42 +186,12 @@ export default class AccountInfo extends React.Component {
                 {
                     searchCounter > 0 && <CustomerInfoBlock
                         resources={resources}
-                        data={customerInfo}
+                        customerInfo={customerInfo}
                         handleSearchFromUserLevel={this.handleSearchFromUserLevel} />
                 }
 
                 {
-                    mobileView ? 
-                        <AccountInfoMobile
-                            actorRoleId={actorRoleId}
-                            resources={resources}
-                            username={username}
-                            searchCounter={searchCounter}
-                            custId={custId}
-                            searchAccountRoleId={searchAccountRoleId}
-                            customerInfo={customerInfo}
-                            downlineList={downlineList}
-                            onlineList={onlineList}
-                            statusData={statusData}
-                            settingData={settingData}
-                            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                            handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                            handleOpenIPInfo={this.handleOpenIPInfo} /> :
-                        (customerInfo !== null && <AccountInfoDesktop
-                            actorRoleId={actorRoleId}
-                            resources={resources}
-                            username={username}
-                            searchCounter={searchCounter}
-                            custId={custId}
-                            searchAccountRoleId={searchAccountRoleId}
-                            customerInfo={customerInfo}
-                            downlineList={downlineList}
-                            onlineList={onlineList}
-                            statusData={statusData}
-                            settingData={settingData}
-                            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                            handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                            handleOpenIPInfo={this.handleOpenIPInfo} />)
+                    mobileView ? accountInfoMobile : customerInfo !== null && accountInfoDesktop
                 }
               
             </div>);
