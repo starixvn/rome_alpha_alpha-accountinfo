@@ -29,6 +29,8 @@
 
         public string ActoreName => message.ActorName;
 
+        public bool MobileView => message.MobileView;
+
         public string AccountInfoResources => ConvertResourcesJson(message.Language, Resources.ResourceManager);
     }
 }

@@ -18,6 +18,8 @@
 
         public string Language { get; }
 
+        public bool MobileView { get; set; }
+
         public override bool IsValid() => true;
     }
 }

@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import AccountInfo from './containers/account-info';
 import { base64Helper } from '../helpers/base64-helper';
 
-window.renderAccountInfo = function (actorRoleId, accountInfoResources) {
+window.renderAccountInfo = function (actorRoleId, mobileView, accountInfoResources) {
     localStorage.removeItem('lastSearchUsername');
     ReactDOM.render(
         <AccountInfo
             actorRoleId={actorRoleId}
+            mobileView={mobileView}
             resources={base64Helper.decodeResources(accountInfoResources)}
-            mobileView={window.top.alpha.isMobile}
         />,
         document.getElementById('account-info')
     );

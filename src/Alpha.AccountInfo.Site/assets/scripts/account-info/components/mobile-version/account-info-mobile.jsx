@@ -37,7 +37,7 @@ export default class AccountInfoMobile extends React.Component {
             handleSearchFromUserLevel,
             handleOpenIPInfo } = this.props;
 
-        const { redirectToBalanceInfoPage } = this.state;
+        const { redirectToBalanceInfoPage, firstLoad} = this.state;
 
         const featureListPage = <FeatureListPage
             resources={resources}
