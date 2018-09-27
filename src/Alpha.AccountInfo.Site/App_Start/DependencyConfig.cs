@@ -1,15 +1,20 @@
 ﻿namespace Alpha.AccountInfo.Site.App_Start
 {
     using AccountInfo.Models;
+    using Alpha.AccountInfo.AppResources;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
+    using Alpha.AccountInfo.Site.Helpers;
+    using Alpha.Products.AccountInfo;
+    using Alpha.Products.Core.Configuration;
+    using Alpha.Products.Core.Services;
+    using Alpha.Web.Helpers;
     using Controllers;
     using Fanex.Data.Repository;
     using Fanex.RemotingRef;
     using MediatR;
     using Models;
-    using Services;
     using Services.ProductStatus;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
@@ -17,8 +22,10 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
+    using System;
     using System.Collections.Generic;
     using System.Reflection;
+    using System.Resources;
     using System.Web.Mvc;
 
     public static class DependencyConfig
@@ -45,7 +52,7 @@
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
 
-            RegisterStaticInstances(container);
+            StartConfiguration(container);
         }
 
         private static void RegisterMediator(Container container)
@@ -93,8 +100,15 @@
             container.Register<AccountInfoDataAccess, AccountInfoDataAccessImpl>(Lifestyle.Scoped);
         }
 
-        private static void RegisterStaticInstances(Container container)
+        private static void StartConfiguration(Container container)
         {
+            SimpleServiceLocator
+            .Instance
+            .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter()))
+            .Register<Func<int, string>>(new CacheRefServiceImpl(container.GetInstance<IRemotingRefService>()).GetProductName)
+            .Register<Func<string, string>>(Resources.ResourceManager.GetString)
+            .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
+            .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert);
         }
     }
 }

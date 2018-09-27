@@ -3,7 +3,7 @@
     using Alpha.AccountInfo.Criteria.ProductStatus;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Models.ProductStatus;
-    using AccountInfo.Services;
+    using Alpha.AccountInfo.Services;
     using Alpha.AccountInfo.Services.ProductStatus;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
