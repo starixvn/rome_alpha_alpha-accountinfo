@@ -10,7 +10,8 @@ window.renderGivenCredit = function (searchAccountId, searchAccountRoleId, curre
         <GivenCredit searchAccountId={searchAccountId}
             searchAccountRoleId={searchAccountRoleId}
             currentGivenCredit={currentGivenCredit}
-            resources={resources}/>,
+            resources={resources}
+        />,
         document.getElementById('given-credit')
     );
 };
@@ -45,20 +46,22 @@ export default class GivenCredit extends React.Component {
 
         accountInfoAPI.updateGivenCredit(params).then((data) => {
             let self = this;
-            if (data.IsSuccess) {
-                $.unblockUI();
-                self.setState({
-                    hideMessages: false,
-                    message: this.props.resources.UpdateGivenCreditSuccessfully,
-                    updateSuccess: data.IsSuccess
-                });
+            let { resources } = this.props;
+            self.setState({
+                hideMessages: false,
+                message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message,
+                updateSuccess: data.IsSuccess
+            });
 
+            if (data.IsSuccess) {
                 setTimeout(() => {
                     window.top.realoadLeftPanel = true;
                     window.top.closedPopup = true;
                     window.top.ageWnd.close();
                 }, 3000);
             }
+
+            $.unblockUI();
         });
     }
 
@@ -67,21 +70,25 @@ export default class GivenCredit extends React.Component {
         const { newGivenCredit, updateSuccess, message, hideMessages, resources } = this.state;
         const { currentGivenCredit} = this.props;
 
+        let row = (title, value) =>
+            <div className={rowClasses}>
+                <div className="col-xs-7">{title}</div>
+                <CellContainNumberFormat value={value} classNames="value col-xs-5" />
+            </div>;
+
         return (
 
             <div>
                 <div className={hideMessages ?  `hidden` : ``}>
                     <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
                 </div>
-                <div className={rowClasses}>
-                    <div className="col-xs-7">{resources.CurrentGivenCredit}</div>
-                    <CellContainNumberFormat value={currentGivenCredit} classNames="value col-xs-5" />
-                </div>
+
+                {row(resources.CurrentGivenCredit, currentGivenCredit)}
 
                 <div className={rowClasses}>
                     <div className="col-xs-7">{resources.NewGivenCredit}</div>
                     <NumberFormat className="textbox col-xs-5"
-                        value={this.state.newGivenCredit}
+                        value={newGivenCredit}
                         fixedDecimalScale={true}
                         thousandSeparator={true}
                         decimalScale={2}
@@ -92,10 +99,8 @@ export default class GivenCredit extends React.Component {
                     />
                 </div>
 
-                <div className={rowClasses}>
-                    <div className="col-xs-7">{resources.Difference}</div>
-                    <CellContainNumberFormat value={newGivenCredit - currentGivenCredit} classNames="value col-xs-5" />
-                </div>
+                {row(resources.Difference, newGivenCredit - currentGivenCredit)}
+
                 <div className="col-xs-12 row-info popup-bottom list-button">                    
                     <button className="btn-submit" onClick={this.handleSubmit}>{resources.Submit}</button>
                     <button className="btn-cancel" onClick={this.handleClose}>{resources.Cancel}</button>

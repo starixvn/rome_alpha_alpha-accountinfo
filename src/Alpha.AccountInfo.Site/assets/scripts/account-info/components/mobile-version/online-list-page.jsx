@@ -1,13 +1,14 @@
 ﻿import * as React from 'react';
-import { NoInformFeature } from '../../components/common/no-inform-feature';
-import { HeaderFeature } from '../../components/common/header-feature';
+import { NoInformFeature } from './no-inform-feature';
+import { HeaderFeature } from './header-feature';
 import OnlineListContent from '../contents/online-list-content';
 
-const OnlineListPage = ({ resources, data, handleOpenIPInfo }) => data === null ?
-    <NoInformFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} noInform={resources.NoInfo} /> :
-    <div className="feature-detail with-push-menu">
-        <HeaderFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} />
-        <OnlineListContent resources={resources} data={data} handleOpenIPInfo={handleOpenIPInfo}/>
-    </div>;
+const OnlineListPage = ({ resources, data, handleOpenIPInfo, redirectToBalanceInfoPage }) =>
+    data === null ?
+        <NoInformFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} noInform={resources.NoInfo} /> :
+        <div className="feature-detail with-push-menu">
+            <HeaderFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />
+            <OnlineListContent resources={resources} data={data} handleOpenIPInfo={handleOpenIPInfo} />
+        </div>;
 
 export default OnlineListPage;

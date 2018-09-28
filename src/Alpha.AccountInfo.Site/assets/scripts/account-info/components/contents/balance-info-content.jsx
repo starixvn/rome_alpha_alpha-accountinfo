@@ -32,72 +32,31 @@ export default class BalanceInfoContent extends React.Component {
     }
 
     render() {
-        const { resources, customerInfo } = this.props;
-        const rowClasses = "row-info";
-        const roleId = this.props.customerInfo.RoleId;
-        const balanceInfo = this.props.customerInfo.BalanceInfo;
+        let { resources, customerInfo, rowClasses = "row-info" } = this.props;
+        let roleId = this.props.customerInfo.RoleId;
+        let balanceInfo = this.props.customerInfo.BalanceInfo;
 
-        const totalBalanceTransferLink = balanceInfo.ShowTotalBalanceTransferLink ? balanceInfo.TotalBalanceTransferLink : "";
-        const yesterdayBalanceTransferLink = balanceInfo.ShowYesterdayBalanceTransferLink ? balanceInfo.YesterdayBalanceTransferLink : "";
-        const outstandingLink = balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : "";
+        let searchAccountIsMember = roleId === UserLevel.Member;
+        let searchAccountIsNotMember = !searchAccountIsMember;
+
+        let row = (title, value, href = null) =>
+            <div className={rowClasses}>
+                <div className="col">{title}</div>
+                <CellContainNumberFormat value={value} classNames="col col-right" hrefLink={href} target={href !== null ? `main` : null} />
+            </div>;
 
         return (
             <div className="balance-info">
-                {
-                    roleId > UserLevel.Member &&
-                    <div className={rowClasses}>
-                        <div className="col">{resources.TotalCash}</div>
-                        <CellContainNumberFormat value={balanceInfo.TotalCash} classNames="col col-right" />
-                    </div>
-                }
+                {searchAccountIsNotMember && row(resources.TotalCash, balanceInfo.TotalCash)}
+                {searchAccountIsNotMember && row(resources.YesterdayCash, balanceInfo.YesterdayCash)}
 
-                {
-                    roleId > UserLevel.Member &&
-                    <div className={rowClasses}>
-                        <div className="col">{resources.YesterdayCash}</div>
-                        <CellContainNumberFormat value={balanceInfo.YesterdayCash} classNames="col col-right" />
-                    </div>
-                }
+                {row(resources.TotalBalance, balanceInfo.TotalBalance, balanceInfo.ShowTotalBalanceTransferLink ? balanceInfo.TotalBalanceTransferLink : ``)}
 
-                <div className={rowClasses}>
-                    <div className="col">{resources.TotalBalance}</div>
-                    <CellContainNumberFormat
-                        value={balanceInfo.TotalBalance}
-                        classNames="col col-right"
-                        hrefLink={totalBalanceTransferLink}
-                        target="main"
-                    />
-                </div>
+                {row(resources.YesterdayBalance, balanceInfo.YesterdayBalance,balanceInfo.ShowYesterdayBalanceTransferLink ? balanceInfo.YesterdayBalanceTransferLink :``)}
 
-                <div className={rowClasses}>
-                    <div className="col">{resources.YesterdayBalance}</div>
-                    <CellContainNumberFormat
-                        value={balanceInfo.YesterdayBalance}
-                        classNames="col col-right"
-                        hrefLink={yesterdayBalanceTransferLink}
-                        target="main"
-                    />
-                </div>
+                {row(balanceInfo.ReportLink.Text,balanceInfo.Outstanding,balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : ``)}
 
-                <div className={rowClasses}>
-                    <div className="col">
-                        {balanceInfo.ReportLink.Text}
-                    </div>
-                    <CellContainNumberFormat
-                        value={balanceInfo.Outstanding}
-                        classNames="col col-right"
-                        hrefLink={outstandingLink}
-                        target="main"
-                    />
-                </div>
-
-                {
-                    roleId > UserLevel.Member &&
-                    <div className={rowClasses}>
-                        <div className="col">{resources.UsedCredit}</div>
-                        <CellContainNumberFormat value={balanceInfo.UsedCredit} classNames="col col-right" />
-                    </div>
-                }
+                {searchAccountIsNotMember && row(resources.UsedCredit, balanceInfo.UsedCredit)}
 
                 <div className={rowClasses}>
                     <div className="col">{resources.GivenCredit}</div>
@@ -108,7 +67,8 @@ export default class BalanceInfoContent extends React.Component {
                                 title={balanceInfo.GivenCreditLimit}
                                 position="bottom"
                                 trigger="mouseenter"
-                                arrow="true">
+                                arrow="true"
+                            >
                                 <NumberFormat
                                     className="number-edited"
                                     value={balanceInfo.GivenCredit}
@@ -146,23 +106,10 @@ export default class BalanceInfoContent extends React.Component {
                     </div>
                 }
 
-                {
-                    roleId === UserLevel.Member &&
-                    <div className={rowClasses}>
-                        <div className="col">{resources.NetPosition}</div>
-                        <CellContainNumberFormat value={balanceInfo.NetPosition} classNames="col col-right" />
-                    </div>
-                }
-
-                {
-                    roleId === UserLevel.Member  &&
-                    <div className={rowClasses}>
-                        <div className="col">{resources.BetCredit}</div>
-                        <CellContainNumberFormat value={balanceInfo.BetCredit} classNames="col col-right" />
-                    </div>
-                }
+                {searchAccountIsMember && row(resources.NetPosition, balanceInfo.NetPosition)}
+                {searchAccountIsMember && row(resources.BetCredit, balanceInfo.BetCredit)}
             </div>
         );
-           
+
     }
 }

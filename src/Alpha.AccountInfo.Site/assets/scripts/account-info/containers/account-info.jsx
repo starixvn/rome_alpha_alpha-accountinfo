@@ -12,16 +12,16 @@ export default class AccountInfo extends React.Component {
         super(props);
         let lastSearchUsername = localStorage.getItem("lastSearchUsername") !== null ? localStorage.getItem("lastSearchUsername") : '';
         let { resources, actorRoleId, mobileView } = this.props;
+
         this.state = {
-            username: lastSearchUsername,
             resources: resources,
+            username: lastSearchUsername,
             custId: 0,
             actorRoleId: actorRoleId,
             searchAccountRoleId: actorRoleId - 1,
             mobileView: mobileView,
             redirectToBalanceInfoPage: true,
             searchCounter: 0,
-            showInfoStatus: false,
             customerInfo: null,
             statusData: null,
             settingData: null,
@@ -56,11 +56,10 @@ export default class AccountInfo extends React.Component {
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then((data) => {
             self.setState((prevState) => ({
                 username: username,
+                custId: data.CustId,
                 customerInfo: data,
                 searchCounter: prevState.searchCounter + 1,
-                redirectToBalanceInfoPage: redirectToBalanceInfoPage,
-                searchAccountRoleId: data !== null ? data.RoleId : 0,
-                custId: data !== null ? data.CustId : 0
+                redirectToBalanceInfoPage: redirectToBalanceInfoPage
             }));
 
             localStorage.setItem('lastSearchUsername', username);
@@ -76,7 +75,7 @@ export default class AccountInfo extends React.Component {
     fetchCustomerAllStatusFromServer() {
         let uplineId = null;
         let uplineName = null;
-        let { customerInfo, settingData } = this.state;
+        let { customerInfo } = this.state;
 
         if (customerInfo !== null) {
             switch (customerInfo.RoleId) {
@@ -140,42 +139,40 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const { actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId, redirectToBalanceInfoPage ,
-                mobileView, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
+        const { actorRoleId, resources, username, searchCounter, custId, redirectToBalanceInfoPage,
+            mobileView, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
-        const accountInfoMobile = <AccountInfoMobile
-            actorRoleId={actorRoleId}
-            resources={resources}
-            username={username}
-            searchCounter={searchCounter}
-            custId={custId}
-            searchAccountRoleId={searchAccountRoleId}
-            redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-            customerInfo={customerInfo}
-            downlineList={downlineList}
-            onlineList={onlineList}
-            statusData={statusData}
-            settingData={settingData}
-            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-            handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-            handleOpenIPInfo={this.handleOpenIPInfo} />;
+        const accountInfoMobile =
+            <AccountInfoMobile
+                resources={resources}
+                actorRoleId={actorRoleId}
+                searchCounter={searchCounter}
+                customerInfo={customerInfo}
+                downlineList={downlineList}
+                onlineList={onlineList}
+                statusData={statusData}
+                settingData={settingData}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
+                handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                handleOpenIPInfo={this.handleOpenIPInfo}
+            />;
 
-        const accountInfoDesktop = <AccountInfoDesktop
-            actorRoleId={actorRoleId}
-            resources={resources}
-            username={username}
-            searchCounter={searchCounter}
-            custId={custId}
-            searchAccountRoleId={searchAccountRoleId}
-            redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-            customerInfo={customerInfo}
-            downlineList={downlineList}
-            onlineList={onlineList}
-            statusData={statusData}
-            settingData={settingData}
-            fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-            handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-            handleOpenIPInfo={this.handleOpenIPInfo} />;
+        const accountInfoDesktop =
+            <AccountInfoDesktop
+                resources={resources}
+                actorRoleId={actorRoleId}
+                searchCounter={searchCounter}
+                customerInfo={customerInfo}
+                downlineList={downlineList}
+                onlineList={onlineList}
+                statusData={statusData}
+                settingData={settingData}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
+                handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                handleOpenIPInfo={this.handleOpenIPInfo}
+            />;
 
         return (
             <div className="accountinfo-container">
@@ -195,7 +192,7 @@ export default class AccountInfo extends React.Component {
                 {
                     mobileView ? accountInfoMobile : customerInfo !== null && accountInfoDesktop
                 }
-              
+
             </div>);
     }
 }

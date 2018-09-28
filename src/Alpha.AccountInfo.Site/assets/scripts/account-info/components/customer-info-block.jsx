@@ -2,6 +2,7 @@
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import UserLevelInfo from './user-level-info';
+import { UserLevel } from '../constants/user-level';
 
 const CustomerInfoBlock = ({
     customerInfo,
@@ -10,15 +11,13 @@ const CustomerInfoBlock = ({
     rowClasses = "col-xs-12 row-info",
     firstCellClass = "col-xs-5",
     secondCellClass = "col-xs-7 col-right" }) => {
-    const memberLevel = 1, agentLevel = 2, masterLevel = 3;
-
     const content = customerInfo === null ? <div className="no-information">{resources.NoInfo}</div> :
         <div id="blockInfo" className="block-info">
             {
                 customerInfo.ShowMaster &&
                 <UserLevelInfo customerInfo={customerInfo}
                     userLevelName={resources.Master}
-                    userLevelId={masterLevel}
+                    userLevelId={UserLevel.Master}
                     username={customerInfo.MasterName}
                     resources={resources}
                     handleSearchFromUserLevel={handleSearchFromUserLevel}
@@ -29,7 +28,7 @@ const CustomerInfoBlock = ({
                 customerInfo.ShowAgent &&
                 <UserLevelInfo customerInfo={customerInfo}
                     userLevelName={resources.Agent}
-                    userLevelId={agentLevel}
+                    userLevelId={UserLevel.Agent}
                     username={customerInfo.AgentName}
                     resources={resources}
                     handleSearchFromUserLevel={handleSearchFromUserLevel}
@@ -40,7 +39,7 @@ const CustomerInfoBlock = ({
                 customerInfo.ShowMember &&
                 <UserLevelInfo customerInfo={customerInfo}
                     userLevelName={resources.Customer}
-                    userLevelId={memberLevel}
+                    userLevelId={UserLevel.Member}
                     username={customerInfo.MemberName}
                     resources={resources}
                     handleSearchFromUserLevel={handleSearchFromUserLevel}

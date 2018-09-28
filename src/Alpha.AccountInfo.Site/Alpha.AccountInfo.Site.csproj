@@ -54,7 +54,7 @@
     </Reference>
     <Reference Include="Alpha.Products.AccountInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Products.AccountInfo.1.0.0-beta9\lib\net40\Alpha.Products.AccountInfo.dll</HintPath>
-      </Reference>
+    </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
     </Reference>
@@ -69,7 +69,6 @@
       <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.5\lib\net40\Alpha.SecurityCode.dll</HintPath>
       <Private>True</Private>
     </Reference>
-
     <Reference Include="Alpha.SubAccount, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
@@ -336,9 +335,9 @@
     <Content Include="assets\scripts\account-info\components\contents\balance-info-content.jsx" />
     <Content Include="assets\scripts\account-info\components\mobile-version\balance-info-page.jsx" />
     <Content Include="assets\scripts\account-info\components\common\cell-contain-number-format.jsx" />
-    <Content Include="assets\scripts\account-info\components\common\customized-accordion-item.jsx" />
-    <Content Include="assets\scripts\account-info\components\common\header-feature.jsx" />
-    <Content Include="assets\scripts\account-info\components\common\no-inform-feature.jsx" />
+    <Content Include="assets\scripts\account-info\components\desktop-version\customized-accordion-item.jsx" />
+    <Content Include="assets\scripts\account-info\components\mobile-version\header-feature.jsx" />
+    <Content Include="assets\scripts\account-info\components\mobile-version\no-inform-feature.jsx" />
     <Content Include="assets\scripts\account-info\components\contents\contact-info-content.jsx" />
     <Content Include="assets\scripts\account-info\components\mobile-version\contact-info-page.jsx" />
     <Content Include="assets\scripts\account-info\components\contents\downline-list-content.jsx" />
@@ -364,7 +363,7 @@
     <Content Include="assets\scripts\account-info\given-credit.jsx" />
     <Content Include="assets\scripts\account-info\index.jsx" />
     <Content Include="assets\scripts\helpers\base64-helper.jsx" />
-    <Content Include="assets\scripts\helpers\RouterDebugger.jsx" />
+    <Content Include="assets\scripts\helpers\router-debugger.jsx" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />

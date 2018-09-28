@@ -2,7 +2,6 @@
 import TotalDownlines from './total-downlines';
 import { UserLevel } from '../../constants/user-level';
 
-
 const DownlineListContent = ({ resources, data, handleSearchFromUserLevel }) => <div>
     {
         data.TotalStatusAgent !== null &&

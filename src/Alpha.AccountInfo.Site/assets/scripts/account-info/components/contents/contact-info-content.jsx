@@ -1,25 +1,21 @@
 ﻿import * as React from 'react';
 
-const ContactInfoContent = ({
-    customerInfo,
-    resources,
-    rowClasses = "col-xs-12 row-info",
-    firstCellClass = "col-xs-5",
-    secondCellClass = "col-xs-7 col-right" }) => <div>
-        <div className={rowClasses}>
-            <div className={firstCellClass}>{resources.Name}</div>
-            <div className={secondCellClass}>{customerInfo.FullName}</div>
-        </div>
+export default class ContactInfoContent extends React.Component {
+    render() {
+        let { resources, customerInfo } = this.props;
 
-        <div className={rowClasses}>
-            <div className={firstCellClass}>{resources.Phone}</div>
-            <div className={secondCellClass}>{customerInfo.Phone}</div>
-        </div>
+        let row = (title, value) =>
+            <div className="col-xs-12 row-info">
+                <div className="col-xs-5">{title}</div>
+                <div className="col-xs-7 col-right">{value}</div>
+            </div>;
 
-        <div className={rowClasses}>
-            <div className={firstCellClass}>{resources.Fax}</div>
-            <div className={secondCellClass}>{customerInfo.Fax}</div>
-        </div>
-    </div>;
-
-export default ContactInfoContent;
+        return (
+            <div>
+                {row(resources.Name, customerInfo.FullName)}
+                {row(resources.Phone, customerInfo.Phone)}
+                {row(resources.Fax, customerInfo.Fax)}
+            </div>
+        );
+    }
+}

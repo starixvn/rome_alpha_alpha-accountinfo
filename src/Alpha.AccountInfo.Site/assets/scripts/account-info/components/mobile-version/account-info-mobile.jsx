@@ -9,70 +9,69 @@ import DownlineListPage from './downline-list-page';
 import StatusPage from './status-page';
 import SettingPage from './setting-page';
 import LoginInfoPage from './login-info-page';
-import DebugRouter from '../../../helpers/RouterDebugger';
+import DebugRouter from '../../../helpers/router-debugger';
 
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirectToBalanceInfoPage: false,
-            firstLoad: true
+            redirectToBalanceInfoPage: false
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.redirectToBalanceInfoPage) {
-            this.setState({
-                redirectToBalanceInfoPage: true,
-                firstLoad: false
-            });
-        }
+        let { customerInfo } = this.props;
+        this.setState({
+            redirectToBalanceInfoPage: nextProps.customerInfo !== customerInfo
+        });
     }
 
     render() {
-        const {
-            actorRoleId, resources, username, searchCounter, custId, searchAccountRoleId,
-            customerInfo, downlineList, onlineList, statusData, settingData,
-            fetchCustomerInfoFromServer,
-            handleSearchFromUserLevel,
-            handleOpenIPInfo } = this.props;
+        const { resources, searchCounter, actorRoleId, customerInfo, downlineList, onlineList, statusData, settingData,
+                fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
 
-        const { redirectToBalanceInfoPage, firstLoad} = this.state;
+        const { redirectToBalanceInfoPage} = this.state;
 
-        const featureListPage = <FeatureListPage
-            resources={resources}
-            actorRoleId={actorRoleId}
-            searchAccountRoleId={searchAccountRoleId}
-            customerInfo={customerInfo}
-            firstLoad={firstLoad}/>;
+        const featureListPage =
+            <FeatureListPage resources={resources}
+                actorRoleId={actorRoleId}
+                customerInfo={customerInfo}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+            />;
 
-        const contactInfoPage = <ContactInfoPage resources={resources} customerInfo={customerInfo} />;
+        const contactInfoPage = <ContactInfoPage resources={resources} customerInfo={customerInfo} redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
 
-        const balanceInfoPage = <BalanceInfoPage resources={resources}
-            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-            customerInfo={customerInfo} />;
+        const balanceInfoPage = <BalanceInfoPage resources={resources} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
 
-        const downlineListPage = <DownlineListPage
-            searchAccountRoleId={searchAccountRoleId}
-            resources={resources}
-            handleSearchFromUserLevel={handleSearchFromUserLevel}
-            data={downlineList}
-            redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
+        const downlineListPage =
+            <DownlineListPage
+                resources={resources}
+                handleSearchFromUserLevel={handleSearchFromUserLevel}
+                data={downlineList}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+            />;
 
-        const statusPage = <StatusPage
-            resources={resources}
-            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-            username={username}
-            statusData={statusData} />;
+        const statusPage =
+            <StatusPage resources={resources}
+                fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                username={customerInfo === null ? '' : customerInfo.UserName}
+                statusData={statusData}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage && this.props.redirectToBalanceInfoPage}
+            />;
 
-        const settingPage = <SettingPage resources={resources} settingData={settingData} />;
+        const settingPage = <SettingPage resources={resources} settingData={settingData} redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
 
-        const loginInfoPage = <LoginInfoPage handleOpenIPInfo={handleOpenIPInfo} resources={resources} customerInfo={customerInfo} />;
+        const loginInfoPage =
+            <LoginInfoPage resources={resources}
+                customerInfo={customerInfo}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                handleOpenIPInfo={handleOpenIPInfo}
+            />;
 
-        const onlineListPage = <OnlineListPage handleOpenIPInfo={handleOpenIPInfo} resources={resources} data={onlineList} />;
+        const onlineListPage = <OnlineListPage resources={resources} data={onlineList} redirectToBalanceInfoPage={redirectToBalanceInfoPage} handleOpenIPInfo={handleOpenIPInfo} />;
 
         return (
-            <DebugRouter>
+            <HashRouter>
                 <Switch>
                     <Route key={0} exact path="/featureList" render={(props) => featureListPage} />
                     <Route key={1} exact path="/contactInfo" render={(props) => contactInfoPage}/>
@@ -84,7 +83,7 @@ export default class AccountInfoMobile extends React.Component {
                     <Route key={6} exact path="/onlineList" render={(props) => onlineListPage} />
                     <Route key={7} exact path="/" render={(props) => customerInfo !== null ? balanceInfoPage : featureListPage} />
                 </Switch>
-            </DebugRouter>
+            </HashRouter>
         );
     }
 }
