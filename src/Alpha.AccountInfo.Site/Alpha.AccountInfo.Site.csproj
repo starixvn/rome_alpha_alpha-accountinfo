@@ -331,6 +331,14 @@
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="assets\bundles\account-info\given-credit.css" />
+    <Content Include="assets\bundles\account-info\given-credit.js" />
+    <Content Include="assets\bundles\account-info\index.css" />
+    <Content Include="assets\bundles\account-info\index.js" />
+    <Content Include="assets\bundles\productstatus\productstatus.css" />
+    <Content Include="assets\bundles\productstatus\productstatus.js" />
+    <Content Include="assets\bundles\productstatus\productstatus.min.css" />
+    <Content Include="assets\bundles\productstatus\productstatus.min.js" />
     <Content Include="assets\scripts\account-info\api-client.jsx" />
     <Content Include="assets\scripts\account-info\components\contents\balance-info-content.jsx" />
     <Content Include="assets\scripts\account-info\components\mobile-version\balance-info-page.jsx" />
