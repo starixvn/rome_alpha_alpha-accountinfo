@@ -337,8 +337,6 @@
     <Content Include="assets\bundles\account-info\index.js" />
     <Content Include="assets\bundles\productstatus\productstatus.css" />
     <Content Include="assets\bundles\productstatus\productstatus.js" />
-    <Content Include="assets\bundles\productstatus\productstatus.min.css" />
-    <Content Include="assets\bundles\productstatus\productstatus.min.js" />
     <Content Include="assets\scripts\account-info\api-client.jsx" />
     <Content Include="assets\scripts\account-info\components\contents\balance-info-content.jsx" />
     <Content Include="assets\scripts\account-info\components\mobile-version\balance-info-page.jsx" />
@@ -539,7 +537,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="assets\styles\_variables.scss" />
-    <Content Include="bundleconfig.json" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

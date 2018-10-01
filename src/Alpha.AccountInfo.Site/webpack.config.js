@@ -2,6 +2,7 @@ var path = require("path");
 var webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -40,7 +41,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: ['babel-loader?presets[]=react,presets[]=es2015'],
+                loaders: ['babel-loader?presets[]=react,presets[]=es2015']
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
@@ -53,7 +54,7 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     "css-loader"
                 ]
-            },
+            }
         ]
     },
 
@@ -66,7 +67,8 @@ module.exports = {
     },
     optimization: {
         minimizer: [
-          new OptimizeCSSAssetsPlugin({})
+            new OptimizeCSSAssetsPlugin({}),
+            new UglifyJsPlugin()
         ]
     },
     plugins: [
