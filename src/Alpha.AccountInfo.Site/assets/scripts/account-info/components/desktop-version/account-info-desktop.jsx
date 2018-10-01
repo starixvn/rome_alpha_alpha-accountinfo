@@ -158,7 +158,7 @@ export default class AccountInfoDesktop extends React.Component {
                 handleClick={this.handleCollapExpandBlock}
                 blockId="setting"
             >
-                {settingData === null ? noInfoContent : <SettingContent resources={resources} settingData={settingData} />}
+                {settingData === null ? noInfoContent : <SettingContent resources={resources} mobileView={mobileView} settingData={settingData} />}
             </CustomizedAccordionItem>
 
             <CustomizedAccordionItem

@@ -61,7 +61,7 @@ export default class AccountInfoMobile extends React.Component {
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage && this.props.redirectToBalanceInfoPage}
             />;
 
-        const settingPage = <SettingPage resources={resources} settingData={settingData} redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
+        const settingPage = <SettingPage resources={resources} mobileView={mobileView} settingData={settingData} redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
 
         const loginInfoPage =
             <LoginInfoPage resources={resources}
