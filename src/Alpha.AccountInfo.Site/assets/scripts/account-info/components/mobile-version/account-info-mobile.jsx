@@ -42,7 +42,7 @@ export default class AccountInfoMobile extends React.Component {
 
         const contactInfoPage = <ContactInfoPage resources={resources} customerInfo={customerInfo} redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
 
-        const balanceInfoPage = <BalanceInfoPage resources={resources} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
+        const balanceInfoPage = <BalanceInfoPage resources={resources} mobileView={mobileView} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
 
         const downlineListPage =
             <DownlineListPage

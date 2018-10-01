@@ -26,7 +26,7 @@ export default class TotalDownlines extends React.Component {
             <div className="col-xs-12 row-info">
                 <div className="col-xs-6 px-0">{levelName} (A/C/S)</div>
                 <div className="col-xs-6 col-right px-0">
-                    <div className="pull-right">
+                    <div className="pull-right pointer">
                         <Tooltip
                             html={totalDownlineTooltip}
                             position="top"

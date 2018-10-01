@@ -109,9 +109,8 @@ export default class AccountInfoDesktop extends React.Component {
                 handleClick={this.handleCollapExpandBlock}
                 blockId="balanceInfo"
             >
-                <BalanceInfoContent resources={resources} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
+                <BalanceInfoContent resources={resources} mobileView={mobileView} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
             </CustomizedAccordionItem>
-
 
             {
                 customerInfo !== null && customerInfo.RoleId > UserLevel.Member &&
