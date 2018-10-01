@@ -56,12 +56,12 @@ export default class AccountInfo extends React.Component {
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then((data) => {
             self.setState((prevState) => ({
                 username: username,
-                custId: data.CustId,
+                custId: data !== null ? data.CustId : 0,
                 customerInfo: data,
                 searchCounter: prevState.searchCounter + 1,
                 redirectToBalanceInfoPage: redirectToBalanceInfoPage
             }));
-
+            
             localStorage.setItem('lastSearchUsername', username);
             $.unblockUI();
         });

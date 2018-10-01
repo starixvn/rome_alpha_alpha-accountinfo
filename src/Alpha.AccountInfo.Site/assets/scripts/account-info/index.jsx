@@ -4,7 +4,6 @@ import AccountInfo from './containers/account-info';
 import { base64Helper } from '../helpers/base64-helper';
 
 window.renderAccountInfo = function (actorRoleId, mobileView, accountInfoResources) {
-    localStorage.removeItem('lastSearchUsername');
     ReactDOM.render(
         <AccountInfo
             actorRoleId={actorRoleId}

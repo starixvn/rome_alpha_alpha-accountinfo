@@ -3,10 +3,7 @@ import { UserLevel } from '../../constants/user-level';
 import { HeaderFeature } from './header-feature';
 
 const FeatureListPage = ({ resources, customerInfo, actorRoleId, redirectToBalanceInfoPage, addAnimation = true }) => {
-    let searchAccountRoleId = actorRoleId - 1;
-    if (customerInfo !== null) {
-        searchAccountRoleId = customerInfo.RoleId;
-    }
+    let searchAccountRoleId = customerInfo !== null ? customerInfo.RoleId : actorRoleId - 1;
 
     return (
         <div className={`${addAnimation ? 'translate-from-left' : ''} feature-list`}>
