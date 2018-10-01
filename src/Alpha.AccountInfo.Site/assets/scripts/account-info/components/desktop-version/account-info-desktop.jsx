@@ -84,7 +84,7 @@ export default class AccountInfoDesktop extends React.Component {
 
         const { expandedItems, collapseAll, firstLoadSearch } = this.state;
 
-        const { resources, actorRoleId, searchCounter, customerInfo, downlineList, onlineList, statusData, settingData,
+        const { resources, mobileView, actorRoleId, searchCounter, customerInfo, downlineList, onlineList, statusData, settingData,
                 redirectToBalanceInfoPage, fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
 
         const noInfoContent = <div className="no-information">{resources.NoInfo}</div>;
@@ -143,6 +143,7 @@ export default class AccountInfoDesktop extends React.Component {
                     statusData === null ? noInfoContent :
                         <StatusContent
                             resources={resources}
+                            mobileView={mobileView}
                             statusData={statusData}
                             username={customerInfo.UserName}
                             fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />

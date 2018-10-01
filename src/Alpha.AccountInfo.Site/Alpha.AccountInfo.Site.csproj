@@ -362,7 +362,7 @@
     <Content Include="assets\scripts\account-info\components\mobile-version\feature-list-page.jsx" />
     <Content Include="assets\scripts\account-info\given-credit.jsx" />
     <Content Include="assets\scripts\account-info\index.jsx" />
-    <Content Include="assets\scripts\helpers\base64-helper.jsx" />
+    <Content Include="assets\scripts\helpers\accountinfo-helper.jsx" />
     <Content Include="assets\scripts\helpers\router-debugger.jsx" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />

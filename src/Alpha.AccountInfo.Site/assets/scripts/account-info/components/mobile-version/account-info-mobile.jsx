@@ -27,7 +27,7 @@ export default class AccountInfoMobile extends React.Component {
     }
 
     render() {
-        const { resources, searchCounter, actorRoleId, customerInfo, downlineList, onlineList, statusData, settingData,
+        const { resources, mobileView, actorRoleId, customerInfo, downlineList, onlineList, statusData, settingData,
                 fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
 
         const { redirectToBalanceInfoPage} = this.state;
@@ -54,6 +54,7 @@ export default class AccountInfoMobile extends React.Component {
 
         const statusPage =
             <StatusPage resources={resources}
+                mobileView={mobileView}
                 fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                 username={customerInfo === null ? '' : customerInfo.UserName}
                 statusData={statusData}

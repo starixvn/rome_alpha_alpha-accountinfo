@@ -22,6 +22,6 @@ const FeatureListPage = ({ resources, customerInfo, actorRoleId, redirectToBalan
             </nav>
         </div>
     );
-}
+};
 
 export default FeatureListPage;

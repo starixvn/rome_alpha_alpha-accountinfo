@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../api-client';
+import { mobileScale } from '../../../helpers/accountinfo-helper';
 
 export default class StatusContent extends React.Component {
     constructor(props) {
@@ -51,6 +52,11 @@ export default class StatusContent extends React.Component {
         }
         else if (productId >= 21) {
             height = 300;
+        }
+
+        if (this.props.mobileView) {
+            width = mobileScale(width);
+            height = mobileScale(height);
         }
 
         window.top.ageWnd.open(e.currentTarget.dataset.url, popupTitle, left, top, width, height);

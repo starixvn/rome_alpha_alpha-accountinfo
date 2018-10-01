@@ -145,6 +145,7 @@ export default class AccountInfo extends React.Component {
         const accountInfoMobile =
             <AccountInfoMobile
                 resources={resources}
+                mobileView={mobileView}
                 actorRoleId={actorRoleId}
                 searchCounter={searchCounter}
                 customerInfo={customerInfo}
@@ -161,6 +162,7 @@ export default class AccountInfo extends React.Component {
         const accountInfoDesktop =
             <AccountInfoDesktop
                 resources={resources}
+                mobileView={mobileView}
                 actorRoleId={actorRoleId}
                 searchCounter={searchCounter}
                 customerInfo={customerInfo}

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
 import { accountInfoAPI } from './api-client';
-import { base64Helper } from '../helpers/base64-helper';
+import { base64Helper } from '../helpers/accountinfo-helper';
 
 window.renderGivenCredit = function (searchAccountId, searchAccountRoleId, currentGivenCredit, resources) {
     ReactDOM.render(

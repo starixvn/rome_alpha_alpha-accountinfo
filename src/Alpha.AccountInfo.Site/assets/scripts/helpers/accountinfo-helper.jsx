@@ -17,3 +17,5 @@ export const base64Helper = {
         return resources;
     }
 };
+
+export const mobileScale = (value) => value / 0.7;
