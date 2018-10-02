@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../api-client';
-import { mobileScale } from '../../../helpers/accountinfo-helper';
+import { mobileScale, resizePopupOnMobile, resizeBootboxOnMobile } from '../../../helpers/accountinfo-helper';
 
 export default class StatusContent extends React.Component {
     constructor(props) {
@@ -13,11 +13,17 @@ export default class StatusContent extends React.Component {
     handleOpenPopupForCheckbox(e) {
         let url = e.currentTarget.dataset.url;
         let productName = e.currentTarget.dataset.name;
-        let resources = this.props.resources;
+        let { mobileView, resources } = this.props;
         if (JSON.parse(e.currentTarget.dataset.enabled)) {
-            e.currentTarget.dataset.message === undefined ?
-                window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`) :
+            if (e.currentTarget.dataset.message === undefined) {
+                window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`);
+                if (this.props.mobileView) {
+                    resizePopupOnMobile();
+                }
+            }
+            else {
                 this.handleOpenConfirmPopup(e);
+            } 
         }
     }
 
@@ -38,6 +44,10 @@ export default class StatusContent extends React.Component {
                     $.unblockUI();
                 });
             });
+
+        if (this.props.mobileView) {
+            resizeBootboxOnMobile();
+        }
     }
 
     handleOpenPopupForProductStatus(e) {
@@ -58,7 +68,7 @@ export default class StatusContent extends React.Component {
         window.top.ageWnd.open(e.currentTarget.dataset.url, popupTitle, left, top, width, mobileView ? mobileScale(height) : height);
 
         if (mobileView) {
-            window.top.document.querySelector('[id^="page-popup-"]').classList.add("only-account-info");
+            resizePopupOnMobile();
         }
     }
 

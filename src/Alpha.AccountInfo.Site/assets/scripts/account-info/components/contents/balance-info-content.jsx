@@ -4,7 +4,7 @@ import NumberFormat from 'react-number-format';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import { UserLevel } from '../../constants/user-level';
-import { mobileScale } from '../../../helpers/accountinfo-helper';
+import { mobileScale, resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
 
 export default class BalanceInfoContent extends React.Component {
     constructor(props) {
@@ -15,17 +15,21 @@ export default class BalanceInfoContent extends React.Component {
     handleOpenGivenCreditPopup(e) {
         let self = this;
         let resources = this.props.resources;
-        let customerInfo = this.props.customerInfo;
+        let { mobileView, customerInfo } = this.props;
 
         let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}`;
         let width = 370, height = 270;
 
-        if (this.props.mobileView) {
+        if (mobileView) {
             width = mobileScale(width);
             height = mobileScale(height);
         }
 
         window.top.ageWnd.open(givenCreditUrl, resources.GivenCreditPopupTitle, undefined, undefined, width, height);
+
+        if (mobileView) {
+            resizePopupOnMobile();
+        }
 
         window.top.closedPopup = false;
         window.top.realoadLeftPanel = false;
