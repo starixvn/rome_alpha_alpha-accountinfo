@@ -3,28 +3,24 @@
 export default class SettingContent extends React.Component {
     constructor(props) {
         super(props);
-        this.handleOpenPopup = this.handleOpenPopup.bind(this);
+        this.handleOnclick = this.handleOnclick.bind(this);
     }
 
-    handleOpenPopup(e) {
-        let url = e.currentTarget.dataset.url;
-        let productName = e.currentTarget.dataset.name;
-        let resources = this.props.resources;
-        if (JSON.parse(e.currentTarget.dataset.enabled)) {
-            e.currentTarget.dataset.message === undefined ?
-                window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`) :
-                this.handleOpenConfirmPopup(e);
+    handleOnclick(e) {
+        if (this.props.mobileView) {
+            let closeButton = window.parent.document.getElementById('closeIconOnMobile');
+            closeButton.click();
         }
     }
 
     render() {
-        const { resources, settingData  } = this.props;
+        const { resources, settingData } = this.props;
         return (
             <div className="setting">
                 {
                     settingData.map((value, index) => {
                         return <div className="col-xs-6" key={index}>
-                            <a href={value.Url} target="main">{value.Text}</a>
+                            <a href={value.Url} target="main" onClick={this.handleOnclick}>{value.Text}</a>
                         </div>;
                     })}
             </div>

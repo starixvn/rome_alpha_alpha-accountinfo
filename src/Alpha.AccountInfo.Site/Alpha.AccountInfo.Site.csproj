@@ -366,7 +366,9 @@
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
+    <Content Include="assets\styles\account-info-mobile-calculate-07.css" />
     <Content Include="assets\styles\account-info.css" />
+    <Content Include="assets\styles\given-credit.css" />
     <Content Include="assets\styles\productstatus\productstatus.css" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />

@@ -17,3 +17,5 @@
 \\Web.Release.config
 
 \\typings\\*
+
+\\*.jsx
