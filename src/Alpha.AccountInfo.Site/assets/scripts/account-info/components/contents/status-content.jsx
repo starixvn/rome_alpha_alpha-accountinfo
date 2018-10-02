@@ -59,7 +59,13 @@ export default class StatusContent extends React.Component {
             height = mobileScale(height);
         }
 
+        
         window.top.ageWnd.open(e.currentTarget.dataset.url, popupTitle, left, top, width, height);
+
+        if (this.props.mobileView) {
+            let topWindow = window.top.document.querySelector('[id^="page-popup-"]').id;
+            // assign css for popup
+        }
     }
 
     render() {
