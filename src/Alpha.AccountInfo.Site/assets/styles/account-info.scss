@@ -392,7 +392,7 @@ hr {
     width: 100%;
     display: block;
     padding: 14px 25px 14px 10px;
-    color: $text-color;
+    color: #222;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
@@ -564,13 +564,11 @@ hr {
         }
     }
 
-    .online-list {
-        margin-top: 6px;
-        margin-bottom: 6px;
-        font-size: 12px;
+    &.online-list {
+        padding: 6px 10px;
 
-        .datetime {
-            font-size: 11px;
+        .col-number {
+            width: 30px;
         }
     }
 }

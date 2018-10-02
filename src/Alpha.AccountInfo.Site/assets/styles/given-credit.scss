@@ -64,6 +64,13 @@
     .msg {
         padding: calculateScale(8px) calculateScale(8px) calculateScale(8px) calculateScale(36px);
         margin: calculateScale(12px) 0;
+
+        &:before {
+            font-size: calculateScale(24px);
+            line-height: calculateScale(20px);
+            left: calculateScale(8px);
+            top: calculateScale(8px);
+        }
     }
 
     .given-credit .form-group {

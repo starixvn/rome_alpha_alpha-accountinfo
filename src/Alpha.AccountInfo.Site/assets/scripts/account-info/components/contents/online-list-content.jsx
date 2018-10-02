@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-const OnlineListContent = ({ resources, data, handleOpenIPInfo }) => <table className="tblRpt tblRpt-bordered width-100per online-list">
+const OnlineListContent = ({ resources, data, handleOpenIPInfo }) => <table className="tblRpt tblRpt-bordered width-100per">
     <thead>
         <tr>
             <th>{resources.NumberOrder}</th>
