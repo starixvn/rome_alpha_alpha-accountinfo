@@ -45,6 +45,7 @@ export default class StatusContent extends React.Component {
         let productName = e.currentTarget.dataset.name;
         let resources = this.props.resources;
         let popupTitle = `${resources.Update} ${productName} ${resources.Status}`;
+        let { mobileView } = this.props;
         let width = 475, height = 200, left = 200, top = 200;
 
         if (productId === 8) {
@@ -54,17 +55,10 @@ export default class StatusContent extends React.Component {
             height = 300;
         }
 
-        if (this.props.mobileView) {
-            width = mobileScale(width);
-            height = mobileScale(height);
-        }
+        window.top.ageWnd.open(e.currentTarget.dataset.url, popupTitle, left, top, width, mobileView ? mobileScale(height) : height);
 
-        
-        window.top.ageWnd.open(e.currentTarget.dataset.url, popupTitle, left, top, width, height);
-
-        if (this.props.mobileView) {
-            let topWindow = window.top.document.querySelector('[id^="page-popup-"]').id;
-            // assign css for popup
+        if (mobileView) {
+            window.top.document.querySelector('[id^="page-popup-"]').classList.add("only-account-info");
         }
     }
 

@@ -1,7 +1,6 @@
 ﻿import * as React from 'react';
 import { Accordion } from 'react-accessible-accordion';
 import { UserLevel } from '../../constants/user-level';
-import 'react-accessible-accordion/dist/fancy-example.css';
 import CustomizedAccordionItem from './customized-accordion-item';
 import ContactInfoContent from '../contents/contact-info-content';
 import BalanceInfoContent from '../contents/balance-info-content';
