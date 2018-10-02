@@ -323,12 +323,12 @@
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
-    <Content Include="assets\bundles\account-info\given-credit.css" />
-    <Content Include="assets\bundles\account-info\given-credit.js" />
-    <Content Include="assets\bundles\account-info\index.css" />
-    <Content Include="assets\bundles\account-info\index.js" />
-    <Content Include="assets\bundles\productstatus\productstatus.css" />
-    <Content Include="assets\bundles\productstatus\productstatus.js" />
+    <Content Include="assets\bundles\account-info\given-credit.min.css" />
+    <Content Include="assets\bundles\account-info\given-credit.min.js" />
+    <Content Include="assets\bundles\account-info\index.min.css" />
+    <Content Include="assets\bundles\account-info\index.min.js" />
+    <Content Include="assets\bundles\productstatus\productstatus.min.css" />
+    <Content Include="assets\bundles\productstatus\productstatus.min.js" />
     <Content Include="assets\scripts\account-info\api-client.jsx" />
     <Content Include="assets\scripts\account-info\components\contents\balance-info-content.jsx" />
     <Content Include="assets\scripts\account-info\components\mobile-version\balance-info-page.jsx" />
@@ -470,6 +470,12 @@
     </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="webpack.dev.js">
+      <DependentUpon>webpack.config.js</DependentUpon>
+    </Content>
+    <Content Include="webpack.prod.js">
+      <DependentUpon>webpack.config.js</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -659,6 +665,6 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <Exec Command="npm run build" />
+    <Exec Command="npm run prod" />
   </Target>
 </Project>

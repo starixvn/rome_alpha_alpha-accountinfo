@@ -1,8 +1,5 @@
-var path = require("path");
-var webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
@@ -19,14 +16,6 @@ module.exports = {
             "./assets/styles/productstatus/productstatus.css"
         ]
     },
-
-    output: {
-        path: path.resolve(__dirname, 'assets'),
-        filename: '[name].js'
-    },
-
-    // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
@@ -67,21 +56,7 @@ module.exports = {
     },
     optimization: {
         minimizer: [
-            new OptimizeCSSAssetsPlugin({}),
-            new UglifyJsPlugin()
+            new OptimizeCSSAssetsPlugin({})
         ]
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "[name].css",
-            chunkFilename: "[id].css"
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('development')
-            }
-        })
-    ]
+    }
 };

@@ -12,9 +12,8 @@
   "scripts": {
     "build-css": "node-sass-chokidar assets/styles/ -o assets/styles/",
     "watch-css": "npm run build-css && node-sass-chokidar assets/styles/ -o assets/styles/ --watch --recursive",
-    "start": "webpack-dev-server --config webpack.config.js --hot --progress --colors --devtool source-map",
-    "build-js": "webpack --config webpack.config.js --mode production --progress --profile --colors",
-    "build": "npm install && npm run build-css && npm run build-js "
+    "dev": "npm install && npm run build-css && webpack --config webpack.dev.js",
+    "prod": "npm install && npm run build-css && webpack --config webpack.prod.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -61,8 +60,9 @@
     "style-loader": "^0.18.2",
     "typescript": "^2.1.6",
     "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.5",
-    "webpack-dev-server": "^3.1.3"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.3",
+    "webpack-merge": "^4.1.4"
   }
 }
