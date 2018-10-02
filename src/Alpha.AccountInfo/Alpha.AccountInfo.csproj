@@ -38,7 +38,7 @@
       <HintPath>..\..\packages\Alpha.Products.AccountInfo.1.0.0-beta9\lib\net40\Alpha.Products.AccountInfo.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0-beta91\lib\net461\Alpha.Products.Core.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0-beta92\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="CasinoLibrary, Version=2.0.2.28015, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015\lib\net40\CasinoLibrary.dll</HintPath>

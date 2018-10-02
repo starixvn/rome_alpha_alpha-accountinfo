@@ -26,6 +26,7 @@
     using System.Collections.Generic;
     using System.Reflection;
     using System.Resources;
+    using System.Web;
     using System.Web.Mvc;
 
     public static class DependencyConfig
@@ -102,13 +103,14 @@
 
         private static void StartConfiguration(Container container)
         {
+            var absoluteConfigFilePath = HttpContext.Current.Server.MapPath("../App_Data/ProductConfiguration.json");
             SimpleServiceLocator
-            .Instance
-            .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter()))
-            .Register<Func<int, string>>(new CacheRefServiceImpl(container.GetInstance<IRemotingRefService>()).GetProductName)
-            .Register<Func<string, string>>(Resources.ResourceManager.GetString)
-            .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
-            .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert);
+              .Instance
+              .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), absoluteConfigFilePath))
+              .Register<Func<int, string>>(new CacheRefServiceImpl(container.GetInstance<IRemotingRefService>()).GetProductName)
+              .Register<Func<string, string>>(Resources.ResourceManager.GetString)
+              .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
+              .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert);
         }
     }
 }
