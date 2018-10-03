@@ -70,7 +70,7 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CurrentGivenCredit.
+        ///   Looks up a localized string similar to Current Given Credit.
         /// </summary>
         public static string CurrentGivenCredit {
             get {
@@ -88,7 +88,7 @@ namespace Alpha.AccountInfo.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NewGivenCredit.
+        ///   Looks up a localized string similar to New Given Credit.
         /// </summary>
         public static string NewGivenCredit {
             get {

@@ -121,13 +121,13 @@
     <value>ยกเลิก</value>
   </data>
   <data name="CurrentGivenCredit" xml:space="preserve">
-    <value>CurrentGivenCredit</value>
+    <value>Current Given Credit</value>
   </data>
   <data name="Difference" xml:space="preserve">
     <value>Difference</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
-    <value>NewGivenCredit</value>
+    <value>New Given Credit</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>ตกลง</value>
