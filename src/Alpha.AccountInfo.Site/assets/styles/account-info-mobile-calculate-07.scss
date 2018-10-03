@@ -252,13 +252,7 @@ hr {
     }
 
     .online-list {
-        margin-top: calculateScale(6px);
-        margin-bottom: calculateScale(6px);
-        font-size: calculateScale(12px);
-
-        .datetime {
-            font-size: calculateScale(11px);
-        }
+        padding: calculateScale(6px) calculateScale(10px);
     }
 }
 

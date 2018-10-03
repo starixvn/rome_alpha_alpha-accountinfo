@@ -8,7 +8,9 @@ const OnlineListPage = ({ resources, data, handleOpenIPInfo, redirectToBalanceIn
         <NoInformFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} noInform={resources.NoInfo} /> :
         <div className="feature-detail translate-from-left">
             <HeaderFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />
-            <OnlineListContent resources={resources} data={data} handleOpenIPInfo={handleOpenIPInfo} />
+            <div className="online-list">
+                <OnlineListContent resources={resources} data={data} handleOpenIPInfo={handleOpenIPInfo} />
+            </div>
         </div>;
 
 export default OnlineListPage;
