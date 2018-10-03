@@ -329,6 +329,7 @@
     <Content Include="assets\bundles\account-info\index.min.js" />
     <Content Include="assets\bundles\productstatus\productstatus.min.css" />
     <Content Include="assets\bundles\productstatus\productstatus.min.js" />
+    <Content Include="assets\bundles\styles\account-info-mobile-calculate-07.css" />
     <Content Include="assets\scripts\account-info\api-client.jsx" />
     <Content Include="assets\scripts\account-info\components\contents\balance-info-content.jsx" />
     <Content Include="assets\scripts\account-info\components\mobile-version\balance-info-page.jsx" />
@@ -366,10 +367,6 @@
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
-    <Content Include="assets\styles\account-info-mobile-calculate-07.css" />
-    <Content Include="assets\styles\account-info.css" />
-    <Content Include="assets\styles\given-credit.css" />
-    <Content Include="assets\styles\productstatus\productstatus.css" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
     <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
@@ -655,7 +652,7 @@
       cd ..
       cd ..
       cd build
-      assets.build.cmd
+      build.prod.cmd
       if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
       start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"</PostBuildEvent>
   </PropertyGroup>
@@ -666,7 +663,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Target Name="AfterBuild">
-    <Exec Command="npm run prod" />
-  </Target>
 </Project>

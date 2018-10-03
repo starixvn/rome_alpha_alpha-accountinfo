@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
@@ -12,15 +13,14 @@ module.exports = merge(common, {
     },
     optimization: {
         minimizer: [
+            new OptimizeCSSAssetsPlugin({}),
             new UglifyJsPlugin()
         ]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
             filename: "[name].min.css",
-            chunkFilename: "[id].min.css"
+            chunkFilename: "[id].css"
         }),
         new webpack.DefinePlugin({
             'process.env': {
