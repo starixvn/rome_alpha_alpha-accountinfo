@@ -1,1 +1,1 @@
-copy ..\build.prod.cmd ..\build.dev.cmd /y
+copy .\webpack.prod.bat .\webpack.dev.bat /y

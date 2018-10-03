@@ -14,7 +14,7 @@ module.exports = merge(common, {
     optimization: {
         minimizer: [
             new OptimizeCSSAssetsPlugin({}),
-            new UglifyJsPlugin()
+            new UglifyJsPlugin({ cache: false })
         ]
     },
     plugins: [
