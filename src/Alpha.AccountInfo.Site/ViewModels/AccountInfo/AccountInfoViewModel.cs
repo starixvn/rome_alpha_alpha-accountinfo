@@ -23,6 +23,8 @@
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
         }
 
+        public string SearchAccountName => message.SearchAccountName;
+
         public string ActorLevel => Enumeration.FromValue<UserLevel>(message.ActorRoleId).DisplayName;
 
         public byte ActorRoleId => message.ActorRoleId;

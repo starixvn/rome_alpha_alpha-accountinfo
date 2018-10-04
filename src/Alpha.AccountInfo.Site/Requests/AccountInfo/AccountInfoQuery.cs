@@ -12,6 +12,9 @@
             ActorName = viewer.Name;
             Language = viewer.Language;
         }
+
+        public string SearchAccountName { get; set; }
+
         public byte ActorRoleId { get; }
 
         public string ActorName { get; }

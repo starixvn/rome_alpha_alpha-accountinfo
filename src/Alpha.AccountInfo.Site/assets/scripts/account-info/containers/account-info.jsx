@@ -10,12 +10,20 @@ import AccountInfoDesktop from '../components/desktop-version/account-info-deskt
 export default class AccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        let lastSearchUsername = localStorage.getItem("lastSearchUsername") !== null ? localStorage.getItem("lastSearchUsername") : '';
-        let { resources, actorRoleId, mobileView } = this.props;
+        let { searchAccountName, actorRoleId, actorName, mobileView, resources } = this.props;
+        let username = searchAccountName;
+
+        if (username === '' && localStorage.getItem("actorName") === actorName) {
+            username = localStorage.getItem("lastSearchUsername") !== null ? localStorage.getItem("lastSearchUsername") : '';
+        }
+        else {
+            localStorage.setItem('actorName', actorName);
+            localStorage.removeItem('lastSearchUsername');
+        }
 
         this.state = {
             resources: resources,
-            username: lastSearchUsername,
+            username: username,
             custId: 0,
             actorRoleId: actorRoleId,
             searchAccountRoleId: actorRoleId - 1,

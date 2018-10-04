@@ -23,13 +23,10 @@
         var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
-        if (localStorage.getItem("actorName") !== '@Model.ActoreName') {
-            localStorage.setItem('actorName', '@Model.ActoreName');
-            localStorage.removeItem('lastSearchUsername');
-        }
-
         renderAccountInfo(
+            '@Model.SearchAccountName',
             '@Model.ActorRoleId',
+            '@Model.ActoreName',
             JSON.parse('@Model.MobileView'.toLowerCase()),
             JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"'))
         );
