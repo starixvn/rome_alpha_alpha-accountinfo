@@ -1,5 +1,4 @@
 ﻿import * as React from 'react';
-import { Accordion } from 'react-accessible-accordion';
 import { UserLevel } from '../../constants/user-level';
 import CustomizedAccordionItem from './customized-accordion-item';
 import ContactInfoContent from '../contents/contact-info-content';
@@ -15,8 +14,7 @@ export default class AccountInfoDesktop extends React.Component {
         super(props);
         this.state = {
             expandedItems: this.initialExpandedItems(),
-            collapseAll: false,
-            firstLoadSearch: true
+            collapseAll: false
         };
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
@@ -60,12 +58,6 @@ export default class AccountInfoDesktop extends React.Component {
         const newExpandedItems = Object.assign({}, emptyObject, { [blockId]: !currentStatus });
         const collapseAll = Object.keys(expandedItems).filter(key => newExpandedItems[key] === true).length === 0;
 
-        if (this.state.firstLoadSearch) {
-            this.setState({
-                firstLoadSearch: false
-            });
-        }
-
         this.setState({
             expandedItems: newExpandedItems,
             collapseAll
@@ -81,9 +73,9 @@ export default class AccountInfoDesktop extends React.Component {
 
     render() {
 
-        const { expandedItems, collapseAll, firstLoadSearch } = this.state;
+        const { expandedItems, collapseAll } = this.state;
 
-        const { resources, mobileView, actorRoleId, searchCounter, customerInfo, downlineList, onlineList, statusData, settingData,
+        const { resources, mobileView, actorRoleId, customerInfo, downlineList, onlineList, statusData, settingData,
                 redirectToBalanceInfoPage, fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
 
         const noInfoContent = <div className="no-information">{resources.NoInfo}</div>;

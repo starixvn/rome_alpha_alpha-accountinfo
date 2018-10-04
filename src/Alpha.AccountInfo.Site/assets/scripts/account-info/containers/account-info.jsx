@@ -147,7 +147,6 @@ export default class AccountInfo extends React.Component {
                 resources={resources}
                 mobileView={mobileView}
                 actorRoleId={actorRoleId}
-                searchCounter={searchCounter}
                 customerInfo={customerInfo}
                 downlineList={downlineList}
                 onlineList={onlineList}
@@ -164,7 +163,6 @@ export default class AccountInfo extends React.Component {
                 resources={resources}
                 mobileView={mobileView}
                 actorRoleId={actorRoleId}
-                searchCounter={searchCounter}
                 customerInfo={customerInfo}
                 downlineList={downlineList}
                 onlineList={onlineList}
@@ -185,10 +183,12 @@ export default class AccountInfo extends React.Component {
                 />
 
                 {
-                    searchCounter > 0 && <CustomerInfoBlock
+                    searchCounter > 0 &&
+                    <CustomerInfoBlock
                         resources={resources}
                         customerInfo={customerInfo}
-                        handleSearchFromUserLevel={this.handleSearchFromUserLevel} />
+                        handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                    />
                 }
 
                 {
