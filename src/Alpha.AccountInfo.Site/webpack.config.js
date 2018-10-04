@@ -1,7 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: {
+    entry: { 
         "bundles/account-info/index": [
             "./assets/scripts/account-info/index.jsx",
             "./assets/styles/account-info.scss"
