@@ -613,6 +613,9 @@
     <Content Include="assets\styles\account-info-mobile-calculate-07.scss" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\bundles\account-info\given-credit.min.js.map" />
+    <Content Include="assets\bundles\account-info\index.min.js.map" />
+    <None Include="deployment.ignore.pro" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>
