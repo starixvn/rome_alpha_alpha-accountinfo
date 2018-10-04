@@ -8,7 +8,7 @@
         @StaticResources.RenderStyles("/assets/bundles/common/common-" + Model.ActorLevel)
         @StaticResources.RenderStyles("/assets/bundles/site-accountinfo/index")
         @StaticResources.RenderStyles("~/assets/bundles/account-info/index")
-        <link rel='stylesheet' href='/site-accountinfo/assets/bundles/styles/account-info-mobile-calculate-07.min.css' type='text/css' media='screen and (max-device-width: 767px)' />
+        @StaticResources.RenderStylesWithMedia(767, "~/assets/bundles/styles/account-info-mobile-calculate-07")
     }
 </head>
 <body>
