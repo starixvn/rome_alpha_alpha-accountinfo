@@ -473,6 +473,9 @@
     <Content Include="webpack.dev.js">
       <DependentUpon>webpack.config.js</DependentUpon>
     </Content>
+    <Content Include="webpack.local.js">
+      <DependentUpon>webpack.config.js</DependentUpon>
+    </Content>
     <Content Include="webpack.prod.js">
       <DependentUpon>webpack.config.js</DependentUpon>
     </Content>

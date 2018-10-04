@@ -20,7 +20,7 @@ module.exports = merge(common, {
         new MinifyPlugin({}, {}),
         new MiniCssExtractPlugin({
             filename: "[name].min.css",
-            chunkFilename: "[id].css"
+            chunkFilename: "[id].min.css"
         }),
         new webpack.DefinePlugin({
             'process.env': {

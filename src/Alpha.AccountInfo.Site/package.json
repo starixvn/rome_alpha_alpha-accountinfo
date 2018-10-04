@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "npm install && webpack --config webpack.dev.js",
+    "local": "npm install && webpack --config webpack.local.js",
     "prod": "npm install && webpack --config webpack.prod.js"
   },
   "dependencies": {
@@ -22,7 +23,7 @@
     "@types/core-js": "^0.9.42",
     "@types/node": "^8.0.5",
     "@types/webpack-env": "^1.13.0",
-    "awesome-typescript-loader": "^3.2.1",
+    "awesome-typescript-loader": "^3.5.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-minify-webpack-plugin": "^0.3.1",
