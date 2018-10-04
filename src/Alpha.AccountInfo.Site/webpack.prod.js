@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
 
@@ -13,11 +13,11 @@ module.exports = merge(common, {
     },
     optimization: {
         minimizer: [
-            new OptimizeCSSAssetsPlugin({}),
-            new UglifyJsPlugin({ cache: false })
+            new OptimizeCSSAssetsPlugin({})
         ]
     },
     plugins: [
+        new MinifyPlugin({}, {}),
         new MiniCssExtractPlugin({
             filename: "[name].min.css",
             chunkFilename: "[id].css"
