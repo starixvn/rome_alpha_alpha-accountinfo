@@ -83,6 +83,7 @@
         line-height: calculateScale(28px);
         padding-left: calculateScale(8px);
         border-width: 0 0 calculateScale(1px) 0;
+        font-size: calculateScale($font-size);
 
         &:focus {
             border-width: 0 0 calculateScale(1px) 0;
