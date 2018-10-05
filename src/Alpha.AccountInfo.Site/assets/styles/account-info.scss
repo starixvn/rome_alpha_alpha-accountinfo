@@ -366,7 +366,7 @@ hr {
     position: relative;
 
     &.translate-from-left {
-        animation: TranslateFromLeft 0.4s;
+        animation: TranslateFromLeft 0.3s;
     }
 }
 
@@ -375,7 +375,6 @@ hr {
     max-height: 46px;
     overflow: hidden;
     transform-origin: top center;
-    transform: rotate(0.1deg);
 
     &.expanded {
         transition: all 0.4s;
@@ -450,7 +449,7 @@ hr {
     width: 100%;
 
     &.translate-from-left {
-        animation: TranslateFromLeft 0.4s;
+        animation: TranslateFromLeft 0.3s;
     }
 
     .feature-item:after {
