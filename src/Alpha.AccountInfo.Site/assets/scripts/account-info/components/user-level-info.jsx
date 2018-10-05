@@ -1,6 +1,8 @@
 ﻿import * as React from 'react';
+import { Fragment } from 'react';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
+import CustomAnchorTag from './common/custom-anchor-tag';
 
 const UserLevelInfo = ({
     customerInfo,
@@ -9,6 +11,7 @@ const UserLevelInfo = ({
     username,
     resources,
     handleSearchFromUserLevel,
+    mobileView,
     rowClasses = "col-xs-12 row-info",
     firstCellClass = "col-xs-5",
     secondCellClass = "col-xs-7 col-right" }) => {
@@ -47,10 +50,15 @@ const UserLevelInfo = ({
         }
     }
 
-    const contentWithViewlogLink = <a title={resources.Viewlog} className="pointer" href={customerInfo.ViewLogLink} target="main">
-        <span className={statusCss} data-username={username}> {username} </span>
-        <span className="icon-viewlog" />
-    </a>;
+    const contentWithViewlogLink =
+        <CustomAnchorTag
+            mobileView={mobileView}
+            title={resources.Viewlog}
+            classNames="pointer"
+            href={customerInfo.ViewLogLink}>
+            <span className={statusCss} data-username={username}> {username} </span>
+            <span className="icon-viewlog" />
+        </CustomAnchorTag>
 
     return (
 

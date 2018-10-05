@@ -196,6 +196,7 @@ export default class AccountInfo extends React.Component {
                         resources={resources}
                         customerInfo={customerInfo}
                         handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                        mobileView={mobileView}
                     />
                 }
 

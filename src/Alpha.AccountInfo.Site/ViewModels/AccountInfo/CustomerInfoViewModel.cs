@@ -95,7 +95,7 @@
 
                 var link = SearchAccountLevel.IsMemberLevel() ?
                      $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}" :
-                     $"{OldMainUrl}_MemberInfo/CustomerList/{ActorLevel.DisplayName}/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}List.aspx";
+                     $"{OldMainUrl}_MemberInfo/CustomerList/{ActorLevel.DisplayName}/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}List.aspx?custid={CustId}";
 
                 return new Link(labels[SearchAccountLevel], link);
             }

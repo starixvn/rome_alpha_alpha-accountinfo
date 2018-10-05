@@ -44,7 +44,7 @@ export default class BalanceInfoContent extends React.Component {
     }
 
     render() {
-        let { resources, customerInfo, rowClasses = "row-info" } = this.props;
+        let { mobileView, resources, customerInfo, rowClasses = "row-info" } = this.props;
         let roleId = this.props.customerInfo.RoleId;
         let balanceInfo = this.props.customerInfo.BalanceInfo;
 
@@ -54,7 +54,7 @@ export default class BalanceInfoContent extends React.Component {
         let row = (title, value, href = null) =>
             <div className={rowClasses}>
                 <div className="col">{title}</div>
-                <CellContainNumberFormat value={value} classNames="col col-right" hrefLink={href} target={href !== null ? `main` : null} />
+                <CellContainNumberFormat mobileView={mobileView} value={value} classNames="col col-right" hrefLink={href} target={href !== null ? `main` : null} />
             </div>;
 
         return (
@@ -107,12 +107,12 @@ export default class BalanceInfoContent extends React.Component {
                                     trigger="mouseenter"
                                     arrow="true"
                                 >
-                                    <CellContainNumberFormat value={balanceInfo.MemberMaxCredit} />
+                                    <CellContainNumberFormat mobileView={mobileView} value={balanceInfo.MemberMaxCredit} />
                                 </Tooltip>
                             }
                             {
                                 !balanceInfo.ShowMemberMaxCreditLimit &&
-                                <CellContainNumberFormat value={balanceInfo.MemberMaxCredit} />
+                                <CellContainNumberFormat mobileView={mobileView} value={balanceInfo.MemberMaxCredit} />
                             }
                         </div>
                     </div>

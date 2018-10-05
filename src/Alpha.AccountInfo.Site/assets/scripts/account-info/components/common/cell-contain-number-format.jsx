@@ -1,7 +1,8 @@
 ﻿import * as React from 'react';
 import NumberFormat from 'react-number-format';
+import CustomAnchorTag from './custom-anchor-tag';
 
-const CellContainNumberFormat = ({ classNames = null, value = 0, hrefLink = null, target = null }) => {
+const CellContainNumberFormat = ({ mobileView = false, classNames = null, value = 0, hrefLink = null, target = null }) => {
     let formatClassNames = null;
     if (value < 0) {
         formatClassNames = `${classNames} number-red`;
@@ -21,7 +22,7 @@ const CellContainNumberFormat = ({ classNames = null, value = 0, hrefLink = null
                 thousandSeparator={true}
                 renderText={value => hrefLink === null || hrefLink === '' ?
                     <span>{value}</span> :
-                    <a href={hrefLink} target={target}>{value}</a>}
+                    <CustomAnchorTag href={hrefLink} mobileView={mobileView} >{value} </CustomAnchorTag>}
             />
         </div>
     );

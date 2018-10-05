@@ -331,6 +331,7 @@
     <Content Include="assets\bundles\productstatus\productstatus.min.js" />
     <Content Include="assets\bundles\styles\account-info-mobile-calculate-07.min.css" />
     <Content Include="assets\scripts\account-info\api-client.jsx" />
+    <Content Include="assets\scripts\account-info\components\common\custom-anchor-tag.jsx" />
     <Content Include="assets\scripts\account-info\components\contents\balance-info-content.jsx" />
     <Content Include="assets\scripts\account-info\components\mobile-version\balance-info-page.jsx" />
     <Content Include="assets\scripts\account-info\components\common\cell-contain-number-format.jsx" />

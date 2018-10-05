@@ -1,29 +1,14 @@
 ﻿import React from 'react';
+import CustomAnchorTag from '../common/custom-anchor-tag';
 
-export default class SettingContent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleOnclick = this.handleOnclick.bind(this);
-    }
+const SettingContent = ({ resources, settingData, mobileView }) =>
+    <div className="setting">
+        {
+            settingData.map((value, index) => {
+                return <div className="col-xs-6" key={index}>
+                    <CustomAnchorTag href={value.Url} mobileView={mobileView}>{value.Text} </CustomAnchorTag>
+                </div>;
+            })}
+    </div>;
 
-    handleOnclick(e) {
-        if (this.props.mobileView) {
-            let closeButton = window.parent.document.getElementById('closeIconOnMobile');
-            closeButton.click();
-        }
-    }
-
-    render() {
-        const { resources, settingData } = this.props;
-        return (
-            <div className="setting">
-                {
-                    settingData.map((value, index) => {
-                        return <div className="col-xs-6" key={index}>
-                            <a href={value.Url} target="main" onClick={this.handleOnclick}>{value.Text}</a>
-                        </div>;
-                    })}
-            </div>
-        );
-    }
-}
+export default SettingContent;
