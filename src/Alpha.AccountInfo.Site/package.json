@@ -10,9 +10,9 @@
     "paths": {}
   },
   "scripts": {
-    "dev": "npm install && webpack --config webpack.dev.js",
-    "local": "npm install && webpack --config webpack.local.js",
-    "prod": "npm install && webpack --config webpack.prod.js"
+    "dev": "npm install && webpack --config webpack.config.dev.js",
+    "local": "npm install && webpack --config webpack.config.local.js",
+    "prod": "npm install && webpack --config webpack.config.prod.js"
   },
   "dependencies": {
     "axios": "^0.16.2",

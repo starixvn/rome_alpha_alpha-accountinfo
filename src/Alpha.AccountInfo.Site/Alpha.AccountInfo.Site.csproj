@@ -394,6 +394,9 @@
     <Content Include="assets\styles\account-info.scss" />
     <Content Include="assets\styles\_mixins.scss" />
     <Content Include="Views\AccountInfo\Index.cshtml" />
+    <Content Include="webpack.config.dev.js">
+      <DependentUpon>webpack.config.js</DependentUpon>
+    </Content>
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
@@ -470,13 +473,10 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="webpack.dev.js">
+    <Content Include="webpack.config.local.js">
       <DependentUpon>webpack.config.js</DependentUpon>
     </Content>
-    <Content Include="webpack.local.js">
-      <DependentUpon>webpack.config.js</DependentUpon>
-    </Content>
-    <Content Include="webpack.prod.js">
+    <Content Include="webpack.config.prod.js">
       <DependentUpon>webpack.config.js</DependentUpon>
     </Content>
   </ItemGroup>
@@ -613,11 +613,6 @@
     <Content Include="assets\styles\account-info-mobile-calculate-07.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\bundles\account-info\given-credit.min.js.map" />
-    <Content Include="assets\bundles\account-info\index.min.js.map" />
-    <Content Include="deployment.ignore.pro">
-      <DependentUpon>deployment.ignore</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>
