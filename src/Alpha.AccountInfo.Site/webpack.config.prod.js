@@ -7,6 +7,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
 
 module.exports = merge(common, {
+    mode: 'production',
     output: {
         path: path.resolve(__dirname, 'assets'),
         filename: '[name].min.js'
@@ -21,11 +22,6 @@ module.exports = merge(common, {
         new MiniCssExtractPlugin({
             filename: "[name].min.css",
             chunkFilename: "[id].min.css"
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
         })
     ]
 });

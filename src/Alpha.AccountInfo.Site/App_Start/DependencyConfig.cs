@@ -103,7 +103,7 @@
 
         private static void StartConfiguration(Container container)
         {
-            var absoluteConfigFilePath = HttpContext.Current.Server.MapPath("../App_Data/ProductConfiguration.json");
+            var absoluteConfigFilePath = HttpContext.Current.Server.MapPath("../../sharingcode/App_Data/ProductConfiguration.json");
             SimpleServiceLocator
               .Instance
               .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), absoluteConfigFilePath))

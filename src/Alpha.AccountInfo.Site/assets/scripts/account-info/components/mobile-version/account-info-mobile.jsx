@@ -1,15 +1,14 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
-import FeatureListPage from './feature-list-page';
-import ContactInfoPage from './contact-info-page';
-import OnlineListPage from './online-list-page';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import FeatureListPage  from './feature-list-page';
 import BalanceInfoPage from './balance-info-page';
+import ContactInfoPage from './contact-info-page';
 import DownlineListPage from './downline-list-page';
-import StatusPage from './status-page';
-import SettingPage from './setting-page';
 import LoginInfoPage from './login-info-page';
-import DebugRouter from '../../../helpers/router-debugger';
+import OnlineListPage from './online-list-page';
+import SettingPage from './setting-page';
+import StatusPage from './status-page';
 
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {
@@ -27,7 +26,8 @@ export default class AccountInfoMobile extends React.Component {
     }
 
     render() {
-        const { resources, mobileView, actorRoleId, customerInfo, downlineList, onlineList, statusData, settingData,
+        const { resources, mobileView, actorRoleId, customerInfo,
+                downlineList, onlineList, statusData, settingData,
                 fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
 
         const { redirectToBalanceInfoPage} = this.state;
@@ -40,9 +40,20 @@ export default class AccountInfoMobile extends React.Component {
                 addAnimation={addAnimation}
             />;
 
-        const contactInfoPage = <ContactInfoPage resources={resources} customerInfo={customerInfo} redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
+        const contactInfoPage =
+            <ContactInfoPage
+                resources={resources}
+                customerInfo={customerInfo}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+            />;
 
-        const balanceInfoPage = <BalanceInfoPage resources={resources} mobileView={mobileView} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />;
+        const balanceInfoPage =
+            <BalanceInfoPage
+                resources={resources}
+                mobileView={mobileView}
+                customerInfo={customerInfo}
+                fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+            />;
 
         const downlineListPage =
             <DownlineListPage
@@ -61,16 +72,28 @@ export default class AccountInfoMobile extends React.Component {
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage && this.props.redirectToBalanceInfoPage}
             />;
 
-        const settingPage = <SettingPage resources={resources} mobileView={mobileView} settingData={settingData} redirectToBalanceInfoPage={redirectToBalanceInfoPage}/>;
+        const settingPage =
+            <SettingPage
+                resources={resources}
+                mobileView={mobileView}
+                settingData={settingData}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+            />;
 
         const loginInfoPage =
             <LoginInfoPage resources={resources}
-                customerInfo={customerInfo}
+                loginInfo={customerInfo !== null ? customerInfo.LoginInfo : null}
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage}
                 handleOpenIPInfo={handleOpenIPInfo}
             />;
 
-        const onlineListPage = <OnlineListPage resources={resources} data={onlineList} redirectToBalanceInfoPage={redirectToBalanceInfoPage} handleOpenIPInfo={handleOpenIPInfo} />;
+        const onlineListPage =
+            <OnlineListPage
+                resources={resources}
+                data={onlineList}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                handleOpenIPInfo={handleOpenIPInfo}
+            />;
 
         return (
             <HashRouter>

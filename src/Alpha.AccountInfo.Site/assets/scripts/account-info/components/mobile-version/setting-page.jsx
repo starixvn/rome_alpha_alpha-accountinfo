@@ -1,14 +1,23 @@
 ﻿import React from 'react';
-import { NoInformFeature } from './no-inform-feature';
-import { HeaderFeature } from './header-feature';
 import SettingContent from '../contents/setting-content';
+import MobilePage from './mobile-page';
 
-const SettingPage = ({ resources, settingData, mobileView, redirectToBalanceInfoPage }) =>
-    settingData === null ?
-        <NoInformFeature url="/featureList" iconClass="icon-settings" featureText={resources.Setting} noInform={resources.NoInfo} /> :
-        <div className="feature-detail translate-from-left">
-            <HeaderFeature url="/featureList" iconClass="icon-status" featureText={resources.Setting} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />
-            <SettingContent resources={resources} mobileView={mobileView} settingData={settingData} />
-        </div>;
+const SettingPage = ({
+    resources,
+    settingData,
+    mobileView,
+    redirectToBalanceInfoPage }) =>
+    <MobilePage iconClass="icon-settings"
+        featureText={resources.Setting}
+        noInfoText={resources.NoInfo}
+        redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+        data={settingData}
+    >
+        <SettingContent
+            resources={resources}
+            mobileView={mobileView}
+            settingData={settingData}
+        />
+    </MobilePage>;
 
 export default SettingPage;

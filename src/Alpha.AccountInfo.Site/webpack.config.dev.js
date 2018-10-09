@@ -5,6 +5,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
 
 module.exports = merge(common, {
+    mode: 'development',
     output: {
         path: path.resolve(__dirname, 'assets'),
         filename: '[name].js'
@@ -26,11 +27,6 @@ module.exports = merge(common, {
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "bundles[id].css"
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('development')
-            }
         })
     ]
 });

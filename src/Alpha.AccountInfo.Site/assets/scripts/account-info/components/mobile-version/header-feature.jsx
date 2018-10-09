@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
-export const HeaderFeature = ({ url, iconClass, featureText, onClick = null, redirectToBalanceInfoPage = false }) => {
+export const HeaderFeature = ({ url, iconClass, featureText, onClick = null, redirectToBalanceInfoPage}) => {
     if (redirectToBalanceInfoPage) {
         return <Redirect to='/balanceInfo' />;
     }

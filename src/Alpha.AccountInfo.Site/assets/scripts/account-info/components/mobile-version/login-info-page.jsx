@@ -1,14 +1,23 @@
 ﻿import * as React from 'react';
-import { NoInformFeature } from './no-inform-feature';
-import { HeaderFeature } from './header-feature';
 import LoginInfoContent from '../contents/login-info-content';
+import MobilePage from './mobile-page';
 
-const LoginInfoPage = ({ resources, customerInfo, handleOpenIPInfo, redirectToBalanceInfoPage }) =>
-    customerInfo === null ?
-        <NoInformFeature url="/featureList" iconClass="icon-login" featureText={resources.LoginInfo} noInform={resources.NoInfo} /> :
-        <div className="feature-detail login-info translate-from-left">
-            <HeaderFeature url="/featureList" iconClass="icon-login" featureText={resources.LoginInfo} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />
-            <LoginInfoContent resources={resources} loginInfo={customerInfo.LoginInfo} handleOpenIPInfo={handleOpenIPInfo} />
-        </div>;
+const LoginInfoPage = ({
+    resources,
+    loginInfo,
+    handleOpenIPInfo,
+    redirectToBalanceInfoPage }) =>
+    <MobilePage iconClass="icon-login"
+        featureText={resources.LoginInfo}
+        noInfoText={resources.NoInfo}
+        redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+        data={loginInfo}
+    >
+        <LoginInfoContent
+            resources={resources}
+            loginInfo={loginInfo}
+            handleOpenIPInfo={handleOpenIPInfo}
+        />
+    </MobilePage>;
 
 export default LoginInfoPage;

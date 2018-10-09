@@ -1,16 +1,23 @@
 ﻿import * as React from 'react';
-import { NoInformFeature } from './no-inform-feature';
-import { HeaderFeature } from './header-feature';
 import OnlineListContent from '../contents/online-list-content';
+import MobilePage from './mobile-page';
 
-const OnlineListPage = ({ resources, data, handleOpenIPInfo, redirectToBalanceInfoPage }) =>
-    data === null ?
-        <NoInformFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} noInform={resources.NoInfo} /> :
-        <div className="feature-detail translate-from-left">
-            <HeaderFeature url="/featureList" iconClass="icon-onlinelist" featureText={resources.OnlineList} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />
-            <div className="online-list">
-                <OnlineListContent resources={resources} data={data} handleOpenIPInfo={handleOpenIPInfo} />
-            </div>
-        </div>;
+const OnlineListPage = ({
+    resources,
+    data,
+    handleOpenIPInfo,
+    redirectToBalanceInfoPage }) =>
+    <MobilePage iconClass="icon-onlinelist"
+        featureText={resources.OnlineList}
+        noInfoText={resources.NoInfo}
+        redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+        data={data}
+    >
+        <OnlineListContent
+            resources={resources}
+            data={data}
+            handleOpenIPInfo={handleOpenIPInfo}
+        />
+    </MobilePage>;
 
 export default OnlineListPage;

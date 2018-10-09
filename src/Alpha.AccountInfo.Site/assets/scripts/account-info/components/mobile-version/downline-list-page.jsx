@@ -1,14 +1,23 @@
 ﻿import * as React from 'react';
-import { NoInformFeature } from './no-inform-feature';
-import { HeaderFeature } from './header-feature';
 import DownlineListContent from '../contents/downline-list-content';
+import MobilePage from './mobile-page';
 
-const DownlineListPage = ({ resources, data, redirectToBalanceInfoPage, handleSearchFromUserLevel }) =>
-    data === null ?
-        <NoInformFeature url="/featureList" iconClass="icon-downline" featureText={resources.DownlineList} noInform={resources.NoInfo} /> :
-        <div className="feature-detail translate-from-left">
-            <HeaderFeature url="/featureList" iconClass="icon-downline" featureText={resources.DownlineList} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />
-            <DownlineListContent resources={resources} data={data} handleSearchFromUserLevel={handleSearchFromUserLevel} />
-        </div>;
+const DownlineListPage = ({
+    resources,
+    data,
+    redirectToBalanceInfoPage,
+    handleSearchFromUserLevel }) =>
+    <MobilePage iconClass="icon-downline"
+        featureText={resources.DownlineList}
+        noInfoText={resources.NoInfo}
+        redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+        data={data}
+    >
+        <DownlineListContent
+            resources={resources}
+            data={data}
+            handleSearchFromUserLevel={handleSearchFromUserLevel}
+        />
+    </MobilePage>;
 
 export default DownlineListPage;

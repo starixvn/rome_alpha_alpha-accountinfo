@@ -1,14 +1,24 @@
 ﻿import React from 'react';
-import { NoInformFeature } from './no-inform-feature';
-import { HeaderFeature } from './header-feature';
 import BalanceInfoContent from '../contents/balance-info-content';
+import MobilePage from './mobile-page';
 
-const BalanceInfoPage = ({ customerInfo, resources, mobileView, fetchCustomerInfoFromServer }) =>
-    customerInfo === null ?
-        <NoInformFeature url="/featureList" iconClass="icon-balance" featureText={resources.BalanceInfo} noInform={resources.NoInfo} /> :
-        <div className="feature-detail translate-from-left">
-            <HeaderFeature url="/featureList" iconClass="icon-balance" featureText={resources.BalanceInfo} />
-            <BalanceInfoContent resources={resources} mobileView={mobileView} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
-        </div>;
+const BalanceInfoPage = ({
+    customerInfo,
+    resources,
+    mobileView,
+    fetchCustomerInfoFromServer }) =>
+    <MobilePage
+        iconClass="icon-balance"
+        featureText={resources.BalanceInfo}
+        noInfoText={resources.NoInfo}
+        data={customerInfo}
+    >
+        <BalanceInfoContent
+            resources={resources}
+            mobileView={mobileView}
+            customerInfo={customerInfo}
+            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+        />
+    </MobilePage>;
 
 export default BalanceInfoPage;
