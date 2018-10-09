@@ -71,114 +71,151 @@ export default class AccountInfoDesktop extends React.Component {
         this.updateState(blockId);
     }
 
-    render() {
-
+    buildAccordionItems() {
         const { expandedItems, collapseAll } = this.state;
 
         const { resources, mobileView, actorRoleId, customerInfo, downlineList, onlineList, statusData, settingData,
-                redirectToBalanceInfoPage, fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
+            redirectToBalanceInfoPage, fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
 
         const noInfoContent = <div className="no-information">{resources.NoInfo}</div>;
 
-        return <div className="accordions">
-            <CustomizedAccordionItem
-                title={resources.ShowContactInfo}
-                iconClassname="icon-contact-info"
-                accordionItemBodyClassName="contact-info"
-                expanded={expandedItems.contactInfo}
-                handleClick={this.handleCollapExpandBlock}
-                blockId="contactInfo"
-            >
-                <ContactInfoContent resources={resources} customerInfo={customerInfo} />
-            </CustomizedAccordionItem>
-
-            <CustomizedAccordionItem
-                title={resources.BalanceInfo}
-                iconClassname="icon-balance"
-                accordionItemBodyClassName="balance-info"
-                expanded={expandedItems.balanceInfo}
-                handleClick={this.handleCollapExpandBlock}
-                blockId="balanceInfo"
-            >
-                <BalanceInfoContent resources={resources} mobileView={mobileView} customerInfo={customerInfo} fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
-            </CustomizedAccordionItem>
-
+        let items = [
             {
-                customerInfo !== null && customerInfo.RoleId > UserLevel.Member &&
-                <CustomizedAccordionItem
-                    title={resources.DownlineList}
-                    iconClassname="icon-downline"
-                    accordionItemBodyClassName="downline-list"
-                    expanded={expandedItems.downlineList}
-                    handleClick={this.handleCollapExpandBlock}
-                    blockId="downlineList"
-                >
-                    {
-                        downlineList === null ? noInfoContent :
-                            <DownlineListContent resources={resources} data={downlineList} handleSearchFromUserLevel={handleSearchFromUserLevel} />
-                    }
-
-                </CustomizedAccordionItem>
+                content: <ContactInfoContent
+                    resources={resources}
+                    customerInfo={customerInfo}
+                />,
+                title: resources.ShowContactInfo,
+                iconClassname: "icon-contact-info",
+                accordionItemBodyClassName: "contact-info",
+                expanded: expandedItems.contactInfo,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "contactInfo",
+                visibled: true
+            },
+            {
+                content: <BalanceInfoContent
+                    resources={resources}
+                    mobileView={mobileView}
+                    customerInfo={customerInfo}
+                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                />,
+                title: resources.BalanceInfo,
+                iconClassname: "icon-balance",
+                accordionItemBodyClassName: "balance-info",
+                expanded: expandedItems.balanceInfo,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "balanceInfo",
+                visibled: true
+            },
+            {
+                content: downlineList === null
+                    ? noInfoContent
+                    : <DownlineListContent
+                        resources={resources}
+                        data={downlineList}
+                        handleSearchFromUserLevel={handleSearchFromUserLevel}
+                    />,
+                title: resources.DownlineList,
+                iconClassname: "icon-downline",
+                accordionItemBodyClassName: "downline-list",
+                expanded: expandedItems.downlineList,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "downlineList",
+                visibled: customerInfo !== null && customerInfo.RoleId > UserLevel.Member
+            },
+            {
+                content: statusData === null
+                    ? noInfoContent
+                    : <StatusContent
+                        resources={resources}
+                        mobileView={mobileView}
+                        statusData={statusData}
+                        username={customerInfo.UserName}
+                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                    />,
+                title: resources.Status,
+                iconClassname: "icon-status",
+                accordionItemBodyClassName: "status",
+                expanded: expandedItems.status,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "status",
+                visibled: true
+            },
+            {
+                content: settingData === null
+                    ? noInfoContent
+                    : <SettingContent
+                        resources={resources}
+                        mobileView={mobileView}
+                        settingData={settingData}
+                    />,
+                title: resources.Setting,
+                iconClassname: "icon-settings",
+                accordionItemBodyClassName: "settings",
+                expanded: expandedItems.setting,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "setting",
+                visibled: true
+            },
+            {
+                content: customerInfo === null
+                    ? noInfoContent
+                    : <LoginInfoContent
+                        resources={resources}
+                        loginInfo={customerInfo.LoginInfo}
+                        handleOpenIPInfo={handleOpenIPInfo}
+                    />,
+                title: resources.LoginInfo,
+                iconClassname: "icon-login",
+                accordionItemBodyClassName: "login-info",
+                expanded: expandedItems.loginInfo,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "loginInfo",
+                visibled: true
+            },
+            {
+                content: onlineList === null
+                    ? noInfoContent
+                    : <OnlineListContent
+                        resources={resources}
+                        data={onlineList}
+                        handleOpenIPInfo={handleOpenIPInfo}
+                    />,
+                title: resources.OnlineList,
+                iconClassname: "icon-onlinelist",
+                accordionItemBodyClassName: "online-list",
+                expanded: expandedItems.onlineList,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "onlineList",
+                visibled: true
             }
+        ];
 
-            <CustomizedAccordionItem
-                title={resources.Status}
-                iconClassname="icon-status"
-                accordionItemBodyClassName="status"
-                expanded={expandedItems.status}
-                handleClick={this.handleCollapExpandBlock}
-                blockId="status"
-            >
-                {
-                    statusData === null ? noInfoContent :
-                        <StatusContent
-                            resources={resources}
-                            mobileView={mobileView}
-                            statusData={statusData}
-                            username={customerInfo.UserName}
-                            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer} />
-                }
+        return items;
+    }
 
-            </CustomizedAccordionItem>
+    render() {
+        var accordionItems = this.buildAccordionItems();
+        var tempArray = [];
 
-            <CustomizedAccordionItem
-                title={resources.Setting}
-                iconClassname="icon-settings"
-                accordionItemBodyClassName="settings"
-                expanded={expandedItems.setting}
-                handleClick={this.handleCollapExpandBlock}
-                blockId="setting"
-            >
-                {settingData === null ? noInfoContent : <SettingContent resources={resources} mobileView={mobileView} settingData={settingData} />}
-            </CustomizedAccordionItem>
+        accordionItems.forEach(item => {
+            if (item.visibled) {
+                tempArray.push(
+                    <CustomizedAccordionItem
+                        title={item.title}
+                        iconClassname={item.className}
+                        accordionItemBodyClassName={item.accordionItemBodyClassName}
+                        expanded={item.expanded}
+                        handleClick={item.clickHanlder}
+                        blockId={item.blockId}
+                    >
+                        {item.content}
+                    </CustomizedAccordionItem>
+                );
+            }
+        });
 
-            <CustomizedAccordionItem
-                title={resources.LoginInfo}
-                iconClassname="icon-login"
-                accordionItemBodyClassName="login-info"
-                expanded={expandedItems.loginInfo}
-                handleClick={this.handleCollapExpandBlock}
-                blockId="loginInfo"
-            >
-                {
-                    customerInfo === null ? noInfoContent :
-                        <LoginInfoContent resources={resources} loginInfo={customerInfo.LoginInfo} handleOpenIPInfo={handleOpenIPInfo} />
-                }
-            </CustomizedAccordionItem>
-
-            <CustomizedAccordionItem
-                title={resources.OnlineList}
-                iconClassname="icon-onlinelist"
-                accordionItemBodyClassName="online-list"
-                expanded={expandedItems.onlineList}
-                handleClick={this.handleCollapExpandBlock}
-                blockId="onlineList"
-            >
-                {
-                    onlineList === null ? noInfoContent :
-                        <OnlineListContent resources={resources} data={onlineList} handleOpenIPInfo={handleOpenIPInfo} />
-                }
-            </CustomizedAccordionItem>
-        </div>;
+        return <div className="accordions">{tempArray}</div>;
     }
 }
