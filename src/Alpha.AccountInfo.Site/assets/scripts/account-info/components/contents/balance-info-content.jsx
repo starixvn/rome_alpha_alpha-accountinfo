@@ -45,8 +45,8 @@ export default class BalanceInfoContent extends React.Component {
 
     render() {
         let { mobileView, resources, customerInfo, rowClasses = "row-info" } = this.props;
-        let roleId = this.props.customerInfo.RoleId;
-        let balanceInfo = this.props.customerInfo.BalanceInfo;
+        let roleId = customerInfo.RoleId;
+        let balanceInfo = customerInfo.BalanceInfo;
 
         let searchAccountIsMember = roleId === UserLevel.Member;
         let searchAccountIsNotMember = !searchAccountIsMember;

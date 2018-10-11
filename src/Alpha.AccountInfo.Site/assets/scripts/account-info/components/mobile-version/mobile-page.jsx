@@ -6,7 +6,7 @@ export default class MobilePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            animation: ''
+            animationClass: ''
         };
     }
 

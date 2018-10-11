@@ -13,8 +13,8 @@ export default class AccountInfoDesktop extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expandedItems: this.initialExpandedItems(),
-            collapseAll: false
+            expandedItems: this.initialExpandedItems(this.props.customerInfo !== null),
+            collapseAll: this.props.customerInfo === null
         };
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
@@ -23,20 +23,33 @@ export default class AccountInfoDesktop extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.redirectToBalanceInfoPage) {
             this.setState({
-                expandedItems: this.initialExpandedItems()
+                expandedItems: this.initialExpandedItems(nextProps.customerInfo !== null),
+                collapseAll: nextProps.customerInfo === null
             });
         }
     }
 
-    initialExpandedItems() {
+    initialExpandedItems(hasData) {
         return {
             contactInfo: false,
-            balanceInfo: true,
+            balanceInfo: hasData,
             downlineList: false,
             status: false,
             setting: false,
             loginInfo: false,
             onlineList: false
+        };
+    }
+
+    initialExpandedItemsForMobileWithNoData() {
+        return {
+            contactInfo: true,
+            balanceInfo: true,
+            downlineList: true,
+            status: true,
+            setting: true,
+            loginInfo: true,
+            onlineList: true
         };
     }
 
@@ -52,16 +65,26 @@ export default class AccountInfoDesktop extends React.Component {
 
     updateState(blockId) {
         const { expandedItems } = this.state;
+        const { mobileView } = this.props;
         const currentStatus = expandedItems[blockId];
         const emptyObject = this.resetColllapseAll(expandedItems);
 
         const newExpandedItems = Object.assign({}, emptyObject, { [blockId]: !currentStatus });
         const collapseAll = Object.keys(expandedItems).filter(key => newExpandedItems[key] === true).length === 0;
 
-        this.setState({
-            expandedItems: newExpandedItems,
-            collapseAll
-        });
+        if (mobileView) {
+            this.setState({
+                expandedItems: currentStatus ? this.resetColllapseAll(this.state.expandedItems) : newExpandedItems,
+                collapseAll
+            });
+        }
+        else {
+            this.setState({
+                expandedItems: newExpandedItems,
+                collapseAll
+            });
+        }
+
     }
 
     handleCollapExpandBlock(e) {
@@ -81,32 +104,31 @@ export default class AccountInfoDesktop extends React.Component {
 
         let items = [
             {
-                content: <ContactInfoContent
-                    resources={resources}
-                    customerInfo={customerInfo}
-                />,
+                content: customerInfo === null
+                    ? noInfoContent : <ContactInfoContent resources={resources} customerInfo={customerInfo} />,
                 title: resources.ShowContactInfo,
                 iconClassname: "icon-contact-info",
                 accordionItemBodyClassName: "contact-info",
                 expanded: expandedItems.contactInfo,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "contactInfo",
-                visibled: true
+                visibled: mobileView ? collapseAll || expandedItems.contactInfo : true
             },
             {
-                content: <BalanceInfoContent
-                    resources={resources}
-                    mobileView={mobileView}
-                    customerInfo={customerInfo}
-                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                />,
+                content: customerInfo === null
+                    ? noInfoContent : <BalanceInfoContent
+                        resources={resources}
+                        mobileView={mobileView}
+                        customerInfo={customerInfo}
+                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                    />,
                 title: resources.BalanceInfo,
                 iconClassname: "icon-balance",
                 accordionItemBodyClassName: "balance-info",
                 expanded: expandedItems.balanceInfo,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "balanceInfo",
-                visibled: true
+                visibled: mobileView ? collapseAll || expandedItems.balanceInfo : true
             },
             {
                 content: downlineList === null
@@ -122,7 +144,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.downlineList,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "downlineList",
-                visibled: customerInfo !== null && customerInfo.RoleId > UserLevel.Member
+                visibled: customerInfo !== null && customerInfo.RoleId > UserLevel.Member && (mobileView ? collapseAll || expandedItems.downlineList : true)
             },
             {
                 content: statusData === null
@@ -131,7 +153,7 @@ export default class AccountInfoDesktop extends React.Component {
                         resources={resources}
                         mobileView={mobileView}
                         statusData={statusData}
-                        username={customerInfo.UserName}
+                        username={customerInfo === null ? '' : customerInfo.UserName}
                         fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                     />,
                 title: resources.Status,
@@ -140,7 +162,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.status,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "status",
-                visibled: true
+                visibled: mobileView ? collapseAll || expandedItems.status : true
             },
             {
                 content: settingData === null
@@ -156,7 +178,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.setting,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "setting",
-                visibled: true
+                visibled: mobileView ? collapseAll || expandedItems.setting : true
             },
             {
                 content: customerInfo === null
@@ -172,7 +194,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.loginInfo,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "loginInfo",
-                visibled: true
+                visibled: mobileView ? collapseAll || expandedItems.loginInfo : true
             },
             {
                 content: onlineList === null
@@ -188,7 +210,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.onlineList,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "onlineList",
-                visibled: true
+                visibled: mobileView ? collapseAll || expandedItems.onlineList : true
             }
         ];
 
@@ -196,26 +218,25 @@ export default class AccountInfoDesktop extends React.Component {
     }
 
     render() {
-        var accordionItems = this.buildAccordionItems();
-        var tempArray = [];
+        let accordionItems = this.buildAccordionItems();
+        let animation = this.props.mobileView ? "translate-from-left" : "";
 
-        accordionItems.forEach(item => {
-            if (item.visibled) {
-                tempArray.push(
-                    <CustomizedAccordionItem
-                        title={item.title}
-                        iconClassname={item.className}
-                        accordionItemBodyClassName={item.accordionItemBodyClassName}
-                        expanded={item.expanded}
-                        handleClick={item.clickHanlder}
-                        blockId={item.blockId}
-                    >
-                        {item.content}
-                    </CustomizedAccordionItem>
-                );
-            }
-        });
-
-        return <div className="accordions">{tempArray}</div>;
+        return <div className={`${animation} accordions`}>
+            {
+                accordionItems.map((item, index) => {
+                    return item.visibled &&
+                        <CustomizedAccordionItem
+                            title={item.title}
+                            iconClassname={item.className}
+                            accordionItemBodyClassName={item.accordionItemBodyClassName}
+                            expanded={item.expanded}
+                            handleClick={item.clickHanlder}
+                            blockId={item.blockId}
+                            key={index}
+                        >
+                            {item.content}
+                        </CustomizedAccordionItem>;
+                })}
+        </div>;
     }
 }

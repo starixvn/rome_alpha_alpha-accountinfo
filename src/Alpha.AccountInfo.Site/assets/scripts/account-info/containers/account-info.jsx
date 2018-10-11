@@ -26,7 +26,6 @@ export default class AccountInfo extends React.Component {
             username: username,
             custId: 0,
             actorRoleId: actorRoleId,
-            searchAccountRoleId: actorRoleId - 1,
             mobileView: mobileView,
             redirectToBalanceInfoPage: true,
             searchCounter: 0,
@@ -69,6 +68,15 @@ export default class AccountInfo extends React.Component {
                 searchCounter: prevState.searchCounter + 1,
                 redirectToBalanceInfoPage: redirectToBalanceInfoPage
             }));
+
+            if (data === null) {
+                self.setState((prevState) => ({
+                    statusData: null,
+                    settingData: null,
+                    downlineList: null,
+                    onlineList: null
+                }));
+            }
             
             localStorage.setItem('lastSearchUsername', username);
             $.unblockUI();
@@ -201,7 +209,7 @@ export default class AccountInfo extends React.Component {
                 }
 
                 {
-                    mobileView ? accountInfoMobile : customerInfo !== null && accountInfoDesktop
+                    mobileView ? accountInfoDesktop : customerInfo !== null && accountInfoDesktop
                 }
 
             </div>);

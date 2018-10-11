@@ -30,12 +30,12 @@
         }
 
         [Theory]
-        [InlineData(4, 3, "MicroSiteUrl/_MemberInfo/CustomerList/Super/AgentList.aspx")]
-        [InlineData(4, 2, "MicroSiteUrl/_MemberInfo/CustomerList/Super/MemberList.aspx")]
-        [InlineData(3, 2, "MicroSiteUrl/_MemberInfo/CustomerList/Master/MemberList.aspx")]
-        [InlineData(4, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
-        [InlineData(3, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
-        [InlineData(2, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
+        [InlineData(4, 3, "MicroSiteUrl/_MemberInfo/CustomerList/Super/AgentList.aspx?custid=1")]
+        [InlineData(4, 2, "MicroSiteUrl/_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1")]
+        [InlineData(3, 2, "MicroSiteUrl/_MemberInfo/CustomerList/Master/MemberList.aspx?custid=1")]
+        //[InlineData(4, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
+        //[InlineData(3, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
+        //[InlineData(2, 1, "MicroSiteUrl/MemberBetList/Index?CustID=1&CustName=UserTest")]
         public void CustomerListOrBetListLink_Always_ReturnsCorrectStatementLink(
            byte actorRoleId,
            byte searchAccountRoleId,

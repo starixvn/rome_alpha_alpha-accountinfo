@@ -1,14 +1,15 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Switch, Route } from 'react-router-dom';
-import FeatureListPage  from './feature-list-page';
-import BalanceInfoPage from './balance-info-page';
-import ContactInfoPage from './contact-info-page';
-import DownlineListPage from './downline-list-page';
-import LoginInfoPage from './login-info-page';
-import OnlineListPage from './online-list-page';
-import SettingPage from './setting-page';
-import StatusPage from './status-page';
+import ContactInfoContent from '../contents/contact-info-content';
+import BalanceInfoContent from '../contents/balance-info-content';
+import DownlineListContent from '../contents/downline-list-content';
+import SettingContent from '../contents/setting-content';
+import StatusContent from '../contents/status-content';
+import LoginInfoContent from '../contents/login-info-content';
+import OnlineListContent from '../contents/online-list-content';
+import FeatureListPage from './feature-list-page';
+import MobilePage from './mobile-page';
 
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {
@@ -31,6 +32,7 @@ export default class AccountInfoMobile extends React.Component {
                 fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
 
         const { redirectToBalanceInfoPage} = this.state;
+        let loginInfo = customerInfo !== null ? customerInfo.LoginInfo : null;
 
         let buildFeatureListPage = (addAnimation = true) =>
             <FeatureListPage resources={resources}
@@ -41,59 +43,101 @@ export default class AccountInfoMobile extends React.Component {
             />;
 
         const contactInfoPage =
-            <ContactInfoPage
-                resources={resources}
-                customerInfo={customerInfo}
+            <MobilePage iconClass="icon-contact-info"
+                featureText={resources.ShowContactInfo}
+                noInfoText={resources.NoInfo}
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-            />;
+                data={customerInfo}
+            >
+                <ContactInfoContent resources={resources} customerInfo={customerInfo} />
+            </MobilePage>;
 
         const balanceInfoPage =
-            <BalanceInfoPage
-                resources={resources}
-                mobileView={mobileView}
-                customerInfo={customerInfo}
-                fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-            />;
+            <MobilePage
+                iconClass="icon-balance"
+                featureText={resources.BalanceInfo}
+                noInfoText={resources.NoInfo}
+                data={customerInfo}
+            >
+                <BalanceInfoContent
+                    resources={resources}
+                    mobileView={mobileView}
+                    customerInfo={customerInfo}
+                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                />
+            </MobilePage>;
 
         const downlineListPage =
-            <DownlineListPage
-                resources={resources}
-                handleSearchFromUserLevel={handleSearchFromUserLevel}
-                data={downlineList}
+            <MobilePage iconClass="icon-downline"
+                featureText={resources.DownlineList}
+                noInfoText={resources.NoInfo}
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-            />;
+                data={downlineList}
+            >
+                <DownlineListContent
+                    resources={resources}
+                    data={downlineList}
+                    handleSearchFromUserLevel={handleSearchFromUserLevel}
+                />
+            </MobilePage>;
 
         const statusPage =
-            <StatusPage resources={resources}
-                mobileView={mobileView}
-                fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                username={customerInfo === null ? '' : customerInfo.UserName}
-                statusData={statusData}
-                redirectToBalanceInfoPage={redirectToBalanceInfoPage && this.props.redirectToBalanceInfoPage}
-            />;
+            <MobilePage iconClass="icon-status"
+                featureText={resources.Status}
+                noInfoText={resources.NoInfo}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                data={statusData}
+            >
+                <StatusContent
+                    resources={resources}
+                    mobileView={mobileView}
+                    statusData={statusData}
+                    username={customerInfo === null ? '' : customerInfo.UserName}
+                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                />
+            </MobilePage>;
 
         const settingPage =
-            <SettingPage
-                resources={resources}
-                mobileView={mobileView}
-                settingData={settingData}
+            <MobilePage iconClass="icon-settings"
+                featureText={resources.Setting}
+                noInfoText={resources.NoInfo}
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-            />;
+                data={settingData}
+            >
+                <SettingContent
+                    resources={resources}
+                    mobileView={mobileView}
+                    settingData={settingData}
+                />
+            </MobilePage>;
 
         const loginInfoPage =
-            <LoginInfoPage resources={resources}
-                loginInfo={customerInfo !== null ? customerInfo.LoginInfo : null}
+            <MobilePage iconClass="icon-login"
+                featureText={resources.LoginInfo}
+                noInfoText={resources.NoInfo}
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-                handleOpenIPInfo={handleOpenIPInfo}
-            />;
+                data={loginInfo}
+            >
+                <LoginInfoContent
+                    resources={resources}
+                    loginInfo={loginInfo}
+                    handleOpenIPInfo={handleOpenIPInfo}
+                />
+            </MobilePage>;
 
         const onlineListPage =
-            <OnlineListPage
-                resources={resources}
-                data={onlineList}
+            <MobilePage iconClass="icon-onlinelist"
+                featureText={resources.OnlineList}
+                noInfoText={resources.NoInfo}
                 redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-                handleOpenIPInfo={handleOpenIPInfo}
-            />;
+                data={onlineList}
+            >
+                <OnlineListContent
+                    resources={resources}
+                    data={onlineList}
+                    handleOpenIPInfo={handleOpenIPInfo}
+                />
+            </MobilePage>;
 
         return (
             <HashRouter>
