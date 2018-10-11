@@ -13,9 +13,8 @@ export default class AccountInfoDesktop extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expandedItems: this.initialExpandedItems(this.props.customerInfo !== null),
-            collapseAll: this.props.customerInfo === null,
-            animation: ""
+            expandedItems: this.initialExpandedItems(),
+            collapseAll: false
         };
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
@@ -24,42 +23,20 @@ export default class AccountInfoDesktop extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.redirectToBalanceInfoPage) {
             this.setState({
-                expandedItems: this.initialExpandedItems(nextProps.customerInfo !== null),
-                collapseAll: nextProps.customerInfo === null
+                expandedItems: this.initialExpandedItems()
             });
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        let self = this;
-        if (this.state.animation !== '') {
-            setTimeout(() => {
-                self.setState({ animation: '' });
-            }, 3000);
-        }
-    }
-
-    initialExpandedItems(hasData) {
+    initialExpandedItems() {
         return {
             contactInfo: false,
-            balanceInfo: hasData,
+            balanceInfo: true,
             downlineList: false,
             status: false,
             setting: false,
             loginInfo: false,
             onlineList: false
-        };
-    }
-
-    initialExpandedItemsForMobileWithNoData() {
-        return {
-            contactInfo: true,
-            balanceInfo: true,
-            downlineList: true,
-            status: true,
-            setting: true,
-            loginInfo: true,
-            onlineList: true
         };
     }
 
@@ -75,32 +52,16 @@ export default class AccountInfoDesktop extends React.Component {
 
     updateState(blockId) {
         const { expandedItems } = this.state;
-        const { mobileView } = this.props;
         const currentStatus = expandedItems[blockId];
         const emptyObject = this.resetColllapseAll(expandedItems);
 
         const newExpandedItems = Object.assign({}, emptyObject, { [blockId]: !currentStatus });
         const collapseAll = Object.keys(expandedItems).filter(key => newExpandedItems[key] === true).length === 0;
 
-        if (mobileView) {
-            this.setState((prevState) => ({
-                animation: currentStatus ? "translate-from-left" : "translate-from-right"
-            }));
-        }
-
-        if (mobileView) {
-            this.setState({
-                expandedItems: currentStatus ? this.resetColllapseAll(this.state.expandedItems) : newExpandedItems,
-                collapseAll
-            });
-        }
-        else {
-            this.setState({
-                expandedItems: newExpandedItems,
-                collapseAll
-            });
-        }
-
+        this.setState({
+            expandedItems: newExpandedItems,
+            collapseAll
+        });
     }
 
     handleCollapExpandBlock(e) {
@@ -120,31 +81,32 @@ export default class AccountInfoDesktop extends React.Component {
 
         let items = [
             {
-                content: customerInfo === null
-                    ? noInfoContent : <ContactInfoContent resources={resources} customerInfo={customerInfo} />,
+                content: <ContactInfoContent
+                    resources={resources}
+                    customerInfo={customerInfo}
+                />,
                 title: resources.ShowContactInfo,
                 iconClassname: "icon-contact-info",
                 accordionItemBodyClassName: "contact-info",
                 expanded: expandedItems.contactInfo,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "contactInfo",
-                visibled: mobileView ? collapseAll || expandedItems.contactInfo : true
+                visibled: true
             },
             {
-                content: customerInfo === null
-                    ? noInfoContent : <BalanceInfoContent
-                        resources={resources}
-                        mobileView={mobileView}
-                        customerInfo={customerInfo}
-                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-                    />,
+                content: <BalanceInfoContent
+                    resources={resources}
+                    mobileView={mobileView}
+                    customerInfo={customerInfo}
+                    fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                />,
                 title: resources.BalanceInfo,
                 iconClassname: "icon-balance",
                 accordionItemBodyClassName: "balance-info",
                 expanded: expandedItems.balanceInfo,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "balanceInfo",
-                visibled: mobileView ? collapseAll || expandedItems.balanceInfo : true
+                visibled: true
             },
             {
                 content: downlineList === null
@@ -160,7 +122,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.downlineList,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "downlineList",
-                visibled: customerInfo !== null && customerInfo.RoleId > UserLevel.Member && (mobileView ? collapseAll || expandedItems.downlineList : true)
+                visibled: customerInfo !== null && customerInfo.RoleId > UserLevel.Member
             },
             {
                 content: statusData === null
@@ -169,7 +131,7 @@ export default class AccountInfoDesktop extends React.Component {
                         resources={resources}
                         mobileView={mobileView}
                         statusData={statusData}
-                        username={customerInfo === null ? '' : customerInfo.UserName}
+                        username={customerInfo.UserName}
                         fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
                     />,
                 title: resources.Status,
@@ -178,7 +140,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.status,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "status",
-                visibled: mobileView ? collapseAll || expandedItems.status : true
+                visibled: true
             },
             {
                 content: settingData === null
@@ -194,7 +156,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.setting,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "setting",
-                visibled: mobileView ? collapseAll || expandedItems.setting : true
+                visibled: true
             },
             {
                 content: customerInfo === null
@@ -210,7 +172,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.loginInfo,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "loginInfo",
-                visibled: mobileView ? collapseAll || expandedItems.loginInfo : true
+                visibled: true
             },
             {
                 content: onlineList === null
@@ -226,7 +188,7 @@ export default class AccountInfoDesktop extends React.Component {
                 expanded: expandedItems.onlineList,
                 clickHanlder: this.handleCollapExpandBlock,
                 blockId: "onlineList",
-                visibled: mobileView ? collapseAll || expandedItems.onlineList : true
+                visibled: true
             }
         ];
 

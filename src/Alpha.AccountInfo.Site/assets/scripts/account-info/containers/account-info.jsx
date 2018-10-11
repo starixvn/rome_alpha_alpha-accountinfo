@@ -84,13 +84,14 @@ export default class AccountInfo extends React.Component {
                     onlineList: null
                 }));
             }
-            
+
             localStorage.setItem('lastSearchUsername', username);
             $.unblockUI();
         });
     }
 
     handleSearchFromUserLevel(e) {
+        e.preventDefault();
         this.fetchCustomerInfoFromServer(e.currentTarget.dataset.username);
     }
 
@@ -164,6 +165,22 @@ export default class AccountInfo extends React.Component {
         const { actorRoleId, resources, username, searchCounter, custId, redirectToBalanceInfoPage,
             mobileView, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
+        const accountInfoMobile =
+            <AccountInfoMobile
+                resources={resources}
+                mobileView={mobileView}
+                actorRoleId={actorRoleId}
+                customerInfo={customerInfo}
+                downlineList={downlineList}
+                onlineList={onlineList}
+                statusData={statusData}
+                settingData={settingData}
+                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
+                handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                handleOpenIPInfo={this.handleOpenIPInfo}
+            />;
+
         const accountInfoDesktop =
             <AccountInfoDesktop
                 resources={resources}
@@ -179,19 +196,6 @@ export default class AccountInfo extends React.Component {
                 handleSearchFromUserLevel={this.handleSearchFromUserLevel}
                 handleOpenIPInfo={this.handleOpenIPInfo}
             />;
-
-        let content = (mobileView && searchCounter === 0 && username === '') || (mobileView && searchCounter >0 ) || (!mobileView && customerInfo !== null) ? accountInfoDesktop : null;
-        if (mobileView) {
-            if (searchCounter === 0) {
-                content = username === '' ? accountInfoDesktop : null;
-            }
-            else {
-                content = accountInfoDesktop;
-            }
-        }
-        else {
-            content = customerInfo !== null ? accountInfoDesktop : null;
-        }
 
         return (
             <div className="accountinfo-container">
@@ -212,7 +216,9 @@ export default class AccountInfo extends React.Component {
                 }
 
                 {
-                    (mobileView && searchCounter === 0 && username === '' || mobileView && searchCounter > 0 || !mobileView && customerInfo !== null) && accountInfoDesktop
+                    mobileView ?
+                        (mobileView && searchCounter === 0 && username === '' || mobileView && searchCounter > 0) && accountInfoMobile
+                        : customerInfo !== null && accountInfoDesktop
                 }
 
             </div>);
