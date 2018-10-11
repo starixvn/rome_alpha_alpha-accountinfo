@@ -21,12 +21,6 @@ export default class SearchingBlock extends React.Component {
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     }
 
-    componentDidMount() {
-        if (this.state.username !== '') {
-            ReactDOM.findDOMNode(this.refs.searchAccount).click();
-        }
-    }
-
     componentWillReceiveProps(nextProps) {
         if (nextProps.username !== this.props.username) {
             this.setState({
@@ -46,8 +40,9 @@ export default class SearchingBlock extends React.Component {
     }
 
     handleSearchClick(e) {
-        if (this.state.username !== '') {
-            this.props.fetchCustomerInfoFromServer(e, this.state.username);
+        let { username } = this.state;
+        if (username !== '') {
+            this.props.fetchCustomerInfoFromServer(username);
         }
     }
 
@@ -70,7 +65,7 @@ export default class SearchingBlock extends React.Component {
     }
 
     onSuggestionSelected(e, suggestion) {
-        this.props.fetchCustomerInfoFromServer(e, suggestion.suggestionValue);
+        this.props.fetchCustomerInfoFromServer(suggestion.suggestionValue);
     }
 
     render() {

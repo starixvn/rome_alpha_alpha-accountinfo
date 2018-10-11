@@ -38,7 +38,7 @@ export default class BalanceInfoContent extends React.Component {
         function reloadBalanceInfo(e) {
             if (window.top.closedPopup) {
                 clearInterval(timer);
-                window.top.realoadLeftPanel && self.props.fetchCustomerInfoFromServer(e, customerInfo.UserName);
+                window.top.realoadLeftPanel && self.props.fetchCustomerInfoFromServer(customerInfo.UserName);
             }
         }
     }

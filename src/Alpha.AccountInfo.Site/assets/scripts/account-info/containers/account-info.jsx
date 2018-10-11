@@ -46,6 +46,13 @@ export default class AccountInfo extends React.Component {
         this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
     }
 
+    componentDidMount() {
+        let { username } = this.state;
+        if (username !== '') {
+            this.fetchCustomerInfoFromServer(username);
+        }
+    }
+
     componentDidUpdate(prevProps, prevState) {
         const { customerInfo, custId } = this.state;
         if (customerInfo !== prevState.customerInfo) {
@@ -57,7 +64,7 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchCustomerInfoFromServer(e, username, redirectToBalanceInfoPage = true) {
+    fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true) {
         $.blockUI();
         let self = this;
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then((data) => {
@@ -84,8 +91,7 @@ export default class AccountInfo extends React.Component {
     }
 
     handleSearchFromUserLevel(e) {
-        e.preventDefault();
-        this.fetchCustomerInfoFromServer(e, e.currentTarget.dataset.username);
+        this.fetchCustomerInfoFromServer(e.currentTarget.dataset.username);
     }
 
     fetchCustomerAllStatusFromServer() {
@@ -158,22 +164,6 @@ export default class AccountInfo extends React.Component {
         const { actorRoleId, resources, username, searchCounter, custId, redirectToBalanceInfoPage,
             mobileView, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
 
-        const accountInfoMobile =
-            <AccountInfoMobile
-                resources={resources}
-                mobileView={mobileView}
-                actorRoleId={actorRoleId}
-                customerInfo={customerInfo}
-                downlineList={downlineList}
-                onlineList={onlineList}
-                statusData={statusData}
-                settingData={settingData}
-                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-                fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                handleOpenIPInfo={this.handleOpenIPInfo}
-            />;
-
         const accountInfoDesktop =
             <AccountInfoDesktop
                 resources={resources}
@@ -189,6 +179,19 @@ export default class AccountInfo extends React.Component {
                 handleSearchFromUserLevel={this.handleSearchFromUserLevel}
                 handleOpenIPInfo={this.handleOpenIPInfo}
             />;
+
+        let content = (mobileView && searchCounter === 0 && username === '') || (mobileView && searchCounter >0 ) || (!mobileView && customerInfo !== null) ? accountInfoDesktop : null;
+        if (mobileView) {
+            if (searchCounter === 0) {
+                content = username === '' ? accountInfoDesktop : null;
+            }
+            else {
+                content = accountInfoDesktop;
+            }
+        }
+        else {
+            content = customerInfo !== null ? accountInfoDesktop : null;
+        }
 
         return (
             <div className="accountinfo-container">
@@ -209,7 +212,7 @@ export default class AccountInfo extends React.Component {
                 }
 
                 {
-                    mobileView ? accountInfoDesktop : customerInfo !== null && accountInfoDesktop
+                    (mobileView && searchCounter === 0 && username === '' || mobileView && searchCounter > 0 || !mobileView && customerInfo !== null) && accountInfoDesktop
                 }
 
             </div>);

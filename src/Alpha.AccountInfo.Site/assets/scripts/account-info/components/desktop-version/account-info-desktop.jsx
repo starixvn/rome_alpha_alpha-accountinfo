@@ -15,7 +15,7 @@ export default class AccountInfoDesktop extends React.Component {
         this.state = {
             expandedItems: this.initialExpandedItems(this.props.customerInfo !== null),
             collapseAll: this.props.customerInfo === null,
-            animation: this.props.mobileView ? "translate-from-left" : ""
+            animation: ""
         };
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
@@ -27,6 +27,15 @@ export default class AccountInfoDesktop extends React.Component {
                 expandedItems: this.initialExpandedItems(nextProps.customerInfo !== null),
                 collapseAll: nextProps.customerInfo === null
             });
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        let self = this;
+        if (this.state.animation !== '') {
+            setTimeout(() => {
+                self.setState({ animation: '' });
+            }, 3000);
         }
     }
 

@@ -38,7 +38,7 @@ export default class StatusContent extends React.Component {
                 accountInfoAPI.updateCustomerStatus(url, JSON.parse(param)).then((data) => {
                     if (data.IsSuccess) {
                         setTimeout(() => {
-                            self.props.fetchCustomerInfoFromServer(e, self.props.username, false);
+                            self.props.fetchCustomerInfoFromServer(self.props.username, false);
                         }, 3000);
                     }
                     $.unblockUI();
