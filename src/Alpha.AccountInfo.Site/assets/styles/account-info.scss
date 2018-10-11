@@ -362,11 +362,20 @@ hr {
       overflow-x:auto;
 }
 
-.feature-list {
+
+.accordions {
+
+}
+.feature-list,
+.accordions {
     position: relative;
 
     &.translate-from-left {
         animation: TranslateFromLeft 0.3s;
+    }
+
+    &.translate-from-right {
+        animation: TranslateFromRight 0.3s;
     }
 }
 
@@ -586,4 +595,15 @@ hr {
         transform: translateX(0);
     }
 }
+
+@keyframes TranslateFromRight {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 

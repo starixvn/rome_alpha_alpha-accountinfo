@@ -14,7 +14,8 @@ export default class AccountInfoDesktop extends React.Component {
         super(props);
         this.state = {
             expandedItems: this.initialExpandedItems(this.props.customerInfo !== null),
-            collapseAll: this.props.customerInfo === null
+            collapseAll: this.props.customerInfo === null,
+            animation: this.props.mobileView ? "translate-from-left" : ""
         };
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
@@ -71,6 +72,12 @@ export default class AccountInfoDesktop extends React.Component {
 
         const newExpandedItems = Object.assign({}, emptyObject, { [blockId]: !currentStatus });
         const collapseAll = Object.keys(expandedItems).filter(key => newExpandedItems[key] === true).length === 0;
+
+        if (mobileView) {
+            this.setState((prevState) => ({
+                animation: currentStatus ? "translate-from-left" : "translate-from-right"
+            }));
+        }
 
         if (mobileView) {
             this.setState({
@@ -219,15 +226,14 @@ export default class AccountInfoDesktop extends React.Component {
 
     render() {
         let accordionItems = this.buildAccordionItems();
-        let animation = this.props.mobileView ? "translate-from-left" : "";
 
-        return <div className={`${animation} accordions`}>
+        return <div className={`${this.state.animation} accordions`}>
             {
                 accordionItems.map((item, index) => {
                     return item.visibled &&
                         <CustomizedAccordionItem
                             title={item.title}
-                            iconClassname={item.className}
+                            iconClassname={item.iconClassname}
                             accordionItemBodyClassName={item.accordionItemBodyClassName}
                             expanded={item.expanded}
                             handleClick={item.clickHanlder}
