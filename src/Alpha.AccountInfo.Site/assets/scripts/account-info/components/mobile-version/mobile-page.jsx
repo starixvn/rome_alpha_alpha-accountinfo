@@ -5,9 +5,19 @@ import { HeaderFeature } from './header-feature';
 export default class MobilePage extends React.Component {
     constructor(props) {
         super(props);
+        let { addAnimation = true } = this.props;
         this.state = {
-            animationClass: ''
+            animationClass: addAnimation ? 'translate-from-left' : ''
         };
+    }
+
+    componentDidMount() {
+        let self = this;
+        if (this.state.animationClass !== '') {
+            setTimeout(() => {
+                self.setState({ animationClass: '' });
+            }, 300);
+        }
     }
 
     render() {
@@ -24,14 +34,16 @@ export default class MobilePage extends React.Component {
                 {noInfoText}
             </div>;
 
-        return <div className="feature-detail translate-from-left">
-            <HeaderFeature url="/featureList"
-                iconClass={iconClass}
-                featureText={featureText}
-                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-            />
-            {data === null ? noInfo : children}
-        </div>;
-
+        return (
+            <div className={`${this.state.animationClass} feature-detail`}>
+                <HeaderFeature
+                    url="/featureList"
+                    iconClass={iconClass}
+                    featureText={featureText}
+                    redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                />
+                {data === null ? noInfo : children}
+            </div>
+        );
     }
 }

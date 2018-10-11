@@ -2,13 +2,28 @@
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
-export const HeaderFeature = ({ url, iconClass, featureText, onClick = null, redirectToBalanceInfoPage}) => {
+export const HeaderFeature = ({ url, iconClass, featureText, redirectToBalanceInfoPage = false }) => {
     if (redirectToBalanceInfoPage) {
-        return <Redirect to='/balanceInfo' />;
+        return (
+            <Redirect
+                to={{
+                    pathname: "/balanceInfo",
+                    state: { addAnimation: false }
+                }}
+            />
+        );
     }
 
-    return <Link to={url} className="feature-item" onClick={onClick}>
-        <span className={iconClass} />
-        {featureText}
-    </Link>;
+    return (
+        <Link
+            to={{
+                pathname: url,
+                state: { addAnimation: true }
+            }}
+            className="feature-item"
+        >
+            <span className={iconClass} />
+            {featureText}
+        </Link>
+    );
 };

@@ -2,7 +2,7 @@
 import TotalDownlines from './total-downlines';
 import { UserLevel } from '../../constants/user-level';
 
-const DownlineListContent = ({ resources, data, handleSearchFromUserLevel }) => <div>
+const DownlineListContent = ({ resources, data, mobileView, handleSearchFromUserLevel }) => <div>
     {
         data.TotalStatusAgent !== null &&
         <TotalDownlines levelName="Agents"
@@ -23,7 +23,7 @@ const DownlineListContent = ({ resources, data, handleSearchFromUserLevel }) => 
     }
 
     <div className="col-xs-12 row-info"><hr /></div>
-    <div className="col-xs-12 customer-list">
+    <div className={`${mobileView ? "" : "customer-list"} col-xs-12`}>
         {
             data.DownlineList.map((downline, index) => {
                 return <div className="col-xs-6" key={index}>

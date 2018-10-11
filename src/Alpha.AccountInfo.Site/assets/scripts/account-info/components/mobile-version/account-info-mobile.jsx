@@ -10,6 +10,7 @@ import LoginInfoContent from '../contents/login-info-content';
 import OnlineListContent from '../contents/online-list-content';
 import FeatureListPage from './feature-list-page';
 import MobilePage from './mobile-page';
+import DebugRouter from '../../../helpers/router-debugger';
 
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {
@@ -28,9 +29,9 @@ export default class AccountInfoMobile extends React.Component {
 
     render() {
         const { resources, mobileView, actorRoleId, customerInfo,
-                downlineList, onlineList, statusData, settingData,
-                fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
-
+            downlineList, onlineList, statusData, settingData,
+            fetchCustomerInfoFromServer, handleSearchFromUserLevel, handleOpenIPInfo } = this.props;
+       
         const { redirectToBalanceInfoPage} = this.state;
         let loginInfo = customerInfo !== null ? customerInfo.LoginInfo : null;
 
@@ -52,12 +53,13 @@ export default class AccountInfoMobile extends React.Component {
                 <ContactInfoContent resources={resources} customerInfo={customerInfo} />
             </MobilePage>;
 
-        const balanceInfoPage =
+        let buildBalanceInfoPage = (addAnimation = true) =>
             <MobilePage
                 iconClass="icon-balance"
                 featureText={resources.BalanceInfo}
                 noInfoText={resources.NoInfo}
                 data={customerInfo}
+                addAnimation={addAnimation}
             >
                 <BalanceInfoContent
                     resources={resources}
@@ -77,6 +79,7 @@ export default class AccountInfoMobile extends React.Component {
                 <DownlineListContent
                     resources={resources}
                     data={downlineList}
+                    mobileView={mobileView}
                     handleSearchFromUserLevel={handleSearchFromUserLevel}
                 />
             </MobilePage>;
@@ -140,19 +143,19 @@ export default class AccountInfoMobile extends React.Component {
             </MobilePage>;
 
         return (
-            <HashRouter>
+            <DebugRouter>
                 <Switch>
                     <Route key={0} exact path="/featureList" render={(props) => buildFeatureListPage()} />
-                    <Route key={1} exact path="/contactInfo" render={(props) => contactInfoPage}/>
-                    <Route key={2} exact path="/balanceInfo" render={(props) => balanceInfoPage}/>
+                    <Route key={1} exact path="/contactInfo" render={(props) => contactInfoPage} />
+                    <Route key={2} exact path="/balanceInfo" render={(props) => buildBalanceInfoPage(props.location.state.addAnimation)} />
                     <Route key={3} exact path="/downlineList" render={(props) => downlineListPage} />
                     <Route key={4} exact path="/status" render={(props) => statusPage}  />
                     <Route key={5} exact path="/settings" render={(props) => settingPage} />
                     <Route key={6} exact path="/loginInfo" render={(props) => loginInfoPage} />
                     <Route key={6} exact path="/onlineList" render={(props) => onlineListPage} />
-                    <Route key={7} exact path="/" render={(props) => customerInfo !== null ? balanceInfoPage : buildFeatureListPage(false)} />
+                    <Route key={7} exact path="/" render={(props) => customerInfo !== null ? buildBalanceInfoPage(false) : buildFeatureListPage(false)} />
                 </Switch>
-            </HashRouter>
+            </DebugRouter>
         );
     }
 }

@@ -114,6 +114,7 @@ export default class AccountInfoDesktop extends React.Component {
                     : <DownlineListContent
                         resources={resources}
                         data={downlineList}
+                        mobileView={mobileView}
                         handleSearchFromUserLevel={handleSearchFromUserLevel}
                     />,
                 title: resources.DownlineList,
