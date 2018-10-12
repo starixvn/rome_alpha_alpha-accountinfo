@@ -69,7 +69,7 @@
         {
             var spParams = base.GetSpParams();
 
-            spParams.Add(StatusValue, StatusValue);
+            spParams.Add(StatusName, StatusValue);
 
             return spParams;
         }

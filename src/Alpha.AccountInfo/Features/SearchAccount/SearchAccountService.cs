@@ -34,7 +34,9 @@
 
     public class SearchAccountServiceImpl : SearchAccountService
     {
-        private readonly IDynamicRepository repository;
+        private readonly int failErrorCode = 100;
+
+        private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly IDictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>> getBalanceInfoModelByLevel;
@@ -53,7 +55,7 @@
             RnGCasinoService rnGCasinoService,
             IDictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>> getBalanceInfoModelByLevel)
         {
-            repository = dynamicRepository;
+            this.dynamicRepository = dynamicRepository;
             this.accountInfoDataAccess = accountInfoDataAccess;
             this.rnGCasinoService = rnGCasinoService;
 
@@ -67,10 +69,10 @@
         }
 
         public IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
-            => repository.Fetch<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
+            => dynamicRepository.Fetch<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
 
         public CustomerInfoModel GetCustomerInfoModel(string username, int uplineId)
-            => repository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
+            => dynamicRepository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
 
         public IBalanceInfoModel GetBalanceInfoModel(int custId, byte roleId)
            => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
@@ -82,18 +84,25 @@
             => accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
 
         public IEnumerable<OnlineUserModel> GetOnlineListModel(int custid)
-            => accountInfoDataAccess.GetOnlineList(new SelectOnlineListCriteria(custid));
+            => dynamicRepository.Fetch<OnlineUserModel>(new SelectOnlineListCriteria(custid));
 
         public Result UpdateGivenCredit(UpdateGivenCreditParam param)
-            => accountInfoDataAccess.UpdateGivenCredit(
-                new UpdateGivenCreditCommand(
+        {
+            var command = new UpdateGivenCreditCommand(
                     param.SearchAccountId,
                     param.RoleId,
                     param.CreditAmount,
                     param.ActorId,
                     param.SubAccountId,
                     param.Language,
-                    param.IP));
+                    param.IP);
+
+            dynamicRepository.Execute(command);
+
+            return command.CreditProblem
+                ? Result.CreateErrorResult(failErrorCode, command.ErrMsg)
+                : Result.CreateSuccessResult();
+        }
 
         public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
@@ -106,7 +115,7 @@
                    param.StatusName,
                    param.StatusValue);
 
-            var result = accountInfoDataAccess.UpdateCustomerStatus(command);
+            var result = UpdateCustomerStatus(command);
 
             if (result.IsSuccess && param.SyncedCasino3rd)
             {
@@ -124,12 +133,21 @@
         }
 
         internal IBalanceInfoModel GetMasterBalanceInfoModel(ICriteria criteria)
-          => repository.Get<MasterBalanceInfoModel>(criteria);
+          => dynamicRepository.Get<MasterBalanceInfoModel>(criteria);
 
         internal IBalanceInfoModel GetAgentBalanceInfoModel(ICriteria criteria)
-          => repository.Get<AgentBalanceInfoModel>(criteria);
+          => dynamicRepository.Get<AgentBalanceInfoModel>(criteria);
 
         internal IBalanceInfoModel GetMemberBalanceInfoModel(ICriteria criteria)
-          => repository.Get<MemberBalanceInfoModel>(criteria);
+          => dynamicRepository.Get<MemberBalanceInfoModel>(criteria);
+
+        public Result UpdateCustomerStatus(UpdateCustomerStatusCommand command)
+        {
+            var result = accountInfoDataAccess.UpdateCustomerStatus(command);
+
+            return result.IsSuccess
+                ? Result.CreateSuccessResult()
+                : result;
+        }
     }
 }
