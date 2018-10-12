@@ -1,12 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.AppResources;
+    using System;
+    using System.Resources;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
-    using System;
-    using System.Resources;
 
     public class AccountInfoViewModel : AccountInfoViewModelBase
     {

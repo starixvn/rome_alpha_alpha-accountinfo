@@ -13,7 +13,7 @@
         [Fact]
         public void Constructor_Always_ReturnCorrectRequest()
         {
-            var messages = new CustomerStatusCommand(viewer)
+            var messages = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = 1,
                 SyncedCasino3rd = true,

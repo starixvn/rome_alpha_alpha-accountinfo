@@ -14,7 +14,7 @@
         [Fact]
         public void Constructor_Always_ReturnCorrectRequest()
         {
-            var messages = new CustomerAllStatusQuery(viewer)
+            var messages = new CustomerStatusQuery(viewer)
             {
                 SearchAccountId = 1,
                 SearchAccountName = "SearchAccountName",
@@ -57,7 +57,7 @@
             byte uplineRoleId,
             bool expectedValue)
         {
-            var messages = new CustomerAllStatusQuery(viewer)
+            var messages = new CustomerStatusQuery(viewer)
             {
                 SearchAccountId = 1,
                 SearchAccountName = "SearchAccountName",
@@ -76,7 +76,7 @@
         [InlineData("", false)]
         public void IsValidName_Always_ReturnsCorrectValue(string searchAccountName, bool expectedValue)
         {
-            var messages = new CustomerAllStatusQuery(viewer)
+            var messages = new CustomerStatusQuery(viewer)
             {
                 SearchAccountId = 1,
                 SearchAccountName = searchAccountName,

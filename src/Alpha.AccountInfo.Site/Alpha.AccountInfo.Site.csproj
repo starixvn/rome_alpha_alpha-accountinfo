@@ -309,20 +309,12 @@
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="assets\bundles\account-info\given-credit.min.css" />
     <Content Include="assets\bundles\account-info\given-credit.min.js" />
     <Content Include="assets\bundles\account-info\index.min.css" />
@@ -494,10 +486,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\AccountInfo\AccountInfoQuery.cs" />
     <Compile Include="Requests\AccountInfo\Base\AccountInfoQueryBase.cs" />
-    <Compile Include="Requests\AccountInfo\CustomerStatusCommand.cs" />
+    <Compile Include="Requests\AccountInfo\CustomerNonProductStatusCommand.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditQuery.cs" />
     <Compile Include="Requests\AccountInfo\GivenCreditCommand.cs" />
-    <Compile Include="Requests\AccountInfo\CustomerAllStatusQuery.cs" />
+    <Compile Include="Requests\AccountInfo\CustomerStatusQuery.cs" />
     <Compile Include="Requests\AccountInfo\OnlineListQuery.cs" />
     <Compile Include="Requests\AccountInfo\UserNameSuggestionQuery.cs" />
     <Compile Include="Requests\AccountInfo\DownlineListQuery.cs" />
@@ -519,7 +511,7 @@
     <Compile Include="ViewModels\AccountInfo\DownlineListViewModel.cs" />
     <Compile Include="Helpers\ProductJsonConverter.cs" />
     <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\CustomererAllStatusViewModel.cs" />
+    <Compile Include="ViewModels\AccountInfo\CustomererStatusViewModel.cs" />
     <Compile Include="ViewModels\AccountInfo\TotalStatusDownline.cs" />
     <Compile Include="ViewModels\AccountInfo\Link.cs" />
     <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />

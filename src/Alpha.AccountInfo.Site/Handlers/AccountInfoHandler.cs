@@ -1,15 +1,16 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
-    using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Params.ProductStatus;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Alpha.AccountInfo.Features.SearchAccount.Models;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Params;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
     using MediatR;
     using Requests.ProductStatus;
     using Services.AccountInfo;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using ViewModels.AccountInfo;
 
     public class AccountInfoHandler :
@@ -17,21 +18,21 @@
         IRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>,
         IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
-        IRequestHandler<CustomerAllStatusQuery, CustomererAllStatusViewModel>,
+        IRequestHandler<CustomerStatusQuery, CustomererStatusViewModel>,
         IRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IRequestHandler<GivenCreditCommand, Result>,
-        IRequestHandler<CustomerStatusCommand, Result>
+        IRequestHandler<CustomerNonProductStatusCommand, Result>
     {
-        private readonly AccountInfoService accountInfoService;
+        private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
 
-        public AccountInfoHandler(AccountInfoService accountInfoService) : this(accountInfoService, null)
+        public AccountInfoHandler(SearchAccountService accountInfoService) : this(accountInfoService, null)
         {
         }
 
         internal AccountInfoHandler(
-            AccountInfoService accountInfoService,
+            SearchAccountService accountInfoService,
             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel)
         {
             this.accountInfoService = accountInfoService;
@@ -73,8 +74,8 @@
         public DownlineListViewModel Handle(DownlineListQuery message)
             => new DownlineListViewModel(accountInfoService.GetDownlineListModel(message.SearchAccountId));
 
-        public CustomererAllStatusViewModel Handle(CustomerAllStatusQuery message)
-            => new CustomererAllStatusViewModel(message, accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId));
+        public CustomererStatusViewModel Handle(CustomerStatusQuery message)
+            => new CustomererStatusViewModel(message, accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId));
 
         public IEnumerable<OnlineUserModel> Handle(OnlineListQuery message)
             => accountInfoService.GetOnlineListModel(message.SearchAccountId);
@@ -93,7 +94,7 @@
                     message.Language,
                     message.IP));
 
-        public Result Handle(CustomerStatusCommand message)
+        public Result Handle(CustomerNonProductStatusCommand message)
            => accountInfoService.UpdateCustomerStatus(
                new UpdateCustomerStatusParam(
                    message.SearchAccountId,

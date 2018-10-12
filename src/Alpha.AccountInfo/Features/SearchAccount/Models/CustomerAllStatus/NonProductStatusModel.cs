@@ -1,0 +1,62 @@
+﻿namespace Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo
+{
+    public class NonProductStatusModel
+    {
+        public NonProductStatusModel() { }
+
+        public NonProductStatusModel(
+            bool hasDownline,
+            bool disableAutoMPT,
+            bool closed,
+            bool uplineClosed,
+            bool suspended,
+            bool uplineSuspend,
+            string transferOption,
+            bool doubleCommLosing,
+            bool uplineDoubleCommLosing,
+            bool disableOutright,
+            bool uplineDisableOutright)
+        {
+            HasDownline = hasDownline;
+            DisableAutoMPT = disableAutoMPT;
+
+            Closed = closed;
+            UplineClosed = uplineClosed;
+
+            Suspended = suspended;
+            UplineSuspend = uplineSuspend;
+
+            TransferOption = transferOption;
+
+            DoubleCommLosing = doubleCommLosing;
+            UplineDoubleCommLosing = uplineDoubleCommLosing;
+
+            DisableOutright = disableOutright;
+            UplineDisableOutright = uplineDisableOutright;
+        }
+
+        public bool HasDownline { get; private set; }
+
+        public bool Closed { get; private set; }
+
+        public bool UplineClosed { get; private set; }
+
+        public bool Suspended { get; private set; }
+
+        public bool UplineSuspend { get; private set; }
+
+        public string TransferOption { get; private set; }
+
+        public bool TransferDaily => TransferOption[7].Equals(0);
+
+        public bool DoubleCommLosing { get; private set; }
+
+        public bool UplineDoubleCommLosing { get; private set; }
+
+        public bool DisableAutoMPT { get; private set; }
+
+        public bool DisableOutright { get; private set; }
+
+        public bool UplineDisableOutright { get; private set; }
+    }
+}

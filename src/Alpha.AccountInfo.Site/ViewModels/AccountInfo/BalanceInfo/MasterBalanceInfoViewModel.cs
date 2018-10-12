@@ -1,9 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using System;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
     public class MasterBalanceInfoViewModel : BalanceInfoViewModelBase
     {
@@ -21,13 +21,13 @@
 
         public decimal TotalCash => RoundNumber(balanceInfoModel.MasterCash);
 
-        public decimal YesterdayCash => RoundNumber(balanceInfoModel.Yesterday_MasterCash);
+        public decimal YesterdayCash => RoundNumber(balanceInfoModel.YesterdayMasterCash);
 
         public override decimal TotalBalance
             => RoundNumber(balanceInfoModel.MasterCash + balanceInfoModel.AgentCash + balanceInfoModel.CustomerCash);
 
-        public override decimal YesterdayBalance 
-            => RoundNumber(balanceInfoModel.Yesterday_MasterCash + balanceInfoModel.Yesterday_AgentCash + balanceInfoModel.Yesterday_CustomerCash);
+        public override decimal YesterdayBalance
+            => RoundNumber(balanceInfoModel.YesterdayMasterCash + balanceInfoModel.YesterdayAgentCash + balanceInfoModel.YesterdayCustomerCash);
 
         public override decimal Outstanding => RoundNumber(balanceInfoModel.MasterPositionTaking);
 
@@ -37,8 +37,8 @@
 
         public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
 
-        private decimal MasterCredit_Min => balanceInfoModel.MasterCredit_Min;
+        private decimal MasterCredit_Min => balanceInfoModel.MasterCreditMin;
 
-        private decimal MasterCredit_Max => balanceInfoModel.MasterCredit_Max;
+        private decimal MasterCredit_Max => balanceInfoModel.MasterCreditMax;
     }
 }

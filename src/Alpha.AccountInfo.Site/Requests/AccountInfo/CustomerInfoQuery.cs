@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
 
@@ -28,7 +28,7 @@
         public bool ViewReports => viewer.CanViewReports;
 
         public override bool IsValid() =>
-            IsValidName(SearchAccountName) && 
+            IsValidName(SearchAccountName) &&
             SearchAccountName != viewer.Name;
     }
 }

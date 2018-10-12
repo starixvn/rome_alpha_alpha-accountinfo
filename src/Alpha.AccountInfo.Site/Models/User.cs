@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Models
 {
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Sunplus.Agent.Model.Entities;
 
     public class User : IUser
@@ -36,10 +36,10 @@
             => !userSession.IsSubAcc || (userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount);
 
         public bool AllowedAllDayBalTransfer => userSession.IsAllDayBalTransfer;
-         
+
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
-        public bool AllowTransfer => userSession.SubPageAccess.Transfer; 
+        public bool AllowTransfer => userSession.SubPageAccess.Transfer;
 
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;
 
@@ -62,6 +62,5 @@
         public bool IsDisabledESports => userSession.IsDisabledESports;
 
         public bool IsNumberGameDisabled => userSession.IsNumberGameDisabled;
-
     }
 }

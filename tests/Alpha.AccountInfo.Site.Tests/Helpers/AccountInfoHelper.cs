@@ -1,16 +1,16 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo
 {
-    using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Models.AccountInfo;
+    using System;
+    using System.Collections.Generic;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using NSubstitute;
-    using System;
-    using System.Collections.Generic;
 
     public static class AccountInfoHelper
     {
-        public static Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, BalanceInfoViewModelBase>> BalanceInfoViewModels 
+        public static Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, BalanceInfoViewModelBase>> BalanceInfoViewModels
             => new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, BalanceInfoViewModelBase>>
             {
                 { UserLevel.Master, BuildMasterBalanceInfoViewModel},
@@ -18,7 +18,7 @@
                 { UserLevel.Member, BuildMemberBalanceInfoViewModel}
             };
 
-        public static CustomerInfoModel BuildCustomerInfo (byte searchAccountRoleId = 1) =>
+        public static CustomerInfoModel BuildCustomerInfo(byte searchAccountRoleId = 1) =>
             new CustomerInfoModel(
                 custId: 1,
                 roleId: searchAccountRoleId,
@@ -122,32 +122,31 @@
           => new MemberBalanceInfoModel(
                   custId: 1,
                   credit: 12,
-                  agentPositionTaking: 13,
                   customerCash: 14,
-                  yesterday_CustomerCash: 15,
+                  yesterdayCustomerCash: 15,
                   customerOutstanding: 16,
                   casinoOutstanding: 17,
                   casinoTransfer: 18,
                   netPosition: 19,
-                  memMaxCredit_Max: 20);
+                  memMaxCreditMax: 20);
 
         public static AgentBalanceInfoModel AgentBalanceInfo
             => new AgentBalanceInfoModel(
                       custId: 1,
                       credit: 120,
                       agentCash: 13,
-                      yesterday_AgentCash: 14,
+                      yesterdayAgentCash: 14,
                       customerCash: 15,
-                      yesterday_CustomerCash: 16,
+                      yesterdayCustomerCash: 16,
                       customerOutstanding: 17,
                       casinoOutstanding: 18,
                       agentPositionTaking: 19,
                       casinoTransfer: 20,
                       masterUsedCredit: 21,
                       agentUsedCredit: 22,
-                      agentCredit_Min: 23,
-                      agentCredit_Max: 85,
-                      memMaxCredit_Min: 25,
+                      agentCreditMin: 23,
+                      agentCreditMax: 85,
+                      memMaxCreditMin: 25,
                       memberMaxCredit: 26);
 
         public static MasterBalanceInfoModel MasterBalanceInfo
@@ -155,18 +154,18 @@
                     custId: 1,
                     credit: 12,
                     masterCash: 13,
-                    yesterday_MasterCash: 14,
+                    yesterdayMasterCash: 14,
                     masterPositionTaking: 15,
                     agentCash: 16,
-                    yesterday_AgentCash: 17,
+                    yesterdayAgentCash: 17,
                     customerCash: 18,
-                    yesterday_CustomerCash: 19,
+                    yesterdayCustomerCash: 19,
                     customerOutstanding: 20,
                     casinoOutstanding: 21,
                     casinoTransfer: 22,
                     masterUsedCredit: 23,
-                    masterCredit_Min: 24,
-                    masterCredit_Max: 85);
+                    masterCreditMin: 24,
+                    masterCreditMax: 85);
 
         private static CustomerInfoQuery AssignMessagesUsername(CustomerInfoQuery messages)
         {

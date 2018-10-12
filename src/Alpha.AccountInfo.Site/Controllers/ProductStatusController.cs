@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using MediatR;
     using Requests.ProductStatus;
     using Web.Filters;

@@ -27,7 +27,7 @@ const DownlineListContent = ({ resources, data, handleSearchFromUserLevel }) => 
         {
             data.DownlineList.map((downline, index) => {
                 return <div className="col-xs-6" key={index}>
-                    <a href="#" data-username={downline} onClick={handleSearchFromUserLevel}>{downline}</a>
+                    <a href="#" data-username={downline.Username} onClick={handleSearchFromUserLevel}>{downline.Username}</a>
                 </div>;
             })
         }

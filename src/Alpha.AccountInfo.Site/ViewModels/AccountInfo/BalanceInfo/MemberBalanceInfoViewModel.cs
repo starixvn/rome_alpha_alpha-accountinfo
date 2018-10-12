@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using System;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
     public class MemberBalanceInfoViewModel : BalanceInfoViewModelBase
     {
@@ -12,7 +12,7 @@
             CustomerInfoQuery message,
             IBalanceInfoModel balanceInfoModel,
             CustomerInfoModel customerInfoModel,
-            Func<string, string, string> getMicroSiteUrl = null) 
+            Func<string, string, string> getMicroSiteUrl = null)
             : base(message, customerInfoModel, getMicroSiteUrl)
         {
             this.balanceInfoModel = (MemberBalanceInfoModel)balanceInfoModel;
@@ -20,7 +20,7 @@
 
         public override decimal TotalBalance => RoundNumber(balanceInfoModel.CustomerCash);
 
-        public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.Yesterday_CustomerCash);
+        public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.YesterdayCustomerCash);
 
         public override decimal Outstanding => RoundNumber(balanceInfoModel.CustomerOutstanding);
 
@@ -34,6 +34,6 @@
 
         internal override bool ShowTransferLink => ActorLevel.IsAgentLevel() && base.ShowTransferLink;
 
-        private decimal MemMaxCredit_Max => balanceInfoModel.MemMaxCredit_Max;
+        private decimal MemMaxCredit_Max => balanceInfoModel.MemMaxCreditMax;
     }
 }

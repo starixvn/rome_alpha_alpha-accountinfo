@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using MediatR;
     using Requests;
     using Web;

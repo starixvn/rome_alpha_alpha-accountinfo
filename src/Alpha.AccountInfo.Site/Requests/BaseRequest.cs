@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests
 {
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
 
     public abstract class BaseRequest
     {

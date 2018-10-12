@@ -1,15 +1,15 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using System;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
 
     public class AgentBalanceInfoViewModel : BalanceInfoViewModelBase
     {
         private readonly AgentBalanceInfoModel balanceInfoModel;
 
-        public AgentBalanceInfoViewModel( 
+        public AgentBalanceInfoViewModel(
             CustomerInfoQuery message,
             IBalanceInfoModel balanceInfoModel,
             CustomerInfoModel customerInfoModel,
@@ -21,11 +21,11 @@
 
         public decimal TotalCash => RoundNumber(balanceInfoModel.AgentCash);
 
-        public decimal YesterdayCash => RoundNumber(balanceInfoModel.Yesterday_AgentCash);
+        public decimal YesterdayCash => RoundNumber(balanceInfoModel.YesterdayAgentCash);
 
         public override decimal TotalBalance => RoundNumber(balanceInfoModel.AgentCash + balanceInfoModel.CustomerCash);
 
-        public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.Yesterday_AgentCash + balanceInfoModel.Yesterday_CustomerCash);
+        public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.YesterdayAgentCash + balanceInfoModel.YesterdayCustomerCash);
 
         public override decimal Outstanding => RoundNumber(balanceInfoModel.AgentPositionTaking);
 
@@ -43,10 +43,10 @@
 
         internal override bool ShowTransferLink => ActorLevel.IsMasterLevel() && base.ShowTransferLink;
 
-        private decimal MemMaxCredit_Min => balanceInfoModel.MemMaxCredit_Min;
+        private decimal MemMaxCredit_Min => balanceInfoModel.MemMaxCreditMin;
 
-        private decimal AgentCredit_Min => balanceInfoModel.AgentCredit_Min;
+        private decimal AgentCredit_Min => balanceInfoModel.AgentCreditMin;
 
-        private decimal AgentCredit_Max => balanceInfoModel.AgentCredit_Max;
+        private decimal AgentCredit_Max => balanceInfoModel.AgentCreditMax;
     }
 }

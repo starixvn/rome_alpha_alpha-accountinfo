@@ -167,7 +167,7 @@
         [Fact]
         public void CustomerAllStatusQuery_ValidViewModel_ReturnsView()
         {
-            var message = new CustomerAllStatusQuery(viewer)
+            var message = new CustomerStatusQuery(viewer)
             {
                 SearchAccountId = 1,
                 SearchAccountName = "SearchAccountName",
@@ -187,7 +187,7 @@
         [InlineData(-1)]
         public void CustomerAllStatusQuery_InvalidUserName_ReturnsInvalidPageView(int searchAccountId)
         {
-            var message = new CustomerAllStatusQuery(viewer)
+            var message = new CustomerStatusQuery(viewer)
             {
                 SearchAccountId = searchAccountId,
                 SearchAccountName = "SearchAccountName",
@@ -325,7 +325,7 @@
         [Fact]
         public void CustomerStatusCommand_ValidViewModel_ReturnsView()
         {
-            var message = new CustomerStatusCommand(viewer)
+            var message = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = 1,
                 SyncedCasino3rd = true,
@@ -343,7 +343,7 @@
         [InlineData(-1)]
         public void CustomerStatusCommand_InvalidSearchAccountId_ReturnsInvalidPageView(int searchAccountId)
         {
-            var message = new CustomerStatusCommand(viewer)
+            var message = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = searchAccountId,
                 SyncedCasino3rd = true,
@@ -362,7 +362,7 @@
         [InlineData("")]
         public void CustomerStatusCommand_InvalidStatusName_ReturnsInvalidPageView(string statusname)
         {
-            var message = new CustomerStatusCommand(viewer)
+            var message = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = 1,
                 SyncedCasino3rd = true,

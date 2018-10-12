@@ -1,9 +1,15 @@
 ﻿namespace Alpha.AccountInfo.Site.App_Start
 {
-    using AccountInfo.Models;
-    using Alpha.AccountInfo.AppResources;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Resources;
+    using System.Web;
+    using System.Web.Mvc;
     using Alpha.AccountInfo.DataAccess;
-    using Alpha.AccountInfo.Services;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Helpers;
     using Alpha.Products.AccountInfo;
@@ -22,12 +28,6 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Resources;
-    using System.Web;
-    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
@@ -97,8 +97,8 @@
             container.Register<IProductProfileService, ProductProfileService>(Lifestyle.Singleton);
             container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
             container.Register<RnGCasinoService, RnGCasinoServiceImpl>(Lifestyle.Scoped);
-            container.Register<AccountInfoService, AccountInfoServiceImpl>(Lifestyle.Scoped);
-            container.Register<AccountInfoDataAccess, AccountInfoDataAccessImpl>(Lifestyle.Scoped);
+            container.Register<SearchAccountService, SearchAccountServiceImpl>(Lifestyle.Scoped);
+            container.Register<SearchAccountDataAccess, SearchAccountDataAccessImpl>(Lifestyle.Scoped);
         }
 
         private static void StartConfiguration(Container container)

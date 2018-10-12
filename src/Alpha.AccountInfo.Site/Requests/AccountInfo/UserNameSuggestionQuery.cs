@@ -1,9 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
-    using AccountInfo.Models;
-    using Alpha.AccountInfo.Models.AccountInfo;
-    using MediatR;
     using System.Collections.Generic;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using MediatR;
 
     public class UserNameSuggestionQuery : BaseRequest, IRequest<IEnumerable<UsernameSuggestion>>
     {

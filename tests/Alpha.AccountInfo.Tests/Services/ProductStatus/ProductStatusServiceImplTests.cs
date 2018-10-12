@@ -13,7 +13,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Xunit;
-    using static Alpha.AccountInfo.Constants.AccountInfoDataKey;
+    using static Alpha.AccountInfo.Constants.DataKey;
 
     [Trait("Category", "ProductStatus")]
     public class ProductStatusServiceImplTests

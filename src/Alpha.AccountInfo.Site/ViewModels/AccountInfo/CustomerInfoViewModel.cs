@@ -1,12 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.Products.Core.Shared;
     using System;
     using System.Collections.Generic;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.Products.Core.Shared;
 
     public class CustomerInfoViewModel : AccountInfoViewModelBase
     {
@@ -14,7 +14,7 @@
         private readonly CustomerInfoModel customerInfo;
 
         public CustomerInfoViewModel(
-            CustomerInfoQuery message, 
+            CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             IBalanceInfoViewModel balanceInfo,
             Func<string, string, string> getMicroSiteUrl = null) : base(getMicroSiteUrl)
@@ -56,14 +56,14 @@
 
         public string MemberName => customerInfo.MemberName;
 
-        public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel() 
+        public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel()
             && SearchAccountLevel.IsDownlineOfMasterLevel();
 
         public int AgentId => customerInfo.AgentId;
 
         public string AgentName => customerInfo.AgentName;
 
-        public bool ShowMaster => ActorLevel.IsSuperLevel() 
+        public bool ShowMaster => ActorLevel.IsSuperLevel()
             && SearchAccountLevel.IsDownlineOfSuperLevel();
 
         public int MasterId => customerInfo.MasterId;
@@ -74,7 +74,7 @@
 
         public string SuperName => customerInfo.SuperName;
 
-        public LoginInfoViewModel LoginInfo => 
+        public LoginInfoViewModel LoginInfo =>
             new LoginInfoViewModel(
                 customerInfo.CreatDate,
                 customerInfo.LastLogged,
@@ -83,7 +83,8 @@
 
         public IBalanceInfoViewModel BalanceInfo { get; }
 
-        public Link CustomerListOrBetListLink {
+        public Link CustomerListOrBetListLink
+        {
             get
             {
                 var labels = new Dictionary<UserLevel, string>

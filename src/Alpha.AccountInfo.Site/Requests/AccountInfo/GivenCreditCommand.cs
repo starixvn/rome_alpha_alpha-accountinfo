@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using MediatR;
 
     public class GivenCreditCommand : AccountInfoQueryBase, IRequest<Result>
@@ -24,7 +24,7 @@
 
         public string IP => viewer.IP;
 
-        public override bool IsValid() => 
+        public override bool IsValid() =>
             base.IsValid() &&
             IsValidSearchAccountRoleId(SearchAccountRoleId);
     }

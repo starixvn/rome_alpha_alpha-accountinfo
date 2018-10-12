@@ -175,83 +175,79 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppResources\GivenCredit.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GivenCredit.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.Designer.cs">
+    <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductStatus.resx</DependentUpon>
     </Compile>
-    <Compile Include="AppResources\Resources.Designer.cs">
+    <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Features\SearchAccount\AppResources\GivenCredit.Designer.cs">
+      <DependentUpon>GivenCredit.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Constants\AccountInfoDataKey.cs" />
-    <Compile Include="Constants\BetTypeConstants.cs" />
-    <Compile Include="Criteria\AccountInfo\SelectAutoSuggestionCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateCustomerStatusCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\UpdateGivenCreditCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\SelectCustomerAllStatusModelCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\Base\AccountInfoCriteriaBase.cs" />
-    <Compile Include="Criteria\AccountInfo\SelectOnlineListCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\SelectDownlineListCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\SelectBalanceInfoCriteria.cs" />
-    <Compile Include="Criteria\AccountInfo\SelectCustomerInfoCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\NonQueryProductStatusCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectAutoSuggestionCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateCustomerStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerAllStatusModelCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\AccountInfoCriteriaBase.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectOnlineListCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectDownlineListCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectBalanceInfoCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerInfoCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\NonQueryProductStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateCasinoStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateColossusBetStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateDCSProductStatusCriteria.cs" />
     <Compile Include="Criteria\ProductStatus\SelectProductProfileCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateCasinoStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateColossusBetStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateDCSProductStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateNG2StatusCriteria.cs">
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateNG2StatusCriteria.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Criteria\SelectCustomerInformationCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\SelectDCSProductStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\SelectNG2StatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\SelectProductStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateKenoStatusCriteria.cs" />
-    <Compile Include="DataAccess\AccountInfoDataAccessImpl.cs" />
-    <Compile Include="DataAccess\AccountInfoDataAccess.cs" />
-    <Compile Include="DataAccess\ObjectDbFactory.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectCustomerInformationCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectDCSProductStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectNG2StatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectProductStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateKenoStatusCriteria.cs" />
+    <Compile Include="Features\SearchAccount\SearchAccountDataAccess.cs" />
+    <Compile Include="Features\Shared\AppResources\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\Shared\DataKey.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\AccountInfo\BalanceInfo\AgentBalanceInfoModel.cs" />
-    <Compile Include="Models\AccountInfo\BalanceInfo\IBalanceInfoModel.cs" />
-    <Compile Include="Models\AccountInfo\BalanceInfo\MemberBalanceInfoModel.cs" />
-    <Compile Include="Models\AccountInfo\BalanceInfo\MasterBalanceInfoModel.cs" />
-    <Compile Include="Models\AccountInfo\CustomerAllStatus\CustomerAllStatusModel.cs" />
-    <Compile Include="Models\AccountInfo\CutomerInfo\UsernameSuggestion.cs" />
-    <Compile Include="Models\AccountInfo\CutomerInfo\CustomerInfoModel.cs" />
-    <Compile Include="Models\AccountInfo\CustomerAllStatus\CustomerStatusModel.cs" />
-    <Compile Include="Models\AccountInfo\CustomerAllStatus\NonDCSProductModel.cs" />
-    <Compile Include="Models\AccountInfo\CustomerAllStatus\DCSProductModel.cs" />
-    <Compile Include="Models\AccountInfo\OnlineList\OnlineUserModel.cs" />
-    <Compile Include="Models\AccountInfo\DownlineList\DownlineListModel.cs" />
-    <Compile Include="Models\CustomerInformation.cs" />
-    <Compile Include="Models\IUser.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\AgentBalanceInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\IBalanceInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\MemberBalanceInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\MasterBalanceInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\CustomerStatusModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CutomerInfo\UsernameSuggestion.cs" />
+    <Compile Include="Features\SearchAccount\Models\CutomerInfo\CustomerInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonProductStatusModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonDCSProductStatusModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\DCSProductStatusModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\OnlineUserModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\DownlineListModel.cs" />
+    <Compile Include="Features\ProductStatusPopup\Models\CustomerInformation.cs" />
+    <Compile Include="Features\Shared\Models\IUser.cs" />
     <Compile Include="Models\ProductStatus\ProductProfile.cs" />
-    <Compile Include="Models\ProductStatus\ProductStatusModel.cs" />
-    <Compile Include="Models\Result.cs" />
-    <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Params\AccountInfo\UpdateRnGCasino3rdParam.cs" />
-    <Compile Include="Params\AccountInfo\UpdateCustomerStatusParam.cs" />
-    <Compile Include="Params\AccountInfo\UpdateGivenCreditParam.cs" />
-    <Compile Include="Params\ProductStatus\ProductStatusAuthorizationParam.cs" />
-    <Compile Include="Params\ProductStatus\BetTypeStatusParam.cs" />
-    <Compile Include="Params\ProductStatus\ProductStatusCommandParam.cs" />
+    <Compile Include="Features\ProductStatusPopup\Models\ProductStatusModel.cs" />
+    <Compile Include="Features\Shared\Models\Result.cs" />
+    <Compile Include="Features\Shared\Models\UserLevel.cs" />
+    <Compile Include="Features\SearchAccount\Params\UpdateRnGCasino3rdParam.cs" />
+    <Compile Include="Features\SearchAccount\Params\UpdateCustomerStatusParam.cs" />
+    <Compile Include="Features\SearchAccount\Params\UpdateGivenCreditParam.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\ProductStatusAuthorizationParam.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\BetTypeStatusParam.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\ProductStatusCommandParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CacheRefService.cs" />
+    <Compile Include="Features\Shared\Services\CacheRefService.cs" />
     <Compile Include="Services\ProductStatus\ProductProfileService.cs" />
-    <Compile Include="Services\AccountInfo\AccountInfoService.cs" />
-    <Compile Include="Services\AccountInfo\AccountInfoServiceImpl.cs" />
-    <Compile Include="Services\ProductStatus\ProductStatusAuthorizationService.cs" />
-    <Compile Include="Services\ProductStatus\ProductStatusCriteriaFactory.cs" />
-    <Compile Include="Services\ProductStatus\ProductStatusService.cs" />
-    <Compile Include="Services\RnGCasino\RnGCasinoService.cs" />
+    <Compile Include="Features\SearchAccount\SearchAccountService.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductStatusAuthorizationService.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductStatusCriteriaFactory.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductStatusService.cs" />
+    <Compile Include="Features\Shared\Services\RnGCasinoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Alpha.AccountInfo.Debug.ruleset" />
@@ -260,36 +256,36 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources\ProductStatus.ja-JP.resx" />
-    <EmbeddedResource Include="AppResources\ProductStatus.ko-KR.resx" />
-    <EmbeddedResource Include="AppResources\ProductStatus.resx">
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.ja-JP.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.ko-KR.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProductStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.th-TH.resx" />
-    <EmbeddedResource Include="AppResources\ProductStatus.vi-VN.resx" />
-    <EmbeddedResource Include="AppResources\ProductStatus.zh-CN.resx" />
-    <EmbeddedResource Include="AppResources\ProductStatus.zh-TW.resx" />
-    <EmbeddedResource Include="AppResources\GivenCredit.resx">
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.th-TH.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.vi-VN.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.zh-CN.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.zh-TW.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.ja-JP.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.ko-KR.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GivenCredit.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\GivenCredit.ja-JP.resx" />
-    <EmbeddedResource Include="AppResources\Resources.ja-JP.resx" />
-    <EmbeddedResource Include="AppResources\GivenCredit.ko-KR.resx" />
-    <EmbeddedResource Include="AppResources\Resources.ko-KR.resx" />
-    <EmbeddedResource Include="AppResources\Resources.resx">
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.th-TH.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.vi-VN.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.zh-CN.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.zh-TW.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.ja-JP.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.ko-KR.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\GivenCredit.th-TH.resx" />
-    <EmbeddedResource Include="AppResources\Resources.th-TH.resx" />
-    <EmbeddedResource Include="AppResources\GivenCredit.vi-VN.resx" />
-    <EmbeddedResource Include="AppResources\Resources.vi-VN.resx" />
-    <EmbeddedResource Include="AppResources\GivenCredit.zh-CN.resx" />
-    <EmbeddedResource Include="AppResources\Resources.zh-CN.resx" />
-    <EmbeddedResource Include="AppResources\GivenCredit.zh-TW.resx" />
-    <EmbeddedResource Include="AppResources\Resources.zh-TW.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.th-TH.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.vi-VN.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.zh-CN.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

@@ -9,7 +9,7 @@
         public ObjectDbFixture()
         {
             ObjectDb = Substitute.For<IObjectDb>();
-            AccountObjectDbFactory.CreateInstance = (settingKey) => ObjectDb;
+            //AccountObjectDbFactory.CreateInstance = (settingKey) => ObjectDb;
         }
 
         public IObjectDb ObjectDb { get; private set; }

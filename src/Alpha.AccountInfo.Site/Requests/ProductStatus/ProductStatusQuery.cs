@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
     using MediatR;
     using ViewModels.ProductStatus;

@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.Models.AccountInfo;
     using System.Collections.Generic;
+    using Alpha.AccountInfo.Features.SearchAccount.Models;
 
     public class DownlineListViewModel
     {
@@ -12,18 +12,18 @@
             this.model = model;
         }
 
-        public IEnumerable<string> DownlineList => model.Downlines;
+        public IEnumerable<DownlineDto> DownlineList => model.Downlines;
 
         public TotalStatusDownline TotalStatusAgent
             => new TotalStatusDownline(
-                model.TotalAgActive, 
-                model.TotalAgClosed, 
+                model.TotalAgActive,
+                model.TotalAgClosed,
                 model.TotalAgSuspended);
 
         public TotalStatusDownline TotalStatusMember
              => new TotalStatusDownline(
-                 model.TotalMemActive, 
-                 model.TotalMemClosed, 
+                 model.TotalMemActive,
+                 model.TotalMemClosed,
                  model.TotalMemSuspended);
     }
 }

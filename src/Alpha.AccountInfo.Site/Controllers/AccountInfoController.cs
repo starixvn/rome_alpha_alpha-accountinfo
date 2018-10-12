@@ -27,7 +27,7 @@
         public ActionResult GetDownlineList(DownlineListQuery message)
             =>  JsonData(message);
 
-        public ActionResult GetCustomerAllStatus(CustomerAllStatusQuery message)
+        public ActionResult GetCustomerAllStatus(CustomerStatusQuery message)
             => JsonData(message);
 
         public ActionResult GetOnlineList(OnlineListQuery message)
@@ -41,7 +41,7 @@
           => JsonData(command, JsonRequestBehavior.DenyGet);
 
         [HttpPost, AntiXsrfFilter]
-        public ActionResult UpdateCustomerStatus(CustomerStatusCommand command)
+        public ActionResult UpdateCustomerStatus(CustomerNonProductStatusCommand command)
            => JsonData(command, JsonRequestBehavior.DenyGet);
     }
 }

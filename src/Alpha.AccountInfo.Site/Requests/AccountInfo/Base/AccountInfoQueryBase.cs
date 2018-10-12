@@ -1,21 +1,22 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
-    using AccountInfo.Models;
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.AccountInfo.Features.Shared.Models;
 
     public class AccountInfoQueryBase : BaseRequest
     {
-        protected readonly IEnumerable<byte> SearchAccountRoleIdRange;
-            
-        public AccountInfoQueryBase(IUser viewer) : base(viewer)
-        {
-            SearchAccountRoleIdRange = new List<byte>
+        private static readonly IEnumerable<byte> defaultLevelIdRanges = new List<byte>
                 {
                     UserLevel.Master.Value,
                     UserLevel.Agent.Value,
                     UserLevel.Member.Value
                 };
+        protected readonly IEnumerable<byte> SearchAccountRoleIdRange;
+
+        public AccountInfoQueryBase(IUser viewer) : base(viewer)
+        {
+            SearchAccountRoleIdRange = defaultLevelIdRanges;
         }
 
         public int SearchAccountId { get; set; }

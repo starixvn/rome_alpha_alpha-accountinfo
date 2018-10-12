@@ -2,7 +2,7 @@
 {
     using System;
     using System.Web.Mvc;
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Requests;
 
     public class QueryEntityModelBinder : DefaultModelBinder

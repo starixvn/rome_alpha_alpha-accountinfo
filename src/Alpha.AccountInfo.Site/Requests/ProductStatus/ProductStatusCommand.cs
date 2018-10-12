@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using MediatR;
 
     public class ProductStatusCommand : ProductStatusQuery, IRequest<Result>

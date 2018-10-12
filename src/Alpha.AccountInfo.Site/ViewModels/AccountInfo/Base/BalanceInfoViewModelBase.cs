@@ -1,14 +1,14 @@
 ﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
 {
-    using Alpha.AccountInfo.AppResources;
-    using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.Products.Core.Shared;
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.Products.Core.Shared;
+    using Newtonsoft.Json;
 
     public abstract class BalanceInfoViewModelBase : AccountInfoViewModelBase, IBalanceInfoViewModel
     {

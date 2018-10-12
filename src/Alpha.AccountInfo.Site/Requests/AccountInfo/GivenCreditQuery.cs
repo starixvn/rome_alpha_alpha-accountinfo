@@ -1,9 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
 {
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
     using MediatR;
-    using System.Linq;
 
     public class GivenCreditQuery : AccountInfoQueryBase, IRequest<GivenCreditViewModel>
     {
@@ -20,9 +19,9 @@
 
         public string Language { get; }
 
-        public override bool IsValid() => 
+        public override bool IsValid() =>
             base.IsValid() &&
-            IsValidSearchAccountRoleId(SearchAccountRoleId) && 
+            IsValidSearchAccountRoleId(SearchAccountRoleId) &&
             !string.IsNullOrEmpty(SearchAccountName);
     }
 }
