@@ -6,7 +6,7 @@
     using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Fanex.Logging.Extensions.Web;
-    using static Alpha.AccountInfo.Features.Shared.DataKey;
+    using static Alpha.AccountInfo.Features.Shared.StatusNames;
 
     public interface RnGCasinoService
     {
@@ -24,7 +24,7 @@
 
                 switch (param.StatusName)
                 {
-                    case StatusMapping.Closed:
+                    case StatusNames.Closed:
                         customer.UpdateCustClosed(
                         param.SearchAccountId,
                         param.StatusValue,
@@ -34,7 +34,7 @@
                         AlphaSystemId);
                         break;
 
-                    case StatusMapping.Suspended:
+                    case StatusNames.Suspended:
                         customer.UpdateCustSuspend(
                          param.SearchAccountId,
                          param.StatusValue,
@@ -44,7 +44,7 @@
                          AlphaSystemId);
                         break;
 
-                    case StatusMapping.EnableRnGCasino3rd:
+                    case StatusNames.EnableRnGCasino3rd:
                         customer.UpdateCustEnableCasino(
                         param.SearchAccountId,
                         param.StatusValue,

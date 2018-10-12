@@ -1,21 +1,21 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.AccountInfo
 {
-    using Alpha.AccountInfo.Criteria.AccountInfo;
+    using System;
+    using System.Collections.Generic;
     using Alpha.AccountInfo.DataAccess;
-    using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Models.AccountInfo;
-    using Alpha.AccountInfo.Params.ProductStatus;
-    using Alpha.AccountInfo.Services;
+    using Alpha.AccountInfo.Features.SearchAccount.Models;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Params;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Tests.Extensions;
     using AutoFixture;
     using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
@@ -42,7 +42,7 @@
             agentBalanceInfoModel = fixture.Create<AgentBalanceInfoModel>();
             masterBalanceInfoModel = fixture.Create<MasterBalanceInfoModel>();
 
-            getBalanceInfoModelByLevel = 
+            getBalanceInfoModelByLevel =
                 new Dictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>>
                 {
                     {UserLevel.Master, GetMasterBalanceInfoModel},
@@ -50,9 +50,9 @@
                     {UserLevel.Member, GetMemberBalanceInfoModel}
                 };
 
-            accountInfoService = 
+            accountInfoService =
                 new SearchAccountServiceImpl(
-                dynamicRepository, 
+                dynamicRepository,
                 accountInfoDataAccess,
                 rnGCasinoService,
                 getBalanceInfoModelByLevel);
@@ -65,7 +65,7 @@
             {
                 new UsernameSuggestion("UserName", "FirstName", "LastName")
             };
- 
+
             dynamicRepository.Fetch<UsernameSuggestion>(Arg.Any<SelectAutoSuggestionCriteria>()).Returns(model);
 
             var actualModel = accountInfoService.GetUsernamesSuggestion(1, "test", false);
@@ -196,9 +196,9 @@
         //    accountInfoDataAccess.UpdateCustomerStatus(Arg.Any<string>(), Arg.Any<Hashtable>()).Returns(result);
 
         //    var actualResutl = accountInfoService.UpdateCustomerStatus(param);
-        
+
         //    rnGCasinoService.Received().SyncedToRnGCasino3rdByStatus(
-        //        Arg.Is<UpdateRnGCasino3rdParam>(rngParam => 
+        //        Arg.Is<UpdateRnGCasino3rdParam>(rngParam =>
         //        rngParam.SearchAccountId.Equals(1) &&
         //        rngParam.StatusName.Equals("ouright") &&
         //        rngParam.StatusValue.Equals(true) &&

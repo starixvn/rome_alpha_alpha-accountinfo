@@ -1,19 +1,20 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Criteria.ProductStatus;
-    using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Features.SearchAccount.Params;
+    using Alpha.AccountInfo.Features.Shared;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Models.ProductStatus;
-    using Alpha.AccountInfo.Services;
     using Alpha.AccountInfo.Services.ProductStatus;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
     using NSubstitute;
     using Params.ProductStatus;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
-    using static Alpha.AccountInfo.Constants.DataKey;
 
     [Trait("Category", "ProductStatus")]
     public class ProductStatusServiceImplTests
@@ -41,19 +42,19 @@
             productProfileService = Substitute.For<IProductProfileService>();
 
             productStatusServiceImpl = new ProductStatusServiceImpl(
-                dynamicRepository, 
-                cacheRefService, 
-                criteriaFactory, 
+                dynamicRepository,
+                cacheRefService,
+                criteriaFactory,
                 authorizationService,
                 rnGCasinoService,
                 productProfileService);
 
             rnGCasinoService.SyncedToRnGCasino3rdByStatus(
                 new UpdateRnGCasino3rdParam(
-                CustIdTest, 
-                StatusMapping.EnableRnGCasino3rd, 
-                true, 
-                1176070, 
+                CustIdTest,
+                StatusNames.EnableRnGCasino3rd,
+                true,
+                1176070,
                 "User Test",
                 "127.0.0.1"));
         }

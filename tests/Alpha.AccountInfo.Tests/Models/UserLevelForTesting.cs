@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Tests.Models
 {
     using System.Diagnostics.CodeAnalysis;
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
 
     public class UserLevelForTesting : UserLevel
     {

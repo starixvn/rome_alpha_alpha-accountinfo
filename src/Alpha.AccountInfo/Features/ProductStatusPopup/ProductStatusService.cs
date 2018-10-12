@@ -7,13 +7,14 @@
     using System.Xml.Linq;
     using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
+    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
     using Models.ProductStatus;
     using Params.ProductStatus;
-    using static Alpha.AccountInfo.Features.Shared.DataKey;
+    using static Alpha.AccountInfo.Features.Shared.StatusNames;
 
     public interface ProductStatusService
     {
@@ -196,7 +197,7 @@
                 rnGCasinoService.SyncedToRnGCasino3rdByStatus(
                  new UpdateRnGCasino3rdParam(
                      criteria.CustId,
-                     StatusMapping.EnableRnGCasino3rd,
+                     StatusNames.EnableRnGCasino3rd,
                      !criteria.Disable,
                      criteria.ActorId,
                       param.ActorName,

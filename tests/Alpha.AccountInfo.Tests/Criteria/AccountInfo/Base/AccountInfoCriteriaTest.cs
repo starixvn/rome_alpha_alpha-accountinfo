@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.AccountInfo
 {
-    using Alpha.AccountInfo.Criteria.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]

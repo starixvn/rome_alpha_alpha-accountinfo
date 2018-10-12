@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Requests.AccountInfo
 {
-    using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using NSubstitute;
@@ -53,7 +53,7 @@
         [InlineData(2, 2, false)]
         [InlineData(2, 1, false)]
         public void IsValidUpline_Always_ReturnsCorrectValue(
-            byte searchAccountRoleId, 
+            byte searchAccountRoleId,
             byte uplineRoleId,
             bool expectedValue)
         {

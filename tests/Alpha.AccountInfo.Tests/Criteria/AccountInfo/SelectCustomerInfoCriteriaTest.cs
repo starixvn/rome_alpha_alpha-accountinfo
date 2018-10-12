@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.AccountInfo
 {
-    using Alpha.AccountInfo.Criteria.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
@@ -27,7 +27,6 @@
 
             Assert.Equal(expectedIsValid, criteria.IsValid());
         }
-
 
         [Theory]
         [InlineData(0, false)]

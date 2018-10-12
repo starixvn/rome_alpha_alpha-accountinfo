@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.ViewModels
 {
-    using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
@@ -19,7 +19,7 @@
         [InlineData(3, 1, "MicroSiteUrl/Statement/MemberStatement?CustID=1&CustName=UserTest&CustLevelId=1")]
         [InlineData(2, 1, "MicroSiteUrl/Statement/MemberStatement?CustID=1&CustName=UserTest&CustLevelId=1")]
         public void StatemenLink_Always_ReturnsCorrectStatementLink(
-            byte actorRoleId, 
+            byte actorRoleId,
             byte searchAccountRoleId,
             string expectedStatementLink)
         {

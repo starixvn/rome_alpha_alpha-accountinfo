@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.ViewModels.Base
 {
-    using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using NSubstitute;
@@ -40,7 +40,7 @@
                 viewModel.NetPosition.Equals(19) &&
                 viewModel.GivenCredit.Equals(12) &&
                 viewModel.BetCredit.Equals(29) &&
-                viewModel.GivenCreditLimit.Equals("<=20") );
+                viewModel.GivenCreditLimit.Equals("<=20"));
         }
     }
 }

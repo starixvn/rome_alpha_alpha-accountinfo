@@ -1,9 +1,6 @@
-﻿
-namespace Alpha.AccountInfo.Tests.Criteria.AccountInfo
+﻿namespace Alpha.AccountInfo.Tests.Criteria.AccountInfo
 {
-    using Alpha.AccountInfo.Criteria.AccountInfo;
     using Xunit;
-    using static Alpha.AccountInfo.Constants.DataKey;
 
     [Trait("Category", "AccountInfo")]
     public class UpdateCustomerStatusCriteriaTest

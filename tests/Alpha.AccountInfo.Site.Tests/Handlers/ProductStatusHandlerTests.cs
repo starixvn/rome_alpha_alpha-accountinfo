@@ -2,6 +2,7 @@
 {
     using AccountInfo.Models;
     using AccountInfo.Models.ProductStatus;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
     using Alpha.Products.Core.Shared;

@@ -3,20 +3,20 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using Alpha.AccountInfo.Features.Shared;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using static Alpha.AccountInfo.Features.Shared.DataKey;
 
     public class UpdateCustomerStatusCommand : NonQueryCommand
     {
         private static readonly IDictionary<string, string> CustomerStatusSettingKeys =
          new Dictionary<string, string>
          {
-                { StatusMapping.DisableAutoMasterPT, "Acc_CustomerUpdMaster_DisableAutoMPT" },
-                { StatusMapping.Closed, "Acc_CustomerUpdClosed" },
-                { StatusMapping.DoubleComm, "Acc_CustomerUpdDoubleCommLosing" },
-                { StatusMapping.DisableOutright, "Acc_CustomerUpdDisableOutright" },
-                { StatusMapping.Suspended, "Acc_CustomerUpdSuspended" },
+                { StatusNames.DisableAutoMasterPT, "Acc_CustomerUpdMaster_DisableAutoMPT" },
+                { StatusNames.Closed, "Acc_CustomerUpdClosed" },
+                { StatusNames.DoubleComm, "Acc_CustomerUpdDoubleCommLosing" },
+                { StatusNames.DisableOutright, "Acc_CustomerUpdDisableOutright" },
+                { StatusNames.Suspended, "Acc_CustomerUpdSuspended" },
          };
 
         public UpdateCustomerStatusCommand(

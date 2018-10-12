@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.ViewModels.Base
 {
-    using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using Alpha.Products.Core.Shared;
@@ -67,14 +67,13 @@
             var balanceInfo = new MemberBalanceInfoModel(
              custId: 1,
              credit: 12,
-             agentPositionTaking: 13,
              customerCash: totalBalance,
-             yesterday_CustomerCash: 15,
+             yesterdayCustomerCash: 15,
              customerOutstanding: 16,
              casinoOutstanding: 17,
              casinoTransfer: 18,
              netPosition: 19,
-             memMaxCredit_Max: 20);
+             memMaxCreditMax: 20);
 
             var messages = new CustomerInfoQuery(viewer);
 
@@ -114,15 +113,13 @@
             var balanceInfo = new MemberBalanceInfoModel(
                      custId: 1,
                      credit: 12,
-                     agentPositionTaking: 13,
                      customerCash: 14,
-                     yesterday_CustomerCash: yesterday_CustomerCash,
+                     yesterdayCustomerCash: yesterday_CustomerCash,
                      customerOutstanding: 16,
                      casinoOutstanding: 17,
                      casinoTransfer: 18,
                      netPosition: 19,
-                     memMaxCredit_Max: 20);
-
+                     memMaxCreditMax: 20);
 
             var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, balanceInfo);
 
@@ -147,7 +144,7 @@
             var viewModel = AccountInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customerInfo);
 
             Assert.True(
-                viewModel.ReportLink.Url.Equals(expectedLink) && 
+                viewModel.ReportLink.Url.Equals(expectedLink) &&
                 viewModel.ReportLink.Text.Equals(expectedText));
         }
 

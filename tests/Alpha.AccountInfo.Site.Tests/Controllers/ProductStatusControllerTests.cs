@@ -1,14 +1,14 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Controllers
 {
-    using AccountInfo.Models;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
     using Alpha.Products.Core.Shared;
     using MediatR;
     using NSubstitute;
     using Site.Controllers;
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
@@ -21,6 +21,7 @@
         private const int ProductIdTest = 22;
         private const int CustIdTest = 1176083;
         private const byte CustRoleIdTest = 3;
+
         private static readonly BetTypeStatus[] BetTypeStatusTest = new[]
         {
             new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
@@ -101,7 +102,7 @@
                 CustRoleId = CustRoleIdTest
             };
             var viewModel = new ProductStatusViewModel(
-                ProductIdTest, 
+                ProductIdTest,
                 CustIdTest,
                 null,
                 Enumeration.FromValue<UserLevel>(CustRoleIdTest),

@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services
 {
-    using Alpha.AccountInfo.Services;
+    using Alpha.AccountInfo.Features.Shared.Services;
     using Fanex.RemotingRef;
     using NSubstitute;
     using Xunit;

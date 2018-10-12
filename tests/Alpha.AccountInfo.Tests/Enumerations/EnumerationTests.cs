@@ -1,11 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Tests.Enumerations
 {
-    using AccountInfo.Models;
-    using Alpha.Products.Core.Shared;
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.Products.Core.Shared;
+    using Models;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]

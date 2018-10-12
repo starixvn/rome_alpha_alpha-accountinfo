@@ -214,7 +214,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Features\Shared\DataKey.cs" />
+    <Compile Include="Features\Shared\StatusNames.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\AgentBalanceInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\IBalanceInfoModel.cs" />

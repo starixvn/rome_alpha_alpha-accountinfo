@@ -1,13 +1,14 @@
 ﻿namespace Alpha.AccountInfo.Tests.Services.ProductStatus
 {
+    using System;
     using Alpha.AccountInfo.Criteria;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Models;
     using Alpha.AccountInfo.Services.ProductStatus;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
     using NSubstitute;
     using Params.ProductStatus;
-    using System;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]

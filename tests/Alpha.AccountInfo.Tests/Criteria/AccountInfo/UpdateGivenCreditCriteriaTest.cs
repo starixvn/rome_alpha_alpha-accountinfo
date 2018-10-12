@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Criteria.AccountInfo
 {
-    using Alpha.AccountInfo.Criteria.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
@@ -16,7 +16,7 @@
                 searchAccountId: 1,
                 searchAccountRoleId: searchAccountRoleId,
                 creditAmount: 999,
-                actorId:2,
+                actorId: 2,
                 subAccountId: 0,
                 language: "E",
                 ip: "192.196.10.1");

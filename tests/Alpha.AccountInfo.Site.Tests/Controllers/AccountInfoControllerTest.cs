@@ -1,13 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Controllers
 {
-    using AccountInfo.Models;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using MediatR;
     using NSubstitute;
     using Site.Controllers;
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
@@ -45,7 +45,6 @@
 
             mediator.Received().Send(message);
         }
-
 
         [Theory]
         [InlineData(null)]
@@ -209,7 +208,7 @@
             var message = new GivenCreditQuery(viewer)
             {
                 SearchAccountId = 1,
-                SearchAccountName ="test",
+                SearchAccountName = "test",
                 SearchAccountRoleId = 2
             };
 

@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Models
 {
-    using AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
     using Xunit;
 
@@ -159,7 +159,7 @@
             // Assert
             Assert.Equal(expectedResult, result);
         }
-    
+
         [Theory]
         [InlineData(1, 3, false)]
         [InlineData(1, 4, false)]

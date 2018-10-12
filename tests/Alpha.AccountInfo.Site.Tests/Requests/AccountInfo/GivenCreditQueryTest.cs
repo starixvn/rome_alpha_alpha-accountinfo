@@ -1,6 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Requests.AccountInfo
 {
-    using Alpha.AccountInfo.Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Requests.ProductStatus;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using Xunit;
