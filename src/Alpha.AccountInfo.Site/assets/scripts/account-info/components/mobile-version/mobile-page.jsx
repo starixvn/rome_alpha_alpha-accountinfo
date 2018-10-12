@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { HeaderFeature } from './header-feature';
 
 export default class MobilePage extends React.Component {
     constructor(props) {
@@ -24,25 +23,35 @@ export default class MobilePage extends React.Component {
         const {
             iconClass,
             featureText,
-            noInfoText,
             data,
+            children,
             redirectToBalanceInfoPage = false,
-            children } = this.props;
+            redirectToFeatureList = false } = this.props;
 
-        const noInfo =
-            <div className="no-information">
-                {noInfoText}
-            </div>;
+        if (redirectToBalanceInfoPage || redirectToFeatureList) {
+            return (
+                <Redirect
+                    to={{
+                        pathname: redirectToBalanceInfoPage ? "/balanceInfo" : "/featureList",
+                        state: { addAnimation: false }
+                    }}
+                />
+            );
+        }
 
         return (
             <div className={`${this.state.animationClass} feature-detail`}>
-                <HeaderFeature
-                    url="/featureList"
-                    iconClass={iconClass}
-                    featureText={featureText}
-                    redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-                />
-                {data === null ? noInfo : children}
+                <Link
+                    to={{
+                        pathname: "/featureList",
+                        state: { addAnimation: true }
+                    }}
+                    className="feature-item"
+                >
+                    <span className={iconClass} />
+                    {featureText}
+                </Link>
+                {children}
             </div>
         );
     }
