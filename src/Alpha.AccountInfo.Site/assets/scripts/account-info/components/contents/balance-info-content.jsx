@@ -18,7 +18,7 @@ export default class BalanceInfoContent extends React.Component {
         let { mobileView, customerInfo } = this.props;
 
         let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}`;
-        let width = 370, height = 270;
+        let width = 470, height = 300;
 
         if (mobileView) {
             width = mobileScale(width);
@@ -75,13 +75,7 @@ export default class BalanceInfoContent extends React.Component {
                     <div className="col col-right" onClick={this.handleOpenGivenCreditPopup} >
                         <div className="given-credit">
                             <span className="icon-border-color icon-edited" />
-                            <Tooltip
-                                title={balanceInfo.GivenCreditLimit}
-                                position="bottom"
-                                trigger="mouseenter"
-                                arrow="true"
-                            >
-                                <NumberFormat
+                             <NumberFormat
                                     className="number-edited"
                                     value={balanceInfo.GivenCredit}
                                     displayType={'text'}
@@ -89,7 +83,6 @@ export default class BalanceInfoContent extends React.Component {
                                     fixedDecimalScale={true}
                                     thousandSeparator={true}
                                 />
-                            </Tooltip>
                         </div>
                     </div>
                 </div>

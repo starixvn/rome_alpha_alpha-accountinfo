@@ -23,17 +23,16 @@
     .textbox {
         @include box-shadow-multiple(none);
         border: none;
-        border-bottom: 1px solid #888;
+        border: 1px solid $border-color;
         width: 41.66667%;
         height: $height-normal;
-        padding-right: 0;
         background: none;
         color: $text-color;
         text-align: right;
     }
 
     .value {
-        padding-right: 0;
+        padding-right: 8px;
         text-align: right;
     }
 
@@ -53,6 +52,21 @@
 
     .number-red {
         color: #ff0000;
+    }
+}
+
+.note {
+    color: #666666;
+    font-style: italic;
+    
+    .text-red {
+        color: #ff0302;
+    }
+
+    .number {
+        font-weight: bold;
+        color: #333;
+        font-style: normal;
     }
 }
 
@@ -82,7 +96,7 @@
         height: calculateScale(28px);
         line-height: calculateScale(28px);
         padding-left: calculateScale(8px);
-        border-width: 0 0 calculateScale(1px) 0;
+        border-width: calculateScale(1px);
         font-size: calculateScale($font-size);
 
         &:focus {
