@@ -34,9 +34,6 @@
     <CodeAnalysisRuleSet>Alpha.AccountInfo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Products.AccountInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.AccountInfo.1.0.0-beta9\lib\net40\Alpha.Products.AccountInfo.dll</HintPath>
-    </Reference>
     <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Products.Core.1.0.0-beta92\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
@@ -291,6 +288,12 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alpha.Products.AccountInfo\Alpha.Products.AccountInfo.csproj">
+      <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
+      <Name>Alpha.Products.AccountInfo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
