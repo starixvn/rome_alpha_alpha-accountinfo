@@ -2,10 +2,10 @@
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import UserLevelInfo from './user-level-info';
-import { UserLevel } from '../constants/user-level';
-import CustomAnchorTag from './common/custom-anchor-tag';
+import { UserLevel } from '../../constants/user-level';
+import CustomAnchorTag from '../common/custom-anchor-tag';
 
-const CustomerInfoBlock = ({
+const CustomerInfoContent = ({
     customerInfo,
     resources,
     handleSearchFromUserLevel,
@@ -57,7 +57,8 @@ const CustomerInfoBlock = ({
                     href={customerInfo.CustomerListOrBetListLink.Url}
                     mobileView={mobileView}
                 >
-                    {customerInfo.CustomerListOrBetListLink.Text} </CustomAnchorTag>
+                    {customerInfo.CustomerListOrBetListLink.Text}
+                </CustomAnchorTag>
                 <CustomAnchorTag
                     classNames="btn-default with-level"
                     href={customerInfo.StatemenLink}
@@ -71,4 +72,4 @@ const CustomerInfoBlock = ({
     return content;
 };
 
-export default CustomerInfoBlock;
+export default CustomerInfoContent;

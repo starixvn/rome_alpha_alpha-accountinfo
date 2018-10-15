@@ -2,11 +2,8 @@
 import ReactDOM from 'react-dom';
 import { accountInfoAPI } from '../api-client';
 import { UserLevel } from '../constants/user-level';
-import SearchingBlock from '../components/searching-block';
-import CustomerInfoBlock from '../components/customer-info-block';
-import AccountInfoMobile from '../components/mobile-version/account-info-mobile';
-import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
-
+import SearchingContent from '../components/contents/searching-content';
+import CustomerInfoContent from '../components/contents/customer-info-content';
 import ContactInfoContent from '../components/contents/contact-info-content';
 import BalanceInfoContent from '../components/contents/balance-info-content';
 import DownlineListContent from '../components/contents/downline-list-content';
@@ -14,6 +11,8 @@ import SettingContent from '../components/contents/setting-content';
 import StatusContent from '../components/contents/status-content';
 import LoginInfoContent from '../components/contents/login-info-content';
 import OnlineListContent from '../components/contents/online-list-content';
+import AccountInfoMobile from '../components/mobile-version/account-info-mobile';
+import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
 
 export default class AccountInfo extends React.Component {
     constructor(props) {
@@ -192,7 +191,7 @@ export default class AccountInfo extends React.Component {
             contactInfoProps: {
                 iconClass: "icon-contact-info",
                 featureText: resources.ShowContactInfo,
-                path: "contactInfo",
+                path: "/contactInfo",
                 visible: true,
                 children: buildContent(customerInfo,
                     <ContactInfoContent
@@ -203,7 +202,7 @@ export default class AccountInfo extends React.Component {
             balanceInfoProps: {
                 iconClass: "icon-balance",
                 featureText: resources.BalanceInfo,
-                path: "balanceInfo",
+                path: "/balanceInfo",
                 visible: true,
                 children: buildContent(customerInfo,
                     <BalanceInfoContent
@@ -216,7 +215,7 @@ export default class AccountInfo extends React.Component {
             downlineListProps: {
                 iconClass: "icon-downline",
                 featureText: resources.DownlineList,
-                path: "downlineList",
+                path: "/downlineList",
                 visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
                 children: buildContent(downlineList,
                     < DownlineListContent
@@ -229,7 +228,7 @@ export default class AccountInfo extends React.Component {
             statusProps: {
                 iconClass: "icon-status",
                 featureText: resources.Status,
-                path: "status",
+                path: "/status",
                 visible: true,
                 children: buildContent(statusData,
                     <StatusContent
@@ -243,7 +242,7 @@ export default class AccountInfo extends React.Component {
             settingProps: {
                 iconClass: "icon-settings",
                 featureText: resources.Setting,
-                path: "setting",
+                path: "/setting",
                 visible: true,
                 children: buildContent(settingData,
                     <SettingContent
@@ -255,8 +254,8 @@ export default class AccountInfo extends React.Component {
             loginInfoProps: {
                 iconClass: "icon-login",
                 featureText: resources.LoginInfo,
-                path: "loginInfo",
-                visible: true,
+                path: "/loginInfo",
+                visible: actorRoleId !== UserLevel.Super && searchAccountRoleId !== UserLevel.Agent,
                 children: buildContent(loginInfo,
                     <LoginInfoContent
                         resources={resources}
@@ -267,7 +266,7 @@ export default class AccountInfo extends React.Component {
             onlineListProps: {
                 iconClass: "icon-onlinelist",
                 featureText: resources.OnlineList,
-                path: "onlineList",
+                path: "/onlineList",
                 visible: true,
                 children: buildContent(onlineList,
                     <OnlineListContent
@@ -282,10 +281,22 @@ export default class AccountInfo extends React.Component {
     }
 
     render() {
-        const { actorRoleId, resources, username, searchCounter, custId, redirectToBalanceInfoPage,
-            mobileView, customerInfo, downlineList, onlineList, statusData, settingData } = this.state;
+        const {
+            actorRoleId,
+            resources,
+            username,
+            searchCounter,
+            custId,
+            redirectToBalanceInfoPage,
+            mobileView,
+            customerInfo,
+            downlineList,
+            onlineList,
+            statusData,
+            settingData
+        } = this.state;
 
-        const contents = this.buildContentItems(
+        const contentItems = this.buildContentItems(
             resources,
             mobileView,
             actorRoleId,
@@ -298,23 +309,13 @@ export default class AccountInfo extends React.Component {
             this.handleSearchFromUserLevel,
             this.handleOpenIPInfo);
 
-        const accountInfoMobile =
-            <AccountInfoMobile
-                contents={contents}
-                resources={resources}
-                customerInfo={customerInfo}
-                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-            />;
+        const accountInfoMobile = <AccountInfoMobile contentItems={contentItems} customerInfo={customerInfo} />;
 
-        const accountInfoDesktop =
-            <AccountInfoDesktop
-                contents={contents}
-                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-            />;
+        const accountInfoDesktop = <AccountInfoDesktop contentItems={contentItems} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />;
 
         return (
             <div className="accountinfo-container">
-                <SearchingBlock
+                <SearchingContent
                     userNamePlaceHolder={resources.UserNamePlaceHolder}
                     fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
                     username={username}
@@ -322,7 +323,7 @@ export default class AccountInfo extends React.Component {
 
                 {
                     searchCounter > 0 &&
-                    <CustomerInfoBlock
+                    <CustomerInfoContent
                         resources={resources}
                         customerInfo={customerInfo}
                         handleSearchFromUserLevel={this.handleSearchFromUserLevel}

@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Switch, Route } from 'react-router-dom';
-import MobilePage from './mobile-page';
-import DebugRouter from '../../../helpers/router-debugger';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import ContentMobile from './content-mobile';
+//import DebugRouter from '../../../helpers/router-debugger';
 
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {
@@ -15,9 +15,11 @@ export default class AccountInfoMobile extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         let { customerInfo } = this.props;
+        let { nextCustomerInfo } = nextProps;
+
         this.setState({
-            redirectToFeatureList: nextProps.customerInfo === null,
-            redirectToBalanceInfoPage: nextProps.customerInfo !== null && nextProps.customerInfo !== customerInfo
+            redirectToFeatureList: nextCustomerInfo === null,
+            redirectToBalanceInfoPage: nextCustomerInfo !== null && nextCustomerInfo !== customerInfo
         });
     }
 
@@ -33,51 +35,52 @@ export default class AccountInfoMobile extends React.Component {
     }
 
     render() {
-        const { contents, resources, customerInfo } = this.props;
+        const { contentItems, customerInfo } = this.props;
         const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
-        const animationProps = { addAnimation: false };
 
-        let contentItems = [
+        let routeItems = [
             {
-                contentItems: contents,
-                path: "featureList"
+                contentItems: contentItems,
+                path: '/featureList'
             },
-            { ...contents.contactInfoProps },
-            { ...contents.balanceInfoProps },
-            { ...contents.downlineListProps },
-            { ...contents.statusProps },
-            { ...contents.settingProps },
-            { ...contents.loginInfoProps },
-            { ...contents.onlineListProps },
+            { ...contentItems.contactInfoProps },
+            { ...contentItems.balanceInfoProps },
+            { ...contentItems.downlineListProps },
+            { ...contentItems.statusProps },
+            { ...contentItems.settingProps },
+            { ...contentItems.loginInfoProps },
+            { ...contentItems.onlineListProps },
             {
-                ...animationProps,
-                ...contents.balanceInfoProps,
-                path: "",
-                contentItems: customerInfo !== null ? [] : contents
+                ...{ addAnimation: false },
+                ...contentItems.balanceInfoProps,
+                contentItems: customerInfo !== null ? [] : contentItems,
+                path: ''
             }
         ];
 
         return (
-            <DebugRouter>
+            <HashRouter>
                 <Switch>
                     {
-                        contentItems.map((route, index) => {
-                            return <Route
-                                key={index}
-                                exact path={`/${route.path}`}
-                                render={
-                                    (props) => <MobilePage
-                                        {...route}
-                                        {...{ addAnimation: props.location.state !== undefined ? props.location.state.addAnimation : false }}
-                                        redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-                                        redirectToFeatureList={redirectToFeatureList}
-                                    />
-                                }
-                            />;
+                        routeItems.map((route, index) => {
+                            return (
+                                <Route
+                                    key={index}
+                                    exact path={route.path}
+                                    render={
+                                        (props) =>
+                                            <ContentMobile
+                                                {...route}
+                                                {...{ addAnimation: props.location.state !== undefined ? props.location.state.addAnimation : false }}
+                                                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                                                redirectToFeatureList={redirectToFeatureList}
+                                            />
+                                    }
+                                />);
                         })
                     }
                 </Switch>
-            </DebugRouter>
+            </HashRouter>
         );
     }
 }

@@ -4,8 +4,7 @@ export default class AccountInfoDesktop extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expandedItems: this.initialExpandedItems(),
-            collapseAll: false
+            expandedItems: this.initialExpandedItems()
         };
 
         this.handleCollapExpandBlock = this.handleCollapExpandBlock.bind(this);
@@ -19,111 +18,92 @@ export default class AccountInfoDesktop extends React.Component {
         }
     }
 
-    initialExpandedItems() {
+    initialExpandedItems(expandedBalanceInfo = true) {
         return {
             contactInfo: false,
-            balanceInfo: true,
+            balanceInfo: expandedBalanceInfo,
             downlineList: false,
             status: false,
-            setting: false,
+            settings: false,
             loginInfo: false,
             onlineList: false
         };
     }
 
-    resetColllapseAll(expandedItems) {
-        const emptyObject = {};
-        const keys = Object.keys(expandedItems);
-        for (let i = 0; i < keys.length; i++) {
-            emptyObject[keys[i]] = false;
-        }
-
-        return emptyObject;
-    }
-
     updateState(blockId) {
         const { expandedItems } = this.state;
         const currentStatus = expandedItems[blockId];
-        const emptyObject = this.resetColllapseAll(expandedItems);
-
-        const newExpandedItems = Object.assign({}, emptyObject, { [blockId]: !currentStatus });
-        const collapseAll = Object.keys(expandedItems).filter(key => newExpandedItems[key] === true).length === 0;
 
         this.setState({
-            expandedItems: newExpandedItems,
-            collapseAll
+            expandedItems: Object.assign({}, this.initialExpandedItems(false), { [blockId]: !currentStatus })
         });
     }
 
     handleCollapExpandBlock(e) {
         e.preventDefault();
-        const blockId = e.currentTarget.dataset.blockid;
-
-        this.updateState(blockId);
+        this.updateState(e.currentTarget.dataset.blockid);
     }
 
     render() {
-        const { expandedItems, collapseAll } = this.state;
+        const { expandedItems } = this.state;
+        const { contentItems } = this.props;
 
-        const { contents } = this.props;
-
-        let accordionItems = {
-            contactInfoProps: {
-                ...contents.contactInfoProps,
+        let accordionItems = [
+            {
+                ...contentItems.contactInfoProps,
                 accordionItemBodyClassName: "contact-info",
+                blockId: "contactInfo",
                 expanded: expandedItems.contactInfo,
-                clickHanlder: this.handleCollapExpandBlock,
-                blockId: "contactInfo"
+                clickHanlder: this.handleCollapExpandBlock
             },
-            balanceInfoProps: {
-                ...contents.balanceInfoProps,
+            {
+                ...contentItems.balanceInfoProps,
                 accordionItemBodyClassName: "balance-info",
+                blockId: "balanceInfo",
                 expanded: expandedItems.balanceInfo,
-                clickHanlder: this.handleCollapExpandBlock,
-                blockId: "balanceInfo"
+                clickHanlder: this.handleCollapExpandBlock
             },
-            downlineListProps: {
-                ...contents.downlineListProps,
+            {
+                ...contentItems.downlineListProps,
                 accordionItemBodyClassName: "downline-list",
+                blockId: "downlineList",
                 expanded: expandedItems.downlineList,
-                clickHanlder: this.handleCollapExpandBlock,
-                blockId: "downlineList"
+                clickHanlder: this.handleCollapExpandBlock
             },
-            statusProps: {
-                ...contents.statusProps,
+            {
+                ...contentItems.statusProps,
                 accordionItemBodyClassName: "status",
+                blockId: "status",
                 expanded: expandedItems.status,
-                clickHanlder: this.handleCollapExpandBlock,
-                blockId: "status"
+                clickHanlder: this.handleCollapExpandBlock
             },
-            settingProps: {
-                ...contents.settingProps,
+            {
+                ...contentItems.settingProps,
                 accordionItemBodyClassName: "settings",
-                expanded: expandedItems.setting,
-                clickHanlder: this.handleCollapExpandBlock,
-                blockId: "setting"
+                blockId: "settings",
+                expanded: expandedItems.settings,
+                clickHanlder: this.handleCollapExpandBlock
             },
-            loginInfoProps: {
-                ...contents.loginInfoProps,
+            {
+                ...contentItems.loginInfoProps,
                 accordionItemBodyClassName: "login-info",
-                expanded: expandedItems.loginInfo,
-                clickHanlder: this.handleCollapExpandBlock,
                 blockId: "loginInfo",
-                visible: true
+                expanded: expandedItems.loginInfo,
+                clickHanlder: this.handleCollapExpandBlock
             },
-            onlineListProps: {
-                ...contents.onlineListProps,
+            {
+                ...contentItems.onlineListProps,
                 accordionItemBodyClassName: "online-list",
+                blockId: "onlineList",
                 expanded: expandedItems.onlineList,
-                clickHanlder: this.handleCollapExpandBlock,
-                blockId: "onlineList"
+                clickHanlder: this.handleCollapExpandBlock
             }
-        };
+        ];
 
         return (
             <div className={`${this.state.animation} accordions`}>
                 {
-                    Object.values(accordionItems).map((item, index) => {
+                    accordionItems.map((item, index) => {
                         return item.visible &&
                             <div
                                 className={item.expanded ? `accordion-item expanded` : `accordion-item`}

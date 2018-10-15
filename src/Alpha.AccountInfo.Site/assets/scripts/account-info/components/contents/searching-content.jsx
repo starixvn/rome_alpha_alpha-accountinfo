@@ -2,9 +2,9 @@
 import ReactDOM from 'react-dom';
 import Autosuggest from 'react-autosuggest';
 import { getSuggestions, getSuggestionValue, renderSuggestion } from './auto-suggestion';
-import { accountInfoAPI } from '../api-client';
+import { accountInfoAPI } from '../../api-client';
 
-export default class SearchingBlock extends React.Component {
+export default class SearchingContent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
