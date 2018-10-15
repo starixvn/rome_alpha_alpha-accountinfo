@@ -18,11 +18,11 @@ const requests = {
 };
 
 export const accountInfoAPI = {
-    getAutoUsernameSuggestion: (data) => requests.get(accountInfoSiteAppPath + "AccountInfo/GetUsernamesSuggestion", data),
-    getCustomerInfo: (data) => requests.get(accountInfoSiteAppPath + "AccountInfo/GetCustomerInfo", data),
-    getDownlineList: (data) => requests.get(accountInfoSiteAppPath + "AccountInfo/GetDownlineList", data),
-    getCustomerAllStatus: (data) => requests.get(accountInfoSiteAppPath + "AccountInfo/GetCustomerAllStatus", data),
-    getOnlineList: (data) => requests.get(accountInfoSiteAppPath + "AccountInfo/GetOnlineList", data),
-    updateGivenCredit: (data) => requests.post(accountInfoSiteAppPath + "AccountInfo/UpdateGivenCredit", data),
+    getAutoUsernameSuggestion: (data) => requests.get(accountInfoSiteAppPath + "SearchAccount/GetUsernamesSuggestion", data),
+    getCustomerInfo: (data) => requests.get(accountInfoSiteAppPath + "SearchAccount/GetCustomerInfo", data),
+    getDownlineList: (data) => requests.get(accountInfoSiteAppPath + "SearchAccount/GetDownlineList", data),
+    getCustomerAllStatus: (data) => requests.get(accountInfoSiteAppPath + "SearchAccount/GetCustomerAllStatus", data),
+    getOnlineList: (data) => requests.get(accountInfoSiteAppPath + "SearchAccount/GetOnlineList", data),
+    updateGivenCredit: (data) => requests.post(accountInfoSiteAppPath + "SearchAccount/UpdateGivenCredit", data),
     updateCustomerStatus: (url, data) => requests.post(url, data)
 };

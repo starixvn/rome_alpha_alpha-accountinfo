@@ -4,7 +4,7 @@
   "paths": [
     "productstatus?productid=23",
     "productstatus/index?productid=23",
-    "AccountInfo/GivenCredit"
+    "searchAccount/GivenCredit"
   ],
   "sites": [
   ],

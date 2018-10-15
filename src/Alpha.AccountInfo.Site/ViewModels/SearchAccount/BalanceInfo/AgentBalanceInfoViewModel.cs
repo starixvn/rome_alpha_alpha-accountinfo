@@ -1,9 +1,9 @@
-﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
+﻿namespace Alpha.AccountInfo.Site.ViewModels.SearchAccount
 {
     using System;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.Shared.AppResources;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
 
     public class AgentBalanceInfoViewModel : BalanceInfoViewModelBase
     {

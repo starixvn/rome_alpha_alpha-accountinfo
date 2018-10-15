@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using MediatR;
     using NSubstitute;
@@ -15,18 +15,18 @@
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
         private readonly IMediator mediator;
-        private readonly AccountInfoController accountInfoController;
+        private readonly SearchAccountController accountInfoController;
 
         public AccountInfoControllerTest()
         {
             mediator = Substitute.For<IMediator>();
-            accountInfoController = new AccountInfoController(mediator);
+            accountInfoController = new SearchAccountController(mediator);
         }
 
         [Fact]
         public async Task HandleAccountInfoQuery_Always_CallsMediatorSendAccountInfoQuery()
         {
-            var message = new AccountInfoQuery(viewer);
+            var message = new SearchAccountQuery(viewer);
 
             await accountInfoController.Index(message);
 

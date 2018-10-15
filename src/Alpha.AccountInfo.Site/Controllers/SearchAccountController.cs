@@ -1,21 +1,21 @@
 ﻿namespace Alpha.AccountInfo.Site.Controllers
 {
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.Web.Filters;
-    using MediatR;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
+    using Alpha.Web.Filters;
+    using MediatR;
 
     [SessionState(SessionStateBehavior.Default)]
-    public class AccountInfoController : AccountInfoBaseController
+    public class SearchAccountController : AccountInfoBaseController
     {
-        public AccountInfoController(IMediator mediator)
+        public SearchAccountController(IMediator mediator)
             : base(mediator)
         {
         }
 
-        public async Task<ActionResult> Index(AccountInfoQuery message)
+        public async Task<ActionResult> Index(SearchAccountQuery message)
           => await ViewAsync(message);
 
         public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
@@ -25,7 +25,7 @@
             => JsonData(message);
 
         public ActionResult GetDownlineList(DownlineListQuery message)
-            =>  JsonData(message);
+            => JsonData(message);
 
         public ActionResult GetCustomerAllStatus(CustomerStatusQuery message)
             => JsonData(message);

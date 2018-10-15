@@ -17,7 +17,7 @@ export default class BalanceInfoContent extends React.Component {
         let resources = this.props.resources;
         let { mobileView, customerInfo } = this.props;
 
-        let givenCreditUrl = `${accountInfoSiteAppPath}AccountInfo/GivenCredit?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}`;
+        let givenCreditUrl = `${accountInfoSiteAppPath}SearchAccount/GivenCredit?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}`;
         let width = 470, height = 300;
 
         if (mobileView) {
@@ -64,9 +64,9 @@ export default class BalanceInfoContent extends React.Component {
 
                 {row(resources.TotalBalance, balanceInfo.TotalBalance, balanceInfo.ShowTotalBalanceTransferLink ? balanceInfo.TotalBalanceTransferLink : ``)}
 
-                {row(resources.YesterdayBalance, balanceInfo.YesterdayBalance,balanceInfo.ShowYesterdayBalanceTransferLink ? balanceInfo.YesterdayBalanceTransferLink :``)}
+                {row(resources.YesterdayBalance, balanceInfo.YesterdayBalance, balanceInfo.ShowYesterdayBalanceTransferLink ? balanceInfo.YesterdayBalanceTransferLink : ``)}
 
-                {row(balanceInfo.ReportLink.Text,balanceInfo.Outstanding,balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : ``)}
+                {row(balanceInfo.ReportLink.Text, balanceInfo.Outstanding, balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : ``)}
 
                 {searchAccountIsNotMember && row(resources.UsedCredit, balanceInfo.UsedCredit)}
 
@@ -75,14 +75,14 @@ export default class BalanceInfoContent extends React.Component {
                     <div className="col col-right" onClick={this.handleOpenGivenCreditPopup} >
                         <div className="given-credit">
                             <span className="icon-border-color icon-edited" />
-                             <NumberFormat
-                                    className="number-edited"
-                                    value={balanceInfo.GivenCredit}
-                                    displayType={'text'}
-                                    decimalScale={2}
-                                    fixedDecimalScale={true}
-                                    thousandSeparator={true}
-                                />
+                            <NumberFormat
+                                className="number-edited"
+                                value={balanceInfo.GivenCredit}
+                                displayType={'text'}
+                                decimalScale={2}
+                                fixedDecimalScale={true}
+                                thousandSeparator={true}
+                            />
                         </div>
                     </div>
                 </div>
@@ -115,6 +115,5 @@ export default class BalanceInfoContent extends React.Component {
                 {searchAccountIsMember && row(resources.BetCredit, balanceInfo.BetCredit)}
             </div>
         );
-
     }
 }

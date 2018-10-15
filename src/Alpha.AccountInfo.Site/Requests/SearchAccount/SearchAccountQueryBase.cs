@@ -1,10 +1,10 @@
-﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
+﻿namespace Alpha.AccountInfo.Site.Requests.SearchAccount
 {
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.AccountInfo.Features.Shared.Models;
 
-    public class AccountInfoQueryBase : BaseRequest
+    public class SearchAccountQueryBase : BaseRequest
     {
         private static readonly IEnumerable<byte> defaultLevelIdRanges = new List<byte>
                 {
@@ -14,7 +14,7 @@
                 };
         protected readonly IEnumerable<byte> SearchAccountRoleIdRange;
 
-        public AccountInfoQueryBase(IUser viewer) : base(viewer)
+        public SearchAccountQueryBase(IUser viewer) : base(viewer)
         {
             SearchAccountRoleIdRange = defaultLevelIdRanges;
         }

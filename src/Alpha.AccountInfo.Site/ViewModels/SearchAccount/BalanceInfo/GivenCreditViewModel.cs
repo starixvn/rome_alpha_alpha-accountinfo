@@ -1,9 +1,9 @@
-﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
+﻿namespace Alpha.AccountInfo.Site.ViewModels.SearchAccount
 {
     using System;
     using System.Resources;
     using Alpha.AccountInfo.Features.SearchAccount.AppResources;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
     using Alpha.Products.Core.Services;
 
     public class GivenCreditViewModel : AccountInfoViewModelBase

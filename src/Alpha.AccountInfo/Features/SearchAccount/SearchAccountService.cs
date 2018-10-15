@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -15,21 +16,21 @@
 
     public interface SearchAccountService
     {
-        IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
+        Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
 
-        CustomerInfoModel GetCustomerInfoModel(string username, int uplineId);
+        Task<CustomerInfoModel> GetCustomerInfoModel(string username, int uplineId);
 
-        IBalanceInfoModel GetBalanceInfoModel(int custId, byte roleId);
+        Task<IBalanceInfoModel> GetBalanceInfoModel(int custId, byte roleId);
 
-        DownlineListModel GetDownlineListModel(int custId);
+        Task<DownlineListModel> GetDownlineListModel(int custId);
 
-        CustomerStatusModel GetCustomerAllStatusModel(int custId);
+        Task<CustomerStatusModel> GetCustomerAllStatusModel(int custId);
 
-        IEnumerable<OnlineUserModel> GetOnlineListModel(int custid);
+        Task<IEnumerable<OnlineUserModel>> GetOnlineListModel(int custid);
 
-        Result UpdateGivenCredit(UpdateGivenCreditParam param);
+        Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param);
 
-        Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
+        Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param);
     }
 
     public class SearchAccountServiceImpl : SearchAccountService
@@ -39,7 +40,7 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
         private readonly RnGCasinoService rnGCasinoService;
-        private readonly IDictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>> getBalanceInfoModelByLevel;
+        private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
 
         public SearchAccountServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -53,14 +54,14 @@
             IDynamicRepository dynamicRepository,
             SearchAccountDataAccess accountInfoDataAccess,
             RnGCasinoService rnGCasinoService,
-            IDictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>> getBalanceInfoModelByLevel)
+            IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel)
         {
             this.dynamicRepository = dynamicRepository;
             this.accountInfoDataAccess = accountInfoDataAccess;
             this.rnGCasinoService = rnGCasinoService;
 
             this.getBalanceInfoModelByLevel = getBalanceInfoModelByLevel ??
-                new Dictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>>
+                new Dictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>>
                 {
                     {UserLevel.Master, GetMasterBalanceInfoModel},
                     {UserLevel.Agent, GetAgentBalanceInfoModel},
@@ -68,25 +69,25 @@
                 };
         }
 
-        public IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
-            => dynamicRepository.Fetch<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
+        public Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
+            => dynamicRepository.FetchAsync<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
 
-        public CustomerInfoModel GetCustomerInfoModel(string username, int uplineId)
-            => dynamicRepository.Get<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
+        public Task<CustomerInfoModel> GetCustomerInfoModel(string username, int uplineId)
+            => dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
 
-        public IBalanceInfoModel GetBalanceInfoModel(int custId, byte roleId)
+        public Task<IBalanceInfoModel> GetBalanceInfoModel(int custId, byte roleId)
            => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
 
-        public CustomerStatusModel GetCustomerAllStatusModel(int custId)
+        public Task<CustomerStatusModel> GetCustomerAllStatusModel(int custId)
           => accountInfoDataAccess.GetCustomerAllStatus(new SelectCustomerAllStatusModelCriteria(custId));
 
-        public DownlineListModel GetDownlineListModel(int custId)
+        public Task<DownlineListModel> GetDownlineListModel(int custId)
             => accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
 
-        public IEnumerable<OnlineUserModel> GetOnlineListModel(int custid)
-            => dynamicRepository.Fetch<OnlineUserModel>(new SelectOnlineListCriteria(custid));
+        public Task<IEnumerable<OnlineUserModel>> GetOnlineListModel(int custid)
+            => dynamicRepository.FetchAsync<OnlineUserModel>(new SelectOnlineListCriteria(custid));
 
-        public Result UpdateGivenCredit(UpdateGivenCreditParam param)
+        public async Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param)
         {
             var command = new UpdateGivenCreditCommand(
                     param.SearchAccountId,
@@ -97,14 +98,14 @@
                     param.Language,
                     param.IP);
 
-            dynamicRepository.Execute(command);
+            await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
 
             return command.CreditProblem
                 ? Result.CreateErrorResult(failErrorCode, command.ErrMsg)
                 : Result.CreateSuccessResult();
         }
 
-        public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
+        public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
             var command = new UpdateCustomerStatusCommand(
                    param.SearchAccountId,
@@ -115,7 +116,7 @@
                    param.StatusName,
                    param.StatusValue);
 
-            var result = UpdateCustomerStatus(command);
+            var result = await UpdateCustomerStatus(command).ConfigureAwait(false);
 
             if (result.IsSuccess && param.SyncedCasino3rd)
             {
@@ -132,18 +133,18 @@
             return result;
         }
 
-        internal IBalanceInfoModel GetMasterBalanceInfoModel(ICriteria criteria)
-          => dynamicRepository.Get<MasterBalanceInfoModel>(criteria);
+        internal async Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria)
+          => await dynamicRepository.GetAsync<MasterBalanceInfoModel>(criteria).ConfigureAwait(false);
 
-        internal IBalanceInfoModel GetAgentBalanceInfoModel(ICriteria criteria)
-          => dynamicRepository.Get<AgentBalanceInfoModel>(criteria);
+        internal async Task<IBalanceInfoModel> GetAgentBalanceInfoModel(ICriteria criteria)
+          => await dynamicRepository.GetAsync<AgentBalanceInfoModel>(criteria).ConfigureAwait(false);
 
-        internal IBalanceInfoModel GetMemberBalanceInfoModel(ICriteria criteria)
-          => dynamicRepository.Get<MemberBalanceInfoModel>(criteria);
+        internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria)
+          => await dynamicRepository.GetAsync<MemberBalanceInfoModel>(criteria).ConfigureAwait(false);
 
-        public Result UpdateCustomerStatus(UpdateCustomerStatusCommand command)
+        public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
         {
-            var result = accountInfoDataAccess.UpdateCustomerStatus(command);
+            var result = await accountInfoDataAccess.UpdateCustomerStatus(command).ConfigureAwait(false);
 
             return result.IsSuccess
                 ? Result.CreateSuccessResult()

@@ -1,21 +1,20 @@
-﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
+﻿namespace Alpha.AccountInfo.Site.ViewModels.SearchAccount
 {
     using System;
     using System.Resources;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Models;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
 
     public class AccountInfoViewModel : AccountInfoViewModelBase
     {
-        private readonly AccountInfoQuery message;
+        private readonly SearchAccountQuery message;
         private readonly Func<string, ResourceManager, string> ConvertResourcesJson;
 
         public AccountInfoViewModel(
-            AccountInfoQuery message,
+            SearchAccountQuery message,
             Func<string, string, string> getMicroSiteUrl = null,
             Func<string, ResourceManager, string> convertResourcesJson = null)
             : base(getMicroSiteUrl)

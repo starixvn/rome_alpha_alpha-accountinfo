@@ -1,4 +1,4 @@
-﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
+﻿namespace Alpha.AccountInfo.Site.ViewModels.SearchAccount
 {
     public class Link
     {

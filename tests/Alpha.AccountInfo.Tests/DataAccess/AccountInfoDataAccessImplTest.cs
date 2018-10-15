@@ -145,7 +145,7 @@
                 );
 
             // Act
-            var actualData = accountInfoDataAccessImpl.GetCustomerAllStatus(criteria);
+            var actualData = accountInfoDataAccessImpl.GetCustomerAllStatus(criteria).GetAwaiter().GetResult();
 
             // Assert
             AssertExtension.Equal(expectedData, actualData);

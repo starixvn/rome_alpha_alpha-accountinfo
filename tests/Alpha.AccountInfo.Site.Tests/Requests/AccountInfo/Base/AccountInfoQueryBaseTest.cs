@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Requests.AccountInfo
 {
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using Xunit;
 
@@ -9,12 +9,12 @@
     public class AccountInfoQueryBaseTest
     {
         private readonly IUser viewer;
-        private readonly AccountInfoQueryBase messages;
+        private readonly SearchAccountQueryBase messages;
 
         public AccountInfoQueryBaseTest()
         {
             viewer = AccountInfoHelper.ViewerFixture(UserLevel.Super.Value);
-            messages = new AccountInfoQueryBase(viewer)
+            messages = new SearchAccountQueryBase(viewer)
             {
                 SearchAccountId = 1
             };
@@ -32,7 +32,7 @@
         [InlineData(-1, false)]
         public void IsValid_Always_ReturnsCorrectValue(int searchAccountId, bool expectedValue)
         {
-            var messages = new AccountInfoQueryBase(viewer)
+            var messages = new SearchAccountQueryBase(viewer)
             {
                 SearchAccountId = searchAccountId
             };

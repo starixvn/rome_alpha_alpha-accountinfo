@@ -379,14 +379,14 @@
     </Content>
     <Content Include="assets\styles\account-info.scss" />
     <Content Include="assets\styles\_mixins.scss" />
-    <Content Include="Views\AccountInfo\Index.cshtml" />
+    <Content Include="Views\SearchAccount\Index.cshtml" />
     <Content Include="webpack.config.dev.js">
       <DependentUpon>webpack.config.js</DependentUpon>
     </Content>
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
-    <Content Include="Views\AccountInfo\GivenCredit.cshtml" />
+    <Content Include="Views\SearchAccount\GivenCredit.cshtml" />
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -471,49 +471,49 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountInfoController.cs" />
+    <Compile Include="Controllers\SearchAccountController.cs" />
     <Compile Include="Controllers\ProductStatusController.cs" />
     <Compile Include="Controllers\AccountInfoBaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Handlers\AccountInfoHandler.cs" />
+    <Compile Include="Handlers\SearchAccountHandler.cs" />
     <Compile Include="Handlers\ProductStatusHandler.cs" />
     <Compile Include="Helpers\ResourcesJsonConverter.cs" />
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\AccountInfo\AccountInfoQuery.cs" />
-    <Compile Include="Requests\AccountInfo\Base\AccountInfoQueryBase.cs" />
-    <Compile Include="Requests\AccountInfo\CustomerNonProductStatusCommand.cs" />
-    <Compile Include="Requests\AccountInfo\GivenCreditQuery.cs" />
-    <Compile Include="Requests\AccountInfo\GivenCreditCommand.cs" />
-    <Compile Include="Requests\AccountInfo\CustomerStatusQuery.cs" />
-    <Compile Include="Requests\AccountInfo\OnlineListQuery.cs" />
-    <Compile Include="Requests\AccountInfo\UserNameSuggestionQuery.cs" />
-    <Compile Include="Requests\AccountInfo\DownlineListQuery.cs" />
-    <Compile Include="Requests\AccountInfo\CustomerInfoQuery.cs" />
+    <Compile Include="Requests\SearchAccount\SearchAccountQuery.cs" />
+    <Compile Include="Requests\SearchAccount\SearchAccountQueryBase.cs" />
+    <Compile Include="Requests\SearchAccount\CustomerNonProductStatusCommand.cs" />
+    <Compile Include="Requests\SearchAccount\GivenCreditQuery.cs" />
+    <Compile Include="Requests\SearchAccount\GivenCreditCommand.cs" />
+    <Compile Include="Requests\SearchAccount\CustomerStatusQuery.cs" />
+    <Compile Include="Requests\SearchAccount\OnlineListQuery.cs" />
+    <Compile Include="Requests\SearchAccount\UserNameSuggestionQuery.cs" />
+    <Compile Include="Requests\SearchAccount\DownlineListQuery.cs" />
+    <Compile Include="Requests\SearchAccount\CustomerInfoQuery.cs" />
     <Compile Include="Requests\BaseRequest.cs" />
     <Compile Include="Requests\ProductStatus\BetTypeStatus.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusCommand.cs" />
     <Compile Include="Requests\ProductStatus\ProductStatusQuery.cs" />
-    <Compile Include="ViewModels\AccountInfo\Base\AccountInfoViewModelBase.cs" />
-    <Compile Include="ViewModels\AccountInfo\AccountInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\BalanceInfo\IBalanceInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\Base\BalanceInfoViewModelBase.cs" />
-    <Compile Include="ViewModels\AccountInfo\BalanceInfo\GivenCreditViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\BalanceInfo\BreadcrumbLevel.cs" />
-    <Compile Include="ViewModels\AccountInfo\BalanceInfo\AgentBalanceInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\BalanceInfo\MemberBalanceInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\BalanceInfo\MasterBalanceInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\CustomerInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\DownlineListViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\Base\AccountInfoViewModelBase.cs" />
+    <Compile Include="ViewModels\SearchAccount\AccountInfoViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\BalanceInfo\IBalanceInfoViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\Base\BalanceInfoViewModelBase.cs" />
+    <Compile Include="ViewModels\SearchAccount\BalanceInfo\GivenCreditViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\BalanceInfo\BreadcrumbLevel.cs" />
+    <Compile Include="ViewModels\SearchAccount\BalanceInfo\AgentBalanceInfoViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\BalanceInfo\MemberBalanceInfoViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\BalanceInfo\MasterBalanceInfoViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\CustomerInfoViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\DownlineListViewModel.cs" />
     <Compile Include="Helpers\ProductJsonConverter.cs" />
-    <Compile Include="ViewModels\AccountInfo\LoginInfoViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\CustomererStatusViewModel.cs" />
-    <Compile Include="ViewModels\AccountInfo\TotalStatusDownline.cs" />
-    <Compile Include="ViewModels\AccountInfo\Link.cs" />
+    <Compile Include="ViewModels\SearchAccount\LoginInfoViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\CustomererStatusViewModel.cs" />
+    <Compile Include="ViewModels\SearchAccount\TotalStatusDownline.cs" />
+    <Compile Include="ViewModels\SearchAccount\Link.cs" />
     <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

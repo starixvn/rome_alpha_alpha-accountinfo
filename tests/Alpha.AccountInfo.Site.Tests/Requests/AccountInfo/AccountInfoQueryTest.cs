@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Requests.AccountInfo
 {
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using Xunit;
 
@@ -12,7 +12,7 @@
         public void Constructor_Always_ReturnCorrectRequest()
         {
             var viewer = AccountInfoHelper.ViewerFixture(UserLevel.Super.Value);
-            var messages = new AccountInfoQuery(viewer);
+            var messages = new SearchAccountQuery(viewer);
 
             Assert.True(
                 messages.ActorRoleId == 4 &&

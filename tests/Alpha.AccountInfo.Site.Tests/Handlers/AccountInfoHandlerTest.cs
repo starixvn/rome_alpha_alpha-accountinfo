@@ -11,10 +11,10 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Handlers;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
-    using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
+    using Alpha.AccountInfo.Site.ViewModels.SearchAccount;
     using Alpha.Products.Core.Services;
     using AutoFixture;
     using KellermanSoftware.CompareNetObjects;
@@ -27,7 +27,7 @@
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
         private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo();
         private readonly SearchAccountService accountInfoService;
-        private readonly AccountInfoHandler accountInfoHandler;
+        private readonly SearchAccountHandler accountInfoHandler;
         private readonly Fixture fixture = new Fixture();
         private readonly CustomerInfoQuery customerInfoQuery;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
@@ -44,7 +44,7 @@
                };
 
             accountInfoService = Substitute.For<SearchAccountService>();
-            accountInfoHandler = new AccountInfoHandler(accountInfoService, getBalanceInfoViewModelByLevel);
+            accountInfoHandler = new SearchAccountHandler(accountInfoService, getBalanceInfoViewModelByLevel);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {
@@ -60,7 +60,7 @@
         [Fact]
         public async Task HandleAccountInfoQuery_Always_ReturnsCorrectViewModel()
         {
-            var message = new AccountInfoQuery(viewer);
+            var message = new SearchAccountQuery(viewer);
             var expectedViewModel = new AccountInfoViewModel(message);
 
             var actualViewModel = await accountInfoHandler.Handle(message);
@@ -77,9 +77,11 @@
             };
 
             var expectedViewModel = Enumerable.Empty<UsernameSuggestion>();
-            accountInfoService.GetUsernamesSuggestion(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<bool>()).Returns(expectedViewModel);
+            accountInfoService
+                .GetUsernamesSuggestion(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<bool>())
+                .Returns(expectedViewModel);
 
-            var actualViewModel = accountInfoHandler.Handle(message);
+            var actualViewModel = accountInfoHandler.Handle(message).GetAwaiter().GetResult();
 
             AssertExtension.Equal(actualViewModel, expectedViewModel);
         }
@@ -138,7 +140,7 @@
                 customerInfo,
                 memberBalanceInfoViewModel);
 
-            var actualViewModel = accountInfoHandler.Handle(customerInfoQuery);
+            var actualViewModel = accountInfoHandler.Handle(customerInfoQuery).GetAwaiter().GetResult();
 
             AssertExtension.Equal(actualViewModel, expectedViewModel);
         }
@@ -164,7 +166,7 @@
             var model = Enumerable.Empty<OnlineUserModel>();
             accountInfoService.GetOnlineListModel(1).Returns(model);
 
-            var actualViewModel = accountInfoHandler.Handle(message);
+            var actualViewModel = accountInfoHandler.Handle(message).GetAwaiter().GetResult();
 
             AssertExtension.Equal(actualViewModel, model);
         }
@@ -198,7 +200,7 @@
             var model = Result.CreateSuccessResult();
             accountInfoService.UpdateGivenCredit(Arg.Any<UpdateGivenCreditParam>()).Returns(model);
 
-            var actualViewModel = accountInfoHandler.Handle(message);
+            var actualViewModel = accountInfoHandler.Handle(message).GetAwaiter().GetResult();
 
             AssertExtension.Equal(actualViewModel, model);
         }
@@ -217,7 +219,7 @@
             var model = Result.CreateSuccessResult();
             accountInfoService.UpdateCustomerStatus(Arg.Any<UpdateCustomerStatusParam>()).Returns(model);
 
-            var actualViewModel = accountInfoHandler.Handle(message);
+            var actualViewModel = accountInfoHandler.Handle(message).GetAwaiter().GetResult();
 
             AssertExtension.Equal(actualViewModel, model);
         }

@@ -1,4 +1,4 @@
-﻿namespace Alpha.AccountInfo.Site.ViewModels.AccountInfo
+﻿namespace Alpha.AccountInfo.Site.ViewModels.SearchAccount
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
     using Alpha.Products.Core.Shared;
     using Newtonsoft.Json;
 

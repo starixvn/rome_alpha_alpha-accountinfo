@@ -1,4 +1,4 @@
-﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
+﻿namespace Alpha.AccountInfo.Site.Requests.SearchAccount
 {
     using System.Collections.Generic;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;

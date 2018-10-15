@@ -7,31 +7,31 @@
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Site.Requests.SearchAccount;
+    using Alpha.AccountInfo.Site.ViewModels.SearchAccount;
     using Alpha.Products.Core.Shared;
     using MediatR;
-    using Requests.ProductStatus;
     using Services.AccountInfo;
-    using ViewModels.AccountInfo;
 
-    public class AccountInfoHandler :
-        IAsyncRequestHandler<AccountInfoQuery, AccountInfoViewModel>,
-        IRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>,
-        IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
-        IRequestHandler<DownlineListQuery, DownlineListViewModel>,
-        IRequestHandler<CustomerStatusQuery, CustomererStatusViewModel>,
-        IRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
+    public class SearchAccountHandler :
+        IAsyncRequestHandler<SearchAccountQuery, AccountInfoViewModel>,
+        IAsyncRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>,
+        IAsyncRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
+        IAsyncRequestHandler<DownlineListQuery, DownlineListViewModel>,
+        IAsyncRequestHandler<CustomerStatusQuery, CustomererStatusViewModel>,
+        IAsyncRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
-        IRequestHandler<GivenCreditCommand, Result>,
-        IRequestHandler<CustomerNonProductStatusCommand, Result>
+        IAsyncRequestHandler<GivenCreditCommand, Result>,
+        IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>
     {
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
 
-        public AccountInfoHandler(SearchAccountService accountInfoService) : this(accountInfoService, null)
+        public SearchAccountHandler(SearchAccountService accountInfoService) : this(accountInfoService, null)
         {
         }
 
-        internal AccountInfoHandler(
+        internal SearchAccountHandler(
             SearchAccountService accountInfoService,
             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel)
         {
@@ -46,15 +46,15 @@
                 };
         }
 
-        public async Task<AccountInfoViewModel> Handle(AccountInfoQuery message)
-            => new AccountInfoViewModel(message);
+        public Task<AccountInfoViewModel> Handle(SearchAccountQuery message)
+            => Task.FromResult(new AccountInfoViewModel(message));
 
-        public IEnumerable<UsernameSuggestion> Handle(UserNameSuggestionQuery message)
+        public Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message)
             => accountInfoService.GetUsernamesSuggestion(message.ActorId, message.SuggestionQuery, message.IsInternal);
 
-        public CustomerInfoViewModel Handle(CustomerInfoQuery message)
+        public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
         {
-            var customerInfo = accountInfoService.GetCustomerInfoModel(message.SearchAccountName, message.ActorId);
+            var customerInfo = await accountInfoService.GetCustomerInfoModel(message.SearchAccountName, message.ActorId).ConfigureAwait(false);
 
             if (customerInfo != null)
             {
@@ -63,7 +63,7 @@
                 var balanceInfo = getBalanceInfoViewModelByLevel[searchAccountLevel](
                     message,
                     customerInfo,
-                    accountInfoService.GetBalanceInfoModel(customerInfo.CustId, customerInfo.RoleId));
+                    await accountInfoService.GetBalanceInfoModel(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false));
 
                 return new CustomerInfoViewModel(message, customerInfo, balanceInfo);
             }
@@ -71,19 +71,19 @@
             return null;
         }
 
-        public DownlineListViewModel Handle(DownlineListQuery message)
-            => new DownlineListViewModel(accountInfoService.GetDownlineListModel(message.SearchAccountId));
+        public async Task<DownlineListViewModel> Handle(DownlineListQuery message)
+            => new DownlineListViewModel(await accountInfoService.GetDownlineListModel(message.SearchAccountId).ConfigureAwait(false));
 
-        public CustomererStatusViewModel Handle(CustomerStatusQuery message)
-            => new CustomererStatusViewModel(message, accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId));
+        public async Task<CustomererStatusViewModel> Handle(CustomerStatusQuery message)
+            => new CustomererStatusViewModel(message, await accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId).ConfigureAwait(false));
 
-        public IEnumerable<OnlineUserModel> Handle(OnlineListQuery message)
-            => accountInfoService.GetOnlineListModel(message.SearchAccountId);
+        public async Task<IEnumerable<OnlineUserModel>> Handle(OnlineListQuery message)
+            => await accountInfoService.GetOnlineListModel(message.SearchAccountId).ConfigureAwait(false);
 
-        public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
-           => new GivenCreditViewModel(message);
+        public Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
+           => Task.FromResult(new GivenCreditViewModel(message));
 
-        public Result Handle(GivenCreditCommand message)
+        public Task<Result> Handle(GivenCreditCommand message)
             => accountInfoService.UpdateGivenCredit(
                 new UpdateGivenCreditParam(
                     message.SearchAccountId,
@@ -94,7 +94,7 @@
                     message.Language,
                     message.IP));
 
-        public Result Handle(CustomerNonProductStatusCommand message)
+        public Task<Result> Handle(CustomerNonProductStatusCommand message)
            => accountInfoService.UpdateCustomerStatus(
                new UpdateCustomerStatusParam(
                    message.SearchAccountId,

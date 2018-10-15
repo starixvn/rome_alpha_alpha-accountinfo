@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -28,9 +29,9 @@
         private readonly SearchAccountServiceImpl accountInfoService;
         private readonly CompareLogic compareLogic = new CompareLogic();
         private readonly Fixture fixture = new Fixture();
-        private readonly MemberBalanceInfoModel memberBalanceInfoModel;
-        private readonly AgentBalanceInfoModel agentBalanceInfoModel;
-        private readonly MasterBalanceInfoModel masterBalanceInfoModel;
+        private readonly Task<MemberBalanceInfoModel> memberBalanceInfoModel;
+        private readonly Task<AgentBalanceInfoModel> agentBalanceInfoModel;
+        private readonly Task<MasterBalanceInfoModel> masterBalanceInfoModel;
 
         public AccountInfoServiceImplTest()
         {
@@ -38,24 +39,23 @@
             accountInfoDataAccess = Substitute.For<SearchAccountDataAccess>();
             rnGCasinoService = Substitute.For<RnGCasinoService>();
 
-            memberBalanceInfoModel = fixture.Create<MemberBalanceInfoModel>();
-            agentBalanceInfoModel = fixture.Create<AgentBalanceInfoModel>();
-            masterBalanceInfoModel = fixture.Create<MasterBalanceInfoModel>();
+            memberBalanceInfoModel = Task.FromResult(fixture.Create<MemberBalanceInfoModel>());
+            agentBalanceInfoModel = Task.FromResult(fixture.Create<AgentBalanceInfoModel>());
+            masterBalanceInfoModel = Task.FromResult(fixture.Create<MasterBalanceInfoModel>());
 
-            getBalanceInfoModelByLevel =
-                new Dictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>>
-                {
-                    {UserLevel.Master, GetMasterBalanceInfoModel},
-                    {UserLevel.Agent, GetAgentBalanceInfoModel},
-                    {UserLevel.Member, GetMemberBalanceInfoModel}
-                };
+            getBalanceInfoModelByLevel = null;
+                //new Dictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>>
+                //{
+                //    {UserLevel.Master, GetMasterBalanceInfoModel},
+                //    {UserLevel.Agent, GetAgentBalanceInfoModel},
+                //    {UserLevel.Member, GetMemberBalanceInfoModel}
+                //};
 
             accountInfoService =
                 new SearchAccountServiceImpl(
                 dynamicRepository,
                 accountInfoDataAccess,
-                rnGCasinoService,
-                getBalanceInfoModelByLevel);
+                rnGCasinoService);
         }
 
         [Fact]
@@ -68,7 +68,7 @@
 
             dynamicRepository.Fetch<UsernameSuggestion>(Arg.Any<SelectAutoSuggestionCriteria>()).Returns(model);
 
-            var actualModel = accountInfoService.GetUsernamesSuggestion(1, "test", false);
+            var actualModel = accountInfoService.GetUsernamesSuggestion(1, "test", false).GetAwaiter().GetResult();
 
             AssertExtension.Equal(actualModel, model);
         }
@@ -115,8 +115,11 @@
         [Fact]
         public void GetBalanceInfoModel_Always_ReturnsCorrectModel()
         {
-            var actualModel = accountInfoService.GetBalanceInfoModel(1, 1);
-            AssertExtension.Equal(actualModel, memberBalanceInfoModel);
+            var actualModel = accountInfoService.GetBalanceInfoModel(1, 1)
+                .GetAwaiter()
+                .GetResult();
+
+            AssertExtension.Equal(actualModel, memberBalanceInfoModel.GetAwaiter().GetResult());
         }
 
         [Fact]
@@ -125,7 +128,7 @@
             var model = fixture.Create<CustomerStatusModel>();
             accountInfoDataAccess.GetCustomerAllStatus(Arg.Any<SelectCustomerAllStatusModelCriteria>()).Returns(model);
 
-            var actualModel = accountInfoService.GetCustomerAllStatusModel(1);
+            var actualModel = accountInfoService.GetCustomerAllStatusModel(1).GetAwaiter().GetResult();
 
             AssertExtension.Equal(actualModel, model);
         }
@@ -237,7 +240,9 @@
         {
             var criteria = new SelectBalanceInfoCriteria(1, 3);
 
-            dynamicRepository.Get<MasterBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>()).Returns(masterBalanceInfoModel);
+            dynamicRepository
+                .GetAsync<MasterBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>())
+                .Returns(masterBalanceInfoModel);
 
             var actualModel = accountInfoService.GetMasterBalanceInfoModel(criteria);
 
@@ -249,7 +254,9 @@
         {
             var criteria = new SelectBalanceInfoCriteria(1, 2);
 
-            dynamicRepository.Get<AgentBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>()).Returns(agentBalanceInfoModel);
+            dynamicRepository
+                .GetAsync<AgentBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>())
+                .Returns(agentBalanceInfoModel);
 
             var actualModel = accountInfoService.GetAgentBalanceInfoModel(criteria);
 
@@ -261,17 +268,19 @@
         {
             var criteria = new SelectBalanceInfoCriteria(1, 1);
 
-            dynamicRepository.Get<MemberBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>()).Returns(memberBalanceInfoModel);
+            dynamicRepository
+                .GetAsync<MemberBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>())
+                .Returns(memberBalanceInfoModel);
 
             var actualModel = accountInfoService.GetMemberBalanceInfoModel(criteria);
 
             Assert.True(compareLogic.Compare(actualModel, memberBalanceInfoModel).AreEqual);
         }
 
-        private IBalanceInfoModel GetMemberBalanceInfoModel(ICriteria criteria) => memberBalanceInfoModel;
+        private async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria) => await memberBalanceInfoModel;
 
-        private IBalanceInfoModel GetAgentBalanceInfoModel(ICriteria criteria) => agentBalanceInfoModel;
+        private async Task<IBalanceInfoModel> GetAgentBalanceInfoModel(ICriteria criteria) => await agentBalanceInfoModel;
 
-        private IBalanceInfoModel GetMasterBalanceInfoModel(ICriteria criteria) => masterBalanceInfoModel;
+        private async Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria) => await masterBalanceInfoModel;
     }
 }

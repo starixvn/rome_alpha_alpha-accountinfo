@@ -1,13 +1,13 @@
-﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
+﻿namespace Alpha.AccountInfo.Site.Requests.SearchAccount
 {
     using AccountInfo.Models;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
+    using Alpha.AccountInfo.Site.ViewModels.SearchAccount;
     using MediatR;
 
-    public class AccountInfoQuery : BaseRequest, IRequest<AccountInfoViewModel>
+    public class SearchAccountQuery : BaseRequest, IRequest<AccountInfoViewModel>
     {
-        public AccountInfoQuery(IUser viewer) : base(viewer)
+        public SearchAccountQuery(IUser viewer) : base(viewer)
         {
             ActorRoleId = viewer.LevelId;
             ActorName = viewer.Name;

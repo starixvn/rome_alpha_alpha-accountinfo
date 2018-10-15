@@ -1,10 +1,10 @@
-﻿namespace Alpha.AccountInfo.Site.Requests.ProductStatus
+﻿namespace Alpha.AccountInfo.Site.Requests.SearchAccount
 {
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.ViewModels.AccountInfo;
+    using Alpha.AccountInfo.Site.ViewModels.SearchAccount;
     using MediatR;
 
-    public class CustomerStatusQuery : AccountInfoQueryBase, IRequest<CustomererStatusViewModel>
+    public class CustomerStatusQuery : SearchAccountQueryBase, IRequest<CustomererStatusViewModel>
     {
         private readonly IUser viewer;
 
