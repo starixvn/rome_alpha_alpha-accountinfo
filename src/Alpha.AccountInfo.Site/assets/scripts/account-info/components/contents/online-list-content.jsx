@@ -5,7 +5,7 @@ const OnlineListContent = ({ resources, data, handleOpenIPInfo }) => <table clas
         <tr>
             <th>{resources.NumberOrder}</th>
             <th>{resources.IP}</th>
-            <th>{resources.LoginTime}</th>
+            <th>{resources.FormattedLoginTime}</th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@ const OnlineListContent = ({ resources, data, handleOpenIPInfo }) => <table clas
                 <tr key={index}>
                     <td className="text-center">{index + 1}</td>
                     <td><a onClick={handleOpenIPInfo} data-ip={online.IP}>{online.IP}</a></td>
-                    <td className="text-center"> {online.LoginTime}</td>
+                    <td className="text-center"> {online.FormattedLoginTime}</td>
                 </tr>)
         }
     </tbody>
