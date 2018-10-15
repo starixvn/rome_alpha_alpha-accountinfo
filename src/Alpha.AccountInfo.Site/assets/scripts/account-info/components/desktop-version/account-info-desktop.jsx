@@ -1,7 +1,4 @@
 ﻿import * as React from 'react';
-import { UserLevel } from '../../constants/user-level';
-import CustomizedAccordionItem from './customized-accordion-item';
-import { BuildContentItemsDesktop } from './build-content-items-desktop';
 
 export default class AccountInfoDesktop extends React.Component {
     constructor(props) {
@@ -68,51 +65,84 @@ export default class AccountInfoDesktop extends React.Component {
     render() {
         const { expandedItems, collapseAll } = this.state;
 
-        const {
-            resources,
-            mobileView,
-            actorRoleId,
-            customerInfo,
-            downlineList,
-            onlineList,
-            statusData,
-            settingData,
-            redirectToBalanceInfoPage,
-            fetchCustomerInfoFromServer,
-            handleSearchFromUserLevel,
-            handleOpenIPInfo } = this.props;
+        const { contents } = this.props;
 
-        let accordionItems = BuildContentItemsDesktop(
-            resources,
-            mobileView,
-            actorRoleId,
-            customerInfo,
-            downlineList,
-            onlineList,
-            statusData,
-            settingData,
-            fetchCustomerInfoFromServer,
-            handleSearchFromUserLevel,
-            handleOpenIPInfo,
-            expandedItems,
-            this.handleCollapExpandBlock);
+        let accordionItems = {
+            contactInfoProps: {
+                ...contents.contactInfoProps,
+                accordionItemBodyClassName: "contact-info",
+                expanded: expandedItems.contactInfo,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "contactInfo"
+            },
+            balanceInfoProps: {
+                ...contents.balanceInfoProps,
+                accordionItemBodyClassName: "balance-info",
+                expanded: expandedItems.balanceInfo,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "balanceInfo"
+            },
+            downlineListProps: {
+                ...contents.downlineListProps,
+                accordionItemBodyClassName: "downline-list",
+                expanded: expandedItems.downlineList,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "downlineList"
+            },
+            statusProps: {
+                ...contents.statusProps,
+                accordionItemBodyClassName: "status",
+                expanded: expandedItems.status,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "status"
+            },
+            settingProps: {
+                ...contents.settingProps,
+                accordionItemBodyClassName: "settings",
+                expanded: expandedItems.setting,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "setting"
+            },
+            loginInfoProps: {
+                ...contents.loginInfoProps,
+                accordionItemBodyClassName: "login-info",
+                expanded: expandedItems.loginInfo,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "loginInfo",
+                visible: true
+            },
+            onlineListProps: {
+                ...contents.onlineListProps,
+                accordionItemBodyClassName: "online-list",
+                expanded: expandedItems.onlineList,
+                clickHanlder: this.handleCollapExpandBlock,
+                blockId: "onlineList"
+            }
+        };
 
-        return <div className={`${this.state.animation} accordions`}>
-            {
-                Object.values(accordionItems).map((item, index) => {
-                    return item.visible &&
-                        <CustomizedAccordionItem
-                            title={item.featureText}
-                            iconClassname={item.iconClass}
-                            accordionItemBodyClassName={item.accordionItemBodyClassName}
-                            expanded={item.expanded}
-                            handleClick={item.clickHanlder}
-                            blockId={item.blockId}
-                            key={index}
-                        >
-                            {item.children}
-                        </CustomizedAccordionItem>;
-                })}
-        </div>;
+        return (
+            <div className={`${this.state.animation} accordions`}>
+                {
+                    Object.values(accordionItems).map((item, index) => {
+                        return item.visible &&
+                            <div
+                                className={item.expanded ? `accordion-item expanded` : `accordion-item`}
+                                expanded={item.expanded.toString()}
+                                key={index}
+                            >
+                                <div
+                                    className="feature-item"
+                                    onClick={item.clickHanlder}
+                                    data-blockid={item.blockId}
+                                >
+                                    <span className={item.iconClass} /> {item.featureText}
+                                </div>
+                                <div className={`feature-detail ${item.accordionItemBodyClassName}`}>
+                                    {item.children}
+                                </div>
+                            </div>;
+                    })}
+            </div>
+        );
     }
 }

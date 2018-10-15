@@ -25,6 +25,7 @@ export default class MobilePage extends React.Component {
             featureText,
             data,
             children,
+            contentItems = [],
             redirectToBalanceInfoPage = false,
             redirectToFeatureList = false } = this.props;
 
@@ -39,20 +40,36 @@ export default class MobilePage extends React.Component {
             );
         }
 
-        return (
+        let buildLink = (path, iconClass, featureText, index) => <Link
+            to={{
+                pathname: `/${path}`,
+                state: { addAnimation: true }
+            }}
+            className="feature-item"
+            key={index}
+        >
+            <span className={iconClass} />
+            {featureText}
+        </Link>;
+
+        return contentItems.length === 0 ?
             <div className={`${this.state.animationClass} feature-detail`}>
-                <Link
-                    to={{
-                        pathname: "/featureList",
-                        state: { addAnimation: true }
-                    }}
-                    className="feature-item"
-                >
-                    <span className={iconClass} />
-                    {featureText}
-                </Link>
+                {buildLink("featureList", iconClass, featureText)}
                 {children}
-            </div>
-        );
+            </div> :
+            <div className={`${this.state.animationClass} feature-list`}>
+                <nav>
+                    {
+                        Object.values(contentItems).map((header, index) => {
+                            return header.visible &&
+                                buildLink(
+                                    header.path,
+                                    header.iconClass,
+                                    header.featureText,
+                                    index);
+                        })
+                    }
+                </nav>
+            </div>;
     }
 }
