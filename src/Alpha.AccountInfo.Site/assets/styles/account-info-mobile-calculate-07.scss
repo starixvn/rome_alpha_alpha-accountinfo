@@ -188,7 +188,7 @@ hr {
         padding-right: calculateScale(10px);
 
         .icon-edited {
-            top: calculateScale(17px);
+            top: calculateScale(10px);
             font-size: calculateScale(16px);
         }
 
@@ -239,16 +239,17 @@ hr {
     }
 
     .customer-list {
-        padding: calculateScale(6px) calculateScale(10px) calculateScale(4px);
+        padding: 0;
+        max-height: initial;
     }
 
-    &.login-info {
+    .login-info {
         .group {
             margin-bottom: calculateScale(8px);
         }
 
         .row-info {
-            line-height: calculateScale(20px);
+            line-height: calculateScale(22px);
         }
     }
 

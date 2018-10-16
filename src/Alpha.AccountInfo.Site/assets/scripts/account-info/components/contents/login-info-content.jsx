@@ -11,7 +11,7 @@ export default class LoginInfoContent extends React.Component {
             </div>;
 
         return (
-            <div>
+            <div className="login-info">
                 {row(resources.CreatedDate, loginInfo.CreatedDate)}
                 {row(resources.LastLogin, loginInfo.LastLogin)}
                 {row(resources.LastTxn, loginInfo.LastTxn)}

@@ -362,10 +362,6 @@ hr {
       overflow-x:auto;
 }
 
-
-.accordions {
-
-}
 .feature-list,
 .accordions {
     position: relative;
@@ -478,23 +474,7 @@ hr {
 
         .col {
             display: table-cell;
-        }
-
-        .number {
-            color: #004080;
-
-            &-red {
-                color: #ff0000;
-            }
-
-            &-link {
-                @extend %linkColor;
-                cursor: pointer;
-            }
-
-            &-edited {
-                color: #049bac;
-            }
+            vertical-align: middle;
         }
 
         .given-credit {
@@ -502,13 +482,14 @@ hr {
             float: right;
             padding-left: 24px;
             cursor: pointer;
+            line-height: initial;
         }
 
         .icon-edited {
             @include ripple-effect-icon($top: -2px, $margin-left: -5px);
             position: absolute;
             left: 0;
-            top: 17px;
+            top: 10px;
             line-height: 0;
             color: $icon-color;
             font-size: 16px;
@@ -521,6 +502,23 @@ hr {
         div[data-tooltipped] {
             float: left;
             line-height: 1;
+        }
+    }
+
+    .number {
+        color: #004080;
+
+        &-red {
+            color: #ff0000;
+        }
+
+        &-link {
+            @extend %linkColor;
+            cursor: pointer;
+        }
+
+        &-edited {
+            color: #049bac;
         }
     }
 
@@ -562,17 +560,17 @@ hr {
         overflow: auto;
     }
 
-    &.login-info {
+    .login-info {
         .group {
             margin-bottom: 8px;
         }
 
         .row-info {
-            line-height: 20px;
+            line-height: 22px;
         }
     }
 
-    &.online-list {
+    .online-list {
         padding: 6px 10px;
     }
 

@@ -51,49 +51,42 @@ export default class AccountInfoDesktop extends React.Component {
         let accordionItems = [
             {
                 ...contentItems.contactInfoProps,
-                accordionItemBodyClassName: "contact-info",
                 blockId: "contactInfo",
                 expanded: expandedItems.contactInfo,
                 clickHanlder: this.handleCollapExpandBlock
             },
             {
                 ...contentItems.balanceInfoProps,
-                accordionItemBodyClassName: "balance-info",
                 blockId: "balanceInfo",
                 expanded: expandedItems.balanceInfo,
                 clickHanlder: this.handleCollapExpandBlock
             },
             {
                 ...contentItems.downlineListProps,
-                accordionItemBodyClassName: "downline-list",
                 blockId: "downlineList",
                 expanded: expandedItems.downlineList,
                 clickHanlder: this.handleCollapExpandBlock
             },
             {
                 ...contentItems.statusProps,
-                accordionItemBodyClassName: "status",
                 blockId: "status",
                 expanded: expandedItems.status,
                 clickHanlder: this.handleCollapExpandBlock
             },
             {
                 ...contentItems.settingProps,
-                accordionItemBodyClassName: "settings",
                 blockId: "settings",
                 expanded: expandedItems.settings,
                 clickHanlder: this.handleCollapExpandBlock
             },
             {
                 ...contentItems.loginInfoProps,
-                accordionItemBodyClassName: "login-info",
                 blockId: "loginInfo",
                 expanded: expandedItems.loginInfo,
                 clickHanlder: this.handleCollapExpandBlock
             },
             {
                 ...contentItems.onlineListProps,
-                accordionItemBodyClassName: "online-list",
                 blockId: "onlineList",
                 expanded: expandedItems.onlineList,
                 clickHanlder: this.handleCollapExpandBlock
@@ -117,7 +110,7 @@ export default class AccountInfoDesktop extends React.Component {
                                 >
                                     <span className={item.iconClass} /> {item.featureText}
                                 </div>
-                                <div className={`feature-detail ${item.accordionItemBodyClassName}`}>
+                                <div className="feature-detail">
                                     {item.children}
                                 </div>
                             </div>;
