@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import CustomizedAccordionItem from './customized-accordion-item';
 
 export default class AccountInfoDesktop extends React.Component {
     constructor(props) {
@@ -44,7 +45,7 @@ export default class AccountInfoDesktop extends React.Component {
         this.updateState(e.currentTarget.dataset.blockid);
     }
 
-    render() {
+    buildAccordionItems() {
         const { expandedItems } = this.state;
         const { contentItems } = this.props;
 
@@ -93,27 +94,26 @@ export default class AccountInfoDesktop extends React.Component {
             }
         ];
 
+        return accordionItems;
+    }
+
+    render() {
         return (
             <div className={`${this.state.animation} accordions`}>
                 {
-                    accordionItems.map((item, index) => {
+                    this.buildAccordionItems().map((item, index) => {
                         return item.visible &&
-                            <div
-                                className={item.expanded ? `accordion-item expanded` : `accordion-item`}
-                                expanded={item.expanded.toString()}
+                            <CustomizedAccordionItem
+                                title={item.featureText}
+                                iconClassname={item.iconClass}
+                                accordionItemBodyClassName={item.accordionItemBodyClassName}
+                                expanded={item.expanded}
+                                handleClick={item.clickHanlder}
+                                blockId={item.blockId}
                                 key={index}
                             >
-                                <div
-                                    className="feature-item"
-                                    onClick={item.clickHanlder}
-                                    data-blockid={item.blockId}
-                                >
-                                    <span className={item.iconClass} /> {item.featureText}
-                                </div>
-                                <div className="feature-detail">
-                                    {item.children}
-                                </div>
-                            </div>;
+                                {item.children}
+                            </CustomizedAccordionItem>;
                     })}
             </div>
         );

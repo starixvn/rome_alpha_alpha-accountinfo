@@ -15,7 +15,7 @@ export default class AccountInfoMobile extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         let { customerInfo } = this.props;
-        let { nextCustomerInfo } = nextProps;
+        let nextCustomerInfo = nextProps.customerInfo;
 
         this.setState({
             redirectToFeatureList: nextCustomerInfo === null,
@@ -34,10 +34,8 @@ export default class AccountInfoMobile extends React.Component {
         }
     }
 
-    render() {
+    buildRoutes() {
         const { contentItems, customerInfo } = this.props;
-        const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
-
         let routeItems = [
             {
                 contentItems: contentItems,
@@ -58,11 +56,17 @@ export default class AccountInfoMobile extends React.Component {
             }
         ];
 
+        return routeItems;
+    }
+
+    render() {
+        const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
+
         return (
             <HashRouter>
                 <Switch>
                     {
-                        routeItems.map((route, index) => {
+                        this.buildRoutes().map((route, index) => {
                             return (
                                 <Route
                                     key={index}

@@ -31,6 +31,50 @@ export default class ContentMobile extends React.Component {
         return !balanceInfoRedirectBackToItself && !featureListRedirectBackToItself;
     }
 
+    buildLink(path, iconClass, featureText, index) {
+        return (
+            <Link
+                to={{
+                    pathname: path,
+                    state: { addAnimation: true }
+                }}
+                className="feature-item"
+                key={index}
+            >
+                <span className={iconClass} />
+                {featureText}
+            </Link>
+        );
+    }
+
+    buildFeatureList(contentItems) {
+        return (
+            <div className={`${this.state.animationClass} feature-list`}>
+                <nav>
+                    {
+                        Object.values(contentItems).map((content, index) => {
+                            return content.visible &&
+                                this.buildLink(
+                                    content.path,
+                                    content.iconClass,
+                                    content.featureText,
+                                    index);
+                        })
+                    }
+                </nav>
+            </div>
+        );
+    }
+
+    buildContentBlock(iconClass, featureText, children) {
+        return (
+            <div className={`${this.state.animationClass} feature-detail`}>
+                {this.buildLink("featureList", iconClass, featureText)}
+                {children}
+            </div>
+        );
+    }
+
     render() {
         const {
             iconClass,
@@ -54,37 +98,8 @@ export default class ContentMobile extends React.Component {
             );
         }
 
-        let buildLink = (path, iconClass, featureText, index) =>
-            <Link
-                to={{
-                    pathname: path,
-                    state: { addAnimation: true }
-                }}
-                className="feature-item"
-                key={index}
-            >
-                <span className={iconClass} />
-                {featureText}
-            </Link>;
-
         return contentItems.length === 0 ?
-            <div className={`${this.state.animationClass} feature-detail`}>
-                {buildLink("featureList", iconClass, featureText)}
-                {children}
-            </div> :
-            <div className={`${this.state.animationClass} feature-list`}>
-                <nav>
-                    {
-                        Object.values(contentItems).map((content, index) => {
-                            return content.visible &&
-                                buildLink(
-                                    content.path,
-                                    content.iconClass,
-                                    content.featureText,
-                                    index);
-                        })
-                    }
-                </nav>
-            </div>;
+            this.buildContentBlock(iconClass, featureText, children) :
+            this.buildFeatureList(contentItems);
     }
 }

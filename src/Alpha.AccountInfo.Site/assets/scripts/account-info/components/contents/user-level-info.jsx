@@ -58,7 +58,7 @@ const UserLevelInfo = ({
             href={customerInfo.ViewLogLink}>
             <span className={statusCss} data-username={username}> {username} </span>
             <span className="icon-viewlog" />
-        </CustomAnchorTag>
+        </CustomAnchorTag>;
 
     return (
 
