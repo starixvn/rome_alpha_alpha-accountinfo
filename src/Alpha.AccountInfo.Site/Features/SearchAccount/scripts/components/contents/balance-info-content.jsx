@@ -4,7 +4,7 @@ import NumberFormat from 'react-number-format';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import { UserLevel } from '../../constants/user-level';
-import { mobileScale, resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
+import { mobileScale, resizePopupOnMobile } from '../../helpers/accountinfo-helper';
 
 export default class BalanceInfoContent extends React.Component {
     constructor(props) {

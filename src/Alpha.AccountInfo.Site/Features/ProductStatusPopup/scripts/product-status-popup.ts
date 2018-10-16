@@ -1,5 +1,5 @@
 ﻿"use strict";
-class ProductStatus {
+class ProductStatusPopup {
     $: JQueryStatic;
     topWindow: any;
 
@@ -132,6 +132,6 @@ class ProductStatus {
 }
 
 $(() => {
-    let productStatus: any = new ProductStatus($, window.top);
-    productStatus.init();
+    let productStatusPopup: any = new ProductStatusPopup($, window.top);
+    productStatusPopup.init();
 });

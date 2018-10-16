@@ -319,30 +319,30 @@
     <Content Include="assets\bundles\productstatus\productstatus.min.css" />
     <Content Include="assets\bundles\productstatus\productstatus.min.js" />
     <Content Include="assets\bundles\styles\account-info-mobile-calculate-07.min.css" />
-    <Content Include="assets\scripts\account-info\api-client.jsx" />
-    <Content Include="assets\scripts\account-info\components\common\custom-anchor-tag.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\balance-info-content.jsx" />
-    <Content Include="assets\scripts\account-info\components\mobile-version\content-mobile.jsx" />
-    <Content Include="assets\scripts\account-info\components\common\cell-contain-number-format.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\contact-info-content.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\downline-list-content.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\login-info-content.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\online-list-content.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\setting-content.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\user-level-info.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\customer-info-content.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\auto-suggestion.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\total-downlines.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\searching-content.jsx" />
-    <Content Include="assets\scripts\account-info\components\contents\status-content.jsx" />
-    <Content Include="assets\scripts\account-info\constants\user-level.jsx" />
-    <Content Include="assets\scripts\account-info\components\desktop-version\account-info-desktop.jsx" />
-    <Content Include="assets\scripts\account-info\components\mobile-version\account-info-mobile.jsx" />
-    <Content Include="assets\scripts\account-info\containers\account-info.jsx" />
-    <Content Include="assets\scripts\account-info\given-credit.jsx" />
-    <Content Include="assets\scripts\account-info\index.jsx" />
-    <Content Include="assets\scripts\helpers\accountinfo-helper.jsx" />
-    <Content Include="assets\scripts\helpers\router-debugger.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\api-client.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\common\custom-anchor-tag.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\balance-info-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\mobile-version\content-mobile.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\common\cell-contain-number-format.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\contact-info-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\downline-list-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\login-info-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\online-list-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\setting-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\user-level-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\customer-info-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\auto-suggestion.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\total-downlines.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\searching-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\status-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\constants\user-level.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\desktop-version\account-info-desktop.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\mobile-version\account-info-mobile.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\containers\account-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\given-credit.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\index.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\helpers\accountinfo-helper.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\helpers\router-debugger.jsx" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
     <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
@@ -351,7 +351,7 @@
     <Content Include="deployment.ignore" />
     <Content Include="App_Data\securitycode.json" />
     <Content Include="Features\ProductStatusPopup\Views\Index.cshtml" />
-    <Content Include="assets\styles\productstatus\productstatus.scss" />
+    <Content Include="Features\ProductStatusPopup\Styles\product-status-popup.scss" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
     <Content Include="typings\globals\jquery\typings.json" />
@@ -369,7 +369,7 @@
     <Content Include="Web.AppSettings.backupMNLNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="assets\styles\account-info.scss" />
+    <Content Include="Features\SearchAccount\Styles\account-info.scss" />
     <Content Include="assets\styles\_mixins.scss" />
     <Content Include="Features\SearchAccount\Views\Index.cshtml" />
     <Content Include="webpack.config.dev.js">
@@ -553,9 +553,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\styles\images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Alpha.AccountInfo\Alpha.AccountInfo.csproj">
       <Project>{19fff821-8518-4c8f-b23b-db8d91c1552a}</Project>
@@ -567,7 +565,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="assets\scripts\productstatus\productstatus.ts" />
+    <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\product-status-popup.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
@@ -585,13 +583,13 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\styles\given-credit.scss" />
+    <Content Include="Features\SearchAccount\Styles\given-credit.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AuthorizationSection.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\styles\account-info-mobile-calculate-07.scss" />
+    <Content Include="Features\SearchAccount\Styles\account-info-mobile-calculate-07.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\SearchAccount\Views\web.config" />

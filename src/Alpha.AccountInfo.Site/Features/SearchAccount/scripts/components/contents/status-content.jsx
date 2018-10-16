@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../api-client';
-import { mobileScale, resizePopupOnMobile, resizeBootboxOnMobile } from '../../../helpers/accountinfo-helper';
+import { mobileScale, resizePopupOnMobile, resizeBootboxOnMobile } from '../../helpers/accountinfo-helper';
 
 export default class StatusContent extends React.Component {
     constructor(props) {

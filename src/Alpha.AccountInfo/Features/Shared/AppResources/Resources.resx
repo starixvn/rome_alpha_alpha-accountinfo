@@ -346,7 +346,7 @@
     <value>Update Successfully !</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>GivenCreditPopup</value>
+    <value>Update Given Credit</value>
   </data>
   <data name="LoginInfo" xml:space="preserve">
     <value>Login Info</value>

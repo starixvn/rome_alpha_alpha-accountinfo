@@ -17,7 +17,9 @@
                 SearchAccountId = 1,
                 SearchAccountName = "test",
                 SearchAccountRoleId = 2,
-                CurrentGivenCredit = 50
+                CurrentGivenCredit = 50,
+                GivenCreditMin = 1000,
+                GivenCreditMax = 5000
             };
 
             Assert.True(
@@ -25,6 +27,8 @@
                 messages.SearchAccountRoleId == 2 &&
                 messages.SearchAccountName == "test" &&
                 messages.CurrentGivenCredit == 50 &&
+                messages.GivenCreditMin == 1000 &&
+                messages.GivenCreditMax == 5000 &&
                 messages.Language == "En");
         }
     }

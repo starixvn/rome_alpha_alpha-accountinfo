@@ -19,7 +19,7 @@
     { "Path": "libs/jasmine.js" },
     { "Path": "libs/jasmine-jquery.js" },
 
-    { "Path": "../productstatus/productstatus.ts" }
+    { "Path": "../../../Features/ProductStatusPopup/scripts/product-status-popup.ts" }
   ],
   "Tests": [
     {

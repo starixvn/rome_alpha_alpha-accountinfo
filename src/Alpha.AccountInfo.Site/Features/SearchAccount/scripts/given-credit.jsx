@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
 import { accountInfoAPI } from './api-client';
-import { base64Helper } from '../helpers/accountinfo-helper';
+import { base64Helper } from './helpers/accountinfo-helper';
 import { UserLevel } from './constants/user-level';
 
 window.renderGivenCredit = function (
@@ -85,6 +85,7 @@ export default class GivenCredit extends React.Component {
 
     buildGivenCreditLimitNote() {
         const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
+        const { resources } = this.state;
         const buildNumberFormat = (value) =>
             <NumberFormat
                 className="number"
@@ -95,11 +96,11 @@ export default class GivenCredit extends React.Component {
                 thousandSeparator={true}
             />;
 
-        let memberGivenCreditLimit = <div> New Given Credit ≤ {buildNumberFormat(givenCreditMax)} </div>;
+        let memberGivenCreditLimit = <div> {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)} </div>;
 
         let masterAgentGivenCreditLimit =
             <div>
-                {buildNumberFormat(givenCreditMin)} ≤ New Given Credit ≤ {buildNumberFormat(givenCreditMax)}
+                {buildNumberFormat(givenCreditMin)} ≤  {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)}
             </div>;
 
         let noted = parseInt(searchAccountRoleId) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;

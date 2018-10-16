@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ContentMobile from './content-mobile';
-//import DebugRouter from '../../../helpers/router-debugger';
+//import DebugRouter from '../../helpers/router-debugger';
 
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {

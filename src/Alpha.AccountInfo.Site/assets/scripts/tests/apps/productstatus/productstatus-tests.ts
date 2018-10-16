@@ -1,7 +1,7 @@
 ﻿describe("ProductStatus", () => {
     const jQueryFake = $;
     let topWindow: any;
-    let productStatus: ProductStatus;
+    let productStatus: ProductStatusPopup;
 
     let template: any = {
         normal: `<body>
@@ -62,7 +62,7 @@
             closeEditSportStatusPopup: jasmine.any(Function)
         };
 
-        productStatus = new ProductStatus(jQueryFake, topWindow);
+        productStatus = new ProductStatusPopup(jQueryFake, topWindow);
     });
 
     describe("_init", () => {
