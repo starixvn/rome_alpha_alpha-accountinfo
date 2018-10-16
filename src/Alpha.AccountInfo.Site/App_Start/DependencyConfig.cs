@@ -19,6 +19,7 @@
     using Alpha.Products.Core.Services;
     using Alpha.Web.Helpers;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
     using Fanex.RemotingRef;
     using MediatR;
     using Services.ProductStatus;
@@ -86,6 +87,7 @@
             container.Register<IUser, User>(Lifestyle.Singleton);
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.RegisterSingleton(Logger.Log);
 
             container.Register<ProductStatusAuthorizationService>(
                 () => new ProductStatusAuthorizationServiceImpl(
