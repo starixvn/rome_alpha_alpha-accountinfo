@@ -11,10 +11,10 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Handlers;
-    using Alpha.AccountInfo.Site.Requests.SearchAccount;
+    using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
-    using Alpha.AccountInfo.Site.ViewModels.SearchAccount;
+    using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.Products.Core.Services;
     using AutoFixture;
     using KellermanSoftware.CompareNetObjects;

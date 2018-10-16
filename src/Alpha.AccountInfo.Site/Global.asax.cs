@@ -1,5 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Site
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Alpha.Auth.Filters;
     using App_Start;
     using CasinoLibrary.Model.UserException;
@@ -10,15 +17,8 @@
     using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.Extensions.Web;
     using Fanex.RemotingRef;
-    using Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Routing;
     using Web;
     using Web.Filters;
     using Web.Helpers;

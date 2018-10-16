@@ -1,14 +1,17 @@
 ﻿namespace Alpha.AccountInfo.Tests.DataAccess
 {
+    using System.Collections;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
+    using Alpha.AccountInfo.Features.Shared;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Tests.Extensions;
     using Alpha.AccountInfo.Tests.Fixtures;
     using Fanex.Data;
-    using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Xunit;
@@ -19,7 +22,6 @@
     {
         private readonly ObjectDbFixture objectDbFixture;
         private readonly CompareLogic compareLogic;
-        private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccessImpl;
         private readonly IObjectDb objectDb;
         private readonly IMultiResultReader multiResultReader;
@@ -28,11 +30,15 @@
         {
             this.objectDbFixture = objectDbFixture;
             objectDb = Substitute.For<IObjectDb>();
-            ObjectDbFactory.Mock((key, timeout) => objectDb);
-            dynamicRepository = Substitute.For<IDynamicRepository>();
+            multiResultReader = Substitute.For<IMultiResultReader>();
+
             compareLogic = new CompareLogic();
             accountInfoDataAccessImpl = new SearchAccountDataAccessImpl();
-            multiResultReader = Substitute.For<IMultiResultReader>();
+
+            ObjectDbFactory.Mock(
+                (key, timeout)
+                =>
+                objectDb);
         }
 
         //[Fact]
@@ -70,7 +76,7 @@
             // Arrange
             var criteria = new SelectCustomerAllStatusModelCriteria(1);
             objectDb
-                .QueryMultipleAsync(criteria.GetSpParams())
+                .QueryMultipleAsync(Arg.Any<Hashtable>())
                 .Returns(Task.FromResult(multiResultReader));
 
             var nonProduct = StubNonProductStatus();
@@ -83,16 +89,16 @@
                 .ReadAsync<NonDCSProductStatusModel>()
                 .Returns(Task.FromResult(new List<NonDCSProductStatusModel> { nonDCSProduct } as IEnumerable<NonDCSProductStatusModel>));
 
-            var dcsProducts = StubNonDcsProducts();
+            var dcsProducts = StubDcsProducts();
             multiResultReader
-               .ReadAsync<NonDCSProductStatusModel>()
-               .Returns(Task.FromResult(dcsProducts as IEnumerable<NonDCSProductStatusModel>));
+               .ReadAsync<DCSProductStatusModel>()
+               .Returns(Task.FromResult(dcsProducts as IEnumerable<DCSProductStatusModel>));
 
             // Act
             var actualData = accountInfoDataAccessImpl
-                .GetCustomerAllStatus(criteria)
-                .GetAwaiter()
-                .GetResult();
+                                .GetCustomerAllStatus(criteria)
+                                .GetAwaiter()
+                                .GetResult();
 
             // Assert
             AssertExtension.Equal(nonProduct, actualData.NonProduct);
@@ -128,7 +134,7 @@
                              disableOutright: true,
                              uplineDisableOutright: true);
 
-        private static List<DCSProductStatusModel> StubNonDcsProducts()
+        private static List<DCSProductStatusModel> StubDcsProducts()
             => new List<DCSProductStatusModel>
                  {
                      new DCSProductStatusModel(
@@ -155,29 +161,31 @@
                                   hasDownline: true)
                     };
 
-        //[Fact]
-        //public void ExecuteNonQuery_SuccessCode_ReturnSuccessResult()
-        //{
-        //    // Arrange
-        //    var criteria = new UpdateCustomerStatusCommand(
-        //        searchAccountId: 1,
-        //        actorId: 2,
-        //        subAccountId: 0,
-        //        statusName: StatusMapping.Closed,
-        //        language: "E",
-        //        ip: "192.168.1.1");
+        [Fact]
+        public void ExecuteNonQuery_SuccessCode_ReturnSuccessResult()
+        {
+            // Arrange
+            var command = new UpdateCustomerStatusCommand(
+                searchAccountId: 1,
+                actorId: 2,
+                subAccountId: 0,
+                statusName: StatusNames.Closed,
+                statusValue: true,
+                language: "E",
+                ip: "192.168.1.1");
 
-        //    var expectedResult = Result.CreateSuccessResult();
-        //    objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 0 }, { "ErrMsg", string.Empty } });
+            var expectedResult = Result.CreateSuccessResult();
+            objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 0 }, { "ErrMsg", string.Empty } });
 
-        //    // Act
-        //    var actualResult = accountInfoDataAccessImpl.UpdateCustomerStatus(
-        //        criteria.GetSettingKey(),
-        //        criteria.GetSpParams());
+            // Act
+            var actualResult = accountInfoDataAccessImpl
+                .UpdateCustomerStatus(command)
+                .GetAwaiter()
+                .GetResult();
 
-        //    // Assert
-        //    AssertExtension.Equal(expectedResult, actualResult);
-        //}
+            // Assert
+            AssertExtension.Equal(expectedResult, actualResult);
+        }
 
         //[Fact]
         //public void ExecuteNonQuery_ErrorCode_ReturnErrorResult()

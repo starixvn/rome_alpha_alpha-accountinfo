@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = "Product Status";
+    var enableSubmitButton = false;
+    var userLevelDisplayName = Model.CustRole.GetDisplayName();
+    var noDataFound = !Model.ProductStatus.Any();
+}
+
+@using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
+@model ProductStatusViewModel
+
+<div id="msg-serverResult" class="hide"></div>
+@if (!Model.IsAgentUpdateMember)
+{
+    <div class="msg msg-warning">
+        @ProductStatus.ProductStatusWarningMessage
+    </div>
+}
+@using (Html.BeginForm("Update", "ProductStatus", FormMethod.Post, new { id = "formProductStatus" }))
+{
+    @Html.AntiForgeryToken()
+    <table class="tblRpt tblRpt-bordered width-100per">
+        <thead>
+            <tr>
+                <th colspan="2">
+                    <div class="text-center">@($"{userLevelDisplayName}: {Model.CustName}")</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (noDataFound)
+            {
+                <tr>
+                    <td colspan="2">
+                        <div class="text-center">@Resources.NoInformationIsAvailable</div>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model.ProductStatus)
+                {
+                    enableSubmitButton |= Model.IsEnabledSubmitButton(item);
+
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            <input type="checkbox"
+                                   id="checkbox-@item.BetType"
+                                   data-sporttypeid="@item.SportType"
+                                   data-bettypeid="@item.BetType"
+                                   data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
+                                   @(item.IsDisabled ? string.Empty : "checked=checked")
+                                   @(Model.IsDisabledEditCustStatus(item) ? "disabled=disabled" : string.Empty) />
+                            <label for="checkbox-@item.BetType">@userLevelDisplayName</label>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    if (!Model.IsViewOnly && !noDataFound)
+    {
+        <div class="margin-top10">
+            <button type="submit"
+                    class="btn-submit"
+                    @(enableSubmitButton && Model.IsDirectDownline ? string.Empty : "disabled=disabled")>
+                @Resources.Submit
+            </button>
+        </div>
+        <input type="hidden" id="hiddenProductId" value="@Model.ProductId" />
+        <input type="hidden" id="hiddenCustId" value="@Model.CustId" />
+        <input type="hidden" id="hiddenCustRoleId" value="@Model.CustRole.Value" />
+        <input type="hidden" id="hiddenNoDataChange" value="@Resources.NoDataChange" />
+    }
+}
+
+@section Styles {
+    @StaticResources.RenderStyles("~/assets/bundles/productstatus/productstatus")
+}
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/productstatus/productstatus")
+}

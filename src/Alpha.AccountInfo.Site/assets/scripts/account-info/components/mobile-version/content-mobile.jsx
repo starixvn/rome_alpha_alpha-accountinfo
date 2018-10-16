@@ -23,7 +23,7 @@ export default class ContentMobile extends React.Component {
 
     shouldComponentUpdate(props, state) {
         let { redirectToBalanceInfoPage, redirectToFeatureList, path } = props;
-        let { featureListPath, balanceInfoPath} = state;
+        let { featureListPath, balanceInfoPath } = state;
 
         let balanceInfoRedirectBackToItself = path === balanceInfoPath && redirectToBalanceInfoPage;
         let featureListRedirectBackToItself = path === featureListPath && redirectToFeatureList;

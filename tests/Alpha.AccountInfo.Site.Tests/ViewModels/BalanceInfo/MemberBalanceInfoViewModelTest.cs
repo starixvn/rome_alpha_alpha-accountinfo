@@ -2,7 +2,7 @@
 {
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.Requests.SearchAccount;
+    using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
     using NSubstitute;
     using Xunit;
