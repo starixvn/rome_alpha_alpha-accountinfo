@@ -3,24 +3,27 @@ import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 
 export default class TotalDownlines extends React.Component {
+    buildStatusInfo(classNames, value) {
+        return <span className={classNames}>{value}</span>;
+    }
+
+    buildTooltip(title, classNames, value) {
+        return <div className='nowrap bold'>{title}: <span className={classNames}>{value}</span></div>;
+    }
+
     render() {
         let { resources, levelName, totalActive, totalClosed, totalSuspended } = this.props;
         let activeClass = 'status-active', closedClass = 'status-closed', suspendedClass = 'status-suspended';
 
-        let statusInfo = (classNames, value) => <span className={classNames}>{value}</span>;
-
-        let tooltip = (title, classNames, value) =>
-            <div className='nowrap bold'>{title}: <span className={classNames}>{value}</span></div>;
-
         let totalDownlineTooltip = <div>
-            {tooltip(resources.Active, activeClass, totalActive)}
-            {tooltip(resources.ConfirmClosedViewModelText, closedClass, totalClosed)}
-            {tooltip(resources.ConfirmSuspendedViewModelText, suspendedClass, totalSuspended)}
+            {this.buildTooltip(resources.Active, activeClass, totalActive)}
+            {this.buildTooltip(resources.ConfirmClosedViewModelText, closedClass, totalClosed)}
+            {this.buildTooltip(resources.ConfirmSuspendedViewModelText, suspendedClass, totalSuspended)}
         </div>;
 
-        let activeInfo = statusInfo(activeClass, totalActive);
-        let closedInfo = statusInfo(closedClass, totalClosed);
-        let suspendedInfo = statusInfo(suspendedClass, totalSuspended);
+        let activeInfo = this.buildStatusInfo(activeClass, totalActive);
+        let closedInfo = this.buildStatusInfo(closedClass, totalClosed);
+        let suspendedInfo = this.buildStatusInfo(suspendedClass, totalSuspended);
 
         return (
             <div className="col-xs-12 row-info">

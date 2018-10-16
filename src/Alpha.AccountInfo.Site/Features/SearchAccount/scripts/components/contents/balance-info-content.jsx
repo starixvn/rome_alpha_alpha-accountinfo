@@ -3,7 +3,7 @@ import CellContainNumberFormat from '../common/cell-contain-number-format';
 import NumberFormat from 'react-number-format';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
-import { UserLevel } from '../../constants/user-level';
+import { UserLevel } from '../../constants';
 import { mobileScale, resizePopupOnMobile } from '../../helpers/accountinfo-helper';
 
 export default class BalanceInfoContent extends React.Component {
@@ -16,12 +16,12 @@ export default class BalanceInfoContent extends React.Component {
         let self = this;
         let resources = this.props.resources;
         let { mobileView, customerInfo } = this.props;
+        let width = 470, height = 300;
 
         let givenCreditUrl = `${accountInfoSiteAppPath}SearchAccount/GivenCredit` +
             `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
             `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
             `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
-        let width = 470, height = 300;
 
         if (mobileView) {
             width = mobileScale(width);

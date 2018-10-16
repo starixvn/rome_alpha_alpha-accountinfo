@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../api-client';
 import { mobileScale, resizePopupOnMobile, resizeBootboxOnMobile } from '../../helpers/accountinfo-helper';
+import { ProductConstants } from '../../constants';
 
 export default class StatusContent extends React.Component {
     constructor(props) {
@@ -38,10 +39,13 @@ export default class StatusContent extends React.Component {
                 accountInfoAPI.updateCustomerStatus(url, JSON.parse(param)).then((data) => {
                     if (data.IsSuccess) {
                         setTimeout(() => {
+                            $.unblockUI();
                             self.props.fetchCustomerInfoFromServer(self.props.username, false);
                         }, 3000);
                     }
-                    $.unblockUI();
+                    else {
+                        $.unblockUI();
+                    }
                 });
             });
 
@@ -56,14 +60,8 @@ export default class StatusContent extends React.Component {
         let resources = this.props.resources;
         let popupTitle = `${resources.Update} ${productName} ${resources.Status}`;
         let { mobileView } = this.props;
-        let width = 475, height = 200, left = 200, top = 200;
-
-        if (productId === 8) {
-            height = 530;
-        }
-        else if (productId >= 21) {
-            height = 300;
-        }
+        let left = 200, top = 200, width = 475;
+        let height = productId === ProductConstants.Keno ? 530 : productId >= ProductConstants.AllBet ? 300 : 200;
 
         window.top.ageWnd.open(e.currentTarget.dataset.url, popupTitle, left, top, width, mobileView ? mobileScale(height) : height);
 

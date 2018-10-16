@@ -2,7 +2,6 @@
 import ReactDOM from 'react-dom';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ContentMobile from './content-mobile';
-//import DebugRouter from '../../helpers/router-debugger';
 
 export default class AccountInfoMobile extends React.Component {
     constructor(props) {
@@ -19,7 +18,8 @@ export default class AccountInfoMobile extends React.Component {
 
         this.setState({
             redirectToFeatureList: nextCustomerInfo === null,
-            redirectToBalanceInfoPage: nextCustomerInfo !== null && nextCustomerInfo !== customerInfo
+            redirectToBalanceInfoPage: nextProps.redirectToBalanceInfoPage ?
+                    nextCustomerInfo !== null && nextCustomerInfo !== customerInfo : false
         });
     }
 
@@ -80,7 +80,8 @@ export default class AccountInfoMobile extends React.Component {
                                                 redirectToFeatureList={redirectToFeatureList}
                                             />
                                     }
-                                />);
+                                />
+                            );
                         })
                     }
                 </Switch>

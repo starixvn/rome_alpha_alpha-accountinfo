@@ -1,12 +1,12 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { accountInfoAPI } from '../api-client';
-import { UserLevel } from '../constants/user-level';
-import SearchingContent from '../components/contents/searching-content';
-import CustomerInfoContent from '../components/contents/customer-info-content';
+import { UserLevel } from '../constants';
+import SearchingContent from '../components/contents/searching/searching-content';
+import CustomerInfoContent from '../components/contents/customer-info/customer-info-content';
 import ContactInfoContent from '../components/contents/contact-info-content';
 import BalanceInfoContent from '../components/contents/balance-info-content';
-import DownlineListContent from '../components/contents/downline-list-content';
+import DownlineListContent from '../components/contents/downline-list/downline-list-content';
 import SettingContent from '../components/contents/setting-content';
 import StatusContent from '../components/contents/status-content';
 import LoginInfoContent from '../components/contents/login-info-content';
@@ -309,7 +309,7 @@ export default class AccountInfo extends React.Component {
             this.handleSearchFromUserLevel,
             this.handleOpenIPInfo);
 
-        const accountInfoMobile = <AccountInfoMobile contentItems={contentItems} customerInfo={customerInfo} />;
+        const accountInfoMobile = <AccountInfoMobile contentItems={contentItems} customerInfo={customerInfo} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />;
 
         const accountInfoDesktop = <AccountInfoDesktop contentItems={contentItems} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />;
 

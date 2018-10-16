@@ -2,7 +2,8 @@
 import { Fragment } from 'react';
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
-import CustomAnchorTag from '../common/custom-anchor-tag';
+import CustomAnchorTag from '../../common/custom-anchor-tag';
+import { ClosedReason } from '../../../constants';
 
 const UserLevelInfo = ({
     customerInfo,
@@ -18,19 +19,19 @@ const UserLevelInfo = ({
 
     let statusCss = 'enabled';
     let statusMessage = '';
-
+    
     if (customerInfo.RoleId === userLevelId) {
         if (customerInfo.Closed) {
             switch (customerInfo.ClosedReason) {
-                case 0:
+                case ClosedReason.ByOtherReason:
                     statusCss = "closed-wrongPwdOthers";
                     statusMessage = resources.ClosedByFailedLoginOrAccountExpired;
                     break;
-                case 1:
+                case ClosedReason.ByAdmin:
                     statusCss = "closed-byAdmin";
                     statusMessage = resources.ClosedByAdmin;
                     break;
-                case 2:
+                case ClosedReason.ByUpline:
                     statusCss = "closed-byUpline";
                     statusMessage = resources.ClosedByUpline;
                     break;
@@ -55,13 +56,13 @@ const UserLevelInfo = ({
             mobileView={mobileView}
             title={resources.Viewlog}
             classNames="pointer"
-            href={customerInfo.ViewLogLink}>
+            href={customerInfo.ViewLogLink}
+        >
             <span className={statusCss} data-username={username}> {username} </span>
             <span className="icon-viewlog" />
         </CustomAnchorTag>;
 
     return (
-
         <div className={rowClasses} >
             <div className={firstCellClass}>{userLevelName}</div>
             <div className={secondCellClass}>

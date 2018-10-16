@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import TotalDownlines from './total-downlines';
-import { UserLevel } from '../../constants/user-level';
+import { UserLevel } from '../../../constants';
 
 const DownlineListContent = ({ resources, data, mobileView, handleSearchFromUserLevel }) => <div>
     {

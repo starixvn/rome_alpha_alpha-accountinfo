@@ -2,8 +2,8 @@
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import UserLevelInfo from './user-level-info';
-import { UserLevel } from '../../constants/user-level';
-import CustomAnchorTag from '../common/custom-anchor-tag';
+import { UserLevel } from '../../../constants';
+import CustomAnchorTag from '../../common/custom-anchor-tag';
 
 const CustomerInfoContent = ({
     customerInfo,
