@@ -107,7 +107,7 @@ export default class GivenCredit extends React.Component {
                 </div>
 
                 <div className="note">
-                    <span className="text-red">*</span> <strong>Note</strong>: <span className="number">93,731,950.00</span> ≤ New Given Credit ≤ <span className="number">88,671,518,500.00</span>
+                    <span className="text-red">*</span> <strong>Note</strong>: <span className="number">93,731,950.00</span> ≤ New Value ≤ <span className="number">88,671,518,500.00</span>
                 </div>
             </div>
         );
