@@ -2,10 +2,11 @@
 {
     using System.Collections.Generic;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Models;
 
     public class ProductStatusCommandParam
     {
+#pragma warning disable S107 // Methods should not have too many parameters
+
         public ProductStatusCommandParam(
             int productId,
             int custId,
@@ -18,6 +19,7 @@
             string langKey,
             string ip,
             IEnumerable<BetTypeStatusParam> productStatusParams)
+#pragma warning restore S107 // Methods should not have too many parameters
         {
             ProductId = productId;
             CustId = custId;

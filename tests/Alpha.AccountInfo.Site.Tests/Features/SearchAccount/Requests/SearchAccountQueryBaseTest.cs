@@ -32,12 +32,12 @@
         [InlineData(-1, false)]
         public void IsValid_Always_ReturnsCorrectValue(int searchAccountId, bool expectedValue)
         {
-            var messages = new SearchAccountQueryBase(viewer)
+            var query = new SearchAccountQueryBase(viewer)
             {
                 SearchAccountId = searchAccountId
             };
 
-            Assert.Equal(messages.IsValid(), expectedValue);
+            Assert.Equal(query.IsValid(), expectedValue);
         }
 
         [Theory]

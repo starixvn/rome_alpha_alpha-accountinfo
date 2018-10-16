@@ -22,10 +22,10 @@
                 messages.SearchAccountName == "SearchAccountName" &&
                 messages.ActorId == 1 &&
                 messages.ActorRoleId == 4 &&
-                messages.AllDayBalTransfer == false &&
-                messages.AllowedTotalBalanceTransfer == true &&
-                messages.AllowTransfer == true &&
-                messages.ViewReports == true);
+                !messages.AllDayBalTransfer &&
+                messages.AllowedTotalBalanceTransfer &&
+                messages.AllowTransfer &&
+                messages.ViewReports);
         }
 
         [Theory]

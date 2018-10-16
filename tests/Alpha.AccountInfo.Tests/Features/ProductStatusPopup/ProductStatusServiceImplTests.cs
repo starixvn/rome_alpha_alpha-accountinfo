@@ -12,6 +12,7 @@
     using Alpha.AccountInfo.Services.ProductStatus;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
     using NSubstitute;
     using Params.ProductStatus;
     using Xunit;
@@ -31,6 +32,7 @@
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ProductStatusServiceImpl productStatusServiceImpl;
         private readonly IProductProfileService productProfileService;
+        private readonly ILogger logger;
 
         public ProductStatusServiceImplTests()
         {
@@ -40,6 +42,7 @@
             authorizationService = Substitute.For<ProductStatusAuthorizationService>();
             rnGCasinoService = Substitute.For<RnGCasinoService>();
             productProfileService = Substitute.For<IProductProfileService>();
+            logger = Substitute.For<ILogger>();
 
             productStatusServiceImpl = new ProductStatusServiceImpl(
                 dynamicRepository,
@@ -48,6 +51,7 @@
                 authorizationService,
                 rnGCasinoService,
                 productProfileService);
+                logger);
 
             rnGCasinoService.SyncedToRnGCasino3rdByStatus(
                 new UpdateRnGCasino3rdParam(

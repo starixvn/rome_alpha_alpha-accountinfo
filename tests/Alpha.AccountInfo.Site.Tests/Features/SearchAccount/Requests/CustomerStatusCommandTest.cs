@@ -24,10 +24,10 @@
             Assert.True(
                 messages.ActorName == "ActorName" &&
                 messages.ActorId == 1 &&
-                messages.SyncedCasino3rd == true &&
+                messages.SyncedCasino3rd &&
                 messages.SearchAccountId == 1 &&
                 messages.StatusName == "outright" &&
-                messages.StatusValue == true &&
+                messages.StatusValue &&
                 messages.IP == "::1" &&
                 messages.Language == "En");
         }

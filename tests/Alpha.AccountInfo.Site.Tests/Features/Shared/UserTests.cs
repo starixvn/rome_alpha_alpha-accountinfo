@@ -53,21 +53,21 @@
                 user.IP == "::1" &&
                 user.LangKey == "E" &&
                 user.Language == "En" &&
-                user.IsInternal == false &&
-                user.AllowedAllDayBalTransfer == true &&
-                user.AllowedTotalBalanceTransfer == true &&
-                user.CanViewReports == true &&
-                user.AllowTransfer == true &&
-                user.GetDisabledProduct(1) == true &&
-                user.GetHideProduct(1) == true &&
-                user.GetSyncedProduct(1) == true &&
-                user.IsHideKeno == true &&
-                user.IsCasinoSync == true &&
-                user.IsCasinoDisabled == true &&
-                user.IsHideColossusBets == true &&
-                user.DisableColossusBets == true &&
-                user.IsDisabledESports == true &&
-                user.IsNumberGameDisabled == true);
+                !user.IsInternal &&
+                user.AllowedAllDayBalTransfer &&
+                user.AllowedTotalBalanceTransfer &&
+                user.CanViewReports &&
+                user.AllowTransfer &&
+                user.GetDisabledProduct(1) &&
+                user.GetHideProduct(1) &&
+                user.GetSyncedProduct(1) &&
+                user.IsHideKeno &&
+                user.IsCasinoSync &&
+                user.IsCasinoDisabled &&
+                user.IsHideColossusBets &&
+                user.DisableColossusBets &&
+                user.IsDisabledESports &&
+                user.IsNumberGameDisabled);
         }
 
         [Fact]

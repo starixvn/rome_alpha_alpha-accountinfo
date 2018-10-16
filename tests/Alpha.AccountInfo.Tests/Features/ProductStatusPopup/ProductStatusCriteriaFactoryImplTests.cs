@@ -22,7 +22,7 @@
         private readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
         private readonly UserLevel UplineLevelTest = Enumeration.FromValue<UserLevel>(4);
 
-        private ProductStatusCriteriaFactoryImpl productStatusCriteriaFactoryImpl;
+        private readonly ProductStatusCriteriaFactoryImpl productStatusCriteriaFactoryImpl;
 
         public ProductStatusCriteriaFactoryImplTests()
         {

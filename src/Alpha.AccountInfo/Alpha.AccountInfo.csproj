@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Alpha.AccountInfo.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Alpha.AccountInfo.Release.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -248,7 +248,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Alpha.AccountInfo.Debug.ruleset" />
-    <None Include="Alpha.AccountInfo.ruleset" />
+    <None Include="Alpha.AccountInfo.Release.ruleset" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

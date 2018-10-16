@@ -24,7 +24,7 @@
 
                 switch (param.StatusName)
                 {
-                    case StatusNames.Closed:
+                    case Closed:
                         customer.UpdateCustClosed(
                         param.SearchAccountId,
                         param.StatusValue,
@@ -34,7 +34,7 @@
                         AlphaSystemId);
                         break;
 
-                    case StatusNames.Suspended:
+                    case Suspended:
                         customer.UpdateCustSuspend(
                          param.SearchAccountId,
                          param.StatusValue,
@@ -44,7 +44,7 @@
                          AlphaSystemId);
                         break;
 
-                    case StatusNames.EnableRnGCasino3rd:
+                    case EnableRnGCasino3rd:
                         customer.UpdateCustEnableCasino(
                         param.SearchAccountId,
                         param.StatusValue,

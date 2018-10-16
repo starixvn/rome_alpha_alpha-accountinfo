@@ -30,7 +30,7 @@
                 message.CustId,
                 message.CustRole,
                 message.UplineId,
-                message.UplineLevel);
+                message.UplineLevel).ConfigureAwait(false);
 
             return ToProductStatusViewModel(message, model);
         }
@@ -39,7 +39,7 @@
         {
             var commandParam = ToUpdateProductStatusParam(message);
 
-            return await statusService.UpdateProductStatusAsync(commandParam);
+            return await statusService.UpdateProductStatusAsync(commandParam).ConfigureAwait(false);
         }
 
         private static ProductStatusViewModel ToProductStatusViewModel(

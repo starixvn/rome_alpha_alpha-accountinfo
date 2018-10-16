@@ -123,7 +123,7 @@
             Assert.Equal(viewModel.ShowMaster, expectedShowMaster);
         }
 
-        private CustomerInfoViewModel BuildCustomerInfoViewModel(CustomerInfoQuery messages, byte searchAccountRoleId = 1)
+        private static CustomerInfoViewModel BuildCustomerInfoViewModel(CustomerInfoQuery messages, byte searchAccountRoleId = 1)
             => new CustomerInfoViewModel(
                 messages,
                 AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId),

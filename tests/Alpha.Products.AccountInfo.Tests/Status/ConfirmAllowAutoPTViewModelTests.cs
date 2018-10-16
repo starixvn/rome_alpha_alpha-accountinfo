@@ -8,7 +8,7 @@
     [Trait("Status.ViewModels", "ConfirmAllowAutoPTViewModel")]
     public class ConfirmAllowAutoPTViewModelTests
     {
-        private const string BaseAddress = "MicroSiteName/AccountInfo/UpdateCustomerStatus";
+        private const string BaseAddress = "MicroSiteName/SearchAccount/UpdateCustomerStatus";
 
         [Fact]
         public void Url_Start_With_BaseAddress()

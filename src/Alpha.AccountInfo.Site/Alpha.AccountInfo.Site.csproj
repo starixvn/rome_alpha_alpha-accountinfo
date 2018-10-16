@@ -45,7 +45,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Alpha.AccountInfo.Site.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Alpha.AccountInfo.Site.Release.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.Auth, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
@@ -349,8 +349,6 @@
     <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
-    <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
-    <Content Include="Alpha.AccountInfo.Site.ruleset" />
     <Content Include="App_Data\securitycode.json" />
     <Content Include="Features\ProductStatusPopup\Views\Index.cshtml" />
     <Content Include="assets\styles\productstatus\productstatus.scss" />
@@ -598,6 +596,8 @@
   <ItemGroup>
     <Content Include="Features\SearchAccount\Views\web.config" />
     <Content Include="Features\ProductStatusPopup\Views\web.config" />
+    <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
+    <Content Include="Alpha.AccountInfo.Site.Release.ruleset" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>

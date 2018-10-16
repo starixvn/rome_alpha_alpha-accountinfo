@@ -20,7 +20,7 @@
         }
 
         public async Task<ActionResult> Index(SearchAccountQuery message)
-          => await ViewAsync(message, SearchAccountViewPath);
+          => await ViewAsync(message, SearchAccountViewPath).ConfigureAwait(false);
 
         public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
            => JsonData(message);
@@ -38,7 +38,7 @@
            => JsonData(message);
 
         public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
-           => await ViewAsync(message, GiventCreditViewPath);
+           => await ViewAsync(message, GiventCreditViewPath).ConfigureAwait(false);
 
         [HttpPost, AntiXsrfFilter]
         public ActionResult UpdateGivenCredit(GivenCreditCommand command)

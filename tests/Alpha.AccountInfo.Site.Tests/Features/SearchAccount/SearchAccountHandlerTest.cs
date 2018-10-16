@@ -86,34 +86,38 @@
             AssertExtension.Equal(actualViewModel, expectedViewModel);
         }
 
-        //[Fact]
-        //public void HandleDownlineListQuery_Always_ReturnsCorrectViewModel()
-        //{
-        //    var message = new DownlineListQuery(viewer)
-        //    {
-        //        SearchAccountId = 1
-        //    };
+        [Fact]
+        public void HandleDownlineListQuery_Always_ReturnsCorrectViewModel()
+        {
+            var message = new DownlineListQuery(viewer)
+            {
+                SearchAccountId = 1
+            };
 
-        //    var model = new DownlineListModel(
-        //        Enumerable.Empty<string>(),
-        //        totalAgActive: 12,
-        //        totalAgClosed: 13,
-        //        totalAgSuspended: 14,
-        //        totalMemActive: 15,
-        //        totalMemClosed: 16,
-        //        totalMemSuspended: 17);
-        //    var expectedViewModel = new DownlineListViewModel(model);
-        //    accountInfoService.GetDownlineListModel(1).Returns(model);
+            var model = new DownlineListModel(
+                Enumerable.Empty<DownlineDto>(),
+                totalAgActive: 12,
+                totalAgClosed: 13,
+                totalAgSuspended: 14,
+                totalMemActive: 15,
+                totalMemClosed: 16,
+                totalMemSuspended: 17);
+            var expectedViewModel = new DownlineListViewModel(model);
 
-        //    var actualViewModel = accountInfoHandler.Handle(message);
+            accountInfoService.GetDownlineList(1).Returns(Task.FromResult(model));
 
-        //    AssertExtension.Equal(actualViewModel, expectedViewModel);
-        //}
+            var actualViewModel = accountInfoHandler
+                .Handle(message)
+                .GetAwaiter()
+                .GetResult();
+
+            AssertExtension.Equal(actualViewModel, expectedViewModel);
+        }
 
         [Fact]
         public void HandleCustomerInfoQuery_Always_CallGetCustomerInfoModel()
         {
-            var actualViewModel = accountInfoHandler.Handle(customerInfoQuery);
+            accountInfoHandler.Handle(customerInfoQuery);
 
             accountInfoService.Received().GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>());
         }
@@ -155,7 +159,7 @@
         {
             accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>()).Returns(customerInfo);
 
-            var actualViewModel = accountInfoHandler.Handle(customerInfoQuery);
+            accountInfoHandler.Handle(customerInfoQuery);
 
             accountInfoService.Received().GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>());
         }
@@ -249,7 +253,7 @@
             var actualViewModel = accountInfoHandler
                 .Handle(message)
                 .GetAwaiter()
-                .GetResult(); ;
+                .GetResult();
 
             Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);
         }

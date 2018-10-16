@@ -11,7 +11,8 @@
         private const int SubAccIdTest = 536751;
         private const int UserIdTest = 1176070;
         private const string IPTest = "127.0.0.1";
-        private static readonly BetTypeStatusParam[] ProductStatusParamTest = new[]
+
+        private static readonly BetTypeStatusParam[] ProductStatusParamTest =
         {
             new BetTypeStatusParam(211, 2401, false),
             new BetTypeStatusParam(211, 2402, false)
@@ -63,7 +64,7 @@
         public void IsDisabled_Always_ReturnsCorrectXML()
         {
             // Arrange
-            var expectedResult = 
+            var expectedResult =
                 @"<ROOT><ProductStatus SportType=""211"" BetType=""2401"" IsDisabled=""0""/><ProductStatus SportType=""211"" BetType=""2402"" IsDisabled=""0""/></ROOT>";
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, ProductStatusParamTest);
 

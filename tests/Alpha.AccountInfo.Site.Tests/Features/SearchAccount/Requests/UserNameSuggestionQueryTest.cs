@@ -20,7 +20,7 @@
             Assert.True(
                 messages.SuggestionQuery == "test" &&
                 messages.ActorId == 1 &&
-                messages.IsInternal == false);
+                !messages.IsInternal);
         }
     }
 }

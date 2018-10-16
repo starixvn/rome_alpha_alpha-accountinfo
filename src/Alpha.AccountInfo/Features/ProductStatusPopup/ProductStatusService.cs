@@ -12,9 +12,9 @@
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
     using Models.ProductStatus;
     using Params.ProductStatus;
-    using static Alpha.AccountInfo.Features.Shared.StatusNames;
 
     public interface ProductStatusService
     {
@@ -38,6 +38,7 @@
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly IProductProfileService productProfileService;
+        private readonly ILogger logger;
 
         public ProductStatusServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -45,14 +46,14 @@
             ProductStatusCriteriaFactory criteriaFactory,
             ProductStatusAuthorizationService authorizationService,
             RnGCasinoService rnGCasinoService,
-            IProductProfileService productProfileService)
+            ILogger logger)
         {
             repository = dynamicRepository;
             this.cacheRefService = cacheRefService;
             this.criteriaFactory = criteriaFactory;
             this.authorizationService = authorizationService;
             this.rnGCasinoService = rnGCasinoService;
-            this.productProfileService = productProfileService;
+            this.logger = logger;
         }
 
         public async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -74,7 +75,7 @@
                 return Enumerable.Empty<ProductStatusModel>();
             }
 
-            return await GetProductStatusAsync(productId, custId, custRole);
+            return await GetProductStatusAsync(productId, custId, custRole).ConfigureAwait(false);
         }
 
         public async Task<Result> UpdateProductStatusAsync(ProductStatusCommandParam commandParam)
@@ -94,13 +95,13 @@
             switch (commandParam.ProductId)
             {
                 case ProductConstants.Keno:
-                    return await UpdateKenoStatusAsync(commandParam);
+                    return await UpdateKenoStatusAsync(commandParam).ConfigureAwait(false);
 
                 case ProductConstants.RNGCasino:
-                    return await UpdateCasinoStatus(commandParam);
+                    return await UpdateCasinoStatus(commandParam).ConfigureAwait(false);
 
                 default:
-                    return await UpdateStatusAsync(commandParam);
+                    return await UpdateStatusAsync(commandParam).ConfigureAwait(false);
             }
         }
 
@@ -110,7 +111,7 @@
             UserLevel custRole)
         {
             ICriteria criteria = criteriaFactory.CreateSelectCriteria(productId, custId, custRole.Value);
-            var rawData = await repository.FetchAsync<ProductStatusModel>(criteria);
+            var rawData = await repository.FetchAsync<ProductStatusModel>(criteria).ConfigureAwait(false);
 
             return SetProductStatusName(productId, rawData);
         }
@@ -162,7 +163,7 @@
 
             foreach (var item in criteria)
             {
-                await repository.ExecuteAsync(item);
+                await repository.ExecuteAsync(item).ConfigureAwait(false);
 
                 if (!item.Success)
                 {
@@ -179,7 +180,7 @@
         {
             var criteria = criteriaFactory.CreateUpdateCriteria(param);
 
-            await repository.ExecuteAsync(criteria);
+            await repository.ExecuteAsync(criteria).ConfigureAwait(false);
 
             return criteria.Success ?
                 Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully) :
@@ -190,7 +191,7 @@
         {
             var criteria = criteriaFactory.CreateUpdateCasinoStatusCriteria(param);
 
-            await repository.ExecuteAsync(criteria);
+            await repository.ExecuteAsync(criteria).ConfigureAwait(false);
 
             if (criteria.Success)
             {
@@ -235,17 +236,18 @@
             return errMsg;
         }
 
-        private static bool IsValidXml(string xml)
+        private bool IsValidXml(string xml)
         {
-            if (!string.IsNullOrEmpty(xml) && xml.TrimStart().StartsWith("<"))
+            if (!string.IsNullOrEmpty(xml) && xml.TrimStart().StartsWith("<", StringComparison.OrdinalIgnoreCase))
             {
                 try
                 {
                     XDocument.Parse(xml);
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    logger.Error($"Invalid DCS Xml: {xml}", ex);
                 }
             }
 

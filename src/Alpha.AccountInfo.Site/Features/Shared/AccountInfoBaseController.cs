@@ -6,7 +6,10 @@
     using MediatR;
     using Web;
 
+#pragma warning disable S1694 // An abstract class should have both abstract and concrete methods
+
     public abstract class AccountInfoBaseController : BaseAsyncController
+#pragma warning restore S1694 // An abstract class should have both abstract and concrete methods
     {
         private const string NoInformationPageViewPath = "~/Features/Shared/Views/NoInformation.cshtml";
 
@@ -19,7 +22,7 @@
 
         protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message, string viewPath)
              => (message as BaseRequest).IsValid() ?
-                View(viewPath, await mediator.Send(message)) : View(NoInformationPageViewPath);
+                View(viewPath, await mediator.Send(message).ConfigureAwait(false)) : View(NoInformationPageViewPath);
 
         protected ActionResult JsonData<TResponse>(
            IRequest<TResponse> message,
@@ -42,7 +45,7 @@
                 return Json(Result.CreateForbiddenResult());
             }
 
-            return Json(await mediator.Send(message), jsonRequestBehavior);
+            return Json(await mediator.Send(message).ConfigureAwait(false), jsonRequestBehavior);
         }
     }
 }

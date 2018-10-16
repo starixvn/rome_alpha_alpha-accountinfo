@@ -20,10 +20,10 @@
         }
 
         public async Task<ActionResult> Index(ProductStatusQuery message)
-            => await ViewAsync(message, ProductStatusPopupViewPath);
+            => await ViewAsync(message, ProductStatusPopupViewPath).ConfigureAwait(false);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> Update(ProductStatusCommand message)
-            => await JsonDataAsync<Result>(message, JsonRequestBehavior.DenyGet);
+            => await JsonDataAsync<Result>(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
     }
 }

@@ -2,6 +2,8 @@
 {
     public class UpdateKenoStatusCriteria : NonQueryProductStatusCriteria
     {
+#pragma warning disable S107 // Methods should not have too many parameters
+
         public UpdateKenoStatusCriteria(
             int custId,
             int subAccId,
@@ -11,6 +13,7 @@
             int betType,
             bool disable,
             int uplineId) : base(custId, subAccId, userId, ip)
+#pragma warning restore S107 // Methods should not have too many parameters
         {
             Language = language;
             BetType = betType;
