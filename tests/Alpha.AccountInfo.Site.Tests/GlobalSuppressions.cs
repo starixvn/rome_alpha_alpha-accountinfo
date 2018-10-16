@@ -5,5 +5,5 @@
 // a specific target and scoped to a namespace, type, member, etc.
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Metrics", "MS002:Cyclomatic Complexity does not follow metric rules.", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.AccountInfo.Site.Tests.Models.UserTests.Constructor_Always_GetUserDataFromSession")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Metrics", "MS002:Cyclomatic Complexity does not follow metric rules.", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.AccountInfo.Site.Tests.Requests.AccountInfo.CustomerAllStatusQueryTest.Constructor_Always_ReturnCorrectRequest")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Metrics", "MS002:Cyclomatic Complexity does not follow metric rules.", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.AccountInfo.Site.Tests.Features.SearchAccount.Requests.CustomerAllStatusQueryTest.Constructor_Always_ReturnCorrectRequest")]
 

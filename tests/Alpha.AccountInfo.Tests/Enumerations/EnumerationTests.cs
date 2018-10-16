@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Tests.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
-    using Models;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]
