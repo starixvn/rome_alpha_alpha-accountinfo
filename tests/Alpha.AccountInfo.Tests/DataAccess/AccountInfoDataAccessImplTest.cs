@@ -1,17 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Tests.DataAccess
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
-    using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
-    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
-    using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Tests.Database;
     using Alpha.AccountInfo.Tests.Extensions;
     using Alpha.AccountInfo.Tests.Fixtures;
+    using Fanex.Data;
     using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
@@ -23,36 +19,21 @@
     {
         private readonly ObjectDbFixture objectDbFixture;
         private readonly CompareLogic compareLogic;
+        private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccessImpl;
+        private readonly IObjectDb objectDb;
+        private readonly IMultiResultReader multiResultReader;
 
         public AccountInfoDataAccessImplTest(ObjectDbFixture objectDbFixture)
         {
             this.objectDbFixture = objectDbFixture;
+            objectDb = Substitute.For<IObjectDb>();
+            ObjectDbFactory.Mock((key, timeout) => objectDb);
+            dynamicRepository = Substitute.For<IDynamicRepository>();
             compareLogic = new CompareLogic();
             accountInfoDataAccessImpl = new SearchAccountDataAccessImpl();
+            multiResultReader = Substitute.For<IMultiResultReader>();
         }
-
-        ////[Fact]
-        ////public void GetOnlineList_HasData_ReturnsDataFromObjectDb()
-        ////{
-        ////    // Arrange
-        ////    var criteria = new SelectOnlineListCriteria(1);
-
-        ////    var dataSet = AccountInfoDatabase.OnlineListData.CreateDataReader();
-        ////    objectDbFixture.ObjectDb.ExecuteReader(Arg.Any<Hashtable>()).Returns(dataSet);
-
-        ////    var expectedData = new List<OnlineUserModel>
-        ////    {
-        ////        new OnlineUserModel("192.168.1.1", new DateTime(2018, 08, 29).ToString("dd MMM hh:mm tt")),
-        ////        new OnlineUserModel("192.168.1.2", new DateTime(2018, 08, 30).ToString("dd MMM hh:mm tt")),
-        ////    };
-
-        ////    // Act
-        ////    var actualData = accountInfoDataAccessImpl.GetOnlineList(criteria);
-
-        ////    // Assert
-        ////    AssertExtension.Equal(expectedData, actualData);
-        ////}
 
         //[Fact]
         //public void GetDownlineList_HasData_ReturnsDataFromObjectDb()
@@ -84,28 +65,43 @@
         //}
 
         [Fact]
-        public void GetCustomerAllStatus_HasData_ReturnsDataFromObjectDb()
+        public void GetCustomerAllStatus_HasData_ReturnsCustomerStatusModel()
         {
             // Arrange
             var criteria = new SelectCustomerAllStatusModelCriteria(1);
+            objectDb
+                .QueryMultipleAsync(criteria.GetSpParams())
+                .Returns(Task.FromResult(multiResultReader));
 
-            var dataSet = AccountInfoDatabase.CustomerAllStatusData;
-            objectDbFixture.ObjectDb.ExecuteDataSet(Arg.Any<Hashtable>()).Returns(dataSet);
+            var nonProduct = StubNonProductStatus();
+            multiResultReader
+                .ReadAsync<NonProductStatusModel>()
+                .Returns(Task.FromResult(new List<NonProductStatusModel> { nonProduct } as IEnumerable<NonProductStatusModel>));
 
-            var expectedData = new CustomerStatusModel(
-                 nonProduct: new NonProductStatusModel(
-                             hasDownline: true,
-                             disableAutoMPT: true,
-                             closed: true,
-                             uplineClosed: true,
-                             suspended: true,
-                             uplineSuspend: true,
-                             transferOption: "00000000",
-                             doubleCommLosing: true,
-                             uplineDoubleCommLosing: true,
-                             disableOutright: true,
-                             uplineDisableOutright: true),
-                 nonDCSProduct: new NonDCSProductStatusModel(
+            var nonDCSProduct = StubNonDCSProduct();
+            multiResultReader
+                .ReadAsync<NonDCSProductStatusModel>()
+                .Returns(Task.FromResult(new List<NonDCSProductStatusModel> { nonDCSProduct } as IEnumerable<NonDCSProductStatusModel>));
+
+            var dcsProducts = StubNonDcsProducts();
+            multiResultReader
+               .ReadAsync<NonDCSProductStatusModel>()
+               .Returns(Task.FromResult(dcsProducts as IEnumerable<NonDCSProductStatusModel>));
+
+            // Act
+            var actualData = accountInfoDataAccessImpl
+                .GetCustomerAllStatus(criteria)
+                .GetAwaiter()
+                .GetResult();
+
+            // Assert
+            AssertExtension.Equal(nonProduct, actualData.NonProduct);
+            AssertExtension.Equal(nonDCSProduct, actualData.NonDCSProduct);
+            AssertExtension.Equal(dcsProducts, actualData.DCSProducts);
+        }
+
+        private static NonDCSProductStatusModel StubNonDCSProduct()
+            => new NonDCSProductStatusModel(
                              syncCasino: true,
                              disableCasino: true,
                              uplineDisableCS: true,
@@ -116,8 +112,24 @@
                              disableColossusBet: true,
                              hideColossusBet: true,
                              uplineDisableColossusBet: true,
-                             hideKeno: true),
-                 dcsProducts: new List<DCSProductStatusModel>
+                             hideKeno: true);
+
+        private static NonProductStatusModel StubNonProductStatus()
+            => new NonProductStatusModel(
+                             hasDownline: true,
+                             disableAutoMPT: true,
+                             closed: true,
+                             uplineClosed: true,
+                             suspended: true,
+                             uplineSuspend: true,
+                             transferOption: "00000000",
+                             doubleCommLosing: true,
+                             uplineDoubleCommLosing: true,
+                             disableOutright: true,
+                             uplineDisableOutright: true);
+
+        private static List<DCSProductStatusModel> StubNonDcsProducts()
+            => new List<DCSProductStatusModel>
                  {
                      new DCSProductStatusModel(
                                   productId: 5,
@@ -141,15 +153,7 @@
                                   isHiddenUpline: true,
                                   isDisabledUpline: true,
                                   hasDownline: true)
-                    }
-                );
-
-            // Act
-            var actualData = accountInfoDataAccessImpl.GetCustomerAllStatus(criteria).GetAwaiter().GetResult();
-
-            // Assert
-            AssertExtension.Equal(expectedData, actualData);
-        }
+                    };
 
         //[Fact]
         //public void ExecuteNonQuery_SuccessCode_ReturnSuccessResult()

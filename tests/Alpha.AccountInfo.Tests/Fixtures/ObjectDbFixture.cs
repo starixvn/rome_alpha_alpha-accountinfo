@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Fixtures
 {
-    using Alpha.AccountInfo.DataAccess;
     using Fanex.Data;
     using NSubstitute;
 
@@ -9,6 +8,9 @@
         public ObjectDbFixture()
         {
             ObjectDb = Substitute.For<IObjectDb>();
+            DbSettingProviderManager
+                .StartTestingSession()
+                .Run();
             //AccountObjectDbFactory.CreateInstance = (settingKey) => ObjectDb;
         }
 

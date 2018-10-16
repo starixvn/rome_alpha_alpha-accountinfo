@@ -23,13 +23,13 @@
     {
         public async Task<CustomerStatusModel> GetCustomerAllStatus(SelectCustomerAllStatusModelCriteria criteria)
         {
-            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var objectDb = await db.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
                 {
-                    var customerStatus = (await objectDb.ReadAsync<NonProductStatusModel>().ConfigureAwait(false)).FirstOrDefault();
-                    var nonDCSProduct = (await objectDb.ReadAsync<NonDCSProductStatusModel>().ConfigureAwait(false)).FirstOrDefault();
-                    var dcsProducts = await objectDb.ReadAsync<DCSProductStatusModel>().ConfigureAwait(false);
+                    var customerStatus = (await multiResultReader.ReadAsync<NonProductStatusModel>().ConfigureAwait(false)).FirstOrDefault();
+                    var nonDCSProduct = (await multiResultReader.ReadAsync<NonDCSProductStatusModel>().ConfigureAwait(false)).FirstOrDefault();
+                    var dcsProducts = await multiResultReader.ReadAsync<DCSProductStatusModel>().ConfigureAwait(false);
 
                     return new CustomerStatusModel(
                         customerStatus,
@@ -43,12 +43,12 @@
 
         public async Task<DownlineListModel> GetDownlineList(SelectDownlineListCriteria criteria)
         {
-            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var objectDb = await db.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
                 {
-                    var downlines = await objectDb.ReadAsync<DownlineDto>().ConfigureAwait(false);
-                    var downlineListModel = (await objectDb.ReadAsync<DownlineListModel>().ConfigureAwait(false)).FirstOrDefault();
+                    var downlines = await multiResultReader.ReadAsync<DownlineDto>().ConfigureAwait(false);
+                    var downlineListModel = (await multiResultReader.ReadAsync<DownlineListModel>().ConfigureAwait(false)).FirstOrDefault();
 
                     if (downlineListModel != null)
                     {
