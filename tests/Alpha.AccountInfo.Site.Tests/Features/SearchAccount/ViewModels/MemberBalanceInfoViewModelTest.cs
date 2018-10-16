@@ -39,8 +39,7 @@
                 viewModel.Outstanding.Equals(16) &&
                 viewModel.NetPosition.Equals(19) &&
                 viewModel.GivenCredit.Equals(12) &&
-                viewModel.BetCredit.Equals(29) &&
-                viewModel.GivenCreditLimit.Equals("<=20"));
+                viewModel.BetCredit.Equals(29));
         }
     }
 }

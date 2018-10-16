@@ -23,7 +23,6 @@
                 viewModel.YesterdayBalance.Equals(50) &&
                 viewModel.Outstanding.Equals(15) &&
                 viewModel.UsedCredit.Equals(23) &&
-                viewModel.GivenCreditLimit.Equals(">=24 and <=85") &&
                 viewModel.GivenCredit.Equals(12));
         }
     }

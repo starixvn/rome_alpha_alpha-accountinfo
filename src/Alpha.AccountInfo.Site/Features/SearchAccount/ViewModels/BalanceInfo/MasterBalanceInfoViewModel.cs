@@ -33,12 +33,10 @@
 
         public decimal UsedCredit => RoundNumber(balanceInfoModel.MasterUsedCredit);
 
-        public string GivenCreditLimit => $">={MasterCredit_Min} {Resources.And} <={MasterCredit_Max}";
-
         public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
 
-        private decimal MasterCredit_Min => balanceInfoModel.MasterCreditMin;
+        public decimal GivenCreditMin => balanceInfoModel.MasterCreditMin;
 
-        private decimal MasterCredit_Max => balanceInfoModel.MasterCreditMax;
+        public decimal GivenCreditMax => balanceInfoModel.MasterCreditMax;
     }
 }

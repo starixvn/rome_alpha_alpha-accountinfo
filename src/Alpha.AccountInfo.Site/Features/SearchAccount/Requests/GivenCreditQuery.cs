@@ -17,6 +17,10 @@
 
         public decimal CurrentGivenCredit { get; set; }
 
+        public decimal GivenCreditMin { get; set; }
+
+        public decimal GivenCreditMax { get; set; }
+
         public string Language { get; }
 
         public override bool IsValid() =>

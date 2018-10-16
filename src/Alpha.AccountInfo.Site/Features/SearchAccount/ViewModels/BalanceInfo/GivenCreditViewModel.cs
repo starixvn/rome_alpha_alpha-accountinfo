@@ -27,6 +27,10 @@
 
         public decimal CurrentGivenCredit => message.CurrentGivenCredit;
 
+        public decimal GivenCreditMin => message.GivenCreditMin;
+
+        public decimal GivenCreditMax => message.GivenCreditMax;
+
         public string GivenCreditResources => ConvertResourcesJson(message.Language, GivenCredit.ResourceManager);
     }
 }

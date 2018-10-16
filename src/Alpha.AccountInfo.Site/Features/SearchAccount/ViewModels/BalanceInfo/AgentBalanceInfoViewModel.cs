@@ -35,18 +35,16 @@
 
         public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
 
-        public string GivenCreditLimit => $">={AgentCredit_Min} {Resources.And} <={AgentCredit_Max}";
-
         public bool ShowMemberMaxCreditLimit => ActorLevel.IsMasterLevel();
 
-        public string MemberMaxCreditLimit => $">={MemMaxCredit_Min} {Resources.And} <={GivenCredit}";
+        public string MemberMaxCreditLimit => $">={MemMaxCreditMin} {Resources.And} <={GivenCredit}";
+
+        public decimal GivenCreditMin => balanceInfoModel.AgentCreditMin;
+
+        public decimal GivenCreditMax => balanceInfoModel.AgentCreditMax;
 
         internal override bool ShowTransferLink => ActorLevel.IsMasterLevel() && base.ShowTransferLink;
 
-        private decimal MemMaxCredit_Min => balanceInfoModel.MemMaxCreditMin;
-
-        private decimal AgentCredit_Min => balanceInfoModel.AgentCreditMin;
-
-        private decimal AgentCredit_Max => balanceInfoModel.AgentCreditMax;
+        private decimal MemMaxCreditMin => balanceInfoModel.MemMaxCreditMin;  
     }
 }

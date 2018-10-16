@@ -28,7 +28,6 @@
                 viewModel.MemberMaxCredit.Equals(26) &&
                 viewModel.UsedCredit.Equals(22) &&
                 viewModel.GivenCredit.Equals(120) &&
-                viewModel.GivenCreditLimit.Equals(">=23 and <=85") &&
                 viewModel.MemberMaxCreditLimit.Equals(">=25 and <=120"));
         }
 

@@ -30,10 +30,8 @@
 
         public decimal BetCredit => RoundNumber(GivenCredit + balanceInfoModel.CustomerCash - Outstanding + NetPosition);
 
-        public string GivenCreditLimit => $"<={MemMaxCredit_Max}";
+        public decimal GivenCreditMax => balanceInfoModel.MemMaxCreditMax;
 
         internal override bool ShowTransferLink => ActorLevel.IsAgentLevel() && base.ShowTransferLink;
-
-        private decimal MemMaxCredit_Max => balanceInfoModel.MemMaxCreditMax;
     }
 }

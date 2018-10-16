@@ -17,7 +17,10 @@ export default class BalanceInfoContent extends React.Component {
         let resources = this.props.resources;
         let { mobileView, customerInfo } = this.props;
 
-        let givenCreditUrl = `${accountInfoSiteAppPath}SearchAccount/GivenCredit?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}`;
+        let givenCreditUrl = `${accountInfoSiteAppPath}SearchAccount/GivenCredit` +
+            `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
+            `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
+            `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
         let width = 470, height = 300;
 
         if (mobileView) {

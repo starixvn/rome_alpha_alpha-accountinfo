@@ -4,12 +4,21 @@ import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
 import { accountInfoAPI } from './api-client';
 import { base64Helper } from '../helpers/accountinfo-helper';
+import { UserLevel } from './constants/user-level';
 
-window.renderGivenCredit = function (searchAccountId, searchAccountRoleId, currentGivenCredit, resources) {
+window.renderGivenCredit = function (
+    searchAccountId,
+    searchAccountRoleId,
+    currentGivenCredit,
+    givenCreditMin,
+    givenCreditMax,
+    resources) {
     ReactDOM.render(
         <GivenCredit searchAccountId={searchAccountId}
             searchAccountRoleId={searchAccountRoleId}
             currentGivenCredit={currentGivenCredit}
+            givenCreditMin={givenCreditMin}
+            givenCreditMax={givenCreditMax}
             resources={resources}
         />,
         document.getElementById('given-credit')
@@ -65,25 +74,56 @@ export default class GivenCredit extends React.Component {
         });
     }
 
+    buildRow(title, value) {
+        return (
+            <div className="col-xs-12 form-group">
+                <div className="col-xs-7">{title}</div>
+                <CellContainNumberFormat value={value} classNames="value col-xs-5" />
+            </div>
+        );
+    }
+
+    buildGivenCreditLimitNote() {
+        const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
+        const buildNumberFormat = (value) =>
+            <NumberFormat
+                className="number"
+                value={value}
+                displayType={'text'}
+                decimalScale={2}
+                fixedDecimalScale={true}
+                thousandSeparator={true}
+            />;
+
+        let memberGivenCreditLimit = <div> New Given Credit ≤ {buildNumberFormat(givenCreditMax)} </div>;
+
+        let masterAgentGivenCreditLimit =
+            <div>
+                {buildNumberFormat(givenCreditMin)} ≤ New Given Credit ≤ {buildNumberFormat(givenCreditMax)}
+            </div>;
+
+        let noted = parseInt(searchAccountRoleId) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;
+
+        return (
+            <div className="note">
+                <span className="text-red">*</span>
+                <strong>Note</strong>:
+                  {noted}
+            </div>
+        );
+    }
     render() {
         const rowClasses = "col-xs-12 form-group";
         const { newGivenCredit, updateSuccess, message, hideMessages, resources } = this.state;
-        const { currentGivenCredit} = this.props;
-
-        let row = (title, value) =>
-            <div className={rowClasses}>
-                <div className="col-xs-7">{title}</div>
-                <CellContainNumberFormat value={value} classNames="value col-xs-5" />
-            </div>;
+        const { currentGivenCredit } = this.props;
 
         return (
-
             <div>
-                <div className={hideMessages ?  `hidden` : ``}>
+                <div className={hideMessages ? `hidden` : ``}>
                     <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
                 </div>
 
-                {row(resources.CurrentGivenCredit, currentGivenCredit)}
+                {this.buildRow(resources.CurrentGivenCredit, currentGivenCredit)}
 
                 <div className={rowClasses}>
                     <div className="col-xs-7">{resources.NewGivenCredit}</div>
@@ -99,16 +139,14 @@ export default class GivenCredit extends React.Component {
                     />
                 </div>
 
-                {row(resources.Difference, newGivenCredit - currentGivenCredit)}
+                {this.buildRow(resources.Difference, newGivenCredit - currentGivenCredit)}
 
-                <div className="col-xs-12 row-info popup-bottom list-button">                    
+                <div className="col-xs-12 row-info popup-bottom list-button">
                     <button className="btn-submit" onClick={this.handleSubmit}>{resources.Submit}</button>
                     <button className="btn-cancel" onClick={this.handleClose}>{resources.Cancel}</button>
                 </div>
 
-                <div className="note">
-                    <span className="text-red">*</span> <strong>Note</strong>: <span className="number">93,731,950.00</span> ≤ New Value ≤ <span className="number">88,671,518,500.00</span>
-                </div>
+                {this.buildGivenCreditLimitNote()}
             </div>
         );
     }
