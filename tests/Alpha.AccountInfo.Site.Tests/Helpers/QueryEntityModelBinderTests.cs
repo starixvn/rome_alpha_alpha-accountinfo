@@ -1,10 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Helpers
 {
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Site.Helpers;
-    using Site.Models;
     using System;
     using System.Web.Mvc;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
+    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
+    using Alpha.AccountInfo.Site.Features.Shared.Models;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]

@@ -10,11 +10,11 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Services.AccountInfo;
-    using Alpha.AccountInfo.Site.Handlers;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
+    using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
+    using Alpha.AccountInfo.Site.Handlers;
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.ViewModels.BalanceInfo;
-    using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.Products.Core.Services;
     using AutoFixture;
     using KellermanSoftware.CompareNetObjects;
@@ -115,16 +115,21 @@
         {
             var actualViewModel = accountInfoHandler.Handle(customerInfoQuery);
 
-            accountInfoService.Received().GetCustomerInfoModel(Arg.Any<string>(), Arg.Any<int>());
+            accountInfoService.Received().GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>());
         }
 
         [Fact]
         public void HandleCustomerInfoQuery_CustomerInfoIsNull_ReturnFalse()
         {
             CustomerInfoModel nullCustomerInfo = null;
-            accountInfoService.GetCustomerInfoModel(Arg.Any<string>(), Arg.Any<int>()).Returns(nullCustomerInfo);
+            accountInfoService
+                .GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>())
+                .Returns(Task.FromResult(nullCustomerInfo));
 
-            var actualViewModel = accountInfoHandler.Handle(customerInfoQuery);
+            var actualViewModel = accountInfoHandler
+                .Handle(customerInfoQuery)
+                .GetAwaiter()
+                .GetResult();
 
             Assert.Null(actualViewModel);
         }
@@ -133,8 +138,8 @@
         public void HandleCustomerInfoQuery_CustomerInfoHasData_ReturnCorrectViewModel()
         {
             var memberBalanceInfoViewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo);
-            accountInfoService.GetCustomerInfoModel(Arg.Any<string>(), Arg.Any<int>()).Returns(customerInfo);
-            accountInfoService.GetBalanceInfoModel(Arg.Any<int>(), Arg.Any<byte>()).Returns(AccountInfoHelper.MemberBalanceInfo);
+            accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>()).Returns(customerInfo);
+            accountInfoService.GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>()).Returns(AccountInfoHelper.MemberBalanceInfo);
             var expectedViewModel = new CustomerInfoViewModel(
                 customerInfoQuery,
                 customerInfo,
@@ -148,11 +153,11 @@
         [Fact]
         public void HandleCustomerInfoQuery_CustomerInfoHasData_CallGetBalanceInfoModel()
         {
-            accountInfoService.GetCustomerInfoModel(Arg.Any<string>(), Arg.Any<int>()).Returns(customerInfo);
+            accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>()).Returns(customerInfo);
 
             var actualViewModel = accountInfoHandler.Handle(customerInfoQuery);
 
-            accountInfoService.Received().GetBalanceInfoModel(Arg.Any<int>(), Arg.Any<byte>());
+            accountInfoService.Received().GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>());
         }
 
         [Fact]
@@ -164,7 +169,7 @@
             };
 
             var model = Enumerable.Empty<OnlineUserModel>();
-            accountInfoService.GetOnlineListModel(1).Returns(model);
+            accountInfoService.GetOnlineList(1).Returns(model);
 
             var actualViewModel = accountInfoHandler.Handle(message).GetAwaiter().GetResult();
 
@@ -238,10 +243,13 @@
             };
 
             var model = fixture.Create<CustomerStatusModel>();
-            accountInfoService.GetCustomerAllStatusModel(Arg.Any<int>()).Returns(model);
+            accountInfoService.GetCustomerStatus(Arg.Any<int>()).Returns(Task.FromResult(model));
             var expectedViewModel = new CustomererStatusViewModel(message, model);
 
-            var actualViewModel = accountInfoHandler.Handle(message);
+            var actualViewModel = accountInfoHandler
+                .Handle(message)
+                .GetAwaiter()
+                .GetResult(); ;
 
             Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);
         }

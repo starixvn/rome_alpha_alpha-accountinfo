@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
@@ -24,14 +25,14 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
-        private readonly IDictionary<UserLevel, Func<ICriteria, IBalanceInfoModel>> getBalanceInfoModelByLevel;
+        private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly SearchAccountServiceImpl accountInfoService;
         private readonly CompareLogic compareLogic = new CompareLogic();
         private readonly Fixture fixture = new Fixture();
-        private readonly Task<MemberBalanceInfoModel> memberBalanceInfoModel;
-        private readonly Task<AgentBalanceInfoModel> agentBalanceInfoModel;
-        private readonly Task<MasterBalanceInfoModel> masterBalanceInfoModel;
+        private readonly MemberBalanceInfoModel memberBalanceInfoModel;
+        private readonly AgentBalanceInfoModel agentBalanceInfoModel;
+        private readonly MasterBalanceInfoModel masterBalanceInfoModel;
 
         public AccountInfoServiceImplTest()
         {
@@ -39,23 +40,23 @@
             accountInfoDataAccess = Substitute.For<SearchAccountDataAccess>();
             rnGCasinoService = Substitute.For<RnGCasinoService>();
 
-            memberBalanceInfoModel = Task.FromResult(fixture.Create<MemberBalanceInfoModel>());
-            agentBalanceInfoModel = Task.FromResult(fixture.Create<AgentBalanceInfoModel>());
-            masterBalanceInfoModel = Task.FromResult(fixture.Create<MasterBalanceInfoModel>());
+            memberBalanceInfoModel = fixture.Create<MemberBalanceInfoModel>();
+            agentBalanceInfoModel = fixture.Create<AgentBalanceInfoModel>();
+            masterBalanceInfoModel = fixture.Create<MasterBalanceInfoModel>();
 
-            getBalanceInfoModelByLevel = null;
-                //new Dictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>>
-                //{
-                //    {UserLevel.Master, GetMasterBalanceInfoModel},
-                //    {UserLevel.Agent, GetAgentBalanceInfoModel},
-                //    {UserLevel.Member, GetMemberBalanceInfoModel}
-                //};
+            getBalanceInfoModelByLevel = new Dictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>>
+            {
+                {UserLevel.Master, GetMasterBalanceInfoModel},
+                {UserLevel.Agent, GetAgentBalanceInfoModel},
+                {UserLevel.Member, GetMemberBalanceInfoModel}
+            };
 
             accountInfoService =
                 new SearchAccountServiceImpl(
                 dynamicRepository,
                 accountInfoDataAccess,
-                rnGCasinoService);
+                rnGCasinoService,
+                getBalanceInfoModelByLevel);
         }
 
         [Fact]
@@ -66,9 +67,14 @@
                 new UsernameSuggestion("UserName", "FirstName", "LastName")
             };
 
-            dynamicRepository.Fetch<UsernameSuggestion>(Arg.Any<SelectAutoSuggestionCriteria>()).Returns(model);
+            dynamicRepository
+                .FetchAsync<UsernameSuggestion>(Arg.Any<SelectAutoSuggestionCriteria>())
+                .Returns(Task.FromResult(model as IEnumerable<UsernameSuggestion>));
 
-            var actualModel = accountInfoService.GetUsernamesSuggestion(1, "test", false).GetAwaiter().GetResult();
+            var actualModel = accountInfoService
+                .GetUsernamesSuggestion(1, "test", false)
+                .GetAwaiter()
+                .GetResult();
 
             AssertExtension.Equal(actualModel, model);
         }
@@ -105,135 +111,193 @@
                 superId: 14,
                 superName: "SuperTest");
 
-            dynamicRepository.Get<CustomerInfoModel>(Arg.Any<SelectCustomerInfoCriteria>()).Returns(model);
+            dynamicRepository
+                .GetAsync<CustomerInfoModel>(Arg.Any<SelectCustomerInfoCriteria>())
+                .Returns(Task.FromResult(model));
 
-            var actualModel = accountInfoService.GetCustomerInfoModel("test", 1);
+            var actualModel = accountInfoService
+                .GetCustomerInfo("test", 1)
+                .GetAwaiter()
+                .GetResult();
 
             Assert.True(compareLogic.Compare(actualModel, model).AreEqual);
         }
 
         [Fact]
-        public void GetBalanceInfoModel_Always_ReturnsCorrectModel()
+        public void GetBalanceInfoModel_GetMember_ReturnsCorrectModel()
         {
-            var actualModel = accountInfoService.GetBalanceInfoModel(1, 1)
+            var actualModel = accountInfoService
+                .GetBalanceInfo(1, 1)
                 .GetAwaiter()
                 .GetResult();
 
-            AssertExtension.Equal(actualModel, memberBalanceInfoModel.GetAwaiter().GetResult());
+            AssertExtension.Equal(memberBalanceInfoModel, actualModel);
         }
 
         [Fact]
-        public void GetCustomerAllStatusModel_Always_ReturnsCorrectModel()
+        public void GetBalanceInfoModel_GetAgent_ReturnsCorrectModel()
         {
-            var model = fixture.Create<CustomerStatusModel>();
-            accountInfoDataAccess.GetCustomerAllStatus(Arg.Any<SelectCustomerAllStatusModelCriteria>()).Returns(model);
+            var actualModel = accountInfoService
+                .GetBalanceInfo(1, 2)
+                .GetAwaiter()
+                .GetResult();
 
-            var actualModel = accountInfoService.GetCustomerAllStatusModel(1).GetAwaiter().GetResult();
-
-            AssertExtension.Equal(actualModel, model);
+            AssertExtension.Equal(agentBalanceInfoModel, actualModel);
         }
 
-        //[Fact]
-        //public void GetOnlineListModel_Always_ReturnsCorrectModel()
-        //{
-        //    var model = Enumerable.Empty<OnlineUserModel>();
-        //    accountInfoDataAccess.GetOnlineList(Arg.Any<SelectDownlineListCriteria>()).Returns(model);
+        [Fact]
+        public void GetBalanceInfoModel_GetMaster_ReturnsCorrectModel()
+        {
+            var actualModel = accountInfoService
+                .GetBalanceInfo(1, 3)
+                .GetAwaiter()
+                .GetResult();
 
-        //     var actualModel = accountInfoService.GetOnlineListModel(1);
+            AssertExtension.Equal(masterBalanceInfoModel, actualModel);
+        }
 
-        //    AssertExtension.Equal(actualModel, model);
-        //}
+        [Fact]
+        public void GetCustomerStatus_Always_ReturnsCorrectModel()
+        {
+            var model = fixture.Create<CustomerStatusModel>();
+            accountInfoDataAccess
+                .GetCustomerStatus(Arg.Any<SelectCustomerAllStatusModelCriteria>())
+                .Returns(Task.FromResult(model));
+
+            var actualModel = accountInfoService
+                .GetCustomerStatus(1)
+                .GetAwaiter()
+                .GetResult();
+
+            AssertExtension.Equal(model, actualModel);
+        }
+
+        [Fact]
+        public void GetOnlineListModel_Always_ReturnsCorrectModel()
+        {
+            var model = Enumerable.Empty<OnlineUserModel>();
+            dynamicRepository
+                .FetchAsync<OnlineUserModel>(Arg.Any<SelectDownlineListCriteria>())
+                .Returns(Task.FromResult(model));
+
+            var actualModel = accountInfoService
+                .GetOnlineList(1)
+                .GetAwaiter()
+                .GetResult();
+
+            AssertExtension.Equal(model, actualModel);
+        }
 
         [Fact]
         public void GetDownlineListModel_Always_ReturnsCorrectModel()
         {
             var model = fixture.Create<DownlineListModel>();
-            accountInfoDataAccess.GetDownlineList(Arg.Any<SelectDownlineListCriteria>()).Returns(model);
+            accountInfoDataAccess
+                .GetDownlineList(Arg.Any<SelectDownlineListCriteria>())
+                .Returns(Task.FromResult(model));
 
-            var actualModel = accountInfoService.GetDownlineListModel(1);
+            var actualModel = accountInfoService
+                .GetDownlineList(1)
+                .GetAwaiter()
+                .GetResult();
 
             Assert.True(compareLogic.Compare(actualModel, model).AreEqual);
         }
 
-        ////[Fact]
-        ////public void UpdateGivenCredit_Always_ReturnsCorrecResult()
-        ////{
-        ////    var result = Result.CreateSuccessResult();
-        ////    var param = fixture.Create<UpdateGivenCreditParam>();
-
-        ////    //dynamicRepository
-        ////    //    .Execute(Arg.Any<UpdateGivenCreditCommand>())
-        ////    //    .Returns(result);
-        ////    dynamicRepository.When(repo => repo.Execute(Arg.))
-
-        ////    var actualResutl = accountInfoService.UpdateGivenCredit(param);
-
-        ////    Assert.True(compareLogic.Compare(actualResutl, result).AreEqual);
-        ////}
-
         //[Fact]
-        //public void UpdateCustomerStatus_Always_ReturnsCorrecResult()
+        //public void UpdateGivenCredit_Always_ReturnsCorrecResult()
         //{
         //    var result = Result.CreateSuccessResult();
-        //    var param = fixture.Create<UpdateCustomerStatusParam>();
+        //    var param = fixture.Create<UpdateGivenCreditParam>();
 
-        //    accountInfoDataAccess.UpdateCustomerStatus(Arg.Any<string>(), Arg.Any<Hashtable>()).Returns(result);
+        //    //dynamicRepository
+        //    //    .Execute(Arg.Any<UpdateGivenCreditCommand>())
+        //    //    .Returns(result);
+        //    dynamicRepository.When(repo => repo.Execute(Arg.))
 
-        //    var actualResutl = accountInfoService.UpdateCustomerStatus(param);
+        //    var actualResutl = accountInfoService.UpdateGivenCredit(param);
 
         //    Assert.True(compareLogic.Compare(actualResutl, result).AreEqual);
         //}
 
-        //[Fact]
-        //public void UpdateCustomerStatus_SuccessAndSyncedCasino_CallSyncedToRnGCasino3rdByStatus()
-        //{
-        //    var result = Result.CreateSuccessResult();
-        //    var param = new UpdateCustomerStatusParam(
-        //        searchAccountId: 1,
-        //        actorId: 1,
-        //        subAccountId: 0,
-        //        language: "E",
-        //        ip: "192.168.1.1",
-        //        statusName: "ouright",
-        //        statusValue: true,
-        //        actorName: "Actor",
-        //        syncedCasino3rd: true);
+        [Fact]
+        public void UpdateCustomerStatus_Always_ReturnsCorrecResult()
+        {
+            var result = Result.CreateSuccessResult();
+            var param = fixture.Create<UpdateCustomerStatusParam>();
 
-        //    accountInfoDataAccess.UpdateCustomerStatus(Arg.Any<string>(), Arg.Any<Hashtable>()).Returns(result);
+            accountInfoDataAccess
+                .UpdateCustomerStatus(Arg.Any<UpdateCustomerStatusCommand>())
+                .Returns(Task.FromResult(result));
 
-        //    var actualResutl = accountInfoService.UpdateCustomerStatus(param);
+            var actualResutl = accountInfoService
+                .UpdateCustomerStatus(param)
+                .GetAwaiter()
+                .GetResult();
 
-        //    rnGCasinoService.Received().SyncedToRnGCasino3rdByStatus(
-        //        Arg.Is<UpdateRnGCasino3rdParam>(rngParam =>
-        //        rngParam.SearchAccountId.Equals(1) &&
-        //        rngParam.StatusName.Equals("ouright") &&
-        //        rngParam.StatusValue.Equals(true) &&
-        //        rngParam.ActorId.Equals(1) &&
-        //        rngParam.ActorName.Equals("Actor") &&
-        //        rngParam.IP.Equals("192.168.1.1") ));
-        //}
+            Assert.True(compareLogic.Compare(actualResutl, result).AreEqual);
+        }
 
-        //[Fact]
-        //public void UpdateCustomerStatus_SuccessAndSyncedCasino_DoesNotCallSyncedToRnGCasino3rdByStatus()
-        //{
-        //    var result = Result.CreateErrorResult(10, string.Empty);
-        //    var param = new UpdateCustomerStatusParam(
-        //        searchAccountId: 1,
-        //        actorId: 1,
-        //        subAccountId: 0,
-        //        language: "E",
-        //        ip: "192.168.1.1",
-        //        statusName: "ouright",
-        //        statusValue: true,
-        //        actorName: "Actor",
-        //        syncedCasino3rd: true);
+        [Fact]
+        public void UpdateCustomerStatus_SuccessAndSyncedCasino_CallSyncedToRnGCasino3rdByStatus()
+        {
+            var result = Result.CreateSuccessResult();
+            var param = new UpdateCustomerStatusParam(
+                searchAccountId: 1,
+                actorId: 1,
+                subAccountId: 0,
+                language: "E",
+                ip: "192.168.1.1",
+                statusName: "ouright",
+                statusValue: true,
+                actorName: "Actor",
+                syncedCasino3rd: true);
 
-        //    accountInfoDataAccess.UpdateCustomerStatus(Arg.Any<string>(), Arg.Any<Hashtable>()).Returns(result);
+            accountInfoDataAccess
+                .UpdateCustomerStatus(Arg.Any<UpdateCustomerStatusCommand>())
+                .Returns(Task.FromResult(result));
 
-        //    var actualResutl = accountInfoService.UpdateCustomerStatus(param);
+            accountInfoService
+                .UpdateCustomerStatus(param)
+                .GetAwaiter()
+                .GetResult(); ;
 
-        //    rnGCasinoService.DidNotReceive().SyncedToRnGCasino3rdByStatus(Arg.Any<UpdateRnGCasino3rdParam>());
-        //}
+            rnGCasinoService.Received().SyncedToRnGCasino3rdByStatus(
+                Arg.Is<UpdateRnGCasino3rdParam>(rngParam =>
+                rngParam.SearchAccountId.Equals(1) &&
+                rngParam.StatusName.Equals("ouright") &&
+                rngParam.StatusValue.Equals(true) &&
+                rngParam.ActorId.Equals(1) &&
+                rngParam.ActorName.Equals("Actor") &&
+                rngParam.IP.Equals("192.168.1.1")));
+        }
+
+        [Fact]
+        public void UpdateCustomerStatus_SuccessAndSyncedCasino_DoesNotCallSyncedToRnGCasino3rdByStatus()
+        {
+            var result = Result.CreateErrorResult(10, string.Empty);
+            var param = new UpdateCustomerStatusParam(
+                searchAccountId: 1,
+                actorId: 1,
+                subAccountId: 0,
+                language: "E",
+                ip: "192.168.1.1",
+                statusName: "ouright",
+                statusValue: true,
+                actorName: "Actor",
+                syncedCasino3rd: true);
+
+            accountInfoDataAccess
+                .UpdateCustomerStatus(Arg.Any<UpdateCustomerStatusCommand>())
+                .Returns(Task.FromResult(result));
+
+            accountInfoService
+                .UpdateCustomerStatus(param)
+                .GetAwaiter()
+                .GetResult();
+
+            rnGCasinoService.DidNotReceive().SyncedToRnGCasino3rdByStatus(Arg.Any<UpdateRnGCasino3rdParam>());
+        }
 
         [Fact]
         public void GetMasterBalanceInfoModel_Always_ReturnsCorrectModel()
@@ -242,9 +306,12 @@
 
             dynamicRepository
                 .GetAsync<MasterBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>())
-                .Returns(masterBalanceInfoModel);
+                .Returns(Task.FromResult(masterBalanceInfoModel));
 
-            var actualModel = accountInfoService.GetMasterBalanceInfoModel(criteria);
+            var actualModel = accountInfoService
+                .GetMasterBalanceInfoModel(criteria)
+                .GetAwaiter()
+                .GetResult();
 
             Assert.True(compareLogic.Compare(actualModel, masterBalanceInfoModel).AreEqual);
         }
@@ -258,7 +325,10 @@
                 .GetAsync<AgentBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>())
                 .Returns(agentBalanceInfoModel);
 
-            var actualModel = accountInfoService.GetAgentBalanceInfoModel(criteria);
+            var actualModel = accountInfoService
+                .GetAgentBalanceInfoModel(criteria)
+                .GetAwaiter()
+                .GetResult();
 
             Assert.True(compareLogic.Compare(actualModel, agentBalanceInfoModel).AreEqual);
         }
@@ -270,17 +340,23 @@
 
             dynamicRepository
                 .GetAsync<MemberBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>())
-                .Returns(memberBalanceInfoModel);
+                .Returns(Task.FromResult(memberBalanceInfoModel));
 
-            var actualModel = accountInfoService.GetMemberBalanceInfoModel(criteria);
+            var actualModel = accountInfoService
+                .GetMemberBalanceInfoModel(criteria)
+                .GetAwaiter()
+                .GetResult();
 
             Assert.True(compareLogic.Compare(actualModel, memberBalanceInfoModel).AreEqual);
         }
 
-        private async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria) => await memberBalanceInfoModel;
+        private Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria)
+            => Task.FromResult(memberBalanceInfoModel as IBalanceInfoModel);
 
-        private async Task<IBalanceInfoModel> GetAgentBalanceInfoModel(ICriteria criteria) => await agentBalanceInfoModel;
+        private Task<IBalanceInfoModel> GetAgentBalanceInfoModel(ICriteria criteria)
+             => Task.FromResult(agentBalanceInfoModel as IBalanceInfoModel);
 
-        private async Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria) => await masterBalanceInfoModel;
+        private Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria)
+             => Task.FromResult(masterBalanceInfoModel as IBalanceInfoModel);
     }
 }

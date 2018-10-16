@@ -54,7 +54,7 @@
 
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
         {
-            var customerInfo = await accountInfoService.GetCustomerInfoModel(message.SearchAccountName, message.ActorId).ConfigureAwait(false);
+            var customerInfo = await accountInfoService.GetCustomerInfo(message.SearchAccountName, message.ActorId).ConfigureAwait(false);
 
             if (customerInfo != null)
             {
@@ -63,7 +63,7 @@
                 var balanceInfo = getBalanceInfoViewModelByLevel[searchAccountLevel](
                     message,
                     customerInfo,
-                    await accountInfoService.GetBalanceInfoModel(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false));
+                    await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false));
 
                 return new CustomerInfoViewModel(message, customerInfo, balanceInfo);
             }
@@ -72,13 +72,13 @@
         }
 
         public async Task<DownlineListViewModel> Handle(DownlineListQuery message)
-            => new DownlineListViewModel(await accountInfoService.GetDownlineListModel(message.SearchAccountId).ConfigureAwait(false));
+            => new DownlineListViewModel(await accountInfoService.GetDownlineList(message.SearchAccountId).ConfigureAwait(false));
 
         public async Task<CustomererStatusViewModel> Handle(CustomerStatusQuery message)
-            => new CustomererStatusViewModel(message, await accountInfoService.GetCustomerAllStatusModel(message.SearchAccountId).ConfigureAwait(false));
+            => new CustomererStatusViewModel(message, await accountInfoService.GetCustomerStatus(message.SearchAccountId).ConfigureAwait(false));
 
         public async Task<IEnumerable<OnlineUserModel>> Handle(OnlineListQuery message)
-            => await accountInfoService.GetOnlineListModel(message.SearchAccountId).ConfigureAwait(false);
+            => await accountInfoService.GetOnlineList(message.SearchAccountId).ConfigureAwait(false);
 
         public Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
            => Task.FromResult(new GivenCreditViewModel(message));

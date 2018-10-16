@@ -233,7 +233,7 @@
             var actualView = await accountInfoController.GivenCredit(message) as ViewResult;
 
             // Assert
-            Assert.Equal("~/Views/Shared/NoInformation.cshtml", actualView.ViewName);
+            Assert.Equal("~/Features/Shared/Views/NoInformation.cshtml", actualView.ViewName);
         }
 
         [Theory]
@@ -250,7 +250,7 @@
 
             var actualView = await accountInfoController.GivenCredit(message) as ViewResult;
 
-            Assert.Equal("~/Views/Shared/NoInformation.cshtml", actualView.ViewName);
+            Assert.Equal("~/Features/Shared/Views/NoInformation.cshtml", actualView.ViewName);
         }
 
         [Theory]
@@ -267,7 +267,7 @@
 
             var actualView = await accountInfoController.GivenCredit(message) as ViewResult;
 
-            Assert.Equal("~/Views/Shared/NoInformation.cshtml", actualView.ViewName);
+            Assert.Equal("~/Features/Shared/Views/NoInformation.cshtml", actualView.ViewName);
         }
 
         [Fact]

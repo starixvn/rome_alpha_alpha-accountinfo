@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Models
 {
+    using Alpha.AccountInfo.Site.Features.Shared.Models;
     using NSubstitute;
-    using Site.Models;
     using Sunplus.Agent.Model.Entities;
     using Xunit;
 
@@ -26,7 +26,7 @@
             userSession.IsAllDayBalTransfer.Returns(true);
             userSession.IsAllowedTotalBalanceTransfer.Returns(true);
 
-            userSession.SubPageAccess.Returns(new PageAccess { Transfer = true, ViewReports = true});
+            userSession.SubPageAccess.Returns(new PageAccess { Transfer = true, ViewReports = true });
 
             userSession.GetDisabledProduct(Arg.Any<int>()).Returns(true);
             userSession.GetHideProduct(Arg.Any<int>()).Returns(true);

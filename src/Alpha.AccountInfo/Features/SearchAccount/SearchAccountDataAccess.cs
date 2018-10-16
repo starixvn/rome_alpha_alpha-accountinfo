@@ -12,7 +12,7 @@
 
     public interface SearchAccountDataAccess
     {
-        Task<CustomerStatusModel> GetCustomerAllStatus(SelectCustomerAllStatusModelCriteria criteria);
+        Task<CustomerStatusModel> GetCustomerStatus(SelectCustomerAllStatusModelCriteria criteria);
 
         Task<DownlineListModel> GetDownlineList(SelectDownlineListCriteria criteria);
 
@@ -21,7 +21,7 @@
 
     public class SearchAccountDataAccessImpl : SearchAccountDataAccess
     {
-        public async Task<CustomerStatusModel> GetCustomerAllStatus(SelectCustomerAllStatusModelCriteria criteria)
+        public async Task<CustomerStatusModel> GetCustomerStatus(SelectCustomerAllStatusModelCriteria criteria)
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
+    using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
@@ -41,34 +42,46 @@
                 objectDb);
         }
 
-        //[Fact]
-        //public void GetDownlineList_HasData_ReturnsDataFromObjectDb()
-        //{
-        //    // Arrange
-        //    var criteria = new SelectDownlineListCriteria(1);
+        [Fact]
+        public void GetDownlineList_HasData_ReturnsDownlineListModel()
+        {
+            // Arrange
+            var criteria = new SelectDownlineListCriteria(1);
 
-        //    var dataSet = AccountInfoDatabase.DownlineListData;
-        //    objectDbFixture.ObjectDb.ExecuteDataSet(Arg.Any<Hashtable>()).Returns(dataSet);
+            objectDb
+                .QueryMultipleAsync(Arg.Any<Hashtable>())
+                .Returns(Task.FromResult(multiResultReader));
 
-        //    var expectedData = new DownlineListModel(
-        //            downlines: new List<string>
-        //            {
-        //                "User 1",
-        //                "User 2"
-        //            },
-        //            totalAgActive: 1,
-        //            totalAgClosed: 2,
-        //            totalAgSuspended: 3,
-        //            totalMemActive:4,
-        //            totalMemClosed:5,
-        //            totalMemSuspended: 6);
+            var downlines = new List<DownlineDto>
+                    {
+                       new DownlineDto("Username1"),
+                       new DownlineDto("Username2")
+                    };
+            var expectedData = new DownlineListModel(
+                    downlines,
+                    totalAgActive: 1,
+                    totalAgClosed: 2,
+                    totalAgSuspended: 3,
+                    totalMemActive: 4,
+                    totalMemClosed: 5,
+                    totalMemSuspended: 6);
 
-        //    // Act
-        //    var actualData = accountInfoDataAccessImpl.GetDownlineList(criteria);
+            multiResultReader
+                .ReadAsync<DownlineDto>()
+                .Returns(Task.FromResult(downlines as IEnumerable<DownlineDto>));
+            multiResultReader
+                .ReadAsync<DownlineListModel>()
+                .Returns(Task.FromResult(new List<DownlineListModel> { expectedData } as IEnumerable<DownlineListModel>));
 
-        //    // Assert
-        //    AssertExtension.Equal(expectedData, actualData);
-        //}
+            // Act
+            var actualData = accountInfoDataAccessImpl
+                .GetDownlineList(criteria)
+                .GetAwaiter()
+                .GetResult();
+
+            // Assert
+            AssertExtension.Equal(expectedData, actualData);
+        }
 
         [Fact]
         public void GetCustomerAllStatus_HasData_ReturnsCustomerStatusModel()
@@ -96,7 +109,7 @@
 
             // Act
             var actualData = accountInfoDataAccessImpl
-                                .GetCustomerAllStatus(criteria)
+                                .GetCustomerStatus(criteria)
                                 .GetAwaiter()
                                 .GetResult();
 
@@ -162,7 +175,7 @@
                     };
 
         [Fact]
-        public void ExecuteNonQuery_SuccessCode_ReturnSuccessResult()
+        public void UpdateCustomerStatus_UpdatedSuccessfully_ReturnSuccessResult()
         {
             // Arrange
             var command = new UpdateCustomerStatusCommand(
@@ -175,7 +188,7 @@
                 ip: "192.168.1.1");
 
             var expectedResult = Result.CreateSuccessResult();
-            objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 0 }, { "ErrMsg", string.Empty } });
+            objectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 0 }, { "errmsg", string.Empty } });
 
             // Act
             var actualResult = accountInfoDataAccessImpl
@@ -187,76 +200,31 @@
             AssertExtension.Equal(expectedResult, actualResult);
         }
 
-        //[Fact]
-        //public void ExecuteNonQuery_ErrorCode_ReturnErrorResult()
-        //{
-        //    // Arrange
-        //    var criteria = new UpdateCustomerStatusCommand(
-        //        searchAccountId: 1,
-        //        actorId: 2,
-        //        subAccountId: 0,
-        //        statusName: StatusMapping.Closed,
-        //        language: "E",
-        //        ip: "192.168.1.1");
+        [Fact]
+        public void UpdateCustomerStatus_UpdateFailed_ReturnErrorResult()
+        {
+            // Arrange
+            var command = new UpdateCustomerStatusCommand(
+                searchAccountId: 1,
+                actorId: 2,
+                subAccountId: 0,
+                statusName: StatusNames.Closed,
+                statusValue: true,
+                language: "E",
+                ip: "192.168.1.1");
 
-        //    var errorMsg = "Update Failed !";
-        //    var expectedResult = Result.CreateErrorResult(100, errorMsg);
-        //    objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 100 }, { "ErrMsg", errorMsg } });
+            var errorMsg = "Update Failed !";
+            var expectedResult = Result.CreateErrorResult(100, errorMsg);
+            objectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 100 }, { "errmsg", errorMsg } });
 
-        //    // Act
-        //    var actualResult = accountInfoDataAccessImpl.UpdateCustomerStatus(
-        //       criteria.GetSettingKey(),
-        //       criteria.GetSpParams());
+            // Act
+            var actualResult = accountInfoDataAccessImpl
+                .UpdateCustomerStatus(command)
+                .GetAwaiter()
+                .GetResult();
 
-        //    // Assert
-        //    AssertExtension.Equal(expectedResult, actualResult);
-        //}
-
-        //[Fact]
-        ////public void UpdateGivenCredit_NonCreditProblem_ReturnSuccessResult()
-        ////{
-        ////    // Arrange
-        ////    var criteria = new UpdateGivenCreditCommand(
-        ////        searchAccountId: 1,
-        ////        searchAccountRoleId: 2,
-        ////        creditAmount: 500000,
-        ////        actorId: 56,
-        ////        subAccountId: 0,
-        ////        language: "E",
-        ////        ip: "192.168.1.1");
-
-        ////    var expectedResult = Result.CreateSuccessResult();
-        ////    objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "CreditProblem", false }, { "ErrMsg", string.Empty } });
-
-        ////    // Act
-        ////    var actualResult = accountInfoDataAccessImpl.UpdateGivenCredit(criteria);
-
-        ////    // Assert
-        ////    AssertExtension.Equal(expectedResult, actualResult);
-        ////}
-
-        ////[Fact]
-        ////public void UpdateGivenCredit_CreditProblem_ReturnFailedResult()
-        ////{
-        ////    // Arrange
-        ////    var criteria = new UpdateGivenCreditCommand(
-        ////        searchAccountId: 1,
-        ////        searchAccountRoleId: 2,
-        ////        creditAmount: 500000,
-        ////        actorId: 56,
-        ////        subAccountId: 0,
-        ////        language: "E",
-        ////        ip: "192.168.1.1");
-
-        ////    var errMsg = "Credit Problem!";
-        ////    var expectedResult = Result.CreateErrorResult(100, errMsg);
-        ////    objectDbFixture.ObjectDb.GetOuputParams().Returns(new Hashtable { { "CreditProblem", true }, { "ErrMsg", errMsg } });
-
-        ////    // Act
-        ////    var actualResult = accountInfoDataAccessImpl.UpdateGivenCredit(criteria);
-
-        ////    // Assert
-        ////    AssertExtension.Equal(expectedResult, actualResult);
-        ////}
+            // Assert
+            AssertExtension.Equal(expectedResult, actualResult);
+        }
     }
 }

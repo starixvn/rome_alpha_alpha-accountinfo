@@ -18,15 +18,15 @@
     {
         Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
 
-        Task<CustomerInfoModel> GetCustomerInfoModel(string username, int uplineId);
+        Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId);
 
-        Task<IBalanceInfoModel> GetBalanceInfoModel(int custId, byte roleId);
+        Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId);
 
-        Task<DownlineListModel> GetDownlineListModel(int custId);
+        Task<DownlineListModel> GetDownlineList(int custId);
 
-        Task<CustomerStatusModel> GetCustomerAllStatusModel(int custId);
+        Task<CustomerStatusModel> GetCustomerStatus(int custId);
 
-        Task<IEnumerable<OnlineUserModel>> GetOnlineListModel(int custid);
+        Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid);
 
         Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param);
 
@@ -72,19 +72,19 @@
         public Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
             => dynamicRepository.FetchAsync<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
 
-        public Task<CustomerInfoModel> GetCustomerInfoModel(string username, int uplineId)
+        public Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId)
             => dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
 
-        public Task<IBalanceInfoModel> GetBalanceInfoModel(int custId, byte roleId)
+        public Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId)
            => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
 
-        public Task<CustomerStatusModel> GetCustomerAllStatusModel(int custId)
-          => accountInfoDataAccess.GetCustomerAllStatus(new SelectCustomerAllStatusModelCriteria(custId));
+        public Task<CustomerStatusModel> GetCustomerStatus(int custId)
+          => accountInfoDataAccess.GetCustomerStatus(new SelectCustomerAllStatusModelCriteria(custId));
 
-        public Task<DownlineListModel> GetDownlineListModel(int custId)
+        public Task<DownlineListModel> GetDownlineList(int custId)
             => accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
 
-        public Task<IEnumerable<OnlineUserModel>> GetOnlineListModel(int custid)
+        public Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid)
             => dynamicRepository.FetchAsync<OnlineUserModel>(new SelectOnlineListCriteria(custid));
 
         public async Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param)

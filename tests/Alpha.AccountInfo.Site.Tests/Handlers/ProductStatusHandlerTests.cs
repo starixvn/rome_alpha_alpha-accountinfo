@@ -1,18 +1,17 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Handlers
 {
-    using AccountInfo.Models;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using AccountInfo.Models.ProductStatus;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
     using Alpha.Products.Core.Shared;
     using NSubstitute;
     using Params.ProductStatus;
     using Services.ProductStatus;
-    using Site.Handlers;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]

@@ -3,12 +3,12 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.Requests.ProductStatus;
-    using Alpha.AccountInfo.Site.ViewModels.ProductStatus;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
     using Alpha.Products.Core.Shared;
     using MediatR;
     using NSubstitute;
-    using Site.Controllers;
     using Xunit;
 
     [Trait("Category", "ProductStatus")]
@@ -84,7 +84,7 @@
             var actualView = await productStatusController.Index(message) as ViewResult;
 
             // Assert
-            Assert.Equal("~/Views/Shared/NoInformation.cshtml", actualView.ViewName);
+            Assert.Equal("~/Features/Shared/Views/NoInformation.cshtml", actualView.ViewName);
         }
 
         [Fact]
