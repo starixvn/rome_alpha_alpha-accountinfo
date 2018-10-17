@@ -4,48 +4,55 @@ import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import CustomAnchorTag from '../../common/custom-anchor-tag';
 
+const ClosedReason = {
+    ByOtherReason: 0,
+    ByAdmin: 1,
+    ByUpline: 2,
+    ByWrongOTPSC: 3
+};
+
 export default class UserLevelInfo extends React.Component {
     getStatusInfo(customerInfo, userLevelId, resources) {
         const statusInfo = {
             Closed: [
                 {
-                    ByOtherReason: 0,
+                    Id: ClosedReason.ByOtherReason,
                     Css: "closed-wrongPwdOthers",
-                    Message: resources.ClosedByFailedLoginOrAccountExpired
+                    Tootltip: resources.ClosedByFailedLoginOrAccountExpired
                 },
                 {
-                    ByAdmin: 1,
+                    Id: ClosedReason.ByAdmin,
                     Css: "closed-byAdmin",
-                    Message: resources.ClosedByAdmin
+                    Tootltip: resources.ClosedByAdmin
                 },
                 {
-                    ByUpline: 2,
+                    Id: ClosedReason.ByUpline,
                     Css: "closed-byUpline",
-                    Message: resources.ClosedByUpline
+                    Tootltip: resources.ClosedByUpline
                 },
                 {
-                    ByWrongOTPSC: 3,
+                    Id: ClosedReason.ByWrongOTPSC,
                     Css: "closed-wrongOTPSC",
-                    Message: resources.ClosedByFailedOTPOrSC
+                    Tootltip: resources.ClosedByFailedOTPOrSC
                 }
             ],
             Suspended: {
                 Css: "suspended",
-                Message: resources.ThisAccountWasSuspended
+                Tootltip: resources.ThisAccountWasSuspended
             },
             Disabled: {
                 Css: "disabled",
-                Message: resources.ThisAccountWasDisabled
+                Tootltip: resources.ThisAccountWasDisabled
             },
             Enabled: {
                 Css: 'enabled',
-                Message: ''
+                Tootltip: ''
             }
         };
 
         if (customerInfo.RoleId === userLevelId) {
             if (customerInfo.Closed) {
-                return statusInfo.Closed[customerInfo.ClosedReason];
+                return statusInfo.Closed.find(closedReason => customerInfo.ClosedReason === closedReason.Id);
             }
             else if (customerInfo.Suspended) {
                 return statusInfo.Suspended;
@@ -53,26 +60,23 @@ export default class UserLevelInfo extends React.Component {
             else if (!customerInfo.Enabled) {
                 return statusInfo.Disabled;
             }
-
         }
 
         return statusInfo.Enabled;
     }
 
-    render() {
+    buildSearchAccountInfoContent() {
         let {
             customerInfo,
-            userLevelName,
             userLevelId,
             username,
             resources,
-            handleSearchFromUserLevel,
             mobileView
         } = this.props;
 
         let statusInfo = this.getStatusInfo(customerInfo, userLevelId, resources);
 
-        const contentWithViewlogLink =
+        const content =
             <CustomAnchorTag
                 mobileView={mobileView}
                 title={resources.Viewlog}
@@ -83,6 +87,42 @@ export default class UserLevelInfo extends React.Component {
                 <span className="icon-viewlog" />
             </CustomAnchorTag>;
 
+        const contentWithTooltip =
+            <Tooltip
+                title={statusInfo.Tootltip}
+                position="bottom"
+                trigger="mouseenter"
+                arrow="true"
+            >
+                {content}
+            </Tooltip>;
+
+        return statusInfo.Tootltip === '' ? content : contentWithTooltip;
+    }
+
+    buildUplineLevelInfoContent() {
+        let { username, handleSearchFromUserLevel} = this.props;
+        return (
+            <span 
+                className="enabled"
+                onClick={handleSearchFromUserLevel}
+                data-username={username}
+            >
+                {username}
+            </span>
+        );
+    }
+
+    buildUserLevelInfoContent() {
+        let { customerInfo, userLevelId } = this.props;
+
+        return customerInfo.RoleId === userLevelId ?
+            this.buildSearchAccountInfoContent() :
+            this.buildUplineLevelInfoContent();
+    }
+
+    render() {
+        let { userLevelName } = this.props;
         return (
             <div className="col-xs-12 row-info" >
                 <div className="col-xs-5">
@@ -90,29 +130,10 @@ export default class UserLevelInfo extends React.Component {
                 </div>
                 <div className="col-xs-7 col-right">
                     {
-                        customerInfo.RoleId < userLevelId &&
-                        <span className="enabled" onClick={handleSearchFromUserLevel} data-username={username}>
-                            {username}
-                        </span>
-                    }
-
-                    {
-                        customerInfo.RoleId === userLevelId && statusInfo.Message === '' && contentWithViewlogLink
-                    }
-
-                    {
-                        customerInfo.RoleId === userLevelId && statusInfo.Message !== '' &&
-                        <Tooltip
-                            title={statusInfo.Message}
-                            position="bottom"
-                            trigger="mouseenter"
-                            arrow="true"
-                        >
-                            {contentWithViewlogLink}
-                        </Tooltip>
+                        this.buildUserLevelInfoContent()
                     }
                 </div>
             </div>
         );
     }
-};
+}

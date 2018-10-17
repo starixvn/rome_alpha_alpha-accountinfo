@@ -5,7 +5,7 @@ import { UserLevel } from '../constants';
 import SearchingContent from '../components/contents/searching/searching-content';
 import CustomerInfoContent from '../components/contents/customer-info/customer-info-content';
 import ContactInfoContent from '../components/contents/contact-info-content';
-import BalanceInfoContent from '../components/contents/balance-info-content';
+import BalanceInfoContent from '../components/contents/balance-info/balance-info-content';
 import DownlineListContent from '../components/contents/downline-list/downline-list-content';
 import SettingContent from '../components/contents/setting-content';
 import StatusContent from '../components/contents/status-content';
