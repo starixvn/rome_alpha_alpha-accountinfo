@@ -13,6 +13,10 @@ html, body {
     }
 }
 
+.tblRpt tbody td {
+    white-space: normal;
+}
+
 @media only screen and (max-device-width: $screen-device-lower768) {
     body {
         font-size: calculateScale($font-size);
