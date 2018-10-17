@@ -37,7 +37,7 @@
     }
 
     .list-button {
-        padding: 20px 0;
+        padding: 12px 0 20px;
         text-align: center;
 
         [class^='btn'] {
@@ -58,8 +58,9 @@
 .note {
     color: #666666;
     font-style: italic;
-    
+
     .text-red {
+        padding-right: 6px;
         color: #ff0302;
     }
 
@@ -67,6 +68,11 @@
         font-weight: bold;
         color: #333;
         font-style: normal;
+    }
+
+    .content {
+        display: inline-block;
+        padding-left: 6px;
     }
 }
 
@@ -105,7 +111,7 @@
     }
 
     .given-credit .list-button {
-        padding: calculateScale(20px) 0;
+        padding: calculateScale(12px) 0 calculateScale(20px);
     }
 
     [class^="btn"] {
@@ -113,6 +119,16 @@
         margin-right: calculateScale(8px);
         padding-left: calculateScale(16px);
         padding-right: calculateScale(16px);
+    }
+
+    .note {
+        .text-red {
+            padding-right: calculateScale(6px);
+        }
+
+        .content {
+            padding-left: calculateScale(6px);
+        }
     }
 }
     

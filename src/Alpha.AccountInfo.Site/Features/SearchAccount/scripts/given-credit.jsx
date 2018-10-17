@@ -96,10 +96,10 @@ export default class GivenCredit extends React.Component {
                 thousandSeparator={true}
             />;
 
-        let memberGivenCreditLimit = <div> {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)} </div>;
+        let memberGivenCreditLimit = <div className="content"> {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)} </div>;
 
         let masterAgentGivenCreditLimit =
-            <div>
+            <div className="content">
                 {buildNumberFormat(givenCreditMin)} ≤  {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)}
             </div>;
 
