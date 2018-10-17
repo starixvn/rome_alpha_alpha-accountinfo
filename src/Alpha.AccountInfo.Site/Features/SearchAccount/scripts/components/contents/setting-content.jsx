@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import CustomAnchorTag from '../common/custom-anchor-tag';
 
-const SettingContent = ({ resources, settingData, mobileView }) =>
+const SettingContent = ({ settingData, mobileView }) =>
     <div className="setting">
         {
             settingData.map((value, index) => {

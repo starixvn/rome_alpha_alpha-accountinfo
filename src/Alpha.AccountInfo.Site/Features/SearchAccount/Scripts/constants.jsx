@@ -5,13 +5,6 @@
     Member: 1
 };
 
-export const ClosedReason = {
-    ByOtherReason: 0,
-    ByAdmin: 1,
-    ByUpline: 2,
-    ByWrongOTPSC:3
-};
-
 export const ProductConstants = {
     Sportsbook: 1,
     Lottery: 28,

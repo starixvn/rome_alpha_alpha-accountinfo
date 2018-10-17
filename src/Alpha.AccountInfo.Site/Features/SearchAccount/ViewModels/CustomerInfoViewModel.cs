@@ -102,12 +102,13 @@
             }
         }
 
-        public string StatemenLink
+        public Link StatemenLink
         {
             get
             {
                 var actionName = SearchAccountLevel.IsMemberLevel() ? "MemberStatement" : "SMAStatement";
-                return $"{ReportsUrl}Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
+                var link = $"{ReportsUrl}Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
+                return new Link(Resources.Statement, link);
             }
         }
 

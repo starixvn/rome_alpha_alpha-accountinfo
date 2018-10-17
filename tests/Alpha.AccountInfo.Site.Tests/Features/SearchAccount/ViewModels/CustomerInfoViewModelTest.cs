@@ -26,7 +26,7 @@
             var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
             var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
-            Assert.Equal(viewModel.StatemenLink, expectedStatementLink);
+            Assert.Equal(viewModel.StatemenLink.Url, expectedStatementLink);
         }
 
         [Theory]

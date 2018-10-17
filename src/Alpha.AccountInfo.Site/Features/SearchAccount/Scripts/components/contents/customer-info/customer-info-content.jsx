@@ -9,63 +9,64 @@ const CustomerInfoContent = ({
     customerInfo,
     resources,
     handleSearchFromUserLevel,
-    mobileView,
-    rowClasses = "col-xs-12 row-info",
-    firstCellClass = "col-xs-5",
-    secondCellClass = "col-xs-7 col-right" }) => {
-    const content = customerInfo === null ? <div className="no-information">{resources.NoInfo}</div> :
+    mobileView
+}) => {
+    const userLevelInfoArray = [
+        {
+            Name: customerInfo.MasterName,
+            LevelName: resources.Master,
+            LevelId: UserLevel.Master,
+            Visible: customerInfo.ShowMaster
+        },
+        {
+            Name: customerInfo.AgentName,
+            LevelName: resources.Agent,
+            LevelId: UserLevel.Agent,
+            Visible: customerInfo.ShowAgent
+        },
+        {
+            Name: customerInfo.MemberName,
+            LevelName: resources.Customer,
+            LevelId: UserLevel.Member,
+            Visible: customerInfo.ShowMember
+        }
+    ];
+
+    const buttons = [customerInfo.CustomerListOrBetListLink, customerInfo.StatemenLink];
+
+    const content =
         <div id="blockInfo" className="block-info">
             {
-                customerInfo.ShowMaster &&
-                <UserLevelInfo customerInfo={customerInfo}
-                    userLevelName={resources.Master}
-                    userLevelId={UserLevel.Master}
-                    username={customerInfo.MasterName}
-                    resources={resources}
-                    mobileView={mobileView}
-                    handleSearchFromUserLevel={handleSearchFromUserLevel}
-                />
+                userLevelInfoArray.map((userLevelInfo, index) => {
+                    return userLevelInfo.Visible &&
+                        <UserLevelInfo
+                            customerInfo={customerInfo}
+                            username={userLevelInfo.Name}
+                            userLevelName={userLevelInfo.LevelName}
+                            userLevelId={userLevelInfo.LevelId}
+                            resources={resources}
+                            mobileView={mobileView}
+                            handleSearchFromUserLevel={handleSearchFromUserLevel}
+                            key={index}
+                        />;
+                })
             }
 
-            {
-                customerInfo.ShowAgent &&
-                <UserLevelInfo customerInfo={customerInfo}
-                    userLevelName={resources.Agent}
-                    userLevelId={UserLevel.Agent}
-                    username={customerInfo.AgentName}
-                    resources={resources}
-                    mobileView={mobileView}
-                    handleSearchFromUserLevel={handleSearchFromUserLevel}
-                />
-            }
-
-            {
-                customerInfo.ShowMember &&
-                <UserLevelInfo customerInfo={customerInfo}
-                    userLevelName={resources.Customer}
-                    userLevelId={UserLevel.Member}
-                    username={customerInfo.MemberName}
-                    resources={resources}
-                    mobileView={mobileView}
-                    handleSearchFromUserLevel={handleSearchFromUserLevel}
-                />
-            }
-
-            <div className={rowClasses + " text-center list-button"}>
-                <CustomAnchorTag
-                    classNames="btn-default with-level"
-                    href={customerInfo.CustomerListOrBetListLink.Url}
-                    mobileView={mobileView}
-                >
-                    {customerInfo.CustomerListOrBetListLink.Text}
-                </CustomAnchorTag>
-                <CustomAnchorTag
-                    classNames="btn-default with-level"
-                    href={customerInfo.StatemenLink}
-                    mobileView={mobileView}
-                >
-                    {resources.Statement}
-                </CustomAnchorTag>
+            <div className="col-xs-12 row-info text-center list-button">
+                {
+                    buttons.map((buton, index) => {
+                        return (
+                            <CustomAnchorTag
+                                classNames="btn-default with-level"
+                                href={buton.Url}
+                                mobileView={mobileView}
+                                key={index}
+                            >
+                                {buton.Text}
+                            </CustomAnchorTag>
+                        );
+                    })
+                }
             </div>
         </div>;
 

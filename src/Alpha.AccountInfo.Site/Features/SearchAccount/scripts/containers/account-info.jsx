@@ -244,12 +244,7 @@ export default class AccountInfo extends React.Component {
                 featureText: resources.Setting,
                 path: "/setting",
                 visible: true,
-                children: buildContent(settingData,
-                    <SettingContent
-                        resources={resources}
-                        mobileView={mobileView}
-                        settingData={settingData}
-                    />)
+                children: buildContent(settingData, <SettingContent mobileView={mobileView} settingData={settingData} />)
             },
             loginInfoProps: {
                 iconClass: "icon-login",
