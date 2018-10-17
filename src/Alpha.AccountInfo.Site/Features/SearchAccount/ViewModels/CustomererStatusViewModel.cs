@@ -102,6 +102,7 @@ namespace Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
+                new CustomerProductStatus(ProductConstants.Sportsbook, true),
                 new CustomerProductStatus(ProductConstants.NumberGame, nonDCSProduct.DisableNumber),
                 new CustomerProductStatus(ProductConstants.RNGCasino, nonDCSProduct.DisableCasino, synced: nonDCSProduct.SyncCasino),
                 new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.DisableEsports),
@@ -124,6 +125,7 @@ namespace Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
+                new CustomerProductStatus(ProductConstants.Sportsbook, true),
                 new CustomerProductStatus(ProductConstants.NumberGame, nonDCSProduct.UplineDisableNumber),
                 new CustomerProductStatus(ProductConstants.RNGCasino, nonDCSProduct.UplineDisableCS),
                 new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.UplineDisableEsports),
@@ -146,6 +148,7 @@ namespace Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
+                new CustomerProductStatus(ProductConstants.Sportsbook, true),
                 new CustomerProductStatus(ProductConstants.NumberGame, message.IsNumberGameDisabled),
                 new CustomerProductStatus(ProductConstants.RNGCasino, message.IsCasinoDisabled, synced: message.IsCasinoSync),
                 new CustomerProductStatus(ProductConstants.ESport, message.IsDisabledESports),

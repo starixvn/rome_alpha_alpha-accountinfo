@@ -197,6 +197,7 @@
     <Compile Include="Features\SearchAccount\SearchAccountControllerTest.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusControllerTests.cs" />
     <Compile Include="Extensions\AssertExtension.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\CustomererStatusViewModelTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountHandlerTest.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusHandlerTests.cs" />

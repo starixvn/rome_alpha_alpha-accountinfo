@@ -9,6 +9,7 @@
     public class ProductStatusItemViewModel : StatusItemViewModel
     {
         private readonly IConfigurationItem productItem;
+
         private readonly List<int> productsAllowedSuperViewAgent = new List<int>
         {
             ProductConstants.Keno,
@@ -37,15 +38,18 @@
 
         public override bool Disabled
             => base.Disabled
-            || productsAllowedSuperViewAgent.Contains(ProductId)
+            || IsSuperCanViewAgentOnThisProduct(ProductId)
             || Actor.IsNotDirectUplineOf(SearchAccount)
             || SearchAccount.Upline.ProductStatusOf(productItem.ProductId).Disabled;
 
-        public override bool Visible=>
-            productsAllowedSuperViewAgent.Contains(ProductId) ? 
-            SearchAccount.CanSeeProduct(productItem.ProductId):
-            Actor.IsDirectUplineOf(SearchAccount) && SearchAccount.CanSeeProduct(productItem.ProductId);
+        public override bool Visible => IsSuperCanViewAgentOnThisProduct(ProductId)
+            ? SearchAccount.CanSeeProduct(productItem.ProductId)
+            : Actor.IsDirectUplineOf(SearchAccount) && SearchAccount.CanSeeProduct(productItem.ProductId);
 
+        private bool IsSuperCanViewAgentOnThisProduct(int productId)
+            => Actor.IsSuper
+            && SearchAccount.IsAgent
+            && productsAllowedSuperViewAgent.Contains(productId);
 
         public bool IsEditOnProductLevel
 #pragma warning disable S3215 // "interface" instances should not be cast to concrete types
