@@ -10,7 +10,7 @@
     {
         private readonly IConfigurationItem productItem;
 
-        private readonly List<int> productsAllowedSuperViewAgent = new List<int>
+        private readonly static List<int> productsAllowedSuperViewAgent = new List<int>
         {
             ProductConstants.Keno,
             ProductConstants.ColossusBets,

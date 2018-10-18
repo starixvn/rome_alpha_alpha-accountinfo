@@ -10,7 +10,7 @@ window.renderAccountInfo = function (searchAccountName, actorRoleId, actorName, 
             actorRoleId={actorRoleId}
             actorName={actorName}
             mobileView={mobileView}
-            resources={base64Helper.decodeResources(accountInfoResources)}
+            resources={accountInfoResources}
         />,
         document.getElementById('account-info')
     );

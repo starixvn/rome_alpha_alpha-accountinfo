@@ -25,7 +25,7 @@
             '@Model.ActorRoleId',
             '@Model.ActoreName',
             JSON.parse('@Model.MobileView'.toLowerCase()),
-            JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"'))
+            @Html.Raw(Model.AccountInfoResources)
         );
     </script>
 }

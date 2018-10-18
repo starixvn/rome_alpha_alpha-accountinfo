@@ -5,6 +5,7 @@ namespace Alpha.AccountInfo.Site.Features.Shared.Helpers
     using System.Collections;
     using System.Globalization;
     using System.Linq;
+    using System.Net;
     using System.Resources;
     using System.Text;
     using System.Threading;
@@ -19,7 +20,7 @@ namespace Alpha.AccountInfo.Site.Features.Shared.Helpers
 
             var resourceJson = string.Join(",",
                 resourceSet.Cast<DictionaryEntry>()
-                .Select(x => $"\"{x.Key.ToString()}\":\"{Convert.ToBase64String(Encoding.UTF8.GetBytes(x.Value.ToString()))}\""));
+                .Select(x => $"\"{x.Key}\":\"{WebUtility.HtmlEncode(x.Value.ToString())}\""));
 
             return string.Format("{0}{1}{2}", "{", resourceJson, "}");
         }

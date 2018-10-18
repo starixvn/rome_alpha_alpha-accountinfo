@@ -33,7 +33,7 @@ export default class GivenCredit extends React.Component {
             hideMessages: true,
             updateSuccess: false,
             message: '',
-            resources: base64Helper.decodeResources(this.props.resources)
+            resources: this.props.resources
         };
 
         this.handleClose = this.handleClose.bind(this);

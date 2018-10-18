@@ -8,7 +8,7 @@
     using Alpha.Web.Filters;
     using MediatR;
 
-    [SessionState(SessionStateBehavior.Default)]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class SearchAccountController : AccountInfoBaseController
     {
         private const string SearchAccountViewPath = "~/Features/SearchAccount/Views/Index.cshtml";
