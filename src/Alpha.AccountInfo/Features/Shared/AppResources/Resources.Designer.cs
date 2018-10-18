@@ -97,6 +97,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agents.
+        /// </summary>
+        public static string Agents {
+            get {
+                return ResourceManager.GetString("Agents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to and.
         /// </summary>
         public static string And {
@@ -421,7 +430,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GivenCreditPopup.
+        ///   Looks up a localized string similar to Update Given Credit.
         /// </summary>
         public static string GivenCreditPopupTitle {
             get {
@@ -525,6 +534,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         public static string MemberMaxCredit {
             get {
                 return ResourceManager.GetString("MemberMaxCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Members.
+        /// </summary>
+        public static string Members {
+            get {
+                return ResourceManager.GetString("Members", resourceCulture);
             }
         }
         

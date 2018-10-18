@@ -4,7 +4,7 @@ import Autosuggest from 'react-autosuggest';
 import { getSuggestions, getSuggestionValue, renderSuggestion } from './auto-suggestion';
 import { accountInfoAPI } from '../../../api-client';
 
-export default class SearchingContent extends React.Component {
+export default class Searching extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -50,8 +50,8 @@ export default class SearchingContent extends React.Component {
         accountInfoAPI
             .getAutoUsernameSuggestion({ SuggestionQuery: input.value })
             .then((data) => {
-            this.setState({ suggestions: data });
-        });
+                this.setState({ suggestions: data });
+            });
     }
 
     onSuggestionsClearRequested() {
@@ -79,19 +79,20 @@ export default class SearchingContent extends React.Component {
             value: username
         };
 
+        const autosuggestProps = {
+            suggestions: suggestions,
+            onSuggestionsFetchRequested: this.onSuggestionsFetchRequested,
+            onSuggestionsClearRequested: this.onSuggestionsClearRequested,
+            onSuggestionSelected: this.onSuggestionSelected,
+            getSuggestionValue: getSuggestionValue,
+            renderSuggestion: renderSuggestion,
+            shouldRenderSuggestions: this.shouldRenderSuggestions,
+            inputProps: inputProps
+        };
+
         return (
             <div className="search-box">
-                <Autosuggest
-                    suggestions={suggestions}
-                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                    onSuggestionSelected={this.onSuggestionSelected}
-                    getSuggestionValue={getSuggestionValue}
-                    renderSuggestion={renderSuggestion}
-                    shouldRenderSuggestions={this.shouldRenderSuggestions}
-                    inputProps={inputProps}
-                />
-
+                <Autosuggest {...autosuggestProps}/>
                 <span className="icon-search" onClick={this.handleSearchClick} ref="searchAccount" />
             </div>
         );

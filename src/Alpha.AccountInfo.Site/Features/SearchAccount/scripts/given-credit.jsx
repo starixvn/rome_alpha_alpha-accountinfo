@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
 import { accountInfoAPI } from './api-client';
-import { base64Helper } from './helpers/accountinfo-helper';
 import { UserLevel } from './constants';
 
 window.renderGivenCredit = function (

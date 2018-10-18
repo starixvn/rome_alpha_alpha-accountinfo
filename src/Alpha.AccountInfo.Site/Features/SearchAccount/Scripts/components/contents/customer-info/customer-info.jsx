@@ -5,12 +5,16 @@ import UserLevelInfo from './user-level-info';
 import { UserLevel } from '../../../constants';
 import CustomAnchorTag from '../../common/custom-anchor-tag';
 
-const CustomerInfoContent = ({
+const CustomerInfo = ({
     customerInfo,
     resources,
     handleSearchFromUserLevel,
     mobileView
 }) => {
+    if (customerInfo === null) {
+        return <div className="no-information">{resources.NoInfo}</div>;
+    }
+
     const userLevelInfoArray = [
         {
             Name: customerInfo.MasterName,
@@ -38,30 +42,33 @@ const CustomerInfoContent = ({
         <div id="blockInfo" className="block-info">
             {
                 userLevelInfoArray.map((userLevelInfo, index) => {
-                    return userLevelInfo.Visible &&
-                        <UserLevelInfo
-                            customerInfo={customerInfo}
-                            username={userLevelInfo.Name}
-                            userLevelName={userLevelInfo.LevelName}
-                            userLevelId={userLevelInfo.LevelId}
-                            resources={resources}
-                            mobileView={mobileView}
-                            handleSearchFromUserLevel={handleSearchFromUserLevel}
-                            key={index}
-                        />;
+                    let userlevelInfoProps = {
+                        customerInfo: customerInfo,
+                        username: userLevelInfo.Name,
+                        userLevelName: userLevelInfo.LevelName,
+                        userLevelId: userLevelInfo.LevelId,
+                        resources: resources,
+                        mobileView: mobileView,
+                        handleSearchFromUserLevel: handleSearchFromUserLevel,
+                        key: index
+                    };
+
+                    return userLevelInfo.Visible && <UserLevelInfo {...userlevelInfoProps} />;
                 })
             }
 
             <div className="col-xs-12 row-info text-center list-button">
                 {
                     buttons.map((buton, index) => {
+                        let customAnchorTagProps = {
+                            classNames: "btn-default with-level",
+                            href: buton.Url,
+                            mobileView: mobileView,
+                            key: index
+                        }
+
                         return (
-                            <CustomAnchorTag
-                                classNames="btn-default with-level"
-                                href={buton.Url}
-                                mobileView={mobileView}
-                                key={index}
-                            >
+                            <CustomAnchorTag {...customAnchorTagProps}>
                                 {buton.Text}
                             </CustomAnchorTag>
                         );
@@ -73,4 +80,4 @@ const CustomerInfoContent = ({
     return content;
 };
 
-export default CustomerInfoContent;
+export default CustomerInfo;

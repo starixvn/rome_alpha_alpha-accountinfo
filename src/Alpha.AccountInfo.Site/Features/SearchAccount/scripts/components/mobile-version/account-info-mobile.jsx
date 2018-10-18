@@ -34,9 +34,11 @@ export default class AccountInfoMobile extends React.Component {
         }
     }
 
-    buildRoutes() {
+    render() {
+        const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
         const { contentItems, customerInfo } = this.props;
-        let routeItems = [
+
+        let routePropsArray = [
             {
                 contentItems: contentItems,
                 path: '/featureList'
@@ -56,25 +58,19 @@ export default class AccountInfoMobile extends React.Component {
             }
         ];
 
-        return routeItems;
-    }
-
-    render() {
-        const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
-
         return (
             <HashRouter>
                 <Switch>
                     {
-                        this.buildRoutes().map((route, index) => {
+                        routePropsArray.map((routeProps, index) => {
                             return (
                                 <Route
                                     key={index}
-                                    exact path={route.path}
+                                    exact path={routeProps.path}
                                     render={
                                         (props) =>
                                             <ContentMobile
-                                                {...route}
+                                                {...routeProps}
                                                 {...{ addAnimation: props.location.state !== undefined ? props.location.state.addAnimation : false }}
                                                 redirectToBalanceInfoPage={redirectToBalanceInfoPage}
                                                 redirectToFeatureList={redirectToFeatureList}

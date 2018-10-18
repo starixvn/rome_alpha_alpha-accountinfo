@@ -10,7 +10,8 @@ export const getSuggestions = (value, suggestions) => {
 
 export const getSuggestionValue = suggestion => suggestion.UserName;
 
-export const renderSuggestion = suggestion => <div>
+export const renderSuggestion = suggestion =>
+    <div>
         {suggestion.UserName}
         <div>{suggestion.FirstName} {suggestion.LastName}</div>
     </div>;

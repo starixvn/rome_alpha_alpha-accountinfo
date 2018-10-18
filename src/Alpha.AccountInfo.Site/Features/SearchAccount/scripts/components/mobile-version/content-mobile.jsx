@@ -1,6 +1,56 @@
 ﻿import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
+const CustomLink = ({ path, iconClass, featureText }) => {
+    return (
+        <Link
+            to={{
+                pathname: path,
+                state: { addAnimation: true }
+            }}
+            className="feature-item"
+        >
+            <span className={iconClass} />
+            {featureText}
+        </Link>
+    );
+}
+
+const ContentPage = ({ iconClass, featureText, children, animationClass }) => {
+    let customLinkProps = {
+        path: "/featureList",
+        iconClass: iconClass,
+        featureText: featureText
+    };
+
+    return (
+        <div className={`${animationClass} feature-detail`}>
+            <CustomLink {...customLinkProps}/>
+            {children}
+        </div>
+    );
+}
+
+const FeatureListPage = ({ contentItems, animationClass }) => {
+    return (
+        <div className={`${animationClass} feature-list`}>
+            <nav>
+                {
+                    Object.values(contentItems).map((content, index) => {
+                        let customLinkProps = {
+                            path: content.path,
+                            iconClass: content.iconClass,
+                            featureText: content.featureText
+                        };
+
+                        return content.visible && <CustomLink {...customLinkProps} key={index} />;
+                    })
+                }
+            </nav>
+        </div>
+    );
+}
+
 export default class ContentMobile extends React.Component {
     constructor(props) {
         super(props);
@@ -31,50 +81,6 @@ export default class ContentMobile extends React.Component {
         return !balanceInfoRedirectBackToItself && !featureListRedirectBackToItself;
     }
 
-    buildLink(path, iconClass, featureText, index) {
-        return (
-            <Link
-                to={{
-                    pathname: path,
-                    state: { addAnimation: true }
-                }}
-                className="feature-item"
-                key={index}
-            >
-                <span className={iconClass} />
-                {featureText}
-            </Link>
-        );
-    }
-
-    buildFeatureList(contentItems) {
-        return (
-            <div className={`${this.state.animationClass} feature-list`}>
-                <nav>
-                    {
-                        Object.values(contentItems).map((content, index) => {
-                            return content.visible &&
-                                this.buildLink(
-                                    content.path,
-                                    content.iconClass,
-                                    content.featureText,
-                                    index);
-                        })
-                    }
-                </nav>
-            </div>
-        );
-    }
-
-    buildContentBlock(iconClass, featureText, children) {
-        return (
-            <div className={`${this.state.animationClass} feature-detail`}>
-                {this.buildLink("featureList", iconClass, featureText)}
-                {children}
-            </div>
-        );
-    }
-
     render() {
         const {
             iconClass,
@@ -86,8 +92,9 @@ export default class ContentMobile extends React.Component {
             redirectToFeatureList = false
         } = this.props;
 
+        const { featureListPath, balanceInfoPath, animationClass } = this.state;
+
         if (redirectToBalanceInfoPage || redirectToFeatureList) {
-            let { featureListPath, balanceInfoPath } = this.state;
             return (
                 <Redirect
                     to={{
@@ -99,7 +106,15 @@ export default class ContentMobile extends React.Component {
         }
 
         return contentItems.length === 0 ?
-            this.buildContentBlock(iconClass, featureText, children) :
-            this.buildFeatureList(contentItems);
+            <ContentPage
+                iconClass={iconClass}
+                animationClass={animationClass}
+                featureText={featureText}
+                children={children}
+            /> :
+            <FeatureListPage
+                contentItems={contentItems}
+                animationClass={animationClass}
+            />;
     }
 }

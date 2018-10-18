@@ -8,34 +8,34 @@ const CellContainNumberFormat = ({
     mobileView = false,
     hrefLink = null
 }) => {
-    let formatClassNames = '';
+    let formatClassNames = 'number';
+
     if (value < 0) {
         formatClassNames = 'number-red';
     } else if (value >= 0 && hrefLink !== null && hrefLink !== '') {
         formatClassNames = 'number-link';
-    } else {
-        formatClassNames = 'number';
+    }
+
+    const numberFormatProps = {
+        value: value,
+        displayType: 'text',
+        decimalScale: 2,
+        fixedDecimalScale: true,
+        thousandSeparator: true,
+        renderText: (value) => {
+            return hrefLink === null || hrefLink === '' ?
+                <span>{value}</span> :
+                <CustomAnchorTag href={hrefLink} mobileView={mobileView}>
+                    {value}
+                </CustomAnchorTag>
+        }
     }
 
     return (
         <div className={`${classNames} ${formatClassNames}`}>
-            <NumberFormat
-                value={value}
-                displayType={'text'}
-                decimalScale={2}
-                fixedDecimalScale={true}
-                thousandSeparator={true}
-                renderText={value => hrefLink === null || hrefLink === '' ?
-                    <span>{value}</span> :
-                    <CustomAnchorTag
-                        href={hrefLink}
-                        mobileView={mobileView}
-                    >
-                        {value}
-                    </CustomAnchorTag>}
-            />
+            <NumberFormat {...numberFormatProps} />
         </div>
     );
-};
+}
 
 export default CellContainNumberFormat;

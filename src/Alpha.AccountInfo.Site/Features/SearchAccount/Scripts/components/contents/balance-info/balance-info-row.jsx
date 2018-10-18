@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import CellContainNumberFormat from '../../common/cell-contain-number-format';
 
-const BalanceInfoRowContent = ({ title, value, mobileView = false, hrefLink = null }) => {
+const BalanceInfoRow = ({ title, value, mobileView = false, hrefLink = null }) => {
     const cellFormatProps = {
         value: value,
         mobileView: mobileView,
@@ -17,4 +17,4 @@ const BalanceInfoRowContent = ({ title, value, mobileView = false, hrefLink = nu
     );
 };
 
-export default BalanceInfoRowContent;
+export default BalanceInfoRow;
