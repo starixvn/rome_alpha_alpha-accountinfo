@@ -319,6 +319,8 @@
     <Content Include="assets\bundles\productstatus\productstatus.min.css" />
     <Content Include="assets\bundles\productstatus\productstatus.min.js" />
     <Content Include="assets\bundles\styles\account-info-mobile-calculate-07.min.css" />
+    <Content Include="assets\scripts\tests\apps\search-account\common\cell-contain-number-format.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\common\custom-anchor-tag.test.jsx" />
     <Content Include="Features\SearchAccount\Scripts\api-client.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\common\custom-anchor-tag.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\balance-info\member-credit-max-row.jsx" />
@@ -361,6 +363,8 @@
     <Content Include="App_Data\securitycode.json" />
     <Content Include="Features\ProductStatusPopup\Views\Index.cshtml" />
     <Content Include="Features\ProductStatusPopup\Styles\product-status-popup.scss" />
+    <Content Include=".babelrc" />
+    <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
     <Content Include="typings\globals\jquery\typings.json" />

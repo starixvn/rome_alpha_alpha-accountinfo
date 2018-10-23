@@ -1,0 +1,46 @@
+<testsuites name="jest tests" tests="20" failures="0" time="4.476">
+  <testsuite name="\assets\scripts\tests\apps\search-account\common\custom-anchor-tag.test.jsx" errors="0" failures="0" skipped="0" timestamp="2018-10-23T08:12:56" time="2.468" tests="5">
+    <testcase classname="CustomAnchorTag renders without crashing" name="CustomAnchorTag renders without crashing" time="0.01">
+    </testcase>
+    <testcase classname="CustomAnchorTag snapshot" name="CustomAnchorTag snapshot" time="0.006">
+    </testcase>
+    <testcase classname="CustomAnchorTag handleClick() called when clicked" name="CustomAnchorTag handleClick() called when clicked" time="0.004">
+    </testcase>
+    <testcase classname="CustomAnchorTag handleClick() accountInfoHelper.closeLeftPanelOnMobile() not call if `mobileView` is false" name="CustomAnchorTag handleClick() accountInfoHelper.closeLeftPanelOnMobile() not call if `mobileView` is false" time="0.001">
+    </testcase>
+    <testcase classname="CustomAnchorTag handleClick() accountInfoHelper.closeLeftPanelOnMobile() call if `mobileView` is true" name="CustomAnchorTag handleClick() accountInfoHelper.closeLeftPanelOnMobile() call if `mobileView` is true" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="\assets\scripts\tests\apps\search-account\common\cell-contain-number-format.test.jsx" errors="0" failures="0" skipped="0" timestamp="2018-10-23T08:12:56" time="2.533" tests="15">
+    <testcase classname="CellContainNumberFormat renders without crashing" name="CellContainNumberFormat renders without crashing" time="0.014">
+    </testcase>
+    <testcase classname="CellContainNumberFormat always renders a div" name="CellContainNumberFormat always renders a div" time="0.007">
+    </testcase>
+    <testcase classname="CellContainNumberFormat renders a `NumberFormat`" name="CellContainNumberFormat renders a `NumberFormat`" time="0.008">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` equal 0 render class `number`" name="CellContainNumberFormat when `value` equal 0 render class `number`" time="0.003">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` equal 0 does not renders a `CustomAnchorTag` " name="CellContainNumberFormat when `value` equal 0 does not renders a `CustomAnchorTag` " time="0.001">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` equal 0 snapshot" name="CellContainNumberFormat when `value` equal 0 snapshot" time="0.006">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` greater than 0 render class `number` if `href` is null" name="CellContainNumberFormat when `value` greater than 0 render class `number` if `href` is null" time="0.003">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` greater than 0 render class `number` if `href` is empty" name="CellContainNumberFormat when `value` greater than 0 render class `number` if `href` is empty" time="0.001">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` greater than 0 snapshot" name="CellContainNumberFormat when `value` greater than 0 snapshot" time="0.002">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` greater than 0 And when `href` is not null/empty renders a `CustomAnchorTag`" name="CellContainNumberFormat when `value` greater than 0 And when `href` is not null/empty renders a `CustomAnchorTag`" time="0.015">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` greater than 0 And when `href` is not null/empty render class `number-link`" name="CellContainNumberFormat when `value` greater than 0 And when `href` is not null/empty render class `number-link`" time="0.002">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` greater than 0 And when `href` is not null/empty snapshot" name="CellContainNumberFormat when `value` greater than 0 And when `href` is not null/empty snapshot" time="0.001">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` less than 0 render class `number-red`" name="CellContainNumberFormat when `value` less than 0 render class `number-red`" time="0.002">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` less than 0 does not renders a `CustomAnchorTag` " name="CellContainNumberFormat when `value` less than 0 does not renders a `CustomAnchorTag` " time="0.001">
+    </testcase>
+    <testcase classname="CellContainNumberFormat when `value` less than 0 snapshot" name="CellContainNumberFormat when `value` less than 0 snapshot" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

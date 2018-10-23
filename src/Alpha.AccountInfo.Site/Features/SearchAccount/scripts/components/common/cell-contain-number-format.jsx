@@ -9,10 +9,12 @@ const CellContainNumberFormat = ({
     hrefLink = null
 }) => {
     let formatClassNames = 'number';
+    let renderLink = false;
 
     if (value < 0) {
         formatClassNames = 'number-red';
-    } else if (value >= 0 && hrefLink !== null && hrefLink !== '') {
+    } else if (value > 0 && hrefLink !== null && hrefLink !== '') {
+        renderLink = true;
         formatClassNames = 'number-link';
     }
 
@@ -23,11 +25,11 @@ const CellContainNumberFormat = ({
         fixedDecimalScale: true,
         thousandSeparator: true,
         renderText: (value) => {
-            return hrefLink === null || hrefLink === '' ?
-                <span>{value}</span> :
+            return renderLink ?
                 <CustomAnchorTag href={hrefLink} mobileView={mobileView}>
                     {value}
-                </CustomAnchorTag>
+                </CustomAnchorTag> :
+                <span>{value}</span>;
         }
     }
 

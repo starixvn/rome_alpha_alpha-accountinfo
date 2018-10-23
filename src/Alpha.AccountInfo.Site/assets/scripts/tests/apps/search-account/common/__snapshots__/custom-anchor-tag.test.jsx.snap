@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomAnchorTag snapshot 1`] = `
+<a
+  className=""
+  onClick={[Function]}
+  target="main"
+  title={null}
+/>
+`;

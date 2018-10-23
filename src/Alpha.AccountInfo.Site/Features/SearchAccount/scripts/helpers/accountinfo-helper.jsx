@@ -1,5 +1,22 @@
 export const mobileScale = (value) => value / 0.7;
 
-export const resizePopupOnMobile = () => window.top.document.querySelector('[id^="page-popup-"]').classList.add("modal-account-info");
+export const resizePopupOnMobile = () => {
+    let modalElement = window.top.document.querySelector('[id^="page-popup-"]');
+    if (modalElement) {
+        modalElement.classList.add("modal-account-info");
+    }
+}
 
-export const resizeBootboxOnMobile = () => window.top.document.getElementsByClassName('bootbox-confirm')[0].classList.add("bootbox-account-info");
+export const resizeBootboxOnMobile = () => {
+    let bootBoxElement = window.top.document.getElementsByClassName('bootbox-confirm')[0];
+    if (bootBoxElement) {
+        bootBoxElement.classList.add("bootbox-account-info");
+    }
+}
+
+export const closeLeftPanelOnMobile = () => {
+    let closeIconElement = window.parent.document.getElementById('closeIconOnMobile');
+    if (closeIconElement) {
+        closeIconElement.click();
+    }
+}

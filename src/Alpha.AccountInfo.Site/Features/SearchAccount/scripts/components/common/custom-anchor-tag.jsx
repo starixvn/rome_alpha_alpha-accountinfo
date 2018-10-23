@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { closeLeftPanelOnMobile } from '../../helpers/accountinfo-helper';
 
 export default class CustomAnchorTag extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ export default class CustomAnchorTag extends React.Component {
 
     handleOnclick(e) {
         if (this.props.mobileView) {
-            window.parent.document.getElementById('closeIconOnMobile').click();
+            closeLeftPanelOnMobile();
         }
     }
 

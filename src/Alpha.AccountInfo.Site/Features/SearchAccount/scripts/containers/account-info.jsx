@@ -165,7 +165,6 @@ export default class AccountInfo extends React.Component {
     }
 
     handleOpenIPInfo(e) {
-        e.preventDefault();
         window.top.ageWnd.open(`${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`);
     }
 

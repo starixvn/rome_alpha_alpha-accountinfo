@@ -10,6 +10,9 @@
     "paths": {}
   },
   "scripts": {
+    "test:snapshot": "jest",
+    "test:snapshot:watch": "npm run test:snapshot -- --watch",
+    "test:coverage": "jest --coverage --coverageDirectory=output/coverage/jest",
     "build": "webpack --config webpack.config.dev.js",
     "dev": "npm install && webpack --config webpack.config.dev.js",
     "local": "npm install && webpack --config webpack.config.local.js",
@@ -21,6 +24,29 @@
     "raven-js": "^3.27.0",
     "react-autosuggest": "^9.3.4"
   },
+  "jest": {
+    "coverageReporters": [
+      "text"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "CellContainNumberFormat": "<rootDir>/Features/SearchAccount/Scripts/components/common/cell-contain-number-format.jsx",
+      "CustomAnchorTag": "<rootDir>/Features/SearchAccount/Scripts/components/common/custom-anchor-tag.jsx",
+      "AccountInfoHelper": "<rootDir>/Features/SearchAccount/Scripts/helpers/accountinfo-helper.jsx"
+    }
+  },
+  "jest-junit": {
+    "output": "output/coverage/junit/junit.xml",
+    "usePathForSuiteName": "true"
+  },
   "devDependencies": {
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@types/core-js": "^0.9.42",
@@ -28,6 +54,7 @@
     "@types/webpack-env": "^1.13.0",
     "awesome-typescript-loader": "^3.5.0",
     "babel-core": "^6.26.3",
+    "babel-jest": "^18.0.0",
     "babel-loader": "^7.1.5",
     "babel-minify-webpack-plugin": "^0.3.1",
     "babel-preset-env": "^1.7.0",
@@ -37,20 +64,29 @@
     "babel-preset-stage-1": "^6.24.1",
     "core-js": "^2.4.1",
     "css-loader": "^1.0.0",
+    "enzyme": "^2.7.0",
+    "enzyme-adapter-react-15": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^5.7.0",
     "install": "^0.12.1",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "jest-junit": "^5.2.0",
     "jquery": "^3.3.1",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.3",
     "npm": "^6.4.1",
     "optimize-css-assets-webpack-plugin": "^4.0.3",
-    "react": "^16.5.1",
-    "react-dom": "^16.5.1",
+    "react": "^15.4.0",
+    "react-addons-test-utils": "^15.4.1",
+    "react-dom": "^15.4.0",
     "react-number-format": "^3.4.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-test-renderer": "^15.4.1",
     "react-tippy": "^1.2.2",
     "sass-loader": "^7.1.0",
+    "sinon": "^7.0.0",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "typescript": "^2.1.6",
