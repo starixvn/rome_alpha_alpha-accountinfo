@@ -1,0 +1,74 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { mount } from "enzyme";
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
+import renderer from 'react-test-renderer';
+import NumberFormat from 'react-number-format';
+import GivenCreditRow from 'GivenCreditRow';
+import {Resources} from '../../helpers/resources-sample';
+import {MasterLevelInfo} from '../../helpers/master-level-info-sample';
+import * as accountInfoHelper from 'AccountInfoHelper';
+
+describe('GivenCreditRow', () => {
+    let props;
+    global.accountInfoSiteAppPath= "/accountInfo-site";
+
+    global.top.ageWnd =  {
+        open: jest.fn()
+    };
+
+    beforeEach(() => {
+        props = {
+            customerInfo: MasterLevelInfo,
+            resources: Resources,
+            mobileView: false,
+            fetchCustomerInfoFromServer: jest.fn()
+        };
+    });
+
+    it('renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<GivenCreditRow {...props}/>, div);
+    });
+
+    it('snapshot', () => {
+        const component = renderer.create(<GivenCreditRow {...props} />);
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("renders a `NumberFormat`", () => {
+        const givenCreditRow = mount(<GivenCreditRow {...props} />);
+        expect(givenCreditRow.find(NumberFormat).length).toBe(1);
+    });
+
+    describe("handleOpenGivenCreditPopup()" , () => {
+        it('called when clicked', () => {
+            const spy = sinon.spy(GivenCreditRow.prototype, 'handleOpenGivenCreditPopup');
+            const wrapper = shallow(<GivenCreditRow {...props}/>)
+    
+            wrapper.find('#given-credit-popup').simulate('click')
+            expect(spy.calledOnce).toBeTruthy();
+        });
+
+        describe("accountInfoHelper.mobileScale()", () => {
+            accountInfoHelper.resizePopupOnMobile = jest.fn();
+
+            it('not call if `mobileView` is false', () => {
+                props.mobileView = false;
+    
+                const wrapper = shallow(<GivenCreditRow {...props} />)
+                wrapper.find('#given-credit-popup').simulate('click');
+                expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(0);
+            });
+    
+            it('call if `mobileView` is true', () => {
+                props.mobileView = true;
+    
+                const wrapper = shallow(<GivenCreditRow {...props} />)
+                wrapper.find('#given-credit-popup').simulate('click');
+                expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(1);
+            });
+        });
+    });
+});

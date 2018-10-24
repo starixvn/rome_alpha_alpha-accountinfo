@@ -54,6 +54,10 @@ describe('CellContainNumberFormat', () => {
             props.value = 0;
         });
 
+        it('snapshot', () => {
+            expect(renderSnapshot()).toMatchSnapshot();
+        });
+
         it('render class `number`', () => {
             props.value = 0;
             expect(cellContainNumberFormat().find('.number').length).toBe(1);
@@ -62,9 +66,9 @@ describe('CellContainNumberFormat', () => {
         it("does not renders a `CustomAnchorTag` ", () => {
             expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(0);
         });
-        
-        it('snapshot', () => {
-            expect(renderSnapshot()).toMatchSnapshot();
+
+        it("renders a span contain value ", () => {
+            expect(cellContainNumberFormat().find('span').length).toBe(1);
         });
     });
 
@@ -73,23 +77,57 @@ describe('CellContainNumberFormat', () => {
             props.value = 50;
         });
 
-        it('render class `number` if `href` is null', () => {
-            props.hrefLink = null;
-            expect(cellContainNumberFormat().find('.number').length).toBe(1);
+        describe("And when `href` is null", () => {
+            beforeEach(() => {
+                props.hrefLink = null;
+            });
+    
+            it('snapshot', () => {
+                expect(renderSnapshot()).toMatchSnapshot();
+            });
+
+            it('render class `number`', () => {
+                expect(cellContainNumberFormat().find('.number').length).toBe(1);
+            });
+
+            it("renders a span contain value ", () => {
+                expect(cellContainNumberFormat().find('span').length).toBe(1);
+            });
+
+            it("does not renders a `CustomAnchorTag` ", () => {
+                expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(0);
+            });    
         });
 
-        it('render class `number` if `href` is empty', () => {
-            props.hrefLink = '';
-            expect(cellContainNumberFormat().find('.number').length).toBe(1);
-        });
+        describe("And when `href` is empty", () => {
+            beforeEach(() => {
+                props.hrefLink = '';
+            });
+    
+            it('snapshot', () => {
+                expect(renderSnapshot()).toMatchSnapshot();
+            });
 
-        it('snapshot', () => {
-            expect(renderSnapshot()).toMatchSnapshot();
+            it('render class `number`', () => {
+                expect(cellContainNumberFormat().find('.number').length).toBe(1);
+            });
+
+            it("renders a span contain value ", () => {
+                expect(cellContainNumberFormat().find('span').length).toBe(1);
+            });
+
+            it("does not renders a `CustomAnchorTag` ", () => {
+                expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(0);
+            });    
         });
 
         describe("And when `href` is not null/empty", () => {
             beforeEach(() => {
                 props.hrefLink = "192.168.1.1";
+            });
+
+            it('snapshot', () => {
+                expect(renderSnapshot()).toMatchSnapshot();
             });
     
             it("renders a `CustomAnchorTag`", () => {
@@ -100,15 +138,20 @@ describe('CellContainNumberFormat', () => {
                 expect(cellContainNumberFormat().find('.number-link').length).toBe(1);
             });
 
-            it('snapshot', () => {
-                expect(renderSnapshot()).toMatchSnapshot();
+            it("does not renders span ", () => {
+                expect(cellContainNumberFormat().find('span').length).toBe(0);
             });
+    
         });
     });
 
     describe("when `value` less than 0", () => {
         beforeEach(() => {
             props.value = -23;
+        });
+
+        it('snapshot', () => {
+            expect(renderSnapshot()).toMatchSnapshot();
         });
 
         it('render class `number-red`', () => {
@@ -119,8 +162,8 @@ describe('CellContainNumberFormat', () => {
             expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(0);
         });
 
-        it('snapshot', () => {
-            expect(renderSnapshot()).toMatchSnapshot();
+        it("renders a span contain value ", () => {
+            expect(cellContainNumberFormat().find('span').length).toBe(1);
         });
     });
 });

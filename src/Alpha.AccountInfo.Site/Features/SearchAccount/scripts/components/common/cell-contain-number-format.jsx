@@ -9,28 +9,29 @@ const CellContainNumberFormat = ({
     hrefLink = null
 }) => {
     let formatClassNames = 'number';
-    let renderLink = false;
+    let numberFormatText = <span>{value}</span>;
 
-    if (value < 0) {
-        formatClassNames = 'number-red';
-    } else if (value > 0 && hrefLink !== null && hrefLink !== '') {
-        renderLink = true;
+    if (value > 0 && hrefLink !== null && hrefLink !== '') {
+        let customAnchorTag = {
+            href: hrefLink,
+            mobileView: mobileView,
+            children: value
+        };
+
         formatClassNames = 'number-link';
+        numberFormatText = <CustomAnchorTag {...customAnchorTag} />;
+    }
+    else if (value < 0) {
+        formatClassNames = 'number-red';
     }
 
-    const numberFormatProps = {
+    let numberFormatProps = {
         value: value,
         displayType: 'text',
         decimalScale: 2,
         fixedDecimalScale: true,
         thousandSeparator: true,
-        renderText: (value) => {
-            return renderLink ?
-                <CustomAnchorTag href={hrefLink} mobileView={mobileView}>
-                    {value}
-                </CustomAnchorTag> :
-                <span>{value}</span>;
-        }
+        renderText: () => { return numberFormatText; }
     }
 
     return (

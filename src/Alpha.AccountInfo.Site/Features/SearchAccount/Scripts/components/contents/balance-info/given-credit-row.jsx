@@ -33,7 +33,7 @@ export default class GivenCreditRow extends React.Component {
         window.top.realoadLeftPanel = false;
         let timer = setInterval(reloadBalanceInfo, 1000);
 
-        function reloadBalanceInfo(fetchCustomerInfoFromServer) {
+        function reloadBalanceInfo() {
             if (window.top.closedPopup) {
                 clearInterval(timer);
                 window.top.realoadLeftPanel && self.props.fetchCustomerInfoFromServer(customerInfo.UserName);
@@ -42,7 +42,7 @@ export default class GivenCreditRow extends React.Component {
     }
 
     render() {
-        let { resources, givenCredit, customerInfo } = this.props;
+        let { resources, customerInfo } = this.props;
         let balanceInfo = customerInfo.BalanceInfo;
 
         const numberFormatProps = {
@@ -57,7 +57,7 @@ export default class GivenCreditRow extends React.Component {
         return (
             <div className="row-info">
                 <div className="col">{resources.GivenCredit}</div>
-                <div className="col col-right" onClick={this.handleOpenGivenCreditPopup} >
+                <div id="given-credit-popup" className="col col-right" onClick={this.handleOpenGivenCreditPopup} >
                     <div className="given-credit">
                         <span className="icon-border-color icon-edited" />
                         <NumberFormat {...numberFormatProps} />

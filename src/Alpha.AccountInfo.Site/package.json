@@ -25,12 +25,14 @@
     "react-autosuggest": "^9.3.4"
   },
   "jest": {
-    "coverageReporters": [
-      "text"
-    ],
+    "testResultsProcessor": "jest-sonar-reporter",
     "reporters": [
       "default",
       "jest-junit"
+    ],
+    "coverageReporters": [
+      "text",
+      "cobertura"
     ],
     "testEnvironment": "jsdom",
     "moduleFileExtensions": [
@@ -40,7 +42,9 @@
     "moduleNameMapper": {
       "CellContainNumberFormat": "<rootDir>/Features/SearchAccount/Scripts/components/common/cell-contain-number-format.jsx",
       "CustomAnchorTag": "<rootDir>/Features/SearchAccount/Scripts/components/common/custom-anchor-tag.jsx",
-      "AccountInfoHelper": "<rootDir>/Features/SearchAccount/Scripts/helpers/accountinfo-helper.jsx"
+      "AccountInfoHelper": "<rootDir>/Features/SearchAccount/Scripts/helpers/accountinfo-helper.jsx",
+      "BalanceInfoRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/balance-info-row.jsx",
+      "GivenCreditRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/given-credit-row.jsx"
     }
   },
   "jest-junit": {
@@ -71,7 +75,9 @@
     "install": "^0.12.1",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
+    "jest-html-reporter": "^2.4.2",
     "jest-junit": "^5.2.0",
+    "jest-sonar-reporter": "^2.0.0",
     "jquery": "^3.3.1",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.3",
