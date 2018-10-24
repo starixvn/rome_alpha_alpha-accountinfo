@@ -13,6 +13,7 @@ import LoginInfo from '../components/contents/login-info';
 import OnlineList from '../components/contents/online-list';
 import AccountInfoMobile from '../components/mobile-version/account-info-mobile';
 import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
+import * as Raven from 'raven-js';
 
 export default class AccountInfo extends React.Component {
     constructor(props) {
@@ -180,7 +181,6 @@ export default class AccountInfo extends React.Component {
         fetchCustomerInfoFromServer,
         handleSearchFromUserLevel,
         handleOpenIPInfo) {
-
         let loginInfo = customerInfo !== null ? customerInfo.LoginInfo : null;
         let searchAccountRoleId = customerInfo !== null ? customerInfo.RoleId : actorRoleId - 1;
 
@@ -274,6 +274,11 @@ export default class AccountInfo extends React.Component {
         };
 
         return contentItems;
+    }
+
+    componentDidCatch(error, errorInfo) {
+        this.setState({ error });
+        Raven.captureException(error, { extra: errorInfo });
     }
 
     render() {

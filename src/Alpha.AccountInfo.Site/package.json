@@ -18,6 +18,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
+    "raven-js": "^3.27.0",
     "react-autosuggest": "^9.3.4"
   },
   "devDependencies": {

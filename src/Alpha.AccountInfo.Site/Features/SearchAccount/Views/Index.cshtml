@@ -15,8 +15,11 @@
 
 @section Scripts {
     @StaticResources.RenderScripts("~/assets/bundles/account-info/index")
+    <script src="https://cdn.ravenjs.com/3.26.4/raven.min.js"
+            crossorigin="anonymous"></script>
 
     <script>
+        Raven.config('http://21a8f21f7c5a4cc1b9c79bb68fb0ebb9@sentry.nexdev.net/3').install();
         var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
