@@ -26,8 +26,8 @@ describe('BalanceInfoRow', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    it("renders a `CellContainNumberFormat`", () => {
-        const balanceInfoRow = mount(<BalanceInfoRow {...props} />);
-        expect(balanceInfoRow.find(CellContainNumberFormat).length).toBe(1);
-    });
+    //it("renders a `CellContainNumberFormat`", () => {
+    //    const balanceInfoRow = mount(<BalanceInfoRow {...props} />);
+    //    expect(balanceInfoRow.find(CellContainNumberFormat).length).toBe(1);
+    //});
 });
