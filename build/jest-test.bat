@@ -1,3 +1,3 @@
-cd ../src/Alpha.AccountInfo.Site
-npm run npm run test:coverage
+cd src/Alpha.AccountInfo.Site
+npm run test:coverage -- -u
 exit
