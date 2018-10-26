@@ -1,8 +1,14 @@
 ﻿import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Autosuggest from 'react-autosuggest';
-import { getSuggestions, getSuggestionValue, renderSuggestion } from './auto-suggestion';
-import { accountInfoAPI } from '../../../api-client';
+import { accountInfoAPI } from '../../api-client';
+
+const getSuggestionValue = suggestion => suggestion.UserName;
+
+const renderSuggestion = suggestion =>
+    <div>
+        {suggestion.UserName}
+        <div>{suggestion.FirstName} {suggestion.LastName}</div>
+    </div>;
 
 export default class Searching extends React.Component {
     constructor(props) {
@@ -93,7 +99,7 @@ export default class Searching extends React.Component {
         return (
             <div className="search-box">
                 <Autosuggest {...autosuggestProps}/>
-                <span className="icon-search" onClick={this.handleSearchClick} ref="searchAccount" />
+                <span className="icon-search" onClick={this.handleSearchClick} />
             </div>
         );
     }

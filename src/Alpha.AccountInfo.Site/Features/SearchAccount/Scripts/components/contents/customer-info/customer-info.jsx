@@ -1,5 +1,4 @@
 ﻿import * as React from 'react';
-import 'react-tippy/dist/tippy.css';
 import UplineInfo from './upline-info'
 import SearchAccountInfo from './search-account-info';
 import { UserLevel } from '../../../constants';
@@ -56,11 +55,11 @@ const CustomerInfo = ({
                     return userLevelInfo.Visible &&
                         <div className="col-xs-12 row-info" key={index}>
                             <div className="col-xs-5">
-                            {userLevelInfo.LevelName}
+                                {userLevelInfo.LevelName}
                             </div>
                             <div className="col-xs-7 col-right">
-                            {
-                                customerInfo.RoleId === userLevelInfo.LevelId ?
+                                {
+                                    customerInfo.RoleId === userLevelInfo.LevelId ?
                                         <SearchAccountInfo {...searchAccountInfoProps} /> :
                                         <UplineInfo {...uplineInfoProps} />
                                 }

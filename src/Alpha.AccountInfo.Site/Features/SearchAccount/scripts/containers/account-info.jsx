@@ -1,8 +1,7 @@
 ﻿import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { accountInfoAPI } from '../api-client';
 import { UserLevel } from '../constants';
-import Searching from '../components/contents/searching/searching';
+import Searching from '../components/contents/searching';
 import CustomerInfo from '../components/contents/customer-info/customer-info';
 import ContactInfo from '../components/contents/contact-info';
 import BalanceInfo from '../components/contents/balance-info/balance-info';

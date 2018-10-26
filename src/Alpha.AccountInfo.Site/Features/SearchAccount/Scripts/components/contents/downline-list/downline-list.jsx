@@ -12,12 +12,12 @@ const DownlineList = ({
         {
             levelName: resources.Agents,
             data: data.TotalStatusAgent,
-            visible: searchAccountRoleId === UserLevel.Master && data.TotalStatusAgent !== null
+            visible: searchAccountRoleId === UserLevel.Master
         },
         {
             levelName: resources.Members,
             data: data.TotalStatusMember,
-            visible: data.TotalStatusMember !== null
+            visible: true
         }
     ];
 
