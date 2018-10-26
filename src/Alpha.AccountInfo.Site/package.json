@@ -10,9 +10,7 @@
     "paths": {}
   },
   "scripts": {
-    "test:snapshot": "jest",
-    "test:snapshot:watch": "npm run test:snapshot -- --watch",
-    "test:coverage": "jest --coverage --coverageDirectory=output/coverage/jest",
+    "test": "jest --coverage --coverageDirectory=output/coverage/jest",
     "build": "webpack --config webpack.config.dev.js",
     "dev": "npm install && webpack --config webpack.config.dev.js",
     "local": "npm install && webpack --config webpack.config.local.js",
@@ -27,12 +25,13 @@
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter",
     "reporters": [
-      "default",
-      "jest-junit"
+      "jest-junit",
+      "default"
     ],
     "coverageReporters": [
-      "text",
-      "cobertura"
+      "cobertura",
+      "html",
+      "text"
     ],
     "testEnvironment": "jsdom",
     "moduleFileExtensions": [
@@ -40,11 +39,14 @@
       "jsx"
     ],
     "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
       "CellContainNumberFormat": "<rootDir>/Features/SearchAccount/Scripts/components/common/cell-contain-number-format.jsx",
       "CustomAnchorTag": "<rootDir>/Features/SearchAccount/Scripts/components/common/custom-anchor-tag.jsx",
       "AccountInfoHelper": "<rootDir>/Features/SearchAccount/Scripts/helpers/accountinfo-helper.jsx",
       "BalanceInfoRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/balance-info-row.jsx",
-      "GivenCreditRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/given-credit-row.jsx"
+      "GivenCreditRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/given-credit-row.jsx",
+      "MemberCreditMaxRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/member-credit-max-row.jsx"
     }
   },
   "jest-junit": {
@@ -72,6 +74,7 @@
     "enzyme-adapter-react-15": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^5.7.0",
+    "identity-obj-proxy": "^3.0.0",
     "install": "^0.12.1",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",

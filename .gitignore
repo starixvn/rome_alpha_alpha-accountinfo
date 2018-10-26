@@ -50,6 +50,7 @@ bundles
 */**/app/**/*.js
 *.ncrunchproject
 *.ncrunchsolution
+*/**/output
 
 artifacts/
 _Chutzpah.coverage.html

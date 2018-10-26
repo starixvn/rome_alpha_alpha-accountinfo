@@ -23,7 +23,7 @@ export default class AccountInfoMobile extends React.Component {
         });
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate() {
         let self = this;
         let { redirectToFeatureList, redirectToBalanceInfoPage } = this.state;
         if (redirectToFeatureList || redirectToBalanceInfoPage) {

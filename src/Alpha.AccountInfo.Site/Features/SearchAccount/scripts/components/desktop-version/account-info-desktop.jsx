@@ -103,13 +103,13 @@ export default class AccountInfoDesktop extends React.Component {
                 {
                     this.buildAccordionItems().map((item, index) => {
                         let accordionProps = {
-                            title: item.featureText ,
-                                iconClassname: item.iconClass ,
-                                accordionItemBodyClassName: item.accordionItemBodyClassName ,
-                                expanded: item.expanded ,
-                                handleClick: item.clickHanlder ,
-                                blockId: item.blockId ,
-                                key: index 
+                            title: item.featureText,
+                            iconClassname: item.iconClass,
+                            accordionItemBodyClassName: item.accordionItemBodyClassName,
+                            expanded: item.expanded,
+                            handleClick: item.clickHanlder,
+                            blockId: item.blockId,
+                            key: index
                         };
 
                         return item.visible &&

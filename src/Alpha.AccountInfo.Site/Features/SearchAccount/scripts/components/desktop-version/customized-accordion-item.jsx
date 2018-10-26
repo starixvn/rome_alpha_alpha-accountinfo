@@ -8,7 +8,7 @@ const CustomizedAccordionItem = ({
     handleClick,
     blockId,
     children }) =>
-    <div className={expanded ? `accordion-item expanded` : `accordion-item`} expanded={expanded.toString()}>
+    <div className={expanded ? `accordion-item expanded` : `accordion-item`}>
         <div className="feature-item" onClick={handleClick} data-blockid={blockId}>
             <span className={iconClassname} /> {title}
         </div>

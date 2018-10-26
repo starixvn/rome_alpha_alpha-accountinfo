@@ -13,7 +13,6 @@ import * as accountInfoHelper from 'AccountInfoHelper';
 describe('GivenCreditRow', () => {
     let props;
     global.accountInfoSiteAppPath= "/accountInfo-site";
-
     global.top.ageWnd =  {
         open: jest.fn()
     };
@@ -47,7 +46,7 @@ describe('GivenCreditRow', () => {
             const spy = sinon.spy(GivenCreditRow.prototype, 'handleOpenGivenCreditPopup');
             const wrapper = shallow(<GivenCreditRow {...props}/>)
     
-            wrapper.find('#given-credit-popup').simulate('click')
+            wrapper.find('#given-credit-popup').simulate('click');
             expect(spy.calledOnce).toBeTruthy();
         });
 
@@ -57,7 +56,7 @@ describe('GivenCreditRow', () => {
             it('not call if `mobileView` is false', () => {
                 props.mobileView = false;
     
-                const wrapper = shallow(<GivenCreditRow {...props} />)
+                const wrapper = shallow(<GivenCreditRow {...props} />);
                 wrapper.find('#given-credit-popup').simulate('click');
                 expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(0);
             });
@@ -65,9 +64,51 @@ describe('GivenCreditRow', () => {
             it('call if `mobileView` is true', () => {
                 props.mobileView = true;
     
-                const wrapper = shallow(<GivenCreditRow {...props} />)
+                const wrapper = shallow(<GivenCreditRow {...props} />);
                 wrapper.find('#given-credit-popup').simulate('click');
                 expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(1);
+            });
+        });
+
+        describe("fetchCustomerInfoFromServer() ", () => {
+            let clock;
+            beforeEach(function() {
+                clock = sinon.useFakeTimers();
+              });
+
+              afterEach(function() {
+                clock.restore();
+              });
+
+              it('call if close popup and updated given credit successfully', () => {
+                const wrapper = shallow(<GivenCreditRow {...props}/>);
+                wrapper.find('#given-credit-popup').simulate('click');
+
+                global.top.closedPopup = true;
+                global.top.realoadLeftPanel = true;
+                clock.tick(1000);
+               
+                expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(1);
+            });
+
+            it('not call if close popup and does not do update/update fail', () => {
+                const wrapper = shallow(<GivenCreditRow {...props}/>);
+
+                wrapper.find('#given-credit-popup').simulate('click');
+                global.top.closedPopup = true;
+                global.top.realoadLeftPanel = false;
+                clock.tick(1000);
+               
+                expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(0);
+            });
+
+            it('not call if does not close popup', () => {
+                const wrapper = shallow(<GivenCreditRow {...props}/>);
+                wrapper.find('#given-credit-popup').simulate('click');
+                global.top.closedPopup = false;
+                clock.tick(1000);
+
+                expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(0);
             });
         });
     });
