@@ -1,8 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount, shallow } from "enzyme";
-import renderer from 'react-test-renderer';
-import CellContainNumberFormat from 'CellContainNumberFormat';
 import { MasterLevelInfo } from '../../helpers/master-level-info-sample';
 import { AgentLevelInfo } from '../../helpers/agent-level-info-sample';
 import { MemberLevelInfo } from '../../helpers/member-level-info-sample ';

@@ -325,6 +325,8 @@
     <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\balance-info-row.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\member-credit-max-row.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\given-credit-row.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\search-account-info.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\upline-info.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\member-level-info-sample .jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\agent-level-info-sample.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\master-level-info-sample.jsx" />
@@ -348,7 +350,6 @@
     <Content Include="Features\SearchAccount\Scripts\components\contents\login-info.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\online-list.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\settings.jsx" />
-    <Content Include="Features\SearchAccount\Scripts\components\contents\customer-info\user-level-info.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\customer-info\customer-info.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\searching\auto-suggestion.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\downline-list\total-downlines.jsx" />

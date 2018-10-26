@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import 'react-tippy/dist/tippy.css';
-import { Tooltip } from 'react-tippy';
-import UserLevelInfo from './user-level-info';
+import UplineInfo from './upline-info'
+import SearchAccountInfo from './search-account-info';
 import { UserLevel } from '../../../constants';
 import CustomAnchorTag from '../../common/custom-anchor-tag';
 
@@ -42,18 +42,30 @@ const CustomerInfo = ({
         <div id="blockInfo" className="block-info">
             {
                 userLevelInfoArray.map((userLevelInfo, index) => {
-                    let userlevelInfoProps = {
-                        customerInfo: customerInfo,
+                    let uplineInfoProps = {
                         username: userLevelInfo.Name,
-                        userLevelName: userLevelInfo.LevelName,
-                        userLevelId: userLevelInfo.LevelId,
-                        resources: resources,
-                        mobileView: mobileView,
-                        handleSearchFromUserLevel: handleSearchFromUserLevel,
-                        key: index
+                        handleSearchFromUserLevel
                     };
 
-                    return userLevelInfo.Visible && <UserLevelInfo {...userlevelInfoProps} />;
+                    let searchAccountInfoProps = {
+                        customerInfo: customerInfo,
+                        resources: resources,
+                        mobileView: mobileView
+                    };
+
+                    return userLevelInfo.Visible &&
+                        <div className="col-xs-12 row-info" key={index}>
+                            <div className="col-xs-5">
+                            {userLevelInfo.LevelName}
+                            </div>
+                            <div className="col-xs-7 col-right">
+                            {
+                                customerInfo.RoleId === userLevelInfo.LevelId ?
+                                        <SearchAccountInfo {...searchAccountInfoProps} /> :
+                                        <UplineInfo {...uplineInfoProps} />
+                                }
+                            </div>
+                        </div>;
                 })
             }
 

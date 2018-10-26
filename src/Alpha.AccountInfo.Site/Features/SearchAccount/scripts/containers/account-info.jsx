@@ -85,7 +85,7 @@ export default class AccountInfo extends React.Component {
             }));
 
             if (data === null) {
-                self.setState((prevState) => ({
+                self.setState(() => ({
                     statusData: null,
                     settingData: null,
                     downlineList: null,

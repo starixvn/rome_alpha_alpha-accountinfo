@@ -11,7 +11,17 @@ const ClosedReason = {
 };
 
 export default class SearchAccountInfo extends React.Component {
-    getStatusInfo(customerInfo, userLevelId, resources) {
+    constructor(props) {
+        super(props);
+        let statusInfo = this.getStatusInfo();
+        this.state = {
+            Css: statusInfo.Css,
+            Tootltip: statusInfo.Tootltip
+        };
+    }
+
+    getStatusInfo() {
+        let { customerInfo, resources } = this.props;
         const statusInfo = {
             Closed: [
                 {
@@ -49,49 +59,40 @@ export default class SearchAccountInfo extends React.Component {
             }
         };
 
-        if (customerInfo.RoleId === userLevelId) {
-            if (customerInfo.Closed) {
-                return statusInfo.Closed.find(closedReason => customerInfo.ClosedReason === closedReason.Id);
-            }
-            else if (customerInfo.Suspended) {
-                return statusInfo.Suspended;
-            }
-            else if (!customerInfo.Enabled) {
-                return statusInfo.Disabled;
-            }
+        if (customerInfo.Closed) {
+            return statusInfo.Closed.find(closedReason => customerInfo.ClosedReason === closedReason.Id);
+        }
+        else if (customerInfo.Suspended) {
+            return statusInfo.Suspended;
+        }
+        else if (!customerInfo.Enabled) {
+            return statusInfo.Disabled;
         }
 
         return statusInfo.Enabled;
     };
 
     render() {
-        let {
-            customerInfo,
-            userLevelId,
-            username,
-            resources,
-            mobileView
-        } = this.props;
-
-        let statusInfo = this.getStatusInfo(customerInfo, userLevelId, resources);
+        let { customerInfo, resources, mobileView } = this.props;
+        let { Css, Tootltip } = this.state;
 
         let customAnchorTagProps = {
-                mobileView: mobileView,
-                title: resources.Viewlog,
-                classNames: "pointer",
-                href: customerInfo.ViewLogLink
-            };
+            mobileView: mobileView,
+            title: resources.Viewlog,
+            classNames: "pointer",
+            href: customerInfo.ViewLogLink
+        };
 
         let tooltipProps = {
-            title: statusInfo.Tootltip ,
-                position:"bottom",
-                trigger:"mouseenter",
-                arrow:"true"
+            title: Tootltip,
+            position: "bottom",
+            trigger: "mouseenter",
+            arrow: "true"
         };
 
         const content =
             <CustomAnchorTag {...customAnchorTagProps}>
-                <span className={statusInfo.Css} data-username={username}> {username} </span>
+                <span className={Css} data-username={customerInfo.UserName}> {customerInfo.UserName} </span>
                 <span className="icon-viewlog" />
             </CustomAnchorTag>;
 
@@ -100,6 +101,6 @@ export default class SearchAccountInfo extends React.Component {
                 {content}
             </Tooltip>;
 
-        return statusInfo.Tootltip === '' ? content : contentWithTooltip;
+        return Tootltip === '' ? content : contentWithTooltip;
     }
 }
