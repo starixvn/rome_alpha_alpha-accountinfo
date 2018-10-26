@@ -14,18 +14,21 @@ const BalanceInfo = ({
 
     let sharedContents = [
         <BalanceInfoRow
+            id="total-balance"
             title={resources.TotalBalance}
             value={balanceInfo.TotalBalance}
             hrefLink={balanceInfo.ShowTotalBalanceTransferLink ? balanceInfo.TotalBalanceTransferLink : ``}
             mobileView={mobileView}
         />,
         <BalanceInfoRow
+            id="yesterday-balance"
             title={resources.YesterdayBalance}
             value={balanceInfo.YesterdayBalance}
             hrefLink={balanceInfo.ShowYesterdayBalanceTransferLink ? balanceInfo.YesterdayBalanceTransferLink : ``}
             mobileView={mobileView}
         />,
         <BalanceInfoRow
+            id="report-link"
             title={balanceInfo.ReportLink.Text}
             value={balanceInfo.Outstanding}
             hrefLink={balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : ``}
@@ -42,10 +45,10 @@ const BalanceInfo = ({
         />;
 
     let masterContents = [
-        <BalanceInfoRow title={resources.TotalCash} value={balanceInfo.TotalCash} />,
-        <BalanceInfoRow title={resources.YesterdayCash} value={balanceInfo.YesterdayCash} />,
+        <BalanceInfoRow id="total-cash" title={resources.TotalCash} value={balanceInfo.TotalCash} />,
+        <BalanceInfoRow id="yesterday-cash" title={resources.YesterdayCash} value={balanceInfo.YesterdayCash} />,
         ...sharedContents,
-        <BalanceInfoRow title={resources.UsedCredit} value={balanceInfo.UsedCredit} />,
+        <BalanceInfoRow id="used-credit" title={resources.UsedCredit} value={balanceInfo.UsedCredit} />,
         givenCreditContent
     ];
 
@@ -66,8 +69,8 @@ const BalanceInfo = ({
             Contents: [
                 ...sharedContents,
                 givenCreditContent,
-                <BalanceInfoRow title={resources.NetPosition} value={balanceInfo.NetPosition} />,
-                <BalanceInfoRow title={resources.BetCredit} value={balanceInfo.BetCredit} />
+                <BalanceInfoRow id="net-position" title={resources.NetPosition} value={balanceInfo.NetPosition} />,
+                <BalanceInfoRow id="bet-credit" title={resources.BetCredit} value={balanceInfo.BetCredit} />
             ]
         }
     ];

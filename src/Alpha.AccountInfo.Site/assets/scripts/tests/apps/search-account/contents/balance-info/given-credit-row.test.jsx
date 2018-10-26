@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from "enzyme";
-import { shallow } from 'enzyme';
+import { mount, shallow } from "enzyme";
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import NumberFormat from 'react-number-format';

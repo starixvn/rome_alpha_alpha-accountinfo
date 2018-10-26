@@ -22,12 +22,17 @@ describe('MemberCreditMaxRow', () => {
     });
 
     it("renders a `CellContainNumberFormat`", () => {
-        props.balanceInfo.ShowMemberMaxCreditLimit = true;
         const memberCreditMaxRow = mount(<MemberCreditMaxRow {...props} />);
         expect(memberCreditMaxRow.find(CellContainNumberFormat).length).toBe(1);
     });
 
-    it("renders a `Tooltip` if ShowMemberMaxCreditLimit", () => {
+    it("renders a `Tooltip` if ShowMemberMaxCreditLimit is true", () => {
+        props.balanceInfo.ShowMemberMaxCreditLimit = true;
+        const memberCreditMaxRow = mount(<MemberCreditMaxRow {...props} />);
+        expect(memberCreditMaxRow.find(Tooltip).length).toBe(1);
+    });
+
+    it("does not renders a `Tooltip` if ShowMemberMaxCreditLimit is false", () => {
         props.balanceInfo.ShowMemberMaxCreditLimit = false;
         const memberCreditMaxRow = mount(<MemberCreditMaxRow {...props} />);
         expect(memberCreditMaxRow.find(Tooltip).length).toBe(0);

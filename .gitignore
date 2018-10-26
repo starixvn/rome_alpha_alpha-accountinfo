@@ -51,6 +51,7 @@ bundles
 *.ncrunchproject
 *.ncrunchsolution
 */**/output
+*.snap
 
 artifacts/
 _Chutzpah.coverage.html

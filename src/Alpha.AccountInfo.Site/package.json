@@ -46,7 +46,8 @@
       "AccountInfoHelper": "<rootDir>/Features/SearchAccount/Scripts/helpers/accountinfo-helper.jsx",
       "BalanceInfoRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/balance-info-row.jsx",
       "GivenCreditRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/given-credit-row.jsx",
-      "MemberCreditMaxRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/member-credit-max-row.jsx"
+      "MemberCreditMaxRow": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/member-credit-max-row.jsx",
+      "BalanceInfo": "<rootDir>/Features/SearchAccount/Scripts/components/contents/balance-info/balance-info.jsx"
     }
   },
   "jest-junit": {
