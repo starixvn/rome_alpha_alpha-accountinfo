@@ -10,7 +10,10 @@ describe('CellContainNumberFormat', () => {
     let props;
     let mountCellContainNumberFormat;
 
-    const cellContainNumberFormat = () => {
+    const cellContainNumberFormat = (value = 0, hrefLink = "192.168.1.1") => {
+        props.value = value;
+        props.hrefLink = hrefLink;
+
         if (!mountCellContainNumberFormat) {
             mountCellContainNumberFormat = mount(
                 <CellContainNumberFormat {...props} />
@@ -35,135 +38,103 @@ describe('CellContainNumberFormat', () => {
         mountCellContainNumberFormat = undefined;
     });
 
-    it('renders without crashing', () => {
+    test('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<CellContainNumberFormat {...props} />, div);
     });
 
-    it("always renders a div", () => {
+    test("always renders a div", () => {
         const divs = cellContainNumberFormat().find("div");
         expect(divs.length).toBeGreaterThan(0);
     });
 
-    it("renders a `NumberFormat`", () => {
+    test("always render a `NumberFormat`", () => {
         expect(cellContainNumberFormat().find(NumberFormat).length).toBe(1);
     });
 
-    describe("when `value` equal 0", () => {
-        beforeEach(() => {
-            props.value = 0;
-        });
+    test.each([
+        [-1, "192.168.1.1", 0],
+        [-1, "", 0],
+        [-1, null, 0],
+        [0, "192.168.1.1", 0],
+        [0, "", 0],
+        [0, null, 0],
+        [1, "192.168.1.1", 1],
+        [1, "", 0],
+        [1, null, 0]])(
+        "renders correct `CustomAnchorTag`",
+        (value, hrefLink, expectedCallTimes) => {
+            const component = cellContainNumberFormat(value, hrefLink);
+            expect(component.find(CustomAnchorTag).length).toBe(expectedCallTimes);
+        }
+    );
 
-        it('snapshot', () => {
-            expect(renderSnapshot()).toMatchSnapshot();
-        });
+    test.each([
+        [-1, "192.168.1.1", 1],
+        [-1, "", 1],
+        [-1, null, 1],
+        [0, "192.168.1.1", 1],
+        [0, "", 1],
+        [0, null, 1],
+        [1, "192.168.1.1", 0],
+        [1, "", 1],
+        [1, null, 1]])(
+        "renders correct a span contain value",
+        (value, hrefLink, expectedCallTimes) => {
+            const component = cellContainNumberFormat(value, hrefLink);
+            expect(component.find('span').length).toBe(expectedCallTimes);
+        }
+    );
 
-        it('render class `number`', () => {
-            props.value = 0;
-            expect(cellContainNumberFormat().find('.number').length).toBe(1);
-        });
+    test.each([
+        [-1, "192.168.1.1", 0],
+        [-1, "", 0],
+        [-1, null, 0],
+        [0, "192.168.1.1", 1],
+        [0, "", 1],
+        [0, null, 1],
+        [1, "192.168.1.1", 0],
+        [1, "", 1],
+        [1, null, 1]])(
+        "renders correct `.number` class'",
+        (value, hrefLink, expectedCallTimes) => {
+            const component = cellContainNumberFormat(value, hrefLink);
+            expect(component.find('.number').length).toBe(expectedCallTimes);
+        }
+    );
 
-        it("does not renders a `CustomAnchorTag` ", () => {
-            expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(0);
-        });
 
-        it("renders a span contain value ", () => {
-            expect(cellContainNumberFormat().find('span').length).toBe(1);
-        });
-    });
+    test.each([
+        [-1, "192.168.1.1", 0],
+        [-1, "", 0],
+        [-1, null, 0],
+        [0, "192.168.1.1", 0],
+        [0, "", 0],
+        [0, null, 0],
+        [1, "192.168.1.1", 1],
+        [1, "", 0],
+        [1, null, 0]])(
+        "renders correct `.number-link` class'",
+        (value, hrefLink, expectedCallTimes) => {
+            const component = cellContainNumberFormat(value, hrefLink);
+            expect(component.find('.number-link').length).toBe(expectedCallTimes);
+        }
+    );
 
-    describe("when `value` greater than 0", () => {
-        beforeEach(() => {
-            props.value = 50;
-        });
-
-        describe("And when `href` is null", () => {
-            beforeEach(() => {
-                props.hrefLink = null;
-            });
-    
-            it('snapshot', () => {
-                expect(renderSnapshot()).toMatchSnapshot();
-            });
-
-            it('render class `number`', () => {
-                expect(cellContainNumberFormat().find('.number').length).toBe(1);
-            });
-
-            it("renders a span contain value ", () => {
-                expect(cellContainNumberFormat().find('span').length).toBe(1);
-            });
-
-            it("does not renders a `CustomAnchorTag` ", () => {
-                expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(0);
-            });    
-        });
-
-        describe("And when `href` is empty", () => {
-            beforeEach(() => {
-                props.hrefLink = '';
-            });
-    
-            it('snapshot', () => {
-                expect(renderSnapshot()).toMatchSnapshot();
-            });
-
-            it('render class `number`', () => {
-                expect(cellContainNumberFormat().find('.number').length).toBe(1);
-            });
-
-            it("renders a span contain value ", () => {
-                expect(cellContainNumberFormat().find('span').length).toBe(1);
-            });
-
-            it("does not renders a `CustomAnchorTag` ", () => {
-                expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(0);
-            });    
-        });
-
-        describe("And when `href` is not null/empty", () => {
-            beforeEach(() => {
-                props.hrefLink = "192.168.1.1";
-            });
-
-            it('snapshot', () => {
-                expect(renderSnapshot()).toMatchSnapshot();
-            });
-    
-            it("renders a `CustomAnchorTag`", () => {
-                expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(1);
-            });
-    
-            it('render class `number-link`', () => {
-                expect(cellContainNumberFormat().find('.number-link').length).toBe(1);
-            });
-
-            it("does not renders span ", () => {
-                expect(cellContainNumberFormat().find('span').length).toBe(0);
-            });
-    
-        });
-    });
-
-    describe("when `value` less than 0", () => {
-        beforeEach(() => {
-            props.value = -23;
-        });
-
-        it('snapshot', () => {
-            expect(renderSnapshot()).toMatchSnapshot();
-        });
-
-        it('render class `number-red`', () => {
-            expect(cellContainNumberFormat().find('.number-red').length).toBe(1);
-        });
-
-        it("does not renders a `CustomAnchorTag` ", () => {
-            expect(cellContainNumberFormat().find(CustomAnchorTag).length).toBe(0);
-        });
-
-        it("renders a span contain value ", () => {
-            expect(cellContainNumberFormat().find('span').length).toBe(1);
-        });
-    });
+    test.each([
+        [-1, "192.168.1.1", 1],
+        [-1, "", 1],
+        [-1, null, 1],
+        [0, "192.168.1.1", 0],
+        [0, "", 0],
+        [0, null, 0],
+        [1, "192.168.1.1", 0],
+        [1, "", 0],
+        [1, null, 0]])(
+        "renders correct `.number-red` class'",
+        (value, hrefLink, expectedCallTimes) => {
+            const component = cellContainNumberFormat(value, hrefLink);
+            expect(component.find('.number-red').length).toBe(expectedCallTimes);
+        }
+    );
 });

@@ -1,161 +1,164 @@
 ﻿import React from 'react';
-import ReactDOM from 'react-dom';
 import { mount, shallow } from "enzyme";
 import { Super } from '../../helpers/actor-is-super-sample';
 import { Master } from '../../helpers/actor-is-master-sample';
 import { Agent } from '../../helpers/actor-is-agent-sample ';
 import { Resources } from '../../helpers/resources-sample';
-import BalanceInfoRow from 'BalanceInfoRow';
 import GivenCreditRow from 'GivenCreditRow';
 import MemberCreditMaxRow from 'MemberCreditMaxRow';
 import BalanceInfo from 'BalanceInfo';
 
 describe('BalanceInfo', () => {
-    let props;
-    beforeEach(() => {
-        props = {
-            customerInfo: Super.ViewMasterInfo,
+    let balanceInfoMount, balanceInfoShallow;
+    const buildBalaneInfo = (cusomerinfo) => {
+        let props = {
+            customerInfo: cusomerinfo,
             resources: Resources,
             mobileView: false,
             fetchCustomerInfoFromServer: jest.fn()
         };
-    });
 
-    //const renderSnapshot = () => {
-    //    const component = renderer.create(<BalanceInfo {...props} />);
-    //    return component.toJSON();
-    //}
+        balanceInfoMount = mount(<BalanceInfo {...props} />);
+        balanceInfoShallow = shallow(<BalanceInfo {...props} />);
+    }
 
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<BalanceInfo {...props} />, div);
-    });
+    test.each([
+        [Super.ViewMasterInfo, 1],
+        [Super.ViewAgentInfo,1],
+        [Super.ViewMemberInfo, 0],
+        [Master.ViewAgentInfo, 1],
+        [Master.ViewMemberInfo, 0],
+        [Agent.ViewMemberInfo, 0]])(
+        "renders a Total Cash Row",
+        (customerInfo, expectedCallTimes) => {
+            buildBalaneInfo(customerInfo);
+            expect(balanceInfoShallow.find("#total-cash").length).toBe(expectedCallTimes);
+        }
+    );
+    
+    test.each([
+        [Super.ViewMasterInfo, 1],
+        [Super.ViewAgentInfo,1],
+        [Super.ViewMemberInfo, 0],
+        [Master.ViewAgentInfo, 1],
+        [Master.ViewMemberInfo, 0],
+        [Agent.ViewMemberInfo, 0]])(
+        "renders a Yesterday Cash Row",
+        (customerInfo, expectedCallTimes) => {
+            buildBalaneInfo(customerInfo);
+            expect(balanceInfoShallow.find("#yesterday-cash").length).toBe(expectedCallTimes);
+        }
+    );
 
-    describe("Master Level", () => {
-        let balanceInfoMount, balanceInfoShallow;
-        beforeEach(() => {
-            props.customerInfo = Super.ViewMasterInfo;
-            balanceInfoMount = mount(<BalanceInfo {...props} />);
-            balanceInfoShallow = shallow(<BalanceInfo {...props}/>);
-        });
-        //it('snapshot Master', () => {
-        //    expect(renderSnapshot()).toMatchSnapshot();
-        //});
-
-        it("renders 6 `BalanceInfoRow`", () => {
-            const balanceInfoRow = mount(<BalanceInfo {...props} />);
-            expect(balanceInfoRow.find(BalanceInfoRow).length).toBe(6);
-        });
-
-        it("renders a Total Cash Row", () => {
-            expect(balanceInfoShallow.find("#total-cash").length).toBe(1);
-        });
-
-        it("renders a Yesterday Cash Row", () => {
-            expect(balanceInfoShallow.find("#yesterday-cash").length).toBe(1);
-        });
-
-        it("renders a Total Balance Row", () => {
+    test.each([
+        Super.ViewMasterInfo,
+        Super.ViewAgentInfo,
+        Super.ViewMemberInfo,
+        Master.ViewAgentInfo,
+        Master.ViewMemberInfo,
+        Agent.ViewMemberInfo])(
+        "always renders a Total Balance Row",
+        (customerInfo) => {
+            buildBalaneInfo(customerInfo);
             expect(balanceInfoShallow.find("#total-balance").length).toBe(1);
-        });
+        }
+    );
 
-        it("renders a Yesterday Balance Row", () => {
+    test.each([
+        Super.ViewMasterInfo,
+        Super.ViewAgentInfo,
+        Super.ViewMemberInfo,
+        Master.ViewAgentInfo,
+        Master.ViewMemberInfo,
+        Agent.ViewMemberInfo])(
+        "always renders a Yesterday Balance Row",
+        (customerInfo) => {
+            buildBalaneInfo(customerInfo);
             expect(balanceInfoShallow.find("#yesterday-balance").length).toBe(1);
-        });
-        
-        it("renders a Report Link Row", () => {
+        }
+    );
+
+    test.each([
+        Super.ViewMasterInfo,
+        Super.ViewAgentInfo,
+        Super.ViewMemberInfo,
+        Master.ViewAgentInfo,
+        Master.ViewMemberInfo,
+        Agent.ViewMemberInfo])(
+        "always renders a Report Link Row",
+        (customerInfo) => {
+            buildBalaneInfo(customerInfo);
             expect(balanceInfoShallow.find("#report-link").length).toBe(1);
-        });
+        }
+    );
 
-        it("renders a Used Credit Row", () => {
-            expect(balanceInfoShallow.find("#used-credit").length).toBe(1);
-        });
+    test.each([
+        [Super.ViewMasterInfo, 1],
+        [Super.ViewAgentInfo,1],
+        [Super.ViewMemberInfo, 0],
+        [Master.ViewAgentInfo, 1],
+        [Master.ViewMemberInfo, 0],
+        [Agent.ViewMemberInfo, 0]])(
+        "renders a Used Credit Row",
+        (customerInfo, expectedCallTimes) => {
+            buildBalaneInfo(customerInfo);
+            expect(balanceInfoShallow.find("#used-credit").length).toBe(expectedCallTimes);
+        }
+    );
 
-        it("renders a `GivenCreditRow`", () => {
+    test.each([
+        Super.ViewMasterInfo,
+        Super.ViewAgentInfo,
+        Super.ViewMemberInfo,
+        Master.ViewAgentInfo,
+        Master.ViewMemberInfo,
+        Agent.ViewMemberInfo])(
+        "always renders a `GivenCreditRow`",
+        (customerInfo) => {
+            buildBalaneInfo(customerInfo);
             expect(balanceInfoMount.find(GivenCreditRow).length).toBe(1);
-        });
-    });
+        }
+    );
 
-    describe("Agent Level", () => {
-        let balanceInfoMount, balanceInfoShallow;
-        beforeEach(() => {
-            props.customerInfo = Master.ViewAgentInfo;
-            balanceInfoMount = mount(<BalanceInfo {...props} />);
-            balanceInfoShallow = shallow(<BalanceInfo {...props}/>);
-        });
+    test.each([
+        [Super.ViewMasterInfo, 0],
+        [Super.ViewAgentInfo,1],
+        [Super.ViewMemberInfo, 0],
+        [Master.ViewAgentInfo, 1],
+        [Master.ViewMemberInfo, 0],
+        [Agent.ViewMemberInfo, 0]])(
+         "renders a `MemberCreditMaxRow`",
+        (customerInfo, expectedCallTimes) => {
+            buildBalaneInfo(customerInfo);
+            expect(balanceInfoMount.find(MemberCreditMaxRow).length).toBe(expectedCallTimes);
+        }
+    );
 
-        it("renders 6 `BalanceInfoRow`", () => {
-            const balanceInfoRow = mount(<BalanceInfo {...props} />);
-            expect(balanceInfoRow.find(BalanceInfoRow).length).toBe(6);
-        });
+    test.each([
+        [Super.ViewMasterInfo, 0],
+        [Super.ViewAgentInfo, 0],
+        [Super.ViewMemberInfo, 1],
+        [Master.ViewAgentInfo, 0],
+        [Master.ViewMemberInfo, 1],
+        [Agent.ViewMemberInfo, 1]])(
+        "correct renders a Net Position",
+        (customerInfo, expectedCallTimes) => {
+            buildBalaneInfo(customerInfo);
+            expect(balanceInfoShallow.find("#net-position").length).toBe(expectedCallTimes);
+        }
+    );
 
-        it("renders a Total Cash Row", () => {
-            expect(balanceInfoShallow.find("#total-cash").length).toBe(1);
-        });
-
-        it("renders a Yesterday Cash Row", () => {
-            expect(balanceInfoShallow.find("#yesterday-cash").length).toBe(1);
-        });
-
-        it("renders a Total Balance Row", () => {
-            expect(balanceInfoShallow.find("#total-balance").length).toBe(1);
-        });
-
-        it("renders a Yesterday Balance Row", () => {
-            expect(balanceInfoShallow.find("#yesterday-balance").length).toBe(1);
-        });
-        
-        it("renders a Report Link Row", () => {
-            expect(balanceInfoShallow.find("#report-link").length).toBe(1);
-        });
-
-        it("renders a Used Credit Row", () => {
-            expect(balanceInfoShallow.find("#used-credit").length).toBe(1);
-        });
-
-        it("renders a `GivenCreditRow`", () => {
-            expect(balanceInfoMount.find(GivenCreditRow).length).toBe(1);
-        });
-
-        it("renders a `MemberCreditMaxRow`", () => {
-            expect(balanceInfoMount.find(MemberCreditMaxRow).length).toBe(1);
-        });
-    });
-
-    describe("Member Level", () => {
-        let balanceInfoMount, balanceInfoShallow;
-        beforeEach(() => {
-            props.customerInfo = Agent.ViewMemberInfo;
-            balanceInfoMount = mount(<BalanceInfo {...props} />);
-            balanceInfoShallow = shallow(<BalanceInfo {...props}/>);
-        });
-
-        it("renders 5 `BalanceInfoRow`", () => {
-            expect(balanceInfoMount.find(BalanceInfoRow).length).toBe(5);
-        });
-
-        it("renders a Total Balance Row", () => {
-            expect(balanceInfoShallow.find("#total-balance").length).toBe(1);
-        });
-
-        it("renders a Yesterday Balance Row", () => {
-            expect(balanceInfoShallow.find("#yesterday-balance").length).toBe(1);
-        });
-        
-        it("renders a Report Link Row", () => {
-            expect(balanceInfoShallow.find("#report-link").length).toBe(1);
-        });
-
-        it("renders a `GivenCreditRow`", () => {
-            expect(balanceInfoMount.find(GivenCreditRow).length).toBe(1);
-        });
-
-        it("renders a Net Position Row", () => {
-            expect(balanceInfoShallow.find("#net-position").length).toBe(1);
-        });
-
-        it("renders a Bet Credit Row", () => {
-            expect(balanceInfoShallow.find("#bet-credit").length).toBe(1);
-        });
-    });
+    test.each([
+        [Super.ViewMasterInfo, 0],
+        [Super.ViewAgentInfo, 0],
+        [Super.ViewMemberInfo, 1],
+        [Master.ViewAgentInfo, 0],
+        [Master.ViewMemberInfo, 1],
+        [Agent.ViewMemberInfo, 1]])(
+        "correct renders a Bet Credit",
+        (customerInfo, expectedCallTimes) => {
+            buildBalaneInfo(customerInfo);
+            expect(balanceInfoShallow.find("#bet-credit").length).toBe(expectedCallTimes);
+        }
+    );
 });

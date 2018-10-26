@@ -18,12 +18,12 @@ describe('CustomAnchorTag', () => {
         };
     });
 
-    it('renders without crashing', () => {
+    test('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<CustomAnchorTag />, div);
     });
 
-    it('snapshot', () => {
+    test('snapshot', () => {
         const component = renderer.create(<CustomAnchorTag {...props} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
@@ -37,24 +37,17 @@ describe('CustomAnchorTag', () => {
             expect(spy.calledOnce).toBeTruthy();
         })
 
-        describe("accountInfoHelper.closeLeftPanelOnMobile()", () => {
-            accountInfoHelper.closeLeftPanelOnMobile = jest.fn();
 
-            it('not call if `mobileView` is false', () => {
-                props.mobileView = false;
-    
+        test.each([[true, 1], [false, 0]])(
+            "correct call accountInfoHelper.closeLeftPanelOnMobile()",
+            (mobileView, expectedCallTimes) => {
+                accountInfoHelper.closeLeftPanelOnMobile = jest.fn();
+                props.mobileView = mobileView;
+
                 const wrapper = shallow(<CustomAnchorTag {...props} />)
                 wrapper.find('a').simulate('click');
-                expect(accountInfoHelper.closeLeftPanelOnMobile).toBeCalledTimes(0);
-            });
-    
-            it('call if `mobileView` is true', () => {
-                props.mobileView = true;
-    
-                const wrapper = shallow(<CustomAnchorTag {...props} />)
-                wrapper.find('a').simulate('click');
-                expect(accountInfoHelper.closeLeftPanelOnMobile).toBeCalledTimes(1);
-            });
-        });
+                expect(accountInfoHelper.closeLeftPanelOnMobile).toBeCalledTimes(expectedCallTimes);
+            }
+        );
     });
 });

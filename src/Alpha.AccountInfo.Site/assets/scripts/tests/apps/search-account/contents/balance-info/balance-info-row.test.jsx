@@ -16,17 +16,17 @@ describe('BalanceInfoRow', () => {
         };
     });
 
-    it('renders without crashing', () => {
+    test('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<BalanceInfoRow />, div);
     });
 
-    it('snapshot', () => {
+    test('snapshot', () => {
         const component = renderer.create(<BalanceInfoRow {...props} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    it("renders a `CellContainNumberFormat`", () => {
+    test("always render a `CellContainNumberFormat`", () => {
         const balanceInfoRow = mount(<BalanceInfoRow {...props} />);
         expect(balanceInfoRow.find(CellContainNumberFormat).length).toBe(1);
     });

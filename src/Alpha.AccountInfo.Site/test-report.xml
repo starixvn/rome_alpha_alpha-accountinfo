@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\common\custom-anchor-tag.test.jsx">
+    <testCase name="CustomAnchorTag renders without crashing" duration="11"/>
+    <testCase name="CustomAnchorTag snapshot" duration="7"/>
+    <testCase name="CustomAnchorTag handleClick() called when clicked" duration="5"/>
+    <testCase name="CustomAnchorTag handleClick() correct call accountInfoHelper.closeLeftPanelOnMobile()" duration="1"/>
+    <testCase name="CustomAnchorTag handleClick() correct call accountInfoHelper.closeLeftPanelOnMobile()" duration="1"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\common\cell-contain-number-format.test.jsx">
+    <testCase name="CellContainNumberFormat renders without crashing" duration="17"/>
+    <testCase name="CellContainNumberFormat always renders a div" duration="8"/>
+    <testCase name="CellContainNumberFormat always render a `NumberFormat`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="3"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="3"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="3"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="3"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\balance-info\balance-info.test.jsx">
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="38"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="12"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="9"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="18"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="11"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="8"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="9"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="10"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="9"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="14"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="8"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="9"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="14"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="12"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="9"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="12"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="9"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="8"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="13"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="13"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="11"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="12"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="7"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="9"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="14"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="10"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="18"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="12"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="8"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="7"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="8"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="9"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="7"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="10"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="6"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="7"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="14"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="11"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="11"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="12"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="7"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="7"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="8"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="8"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="9"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="10"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="7"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="8"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="10"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="8"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="7"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="10"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="13"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="7"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="16"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="8"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="5"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="9"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="5"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="6"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\balance-info\given-credit-row.test.jsx">
+    <testCase name="GivenCreditRow renders without crashing" duration="6"/>
+    <testCase name="GivenCreditRow snapshot" duration="4"/>
+    <testCase name="GivenCreditRow renders a `NumberFormat`" duration="5"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() called when clicked" duration="3"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call accountInfoHelper.mobileScale()" duration="2"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call accountInfoHelper.mobileScale()" duration="1"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call fetchCustomerInfoFromServer()" duration="1"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call fetchCustomerInfoFromServer()" duration="1"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call fetchCustomerInfoFromServer()" duration="1"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\customer-info\search-account-info.test.jsx">
+    <testCase name="SearchAccountInfo renders without crashing" duration="4"/>
+    <testCase name="SearchAccountInfo snapshot" duration="8"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="2"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="1"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="5"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="1"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="0"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="1"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="0"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="1"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="1"/>
+    <testCase name="SearchAccountInfo always render a `CustomAnchorTag` " duration="1"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="1"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="1"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="1"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="1"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\balance-info\member-credit-max-row.test.jsx">
+    <testCase name="MemberCreditMaxRow renders without crashing" duration="4"/>
+    <testCase name="MemberCreditMaxRow renders a `CellContainNumberFormat`" duration="4"/>
+    <testCase name="MemberCreditMaxRow correct call accountInfoHelper.mobileScale()" duration="9"/>
+    <testCase name="MemberCreditMaxRow correct call accountInfoHelper.mobileScale()" duration="2"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\balance-info\balance-info-row.test.jsx">
+    <testCase name="BalanceInfoRow renders without crashing" duration="4"/>
+    <testCase name="BalanceInfoRow snapshot" duration="10"/>
+    <testCase name="BalanceInfoRow always render a `CellContainNumberFormat`" duration="2"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\customer-info\upline-info.test.jsx">
+    <testCase name="UplineInfo renders without crashing" duration="1"/>
+    <testCase name="UplineInfo snapshot" duration="2"/>
+  </file>
+</testExecutions>

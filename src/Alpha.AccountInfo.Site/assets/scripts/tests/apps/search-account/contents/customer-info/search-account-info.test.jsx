@@ -28,89 +28,54 @@ describe('SearchAccountInfo', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    describe("User was closed", () => {
-        beforeEach(() => {
-            props.customerInfo.Closed = true;
-        });
+    test.each([
+        [true, 0, true, true, "closed-wrongPwdOthers", "This account was closed by failed login or account expired."],
+        [true, 0, true, false, "closed-wrongPwdOthers", "This account was closed by failed login or account expired."],
+        [true, 0, false, false, "closed-wrongPwdOthers", "This account was closed by failed login or account expired."],
+        [true, 1, false, false, "closed-byAdmin", "This account was closed by admin."],
+        [true, 2, false, false, "closed-byUpline", "This account was closed by upline."],
+        [true, 3, false, false, "closed-wrongOTPSC", "This account was closed by false input of OTP/Security Code."],
+        [false, 0, true, false, "suspended", "This account was suspended."],
+        [false, 0, false, false, "disabled", "This account was disabled."],
+        [false, 0, false, true, "enabled", ""]])(
+        "return correct status css and tooltip",
+        (closed, closedReason, suspended, enabled, expectedCss, expectedTooltip) => {
+            props.customerInfo.Closed = closed;
+            props.customerInfo.ClosedReason = closedReason;
+            props.customerInfo.Suspended = suspended;
+            props.customerInfo.Enabled = enabled;
 
-        it('return correct Css and Tooltip for closed account by Other reasons', () => {
-            props.customerInfo.ClosedReason = 0;
-            
             const component = shallow(<SearchAccountInfo {...props} />);
-            expect(component.state('Css')).toEqual("closed-wrongPwdOthers");
-            expect(component.state('Tootltip')).toEqual("This account was closed by failed login or account expired.");
-        });
+            expect(component.state('Css')).toEqual(expectedCss);
+            expect(component.state('Tootltip')).toEqual(expectedTooltip);
+        }
+    );
 
-        it('return correct Css and Tooltip for closed account by Admin', () => {
-            props.customerInfo.ClosedReason = 1;
-            
-            const component = shallow(<SearchAccountInfo {...props} />);
-            expect(component.state('Css')).toEqual("closed-byAdmin");
-            expect(component.state('Tootltip')).toEqual("This account was closed by admin.");
-        });
-
-        it('return correct Css and Tooltip for closed account by Upline', () => {
-            props.customerInfo.ClosedReason = 2;
-            
-            const component = shallow(<SearchAccountInfo {...props} />);
-            expect(component.state('Css')).toEqual("closed-byUpline");
-            expect(component.state('Tootltip')).toEqual("This account was closed by upline.");
-        });
-
-        it('return correct Css and Tooltip for closed account by Wrong OTP/SecurityCode', () => {
-            props.customerInfo.ClosedReason = 3;
-            
-            const component = shallow(<SearchAccountInfo {...props} />);
-            expect(component.state('Css')).toEqual("closed-wrongOTPSC");
-            expect(component.state('Tootltip')).toEqual("This account was closed by false input of OTP/Security Code.");
-        });
-    });
-
-    it('return correct Css and Tooltip for suspended account', () => {
-        props.customerInfo.Closed = false;
-        props.customerInfo.Suspended = true;
-        
-        const component = shallow(<SearchAccountInfo {...props} />);
-        expect(component.state('Css')).toEqual("suspended");
-        expect(component.state('Tootltip')).toEqual("This account was suspended.");
-    });
-
-    it('return correct Css and Tooltip for disabled account', () => {
-        props.customerInfo.Closed = false;
-        props.customerInfo.Suspended = false;
-        props.customerInfo.Enabled = false;
-        
-        const component = shallow(<SearchAccountInfo {...props} />);
-        expect(component.state('Css')).toEqual("disabled");
-        expect(component.state('Tootltip')).toEqual("This account was disabled.");
-    });
-
-    it('return correct Css and Tooltip for enable account', () => {
-        props.customerInfo.Closed = false;
-        props.customerInfo.Suspended = false;
-        props.customerInfo.Enabled = true;
-        
-        const component = shallow(<SearchAccountInfo {...props} />);
-        expect(component.state('Css')).toEqual("enabled");
-        expect(component.state('Tootltip')).toEqual("");
-    });
-
-    it("renders a `CustomAnchorTag` ", () => {
+    it("always render a `CustomAnchorTag` ", () => {
         const component = shallow(<SearchAccountInfo {...props} />);
         expect(component.find(CustomAnchorTag).length).toBe(1);
     });
 
-    it("renders a `Tooltip` if tooltip when User is not enabled", () => {
-        props.customerInfo.Suspended = true;
-        const component = shallow(<SearchAccountInfo {...props} />);
-        expect(component.find(Tooltip).length).toBe(1);
-    });
+    test.each([
+        [true, 0, true, true, 1],
+        [true, 0, true, false, 1],
+        [true, 0, false, false, 1],
+        [true, 1, false, false, 1],
+        [true, 2, false, false, 1],
+        [true, 3, false, false, 1],
+        [false, 0, true, false, 1],
+        [false, 0, false, false, 1],
+        [false, 0, false, true, 0]])(
+        "return correct `Tooltip` call times",
+        (closed, closedReason, suspended, enabled, expectedCallTimes) => {
+            props.customerInfo.Closed = closed;
+            props.customerInfo.ClosedReason = closedReason;
+            props.customerInfo.Suspended = suspended;
+            props.customerInfo.Enabled = enabled;
 
-    it(" does not renders a `Tooltip` when User is enabled ", () => {
-        props.customerInfo.Closed = false;
-        props.customerInfo.Suspended = false;
-        props.customerInfo.Enabled = true;
-        const component = shallow(<SearchAccountInfo {...props} />);
-        expect(component.find(Tooltip).length).toBe(0);
-    });
+            const component = shallow(<SearchAccountInfo {...props} />);
+
+            expect(component.find(Tooltip).length).toBe(expectedCallTimes);
+        }
+    );
 });

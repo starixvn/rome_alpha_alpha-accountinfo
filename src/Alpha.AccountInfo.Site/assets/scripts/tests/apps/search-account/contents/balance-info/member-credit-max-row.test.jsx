@@ -26,15 +26,12 @@ describe('MemberCreditMaxRow', () => {
         expect(memberCreditMaxRow.find(CellContainNumberFormat).length).toBe(1);
     });
 
-    it("renders a `Tooltip` if ShowMemberMaxCreditLimit is true", () => {
-        props.balanceInfo.ShowMemberMaxCreditLimit = true;
-        const memberCreditMaxRow = mount(<MemberCreditMaxRow {...props} />);
-        expect(memberCreditMaxRow.find(Tooltip).length).toBe(1);
-    });
-
-    it("does not renders a `Tooltip` if ShowMemberMaxCreditLimit is false", () => {
-        props.balanceInfo.ShowMemberMaxCreditLimit = false;
-        const memberCreditMaxRow = mount(<MemberCreditMaxRow {...props} />);
-        expect(memberCreditMaxRow.find(Tooltip).length).toBe(0);
-    });
+    test.each([[true, 1], [false, 0]])(
+        "correct call accountInfoHelper.mobileScale()",
+        (ShowMemberMaxCreditLimit, expectedCallTimes) => {
+            props.balanceInfo.ShowMemberMaxCreditLimit = ShowMemberMaxCreditLimit;
+            const memberCreditMaxRow = mount(<MemberCreditMaxRow {...props} />);
+            expect(memberCreditMaxRow.find(Tooltip).length).toBe(expectedCallTimes);
+        }
+    );
 });
