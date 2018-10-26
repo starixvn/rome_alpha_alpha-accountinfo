@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 import NumberFormat from 'react-number-format';
 import GivenCreditRow from 'GivenCreditRow';
 import {Resources} from '../../helpers/resources-sample';
-import {MasterLevelInfo} from '../../helpers/master-level-info-sample';
+import { Master } from '../../helpers/actor-is-master-sample';
 import * as accountInfoHelper from 'AccountInfoHelper';
 
 describe('GivenCreditRow', () => {
@@ -18,7 +18,7 @@ describe('GivenCreditRow', () => {
 
     beforeEach(() => {
         props = {
-            customerInfo: MasterLevelInfo,
+            customerInfo: Master.ViewAgentInfo,
             resources: Resources,
             mobileView: false,
             fetchCustomerInfoFromServer: jest.fn()

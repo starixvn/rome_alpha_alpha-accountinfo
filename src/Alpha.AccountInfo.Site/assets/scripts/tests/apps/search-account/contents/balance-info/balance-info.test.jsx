@@ -1,9 +1,9 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount, shallow } from "enzyme";
-import { MasterLevelInfo } from '../../helpers/master-level-info-sample';
-import { AgentLevelInfo } from '../../helpers/agent-level-info-sample';
-import { MemberLevelInfo } from '../../helpers/member-level-info-sample ';
+import { Super } from '../../helpers/actor-is-super-sample';
+import { Master } from '../../helpers/actor-is-master-sample';
+import { Agent } from '../../helpers/actor-is-agent-sample ';
 import { Resources } from '../../helpers/resources-sample';
 import BalanceInfoRow from 'BalanceInfoRow';
 import GivenCreditRow from 'GivenCreditRow';
@@ -14,7 +14,7 @@ describe('BalanceInfo', () => {
     let props;
     beforeEach(() => {
         props = {
-            customerInfo: MasterLevelInfo,
+            customerInfo: Super.ViewMasterInfo,
             resources: Resources,
             mobileView: false,
             fetchCustomerInfoFromServer: jest.fn()
@@ -34,7 +34,7 @@ describe('BalanceInfo', () => {
     describe("Master Level", () => {
         let balanceInfoMount, balanceInfoShallow;
         beforeEach(() => {
-            props.customerInfo = MasterLevelInfo;
+            props.customerInfo = Super.ViewMasterInfo;
             balanceInfoMount = mount(<BalanceInfo {...props} />);
             balanceInfoShallow = shallow(<BalanceInfo {...props}/>);
         });
@@ -79,7 +79,7 @@ describe('BalanceInfo', () => {
     describe("Agent Level", () => {
         let balanceInfoMount, balanceInfoShallow;
         beforeEach(() => {
-            props.customerInfo = AgentLevelInfo;
+            props.customerInfo = Master.ViewAgentInfo;
             balanceInfoMount = mount(<BalanceInfo {...props} />);
             balanceInfoShallow = shallow(<BalanceInfo {...props}/>);
         });
@@ -125,7 +125,7 @@ describe('BalanceInfo', () => {
     describe("Member Level", () => {
         let balanceInfoMount, balanceInfoShallow;
         beforeEach(() => {
-            props.customerInfo = MemberLevelInfo;
+            props.customerInfo = Agent.ViewMemberInfo;
             balanceInfoMount = mount(<BalanceInfo {...props} />);
             balanceInfoShallow = shallow(<BalanceInfo {...props}/>);
         });

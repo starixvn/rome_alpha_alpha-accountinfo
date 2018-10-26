@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { MasterLevelInfo } from '../../helpers/master-level-info-sample';
+import { Master } from '../../helpers/actor-is-master-sample';
 import { Resources } from '../../helpers/resources-sample';
 import SearchAccountInfo from 'SearchAccountInfo';
 import CustomAnchorTag from 'CustomAnchorTag';
@@ -12,7 +12,7 @@ describe('SearchAccountInfo', () => {
     let props;
     beforeEach(() => {
         props = {
-            customerInfo: MasterLevelInfo,
+            customerInfo: Master.ViewAgentInfo,
             resources: Resources,
             mobileView: false
         };

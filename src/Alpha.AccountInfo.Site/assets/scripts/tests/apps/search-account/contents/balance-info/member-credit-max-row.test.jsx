@@ -4,14 +4,14 @@ import { mount } from "enzyme";
 import CellContainNumberFormat from 'CellContainNumberFormat';
 import MemberCreditMaxRow from 'MemberCreditMaxRow';
 import { Resources } from '../../helpers/resources-sample';
-import { AgentLevelInfo } from '../../helpers/agent-level-info-sample';
+import { Agent } from '../../helpers/actor-is-agent-sample ';
 import { Tooltip } from 'react-tippy';
 
 describe('MemberCreditMaxRow', () => {
     let props;
     beforeEach(() => {
         props = {
-            balanceInfo: AgentLevelInfo.BalanceInfo,
+            balanceInfo: Agent.ViewMemberInfo,
             resources: Resources
         };
     });
