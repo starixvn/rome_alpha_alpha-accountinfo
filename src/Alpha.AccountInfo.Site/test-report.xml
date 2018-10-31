@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\status\confirm-status.test.jsx">
-    <testCase name="ConfirmStatus renders without crashing" duration="17"/>
-    <testCase name="ConfirmStatus snapshot" duration="10"/>
-    <testCase name="ConfirmStatus handleOpenPopup() called when clicked" duration="11"/>
-    <testCase name="ConfirmStatus correct call accountInfoHelper.resizeBootboxOnMobile()" duration="3"/>
-    <testCase name="ConfirmStatus correct call accountInfoHelper.resizeBootboxOnMobile()" duration="2"/>
-    <testCase name="ConfirmStatus correct call accountInfoHelper.resizeBootboxOnMobile()" duration="2"/>
-    <testCase name="ConfirmStatus correct call accountInfoHelper.resizeBootboxOnMobile()" duration="2"/>
-    <testCase name="ConfirmStatus correct call bootboxConfirm" duration="5364"/>
-    <testCase name="ConfirmStatus correct call bootboxConfirm" duration="1104"/>
-    <testCase name="ConfirmStatus updateCustomerStatus() called when clicked" duration="3"/>
-    <testCase name="ConfirmStatus updateCustomerStatus() called when clicked" duration="32309">
-      <failure message="Error: expect(jest.fn()).toBeCalledTimes(1)"><![CDATA[Error: expect(jest.fn()).toBeCalledTimes(1)
-
-Expected mock function to have been called one time, but it was called zero times.
-    at Object.toBeCalledTimes (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\status\confirm-status.test.jsx:112:51)
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\downline-list\total-downlines.test.jsx">
+    <testCase name="TotalDownlines renders without crashing" duration="15">
+      <failure message="Invariant Violation: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined."><![CDATA[Invariant Violation: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.
+    at invariant (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\fbjs\lib\invariant.js:42:15)
+    at ReactCompositeComponentWrapper.instantiateReactComponent [as _instantiateReactComponent] (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\instantiateReactComponent.js:68:134)
+    at ReactCompositeComponentWrapper.performInitialMount (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactCompositeComponent.js:367:22)
+    at ReactCompositeComponentWrapper.mountComponent (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactCompositeComponent.js:258:21)
+    at Object.mountComponent (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactReconciler.js:46:35)
+    at mountComponentIntoNode (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:104:32)
+    at ReactReconcileTransaction.perform (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\Transaction.js:140:20)
+    at batchedMountComponentIntoNode (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:126:15)
+    at ReactDefaultBatchingStrategyTransaction.perform (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\Transaction.js:140:20)
+    at Object.batchedUpdates (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactDefaultBatchingStrategy.js:62:26)
+    at Object.batchedUpdates (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactUpdates.js:97:27)
+    at Object._renderNewRootComponent (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:320:18)
+    at Object._renderSubtreeIntoContainer (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:401:32)
+    at Object.render (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:422:23)
+    at Object.render (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\downline-list\total-downlines.test.jsx:35:18)
     at Object.asyncJestTest (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\jest-jasmine2\build\jasmine_async.js:108:37)
     at resolve (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\jest-jasmine2\build\queue_runner.js:56:12)
     at new Promise (<anonymous>)
@@ -24,5 +26,270 @@ Expected mock function to have been called one time, but it was called zero time
     at <anonymous>
     at process._tickCallback (internal/process/next_tick.js:189:7)]]></failure>
     </testCase>
+    <testCase name="TotalDownlines always render a `Tootltip`" duration="7">
+      <failure message="Invariant Violation: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined."><![CDATA[Invariant Violation: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.
+    at invariant (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\fbjs\lib\invariant.js:42:15)
+    at ReactCompositeComponentWrapper.instantiateReactComponent [as _instantiateReactComponent] (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\instantiateReactComponent.js:68:134)
+    at ReactCompositeComponentWrapper.performInitialMount (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactCompositeComponent.js:367:22)
+    at ReactCompositeComponentWrapper.mountComponent (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactCompositeComponent.js:258:21)
+    at Object.mountComponent (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactReconciler.js:46:35)
+    at ReactCompositeComponentWrapper.performInitialMount (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactCompositeComponent.js:371:34)
+    at ReactCompositeComponentWrapper.mountComponent (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactCompositeComponent.js:258:21)
+    at Object.mountComponent (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactReconciler.js:46:35)
+    at mountComponentIntoNode (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:104:32)
+    at ReactReconcileTransaction.perform (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\Transaction.js:140:20)
+    at batchedMountComponentIntoNode (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:126:15)
+    at ReactDefaultBatchingStrategyTransaction.perform (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\Transaction.js:140:20)
+    at Object.batchedUpdates (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactDefaultBatchingStrategy.js:62:26)
+    at Object.batchedUpdates (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactUpdates.js:97:27)
+    at Object._renderNewRootComponent (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:320:18)
+    at Object._renderSubtreeIntoContainer (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:401:32)
+    at Object.render (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactMount.js:422:23)
+    at Object.renderIntoDocument (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\react-dom\lib\ReactTestUtils.js:79:21)
+    at renderWithOptions (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\enzyme\build\react-compat.js:187:26)
+    at new ReactWrapper (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\enzyme\build\ReactWrapper.js:94:59)
+    at mount (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\enzyme\build\mount.js:19:10)
+    at buildTotalDownlines (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\downline-list\total-downlines.test.jsx:14:35)
+    at Object.buildTotalDownlines (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\downline-list\total-downlines.test.jsx:39:9)
+    at Object.asyncJestTest (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\jest-jasmine2\build\jasmine_async.js:108:37)
+    at resolve (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\jest-jasmine2\build\queue_runner.js:56:12)
+    at new Promise (<anonymous>)
+    at mapper (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\jest-jasmine2\build\queue_runner.js:43:19)
+    at promise.then (D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\node_modules\jest-jasmine2\build\queue_runner.js:87:41)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)]]></failure>
+    </testCase>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\status\bettype-level-status.test.jsx">
+    <testCase name="BettypeLevelStatus renders without crashing" duration="13"/>
+    <testCase name="BettypeLevelStatus snapshot" duration="10"/>
+    <testCase name="BettypeLevelStatus handleOpenPopup() called when clicked" duration="6"/>
+    <testCase name="BettypeLevelStatus correct call accountInfoHelper.resizePopupOnMobile()" duration="1"/>
+    <testCase name="BettypeLevelStatus correct call accountInfoHelper.resizePopupOnMobile()" duration="0"/>
+    <testCase name="BettypeLevelStatus correct call accountInfoHelper.mobileScale()" duration="1"/>
+    <testCase name="BettypeLevelStatus correct call accountInfoHelper.mobileScale()" duration="0"/>
+    <testCase name="BettypeLevelStatus correct popup height" duration="2"/>
+    <testCase name="BettypeLevelStatus correct popup height" duration="0"/>
+    <testCase name="BettypeLevelStatus correct popup height" duration="1"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\status\confirm-status.test.jsx">
+    <testCase name="ConfirmStatus renders without crashing" duration="15"/>
+    <testCase name="ConfirmStatus snapshot" duration="7"/>
+    <testCase name="ConfirmStatus handleOpenPopup() called when clicked" duration="12"/>
+    <testCase name="ConfirmStatus correct call accountInfoHelper.resizeBootboxOnMobile()" duration="2"/>
+    <testCase name="ConfirmStatus correct call accountInfoHelper.resizeBootboxOnMobile()" duration="2"/>
+    <testCase name="ConfirmStatus correct call accountInfoHelper.resizeBootboxOnMobile()" duration="2"/>
+    <testCase name="ConfirmStatus correct call accountInfoHelper.resizeBootboxOnMobile()" duration="1"/>
+    <testCase name="ConfirmStatus correct call bootboxConfirm" duration="2"/>
+    <testCase name="ConfirmStatus correct call bootboxConfirm" duration="5"/>
+    <testCase name="ConfirmStatus updateCustomerStatus() called when clicked" duration="2"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\customer-info\customer-info.test.jsx">
+    <testCase name="CustomerInfo renders without crashing" duration="13"/>
+    <testCase name="CustomerInfo snapshot" duration="10"/>
+    <testCase name="CustomerInfo always renders a `SearchAccountInfo`" duration="7"/>
+    <testCase name="CustomerInfo always renders a `SearchAccountInfo`" duration="5"/>
+    <testCase name="CustomerInfo always renders a `SearchAccountInfo`" duration="5"/>
+    <testCase name="CustomerInfo always renders a `SearchAccountInfo`" duration="4"/>
+    <testCase name="CustomerInfo always renders a `SearchAccountInfo`" duration="5"/>
+    <testCase name="CustomerInfo always renders a `SearchAccountInfo`" duration="6"/>
+    <testCase name="CustomerInfo always renders `UplineInfo` callTimes" duration="3"/>
+    <testCase name="CustomerInfo always renders `UplineInfo` callTimes" duration="4"/>
+    <testCase name="CustomerInfo always renders `UplineInfo` callTimes" duration="5"/>
+    <testCase name="CustomerInfo always renders `UplineInfo` callTimes" duration="7"/>
+    <testCase name="CustomerInfo always renders `UplineInfo` callTimes" duration="4"/>
+    <testCase name="CustomerInfo always renders `UplineInfo` callTimes" duration="4"/>
+    <testCase name="CustomerInfo always renders 3 `CustomAnchorTag`" duration="4"/>
+    <testCase name="CustomerInfo always renders 3 `CustomAnchorTag`" duration="8"/>
+    <testCase name="CustomerInfo always renders 3 `CustomAnchorTag`" duration="4"/>
+    <testCase name="CustomerInfo always renders 3 `CustomAnchorTag`" duration="3"/>
+    <testCase name="CustomerInfo always renders 3 `CustomAnchorTag`" duration="3"/>
+    <testCase name="CustomerInfo always renders 3 `CustomAnchorTag`" duration="6"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\common\cell-contain-number-format.test.jsx">
+    <testCase name="CellContainNumberFormat renders without crashing" duration="5"/>
+    <testCase name="CellContainNumberFormat always renders a div" duration="4"/>
+    <testCase name="CellContainNumberFormat always render a `NumberFormat`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="3"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="3"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `CustomAnchorTag`" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="3"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="4"/>
+    <testCase name="CellContainNumberFormat renders correct a span contain value" duration="4"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-link` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="2"/>
+    <testCase name="CellContainNumberFormat renders correct `.number-red` class&apos;" duration="1"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\searching.test.jsx">
+    <testCase name="Searching renders without crashing" duration="6"/>
+    <testCase name="Searching always render a `Autosuggest`" duration="1"/>
+    <testCase name="Searching handleSearchClick() called when clicked" duration="2"/>
+    <testCase name="Searching handleSearchClick() correct called handleSearchClick() when key press" duration="16"/>
+    <testCase name="Searching handleSearchClick() correct called handleSearchClick() when key press" duration="4"/>
+    <testCase name="Searching correct called fetchCustomerInfoFromServer() when click search" duration="3"/>
+    <testCase name="Searching correct called fetchCustomerInfoFromServer() when click search" duration="1"/>
+    <testCase name="Searching handleSearchKeyPress() called when key press" duration="3"/>
+    <testCase name="Searching state.username change when componentWillReceiveProps() receive new props" duration="3"/>
+    <testCase name="Searching state.username change called when key press" duration="8"/>
+    <testCase name="Searching onSuggestionsFetchRequested() called when fectch requested" duration="5"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\balance-info\given-credit-row.test.jsx">
+    <testCase name="GivenCreditRow renders without crashing" duration="3"/>
+    <testCase name="GivenCreditRow snapshot" duration="3"/>
+    <testCase name="GivenCreditRow renders a `NumberFormat`" duration="4"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() called when clicked" duration="6"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call accountInfoHelper.resizePopupOnMobile()" duration="2"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call accountInfoHelper.resizePopupOnMobile()" duration="1"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call fetchCustomerInfoFromServer()" duration="1"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call fetchCustomerInfoFromServer()" duration="1"/>
+    <testCase name="GivenCreditRow handleOpenGivenCreditPopup() correct call fetchCustomerInfoFromServer()" duration="1"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\balance-info\balance-info.test.jsx">
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="22"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="14"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="12"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="32"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="15"/>
+    <testCase name="BalanceInfo renders a Total Cash Row" duration="9"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="10"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="10"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="7"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="14"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="9"/>
+    <testCase name="BalanceInfo renders a Yesterday Cash Row" duration="8"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="15"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="13"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="8"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="12"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="7"/>
+    <testCase name="BalanceInfo always renders a Total Balance Row" duration="11"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="12"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="13"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="8"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="10"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="9"/>
+    <testCase name="BalanceInfo always renders a Yesterday Balance Row" duration="8"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="11"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="11"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="25"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="12"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="8"/>
+    <testCase name="BalanceInfo always renders a Report Link Row" duration="7"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="10"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="10"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="22"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="11"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="9"/>
+    <testCase name="BalanceInfo renders a Used Credit Row" duration="6"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="15"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="15"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="9"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="17"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="13"/>
+    <testCase name="BalanceInfo always renders a `GivenCreditRow`" duration="7"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="9"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="10"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="7"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="11"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="12"/>
+    <testCase name="BalanceInfo renders a `MemberCreditMaxRow`" duration="6"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="12"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="10"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="7"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="9"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="9"/>
+    <testCase name="BalanceInfo correct renders a Net Position" duration="6"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="8"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="8"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="5"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="9"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="6"/>
+    <testCase name="BalanceInfo correct renders a Bet Credit" duration="6"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\balance-info\balance-info-row.test.jsx">
+    <testCase name="BalanceInfoRow renders without crashing" duration="5"/>
+    <testCase name="BalanceInfoRow snapshot" duration="3"/>
+    <testCase name="BalanceInfoRow always render a `CellContainNumberFormat`" duration="3"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\downline-list\downline-list.test.jsx">
+    <testCase name="DownlineList renders without crashing" duration="15"/>
+    <testCase name="DownlineList renders corret `TotalDownlines` callTimes" duration="17"/>
+    <testCase name="DownlineList renders corret `TotalDownlines` callTimes" duration="13"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\customer-info\search-account-info.test.jsx">
+    <testCase name="SearchAccountInfo renders without crashing" duration="4"/>
+    <testCase name="SearchAccountInfo snapshot" duration="3"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="1"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="2"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="0"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="0"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="1"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="0"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="2"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="0"/>
+    <testCase name="SearchAccountInfo return correct status css and tooltip" duration="1"/>
+    <testCase name="SearchAccountInfo always render a `CustomAnchorTag` " duration="3"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="1"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="1"/>
+    <testCase name="SearchAccountInfo return correct `Tooltip` call times" duration="0"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\common\custom-anchor-tag.test.jsx">
+    <testCase name="CustomAnchorTag renders without crashing" duration="2"/>
+    <testCase name="CustomAnchorTag snapshot" duration="2"/>
+    <testCase name="CustomAnchorTag handleClick() called when clicked" duration="1"/>
+    <testCase name="CustomAnchorTag handleClick() correct call accountInfoHelper.closeLeftPanelOnMobile()" duration="2"/>
+    <testCase name="CustomAnchorTag handleClick() correct call accountInfoHelper.closeLeftPanelOnMobile()" duration="0"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\balance-info\member-credit-max-row.test.jsx">
+    <testCase name="MemberCreditMaxRow renders without crashing" duration="5"/>
+    <testCase name="MemberCreditMaxRow renders a `CellContainNumberFormat`" duration="3"/>
+    <testCase name="MemberCreditMaxRow correct call accountInfoHelper.mobileScale()" duration="5"/>
+    <testCase name="MemberCreditMaxRow correct call accountInfoHelper.mobileScale()" duration="2"/>
+  </file>
+  <file path="D:\DEV\CODE\Alpha\WEB\alpha-accountinfo-demo\src\Alpha.AccountInfo.Site\assets\scripts\tests\apps\search-account\contents\customer-info\upline-info.test.jsx">
+    <testCase name="UplineInfo renders without crashing" duration="2"/>
+    <testCase name="UplineInfo snapshot" duration="2"/>
   </file>
 </testExecutions>
