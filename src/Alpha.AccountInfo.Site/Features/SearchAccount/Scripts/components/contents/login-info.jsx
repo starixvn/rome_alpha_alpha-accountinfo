@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-const LoginInfoRow = ({ title, value }) => {
+export const LoginInfoRow = ({ title, value }) => {
     return (
         <div className="group">
             <div className="row-info bold">{title}:</div>
@@ -9,7 +9,7 @@ const LoginInfoRow = ({ title, value }) => {
     );
 } 
 
-const LoginInfoWithLinkRow = ({ title, value, handleOpenIPInfo }) => {
+export const LoginInfoWithLinkRow = ({ title, value, handleOpenIPInfo }) => {
     return (
         <div className="group">
             <div className="row-info bold">{title}:</div>

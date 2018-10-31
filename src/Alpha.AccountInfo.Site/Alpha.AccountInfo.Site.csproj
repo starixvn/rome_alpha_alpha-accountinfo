@@ -330,6 +330,8 @@
     <Content Include="assets\scripts\tests\apps\search-account\contents\downline-list\downline-list.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\downline-list\total-downlines.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\searching.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\status\status.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\status\product-level-status.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\status\confirm-status.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\status\bettype-level-status.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-agent-sample .jsx" />

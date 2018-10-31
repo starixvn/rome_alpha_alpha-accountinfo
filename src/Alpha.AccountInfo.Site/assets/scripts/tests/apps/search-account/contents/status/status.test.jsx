@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from "enzyme";
-import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import BettypeLevelStatus from 'BettypeLevelStatus';
 import ConfirmStatus from 'ConfirmStatus';
 import ProductLevelStatus from 'ProductLevelStatus';
 import Status from 'Status';
 import { Resources } from '../../helpers/resources-sample';
-import * as accountInfoHelper from 'AccountInfoHelper';
 
 describe('Status', () => {
     let props;

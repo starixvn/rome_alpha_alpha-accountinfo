@@ -9,18 +9,23 @@ import MemberCreditMaxRow from 'MemberCreditMaxRow';
 import BalanceInfo from 'BalanceInfo';
 
 describe('BalanceInfo', () => {
-    let balanceInfoMount, balanceInfoShallow;
+    let props, balanceInfoMount, balanceInfoShallow;
     const buildBalaneInfo = (cusomerinfo) => {
-        let props = {
-            customerInfo: cusomerinfo,
+        props.customerInfo = cusomerinfo;
+        balanceInfoMount = mount(<BalanceInfo {...props} />);
+        balanceInfoShallow = shallow(<BalanceInfo {...props} />);
+    }
+
+    beforeEach(() => {
+        props = {
+            customerInfo: undefined,
             resources: Resources,
             mobileView: false,
             fetchCustomerInfoFromServer: jest.fn()
         };
-
-        balanceInfoMount = mount(<BalanceInfo {...props} />);
-        balanceInfoShallow = shallow(<BalanceInfo {...props} />);
-    }
+        balanceInfoMount = undefined;
+        balanceInfoShallow = undefined;
+    });
 
     test.each([
         [Super.ViewMasterInfo, 1],

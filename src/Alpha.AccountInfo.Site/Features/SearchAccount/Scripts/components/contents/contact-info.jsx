@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 
-const ContactInfoRow = ({ title, value }) => {
+export const ContactInfoRow = ({ title, value }) => {
     return (
         <div className="col-xs-12 row-info">
             <div className="col-xs-5">{title}</div>

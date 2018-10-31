@@ -59,7 +59,11 @@
       "BettypeLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/bettype-level-status.jsx",
       "ConfirmStatus": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/confirm-status.jsx",
       "ProductLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/product-level-status.jsx",
-      "Status": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/status.jsx"
+      "Status": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/status.jsx",
+      "ContactInfo": "<rootDir>/Features/SearchAccount/Scripts/components/contents/contact-info.jsx",
+      "LoginInfo": "<rootDir>/Features/SearchAccount/Scripts/components/contents/login-info.jsx",
+      "OnlineList": "<rootDir>/Features/SearchAccount/Scripts/components/contents/online-list.jsx",
+      "Settings": "<rootDir>/Features/SearchAccount/Scripts/components/contents/settings.jsx"
     }
   },
   "jest-junit": {
