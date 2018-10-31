@@ -19,36 +19,7 @@ describe('Status', () => {
 
     beforeEach(() => {
         props = {
-            statusData:[ 
-                {
-                "ConfirmMessage": "Are you sure you want to change Close status for this customer?",
-                "Disabled": false,
-                "Checked": false,
-                "Url": "/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus",
-                "JsonParams": "{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}",
-                "Text": "Closed",
-                "DisplayOrder": 2,
-                "Visible": true
-              },{
-                "Text": "Casino",
-                "DisplayOrder": 60,
-                "ProductId": 6,
-                "Url": "/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3",
-                "Disabled": false,
-                "Visible": true,
-                "IsEditOnProductLevel": true,
-                "Checked": true
-            },
-            {
-                "Text": "Allbet",
-                "DisplayOrder": 210,
-                "ProductId": 21,
-                "Url": "/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3",
-                "Disabled": false,
-                "Visible": true,
-                "IsEditOnProductLevel": false,
-                "Checked": true
-              }],
+            statusData:[],
             resources: Resources,
             mobileView: false,
             fetchCustomerInfoFromServer: jest.fn()
@@ -57,31 +28,99 @@ describe('Status', () => {
 
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<ProductLevelStatus {...props} />, div);
+        ReactDOM.render(<Status {...props} />, div);
     });
 
     it('snapshot', () => {
-        const component = renderer.create(<ProductLevelStatus {...props} />);
+        const component = renderer.create(<Status {...props} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    it('handleOpenPopup() called when clicked', () => {
-        const spy = sinon.spy(ProductLevelStatus.prototype, 'handleOpenPopup');
-        const wrapper = shallow(<ProductLevelStatus {...props} />)
+    test.each([
+        [{}, 0], 
+        [{
+            "Disabled": false,
+            "Checked": false,
+            "Url": "/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus",
+            "JsonParams": "{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}",
+            "Text": "Closed",
+            "DisplayOrder": 2,
+            "Visible": true
+          }, 0], 
+        [{
+            "ConfirmMessage": "Are you sure you want to change Close status for this customer?",
+            "Disabled": false,
+            "Checked": false,
+            "Url": "/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus",
+            "JsonParams": "{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}",
+            "Text": "Closed",
+            "DisplayOrder": 2,
+            "Visible": true
+          }, 1]])(
+        "correct render ConfirmStatus",
+        (status, expectedCallTimes) => {
+            props.statusData.push(status);
+            const wrapper = shallow(<Status {...props} />);
+            expect(wrapper.find(ConfirmStatus).length).toBe(expectedCallTimes);
+        }
+    );
 
-        wrapper.find('#product-Allbet').simulate('click');
-        expect(spy.calledOnce).toBeTruthy();
-    });
-
-    test.each([[true, 1], [false, 0]])(
-        "correct call accountInfoHelper.resizePopupOnMobile()",
-        (mobileView, expectedCallTimes) => {
-            props.mobileView = mobileView;
-            accountInfoHelper.resizePopupOnMobile = jest.fn();
-
-            const wrapper = shallow(<ProductLevelStatus {...props} />);
-            wrapper.find('#product-Allbet').simulate('click');
-            expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(expectedCallTimes);
+    test.each([
+        [{}, 0], 
+        [{
+            "Text": "Casino",
+            "DisplayOrder": 60,
+            "ProductId": 6,
+            "Url": "/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3",
+            "Disabled": false,
+            "Visible": true,
+            "IsEditOnProductLevel": false,
+            "Checked": true
+        }, 0], 
+        [{
+            "Text": "Casino",
+            "DisplayOrder": 60,
+            "ProductId": 6,
+            "Url": "/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3",
+            "Disabled": false,
+            "Visible": true,
+            "IsEditOnProductLevel": true,
+            "Checked": true
+        }, 1]])(
+        "correct render ProductLevelStatus",
+        (status, expectedCallTimes) => {
+            props.statusData.push(status);
+            const wrapper = shallow(<Status {...props} />);
+            expect(wrapper.find(ProductLevelStatus).length).toBe(expectedCallTimes);
+        }
+    );
+    
+    test.each([
+        [{
+            "Text": "Allbet",
+            "DisplayOrder": 210,
+            "ProductId": 21,
+            "Url": "/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3",
+            "Disabled": false,
+            "Visible": true,
+            "IsEditOnProductLevel": true,
+            "Checked": true
+        }, 0], 
+        [{
+            "Text": "Allbet",
+            "DisplayOrder": 210,
+            "ProductId": 21,
+            "Url": "/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3",
+            "Disabled": false,
+            "Visible": true,
+            "IsEditOnProductLevel": false,
+            "Checked": true
+        }, 1]])(
+        "correct render BettypeLevelStatus",
+        (status, expectedCallTimes) => {
+            props.statusData.push(status);
+            const wrapper = shallow(<Status {...props} />);
+            expect(wrapper.find(BettypeLevelStatus).length).toBe(expectedCallTimes);
         }
     );
 });

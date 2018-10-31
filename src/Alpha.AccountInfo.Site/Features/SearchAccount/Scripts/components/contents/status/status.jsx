@@ -14,6 +14,10 @@ const Status = ({ resources, username, statusData, mobileView, fetchCustomerInfo
                         resources: resources
                     };
 
+                    if (Object.keys(status).length === 0) {
+                        return null;
+                    }
+
                     return status.ConfirmMessage ?
                         <ConfirmStatus
                             {...props}
