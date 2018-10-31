@@ -285,7 +285,6 @@ export default class AccountInfo extends React.Component {
             resources,
             username,
             searchCounter,
-            custId,
             redirectToBalanceInfoPage,
             mobileView,
             customerInfo,

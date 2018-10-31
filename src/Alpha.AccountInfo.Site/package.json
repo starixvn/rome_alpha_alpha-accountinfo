@@ -57,7 +57,9 @@
       "AutoSuggestion": "<rootDir>/Features/SearchAccount/Scripts/components/contents/searching/auto-suggestion.jsx",
       "APIClient": "<rootDir>/Features/SearchAccount/Scripts/api-client.jsx",
       "BettypeLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/bettype-level-status.jsx",
-      "ConfirmStatus": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/confirm-status.jsx"
+      "ConfirmStatus": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/confirm-status.jsx",
+      "ProductLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/product-level-status.jsx",
+      "Status": "<rootDir>/Features/SearchAccount/Scripts/components/contents/status/status.jsx"
     }
   },
   "jest-junit": {

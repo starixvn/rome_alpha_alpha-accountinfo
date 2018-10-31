@@ -40,6 +40,7 @@ const BalanceInfo = ({
     let givenCreditContent =
         <GivenCreditRow
             customerInfo={customerInfo}
+            mobileView={mobileView}
             resources={resources}
             fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
         />;
@@ -61,7 +62,7 @@ const BalanceInfo = ({
             Id: UserLevel.Agent,
             Contents: [
                 ...masterContents,
-                <MemberCreditMaxRow resources={resources} balanceInfo={balanceInfo} />
+                <MemberCreditMaxRow resources={resources} mobileView={mobileView} balanceInfo={balanceInfo} />
             ]
         },
         {

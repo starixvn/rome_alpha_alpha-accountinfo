@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { accountInfoAPI } from '../../../api-client';
 import { resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
 
 export default class ProductLevelStatus extends React.Component {
@@ -34,7 +33,7 @@ export default class ProductLevelStatus extends React.Component {
         };
 
         return (
-            <div className={`col-xs-6 checkbox ${disabled}`} onClick={this.handleOpenPopup} >
+            <div id={`product-${status.Text}`} className={`col-xs-6 checkbox ${disabled}`} onClick={this.handleOpenPopup} >
                 <input {...inputProps} />
                 <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
             </div>
