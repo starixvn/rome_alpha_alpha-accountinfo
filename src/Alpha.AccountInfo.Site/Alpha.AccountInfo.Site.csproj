@@ -330,11 +330,14 @@
     <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\upline-info.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\downline-list\downline-list.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\downline-list\total-downlines.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\searching\searching.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\searching.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\status\confirm-status.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\status\bettype-level-status.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-agent-sample .jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-master-sample.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-super-sample.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\resources-sample.jsx" />
+    <Content Include="assets\scripts\tests\__mocks__\axios.jsx" />
     <Content Include="Features\SearchAccount\Scripts\api-client.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\common\custom-anchor-tag.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\balance-info\member-credit-max-row.jsx" />

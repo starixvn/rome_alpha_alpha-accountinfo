@@ -59,7 +59,7 @@ describe('GivenCreditRow', () => {
         });
 
         test.each([[true, 1], [false, 0]])(
-                "correct call accountInfoHelper.mobileScale()",
+                "correct call accountInfoHelper.resizePopupOnMobile()",
             (mobileView, expectedCallTimes) => {
                 props.mobileView = mobileView;
                 accountInfoHelper.resizePopupOnMobile = jest.fn();

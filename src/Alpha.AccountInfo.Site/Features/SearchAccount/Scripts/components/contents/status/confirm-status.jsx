@@ -8,28 +8,35 @@ export default class ConfirmStatus extends React.Component {
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
     }
 
-    updateCustomerStatus(url, param) {
+    updateCustomerStatus() {
         $.blockUI();
-        let { fetchCustomerInfoFromServer, username } = this.props;
+        let { fetchCustomerInfoFromServer, username, status } = this.props;
 
-        accountInfoAPI.updateCustomerStatus(url, JSON.parse(param)).then((data) => {
-            if (data.IsSuccess) {
-                setTimeout(() => {
+        accountInfoAPI
+            .updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
+            .then((data) => {
+                if (data.IsSuccess) {
+                    setTimeout(() => {
+                        $.unblockUI();
+                        fetchCustomerInfoFromServer(username, false);
+                    }, 3000);
+                }
+                else {
                     $.unblockUI();
-                    fetchCustomerInfoFromServer(username, false);
-                }, 3000);
-            }
-            else {
-                $.unblockUI();
-            }
-        });
+                }
+            });
     }
 
     handleOpenPopup(e) {
-        let { mobileView, status} = this.props;
+        let { mobileView, status } = this.props;
 
         if (!status.Disabled) {
-            window.top.bootboxConfirm(status.ConfirmMessage, e.target, () => this.updateCustomerStatus(status.Url, status.JsonParams));
+            window.top.bootboxConfirm(
+                status.ConfirmMessage,
+                e.target,
+                () => this.updateCustomerStatus()
+            );
+
             if (mobileView) {
                 resizeBootboxOnMobile();
             }
@@ -37,7 +44,7 @@ export default class ConfirmStatus extends React.Component {
     }
 
     render() {
-        const { status} = this.props;
+        const { status } = this.props;
         const disabled = status.Disabled ? "disabled" : "";
 
         const inputProps = {
@@ -49,7 +56,7 @@ export default class ConfirmStatus extends React.Component {
         };
 
         return (
-            <div className={`col-xs-6 checkbox ${disabled}`} onClick={this.handleOpenPopup} >
+            <div id={`confirm-${status.Text}`} className={`col-xs-6 checkbox ${disabled}`} onClick={this.handleOpenPopup} >
                 <input {...inputProps} />
                 <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
             </div>

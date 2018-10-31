@@ -26,7 +26,6 @@ describe('CustomerInfo', () => {
         customerInfoMount = undefined;
     });
 
-    
     const buildCustomerInfo = (customerInfo) => {
         props.customerInfo = customerInfo;
         if (!customerInfoMount) {
