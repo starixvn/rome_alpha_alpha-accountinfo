@@ -94,21 +94,21 @@ describe('ConfirmStatus', () => {
         expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    test('updateCustomerStatus() called when clicked', () => {
-        let catchFn = jest.fn(), thenFn = jest.fn();
-        accountInfoAPI.updateCustomerStatus('',{})
-            .then(thenFn)
-            .catch(catchFn);
+    //test('updateCustomerStatus() called when clicked', () => {
+    //    let catchFn = jest.fn(), thenFn = jest.fn();
+    //    accountInfoAPI.updateCustomerStatus('',{})
+    //        .then(thenFn)
+    //        .catch(catchFn);
 
-        let responseObj = { data: {IsSuccess: true} };
-        mockAxios.mockResponse(responseObj);
+    //    let responseObj = { data: {IsSuccess: true} };
+    //    mockAxios.mockResponse(responseObj);
 
-        props.status.Disabled = false;
-        const spy = sinon.spy(ConfirmStatus.prototype, 'updateCustomerStatus');
-        global.top.bootboxConfirm = (message, target, spy ) => spy();
-        const wrapper = mount(<ConfirmStatus {...props} />)
+    //    props.status.Disabled = false;
+    //    const spy = sinon.spy(ConfirmStatus.prototype, 'updateCustomerStatus');
+    //    global.top.bootboxConfirm = (message, target, spy ) => spy();
+    //    const wrapper = mount(<ConfirmStatus {...props} />)
 
-        wrapper.find('#confirm-Closed').simulate('click');
-        expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(1);
-    });
+    //    wrapper.find('#confirm-Closed').simulate('click');
+    //    expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(1);
+    //});
 });

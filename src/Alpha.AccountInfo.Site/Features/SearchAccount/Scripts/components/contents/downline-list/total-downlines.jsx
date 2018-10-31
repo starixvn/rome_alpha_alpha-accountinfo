@@ -63,14 +63,22 @@ const TotalDownlines = ({
         }
     ];
 
+    let tooltipHtml =
+        <div>
+            {
+                statusTooltips.map(
+                    (tooltip, index) => {
+                        return <DownlineStatusTooltip {...tooltip} key={index} />;
+                    })
+            }
+        </div>;
+
     const tooltipProps = {
         position: "top",
         trigger: "mouseenter",
         arrow: "true",
         theme: "light",
-        html: statusTooltips.map((tooltip, index) => {
-            return <DownlineStatusTooltip {...tooltip} key={index} />;
-        }),
+        html: tooltipHtml,
         children: statusContents.map((statusContent, index) => {
             return <StatusInfo {...statusContent} key={index} />;
         })

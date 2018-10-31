@@ -13,15 +13,26 @@ const ClosedReason = {
 export default class SearchAccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        let statusInfo = this.getStatusInfo();
+        let statusInfo = this.getStatusInfo(this.props.customerInfo);
         this.state = {
             Css: statusInfo.Css,
             Tootltip: statusInfo.Tootltip
         };
     }
 
-    getStatusInfo() {
-        let { customerInfo, resources } = this.props;
+    componentWillReceiveProps(nextProps) {
+        let { customerInfo } = this.props;
+        if (nextProps.customerInfo !== customerInfo) {
+            let statusInfo = this.getStatusInfo(nextProps.customerInfo);
+            this.state = {
+                Css: statusInfo.Css,
+                Tootltip: statusInfo.Tootltip
+            };
+        }
+    }
+
+    getStatusInfo(customerInfo) {
+        let { resources } = this.props;
         const statusInfo = {
             Closed: [
                 {
