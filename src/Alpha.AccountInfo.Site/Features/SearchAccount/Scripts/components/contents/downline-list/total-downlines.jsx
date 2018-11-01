@@ -2,7 +2,7 @@
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 
-const StatusInfo = ({ classNames, value, slash }) => {
+export const StatusInfo = ({ classNames, value, slash }) => {
     return (
         <span className={classNames}>
             {value}{slash}
@@ -10,7 +10,7 @@ const StatusInfo = ({ classNames, value, slash }) => {
     );
 }
 
-const DownlineStatusTooltip = ({ title, classNames, value }) => {
+export const DownlineStatusTooltip = ({ title, classNames, value }) => {
     return (
         <div className='nowrap bold'>
             {title}: <span className={classNames}>{value}</span>

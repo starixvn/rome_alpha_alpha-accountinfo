@@ -31,18 +31,14 @@ export default class AccountInfoDesktop extends React.Component {
         };
     }
 
-    updateState(blockId) {
+    handleCollapExpandBlock(e) {
+        const blockId = e.currentTarget.dataset.blockid;
         const { expandedItems } = this.state;
         const currentStatus = expandedItems[blockId];
 
         this.setState({
             expandedItems: Object.assign({}, this.initialExpandedItems(false), { [blockId]: !currentStatus })
         });
-    }
-
-    handleCollapExpandBlock(e) {
-        e.preventDefault();
-        this.updateState(e.currentTarget.dataset.blockid);
     }
 
     buildAccordionItems() {
@@ -99,7 +95,7 @@ export default class AccountInfoDesktop extends React.Component {
 
     render() {
         return (
-            <div className={`${this.state.animation} accordions`}>
+            <div className='accordions'>
                 {
                     this.buildAccordionItems().map((item, index) => {
                         let accordionProps = {
@@ -113,7 +109,9 @@ export default class AccountInfoDesktop extends React.Component {
                         };
 
                         return item.visible &&
-                            <CustomizedAccordionItem {...accordionProps}> {item.children} </CustomizedAccordionItem>;
+                            <CustomizedAccordionItem {...accordionProps}>
+                                {item.children}
+                            </CustomizedAccordionItem>;
                     })}
             </div>
         );

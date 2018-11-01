@@ -324,6 +324,10 @@
     <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\balance-info-row.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\member-credit-max-row.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\given-credit-row.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\settings.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\online-list.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\login-info.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\contents\contact-info.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\search-account-info.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\customer-info.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\upline-info.test.jsx" />
@@ -334,6 +338,7 @@
     <Content Include="assets\scripts\tests\apps\search-account\contents\status\product-level-status.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\status\confirm-status.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\status\bettype-level-status.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\desktop-version\customized-accordion-item.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-agent-sample .jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-master-sample.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-super-sample.jsx" />

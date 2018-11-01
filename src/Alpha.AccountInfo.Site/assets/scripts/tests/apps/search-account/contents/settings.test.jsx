@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import { shallow } from "enzyme";
 import renderer from 'react-test-renderer';
 import Settings from 'Settings';
-import { OnlineListNoInfoRow, OnlineListRow } from 'OnlineList';
-import { Resources } from '../helpers/resources-sample';
 import CustomAnchorTag from 'CustomAnchorTag';
 
 describe('Settings', () => {

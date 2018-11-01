@@ -4,6 +4,7 @@ import { mount } from "enzyme";
 import DownlineList from 'DownlineList';
 import TotalDownlines from 'TotalDownlines';
 import { Resources } from '../../helpers/resources-sample';
+import { DownlineListData } from '../../helpers/down-line-list-sample';
 
 describe('DownlineList', () => {
     let props;
@@ -22,29 +23,7 @@ describe('DownlineList', () => {
     beforeEach(() => {
         props = {
             resources: Resources,
-            data: {
-                "DownlineList": [
-                  {
-                    "Username": "ACGUUS3838"
-                  },
-                  {
-                    "Username": "ACGUUS3888"
-                  },
-                  {
-                    "Username": "ACGUUS38ZZ"
-                  }
-                ],
-                "TotalStatusAgent": {
-                  "TotalActive": 1,
-                  "TotalClosed": 2,
-                  "TotalSuspend": 0
-                },
-                "TotalStatusMember": {
-                  "TotalActive": 69,
-                  "TotalClosed": 137,
-                  "TotalSuspend": 0
-                }
-              },
+            data: DownlineListData,
             mobileView: false,
             searchAccountRoleId: 1,
             handleSearchFromUserLevel: jest.fn()

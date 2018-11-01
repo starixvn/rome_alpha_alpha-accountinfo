@@ -5,7 +5,7 @@ import CustomerInfo from 'CustomerInfo';
 import { mount } from "enzyme";
 import { Super } from '../../helpers/actor-is-super-sample';
 import { Master } from '../../helpers/actor-is-master-sample';
-import { Agent } from '../../helpers/actor-is-agent-sample ';
+import { Agent } from '../../helpers/actor-is-agent-sample';
 import { Resources } from '../../helpers/resources-sample';
 import SearchAccountInfo from 'SearchAccountInfo';
 import UplineInfo from 'UplineInfo';

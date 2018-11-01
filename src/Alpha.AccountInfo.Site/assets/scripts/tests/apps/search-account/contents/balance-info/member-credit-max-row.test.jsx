@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import CellContainNumberFormat from 'CellContainNumberFormat';
 import MemberCreditMaxRow from 'MemberCreditMaxRow';
 import { Resources } from '../../helpers/resources-sample';
-import { Agent } from '../../helpers/actor-is-agent-sample ';
+import { Agent } from '../../helpers/actor-is-agent-sample';
 import { Tooltip } from 'react-tippy';
 
 describe('MemberCreditMaxRow', () => {
