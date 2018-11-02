@@ -46,7 +46,7 @@ export default class GivenCreditRow extends React.Component {
         let balanceInfo = customerInfo.BalanceInfo;
 
         const numberFormatProps = {
-            className: "number-edited",
+            className: "number-link",
             value: balanceInfo.GivenCredit,
             displayType: 'text',
             decimalScale: 2,

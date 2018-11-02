@@ -516,10 +516,6 @@ hr {
             @extend %linkColor;
             cursor: pointer;
         }
-
-        &-edited {
-            color: #049bac;
-        }
     }
 
     .status-setting {

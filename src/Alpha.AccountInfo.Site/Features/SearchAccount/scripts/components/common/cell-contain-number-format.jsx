@@ -8,7 +8,7 @@ const CellContainNumberFormat = ({
     mobileView = false,
     hrefLink = null
 }) => {
-    let formatClassNames = 'number';
+    let formatClassNames = '';
     let numberFormatText = <span>{value}</span>;
 
     if (value > 0 && hrefLink !== null && hrefLink !== '') {
