@@ -8,10 +8,15 @@ const CustomerInfo = ({
     customerInfo,
     resources,
     handleSearchFromUserLevel,
+    searchCounter,
     mobileView
 }) => {
-    if (customerInfo === null) {
-        return <div className="no-information">{resources.NoInfo}</div>;
+    if (searchCounter == 0 && (!mobileView || mobileView && customerInfo === null)) {
+        return null;
+    }
+
+    if (searchCounter > 0 && customerInfo === null) {
+        return <div className="no-information">{resources.AccountNotFound}</div>;
     }
 
     const userLevelInfoArray = [
@@ -37,7 +42,7 @@ const CustomerInfo = ({
 
     const buttons = [customerInfo.CustomerListOrBetListLink, customerInfo.StatemenLink];
 
-    const content =
+    return (
         <div id="blockInfo" className="block-info">
             {
                 userLevelInfoArray.map((userLevelInfo, index) => {
@@ -86,9 +91,8 @@ const CustomerInfo = ({
                     })
                 }
             </div>
-        </div>;
-
-    return content;
+        </div>
+    );
 };
 
 export default CustomerInfo;

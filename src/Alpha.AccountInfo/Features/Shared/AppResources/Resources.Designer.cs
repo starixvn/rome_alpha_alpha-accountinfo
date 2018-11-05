@@ -61,6 +61,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account not found!.
+        /// </summary>
+        public static string AccountNotFound {
+            get {
+                return ResourceManager.GetString("AccountNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string Active {

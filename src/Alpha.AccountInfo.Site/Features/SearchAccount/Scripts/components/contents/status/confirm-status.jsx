@@ -45,7 +45,6 @@ export default class ConfirmStatus extends React.Component {
 
     render() {
         const { status } = this.props;
-        const disabled = status.Disabled ? "disabled" : "";
 
         const inputProps = {
             id: status.displayOrder,
@@ -56,9 +55,17 @@ export default class ConfirmStatus extends React.Component {
         };
 
         return (
-            <div id={`confirm-${status.Text}`} className={`col-xs-6 checkbox ${disabled}`} onClick={this.handleOpenPopup} >
+            <div
+                id={`confirm-${status.Text}`}
+                className={`col-xs-6 checkbox ${status.Disabled ? 'disabled' : ''}`}
+                onClick={this.handleOpenPopup} >
                 <input {...inputProps} />
-                <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
+                <label
+                    className="label-text"
+                    htmlFor={status.displayOrder}
+                >
+                    {status.Text}
+                </label>
             </div>
         );
     }

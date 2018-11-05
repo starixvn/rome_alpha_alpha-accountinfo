@@ -387,6 +387,9 @@
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
+  <data name="AccountNotFound" xml:space="preserve">
+    <value>Account not found!</value>
+  </data>
   <data name="Nickname" xml:space="preserve">
     <value>Nickname</value>
   </data>

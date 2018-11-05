@@ -7,7 +7,7 @@ export default class CustomAnchorTag extends React.Component {
         this.handleOnclick = this.handleOnclick.bind(this);
     }
 
-    handleOnclick(e) {
+    handleOnclick() {
         if (this.props.mobileView) {
             closeLeftPanelOnMobile();
         }

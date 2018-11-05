@@ -45,11 +45,9 @@ export default class AccountInfo extends React.Component {
 
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
         this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
-
         this.fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer.bind(this);
         this.fetchDownlineListFromServer = this.fetchDownlineListFromServer.bind(this);
         this.fetchOnlineListFromServer = this.fetchOnlineListFromServer.bind(this);
-
         this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
     }
 
@@ -90,15 +88,18 @@ export default class AccountInfo extends React.Component {
                     downlineList: null,
                     onlineList: null
                 }));
+
+                localStorage.removeItem('lastSearchUsername');
+            }
+            else {
+                localStorage.setItem('lastSearchUsername', username);
             }
 
-            localStorage.setItem('lastSearchUsername', username);
             $.unblockUI();
         });
     }
 
     handleSearchFromUserLevel(e) {
-        e.preventDefault();
         this.fetchCustomerInfoFromServer(e.currentTarget.dataset.username);
     }
 
@@ -156,9 +157,7 @@ export default class AccountInfo extends React.Component {
     fetchOnlineListFromServer() {
         let { custId } = this.state;
         if (custId > 0) {
-            accountInfoAPI
-                .getOnlineList({ SearchAccountId: custId })
-                .then((responeData) => {
+            accountInfoAPI.getOnlineList({ SearchAccountId: custId }).then((responeData) => {
                     this.setState({ onlineList: responeData });
                 });
         }
@@ -291,11 +290,10 @@ export default class AccountInfo extends React.Component {
             customerInfo
         } = this.state;
 
-        const contentItems = this.buildContentItems();
-
-        const accountInfoMobile = <AccountInfoMobile contentItems={contentItems} customerInfo={customerInfo} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />;
-
-        const accountInfoDesktop = <AccountInfoDesktop contentItems={contentItems} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />;
+        const contentProps = {
+            contentItems: this.buildContentItems(),
+            redirectToBalanceInfoPage: redirectToBalanceInfoPage
+        };
 
         return (
             <div className="accountinfo-container">
@@ -305,22 +303,21 @@ export default class AccountInfo extends React.Component {
                     username={username}
                 />
 
-                {
-                    searchCounter > 0 &&
-                    <CustomerInfo
-                        resources={resources}
-                        customerInfo={customerInfo}
-                        handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                        mobileView={mobileView}
-                    />
-                }
+                <CustomerInfo
+                    resources={resources}
+                    customerInfo={customerInfo}
+                    handleSearchFromUserLevel={this.handleSearchFromUserLevel}
+                    searchCounter={searchCounter}
+                    mobileView={mobileView}
+                />
 
                 {
                     mobileView ?
-                        (mobileView && searchCounter === 0 && username === '' || mobileView && searchCounter > 0) && accountInfoMobile
-                        : customerInfo !== null && accountInfoDesktop
+                        <AccountInfoMobile {...contentProps} customerInfo={customerInfo} /> :
+                        customerInfo !== null && <AccountInfoDesktop {...contentProps} />   
                 }
 
-            </div>);
+            </div>
+        );
     }
 }
