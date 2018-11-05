@@ -390,4 +390,7 @@
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>ชื่อเล่น</value>
+  </data>
 </root>

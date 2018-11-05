@@ -12,16 +12,24 @@ export const ContactInfoRow = ({ title, value }) => {
 const ContactInfo = ({ resources, customerInfo }) => {
     let contactInfoPropsArray = [
         {
+            title: resources.Nickname,
+            value: customerInfo.NickName,
+            visible: customerInfo.ShowNickName
+        },
+        {
             title: resources.Name,
-            value: customerInfo.FullName
+            value: customerInfo.FullName,
+            visible: true
         },
         {
             title: resources.Phone,
-            value: customerInfo.Phone
+            value: customerInfo.Phone,
+            visible: true
         },
         {
             title: resources.Fax,
-            value: customerInfo.Fax
+            value: customerInfo.Fax,
+            visible: true
         }
     ];
 
@@ -29,7 +37,7 @@ const ContactInfo = ({ resources, customerInfo }) => {
         <div>
             {
                 contactInfoPropsArray.map((contactInfoProps, index) => {
-                    return <ContactInfoRow {...contactInfoProps} key={index} />;
+                    return contactInfoProps.visible && <ContactInfoRow {...contactInfoProps} key={index} />;
                 })
             }
         </div>

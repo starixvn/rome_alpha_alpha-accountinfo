@@ -38,6 +38,10 @@
 
         public string NickName => customerInfo.UserName2;
 
+        public bool ShowNickName => 
+            SearchAccountLevel.IsDirectDownlineOf(ActorLevel) 
+            && !string.IsNullOrEmpty(NickName);
+
         public string FullName => $"{customerInfo.FirstName} {customerInfo.LastName}";
 
         public string Phone => customerInfo.Phone;

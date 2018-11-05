@@ -393,4 +393,7 @@
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>暱稱</value>
+  </data>
 </root>

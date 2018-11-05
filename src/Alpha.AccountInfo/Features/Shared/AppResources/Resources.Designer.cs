@@ -565,6 +565,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nickname.
+        /// </summary>
+        public static string Nickname {
+            get {
+                return ResourceManager.GetString("Nickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no change to update..
         /// </summary>
         public static string NoDataChange {

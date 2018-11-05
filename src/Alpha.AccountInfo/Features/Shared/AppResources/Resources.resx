@@ -387,4 +387,7 @@
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
 </root>
