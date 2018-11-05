@@ -16,12 +16,12 @@ export default class CustomAnchorTag extends React.Component {
     render() {
         const { title = null, href, classNames = '', children } = this.props;
         return (
-            <a
-                title={title}
-                className={classNames}
-                href={href}
-                target="main"
-                onClick={this.handleOnclick}
+            <a {...{
+                title,
+                href,
+                target: 'main',
+                className: classNames ,
+                onClick: this.handleOnclick}}
             >
                 {children}
             </a>

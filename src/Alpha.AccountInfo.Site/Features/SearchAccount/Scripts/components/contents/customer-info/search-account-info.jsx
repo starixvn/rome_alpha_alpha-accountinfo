@@ -88,10 +88,10 @@ export default class SearchAccountInfo extends React.Component {
         let { Css, Tootltip } = this.state;
 
         let customAnchorTagProps = {
-            mobileView: mobileView,
             title: resources.Viewlog,
             classNames: "pointer",
-            href: customerInfo.ViewLogLink
+            href: customerInfo.ViewLogLink,
+            mobileView
         };
 
         let tooltipProps = {

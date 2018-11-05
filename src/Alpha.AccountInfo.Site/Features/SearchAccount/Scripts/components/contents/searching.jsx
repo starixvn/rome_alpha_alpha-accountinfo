@@ -85,20 +85,25 @@ export default class Searching extends React.Component {
             value: username
         };
 
-        const autosuggestProps = {
-            suggestions: suggestions,
-            onSuggestionsFetchRequested: this.onSuggestionsFetchRequested,
-            onSuggestionsClearRequested: this.onSuggestionsClearRequested,
-            onSuggestionSelected: this.onSuggestionSelected,
-            getSuggestionValue: getSuggestionValue,
-            renderSuggestion: renderSuggestion,
-            shouldRenderSuggestions: this.shouldRenderSuggestions,
-            inputProps: inputProps
-        };
+        const onSuggestionsFetchRequested = this.onSuggestionsFetchRequested,
+            onSuggestionsClearRequested = this.onSuggestionsClearRequested,
+            onSuggestionSelected = this.onSuggestionSelected,
+            shouldRenderSuggestions = this.shouldRenderSuggestions;
 
         return (
             <div className="search-box">
-                <Autosuggest {...autosuggestProps}/>
+                <Autosuggest
+                    {...{
+                        suggestions,
+                        onSuggestionsFetchRequested,
+                        onSuggestionsClearRequested,
+                        onSuggestionSelected,
+                        getSuggestionValue,
+                        renderSuggestion,
+                        shouldRenderSuggestions,
+                        inputProps
+                    }}
+                />
                 <span className="icon-search" onClick={this.handleSearchClick} />
             </div>
         );

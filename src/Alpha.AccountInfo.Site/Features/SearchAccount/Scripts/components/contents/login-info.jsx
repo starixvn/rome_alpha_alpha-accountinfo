@@ -7,7 +7,7 @@ export const LoginInfoRow = ({ title, value }) => {
             <div className="row-info">{value}</div>
         </div>
     );
-} 
+}
 
 export const LoginInfoWithLinkRow = ({ title, value, handleOpenIPInfo }) => {
     return (
@@ -20,9 +20,9 @@ export const LoginInfoWithLinkRow = ({ title, value, handleOpenIPInfo }) => {
             </div>
         </div>
     );
-} 
+}
 
-const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo}) => {
+const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
     let loginInfoPropsArray = [
         {
             title: resources.CreatedDate,
@@ -46,12 +46,14 @@ const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo}) => {
                 })
             }
             <LoginInfoWithLinkRow
-                title={resources.LoginIP}
-                value={loginInfo.LoginIP}
-                handleOpenIPInfo={handleOpenIPInfo}
+                {...{
+                    title: resources.LoginIP,
+                    value: loginInfo.LoginIP,
+                    handleOpenIPInfo
+                }}
             />
         </div>
     );
-} 
+}
 
 export default LoginInfo;

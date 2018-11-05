@@ -26,7 +26,7 @@ export const OnlineListNoInfoRow = ({ resources }) => {
     );
 }
 
-const OnlineList = ({ resources, data, handleOpenIPInfo }) => {
+const OnlineList = ({ resources, onlineListData, handleOpenIPInfo }) => {
     return (
         <div className="online-list">
             <table className="tblRpt tblRpt-bordered width-100per">
@@ -39,15 +39,10 @@ const OnlineList = ({ resources, data, handleOpenIPInfo }) => {
                 </thead>
                 <tbody>
                     {
-                        data.length === 0 ?
-                            <OnlineListNoInfoRow resources={resources}/> :
-                            data.map((onlineList, index) =>
-                                <OnlineListRow
-                                    onlineList={onlineList}
-                                    index={index}
-                                    handleOpenIPInfo={handleOpenIPInfo}
-                                    key={index}
-                                />
+                        onlineListData.length === 0 ?
+                            <OnlineListNoInfoRow resources={resources} /> :
+                            onlineListData.map((onlineList, index) =>
+                                <OnlineListRow {...{ onlineList, index, handleOpenIPInfo, key: index }} />
                             )
                     }
                 </tbody>

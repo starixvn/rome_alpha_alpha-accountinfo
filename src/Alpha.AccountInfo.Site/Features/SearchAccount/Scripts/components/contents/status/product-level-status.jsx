@@ -44,9 +44,18 @@ export default class ProductLevelStatus extends React.Component {
         };
 
         return (
-            <div id={`product-${status.Text}`} className={`col-xs-6 checkbox ${disabled}`} onClick={this.handleOpenPopup} >
+            <div
+                id={`product-${status.Text}`}
+                className={`col-xs-6 checkbox ${disabled}`}
+                onClick={this.handleOpenPopup}
+            >
                 <input {...inputProps} />
-                <label className="label-text" htmlFor={status.displayOrder}>{status.Text}</label>
+                <label
+                    className="label-text"
+                    htmlFor={status.displayOrder}
+                >
+                    {status.Text}
+                </label>
             </div>
         );
     }

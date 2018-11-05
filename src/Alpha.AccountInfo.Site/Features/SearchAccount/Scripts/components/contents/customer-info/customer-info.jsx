@@ -52,9 +52,9 @@ const CustomerInfo = ({
                     };
 
                     let searchAccountInfoProps = {
-                        customerInfo: customerInfo,
-                        resources: resources,
-                        mobileView: mobileView
+                        customerInfo,
+                        resources,
+                        mobileView
                     };
 
                     return userLevelInfo.Visible &&
@@ -77,9 +77,9 @@ const CustomerInfo = ({
                 {
                     buttons.map((buton, index) => {
                         let customAnchorTagProps = {
+                            mobileView,
                             classNames: "btn-default with-level",
                             href: buton.Url,
-                            mobileView: mobileView,
                             key: index
                         }
 

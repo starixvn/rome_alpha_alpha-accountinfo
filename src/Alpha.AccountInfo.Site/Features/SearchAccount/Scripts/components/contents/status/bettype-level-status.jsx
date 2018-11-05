@@ -33,7 +33,11 @@ export default class BettypeLevelStatus extends React.Component {
     render() {
         const { status } = this.props;
         return (
-            <div id={`product-${status.Text}`} className="col-xs-6" onClick={this.handleOpenPopup}>
+            <div
+                id={`product-${status.Text}`}
+                className="col-xs-6"
+                onClick={this.handleOpenPopup}
+            >
                 <span className="icon-ic_list" />
                 <span className="link">{status.Text}</span>
             </div>

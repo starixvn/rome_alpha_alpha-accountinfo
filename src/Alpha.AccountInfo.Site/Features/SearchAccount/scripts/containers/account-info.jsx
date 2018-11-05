@@ -39,8 +39,8 @@ export default class AccountInfo extends React.Component {
             customerInfo: null,
             statusData: null,
             settingData: null,
-            downlineList: null,
-            onlineList: null
+            downlineListData: null,
+            onlineListData: null
         };
 
         this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
@@ -85,8 +85,8 @@ export default class AccountInfo extends React.Component {
                 self.setState(() => ({
                     statusData: null,
                     settingData: null,
-                    downlineList: null,
-                    onlineList: null
+                    downlineListData: null,
+                    onlineListData: null
                 }));
 
                 localStorage.removeItem('lastSearchUsername');
@@ -149,7 +149,7 @@ export default class AccountInfo extends React.Component {
             accountInfoAPI
                 .getDownlineList({ SearchAccountId: custId })
                 .then((responeData) => {
-                    this.setState({ downlineList: responeData });
+                    this.setState({ downlineListData: responeData });
                 });
         }
     }
@@ -158,8 +158,8 @@ export default class AccountInfo extends React.Component {
         let { custId } = this.state;
         if (custId > 0) {
             accountInfoAPI.getOnlineList({ SearchAccountId: custId }).then((responeData) => {
-                    this.setState({ onlineList: responeData });
-                });
+                this.setState({ onlineListData: responeData });
+            });
         }
     }
 
@@ -173,14 +173,23 @@ export default class AccountInfo extends React.Component {
             resources,
             mobileView,
             customerInfo,
-            downlineList,
-            onlineList,
+            downlineListData,
+            onlineListData,
             statusData,
             settingData
         } = this.state;
 
-        let loginInfo = customerInfo !== null ? customerInfo.LoginInfo : null;
-        let searchAccountRoleId = customerInfo !== null ? customerInfo.RoleId : actorRoleId - 1;
+        const handleOpenIPInfo = this.handleOpenIPInfo,
+            fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer,
+            fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer,
+            handleSearchFromUserLevel = this.handleSearchFromUserLevel;
+
+        let loginInfo = null, searchAccountRoleId = actorRoleId - 1, username = '';
+        if (customerInfo !== null) {
+            loginInfo = customerInfo.LoginInfo;
+            searchAccountRoleId = customerInfo.RoleId;
+            username = customerInfo.UserName;
+        }
 
         const noInfoContent = <div className="no-information">{resources.NoInfo}</div>;
         let buildContent = (data, content) => data === null ? noInfoContent : content;
@@ -191,84 +200,78 @@ export default class AccountInfo extends React.Component {
                 featureText: resources.ShowContactInfo,
                 path: "/contactInfo",
                 visible: true,
-                children: buildContent(customerInfo,
-                    <ContactInfo
-                        resources={resources}
-                        customerInfo={customerInfo}
-                    />)
+                children: buildContent(customerInfo, <ContactInfo {...{ resources, customerInfo }} />)
             },
             balanceInfoProps: {
                 iconClass: "icon-balance",
                 featureText: resources.BalanceInfo,
                 path: "/balanceInfo",
                 visible: true,
-                children: buildContent(customerInfo,
-                    <BalanceInfo
-                        resources={resources}
-                        mobileView={mobileView}
-                        customerInfo={customerInfo}
-                        fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                    />)
+                children: buildContent(
+                    customerInfo,
+                    <BalanceInfo {...{ resources, mobileView, customerInfo, fetchCustomerInfoFromServer }} />
+                )
             },
             downlineListProps: {
                 iconClass: "icon-downline",
                 featureText: resources.DownlineList,
                 path: "/downlineList",
                 visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
-                children: buildContent(downlineList,
+                children: buildContent(
+                    downlineListData,
                     <DownlineList
-                        resources={resources}
-                        data={downlineList}
-                        mobileView={mobileView}
-                        searchAccountRoleId={searchAccountRoleId}
-                        handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                    />)
+                        {...{
+                            resources,
+                            downlineListData,
+                            mobileView,
+                            searchAccountRoleId,
+                            handleSearchFromUserLevel
+                        }}
+                    />
+                )
             },
             statusProps: {
                 iconClass: "icon-status",
                 featureText: resources.Status,
                 path: "/status",
                 visible: true,
-                children: buildContent(statusData,
-                    <Status
-                        resources={resources}
-                        mobileView={mobileView}
-                        statusData={statusData}
-                        username={customerInfo === null ? '' : customerInfo.UserName}
-                        fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}
-                        fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                    />)
+                children: buildContent(
+                    statusData,
+                    <Status {...{
+                        resources,
+                        mobileView,
+                        statusData,
+                        fetchCustomerAllStatusFromServer,
+                        fetchCustomerInfoFromServer,
+                        username
+                    }}
+                    />
+                )
             },
             settingProps: {
                 iconClass: "icon-settings",
                 featureText: resources.Setting,
                 path: "/setting",
                 visible: true,
-                children: buildContent(settingData, <Settings mobileView={mobileView} settingData={settingData} />)
+                children: buildContent(settingData, <Settings {...{ mobileView, settingData }} />)
             },
             loginInfoProps: {
                 iconClass: "icon-login",
                 featureText: resources.LoginInfo,
                 path: "/loginInfo",
                 visible: actorRoleId !== UserLevel.Super && searchAccountRoleId !== UserLevel.Agent,
-                children: buildContent(loginInfo,
-                    <LoginInfo
-                        resources={resources}
-                        loginInfo={loginInfo}
-                        handleOpenIPInfo={this.handleOpenIPInfo}
-                    />)
+                children: buildContent(
+                    loginInfo,
+                    <LoginInfo {...{ resources, loginInfo, handleOpenIPInfo }} />)
             },
             onlineListProps: {
                 iconClass: "icon-onlinelist",
                 featureText: resources.OnlineList,
                 path: "/onlineList",
                 visible: true,
-                children: buildContent(onlineList,
-                    <OnlineList
-                        resources={resources}
-                        data={onlineList}
-                        handleOpenIPInfo={this.handleOpenIPInfo}
-                    />)
+                children: buildContent(
+                    onlineListData,
+                    <OnlineList {...{ resources, onlineListData, handleOpenIPInfo }} />)
             }
         };
 
@@ -290,33 +293,36 @@ export default class AccountInfo extends React.Component {
             customerInfo
         } = this.state;
 
-        const contentProps = {
-            contentItems: this.buildContentItems(),
-            redirectToBalanceInfoPage: redirectToBalanceInfoPage
-        };
+        const contentItems = this.buildContentItems();
+        const userNamePlaceHolder = resources.UserNamePlaceHolder;
+        const fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer;
+        const handleSearchFromUserLevel = this.handleSearchFromUserLevel;
+
+        const searchingProps = {
+            userNamePlaceHolder,
+            username,
+            fetchCustomerInfoFromServer
+        }
+
+        const customerInfoProps = {
+            resources,
+            customerInfo,
+            searchCounter,
+            mobileView,
+            handleSearchFromUserLevel
+        }
+
+        const contentProps = { contentItems, redirectToBalanceInfoPage };
 
         return (
             <div className="accountinfo-container">
-                <Searching
-                    userNamePlaceHolder={resources.UserNamePlaceHolder}
-                    fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
-                    username={username}
-                />
-
-                <CustomerInfo
-                    resources={resources}
-                    customerInfo={customerInfo}
-                    handleSearchFromUserLevel={this.handleSearchFromUserLevel}
-                    searchCounter={searchCounter}
-                    mobileView={mobileView}
-                />
-
+                <Searching {...searchingProps} />
+                <CustomerInfo {...customerInfoProps} />
                 {
                     mobileView ?
                         <AccountInfoMobile {...contentProps} customerInfo={customerInfo} /> :
-                        customerInfo !== null && <AccountInfoDesktop {...contentProps} />   
+                        customerInfo !== null && <AccountInfoDesktop {...contentProps} />
                 }
-
             </div>
         );
     }

@@ -69,10 +69,12 @@ export default class AccountInfoMobile extends React.Component {
                                     render={
                                         (props) =>
                                             <ContentMobile
-                                                {...routeProps}
-                                                {...{ addAnimation: props.location.state !== undefined ? props.location.state.addAnimation : false }}
-                                                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-                                                redirectToFeatureList={redirectToFeatureList}
+                                                {...{
+                                                    ...routeProps,
+                                                    redirectToBalanceInfoPage,
+                                                    redirectToFeatureList,
+                                                    addAnimation: props.location.state !== undefined ? props.location.state.addAnimation : false
+                                                }}
                                             />
                                     }
                                 />

@@ -4,19 +4,19 @@ import { UserLevel } from '../../../constants';
 
 const DownlineList = ({
     resources,
-    data,
+    downlineListData,
     mobileView,
     searchAccountRoleId,
     handleSearchFromUserLevel }) => {
     const totalDownlineByLevel = [
         {
             levelName: resources.Agents,
-            data: data.TotalStatusAgent,
+            data: downlineListData.TotalStatusAgent,
             visible: searchAccountRoleId === UserLevel.Master
         },
         {
             levelName: resources.Members,
-            data: data.TotalStatusMember,
+            data: downlineListData.TotalStatusMember,
             visible: true
         }
     ];
@@ -26,8 +26,8 @@ const DownlineList = ({
             {
                 totalDownlineByLevel.map((totalDownline, index) => {
                     let totalDownlinesProps = {
+                        resources,
                         levelName: totalDownline.levelName,
-                        resources: resources,
                         totalActive: totalDownline.data.TotalActive,
                         totalClosed: totalDownline.data.TotalClosed,
                         totalSuspended: totalDownline.data.TotalSuspend,
@@ -58,7 +58,7 @@ const DownlineList = ({
 
             <div className={`${mobileView ? "" : "customer-list"} col-xs-12`}>
                 {
-                    data.DownlineList.map((downline, index) => {
+                    downlineListData.DownlineList.map((downline, index) => {
                         return <div className="col-xs-6" key={index}>
                             <a href="#" data-username={downline.Username} onClick={handleSearchFromUserLevel}>{downline.Username}</a>
                         </div>;

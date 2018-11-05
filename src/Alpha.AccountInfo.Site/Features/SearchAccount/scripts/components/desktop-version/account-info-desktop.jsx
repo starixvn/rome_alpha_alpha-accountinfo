@@ -49,44 +49,37 @@ export default class AccountInfoDesktop extends React.Component {
             {
                 ...contentItems.contactInfoProps,
                 blockId: "contactInfo",
-                expanded: expandedItems.contactInfo,
-                clickHanlder: this.handleCollapExpandBlock
+                expanded: expandedItems.contactInfo
             },
             {
                 ...contentItems.balanceInfoProps,
                 blockId: "balanceInfo",
-                expanded: expandedItems.balanceInfo,
-                clickHanlder: this.handleCollapExpandBlock
+                expanded: expandedItems.balanceInfo
             },
             {
                 ...contentItems.downlineListProps,
                 blockId: "downlineList",
-                expanded: expandedItems.downlineList,
-                clickHanlder: this.handleCollapExpandBlock
+                expanded: expandedItems.downlineList
             },
             {
                 ...contentItems.statusProps,
                 blockId: "status",
-                expanded: expandedItems.status,
-                clickHanlder: this.handleCollapExpandBlock
+                expanded: expandedItems.status
             },
             {
                 ...contentItems.settingProps,
                 blockId: "settings",
-                expanded: expandedItems.settings,
-                clickHanlder: this.handleCollapExpandBlock
+                expanded: expandedItems.settings
             },
             {
                 ...contentItems.loginInfoProps,
                 blockId: "loginInfo",
-                expanded: expandedItems.loginInfo,
-                clickHanlder: this.handleCollapExpandBlock
+                expanded: expandedItems.loginInfo
             },
             {
                 ...contentItems.onlineListProps,
                 blockId: "onlineList",
-                expanded: expandedItems.onlineList,
-                clickHanlder: this.handleCollapExpandBlock
+                expanded: expandedItems.onlineList
             }
         ];
 
@@ -103,8 +96,8 @@ export default class AccountInfoDesktop extends React.Component {
                             iconClassname: item.iconClass,
                             accordionItemBodyClassName: item.accordionItemBodyClassName,
                             expanded: item.expanded,
-                            handleClick: item.clickHanlder,
                             blockId: item.blockId,
+                            handleClick: this.handleCollapExpandBlock,
                             key: index
                         };
 

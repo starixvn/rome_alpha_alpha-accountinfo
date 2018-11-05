@@ -9,7 +9,12 @@ const CustomizedAccordionItem = ({
     blockId,
     children }) =>
     <div className={`accordion-item ${expanded ? 'expanded' : ''}`}>
-        <div id={blockId} className="feature-item" onClick={handleClick} data-blockid={blockId}>
+        <div
+            id={blockId}
+            className="feature-item"
+            onClick={handleClick}
+            data-blockid={blockId}
+        >
             <span className={iconClassname} /> {title}
         </div>
         <div className={`feature-detail ${accordionItemBodyClassName}`}>

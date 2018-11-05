@@ -58,7 +58,8 @@ export default class ConfirmStatus extends React.Component {
             <div
                 id={`confirm-${status.Text}`}
                 className={`col-xs-6 checkbox ${status.Disabled ? 'disabled' : ''}`}
-                onClick={this.handleOpenPopup} >
+                onClick={this.handleOpenPopup}
+            >
                 <input {...inputProps} />
                 <label
                     className="label-text"

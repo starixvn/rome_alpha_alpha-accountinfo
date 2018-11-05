@@ -37,13 +37,7 @@ const BalanceInfo = ({
 
     ];
 
-    let givenCreditContent =
-        <GivenCreditRow
-            customerInfo={customerInfo}
-            mobileView={mobileView}
-            resources={resources}
-            fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
-        />;
+    let givenCreditContent = <GivenCreditRow {...{ customerInfo, mobileView, resources, fetchCustomerInfoFromServer }} />;
 
     let masterContents = [
         <BalanceInfoRow id="total-cash" title={resources.TotalCash} value={balanceInfo.TotalCash} />,
@@ -62,7 +56,7 @@ const BalanceInfo = ({
             Id: UserLevel.Agent,
             Contents: [
                 ...masterContents,
-                <MemberCreditMaxRow resources={resources} mobileView={mobileView} balanceInfo={balanceInfo} />
+                <MemberCreditMaxRow {...{ resources, mobileView, balanceInfo}} />
             ]
         },
         {
