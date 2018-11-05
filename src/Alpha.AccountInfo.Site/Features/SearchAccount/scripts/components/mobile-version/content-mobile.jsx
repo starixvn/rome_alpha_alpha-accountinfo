@@ -1,9 +1,10 @@
 ﻿import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-const CustomLink = ({ path, iconClass, featureText }) => {
+export const CustomLink = ({ path, iconClass, featureText }) => {
     return (
         <Link
+            id={`nav-${iconClass}`}
             to={{
                 pathname: path,
                 state: { addAnimation: true }
@@ -16,7 +17,7 @@ const CustomLink = ({ path, iconClass, featureText }) => {
     );
 }
 
-const ContentPage = ({ iconClass, featureText, children, animationClass }) => {
+export const ContentPage = ({ iconClass, featureText, children, animationClass }) => {
     let customLinkProps = {
         path: "/featureList",
         iconClass: iconClass,
@@ -31,7 +32,7 @@ const ContentPage = ({ iconClass, featureText, children, animationClass }) => {
     );
 }
 
-const FeatureListPage = ({ contentItems, animationClass }) => {
+export const FeatureListPage = ({ contentItems, animationClass }) => {
     return (
         <div className={`${animationClass} feature-list`}>
             <nav>
@@ -85,7 +86,6 @@ export default class ContentMobile extends React.Component {
         const {
             iconClass,
             featureText,
-            data,
             children,
             contentItems = [],
             redirectToBalanceInfoPage = false,

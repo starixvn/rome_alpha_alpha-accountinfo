@@ -100,7 +100,10 @@ class ProductStatusPopup {
             this.showError(messsage);
         } else {
             this.showSuccess(messsage);
-            setTimeout(this.topWindow.closeEditSportStatusPopup, 1000 * 3);
+            setTimeout(() => {
+                this.topWindow.realoadLeftPanel = true;
+                this.topWindow.ageWnd.close();
+            }, 3000);
         }
     };
 

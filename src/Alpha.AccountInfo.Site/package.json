@@ -65,7 +65,8 @@
       "OnlineList": "<rootDir>/Features/SearchAccount/Scripts/components/contents/online-list.jsx",
       "Settings": "<rootDir>/Features/SearchAccount/Scripts/components/contents/settings.jsx",
       "CustomizedAccordionItem": "<rootDir>/Features/SearchAccount/Scripts/components/desktop-version/customized-accordion-item.jsx",
-      "AccountInfoDesktop": "<rootDir>/Features/SearchAccount/Scripts/components/desktop-version/account-info-desktop.jsx"
+      "AccountInfoDesktop": "<rootDir>/Features/SearchAccount/Scripts/components/desktop-version/account-info-desktop.jsx",
+      "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/components/mobile-version/content-mobile.jsx"
     }
   },
   "jest-junit": {

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -338,11 +339,15 @@
     <Content Include="assets\scripts\tests\apps\search-account\contents\status\product-level-status.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\status\confirm-status.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\contents\status\bettype-level-status.test.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\desktop-version\account-info-desktop.test.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\desktop-version\customized-accordion-item.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-agent-sample .jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\helpers\account-info-props-sample.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\helpers\down-line-list-sample.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-agent-sample.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-master-sample.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-super-sample.jsx" />
     <Content Include="assets\scripts\tests\apps\search-account\helpers\resources-sample.jsx" />
+    <Content Include="assets\scripts\tests\apps\search-account\mobile-version\content-mobile.test.jsx" />
     <Content Include="assets\scripts\tests\__mocks__\axios.jsx" />
     <Content Include="Features\SearchAccount\Scripts\api-client.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\common\custom-anchor-tag.jsx" />
@@ -666,6 +671,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <PropertyGroup>

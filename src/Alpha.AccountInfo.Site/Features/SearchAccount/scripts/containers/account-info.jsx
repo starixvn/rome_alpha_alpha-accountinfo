@@ -135,7 +135,8 @@ export default class AccountInfo extends React.Component {
             accountInfoAPI.getCustomerAllStatus(params).then((data) => {
                 this.setState({
                     settingData: data.Settings,
-                    statusData: data.Status
+                    statusData: data.Status,
+                    redirectToBalanceInfoPage: false
                 });
             });
         }
@@ -167,18 +168,18 @@ export default class AccountInfo extends React.Component {
         window.top.ageWnd.open(`${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`);
     }
 
-    buildContentItems(
-        resources,
-        mobileView,
-        actorRoleId,
-        customerInfo,
-        downlineList,
-        onlineList,
-        statusData,
-        settingData,
-        fetchCustomerInfoFromServer,
-        handleSearchFromUserLevel,
-        handleOpenIPInfo) {
+    buildContentItems() {
+        const {
+            actorRoleId,
+            resources,
+            mobileView,
+            customerInfo,
+            downlineList,
+            onlineList,
+            statusData,
+            settingData
+        } = this.state;
+
         let loginInfo = customerInfo !== null ? customerInfo.LoginInfo : null;
         let searchAccountRoleId = customerInfo !== null ? customerInfo.RoleId : actorRoleId - 1;
 
@@ -207,7 +208,7 @@ export default class AccountInfo extends React.Component {
                         resources={resources}
                         mobileView={mobileView}
                         customerInfo={customerInfo}
-                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                        fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
                     />)
             },
             downlineListProps: {
@@ -221,7 +222,7 @@ export default class AccountInfo extends React.Component {
                         data={downlineList}
                         mobileView={mobileView}
                         searchAccountRoleId={searchAccountRoleId}
-                        handleSearchFromUserLevel={handleSearchFromUserLevel}
+                        handleSearchFromUserLevel={this.handleSearchFromUserLevel}
                     />)
             },
             statusProps: {
@@ -235,7 +236,8 @@ export default class AccountInfo extends React.Component {
                         mobileView={mobileView}
                         statusData={statusData}
                         username={customerInfo === null ? '' : customerInfo.UserName}
-                        fetchCustomerInfoFromServer={fetchCustomerInfoFromServer}
+                        fetchCustomerAllStatusFromServer={this.fetchCustomerAllStatusFromServer}
+                        fetchCustomerInfoFromServer={this.fetchCustomerInfoFromServer}
                     />)
             },
             settingProps: {
@@ -254,7 +256,7 @@ export default class AccountInfo extends React.Component {
                     <LoginInfo
                         resources={resources}
                         loginInfo={loginInfo}
-                        handleOpenIPInfo={handleOpenIPInfo}
+                        handleOpenIPInfo={this.handleOpenIPInfo}
                     />)
             },
             onlineListProps: {
@@ -266,7 +268,7 @@ export default class AccountInfo extends React.Component {
                     <OnlineList
                         resources={resources}
                         data={onlineList}
-                        handleOpenIPInfo={handleOpenIPInfo}
+                        handleOpenIPInfo={this.handleOpenIPInfo}
                     />)
             }
         };
@@ -281,31 +283,15 @@ export default class AccountInfo extends React.Component {
 
     render() {
         const {
-            actorRoleId,
             resources,
             username,
             searchCounter,
             redirectToBalanceInfoPage,
             mobileView,
-            customerInfo,
-            downlineList,
-            onlineList,
-            statusData,
-            settingData
+            customerInfo
         } = this.state;
 
-        const contentItems = this.buildContentItems(
-            resources,
-            mobileView,
-            actorRoleId,
-            customerInfo,
-            downlineList,
-            onlineList,
-            statusData,
-            settingData,
-            this.fetchCustomerInfoFromServer,
-            this.handleSearchFromUserLevel,
-            this.handleOpenIPInfo);
+        const contentItems = this.buildContentItems();
 
         const accountInfoMobile = <AccountInfoMobile contentItems={contentItems} customerInfo={customerInfo} redirectToBalanceInfoPage={redirectToBalanceInfoPage} />;
 

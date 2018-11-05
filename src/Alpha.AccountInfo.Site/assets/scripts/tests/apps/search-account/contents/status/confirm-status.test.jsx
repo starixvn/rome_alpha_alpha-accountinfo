@@ -70,7 +70,7 @@ describe('ConfirmStatus', () => {
             const wrapper = mount(<ConfirmStatus {...props} />);
             wrapper.find('#confirm-Closed').simulate('click');
             expect(accountInfoHelper.resizeBootboxOnMobile).toBeCalledTimes(expectedCallTimes);
-        }
+        } 
     );
 
     test.each([[false, 1],[true, 0]])(

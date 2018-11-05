@@ -8,14 +8,25 @@ export default class ProductLevelStatus extends React.Component {
     }
 
     handleOpenPopup() {
-        const { mobileView, resources, status } = this.props;
+        const { mobileView, resources, status, username } = this.props;
         const url = status.Url;
         const productName = status.Text;
+        let self = this;
 
         if (!status.Disabled) {
             window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`);
             if (mobileView) {
                 resizePopupOnMobile();
+            }
+
+            window.top.realoadLeftPanel = false;
+            let timer = setInterval(reloadBalanceInfo, 1000);
+
+            function reloadBalanceInfo() {
+                if (window.top.realoadLeftPanel) {
+                    clearInterval(timer);
+                    self.props.fetchCustomerAllStatusFromServer();
+                }
             }
         }
     }

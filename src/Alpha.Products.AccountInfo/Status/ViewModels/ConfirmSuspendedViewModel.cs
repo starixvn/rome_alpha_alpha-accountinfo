@@ -26,6 +26,8 @@
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsSuspended);
 
+        public override bool ReloadCustomerInfo => true;
+
         protected override string StatusName => DataKey.StatusMapping.Suspended;
 
         protected override bool StatusValue => !Checked;

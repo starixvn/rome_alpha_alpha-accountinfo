@@ -10,7 +10,7 @@ export default class ConfirmStatus extends React.Component {
 
     updateCustomerStatus() {
         $.blockUI();
-        let { fetchCustomerInfoFromServer, username, status } = this.props;
+        let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status } = this.props;
 
         accountInfoAPI
             .updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
@@ -18,7 +18,7 @@ export default class ConfirmStatus extends React.Component {
                 if (data.IsSuccess) {
                     setTimeout(() => {
                         $.unblockUI();
-                        fetchCustomerInfoFromServer(username, false);
+                        status.ReloadCustomerInfo ? fetchCustomerInfoFromServer(username, false) : fetchCustomerAllStatusFromServer();
                     }, 3000);
                 }
                 else {

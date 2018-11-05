@@ -25,6 +25,8 @@
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsClosed);
 
+        public override bool ReloadCustomerInfo => true; 
+
         protected override string StatusName => DataKey.StatusMapping.Closed;
 
         protected override bool StatusValue => !Checked;

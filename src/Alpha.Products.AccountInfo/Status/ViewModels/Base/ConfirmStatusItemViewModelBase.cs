@@ -19,6 +19,8 @@
         public string JsonParams =>
             string.Format("{0}{1}{2}", "{", string.Join(",", Params.Select(x => $"\"{x.Key}\":\"{x.Value.ToString()}\"")), "}");
 
+        public virtual bool ReloadCustomerInfo => false;
+
         protected virtual string StatusName { get; }
 
         protected virtual bool StatusValue { get; }

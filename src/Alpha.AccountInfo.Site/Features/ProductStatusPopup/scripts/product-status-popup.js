@@ -73,7 +73,10 @@ var ProductStatusPopup = (function () {
             }
             else {
                 _this.showSuccess(messsage);
-                setTimeout(_this.topWindow.closeEditSportStatusPopup, 1000 * 3);
+                setTimeout(function () {
+                    _this.topWindow.realoadLeftPanel = true;
+                    _this.topWindow.ageWnd.close();
+                }, 3000);
             }
         };
         this.showNoDataChange = function () {
