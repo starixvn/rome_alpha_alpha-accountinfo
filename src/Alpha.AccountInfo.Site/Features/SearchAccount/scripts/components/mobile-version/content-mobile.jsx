@@ -1,57 +1,6 @@
 ﻿import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-export const CustomLink = ({ path, iconClass, featureText }) => {
-    return (
-        <Link
-            id={`nav-${iconClass}`}
-            to={{
-                pathname: path,
-                state: { addAnimation: true }
-            }}
-            className="feature-item"
-        >
-            <span className={iconClass} />
-            {featureText}
-        </Link>
-    );
-}
-
-export const ContentPage = ({ iconClass, featureText, children, animationClass }) => {
-    let customLinkProps = {
-        path: "/featureList",
-        iconClass: iconClass,
-        featureText: featureText
-    };
-
-    return (
-        <div className={`${animationClass} feature-detail`}>
-            <CustomLink {...customLinkProps}/>
-            {children}
-        </div>
-    );
-}
-
-export const FeatureListPage = ({ contentItems, animationClass }) => {
-    return (
-        <div className={`${animationClass} feature-list`}>
-            <nav>
-                {
-                    Object.values(contentItems).map((content, index) => {
-                        let customLinkProps = {
-                            path: content.path,
-                            iconClass: content.iconClass,
-                            featureText: content.featureText
-                        };
-
-                        return content.visible && <CustomLink {...customLinkProps} key={index} />;
-                    })
-                }
-            </nav>
-        </div>
-    );
-}
-
 export default class ContentMobile extends React.Component {
     constructor(props) {
         super(props);
@@ -87,6 +36,7 @@ export default class ContentMobile extends React.Component {
             iconClass,
             featureText,
             children,
+            fetchDataFromServer,
             contentItems = [],
             redirectToBalanceInfoPage = false,
             redirectToFeatureList = false
@@ -106,15 +56,50 @@ export default class ContentMobile extends React.Component {
         }
 
         return contentItems.length === 0 ?
-            <ContentPage
-                iconClass={iconClass}
-                animationClass={animationClass}
-                featureText={featureText}
-                children={children}
-            /> :
-            <FeatureListPage
-                contentItems={contentItems}
-                animationClass={animationClass}
-            />;
+            <ContentPage {...{ iconClass, animationClass, featureText, children, fetchDataFromServer }} /> :
+            <FeatureListPage {...{ contentItems, animationClass }} />;
     }
 }
+
+export const CustomLink = ({ pathname, iconClass, featureText }) =>
+    <Link
+        id={`nav-${iconClass}`}
+        to={{
+            pathname,
+            state: { addAnimation: true }
+        }}
+        className="feature-item"
+    >
+        <span className={iconClass} />
+        {featureText}
+    </Link>;
+
+export const ContentPage = ({
+    iconClass,
+    featureText,
+    children,
+    animationClass,
+    fetchDataFromServer
+}) => {
+    if (fetchDataFromServer !== undefined) {
+        fetchDataFromServer();
+    }
+
+    return (
+        <div className={`${animationClass} feature-detail`}>
+            <CustomLink {... { iconClass, featureText, pathname: "/featureList" }} />
+            {children}
+        </div>
+    );
+}
+
+export const FeatureListPage = ({ contentItems, animationClass }) =>
+    <div className={`${animationClass} feature-list`}>
+        <nav>
+            {
+                Object.values(contentItems).map((content, index) => {
+                    return content.visible && <CustomLink {...content} key={index} />;
+                })
+            }
+        </nav>
+    </div>;

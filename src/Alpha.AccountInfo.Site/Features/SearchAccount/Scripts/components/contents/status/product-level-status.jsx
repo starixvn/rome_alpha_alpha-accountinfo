@@ -8,10 +8,9 @@ export default class ProductLevelStatus extends React.Component {
     }
 
     handleOpenPopup() {
-        const { mobileView, resources, status, username } = this.props;
+        const { mobileView, resources, status, fetchCustomerAllStatusFromServer } = this.props;
         const url = status.Url;
         const productName = status.Text;
-        let self = this;
 
         if (!status.Disabled) {
             window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`);
@@ -25,7 +24,7 @@ export default class ProductLevelStatus extends React.Component {
             function reloadBalanceInfo() {
                 if (window.top.realoadLeftPanel) {
                     clearInterval(timer);
-                    self.props.fetchCustomerAllStatusFromServer();
+                    fetchCustomerAllStatusFromServer(true);
                 }
             }
         }
@@ -33,12 +32,9 @@ export default class ProductLevelStatus extends React.Component {
 
     render() {
         const { status } = this.props;
-        const disabled = status.Disabled ? "disabled" : "";
 
         const inputProps = {
-            id: status.displayOrder,
             type: "checkbox",
-            disabled: disabled,
             checked: status.Checked,
             onChange: () => { }
         };
@@ -46,7 +42,7 @@ export default class ProductLevelStatus extends React.Component {
         return (
             <div
                 id={`product-${status.Text}`}
-                className={`col-xs-6 checkbox ${disabled}`}
+                className={`col-xs-6 checkbox ${status.Disabled ? 'disabled' : ''}`}
                 onClick={this.handleOpenPopup}
             >
                 <input {...inputProps} />

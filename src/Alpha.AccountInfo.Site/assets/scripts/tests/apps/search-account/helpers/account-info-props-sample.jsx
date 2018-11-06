@@ -48,7 +48,7 @@ export const AccountInfoProps = {
                     data={DownlineListData}
                     mobileView={true}
                     searchAccountRoleId={3}
-                    handleSearchFromUserLevel={jest.fn()}
+                    fetchCustomerInfoFromServer={jest.fn()}
                 />
         },
         statusProps: {

@@ -1,10 +1,11 @@
 ﻿import React from 'react';
 
 const CustomizedAccordionItem = ({
-    title,
-    iconClassname,
+    featureText,
+    iconClass,
     accordionItemBodyClassName,
     expanded,
+    fetchDataFromServer,
     handleClick,
     blockId,
     children }) =>
@@ -12,10 +13,9 @@ const CustomizedAccordionItem = ({
         <div
             id={blockId}
             className="feature-item"
-            onClick={handleClick}
-            data-blockid={blockId}
+            onClick={() => { handleClick(blockId, fetchDataFromServer)}}
         >
-            <span className={iconClassname} /> {title}
+            <span className={iconClass} /> {featureText}
         </div>
         <div className={`feature-detail ${accordionItemBodyClassName}`}>
             {children}

@@ -7,7 +7,7 @@ import CustomAnchorTag from '../../common/custom-anchor-tag';
 const CustomerInfo = ({
     customerInfo,
     resources,
-    handleSearchFromUserLevel,
+    fetchCustomerInfoFromServer,
     searchCounter,
     mobileView
 }) => {
@@ -48,7 +48,7 @@ const CustomerInfo = ({
                 userLevelInfoArray.map((userLevelInfo, index) => {
                     let uplineInfoProps = {
                         username: userLevelInfo.Name,
-                        handleSearchFromUserLevel
+                        fetchCustomerInfoFromServer
                     };
 
                     let searchAccountInfoProps = {

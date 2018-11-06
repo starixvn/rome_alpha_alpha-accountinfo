@@ -26,7 +26,7 @@ describe('DownlineList', () => {
             data: DownlineListData,
             mobileView: false,
             searchAccountRoleId: 1,
-            handleSearchFromUserLevel: jest.fn()
+            fetchCustomerInfoFromServer: jest.fn()
         };
 
         downlineListMount = undefined;

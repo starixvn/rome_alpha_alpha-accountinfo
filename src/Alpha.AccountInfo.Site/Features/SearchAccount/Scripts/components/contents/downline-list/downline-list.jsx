@@ -7,7 +7,7 @@ const DownlineList = ({
     downlineListData,
     mobileView,
     searchAccountRoleId,
-    handleSearchFromUserLevel }) => {
+    fetchCustomerInfoFromServer }) => {
     const totalDownlineByLevel = [
         {
             levelName: resources.Agents,
@@ -59,8 +59,9 @@ const DownlineList = ({
             <div className={`${mobileView ? "" : "customer-list"} col-xs-12`}>
                 {
                     downlineListData.DownlineList.map((downline, index) => {
+                        let { Username } = downline;
                         return <div className="col-xs-6" key={index}>
-                            <a href="#" data-username={downline.Username} onClick={handleSearchFromUserLevel}>{downline.Username}</a>
+                            <a href="#" onClick={() => { fetchCustomerInfoFromServer(Username) }}>{Username}</a>
                         </div>;
                     })
                 }

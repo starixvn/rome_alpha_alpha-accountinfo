@@ -9,35 +9,27 @@ const Status = ({
     statusData,
     mobileView,
     fetchCustomerInfoFromServer,
-    fetchCustomerAllStatusFromServer
-}) => {
-    return (
-        <div className="status-setting">
-            {
-                statusData.map((status, index) => {
-                    let props = {
-                        status: status,
-                        username: username,
-                        mobileView: mobileView,
-                        resources: resources,
-                        fetchCustomerAllStatusFromServer: fetchCustomerAllStatusFromServer,
-                        fetchCustomerInfoFromServer: fetchCustomerInfoFromServer
-                    };
+    fetchCustomerAllStatusFromServer }) =>
+    <div className="status-setting">
+        {
+            statusData.map((status, index) => {
+                let props = {
+                    status,
+                    username,
+                    mobileView,
+                    resources,
+                    fetchCustomerAllStatusFromServer,
+                    fetchCustomerInfoFromServer,
+                    key: index
+                };
 
-                    if (Object.keys(status).length === 0) {
-                        return null;
-                    }
-
-                    return status.ConfirmMessage ?
-                        <ConfirmStatus {...props} key={index} /> :
-                        status.IsEditOnProductLevel ?
-                            <ProductLevelStatus {...props} key={index} /> :
-                            <BettypeLevelStatus {...props} key={index} />;
-
-                })
-            }
-        </div>
-    );
-}
+                return status.ConfirmMessage ?
+                    <ConfirmStatus {...props} /> :
+                    status.IsEditOnProductLevel ?
+                        <ProductLevelStatus {...props} /> :
+                        <BettypeLevelStatus {...props} />;
+            })
+        }
+    </div>;
 
 export default Status;

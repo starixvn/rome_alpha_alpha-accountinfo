@@ -8,7 +8,7 @@ describe('UplineInfo', () => {
     beforeEach(() => {
         props = {
             username: '',
-            handleSearchFromUserLevel: jest.fn()
+            fetchCustomerInfoFromServer: jest.fn()
         };
     });
 

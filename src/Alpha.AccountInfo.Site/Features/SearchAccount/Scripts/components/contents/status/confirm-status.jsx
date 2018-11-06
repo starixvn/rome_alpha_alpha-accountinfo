@@ -18,7 +18,11 @@ export default class ConfirmStatus extends React.Component {
                 if (data.IsSuccess) {
                     setTimeout(() => {
                         $.unblockUI();
-                        status.ReloadCustomerInfo ? fetchCustomerInfoFromServer(username, false) : fetchCustomerAllStatusFromServer();
+                        if (status.ReloadCustomerInfo) {
+                            fetchCustomerInfoFromServer(username, false, false);
+                        }
+
+                        fetchCustomerAllStatusFromServer(true);
                     }, 3000);
                 }
                 else {
@@ -47,9 +51,7 @@ export default class ConfirmStatus extends React.Component {
         const { status } = this.props;
 
         const inputProps = {
-            id: status.displayOrder,
             type: "checkbox",
-            disabled: status.Disabled,
             checked: status.Checked,
             onChange: () => { }
         };

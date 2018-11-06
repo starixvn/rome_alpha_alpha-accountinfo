@@ -40,7 +40,7 @@ export default class AccountInfoMobile extends React.Component {
         let routePropsArray = [
             {
                 contentItems: contentItems,
-                path: '/featureList'
+                pathname: '/featureList'
             },
             { ...contentItems.contactInfoProps },
             { ...contentItems.balanceInfoProps },
@@ -53,7 +53,7 @@ export default class AccountInfoMobile extends React.Component {
                 ...{ addAnimation: false },
                 ...contentItems.balanceInfoProps,
                 contentItems: customerInfo !== null ? [] : contentItems,
-                path: ''
+                pathname: ''
             }
         ];
 
@@ -65,7 +65,7 @@ export default class AccountInfoMobile extends React.Component {
                             return (
                                 <Route
                                     key={index}
-                                    exact path={routeProps.path}
+                                    exact path={routeProps.pathname}
                                     render={
                                         (props) =>
                                             <ContentMobile

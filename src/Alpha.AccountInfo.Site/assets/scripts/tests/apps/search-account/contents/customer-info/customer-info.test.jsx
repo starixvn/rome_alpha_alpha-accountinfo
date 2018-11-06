@@ -20,7 +20,7 @@ describe('CustomerInfo', () => {
             customerInfo: Super.ViewMasterInfo,
             resources: Resources,
             mobileView: false,
-            handleSearchFromUserLevel: jest.fn()
+            fetchCustomerInfoFromServer: jest.fn()
         };
 
         customerInfoMount = undefined;

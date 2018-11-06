@@ -1,10 +1,9 @@
 ﻿import * as React from 'react';
 
-const UplineInfo = ({ username, handleSearchFromUserLevel }) =>
+const UplineInfo = ({ username, fetchCustomerInfoFromServer }) =>
     <span
         className="enabled"
-        onClick={handleSearchFromUserLevel}
-        data-username={username}
+        onClick={() => { fetchCustomerInfoFromServer(username)}}
     >
         {username}
     </span>;

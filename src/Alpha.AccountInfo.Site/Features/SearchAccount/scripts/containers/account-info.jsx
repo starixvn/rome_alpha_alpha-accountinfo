@@ -43,7 +43,6 @@ export default class AccountInfo extends React.Component {
             onlineListData: null
         };
 
-        this.handleSearchFromUserLevel = this.handleSearchFromUserLevel.bind(this);
         this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
         this.fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer.bind(this);
         this.fetchDownlineListFromServer = this.fetchDownlineListFromServer.bind(this);
@@ -58,57 +57,58 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        const { customerInfo, custId } = this.state;
-        if (customerInfo !== prevState.customerInfo) {
-            this.fetchCustomerAllStatusFromServer();
-            if (custId !== prevState.custId) {
-                this.fetchDownlineListFromServer();
-                this.fetchOnlineListFromServer();
-            }
-        }
+    resetSettingData() {
+        this.setState(() => ({
+            statusData: null,
+            settingData: null
+        }));
     }
 
-    fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true) {
+    resetOnlineListData() {
+        this.setState(() => ({ onlineListData: null}));
+    }
+
+    resetDownlineListData() {
+        this.setState(() => ({ downlineListData: null }));
+    }
+
+    fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
         $.blockUI();
         let self = this;
-        accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then((data) => {
-            self.setState((prevState) => ({
-                username: username,
-                custId: data !== null ? data.CustId : 0,
-                customerInfo: data,
-                searchCounter: prevState.searchCounter + 1,
-                redirectToBalanceInfoPage: redirectToBalanceInfoPage
-            }));
-
-            if (data === null) {
-                self.setState(() => ({
-                    statusData: null,
-                    settingData: null,
-                    downlineListData: null,
-                    onlineListData: null
+        accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
+            (responeData) => {
+                self.setState((prevState) => ({
+                    username: username,
+                    custId: responeData !== null ? responeData.CustId : 0,
+                    customerInfo: responeData,
+                    searchCounter: prevState.searchCounter + 1,
+                    redirectToBalanceInfoPage: redirectToBalanceInfoPage
                 }));
 
-                localStorage.removeItem('lastSearchUsername');
-            }
-            else {
-                localStorage.setItem('lastSearchUsername', username);
-            }
+                if (responeData !== null) {
+                    localStorage.setItem('lastSearchUsername', username);
 
-            $.unblockUI();
-        });
+                    self.resetDownlineListData();
+                    self.resetOnlineListData();
+
+                    if (resetSetting) {
+                        self.resetSettingData();
+                    }
+                }
+                else {
+                    localStorage.removeItem('lastSearchUsername');
+                }
+
+                $.unblockUI();
+            });
     }
 
-    handleSearchFromUserLevel(e) {
-        this.fetchCustomerInfoFromServer(e.currentTarget.dataset.username);
-    }
-
-    fetchCustomerAllStatusFromServer() {
+    fetchCustomerAllStatusFromServer(reload = false) {
         let uplineId = null;
         let uplineName = null;
-        let { customerInfo } = this.state;
+        let { customerInfo, statusData } = this.state;
 
-        if (customerInfo !== null) {
+        if ((customerInfo !== null && statusData === null) || reload) {
             switch (customerInfo.RoleId) {
                 case UserLevel.Master:
                     uplineId = customerInfo.SuperId;
@@ -133,38 +133,40 @@ export default class AccountInfo extends React.Component {
                 UplineRoleId: customerInfo.RoleId + 1
             };
 
-            accountInfoAPI.getCustomerAllStatus(params).then((data) => {
-                this.setState({
-                    settingData: data.Settings,
-                    statusData: data.Status,
-                    redirectToBalanceInfoPage: false
+            accountInfoAPI.getCustomerAllStatus(params).then(
+                (responeData) => {
+                    this.setState({
+                        settingData: responeData.Settings,
+                        statusData: responeData.Status,
+                        redirectToBalanceInfoPage: false
+                    });
                 });
-            });
         }
     }
 
     fetchDownlineListFromServer() {
-        let { custId } = this.state;
-        if (custId > 0) {
-            accountInfoAPI
-                .getDownlineList({ SearchAccountId: custId })
-                .then((responeData) => {
+        let { custId, downlineListData } = this.state;
+        if (custId > 0 && downlineListData === null) {
+            accountInfoAPI.getDownlineList({ SearchAccountId: custId }).then(
+                (responeData) => {
                     this.setState({ downlineListData: responeData });
                 });
         }
     }
 
     fetchOnlineListFromServer() {
-        let { custId } = this.state;
-        if (custId > 0) {
-            accountInfoAPI.getOnlineList({ SearchAccountId: custId }).then((responeData) => {
-                this.setState({ onlineListData: responeData });
-            });
+        let { custId, onlineListData } = this.state;
+        if (custId > 0 && onlineListData === null) {
+            accountInfoAPI.getOnlineList({ SearchAccountId: custId }).then(
+                (responeData) => {
+                    this.setState({ onlineListData: responeData });
+                });
         }
     }
 
     handleOpenIPInfo(e) {
-        window.top.ageWnd.open(`${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`);
+        let IPInfoPath = `${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`;
+        window.top.ageWnd.open(IPInfoPath);
     }
 
     buildContentItems() {
@@ -182,7 +184,8 @@ export default class AccountInfo extends React.Component {
         const handleOpenIPInfo = this.handleOpenIPInfo,
             fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer,
             fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer,
-            handleSearchFromUserLevel = this.handleSearchFromUserLevel;
+            fetchDownlineListFromServer = this.fetchDownlineListFromServer,
+            fetchOnlineListFromServer = this.fetchOnlineListFromServer;
 
         let loginInfo = null, searchAccountRoleId = actorRoleId - 1, username = '';
         if (customerInfo !== null) {
@@ -198,14 +201,17 @@ export default class AccountInfo extends React.Component {
             contactInfoProps: {
                 iconClass: "icon-contact-info",
                 featureText: resources.ShowContactInfo,
-                path: "/contactInfo",
+                pathname: "/contactInfo",
                 visible: true,
-                children: buildContent(customerInfo, <ContactInfo {...{ resources, customerInfo }} />)
+                children: buildContent(
+                    customerInfo,
+                    <ContactInfo {...{ resources, customerInfo }} />
+                )
             },
             balanceInfoProps: {
                 iconClass: "icon-balance",
                 featureText: resources.BalanceInfo,
-                path: "/balanceInfo",
+                pathname: "/balanceInfo",
                 visible: true,
                 children: buildContent(
                     customerInfo,
@@ -215,8 +221,9 @@ export default class AccountInfo extends React.Component {
             downlineListProps: {
                 iconClass: "icon-downline",
                 featureText: resources.DownlineList,
-                path: "/downlineList",
+                pathname: "/downlineList",
                 visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
+                fetchDataFromServer: fetchDownlineListFromServer,
                 children: buildContent(
                     downlineListData,
                     <DownlineList
@@ -225,7 +232,7 @@ export default class AccountInfo extends React.Component {
                             downlineListData,
                             mobileView,
                             searchAccountRoleId,
-                            handleSearchFromUserLevel
+                            fetchCustomerInfoFromServer
                         }}
                     />
                 )
@@ -233,32 +240,37 @@ export default class AccountInfo extends React.Component {
             statusProps: {
                 iconClass: "icon-status",
                 featureText: resources.Status,
-                path: "/status",
+                pathname: "/status",
                 visible: true,
+                fetchDataFromServer: fetchCustomerAllStatusFromServer,
                 children: buildContent(
                     statusData,
-                    <Status {...{
-                        resources,
-                        mobileView,
-                        statusData,
-                        fetchCustomerAllStatusFromServer,
-                        fetchCustomerInfoFromServer,
-                        username
-                    }}
+                    <Status
+                        {...{
+                            resources,
+                            mobileView,
+                            statusData,
+                            username,
+                            fetchCustomerAllStatusFromServer,
+                            fetchCustomerInfoFromServer
+                        }}
                     />
                 )
             },
             settingProps: {
                 iconClass: "icon-settings",
                 featureText: resources.Setting,
-                path: "/setting",
+                pathname: "/setting",
                 visible: true,
-                children: buildContent(settingData, <Settings {...{ mobileView, settingData }} />)
+                fetchDataFromServer: fetchCustomerAllStatusFromServer,
+                children: buildContent(
+                    settingData,
+                    <Settings {...{ mobileView, settingData }} />)
             },
             loginInfoProps: {
                 iconClass: "icon-login",
                 featureText: resources.LoginInfo,
-                path: "/loginInfo",
+                pathname: "/loginInfo",
                 visible: actorRoleId !== UserLevel.Super && searchAccountRoleId !== UserLevel.Agent,
                 children: buildContent(
                     loginInfo,
@@ -267,8 +279,9 @@ export default class AccountInfo extends React.Component {
             onlineListProps: {
                 iconClass: "icon-onlinelist",
                 featureText: resources.OnlineList,
-                path: "/onlineList",
+                pathname: "/onlineList",
                 visible: true,
+                fetchDataFromServer: fetchOnlineListFromServer,
                 children: buildContent(
                     onlineListData,
                     <OnlineList {...{ resources, onlineListData, handleOpenIPInfo }} />)
@@ -278,10 +291,10 @@ export default class AccountInfo extends React.Component {
         return contentItems;
     }
 
-    componentDidCatch(error, errorInfo) {
-        this.setState({ error });
-        Raven.captureException(error, { extra: errorInfo });
-    }
+    //componentDidCatch(error, errorInfo) {
+    //    this.setState({ error });
+    //    Raven.captureException(error, { extra: errorInfo });
+    //}
 
     render() {
         const {
@@ -296,32 +309,15 @@ export default class AccountInfo extends React.Component {
         const contentItems = this.buildContentItems();
         const userNamePlaceHolder = resources.UserNamePlaceHolder;
         const fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer;
-        const handleSearchFromUserLevel = this.handleSearchFromUserLevel;
-
-        const searchingProps = {
-            userNamePlaceHolder,
-            username,
-            fetchCustomerInfoFromServer
-        }
-
-        const customerInfoProps = {
-            resources,
-            customerInfo,
-            searchCounter,
-            mobileView,
-            handleSearchFromUserLevel
-        }
-
-        const contentProps = { contentItems, redirectToBalanceInfoPage };
 
         return (
             <div className="accountinfo-container">
-                <Searching {...searchingProps} />
-                <CustomerInfo {...customerInfoProps} />
+                <Searching {...{ userNamePlaceHolder, username, fetchCustomerInfoFromServer }} />
+                <CustomerInfo {...{ resources, customerInfo, searchCounter, mobileView, fetchCustomerInfoFromServer }} />
                 {
                     mobileView ?
                         <AccountInfoMobile {...contentProps} customerInfo={customerInfo} /> :
-                        customerInfo !== null && <AccountInfoDesktop {...contentProps} />
+                        customerInfo !== null && <AccountInfoDesktop {...{ contentItems, redirectToBalanceInfoPage }} />
                 }
             </div>
         );
