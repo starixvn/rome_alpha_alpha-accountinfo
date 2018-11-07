@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import TotalDownlines from './total-downlines';
 import { UserLevel } from '../../../constants';
+import InfiniteLoaderExample from './render-downline-list';
 
 const DownlineList = ({
     resources,
@@ -8,11 +9,12 @@ const DownlineList = ({
     mobileView,
     searchAccountRoleId,
     fetchCustomerInfoFromServer }) => {
+    let searchAccountIsMaster = searchAccountRoleId === UserLevel.Master;
     const totalDownlineByLevel = [
         {
             levelName: resources.Agents,
             data: downlineListData.TotalStatusAgent,
-            visible: searchAccountRoleId === UserLevel.Master
+            visible: searchAccountIsMaster
         },
         {
             levelName: resources.Members,
@@ -23,22 +25,22 @@ const DownlineList = ({
 
     return (
         <div>
-            {
-                totalDownlineByLevel.map((totalDownline, index) => {
-                    let totalDownlinesProps = {
-                        resources,
-                        levelName: totalDownline.levelName,
-                        totalActive: totalDownline.data.TotalActive,
-                        totalClosed: totalDownline.data.TotalClosed,
-                        totalSuspended: totalDownline.data.TotalSuspend,
-                        key: index
-                    }
+            <div id="total-downlines">
+                {
+                    totalDownlineByLevel.map((totalDownline, index) => {
+                        let totalDownlinesProps = {
+                            resources,
+                            levelName: totalDownline.levelName,
+                            totalActive: totalDownline.data.TotalActive,
+                            totalClosed: totalDownline.data.TotalClosed,
+                            totalSuspended: totalDownline.data.TotalSuspend,
+                            key: index
+                        }
 
-                    return totalDownline.visible && < TotalDownlines {...totalDownlinesProps} />;
-                })
-            }
-
-            <div className="col-xs-12 row-info"><hr /></div>
+                        return totalDownline.visible && <TotalDownlines {...totalDownlinesProps} />;
+                    })
+                }
+                <div className="col-xs-12 row-info"><hr /> </div>
 
             <div className="totalstatus-list">
                 <div className="radio">
@@ -56,16 +58,15 @@ const DownlineList = ({
             </div>
                        
 
-            <div className={`${mobileView ? "" : "customer-list"} col-xs-12`}>
-                {
-                    downlineListData.DownlineList.map((downline, index) => {
-                        let { Username } = downline;
-                        return <div className="col-xs-6" key={index}>
-                            <a href="#" onClick={() => { fetchCustomerInfoFromServer(Username) }}>{Username}</a>
-                        </div>;
-                    })
-                }
             </div>
+            <InfiniteLoaderExample
+                {...{
+                    mobileView,
+                    fetchCustomerInfoFromServer,
+                    dowlineList: downlineListData.DownlineList,
+                    totalDownlinesRows: searchAccountIsMaster ? 2 : 1
+                }}
+            />
         </div>
     );
 }

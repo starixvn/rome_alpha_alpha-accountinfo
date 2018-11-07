@@ -316,7 +316,7 @@ export default class AccountInfo extends React.Component {
                 <CustomerInfo {...{ resources, customerInfo, searchCounter, mobileView, fetchCustomerInfoFromServer }} />
                 {
                     mobileView ?
-                        <AccountInfoMobile {...contentProps} customerInfo={customerInfo} /> :
+                        <AccountInfoMobile {...{ contentItems, redirectToBalanceInfoPage, customerInfo }} /> :
                         customerInfo !== null && <AccountInfoDesktop {...{ contentItems, redirectToBalanceInfoPage }} />
                 }
             </div>

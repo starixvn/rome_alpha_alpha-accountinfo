@@ -91,7 +91,7 @@ export default class Searching extends React.Component {
             shouldRenderSuggestions = this.shouldRenderSuggestions;
 
         return (
-            <div className="search-box">
+            <div id="search-box" className="search-box">
                 <Autosuggest
                     {...{
                         suggestions,

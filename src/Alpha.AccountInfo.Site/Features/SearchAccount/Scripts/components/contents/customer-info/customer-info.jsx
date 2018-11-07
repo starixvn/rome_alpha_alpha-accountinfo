@@ -43,7 +43,7 @@ const CustomerInfo = ({
     const buttons = [customerInfo.CustomerListOrBetListLink, customerInfo.StatemenLink];
 
     return (
-        <div id="blockInfo" className="block-info">
+        <div id="customer-info" className="block-info">
             {
                 userLevelInfoArray.map((userLevelInfo, index) => {
                     let uplineInfoProps = {
