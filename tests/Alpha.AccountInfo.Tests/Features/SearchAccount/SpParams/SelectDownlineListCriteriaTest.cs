@@ -9,7 +9,7 @@
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
-            var criteria = new SelectDownlineListCriteria(1);
+            var criteria = new SelectDownlineListCriteria(1, 1);
             var expectedSettingKey = "Acc_CustomerSelList";
 
             var actualSettingKey = criteria.GetSettingKey();

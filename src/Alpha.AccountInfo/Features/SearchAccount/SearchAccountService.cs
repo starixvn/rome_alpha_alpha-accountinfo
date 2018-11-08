@@ -22,7 +22,7 @@
 
         Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId);
 
-        Task<DownlineListModel> GetDownlineList(int custId);
+        Task<DownlineListModel> GetDownlineList(int custId, int pageIndex);
 
         Task<CustomerStatusModel> GetCustomerStatus(int custId);
 
@@ -81,8 +81,8 @@
         public Task<CustomerStatusModel> GetCustomerStatus(int custId)
           => accountInfoDataAccess.GetCustomerStatus(new SelectCustomerAllStatusModelCriteria(custId));
 
-        public Task<DownlineListModel> GetDownlineList(int custId)
-            => accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId));
+        public Task<DownlineListModel> GetDownlineList(int custId, int pageIndex)
+            => accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId, pageIndex));
 
         public Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid)
             => dynamicRepository.FetchAsync<OnlineUserModel>(new SelectOnlineListCriteria(custid));

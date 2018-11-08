@@ -144,12 +144,26 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchDownlineListFromServer() {
+    fetchDownlineListFromServer(pageIndex = 1, reloadByStatus = false, status = 'active') {
         let { custId, downlineListData } = this.state;
-        if (custId > 0 && downlineListData === null) {
-            accountInfoAPI.getDownlineList({ SearchAccountId: custId }).then(
-                (responeData) => {
-                    this.setState({ downlineListData: responeData });
+        if (custId > 0 && (downlineListData === null || pageIndex > 1 || reloadByStatus)) {
+            accountInfoAPI.getDownlineList(
+                {
+                    SearchAccountId: custId,
+                    PageIndex: pageIndex,
+                    Status: status
+                })
+                .then((responeData) => {
+                    responeData.PageIndex = pageIndex;
+                    responeData.Status = status,
+                    responeData.DownlineList = (downlineListData === null || reloadByStatus)?
+                        responeData.DownlineList :
+                        [...downlineListData.DownlineList, ...responeData.DownlineList];
+
+                    this.setState({
+                        downlineListData: responeData,
+                        redirectToBalanceInfoPage: false
+                    });
                 });
         }
     }
@@ -232,6 +246,7 @@ export default class AccountInfo extends React.Component {
                             downlineListData,
                             mobileView,
                             searchAccountRoleId,
+                            fetchDownlineListFromServer,
                             fetchCustomerInfoFromServer
                         }}
                     />

@@ -25,5 +25,7 @@
                  model.TotalMemActive,
                  model.TotalMemClosed,
                  model.TotalMemSuspended);
+
+        public int TotalPages => 5; //model.TotalPages;
     }
 }

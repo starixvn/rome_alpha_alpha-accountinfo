@@ -25,7 +25,8 @@
          int totalAgSuspended,
          int totalMemActive,
          int totalMemClosed,
-         int totalMemSuspended)
+         int totalMemSuspended,
+         int totalPages)
         {
             Downlines = downlines;
 
@@ -36,6 +37,8 @@
             TotalMemActive = totalMemActive;
             TotalMemClosed = totalMemClosed;
             TotalMemSuspended = totalMemSuspended;
+
+            TotalPages = totalPages;
         }
 
         public DownlineListModel(
@@ -48,7 +51,8 @@
                   model.TotalAgSuspended, 
                   model.TotalMemActive, 
                   model.TotalMemClosed, 
-                  model.TotalMemSuspended)
+                  model.TotalMemSuspended,
+                  model.TotalPages)
         { }
 
         public IEnumerable<DownlineDto> Downlines { get; private set; }
@@ -64,5 +68,7 @@
         public int TotalMemClosed { get; private set; }
 
         public int TotalMemSuspended { get; private set; }
+
+        public int TotalPages { get; private set; }
     }
 }

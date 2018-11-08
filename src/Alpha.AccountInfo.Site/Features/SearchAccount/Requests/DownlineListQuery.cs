@@ -9,5 +9,7 @@
         public DownlineListQuery(IUser viewer) : base(viewer)
         {
         }
+
+        public int PageIndex { get; set; }
     }
 }

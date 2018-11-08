@@ -72,7 +72,7 @@
         }
 
         public async Task<DownlineListViewModel> Handle(DownlineListQuery message)
-            => new DownlineListViewModel(await accountInfoService.GetDownlineList(message.SearchAccountId).ConfigureAwait(false));
+            => new DownlineListViewModel(await accountInfoService.GetDownlineList(message.SearchAccountId, message.PageIndex).ConfigureAwait(false));
 
         public async Task<CustomererStatusViewModel> Handle(CustomerStatusQuery message)
             => new CustomererStatusViewModel(message, await accountInfoService.GetCustomerStatus(message.SearchAccountId).ConfigureAwait(false));

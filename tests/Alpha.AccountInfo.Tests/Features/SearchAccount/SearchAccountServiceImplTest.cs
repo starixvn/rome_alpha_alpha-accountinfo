@@ -197,7 +197,7 @@
                 .Returns(Task.FromResult(model));
 
             var actualModel = accountInfoService
-                .GetDownlineList(1)
+                .GetDownlineList(1, 1)
                 .GetAwaiter()
                 .GetResult();
 

@@ -47,7 +47,7 @@
         public void GetDownlineList_HasData_ReturnsDownlineListModel()
         {
             // Arrange
-            var criteria = new SelectDownlineListCriteria(1);
+            var criteria = new SelectDownlineListCriteria(1, 1);
 
             objectDb
                 .QueryMultipleAsync(Arg.Any<Hashtable>())
@@ -65,7 +65,8 @@
                     totalAgSuspended: 3,
                     totalMemActive: 4,
                     totalMemClosed: 5,
-                    totalMemSuspended: 6);
+                    totalMemSuspended: 6,
+                    totalPages: 1);
 
             multiResultReader
                 .ReadAsync<DownlineDto>()
