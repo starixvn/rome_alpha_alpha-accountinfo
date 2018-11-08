@@ -45,32 +45,36 @@ export default class TotalDownlinesSummary extends React.Component {
         const { data, checkedStatusId } = this.state;
 
         return (
-            <div className="totalstatus-list row-info">
-                {
-                    data.map((item, index) => {
-                        let { id, title, className, value } = item;
-                        return (
-                            <div className="radio" key={index}>
-                                <input
-                                    {...{
-                                        id,
-                                        checked: checkedStatusId === item.id,
-                                        type: "radio",
-                                        name: "totalStatus",
-                                        onChange: () => { this.handleOnChange(id); }
-                                    }}
-                                />
-                                <label className="label-text" htmlFor={id} >
-                                    {title}
-                                    <span className={className}>
-                                        {`(${value})`}
-                                    </span>
-                                </label>
-                            </div>
-                        );
-                    })
-                }
+            <div>
+                <div className="row-info bold">Agents (A/C/S)</div>
+                <div className="totalstatus-list">
+                    {
+                        data.map((item, index) => {
+                            let { id, title, className, value } = item;
+                            return (
+                                <div className="radio" key={index}>
+                                    <input
+                                        {...{
+                                            id,
+                                            checked: checkedStatusId === item.id,
+                                            type: "radio",
+                                            name: "totalStatus",
+                                            onChange: () => { this.handleOnChange(id); }
+                                        }}
+                                    />
+                                    <label className="label-text" htmlFor={id} >
+                                        {title}
+                                        <span className={className}>
+                                            {`(${value})`}
+                                        </span>
+                                    </label>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
             </div>
+            
         );
     }
 }

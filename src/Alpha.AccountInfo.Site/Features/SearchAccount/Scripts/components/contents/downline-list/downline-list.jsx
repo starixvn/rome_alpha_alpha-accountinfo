@@ -44,7 +44,7 @@ const DownlineList = ({
                             />;
                     })
                 }
-                <div className="col-xs-12"><hr /> </div>
+                <div className="col-xs-12 row-info"><hr /> </div>
                 <TotalDownlinesSummary
                     {...{
                         data: (searchAccountIsMaster ? totalDownlineByLevel[0] : totalDownlineByLevel[1]).data,

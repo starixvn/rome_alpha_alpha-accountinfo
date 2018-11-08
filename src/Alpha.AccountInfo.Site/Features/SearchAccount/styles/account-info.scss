@@ -304,6 +304,7 @@ hr {
 .totalstatus-list {
     display: table;
     width: 100%;
+    line-height: initial;
     padding: 10px 10px 5px;
 
     .radio {
@@ -512,6 +513,11 @@ hr {
         padding: 6px 10px 4px;
         max-height: 290px;
         overflow: auto;
+    }
+
+    .ReactVirtualized__List {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .login-info {
