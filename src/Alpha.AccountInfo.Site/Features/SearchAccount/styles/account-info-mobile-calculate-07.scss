@@ -87,24 +87,37 @@ hr {
 
 // custom checkbox
 
-.checkbox {
-    label {
-        padding-left: calculateScale(22px);
+.checkbox label {
+    padding-left: calculateScale(22px);
 
-        &:before {
-            height: calculateScale(16px);
-            width: calculateScale(16px);
-        }
+    &:before {
+        height: calculateScale(16px);
+        width: calculateScale(16px);
+    }
 
-        &:after {
-            top: calculateScale(5px);
-            left: calculateScale(4px);
-            height: calculateScale(4px);
-            width: calculateScale(9px);
-        }
+    &:after {
+        top: calculateScale(5px);
+        left: calculateScale(4px);
+        height: calculateScale(4px);
+        width: calculateScale(9px);
     }
 }
 
+.radio label {
+    padding-left: calculateScale(22px);
+
+    &:before {
+        height: calculateScale(14px);
+        width: calculateScale(14px);
+    }
+
+    &:after {
+        top: calculateScale(3px);
+        left: calculateScale(3px);
+        height: calculateScale(8px);
+        width: calculateScale(8px);
+    }
+}
 
 // Customize UI for auto suggestion
 
@@ -238,9 +251,18 @@ hr {
         }
     }
 
+    .totalstatus-list {
+        padding: calculateScale(10px) calculateScale(10px) calculateScale(5px);
+    }
+
     .customer-list {
         padding: 0;
         max-height: initial;
+    }
+
+    .ReactVirtualized__List {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
     }
 
     .login-info {

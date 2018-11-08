@@ -122,7 +122,7 @@ export default class DownlineListContent extends React.PureComponent {
             delete this.timeoutIdMap[timeoutId];
             this.setLoadedStatus(startIndex, stopIndex, STATUS_LOADED);
             promiseResolver();
-        }, 100 + Math.round(Math.random() * 200));
+        }, 100 + Math.round(Math.random() * 2000));
 
         this.timeoutIdMap[timeoutId] = true;
 
