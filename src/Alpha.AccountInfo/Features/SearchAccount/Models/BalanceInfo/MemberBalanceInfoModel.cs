@@ -12,8 +12,6 @@
              decimal customerCash,
              decimal yesterdayCustomerCash,
              decimal customerOutstanding,
-             decimal casinoOutstanding,
-             decimal casinoTransfer,
              decimal netPosition,
              decimal memMaxCreditMax)
         {
@@ -22,10 +20,8 @@
 
             CustomerCash = customerCash;
             YesterdayCustomerCash = yesterdayCustomerCash;
-            CustomerOutstanding = customerOutstanding;
-            CasinoOutstanding = casinoOutstanding;
 
-            CasinoTransfer = casinoTransfer;
+            CustomerOutstanding = customerOutstanding;
             NetPosition = netPosition;
             MemMaxCreditMax = memMaxCreditMax;
         }
@@ -43,9 +39,5 @@
         public decimal YesterdayCustomerCash { get; private set; }
 
         public decimal CustomerOutstanding { get; private set; }
-
-        public decimal CasinoOutstanding { get; private set; }
-
-        public decimal CasinoTransfer { get; private set; }
     }
 }

@@ -14,9 +14,7 @@
              decimal customerCash,
              decimal yesterdayCustomerCash,
              decimal customerOutstanding,
-             decimal casinoOutstanding,
              decimal agentPositionTaking,
-             decimal casinoTransfer,
              decimal masterUsedCredit,
              decimal agentUsedCredit,
              decimal agentCreditMin,
@@ -33,10 +31,8 @@
             CustomerCash = customerCash;
             YesterdayCustomerCash = yesterdayCustomerCash;
             CustomerOutstanding = customerOutstanding;
-            CasinoOutstanding = casinoOutstanding;
 
             AgentPositionTaking = agentPositionTaking;
-            CasinoTransfer = casinoTransfer;
             MasterUsedCredit = masterUsedCredit;
             AgentUsedCredit = agentUsedCredit;
 
@@ -68,10 +64,6 @@
         public decimal AgentPositionTaking { get; private set; }
 
         public decimal CustomerOutstanding { get; private set; }
-
-        public decimal CasinoOutstanding { get; private set; }
-
-        public decimal CasinoTransfer { get; private set; }
 
         public decimal AgentUsedCredit { get; private set; }
 

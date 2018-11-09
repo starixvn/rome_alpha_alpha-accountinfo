@@ -125,8 +125,6 @@
                   customerCash: 14,
                   yesterdayCustomerCash: 15,
                   customerOutstanding: 16,
-                  casinoOutstanding: 17,
-                  casinoTransfer: 18,
                   netPosition: 19,
                   memMaxCreditMax: 20);
 
@@ -139,9 +137,7 @@
                       customerCash: 15,
                       yesterdayCustomerCash: 16,
                       customerOutstanding: 17,
-                      casinoOutstanding: 18,
                       agentPositionTaking: 19,
-                      casinoTransfer: 20,
                       masterUsedCredit: 21,
                       agentUsedCredit: 22,
                       agentCreditMin: 23,
@@ -161,8 +157,6 @@
                     customerCash: 18,
                     yesterdayCustomerCash: 19,
                     customerOutstanding: 20,
-                    casinoOutstanding: 21,
-                    casinoTransfer: 22,
                     masterUsedCredit: 23,
                     masterCreditMin: 24,
                     masterCreditMax: 85);

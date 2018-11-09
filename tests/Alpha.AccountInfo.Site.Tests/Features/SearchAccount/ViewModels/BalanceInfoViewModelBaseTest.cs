@@ -70,8 +70,6 @@
              customerCash: totalBalance,
              yesterdayCustomerCash: 15,
              customerOutstanding: 16,
-             casinoOutstanding: 17,
-             casinoTransfer: 18,
              netPosition: 19,
              memMaxCreditMax: 20);
 
@@ -116,8 +114,6 @@
                      customerCash: 14,
                      yesterdayCustomerCash: yesterday_CustomerCash,
                      customerOutstanding: 16,
-                     casinoOutstanding: 17,
-                     casinoTransfer: 18,
                      netPosition: 19,
                      memMaxCreditMax: 20);
 

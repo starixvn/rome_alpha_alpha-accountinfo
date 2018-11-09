@@ -12,7 +12,8 @@
     <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-
+    <Setting Key="Acc_CustomerSelTotalDownline" SpName="Acc_CustomerSelTotalDownline_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    
     <Setting Key="Age_BalanceMasterSel" SpName="Age_BalanceMasterSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
       <Mapping ObjectProperty="YesterdayMasterCash" DataField="yesterday_MasterCash" />
       <Mapping ObjectProperty="YesterdayAgentCash" DataField="yesterday_AgentCash" />
