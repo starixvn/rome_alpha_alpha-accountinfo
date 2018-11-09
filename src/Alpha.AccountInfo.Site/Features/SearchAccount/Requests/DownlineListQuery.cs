@@ -11,5 +11,11 @@
         }
 
         public int PageIndex { get; set; }
+
+        public byte RoleId { get; set; }
+
+        public byte StatusId { get; set; }
+
+        public int TotalPages { get; set; }
     }
 }

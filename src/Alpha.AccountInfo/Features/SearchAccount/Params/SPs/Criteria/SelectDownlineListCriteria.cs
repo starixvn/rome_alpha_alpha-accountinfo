@@ -1,18 +1,35 @@
-﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria
+﻿using Fanex.Data;
+
+namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria
 {
-    public class SelectDownlineListCriteria : AccountInfoCriteriaBase
+    public class SelectDownlineListByStatusCriteria : AccountInfoCriteriaBase
     {
-        public SelectDownlineListCriteria(int searchAccountId, int pageIndex) : base(searchAccountId)
+        private const int PAGESIZE = 20;
+
+        public SelectDownlineListByStatusCriteria(
+            int searchAccountId, 
+            int pageIndex, 
+            byte roleId,
+            byte statusId,
+            int totalPages) : base(searchAccountId)
         {
             PageIndex = pageIndex;
+            RoleId = roleId;
+            StatusId = statusId;
+            TotalPages = totalPages;
         }
 
-        public int PageSize { get; } = 20;
+        public int PageSize { get; } = PAGESIZE;
 
         public int PageIndex { get; }
 
-        public bool Mode { get; } = true;
+        public byte RoleId { get; }
 
-        public override string GetSettingKey() => "Acc_CustomerSelList";
+        [SpParam(SqlParamName = "Status")]
+        public byte StatusId { get; }
+
+        public int TotalPages { get; }
+
+        public override string GetSettingKey() => "Age_CustomerSelListByStatus";
     }
 }

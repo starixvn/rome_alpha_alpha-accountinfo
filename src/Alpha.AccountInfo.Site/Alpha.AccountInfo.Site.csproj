@@ -307,9 +307,11 @@
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
@@ -505,6 +507,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Features\SearchAccount\Requests\TotalDownlineSummyQuery.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountController.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
     <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
@@ -546,7 +549,6 @@
     <Compile Include="Features\Shared\Helpers\ProductJsonConverter.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\LoginInfoViewModel.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomererStatusViewModel.cs" />
-    <Compile Include="Features\SearchAccount\ViewModels\TotalStatusDownline.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\Link.cs" />
     <Compile Include="Features\ProductStatusPopup\ViewModels\ProductStatusViewModel.cs" />
   </ItemGroup>

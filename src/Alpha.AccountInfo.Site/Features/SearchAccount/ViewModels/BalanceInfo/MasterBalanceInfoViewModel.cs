@@ -2,7 +2,6 @@
 {
     using System;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
-    using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
 
     public class MasterBalanceInfoViewModel : BalanceInfoViewModelBase

@@ -94,18 +94,10 @@
                 SearchAccountId = 1
             };
 
-            var model = new DownlineListModel(
-                Enumerable.Empty<DownlineDto>(),
-                totalAgActive: 12,
-                totalAgClosed: 13,
-                totalAgSuspended: 14,
-                totalMemActive: 15,
-                totalMemClosed: 16,
-                totalMemSuspended: 17,
-                totalPages: 1);
-            var expectedViewModel = new DownlineListViewModel(model);
+            var model = new DownlineListModel(Enumerable.Empty<DownlineDto>(),totalPages: 1);
+            var expectedViewModel = new DownlineListViewModel(model, Enumerable.Empty<TotalDownlinesSummary>());
 
-            accountInfoService.GetDownlineList(1, 1).Returns(Task.FromResult(model));
+            accountInfoService.GetDownlineList(1, 1, 2, 1, 1).Returns(Task.FromResult(model));
 
             var actualViewModel = accountInfoHandler
                 .Handle(message)

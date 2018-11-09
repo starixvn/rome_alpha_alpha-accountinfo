@@ -1,31 +1,23 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
 
     public class DownlineListViewModel
     {
         private readonly DownlineListModel model;
 
-        public DownlineListViewModel(DownlineListModel model)
+        public DownlineListViewModel(DownlineListModel model, IEnumerable<TotalDownlinesSummary> totalDownlines)
         {
             this.model = model;
+            TotalDownlines = totalDownlines.OrderByDescending(item => item.RoleId);
         }
 
         public IEnumerable<DownlineDto> DownlineList => model.Downlines;
 
-        public TotalStatusDownline TotalStatusAgent
-            => new TotalStatusDownline(
-                model.TotalAgActive,
-                model.TotalAgClosed,
-                model.TotalAgSuspended);
+        public IEnumerable<TotalDownlinesSummary> TotalDownlines { get;}
 
-        public TotalStatusDownline TotalStatusMember
-             => new TotalStatusDownline(
-                 model.TotalMemActive,
-                 model.TotalMemClosed,
-                 model.TotalMemSuspended);
-
-        public int TotalPages => 5; //model.TotalPages;
+        public int TotalPages => model.TotalPages; 
     }
 }

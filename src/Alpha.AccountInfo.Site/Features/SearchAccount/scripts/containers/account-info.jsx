@@ -144,18 +144,20 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchDownlineListFromServer(pageIndex = 1, reloadByStatus = false, status = 'active') {
-        let { custId, downlineListData } = this.state;
+    fetchDownlineListFromServer(pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) {
+        let { custId, downlineListData, customerInfo } = this.state;
         if (custId > 0 && (downlineListData === null || pageIndex > 1 || reloadByStatus)) {
             accountInfoAPI.getDownlineList(
                 {
                     SearchAccountId: custId,
                     PageIndex: pageIndex,
-                    Status: status
+                    StatusId: statusId,
+                    RoleId: customerInfo.RoleId,
+                    TotalPages: totalPages
                 })
                 .then((responeData) => {
                     responeData.PageIndex = pageIndex;
-                    responeData.Status = status,
+                    responeData.StatusId = statusId;
                     responeData.DownlineList = (downlineListData === null || reloadByStatus)?
                         responeData.DownlineList :
                         [...downlineListData.DownlineList, ...responeData.DownlineList];

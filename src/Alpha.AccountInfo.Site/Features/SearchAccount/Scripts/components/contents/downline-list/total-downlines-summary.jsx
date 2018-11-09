@@ -1,30 +1,34 @@
 ﻿import React from 'react';
 
+const ACTIVE_ID = 1;
+const CLOSED_ID = 2;
+const SUSPENDED_ID = 3;
+
 export default class TotalDownlinesSummary extends React.Component {
     constructor(props) {
         super(props);
-        const { data } = this.props;
+        const { totalDownline } = this.props;
 
         this.state = {
-            checkedStatusId: 'active',
+            checkedStatusId: ACTIVE_ID,
             data: [
                 {
-                    id: 'active',
+                    statusId: ACTIVE_ID,
                     className: 'status-active',
                     title: 'A',
-                    value: data.TotalActive
+                    value: totalDownline.TotalActive
                 },
                 {
-                    id: 'closed',
+                    statusId: CLOSED_ID,
                     className: 'status-closed',
                     title: 'C',
-                    value: data.TotalClosed
+                    value: totalDownline.TotalClosed
                 },
                 {
-                    id: 'suspended',
+                    statusId: SUSPENDED_ID,
                     className: 'status-suspended',
                     title: 'S',
-                    value: data.TotalSuspend
+                    value: totalDownline.TotalSuspended
                 }
             ]
         };
@@ -50,16 +54,17 @@ export default class TotalDownlinesSummary extends React.Component {
                 <div className="totalstatus-list">
                     {
                         data.map((item, index) => {
-                            let { id, title, className, value } = item;
+                            let { statusId, title, className, value } = item;
+                            let id = `${title}-${statusId}`;
                             return (
                                 <div className="radio" key={index}>
                                     <input
                                         {...{
                                             id,
-                                            checked: checkedStatusId === item.id,
+                                            checked: checkedStatusId === item.statusId,
                                             type: "radio",
                                             name: "totalStatus",
-                                            onChange: () => { this.handleOnChange(id); }
+                                            onChange: () => { this.handleOnChange(statusId); }
                                         }}
                                     />
                                     <label className="label-text" htmlFor={id} >

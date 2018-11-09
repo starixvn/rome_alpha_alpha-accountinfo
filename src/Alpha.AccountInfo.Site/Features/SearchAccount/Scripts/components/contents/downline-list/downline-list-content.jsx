@@ -12,13 +12,13 @@ const COLUMNS = 2;
 export default class DownlineListContent extends React.PureComponent {
     constructor(props) {
         super(props);
-        const { dowlineList, totalPages, pageIndex, status } = this.props;
+        const { dowlineList, totalPages, pageIndex, statusId  } = this.props;
         this.state = {
             loadedRowsMap: {},
             list: this.chunkDownlineList([...dowlineList]),
             totalPages: totalPages,
             pageIndex: pageIndex,
-            status: status
+            statusId: statusId
         };
 
         this.timeoutIdMap = {};
@@ -30,14 +30,14 @@ export default class DownlineListContent extends React.PureComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        let self = this;
-        const { dowlineList, pageIndex, status } = nextProps;
-
-        if (pageIndex <= this.state.totalPages) {
+        const { dowlineList, pageIndex, statusId, totalPages } = nextProps;
+        let list = this.chunkDownlineList([...dowlineList]);
+        if (totalPages === 0 || pageIndex <= totalPages) {
             this.setState({
-                list: self.chunkDownlineList([...dowlineList]),
+                list: list,
                 pageIndex: pageIndex,
-                status: status
+                totalPages: totalPages,
+                statusId: statusId
             });
         }
     }
@@ -58,7 +58,11 @@ export default class DownlineListContent extends React.PureComponent {
 
     render() {
         const { list } = this.state;
-        const { mobileView } = this.props;
+        const { mobileView, resources } = this.props;
+
+        if (list.length === 0) {
+            return <div className="no-information">{resources.NoInfo}</div>;
+        }
 
         return (
             <div className={`${mobileView ? '' : 'customer-list'}`}>
@@ -139,11 +143,11 @@ export default class DownlineListContent extends React.PureComponent {
     }
 
     rowRenderer({ index, key, style }) {
-        const { loadedRowsMap, list, pageIndex, totalPages, status } = this.state;
+        const { loadedRowsMap, list, pageIndex, totalPages, statusId } = this.state;
         const { fetchCustomerInfoFromServer, fetchDownlineListFromServer } = this.props;
 
         if (index === (pageIndex * (PAGE_SIZE / COLUMNS)) - 1 && pageIndex < totalPages) {
-            fetchDownlineListFromServer(pageIndex + 1, false, status);
+            fetchDownlineListFromServer(pageIndex + 1, false, statusId, totalPages);
         }
 
         let content = list[index].map((item, itemIndex) => {

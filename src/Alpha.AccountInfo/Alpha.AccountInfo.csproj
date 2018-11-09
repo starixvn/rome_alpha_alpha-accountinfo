@@ -188,6 +188,7 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerAllStatusModelCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\AccountInfoCriteriaBase.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectTotalDownlineSummaryCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectOnlineListCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectDownlineListCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectBalanceInfoCriteria.cs" />
@@ -294,6 +295,9 @@
       <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
       <Name>Alpha.Products.AccountInfo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\SearchAccount\Models\DownlineList\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />

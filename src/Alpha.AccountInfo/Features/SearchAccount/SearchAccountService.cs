@@ -22,7 +22,9 @@
 
         Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId);
 
-        Task<DownlineListModel> GetDownlineList(int custId, int pageIndex);
+        Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages);
+
+        Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId);
 
         Task<CustomerStatusModel> GetCustomerStatus(int custId);
 
@@ -81,8 +83,11 @@
         public Task<CustomerStatusModel> GetCustomerStatus(int custId)
           => accountInfoDataAccess.GetCustomerStatus(new SelectCustomerAllStatusModelCriteria(custId));
 
-        public Task<DownlineListModel> GetDownlineList(int custId, int pageIndex)
-            => accountInfoDataAccess.GetDownlineList(new SelectDownlineListCriteria(custId, pageIndex));
+        public Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
+            => accountInfoDataAccess.GetDownlineList(new SelectDownlineListByStatusCriteria(custId, pageIndex, roleId, statusId, totalPages));
+
+        public Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId)
+          => dynamicRepository.FetchAsync<TotalDownlinesSummary>(new SelectTotalDownlineSummaryCriteria(custId, roleId));
 
         public Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid)
             => dynamicRepository.FetchAsync<OnlineUserModel>(new SelectOnlineListCriteria(custid));

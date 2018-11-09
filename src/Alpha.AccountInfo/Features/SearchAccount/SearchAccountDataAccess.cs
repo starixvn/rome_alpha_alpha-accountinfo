@@ -14,7 +14,7 @@
     {
         Task<CustomerStatusModel> GetCustomerStatus(SelectCustomerAllStatusModelCriteria criteria);
 
-        Task<DownlineListModel> GetDownlineList(SelectDownlineListCriteria criteria);
+        Task<DownlineListModel> GetDownlineList(SelectDownlineListByStatusCriteria criteria);
 
         Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command);
     }
@@ -41,15 +41,15 @@
             }
         }
 
-        public async Task<DownlineListModel> GetDownlineList(SelectDownlineListCriteria criteria)
+        public async Task<DownlineListModel> GetDownlineList(SelectDownlineListByStatusCriteria criteria)
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
                 using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
                 {
-                    var downlines = await multiResultReader.ReadAsync<DownlineDto>().ConfigureAwait(false);
                     var downlineListModel = (await multiResultReader.ReadAsync<DownlineListModel>().ConfigureAwait(false)).FirstOrDefault();
-
+                    var downlines = await multiResultReader.ReadAsync<DownlineDto>().ConfigureAwait(false);
+                  
                     if (downlineListModel != null)
                     {
                         return new DownlineListModel(downlines, downlineListModel);

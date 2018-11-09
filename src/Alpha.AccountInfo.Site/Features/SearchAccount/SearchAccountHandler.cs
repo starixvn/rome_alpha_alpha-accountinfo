@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -72,7 +73,26 @@
         }
 
         public async Task<DownlineListViewModel> Handle(DownlineListQuery message)
-            => new DownlineListViewModel(await accountInfoService.GetDownlineList(message.SearchAccountId, message.PageIndex).ConfigureAwait(false));
+        {
+            var downlineList =
+                await accountInfoService
+                .GetDownlineList(
+                    message.SearchAccountId,
+                    message.PageIndex,
+                    message.RoleId,
+                    message.StatusId,
+                    message.TotalPages)
+                .ConfigureAwait(false);
+
+            var totalDownlinesSummarys =
+                message.TotalPages.Equals(0) ?
+               await accountInfoService
+               .GetTotalDownlinesSummary(message.SearchAccountId, message.RoleId)
+               .ConfigureAwait(false) :
+               Enumerable.Empty<TotalDownlinesSummary>();
+
+            return new DownlineListViewModel(downlineList, totalDownlinesSummarys);
+        }
 
         public async Task<CustomererStatusViewModel> Handle(CustomerStatusQuery message)
             => new CustomererStatusViewModel(message, await accountInfoService.GetCustomerStatus(message.SearchAccountId).ConfigureAwait(false));

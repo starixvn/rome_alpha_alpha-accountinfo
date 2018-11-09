@@ -1,6 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Models
 {
     using System.Collections.Generic;
+    using Alpha.Products.Core.Shared;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
 
     public class DownlineDto
     {
@@ -18,57 +21,48 @@
     {
         public DownlineListModel() { }
 
-        public DownlineListModel(
-         IEnumerable<DownlineDto> downlines,
-         int totalAgActive,
-         int totalAgClosed,
-         int totalAgSuspended,
-         int totalMemActive,
-         int totalMemClosed,
-         int totalMemSuspended,
-         int totalPages)
+        public DownlineListModel(IEnumerable<DownlineDto> downlines, int totalPages)
         {
             Downlines = downlines;
-
-            TotalAgActive = totalAgActive;
-            TotalAgClosed = totalAgClosed;
-            TotalAgSuspended = totalAgSuspended;
-
-            TotalMemActive = totalMemActive;
-            TotalMemClosed = totalMemClosed;
-            TotalMemSuspended = totalMemSuspended;
-
             TotalPages = totalPages;
         }
 
-        public DownlineListModel(
-         IEnumerable<DownlineDto> downlines,
-         DownlineListModel model)
-            : this(
-                  downlines, 
-                  model.TotalAgActive, 
-                  model.TotalAgClosed, 
-                  model.TotalAgSuspended, 
-                  model.TotalMemActive, 
-                  model.TotalMemClosed, 
-                  model.TotalMemSuspended,
-                  model.TotalPages)
+        public DownlineListModel(IEnumerable<DownlineDto> downlines, DownlineListModel model)
+            : this(downlines, model.TotalPages)
         { }
 
         public IEnumerable<DownlineDto> Downlines { get; private set; }
 
-        public int TotalAgActive { get; private set; }
-
-        public int TotalAgClosed { get; private set; }
-
-        public int TotalAgSuspended { get; private set; }
-
-        public int TotalMemActive { get; private set; }
-
-        public int TotalMemClosed { get; private set; }
-
-        public int TotalMemSuspended { get; private set; }
-
         public int TotalPages { get; private set; }
+    }
+
+    public class TotalDownlinesSummary
+    {
+        private readonly Dictionary<UserLevel, string> LevelNames
+         = new Dictionary<UserLevel, string>
+         {
+                { UserLevel.Agent, Resources.Agents},
+                { UserLevel.Member,  Resources.Members}
+         };
+
+        public TotalDownlinesSummary() { }
+
+        public TotalDownlinesSummary(int totalActive, int totalClosed, int totalSuspended, byte roleId)
+        {
+            TotalActive = totalActive;
+            TotalClosed = totalClosed;
+            TotalSuspended = totalSuspended;
+            RoleId = roleId;
+        }
+
+        public int TotalActive { get; private set; }
+
+        public int TotalClosed { get; private set; }
+
+        public int TotalSuspended { get; private set; }
+
+        public byte RoleId { get; private set; }
+
+        public string LevelName => LevelNames[Enumeration.FromValue<UserLevel>(RoleId)];
     }
 }

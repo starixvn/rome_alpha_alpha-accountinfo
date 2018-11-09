@@ -177,7 +177,7 @@
         {
             var model = Enumerable.Empty<OnlineUserModel>();
             dynamicRepository
-                .FetchAsync<OnlineUserModel>(Arg.Any<SelectDownlineListCriteria>())
+                .FetchAsync<OnlineUserModel>(Arg.Any<SelectDownlineListByStatusCriteria>())
                 .Returns(Task.FromResult(model));
 
             var actualModel = accountInfoService
@@ -193,11 +193,11 @@
         {
             var model = fixture.Create<DownlineListModel>();
             accountInfoDataAccess
-                .GetDownlineList(Arg.Any<SelectDownlineListCriteria>())
+                .GetDownlineList(Arg.Any<SelectDownlineListByStatusCriteria>())
                 .Returns(Task.FromResult(model));
 
             var actualModel = accountInfoService
-                .GetDownlineList(1, 1)
+                .GetDownlineList(1, 1, 2, 1, 1)
                 .GetAwaiter()
                 .GetResult();
 

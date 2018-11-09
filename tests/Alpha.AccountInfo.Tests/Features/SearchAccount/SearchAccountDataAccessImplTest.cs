@@ -47,7 +47,7 @@
         public void GetDownlineList_HasData_ReturnsDownlineListModel()
         {
             // Arrange
-            var criteria = new SelectDownlineListCriteria(1, 1);
+            var criteria = new SelectDownlineListByStatusCriteria(1, 1, 2, 1, 1);
 
             objectDb
                 .QueryMultipleAsync(Arg.Any<Hashtable>())
@@ -58,15 +58,7 @@
                        new DownlineDto("Username1"),
                        new DownlineDto("Username2")
                     };
-            var expectedData = new DownlineListModel(
-                    downlines,
-                    totalAgActive: 1,
-                    totalAgClosed: 2,
-                    totalAgSuspended: 3,
-                    totalMemActive: 4,
-                    totalMemClosed: 5,
-                    totalMemSuspended: 6,
-                    totalPages: 1);
+            var expectedData = new DownlineListModel(downlines, totalPages: 1);
 
             multiResultReader
                 .ReadAsync<DownlineDto>()
