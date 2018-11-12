@@ -65,7 +65,7 @@ export default class AccountInfo extends React.Component {
     }
 
     resetOnlineListData() {
-        this.setState(() => ({ onlineListData: null}));
+        this.setState(() => ({ onlineListData: null }));
     }
 
     resetDownlineListData() {
@@ -158,9 +158,14 @@ export default class AccountInfo extends React.Component {
                 .then((responeData) => {
                     responeData.PageIndex = pageIndex;
                     responeData.StatusId = statusId;
-                    responeData.DownlineList = (downlineListData === null || reloadByStatus)?
+                 
+                    responeData.DownlineList = (downlineListData === null || reloadByStatus) ?
                         responeData.DownlineList :
                         [...downlineListData.DownlineList, ...responeData.DownlineList];
+
+                    if (pageIndex > 1) {
+                        responeData.TotalDownlines = downlineListData.TotalDownlines;
+                    }
 
                     this.setState({
                         downlineListData: responeData,
@@ -183,6 +188,24 @@ export default class AccountInfo extends React.Component {
     handleOpenIPInfo(e) {
         let IPInfoPath = `${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`;
         window.top.ageWnd.open(IPInfoPath);
+    }
+
+    buildNoInfoContent() {
+        const { resources } = this.state;
+        return <div className="no-information">{resources.NoInfo}</div>;
+    }
+
+    buildContentBaseOnCustomerInfo(content) {
+        const { customerInfo } = this.state;
+        return customerInfo === null ? this.buildNoInfoContent() : content;
+    }
+
+    buildContent(data, content) {
+        return data === null ?
+            null :
+            data.length === 0 ?
+                this.buildNoInfoContent()
+                : content;
     }
 
     buildContentItems() {
@@ -210,29 +233,20 @@ export default class AccountInfo extends React.Component {
             username = customerInfo.UserName;
         }
 
-        const noInfoContent = <div className="no-information">{resources.NoInfo}</div>;
-        let buildContent = (data, content) => data === null ? noInfoContent : content;
-
         let contentItems = {
             contactInfoProps: {
                 iconClass: "icon-contact-info",
                 featureText: resources.ShowContactInfo,
                 pathname: "/contactInfo",
                 visible: true,
-                children: buildContent(
-                    customerInfo,
-                    <ContactInfo {...{ resources, customerInfo }} />
-                )
+                children: this.buildContentBaseOnCustomerInfo(<ContactInfo {...{ resources, customerInfo }} />)
             },
             balanceInfoProps: {
                 iconClass: "icon-balance",
                 featureText: resources.BalanceInfo,
                 pathname: "/balanceInfo",
                 visible: true,
-                children: buildContent(
-                    customerInfo,
-                    <BalanceInfo {...{ resources, mobileView, customerInfo, fetchCustomerInfoFromServer }} />
-                )
+                children: this.buildContentBaseOnCustomerInfo(<BalanceInfo {...{ resources, mobileView, customerInfo, fetchCustomerInfoFromServer }} />)
             },
             downlineListProps: {
                 iconClass: "icon-downline",
@@ -240,19 +254,17 @@ export default class AccountInfo extends React.Component {
                 pathname: "/downlineList",
                 visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
                 fetchDataFromServer: fetchDownlineListFromServer,
-                children: buildContent(
-                    downlineListData,
+                children: downlineListData === null ? null :
                     <DownlineList
                         {...{
                             resources,
                             downlineListData,
                             mobileView,
-                            searchAccountRoleId,
+                            showTotalIndirectDownlines: searchAccountRoleId === UserLevel.Master,
                             fetchDownlineListFromServer,
                             fetchCustomerInfoFromServer
                         }}
                     />
-                )
             },
             statusProps: {
                 iconClass: "icon-status",
@@ -260,7 +272,7 @@ export default class AccountInfo extends React.Component {
                 pathname: "/status",
                 visible: true,
                 fetchDataFromServer: fetchCustomerAllStatusFromServer,
-                children: buildContent(
+                children: this.buildContent(
                     statusData,
                     <Status
                         {...{
@@ -271,8 +283,7 @@ export default class AccountInfo extends React.Component {
                             fetchCustomerAllStatusFromServer,
                             fetchCustomerInfoFromServer
                         }}
-                    />
-                )
+                    />)
             },
             settingProps: {
                 iconClass: "icon-settings",
@@ -280,18 +291,16 @@ export default class AccountInfo extends React.Component {
                 pathname: "/setting",
                 visible: true,
                 fetchDataFromServer: fetchCustomerAllStatusFromServer,
-                children: buildContent(
+                children: this.buildContent(
                     settingData,
-                    <Settings {...{ mobileView, settingData }} />)
+                    <Settings {...{ resources, mobileView, settingData }} />)
             },
             loginInfoProps: {
                 iconClass: "icon-login",
                 featureText: resources.LoginInfo,
                 pathname: "/loginInfo",
                 visible: actorRoleId !== UserLevel.Super && searchAccountRoleId !== UserLevel.Agent,
-                children: buildContent(
-                    loginInfo,
-                    <LoginInfo {...{ resources, loginInfo, handleOpenIPInfo }} />)
+                children: this.buildContentBaseOnCustomerInfo(<LoginInfo {...{ resources, loginInfo, handleOpenIPInfo }} />)
             },
             onlineListProps: {
                 iconClass: "icon-onlinelist",
@@ -299,9 +308,8 @@ export default class AccountInfo extends React.Component {
                 pathname: "/onlineList",
                 visible: true,
                 fetchDataFromServer: fetchOnlineListFromServer,
-                children: buildContent(
-                    onlineListData,
-                    <OnlineList {...{ resources, onlineListData, handleOpenIPInfo }} />)
+                children: onlineListData === null ? null :
+                    <OnlineList {...{ resources, onlineListData, handleOpenIPInfo }} />
             }
         };
 

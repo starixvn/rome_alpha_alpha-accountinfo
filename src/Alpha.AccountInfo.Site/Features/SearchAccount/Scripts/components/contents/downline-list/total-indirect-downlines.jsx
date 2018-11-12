@@ -18,47 +18,42 @@ export const DownlineStatusTooltip = ({ title, classNames, value }) => {
     );
 }
 
-const TotalDownlines = ({
-    resources,
-    levelName,
-    totalActive,
-    totalClosed,
-    totalSuspended
-}) => {
+const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
     const activeClass = 'status-active', closedClass = 'status-closed', suspendedClass = 'status-suspended';
+    const { TotalActive, TotalClosed, TotalSuspended, LevelName } = totalIndirectDownline;
 
     const statusTooltips = [
         {
             title: resources.Active,
             classNames: activeClass,
-            value: totalActive
+            value: TotalActive
         },
         {
             title: resources.ConfirmClosedViewModelText,
             classNames: closedClass,
-            value: totalClosed
+            value: TotalClosed
         },
         {
             title: resources.ConfirmSuspendedViewModelText,
             classNames: suspendedClass,
-            value: totalSuspended
+            value: TotalSuspended
         }
     ];
 
     let statusContents = [
         {
             classNames: activeClass,
-            value: totalActive,
+            value: TotalActive,
             slash: '/'
         },
         {
             classNames: closedClass,
-            value: totalClosed,
+            value: TotalClosed,
             slash: '/'
         },
         {
             classNames: suspendedClass,
-            value: totalSuspended,
+            value: TotalSuspended,
             slash: ''
         }
     ];
@@ -86,7 +81,7 @@ const TotalDownlines = ({
 
     return (
         <div className="col-xs-12 row-info">
-            <div className="col-xs-6 px-0">{levelName} (A/C/S)</div>
+            <div className="col-xs-6 px-0">{LevelName} (A/C/S)</div>
             <div className="col-xs-6 col-right px-0">
                 <div className="pull-right pointer">
                     <Tooltip {...tooltipProps}>
@@ -94,8 +89,9 @@ const TotalDownlines = ({
                     </Tooltip>
                 </div>
             </div>
+            <div className="col-xs-12"><hr /> </div>
         </div>
     );
 }
 
-export default TotalDownlines; 
+export default TotalIndirectDownlines; 

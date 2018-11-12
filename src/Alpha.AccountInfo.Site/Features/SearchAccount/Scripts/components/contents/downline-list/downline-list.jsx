@@ -1,30 +1,26 @@
 ﻿import React from 'react';
-import TotalDownlines from './total-downlines';
 import { UserLevel } from '../../../constants';
+import TotalIndirectDownlines from './total-indirect-downlines';
+import TotalDirectDownlines from './total-direct-downlines';
 import DownlineListContent from './downline-list-content';
-import TotalDownlinesSummary from './total-downlines-summary';
 
 const DownlineList = ({
     resources,
     downlineListData,
+    showTotalIndirectDownlines,
     mobileView,
-    searchAccountRoleId,
     fetchDownlineListFromServer,
     fetchCustomerInfoFromServer
 }) => {
-    const totalDownlineByLevel = downlineListData.TotalDownlines;
+    const totalDirectDownlines = downlineListData.TotalDownlines[0];
 
     return (
-        <div>
-            <div id="total-downlines">
-                {
-                    totalDownlineByLevel.map((totalDownline, index) => {
-                        return <TotalDownlines {... { resources, totalDownline, key: index }} />;
-                    })
-                }
-                <div className="col-xs-12 row-info"><hr /> </div>
-                <TotalDownlinesSummary {...{ totalDownline: totalDownlineByLevel[0], fetchDownlineListFromServer }} />
-            </div>
+        <div id="total-downlines">
+            {
+                showTotalIndirectDownlines && 
+                <TotalIndirectDownlines {... { resources, totalIndirectDownline: downlineListData.TotalDownlines[1] }} />
+            }
+            <TotalDirectDownlines {...{ totalDirectDownlines, fetchDownlineListFromServer }} />
             <DownlineListContent
                 {...{
                     resources,
@@ -35,7 +31,7 @@ const DownlineList = ({
                     pageIndex: downlineListData.PageIndex,
                     totalPages: downlineListData.TotalPages,
                     statusId: downlineListData.StatusId,
-                    excludedRows: totalDownlineByLevel.length + 1
+                    excludedRows: showTotalIndirectDownlines ? 3 : 1
                 }}
             />
         </div>

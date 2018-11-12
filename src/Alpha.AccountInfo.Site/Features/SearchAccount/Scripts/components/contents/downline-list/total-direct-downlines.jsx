@@ -4,10 +4,11 @@ const ACTIVE_ID = 1;
 const CLOSED_ID = 2;
 const SUSPENDED_ID = 3;
 
-export default class TotalDownlinesSummary extends React.Component {
+export default class TotalDirectDownlines extends React.Component {
     constructor(props) {
         super(props);
-        const { totalDownline } = this.props;
+        const { totalDirectDownlines } = this.props;
+        const { TotalActive, TotalClosed, TotalSuspended } = totalDirectDownlines;
 
         this.state = {
             checkedStatusId: ACTIVE_ID,
@@ -16,19 +17,19 @@ export default class TotalDownlinesSummary extends React.Component {
                     statusId: ACTIVE_ID,
                     className: 'status-active',
                     title: 'A',
-                    value: totalDownline.TotalActive
+                    value: TotalActive
                 },
                 {
                     statusId: CLOSED_ID,
                     className: 'status-closed',
                     title: 'C',
-                    value: totalDownline.TotalClosed
+                    value: TotalClosed
                 },
                 {
                     statusId: SUSPENDED_ID,
                     className: 'status-suspended',
                     title: 'S',
-                    value: totalDownline.TotalSuspended
+                    value: TotalSuspended
                 }
             ]
         };

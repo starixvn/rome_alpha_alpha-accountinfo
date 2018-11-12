@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { InfiniteLoader, AutoSizer, List } from 'react-virtualized';
+import { InfiniteLoader, AutoSizer, List, WindowScroller } from 'react-virtualized';
 
 const STATUS_LOADING = 1;
 const STATUS_LOADED = 2;
@@ -18,7 +18,8 @@ export default class DownlineListContent extends React.PureComponent {
             list: this.chunkDownlineList([...dowlineList]),
             totalPages: totalPages,
             pageIndex: pageIndex,
-            statusId: statusId
+            statusId: statusId,
+            scrollToIndex: -1,
         };
 
         this.timeoutIdMap = {};
@@ -28,6 +29,7 @@ export default class DownlineListContent extends React.PureComponent {
         this.loadMoreRows = this.loadMoreRows.bind(this);
         this.rowRenderer = this.rowRenderer.bind(this);
     }
+    _windowScroller: ?WindowScroller;
 
     componentWillReceiveProps(nextProps) {
         const { dowlineList, pageIndex, statusId, totalPages } = nextProps;
@@ -57,7 +59,7 @@ export default class DownlineListContent extends React.PureComponent {
     }
 
     render() {
-        const { list } = this.state;
+        const { list, statusId } = this.state;
         const { mobileView, resources } = this.props;
 
         if (list.length === 0) {
@@ -65,7 +67,7 @@ export default class DownlineListContent extends React.PureComponent {
         }
 
         return (
-            <div className={`${mobileView ? '' : 'customer-list'}`}>
+            <div className={`${mobileView ? '' : 'customer-list'}`} key={statusId}>
                 <InfiniteLoader
                     isRowLoaded={this.isRowLoaded}
                     loadMoreRows={this.loadMoreRows}
