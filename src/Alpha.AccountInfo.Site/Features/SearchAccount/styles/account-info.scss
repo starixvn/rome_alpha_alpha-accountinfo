@@ -583,3 +583,20 @@ hr {
 .col-xs-6 {
     width: 50% !important;
 }
+
+.WindowScrollerWrapper {
+    flex: 1 1 auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.rowScrolling::after {
+    content: ': scrolling';
+    font-size: 0.65rem;
+    color: #aaa;
+}

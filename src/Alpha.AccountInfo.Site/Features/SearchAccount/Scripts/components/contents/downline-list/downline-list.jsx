@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { UserLevel } from '../../../constants';
 import TotalIndirectDownlines from './total-indirect-downlines';
 import TotalDirectDownlines from './total-direct-downlines';
 import DownlineListContent from './downline-list-content';

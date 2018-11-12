@@ -39,6 +39,7 @@ export default class AccountInfo extends React.Component {
             customerInfo: null,
             statusData: null,
             settingData: null,
+            downlineListPageIndex: 1,
             downlineListData: null,
             onlineListData: null
         };
@@ -57,21 +58,6 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    resetSettingData() {
-        this.setState(() => ({
-            statusData: null,
-            settingData: null
-        }));
-    }
-
-    resetOnlineListData() {
-        this.setState(() => ({ onlineListData: null }));
-    }
-
-    resetDownlineListData() {
-        this.setState(() => ({ downlineListData: null }));
-    }
-
     fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
         $.blockUI();
         let self = this;
@@ -82,23 +68,14 @@ export default class AccountInfo extends React.Component {
                     custId: responeData !== null ? responeData.CustId : 0,
                     customerInfo: responeData,
                     searchCounter: prevState.searchCounter + 1,
-                    redirectToBalanceInfoPage: redirectToBalanceInfoPage
+                    redirectToBalanceInfoPage: redirectToBalanceInfoPage,
+                    onlineListData: responeData !== null ? null : prevState.onlineListData,
+                    downlineListData: responeData !== null ? null : prevState.downlineListData,
+                    statusData: responeData !== null && resetSetting ? null : prevState.statusData,
+                    settingData: responeData !== null && resetSetting ? null : prevState.settingData
                 }));
 
-                if (responeData !== null) {
-                    localStorage.setItem('lastSearchUsername', username);
-
-                    self.resetDownlineListData();
-                    self.resetOnlineListData();
-
-                    if (resetSetting) {
-                        self.resetSettingData();
-                    }
-                }
-                else {
-                    localStorage.removeItem('lastSearchUsername');
-                }
-
+                responeData !== null ? localStorage.setItem('lastSearchUsername', username) : localStorage.removeItem('lastSearchUsername');
                 $.unblockUI();
             });
     }
@@ -158,7 +135,7 @@ export default class AccountInfo extends React.Component {
                 .then((responeData) => {
                     responeData.PageIndex = pageIndex;
                     responeData.StatusId = statusId;
-                 
+
                     responeData.DownlineList = (downlineListData === null || reloadByStatus) ?
                         responeData.DownlineList :
                         [...downlineListData.DownlineList, ...responeData.DownlineList];
@@ -263,7 +240,8 @@ export default class AccountInfo extends React.Component {
                             showTotalIndirectDownlines: searchAccountRoleId === UserLevel.Master,
                             fetchDownlineListFromServer,
                             fetchCustomerInfoFromServer
-                        }}
+                        }
+                        }
                     />
             },
             statusProps: {

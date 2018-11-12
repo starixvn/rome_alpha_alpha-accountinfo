@@ -360,6 +360,7 @@
     <Content Include="Features\SearchAccount\Scripts\components\contents\balance-info\balance-info.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\customer-info\upline-info.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\customer-info\search-account-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\downline-list\downline-list-content - Copy.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\downline-list\total-direct-downlines.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\downline-list\downline-list-content.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\status\product-level-status.jsx" />
@@ -374,7 +375,7 @@
     <Content Include="Features\SearchAccount\Scripts\components\contents\online-list.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\settings.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\customer-info\customer-info.jsx" />
-    <Content Include="Features\SearchAccount\Scripts\components\contents\downline-list\total-downlines.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\components\contents\downline-list\total-indirect-downlines.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\searching.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\status\status.jsx" />
     <Content Include="Features\SearchAccount\Scripts\constants.jsx" />

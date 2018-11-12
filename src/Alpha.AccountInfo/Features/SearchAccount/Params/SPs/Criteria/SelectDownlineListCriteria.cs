@@ -4,7 +4,7 @@ namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria
 {
     public class SelectDownlineListByStatusCriteria : AccountInfoCriteriaBase
     {
-        private const int PAGESIZE = 20;
+        private const int PAGESIZE = 10;
 
         public SelectDownlineListByStatusCriteria(
             int searchAccountId, 
