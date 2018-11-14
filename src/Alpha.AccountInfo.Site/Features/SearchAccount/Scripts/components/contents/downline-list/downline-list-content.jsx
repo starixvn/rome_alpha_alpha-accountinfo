@@ -1,12 +1,13 @@
 ﻿import * as React from 'react';
 import { InfiniteLoader, AutoSizer, List, WindowScroller } from 'react-virtualized';
+import { Scale } from '../../../helpers/accountinfo-helper';
 
 const STATUS_LOADING = 1;
 const STATUS_LOADED = 2;
 const HEIGHT_DESKTOP = 240;
 const ROW_HEIGHT_DESKTOP = 30;
 const MAX_DOM_ROWS_DESKTOP = HEIGHT_DESKTOP / ROW_HEIGHT_DESKTOP;
-const ROW_HEIGHT_MOBILE = ROW_HEIGHT_DESKTOP / 0.7;
+const ROW_HEIGHT_MOBILE = ROW_HEIGHT_DESKTOP / Scale;
 const COLUMNS = 2;
 
 export default class DownlineListContent extends React.PureComponent {
@@ -68,7 +69,7 @@ export default class DownlineListContent extends React.PureComponent {
             delete this.timeoutIdMap[timeoutId];
             this.setLoadedStatus(startIndex, stopIndex, STATUS_LOADED);
             promiseResolver();
-        }, 100 + Math.round(Math.random() * 2000));
+        }, 100 + Math.round(Math.random() * 50));
 
         this.timeoutIdMap[timeoutId] = true;
 

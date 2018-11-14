@@ -91,13 +91,17 @@
         {
             var message = new DownlineListQuery(viewer)
             {
-                SearchAccountId = 1
+                SearchAccountId = 1,
+                PageIndex = 1,
+                RoleId = 2,
+                StatusId = 1,
+                TotalPages = 0
             };
 
-            var model = new DownlineListModel(Enumerable.Empty<DownlineDto>(),totalPages: 1);
+            var model = new DownlineListModel(Enumerable.Empty<DownlineDto>(),totalPages: 0);
             var expectedViewModel = new DownlineListViewModel(model, Enumerable.Empty<TotalDownlinesSummary>());
 
-            accountInfoService.GetDownlineList(1, 1, 2, 1, 1).Returns(Task.FromResult(model));
+            accountInfoService.GetDownlineList(1, 1, 2, 1, 0).Returns(Task.FromResult(model));
 
             var actualViewModel = accountInfoHandler
                 .Handle(message)

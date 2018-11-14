@@ -10,7 +10,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             var criteria = new SelectDownlineListByStatusCriteria(1, 1, 2, 1, 1);
-            var expectedSettingKey = "Acc_CustomerSelList";
+            var expectedSettingKey = "Age_CustomerSelListByStatus";
 
             var actualSettingKey = criteria.GetSettingKey();
 

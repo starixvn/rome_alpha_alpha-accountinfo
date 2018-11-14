@@ -1,4 +1,5 @@
-export const mobileScale = (value) => value / 0.7;
+export const Scale = 0.7
+export const mobileScale = (value) => value / Scale;
 
 export const resizePopupOnMobile = () => {
     let modalElement = window.top.document.querySelector('[id^="page-popup-"]');
