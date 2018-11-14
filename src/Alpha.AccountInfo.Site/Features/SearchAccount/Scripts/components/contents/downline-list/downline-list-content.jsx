@@ -6,25 +6,18 @@ const STATUS_LOADED = 2;
 const HEIGHT_DESKTOP = 240;
 const ROW_HEIGHT_DESKTOP = 30;
 const MAX_DOM_ROWS_DESKTOP = HEIGHT_DESKTOP / ROW_HEIGHT_DESKTOP;
-const ROW_HEIGHT_MOBILE = 40;
-const PAGE_SIZE = 10;
+const ROW_HEIGHT_MOBILE = ROW_HEIGHT_DESKTOP / 0.7;
 const COLUMNS = 2;
-const PAGE_ROWS = PAGE_SIZE / COLUMNS; 
 
 export default class DownlineListContent extends React.PureComponent {
     constructor(props) {
         super(props);
         const { dowlineList, totalPages, pageIndex, statusId } = this.props;
-        this.state = {
-            loadedRowsMap: {},
-            list: this.chunkDownlineList([...dowlineList]),
-            totalPages: totalPages,
-            pageIndex: pageIndex,
-            statusId: statusId
-        };
+        this.assignState(dowlineList, pageIndex, statusId, totalPages);
 
+        this.currentPageIndex = 0; // prevent call get same server url > 1
         this.timeoutIdMap = {};
-        this.currentPageIndex = 0;
+
         this.isRowLoaded = this.isRowLoaded.bind(this);
         this.loadMoreRows = this.loadMoreRows.bind(this);
         this.rowRenderer = this.rowRenderer.bind(this);
@@ -33,14 +26,18 @@ export default class DownlineListContent extends React.PureComponent {
     componentWillReceiveProps(nextProps) {
         const { dowlineList, pageIndex, statusId, totalPages } = nextProps;
         if (this.props.dowlineList !== dowlineList) {
-            this.setState({
-                list: this.chunkDownlineList([...dowlineList]),
-                pageIndex: pageIndex,
-                totalPages: totalPages,
-                statusId: statusId,
-                loadedRowsMap: {}
-            });
+            this.assignState(dowlineList, pageIndex, statusId, totalPages);
         }
+    }
+
+    assignState(dowlineList, pageIndex, statusId, totalPages) {
+        this.state = {
+            loadedRowsMap: {},
+            list: this.chunkDownlineList([...dowlineList]),
+            totalPages: totalPages,
+            pageIndex: pageIndex,
+            statusId: statusId
+        };
     }
 
     chunkDownlineList(downlineList) {
@@ -55,11 +52,6 @@ export default class DownlineListContent extends React.PureComponent {
         Object.keys(this.timeoutIdMap).forEach(timeoutId => {
             clearTimeout(timeoutId);
         });
-    }
-
-    getHeightDesktop() {
-        let length = this.state.list.length;
-        return (length > MAX_DOM_ROWS_DESKTOP ? MAX_DOM_ROWS_DESKTOP : length) * ROW_HEIGHT_DESKTOP;
     }
 
     isRowLoaded({ index }) {
@@ -104,7 +96,7 @@ export default class DownlineListContent extends React.PureComponent {
 
     rowRenderer({ index, key, style }) {
         const { loadedRowsMap, list } = this.state;
-        const { fetchCustomerInfoFromServer} = this.props;
+        const { fetchCustomerInfoFromServer } = this.props;
 
         let content = list[index].map((item, itemIndex) => {
             let { Username } = item;
@@ -126,82 +118,70 @@ export default class DownlineListContent extends React.PureComponent {
         );
     }
 
-    buildInfiniteLoaderUseDivScroller() {
-        const { list, statusId } = this.state;
+    buildInfiniteLoader(extraProps, mobileView = false) {
+        let length = this.state.list.length;
 
         return (
-            <div className='col-xs-12 customer-list' key={statusId}>
-                <InfiniteLoader
-                    isRowLoaded={this.isRowLoaded}
-                    loadMoreRows={this.loadMoreRows}
-                    rowCount={list.length}>
-                    {({ onRowsRendered, registerChild }) => (
-                        <AutoSizer>
-                            {({ width }) => (
-                                <List
-                                    ref={registerChild}
-                                    {...{
-                                        onRowsRendered,
-                                        width,
-                                        height: this.getHeightDesktop(),
-                                        rowCount: list.length,
-                                        rowHeight: ROW_HEIGHT_DESKTOP,
-                                        rowRenderer: this.rowRenderer,
-                                        className: 'col-xs-12'
-                                    }}
-                                />
-                            )}
-                        </AutoSizer>
-                    )}
-                </InfiniteLoader>
-            </div>
-        );
-    }
-
-    buildInfiniteLoaderUseWindowScroller() {
-        const { list, statusId } = this.state;
-
-        return (
-            <WindowScroller key={statusId}>
-                {({ height, isScrolling, scrollTop }) => (
-                    <InfiniteLoader
-                        isRowLoaded={this.isRowLoaded}
-                        loadMoreRows={this.loadMoreRows}
-                        rowCount={list.length}>
-                        {({ onRowsRendered, registerChild }) => (
-                            <AutoSizer>
-                                {({ width }) => (
-                                    <List
-                                        ref={registerChild}
-                                        autoHeight
-                                        {...{
-                                            onRowsRendered,
-                                            width,
-                                            height,
-                                            isScrolling,
-                                            scrollTop,
-                                            rowCount: list.length,
-                                            rowHeight: ROW_HEIGHT_MOBILE,
-                                            rowRenderer: this.rowRenderer
-                                        }}
-                                    />
-                                )}
-                            </AutoSizer>
+            <InfiniteLoader
+                isRowLoaded={this.isRowLoaded}
+                loadMoreRows={this.loadMoreRows}
+                rowCount={length}>
+                {({ onRowsRendered, registerChild }) => (
+                    <AutoSizer>
+                        {({ width }) => (
+                            <List
+                                ref={registerChild}
+                                autoHeight={mobileView}
+                                {...{
+                                    onRowsRendered,
+                                    width,
+                                    rowCount: length,
+                                    rowRenderer: this.rowRenderer
+                                }}
+                                {...extraProps}
+                            />
                         )}
-                    </InfiniteLoader>
+                    </AutoSizer>
                 )}
-            </WindowScroller>
+            </InfiniteLoader>
         );
     }
 
     render() {
-        const { list } = this.state;
+        const { list, statusId } = this.state;
         const { mobileView, resources } = this.props;
+        let length = list.length;
 
-        if (list.length === 0) {
+        if (length === 0) {
             return <div className="no-information">{resources.NoInfo}</div>;
         }
 
-        return mobileView ? this.buildInfiniteLoaderUseWindowScroller() : this.buildInfiniteLoaderUseDivScroller();
+        let infiniteLoaderDesktop =
+            <div className='col-xs-12 customer-list' key={statusId}>
+                {
+                    this.buildInfiniteLoader(
+                        {
+                            rowHeight: ROW_HEIGHT_DESKTOP,
+                            height: (length > MAX_DOM_ROWS_DESKTOP ? MAX_DOM_ROWS_DESKTOP : length) * ROW_HEIGHT_DESKTOP,
+                            className: 'col-xs-12'
+                        })
+                }
+            </div>;
+
+        let infiniteLoaderMobile =
+            <WindowScroller key={statusId}>
+                {({ height, isScrolling, scrollTop }) => {
+                    return this.buildInfiniteLoader(
+                        {
+                            rowHeight: ROW_HEIGHT_MOBILE,
+                            className: 'customer-list',
+                            height,
+                            isScrolling,
+                            scrollTop
+                        }, true);
+                }}
+            </WindowScroller>;
+
+        return mobileView ? infiniteLoaderMobile : infiniteLoaderDesktop;
     }
 }
