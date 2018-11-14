@@ -61,9 +61,7 @@
         public bool StatusValue { get; }
 
         public override string GetSettingKey()
-            => CustomerStatusSettingKeys.ContainsKey(StatusName)
-            ? CustomerStatusSettingKeys[StatusName]
-            : throw new ArgumentNullException(StatusName);
+            => CustomerStatusSettingKeys[StatusName];
 
         public override Hashtable GetSpParams()
         {
