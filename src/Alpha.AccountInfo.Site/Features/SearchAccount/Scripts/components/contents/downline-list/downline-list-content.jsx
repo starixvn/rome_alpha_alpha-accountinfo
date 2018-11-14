@@ -15,7 +15,7 @@ export default class DownlineListContent extends React.PureComponent {
         const { dowlineList, totalPages, pageIndex, statusId } = this.props;
         this.assignState(dowlineList, pageIndex, statusId, totalPages);
 
-        this.currentPageIndex = 0; // prevent call get same server url > 1
+        this.currentPageIndex = 0; // prevent call to get same pageIndex
         this.timeoutIdMap = {};
 
         this.isRowLoaded = this.isRowLoaded.bind(this);

@@ -3,10 +3,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry: { 
         "bundles/account-info/index": [
+            "babel-polyfill",
             "./Features/SearchAccount/Scripts/index.jsx",
             "./Features/SearchAccount/Styles/account-info.scss"
         ],
         "bundles/account-info/given-credit": [
+            "babel-polyfill",
             "./Features/SearchAccount/Scripts/given-credit.jsx",
             "./Features/SearchAccount/Styles/given-credit.scss"
         ],
