@@ -59,7 +59,7 @@
 
     beforeEach(() => {
         topWindow = {
-            closeEditSportStatusPopup: jasmine.any(Function)
+            ageWnd: jasmine.createSpyObj('ageWnd', ['close'])
         };
 
         productStatus = new ProductStatusPopup(jQueryFake, topWindow);
@@ -203,7 +203,6 @@
             jasmine.clock().install();
             setFixtures(template.normal);
             productStatus.cacheDOMElements();
-            spyOn(topWindow, "closeEditSportStatusPopup");
 
             let data: any = { Code: 0, Message: "Status updated successfully." };
 
@@ -212,15 +211,14 @@
             jasmine.clock().tick(3001);
 
             // assert
-            expect(productStatus.$msgServerResult.hasClass("msg msg-success")).toBeTruthy();
+            expect(productStatus.topWindow.realoadLeftPanel).toBeTruthy();
             expect(productStatus.$msgServerResult.html()).toBe("Status updated successfully.");
-            expect(productStatus.topWindow.closeEditSportStatusPopup).toHaveBeenCalled();
+            expect(productStatus.topWindow.ageWnd.close).toHaveBeenCalled();
             jasmine.clock().uninstall();
         });
 
         it("_Code != 0 -> Show error Message & Don't Reload Page", () => {
             // arrange
-            spyOn(topWindow, "closeEditSportStatusPopup");
             setFixtures(template.normal);
             productStatus.cacheDOMElements();
 
@@ -232,12 +230,11 @@
             // assert
             expect(productStatus.$msgServerResult.hasClass("msg msg-error")).toBeTruthy();
             expect(productStatus.$msgServerResult.html()).toBe("You are not authorized on this function.");
-            expect(productStatus.topWindow.closeEditSportStatusPopup).not.toHaveBeenCalled();
+            expect(productStatus.topWindow.ageWnd.close).not.toHaveBeenCalled();
         });
 
         it("_ErrCode != 0 -> Show error Message 'Request Verification Token does not exist.'", () => {
             // arrange
-            spyOn(topWindow, "closeEditSportStatusPopup");
             setFixtures(template.normal);
             productStatus.cacheDOMElements();
 
@@ -249,7 +246,7 @@
             // assert
             expect(productStatus.$msgServerResult.hasClass("msg msg-error")).toBeTruthy();
             expect(productStatus.$msgServerResult.html()).toBe("Request Verification Token does not exist. Please refresh your page. Thanks.");
-            expect(productStatus.topWindow.closeEditSportStatusPopup).not.toHaveBeenCalled();
+            expect(productStatus.topWindow.ageWnd.close).not.toHaveBeenCalled();
         });
     });
 
