@@ -54,5 +54,37 @@
 
             Assert.False(viewModel.Disabled);
         }
+
+        [Theory]
+        [InlineData(true, 2, "InCaseClosedDownlinesMessage")]
+        [InlineData(true, 3, "InCaseClosedDownlinesMessage")]
+        [InlineData(false, 2, "InCaseChangeClosedStatusMessage")]
+        [InlineData(false, 3, "InCaseChangeClosedStatusMessage")]
+        [InlineData(true, 1, "InCaseChangeClosedStatusMessage")]
+        [InlineData(false, 1, "InCaseChangeClosedStatusMessage")]
+        public void Return_CorrectSuffixMessage_By_Checked(bool closed, byte searchAccountRoleId, string expectedSuffixMessages)
+        {
+            var request = RequestHelper.CreateRequest(4, searchAccountRoleId);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.IsClosed", closed);
+
+            var viewModel = new ConfirmClosedViewModel(request);
+
+            Assert.Equal(expectedSuffixMessages, viewModel.SuffixMessage);
+        }
+
+        [Theory]
+        [InlineData(true, false)]
+        [InlineData(false, true)]
+        public void Return_CorrectStatusValue_By_Checked(bool closed, bool expectedStatusValue)
+        {
+            var request = RequestHelper.CreateRequest(4, 3);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.IsClosed", closed);
+
+            var viewModel = new ConfirmClosedViewModel(request);
+
+            Assert.Equal(expectedStatusValue, viewModel.StatusValue);
+        }
     }
 }

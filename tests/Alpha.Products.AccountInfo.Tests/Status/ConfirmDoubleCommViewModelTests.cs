@@ -70,5 +70,54 @@
 
             Assert.Equal(expectedValue, viewModel.Checked);
         }
+
+        [Theory]
+        [InlineData(true, 1, "InCaseDisabledMemberMessage")]
+        [InlineData(false, 1, "InCaseEnabledMemberMessage")]
+        [InlineData(true, 2, "InCaseDisabledMasterOrAgentMessage")]
+        [InlineData(false, 2, "InCaseEnableMasterOrAgentMessage")]
+        [InlineData(true, 3, "InCaseDisabledMasterOrAgentMessage")]
+        [InlineData(false, 3, "InCaseEnableMasterOrAgentMessage")]
+        public void Return_CorrectSuffixMessage_By_Checked(bool isAllowedDoubleComm, byte searchAccountRoleId, string expectedSuffixMessages)
+        {
+            var request = RequestHelper.CreateRequest(4, searchAccountRoleId);
+            request.AddData("SearchAccount.IsAllowedDoubleComm", isAllowedDoubleComm);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.Upline.IsAllowedDoubleComm", true);
+
+            var viewModel = new ConfirmDoubleCommViewModel(request);
+
+
+            Assert.Equal(expectedSuffixMessages, viewModel.SuffixMessage);
+        }
+
+        [Theory]
+        [InlineData(true, false)]
+        [InlineData(false, true)]
+        public void Return_CorrectStatusValue_By_Checked(bool isAllowedDoubleComm, bool expectedStatusValue)
+        {
+            var request = RequestHelper.CreateRequest(4, 3);
+            request.AddData("SearchAccount.IsAllowedDoubleComm", isAllowedDoubleComm);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.Upline.IsAllowedDoubleComm", true);
+
+            var viewModel = new ConfirmDoubleCommViewModel(request);
+
+            Assert.Equal(expectedStatusValue, viewModel.StatusValue);
+        }
+
+        [Fact]
+        public void Always_Return_Correct_SyncedCasino3rd_StatusName()
+        {
+            var request = RequestHelper.CreateRequest(4, 3);
+            request.AddData("SearchAccount.IsAllowedDoubleComm", true);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.Upline.IsAllowedDoubleComm", true);
+
+            var viewModel = new ConfirmDoubleCommViewModel(request);
+
+            Assert.Equal("DoubleCommLosing", viewModel.StatusName);
+            Assert.Equal(false, viewModel.SyncedCasino3rd);
+        }
     }
 }

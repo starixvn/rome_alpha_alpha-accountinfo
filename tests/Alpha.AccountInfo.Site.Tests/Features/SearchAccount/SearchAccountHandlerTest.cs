@@ -93,15 +93,34 @@
             {
                 SearchAccountId = 1,
                 PageIndex = 1,
-                RoleId = 2,
+                RoleId = 3,
                 StatusId = 1,
                 TotalPages = 0
             };
 
-            var model = new DownlineListModel(Enumerable.Empty<DownlineDto>(),totalPages: 0);
-            var expectedViewModel = new DownlineListViewModel(model, Enumerable.Empty<TotalDownlinesSummary>());
+            var downlineList = new List<DownlineDto>
+            {
+                new DownlineDto("Supertest1")
+            };
 
-            accountInfoService.GetDownlineList(1, 1, 2, 1, 0).Returns(Task.FromResult(model));
+            var totalDownlines = new List<TotalDownlinesSummary>
+            {
+                new TotalDownlinesSummary(2, 1, 0, 2)
+            };
+
+            var model = new DownlineListModel(downlineList, totalPages: 0);
+            var expectedViewModel = new DownlineListViewModel(model, totalDownlines);
+
+            accountInfoService.GetDownlineList(
+                Arg.Any<int>(), 
+                Arg.Any<int>(), 
+                Arg.Any<byte>(),
+                Arg.Any<byte>(),
+                Arg.Any<int>()).Returns(model);
+
+            accountInfoService
+             .GetTotalDownlinesSummary(Arg.Any<int>(), Arg.Any<byte>())
+             .Returns(totalDownlines);
 
             var actualViewModel = accountInfoHandler
                 .Handle(message)
@@ -109,6 +128,23 @@
                 .GetResult();
 
             AssertExtension.Equal(actualViewModel, expectedViewModel);
+        }
+
+        [Fact]
+        public void HandleDownlineListQuery_TotalPagesGreaterThanZero_NotCallGetTotalDownlinesSummaryService()
+        {
+            var message = new DownlineListQuery(viewer)
+            {
+                SearchAccountId = 1,
+                PageIndex = 1,
+                RoleId = 2,
+                StatusId = 1,
+                TotalPages = 2
+            };
+
+            accountInfoHandler.Handle(message).GetAwaiter().GetResult();
+
+            accountInfoService.DidNotReceive().GetTotalDownlinesSummary(Arg.Any<int>(), Arg.Any<byte>());
         }
 
         [Fact]

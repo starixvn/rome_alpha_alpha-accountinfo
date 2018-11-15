@@ -45,5 +45,39 @@
 
             Assert.Equal(expectedValue, viewModel.Checked);
         }
+
+        [Theory]
+        [InlineData(true, 1, "InCaseUnsuspendedMemberMessage")]
+        [InlineData(false, 1, "InCaseSuspendedMemberMessage")]
+        [InlineData(true, 2, "InCaseUnsuspendedMasterOrAgentMessage")]
+        [InlineData(false, 2, "InCaseSuspendedMasterOrAgentMessage")]
+        [InlineData(true, 3, "InCaseUnsuspendedMasterOrAgentMessage")]
+        [InlineData(false, 3, "InCaseSuspendedMasterOrAgentMessage")]
+        public void Return_CorrectSuffixMessage_By_Checked(bool isSuspended, byte searchAccountRoleId, string expectedSuffixMessages)
+        {
+            var request = RequestHelper.CreateRequest(4, searchAccountRoleId);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.Upline.IsSuspended", false);
+            request.AddData("SearchAccount.IsSuspended", isSuspended);
+
+            var viewModel = new ConfirmSuspendedViewModel(request);
+
+            Assert.Equal(expectedSuffixMessages, viewModel.SuffixMessage);
+        }
+
+        [Theory]
+        [InlineData(true, false)]
+        [InlineData(false, true)]
+        public void Return_CorrectStatusValue_By_Checked(bool isSuspended, bool expectedStatusValue)
+        {
+            var request = RequestHelper.CreateRequest(4, 3);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.Upline.IsSuspended", false);
+            request.AddData("SearchAccount.IsSuspended", isSuspended);
+
+            var viewModel = new ConfirmSuspendedViewModel(request);
+
+            Assert.Equal(expectedStatusValue, viewModel.StatusValue);
+        }
     }
 }

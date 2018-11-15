@@ -14,18 +14,20 @@
 
         public override string Url => $"{AccountInfoUrl}SearchAccount/UpdateCustomerStatus";
 
-        public virtual string ConfirmMessage => Request.GetResource($"{GetType().Name}Message");
+        public virtual string ConfirmMessage => Request.GetResource($"{GetType().Name}{SuffixMessage}");
 
         public string JsonParams =>
             string.Format("{0}{1}{2}", "{", string.Join(",", Params.Select(x => $"\"{x.Key}\":\"{x.Value.ToString()}\"")), "}");
 
         public virtual bool ReloadCustomerInfo => false;
 
-        protected virtual string StatusName { get; }
+        internal virtual string SuffixMessage { get; }
 
-        protected virtual bool StatusValue { get; }
+        internal virtual string StatusName { get; }
 
-        protected virtual bool SyncedCasino3rd { get; }
+        internal virtual bool StatusValue { get; }
+
+        internal virtual bool SyncedCasino3rd { get; }
 
         private IDictionary<string, object> Params =>
             new Dictionary<string, object>

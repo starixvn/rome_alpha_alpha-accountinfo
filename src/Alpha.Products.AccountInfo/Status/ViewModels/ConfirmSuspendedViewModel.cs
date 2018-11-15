@@ -10,28 +10,21 @@
         {
         }
 
-        public override string ConfirmMessage
-        {
-            get
-            {
-                var suffixMessage = Request.SearchAccount.IsMember ?
-                    Checked ? "InCaseUnsuspendedMemberMessage" : "InCaseSuspendedMemberMessage" :
-                    Checked ? "InCaseUnsuspendedMasterOrAgentMessage" : "InCaseSuspendedMasterOrAgentMessage";
-
-                return Request.GetResource($"{GetType().Name}{suffixMessage}");
-            }
-        }
-
         public override bool Disabled => base.Disabled || Request.GetData<bool>(DataKey.SearchAccount.Upline.IsSuspended);
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsSuspended);
 
         public override bool ReloadCustomerInfo => true;
 
-        protected override string StatusName => DataKey.StatusMapping.Suspended;
+        internal override string SuffixMessage =>
+            Request.SearchAccount.IsMember ?
+                    Checked ? "InCaseUnsuspendedMemberMessage" : "InCaseSuspendedMemberMessage" :
+                    Checked ? "InCaseUnsuspendedMasterOrAgentMessage" : "InCaseSuspendedMasterOrAgentMessage";
 
-        protected override bool StatusValue => !Checked;
+        internal override string StatusName => DataKey.StatusMapping.Suspended;
 
-        protected override bool SyncedCasino3rd => Request.SearchAccount.ProductStatusOf(ProductConstants.RNGCasino).Synced;
+        internal override bool StatusValue => !Checked;
+
+        internal override bool SyncedCasino3rd => Request.SearchAccount.ProductStatusOf(ProductConstants.RNGCasino).Synced;
     }
 }

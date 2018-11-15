@@ -163,6 +163,7 @@
     <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Features\SearchAccount\Models\OnlineUserModelTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Base\AccountInfoCriteriaTest.cs" />
+    <Compile Include="Features\SearchAccount\SpParams\SelectTotalDownlineSummaryCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\UpdateCustomerStatusCriteriaTestTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\SelectAutoSuggestionTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\SelectBalanceInfoCriteriaTest.cs" />

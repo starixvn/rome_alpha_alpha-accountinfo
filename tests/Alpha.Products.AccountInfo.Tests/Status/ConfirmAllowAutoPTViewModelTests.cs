@@ -1,6 +1,7 @@
 ﻿namespace Alpha.Products.AccountInfo.Tests.ViewModels
 {
     using System;
+    using NSubstitute;
     using Status.ViewModels;
     using Utility;
     using Xunit;
@@ -66,6 +67,45 @@
             var viewModel = new ConfirmAllowAutoMasterPTViewModel(request);
 
             Assert.Equal(expectedValue, viewModel.Checked);
+        }
+
+        [Theory]
+        [InlineData(true, "InCaseDisabledMessage")]
+        [InlineData(false, "InCaseEnabledMessage")]
+        public void Return_CorrectSuffixMessage_By_Checked(bool isAllowedMasterAutoPT, string expectedSuffixMessages)
+        {
+            var request = RequestHelper.CreateRequest(4, 3);
+            request.AddData("SearchAccount.IsAllowedMasterAutoPT", isAllowedMasterAutoPT);
+
+            var viewModel = new ConfirmAllowAutoMasterPTViewModel(request);
+
+            Assert.Equal(expectedSuffixMessages, viewModel.SuffixMessage);
+        }
+
+        [Theory]
+        [InlineData(true, true)]
+        [InlineData(false, false)]
+        public void Return_CorrectStatusValue_By_Checked(bool isAllowedMasterAutoPT, bool expectedStatusValue)
+        {
+            var request = RequestHelper.CreateRequest(4, 3);
+            request.AddData("SearchAccount.IsAllowedMasterAutoPT", isAllowedMasterAutoPT);
+
+            var viewModel = new ConfirmAllowAutoMasterPTViewModel(request);
+
+            Assert.Equal(expectedStatusValue, viewModel.StatusValue);
+            Assert.Equal(false, viewModel.SyncedCasino3rd);
+        }
+
+        [Fact]
+        public void Always_Return_Correct_SyncedCasino3rd_StatusName()
+        {
+            var request = RequestHelper.CreateRequest(4, 3);
+            request.AddData("SearchAccount.IsAllowedMasterAutoPT", true);
+
+            var viewModel = new ConfirmAllowAutoMasterPTViewModel(request);
+
+            Assert.Equal("DisableAutoMPT", viewModel.StatusName);
+            Assert.Equal(false, viewModel.SyncedCasino3rd);
         }
     }
 }

@@ -9,27 +9,16 @@
         {
         }
 
-        public override string ConfirmMessage
-        {
-            get
-            {
-                var suffixMessage = Checked ? "InCaseDisabledMessage" :"InCaseEnabledMessage";
-
-                return Request.GetResource($"{GetType().Name}{suffixMessage}");
-            }
-        }
-
-        public override bool Visible
-            => base.Visible
-            && Actor.IsSuper
-            && SearchAccount.IsMaster;
+        public override bool Visible => base.Visible && Actor.IsSuper && SearchAccount.IsMaster;
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsAllowedMasterAutoPT);
 
-        protected override string StatusName => DataKey.StatusMapping.DisableAutoMasterPT;
+        internal override string SuffixMessage => Checked ? "InCaseDisabledMessage" : "InCaseEnabledMessage";
 
-        protected override bool StatusValue => Checked;
+        internal override string StatusName => DataKey.StatusMapping.DisableAutoMasterPT;
 
-        protected override bool SyncedCasino3rd => false;
+        internal override bool StatusValue => Checked;
+
+        internal override bool SyncedCasino3rd => false;
     }
 }
