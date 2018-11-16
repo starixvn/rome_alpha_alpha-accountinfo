@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from "enzyme";
-import TotalDownlines from 'TotalDownlines';
+import TotalIndirectDownlines from 'TotalIndirectDownlines';
 import { Resources } from '../../helpers/resources-sample';
+import { DownlineListData } from '../../helpers/down-line-list-sample';
 import { Tooltip } from 'react-tippy';
 
 describe('TotalDownlines', () => {
@@ -12,7 +13,7 @@ describe('TotalDownlines', () => {
     const buildTotalDownlines = () => {
         if (!totalDownlinesMount) {
             totalDownlinesMount = mount(
-                <TotalDownlines {...props} />
+                <TotalIndirectDownlines {...props} />
             );
         }
         return totalDownlinesMount;
@@ -21,10 +22,7 @@ describe('TotalDownlines', () => {
     beforeEach(() => {
         props = {
             resources: Resources,
-            levelName: 'Master',
-            totalActive: 100,
-            totalClosed: 1,
-            totalSuspended: 5
+            totalIndirectDownline: DownlineListData.TotalDownlines[0]
         };
 
         totalDownlinesMount = undefined;
@@ -32,7 +30,7 @@ describe('TotalDownlines', () => {
 
     test('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<TotalDownlines {...props} />, div);
+        ReactDOM.render(<TotalIndirectDownlines {...props} />, div);
     });
 
     test('always render a `Tootltip`', () => {

@@ -8,7 +8,7 @@ const CellContainNumberFormat = ({
     mobileView = false,
     hrefLink = null
 }) => {
-    let formatClassNames = '';
+    let formatClassNames = 'number';
 
     if (value < 0) {
         formatClassNames = 'number-red';
@@ -28,12 +28,7 @@ const CellContainNumberFormat = ({
                 renderText={
                     value => hrefLink === null || hrefLink === '' ?
                         <span>{value}</span> :
-                        <CustomAnchorTag
-                            href={hrefLink}
-                            mobileView={mobileView}
-                        >
-                            {value}
-                        </CustomAnchorTag>
+                        <CustomAnchorTag {...{ mobileView, href: hrefLink}}>{value}</CustomAnchorTag>
                 }
             />
         </div>

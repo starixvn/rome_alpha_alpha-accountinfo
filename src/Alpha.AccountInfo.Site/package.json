@@ -51,7 +51,7 @@
       "UplineInfo": "<rootDir>/Features/SearchAccount/Scripts/components/contents/customer-info/upline-info.jsx",
       "SearchAccountInfo": "<rootDir>/Features/SearchAccount/Scripts/components/contents/customer-info/search-account-info.jsx",
       "CustomerInfo": "<rootDir>/Features/SearchAccount/Scripts/components/contents/customer-info/customer-info.jsx",
-      "TotalDownlines": "<rootDir>/Features/SearchAccount/Scripts/components/contents/downline-list/total-downlines.jsx",
+      "TotalIndirectDownlines": "<rootDir>/Features/SearchAccount/Scripts/components/contents/downline-list/total-indirect-downlines.jsx",
       "DownlineList": "<rootDir>/Features/SearchAccount/Scripts/components/contents/downline-list/downline-list.jsx",
       "Searching": "<rootDir>/Features/SearchAccount/Scripts/components/contents/searching.jsx",
       "AutoSuggestion": "<rootDir>/Features/SearchAccount/Scripts/components/contents/searching/auto-suggestion.jsx",

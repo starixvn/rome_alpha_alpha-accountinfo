@@ -45,7 +45,7 @@ export const AccountInfoProps = {
             children:
                 <DownlineList
                     resources={Resources}
-                    data={DownlineListData}
+                    downlineListData={DownlineListData}
                     mobileView={true}
                     searchAccountRoleId={3}
                     fetchCustomerInfoFromServer={jest.fn()}
@@ -93,7 +93,7 @@ export const AccountInfoProps = {
             children:
                 <OnlineList
                     resources={Resources}
-                    data={[]}
+                    onlineListData={[]}
                     handleOpenIPInfo={jest.fn()}
                 />
         }

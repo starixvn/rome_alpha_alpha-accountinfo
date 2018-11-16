@@ -20,8 +20,6 @@ describe('AccountInfoDesktop', () => {
     });
 
     test('renders at least 6 `CustomizedAccordionItem`', () => {
-        props.data=[];
-
         const wrapper = shallow(<AccountInfoDesktop {...props} />)
         expect(wrapper.find(CustomizedAccordionItem).length).toBeGreaterThanOrEqual(6);
     });

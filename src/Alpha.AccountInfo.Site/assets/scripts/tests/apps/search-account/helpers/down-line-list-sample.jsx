@@ -1,23 +1,30 @@
 ﻿export const DownlineListData = {
     "DownlineList": [
         {
-            "Username": "ACGUUS3838"
+            "Username": "agent01"
         },
         {
-            "Username": "ACGUUS3888"
+            "Username": "agent03"
         },
         {
-            "Username": "ACGUUS38ZZ"
+            "Username": "agent9999"
         }
     ],
-    "TotalStatusAgent": {
-        "TotalActive": 1,
-        "TotalClosed": 2,
-        "TotalSuspend": 0
-    },
-    "TotalStatusMember": {
-        "TotalActive": 69,
-        "TotalClosed": 137,
-        "TotalSuspend": 0
-    }
+    "TotalDownlines": [
+        {
+            "TotalActive": 17,
+            "TotalClosed": 138,
+            "TotalSuspended": 0,
+            "RoleId": 2,
+            "LevelName": "Agents"
+        },
+        {
+            "TotalActive": 59,
+            "TotalClosed": 740,
+            "TotalSuspended": 2,
+            "RoleId": 1,
+            "LevelName": "Members"
+        }
+    ],
+    "TotalPages": 1
 };

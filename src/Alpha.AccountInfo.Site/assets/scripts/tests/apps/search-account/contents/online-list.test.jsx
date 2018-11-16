@@ -10,7 +10,7 @@ describe('OnlineList', () => {
     let props;
     beforeEach(() => {
         props = {
-            data: [],
+            onlineListData: [],
             resources: Resources,
             handleOpenIPInfo: jest.fn()
         };
@@ -27,7 +27,7 @@ describe('OnlineList', () => {
     });
 
     test('renders `OnlineListRow` if it has data', () => {
-        props.data=[{
+        props.onlineListData=[{
             IP: '192.168.1.1',
             FormattedLoginTime: '31 Oct 2018 12:28 PM'
         }];
@@ -38,7 +38,7 @@ describe('OnlineList', () => {
     });
 
     test('renders `OnlineListNoInfoRow` if it has no data', () => {
-        props.data=[];
+        props.onlineListData=[];
 
         const wrapper = shallow(<OnlineList {...props} />)
         expect(wrapper.find(OnlineListRow).length).toBe(0);

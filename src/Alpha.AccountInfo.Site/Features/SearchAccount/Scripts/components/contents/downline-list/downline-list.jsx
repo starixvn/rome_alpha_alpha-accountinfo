@@ -29,8 +29,7 @@ const DownlineList = ({
                     dowlineList: downlineListData.DownlineList,
                     pageIndex: downlineListData.PageIndex,
                     totalPages: downlineListData.TotalPages,
-                    statusId: downlineListData.StatusId,
-                    excludedRows: showTotalIndirectDownlines ? 3 : 1
+                    statusId: downlineListData.StatusId
                 }}
             />
         </div>

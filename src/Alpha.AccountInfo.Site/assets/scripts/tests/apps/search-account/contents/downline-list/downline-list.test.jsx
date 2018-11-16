@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from "enzyme";
 import DownlineList from 'DownlineList';
-import TotalDownlines from 'TotalDownlines';
+import TotalIndirectDownlines from 'TotalIndirectDownlines';
 import { Resources } from '../../helpers/resources-sample';
 import { DownlineListData } from '../../helpers/down-line-list-sample';
 
@@ -10,8 +10,8 @@ describe('DownlineList', () => {
     let props;
     let downlineListMount;
 
-    const buildDownlineList = (searchAccountRoleId = 2) => {
-        props.searchAccountRoleId= searchAccountRoleId;
+    const buildDownlineList = (showTotalIndirectDownlines = true) => {
+        props.showTotalIndirectDownlines= showTotalIndirectDownlines;
         if (!downlineListMount) {
             downlineListMount = mount(
                 <DownlineList {...props} />
@@ -23,9 +23,10 @@ describe('DownlineList', () => {
     beforeEach(() => {
         props = {
             resources: Resources,
-            data: DownlineListData,
+            downlineListData: DownlineListData,
             mobileView: false,
-            searchAccountRoleId: 1,
+            showTotalIndirectDownlines: false,
+            fetchDownlineListFromServer:jest.fn(),
             fetchCustomerInfoFromServer: jest.fn()
         };
 
@@ -37,11 +38,11 @@ describe('DownlineList', () => {
         ReactDOM.render(<DownlineList {...props} />, div);
     });
 
-    test.each([[3, 2],  [2, 1]])(
+    test.each([[true, 1],  [false, 0]])(
         "renders corret `TotalDownlines` callTimes",
-        (searchAccountRoleId, expectedCallTimes) => {
-            buildDownlineList(searchAccountRoleId);
-            expect(downlineListMount.find(TotalDownlines).length).toBe(expectedCallTimes);
+        (showTotalIndirectDownlines, expectedCallTimes) => {
+            buildDownlineList(showTotalIndirectDownlines);
+            expect(downlineListMount.find(TotalIndirectDownlines).length).toBe(expectedCallTimes);
         }
     );
 });
