@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import CustomerInfo from 'CustomerInfo';
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import { Super } from '../../helpers/actor-is-super-sample';
 import { Master } from '../../helpers/actor-is-master-sample';
 import { Agent } from '../../helpers/actor-is-agent-sample';
@@ -35,12 +35,12 @@ describe('CustomerInfo', () => {
         return customerInfoMount;
     }
 
-    it('renders without crashing', () => {
+    test('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<CustomerInfo {...props} />, div);
     });
 
-    it('snapshot', () => {
+    test('snapshot', () => {
         const component = renderer.create(<CustomerInfo {...props} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
@@ -86,4 +86,28 @@ describe('CustomerInfo', () => {
             expect(customerInfoMount.find(CustomAnchorTag).length).toBe(3);
         }
     );
+
+    test('searchCounter equal zero and desktop view always return null', () => {
+        props.searchCounter = 0;
+        props.mobileView = false;
+        let component = buildCustomerInfo(Super.ViewMasterInfo);
+
+        expect(component.html()).toBeNull();
+    });
+
+    test('searchCounter equal zero and mobile view and customerinfo is null always return null', () => {
+        props.searchCounter = 0;
+        props.mobileView = false;
+        let component = buildCustomerInfo(null);
+
+        expect(component.html()).toBeNull();
+    });
+
+    test('searchCounter greather than zero andcustomerinfo is null always return `Account not found!`', () => {
+        props.searchCounter = 1;
+        props.customerInfo = null;
+
+        const component = shallow(<CustomerInfo {...props} />);
+        expect(component.text()).toBe('Account not found!');
+    });
 });

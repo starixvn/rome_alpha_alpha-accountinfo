@@ -8,10 +8,12 @@ const handleErrors = (err) => {
 
 const responseData = (res) => res.data.Result;
 
-const requests = {
-    get: (url, data) => axios.get(url, { params: data })
-        .then(responseData)
-        .catch(handleErrors),
+export const requests = {
+	get: (url, data) => {
+		let axiosPromise = axios.get(url, { params: data });
+		axiosPromise = axiosPromise.then(res => res.data.Result);
+		return (axiosPromise);
+	},
     post: (url, data) => axios.post(url, data, { headers: { __RequestVerificationToken: __RequestVerificationToken } })
         .then(responseData)
         .catch(handleErrors)

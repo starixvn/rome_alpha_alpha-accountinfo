@@ -2,10 +2,10 @@
 import Autosuggest from 'react-autosuggest';
 import { accountInfoAPI } from '../../api-client';
 
-const getSuggestionValue = suggestion => suggestion.UserName;
+export const getSuggestionValue = suggestion => suggestion.UserName;
 
-const renderSuggestion = suggestion =>
-    <div>
+export const renderSuggestion = suggestion =>
+    <div id={`${suggestion.UserName}-suggestion`}>
         {suggestion.UserName}
         <div>{suggestion.FirstName} {suggestion.LastName}</div>
     </div>;
@@ -58,7 +58,7 @@ export default class Searching extends React.Component {
             .then((data) => {
                 this.setState({ suggestions: data });
             });
-    }
+	}
 
     onSuggestionsClearRequested() {
         this.setState({

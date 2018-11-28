@@ -1,4 +1,5 @@
 export const Resources =  {
+    AccountNotFound:"Account not found!",
     Active: "Active",
     Agent: "Agent",
     AgentList: "Agent List",

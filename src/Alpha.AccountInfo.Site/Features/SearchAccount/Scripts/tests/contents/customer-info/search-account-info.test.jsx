@@ -51,7 +51,7 @@ describe('SearchAccountInfo', () => {
         }
     );
 
-    it("always render a `CustomAnchorTag` ", () => {
+    test("always render a `CustomAnchorTag` ", () => {
         const component = shallow(<SearchAccountInfo {...props} />);
         expect(component.find(CustomAnchorTag).length).toBe(1);
     });
@@ -78,4 +78,32 @@ describe('SearchAccountInfo', () => {
             expect(component.find(Tooltip).length).toBe(expectedCallTimes);
         }
     );
+
+    describe('componentWillReceiveProps()', () => {
+        test("change Css and Tooltip when customerInfo change ", () => {
+            props.customerInfo = Master.ViewAgentInfo;
+            const component = shallow(<SearchAccountInfo {...props} />);
+    
+            let customerInfo = Master.ViewMemberInfo;
+            customerInfo.Closed = false;
+            customerInfo.Suspended = true;
+            component.setProps({ customerInfo });
+    
+            expect(component.state('Css')).toEqual("suspended");
+            expect(component.state('Tootltip')).toEqual("This account was suspended.");
+        });
+
+        test("unchange Css and Tooltip when customerInfo unchange ", () => {
+            let customerInfo = Master.ViewMemberInfo;
+            customerInfo.Closed = false;
+            customerInfo.Suspended = true;
+
+            props.customerInfo = customerInfo;
+            const component = shallow(<SearchAccountInfo {...props} />);
+            component.setProps({ customerInfo });
+    
+            expect(component.state('Css')).toEqual("suspended");
+            expect(component.state('Tootltip')).toEqual("This account was suspended.");
+        });
+    });
 });
