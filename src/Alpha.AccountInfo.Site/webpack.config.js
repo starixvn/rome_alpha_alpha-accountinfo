@@ -2,21 +2,21 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: { 
-        "bundles/account-info/index": [
+        "./SearchAccount/Bundles/index": [
             "babel-polyfill",
             "./Features/SearchAccount/Scripts/index.jsx",
             "./Features/SearchAccount/Styles/account-info.scss"
         ],
-        "bundles/account-info/given-credit": [
+        "./SearchAccount/Bundles/given-credit": [
             "babel-polyfill",
             "./Features/SearchAccount/Scripts/given-credit.jsx",
             "./Features/SearchAccount/Styles/given-credit.scss"
         ],
-        "bundles/product-status-popup/index": [
+        "./ProductStatusPopup/Bundles/index": [
             "./Features/ProductStatusPopup/Scripts/product-status-popup.ts",
             "./Features/ProductStatusPopup/Styles/product-status-popup.scss"
         ],
-        "bundles/styles/account-info-mobile-calculate-07": [
+        "./SearchAccount/Bundles/account-info-mobile-calculate-07": [
             "./Features/SearchAccount/Styles/account-info-mobile-calculate-07.scss"
         ]
     },

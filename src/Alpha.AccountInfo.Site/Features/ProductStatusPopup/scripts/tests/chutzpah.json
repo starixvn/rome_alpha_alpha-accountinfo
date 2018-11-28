@@ -19,11 +19,11 @@
     { "Path": "libs/jasmine.js" },
     { "Path": "libs/jasmine-jquery.js" },
 
-    { "Path": "../../../Features/ProductStatusPopup/scripts/product-status-popup.ts" }
+    { "Path": "../product-status-popup.ts" }
   ],
   "Tests": [
     {
-      "Path": "apps/productstatus",
+      "Path": "./",
       "Excludes": ["**.js.map", "**.js"]
     }
   ]

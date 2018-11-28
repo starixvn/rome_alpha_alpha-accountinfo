@@ -7,7 +7,7 @@ const common = require('./webpack.config.js');
 module.exports = merge(common, {
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, 'assets'),
+        path: path.resolve(__dirname, 'Features'),
         filename: '[name].js'
     },
 

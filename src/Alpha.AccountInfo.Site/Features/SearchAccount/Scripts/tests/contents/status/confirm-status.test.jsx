@@ -8,7 +8,7 @@ import { Resources } from '../../helpers/resources-sample';
 import * as accountInfoHelper from 'AccountInfoHelper';
 import $ from 'jquery';
 import { accountInfoAPI } from 'APIClient';
-import mockAxios from '../../../../__mocks__/axios';
+import mockAxios from 'jest-mock-axios';
 
 describe('ConfirmStatus', () => {
     let props;

@@ -315,43 +315,43 @@
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
-    <Content Include="assets\bundles\account-info\given-credit.min.css" />
-    <Content Include="assets\bundles\account-info\given-credit.min.js" />
-    <Content Include="assets\bundles\account-info\index.min.css" />
-    <Content Include="assets\bundles\account-info\index.min.js" />
-    <Content Include="assets\bundles\product-status-popup\index.min.css" />
-    <Content Include="assets\bundles\product-status-popup\index.min.js" />
-    <Content Include="assets\bundles\styles\account-info-mobile-calculate-07.min.css" />
-    <Content Include="assets\scripts\tests\apps\search-account\common\cell-contain-number-format.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\common\custom-anchor-tag.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\balance-info.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\balance-info-row.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\member-credit-max-row.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\balance-info\given-credit-row.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\settings.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\online-list.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\login-info.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\contact-info.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\search-account-info.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\customer-info.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\customer-info\upline-info.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\downline-list\downline-list.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\downline-list\total-downlines.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\searching.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\status\status.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\status\product-level-status.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\status\confirm-status.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\contents\status\bettype-level-status.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\desktop-version\account-info-desktop.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\desktop-version\customized-accordion-item.test.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\helpers\account-info-props-sample.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\helpers\down-line-list-sample.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-agent-sample.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-master-sample.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\helpers\actor-is-super-sample.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\helpers\resources-sample.jsx" />
-    <Content Include="assets\scripts\tests\apps\search-account\mobile-version\content-mobile.test.jsx" />
-    <Content Include="assets\scripts\tests\__mocks__\axios.jsx" />
+    <Content Include="Features\ProductStatusPopup\Bundles\index.min.css" />
+    <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
+    <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\given-credit.min.css" />
+    <Content Include="Features\SearchAccount\Bundles\given-credit.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\index.min.css" />
+    <Content Include="Features\SearchAccount\Bundles\index.min.js" />
+    <Content Include="Features\SearchAccount\Scripts\tests\common\cell-contain-number-format.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\common\custom-anchor-tag.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\balance-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\balance-info-row.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\member-credit-max-row.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\given-credit-row.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\settings.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\online-list.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\login-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\contact-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\customer-info\search-account-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\customer-info\customer-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\customer-info\upline-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\downline-list\downline-list.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\downline-list\total-downlines.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\searching.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\status\status.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\status\product-level-status.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\status\confirm-status.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\status\bettype-level-status.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\desktop-version\account-info-desktop.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\desktop-version\customized-accordion-item.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\account-info-props-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\down-line-list-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\actor-is-agent-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\actor-is-master-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\actor-is-super-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\resources-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\mobile-version\content-mobile.test.jsx" />
     <Content Include="Features\SearchAccount\Scripts\api-client.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\common\custom-anchor-tag.jsx" />
     <Content Include="Features\SearchAccount\Scripts\components\contents\balance-info\member-credit-max-row.jsx" />
@@ -385,10 +385,10 @@
     <Content Include="Features\SearchAccount\Scripts\index.jsx" />
     <Content Include="Features\SearchAccount\Scripts\helpers\accountinfo-helper.jsx" />
     <Content Include="Features\SearchAccount\Scripts\helpers\router-debugger.jsx" />
-    <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
-    <Content Include="assets\scripts\tests\libs\jasmine.js" />
-    <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
-    <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine-jquery.js" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine.js" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
     <Content Include="App_Data\securitycode.json" />
@@ -400,7 +400,7 @@
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
     <Content Include="typings\globals\jquery\typings.json" />
     <Content Include="typings\globals\jquery.blockui\typings.json" />
-    <Content Include="assets\scripts\tests\chutzpah.json" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\chutzpah.json" />
     <Content Include="Web.AppSettings.backupMNL.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -414,7 +414,7 @@
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Features\SearchAccount\Styles\account-info.scss" />
-    <Content Include="assets\styles\_mixins.scss" />
+    <Content Include="Features\Shared\Styles\_mixins.scss" />
     <Content Include="Features\SearchAccount\Views\Index.cshtml" />
     <Content Include="webpack.config.dev.js">
       <DependentUpon>webpack.config.js</DependentUpon>
@@ -559,7 +559,7 @@
     <Content Include="Features\Shared\Views\NoInformation.cshtml" />
     <Content Include="Features\Shared\Views\_Layout.cshtml" />
     <Content Include="Features\Shared\Views\_ViewStart.cshtml" />
-    <Content Include="assets\styles\_variables.scss" />
+    <Content Include="Features\Shared\Styles\_variables.scss" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -611,7 +611,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\product-status-popup.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
+    <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\tests\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery.blockui\index.d.ts" />
