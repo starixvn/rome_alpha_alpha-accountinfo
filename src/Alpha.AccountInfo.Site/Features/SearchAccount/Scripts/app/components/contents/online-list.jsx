@@ -18,15 +18,11 @@ export const OnlineListRow = ({ onlineList, index, handleOpenIPInfo }) => {
     );
 }
 
-export const OnlineListNoInfoRow = ({ resources }) => {
-    return (
-        <tr>
-            <td colSpan="3">{resources.ThisUserIsNotOnline}</td>
-        </tr>
-    );
-}
-
 const OnlineList = ({ resources, onlineListData, handleOpenIPInfo }) => {
+	if (onlineListData === null || onlineListData.length === 0) {
+		return <div className="no-information">{resources.ThisUserIsNotOnline}</div>
+	}
+
     return (
         <div className="online-list">
             <table className="tblRpt tblRpt-bordered width-100per">
@@ -39,12 +35,11 @@ const OnlineList = ({ resources, onlineListData, handleOpenIPInfo }) => {
                 </thead>
                 <tbody>
                     {
-                        onlineListData.length === 0 ?
-                            <OnlineListNoInfoRow resources={resources} /> :
-                            onlineListData.map((onlineList, index) =>
-                                <OnlineListRow {...{ onlineList, index, handleOpenIPInfo, key: index }} />
-                            )
-                    }
+						onlineListData.map(
+							(onlineList, index) =>
+								<OnlineListRow {...{ onlineList, index, handleOpenIPInfo, key: index }} />
+						)
+					}
                 </tbody>
             </table>
         </div>

@@ -23,6 +23,10 @@ export const LoginInfoWithLinkRow = ({ title, value, handleOpenIPInfo }) => {
 }
 
 const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
+	if (loginInfo === null) {
+		return <div className="no-information">{resources.NoInfo}</div>
+	}
+
     let loginInfoPropsArray = [
         {
             title: resources.CreatedDate,

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow } from "enzyme";
 import renderer from 'react-test-renderer';
 import OnlineList from 'OnlineList';
-import { OnlineListNoInfoRow, OnlineListRow } from 'OnlineList';
+import { OnlineListRow } from 'OnlineList';
 import { Resources } from '../helpers/resources-sample';
 
 describe('OnlineList', () => {
@@ -34,7 +34,7 @@ describe('OnlineList', () => {
 
         const wrapper = shallow(<OnlineList {...props} />)
         expect(wrapper.find(OnlineListRow).length).toBe(1);
-        expect(wrapper.find(OnlineListNoInfoRow).length).toBe(0);
+        expect(wrapper.find('.no-information').length).toBe(0);
     });
 
     test('renders `OnlineListNoInfoRow` if it has no data', () => {
@@ -42,7 +42,7 @@ describe('OnlineList', () => {
 
         const wrapper = shallow(<OnlineList {...props} />)
         expect(wrapper.find(OnlineListRow).length).toBe(0);
-        expect(wrapper.find(OnlineListNoInfoRow).length).toBe(1);
+        expect(wrapper.find('.no-information').length).toBe(1);
     });
 });
 
@@ -67,23 +67,6 @@ describe('OnlineListRow', () => {
 
     test('snapshot', () => {
         const component = renderer.create(<OnlineListRow {...props} />);
-        expect(component.toJSON()).toMatchSnapshot();
-    });
-});
-
-describe('OnlineListNoInfoRow', () => {
-    let props;
-    beforeEach(() => {
-        props = { resources: Resources };
-    });
-
-    test('renders without crashing', () => {
-        const div = document.createElement('tbody');
-        ReactDOM.render(<OnlineListNoInfoRow {...props} />, div);
-    });
-
-    test('snapshot', () => {
-        const component = renderer.create(<OnlineListNoInfoRow {...props} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
 });

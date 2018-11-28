@@ -10,8 +10,8 @@ describe('DownlineList', () => {
     let props;
     let downlineListMount;
 
-    const buildDownlineList = (showTotalIndirectDownlines = true) => {
-        props.showTotalIndirectDownlines= showTotalIndirectDownlines;
+    const buildDownlineList = (searchAccountRoleId = true) => {
+        props.searchAccountRoleId= searchAccountRoleId;
         if (!downlineListMount) {
             downlineListMount = mount(
                 <DownlineList {...props} />
@@ -38,10 +38,10 @@ describe('DownlineList', () => {
         ReactDOM.render(<DownlineList {...props} />, div);
     });
 
-    test.each([[true, 1],  [false, 0]])(
+    test.each([[3, 1],  [2, 0]])(
         "renders corret `TotalDownlines` callTimes",
-        (showTotalIndirectDownlines, expectedCallTimes) => {
-            buildDownlineList(showTotalIndirectDownlines);
+        (searchAccountRoleId, expectedCallTimes) => {
+            buildDownlineList(searchAccountRoleId);
             expect(downlineListMount.find(TotalIndirectDownlines).length).toBe(expectedCallTimes);
         }
     );

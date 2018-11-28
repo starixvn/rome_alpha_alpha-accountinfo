@@ -10,6 +10,10 @@ export const ContactInfoRow = ({ title, value }) => {
 }
 
 const ContactInfo = ({ resources, customerInfo }) => {
+	if (customerInfo === null) {
+		return <div className="no-information">{resources.NoInfo}</div>
+	}
+
     let contactInfoPropsArray = [
         {
             title: resources.Nickname,

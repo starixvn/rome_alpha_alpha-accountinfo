@@ -4,12 +4,12 @@ module.exports = {
     entry: { 
         "./SearchAccount/Bundles/index": [
             "babel-polyfill",
-            "./Features/SearchAccount/Scripts/index.jsx",
+            "./Features/SearchAccount/Scripts/app/index.jsx",
             "./Features/SearchAccount/Styles/account-info.scss"
         ],
         "./SearchAccount/Bundles/given-credit": [
             "babel-polyfill",
-            "./Features/SearchAccount/Scripts/given-credit.jsx",
+            "./Features/SearchAccount/Scripts/app/given-credit.jsx",
             "./Features/SearchAccount/Styles/given-credit.scss"
         ],
         "./ProductStatusPopup/Bundles/index": [

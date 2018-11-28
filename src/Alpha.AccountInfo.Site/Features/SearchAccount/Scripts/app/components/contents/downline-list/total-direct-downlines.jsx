@@ -47,27 +47,28 @@ export default class TotalDirectDownlines extends React.Component {
     }
 
     render() {
-        const { data, checkedStatusId } = this.state;
+		const { data, checkedStatusId } = this.state;
+		const { resources, searchAccountIsMaster } = this.props;
 
         return (
             <div>
-                <div className="row-info bold">Agents (A/C/S)</div>
+				<div className="row-info bold">{searchAccountIsMaster ? resources.Agents : resources.Members} (A/C/S)</div>
                 <div className="totalstatus-list">
                     {
                         data.map((item, index) => {
                             let { statusId, title, className, value } = item;
-                            let id = `${title}-${statusId}`;
+							let id = `${title}-${statusId}`;
+							let inputProps = {
+								id,
+								checked: checkedStatusId === item.statusId,
+								type: "radio",
+								name: "totalStatus",
+								onChange: () => { this.handleOnChange(statusId); }
+							};
+
                             return (
                                 <div className="radio" key={index}>
-                                    <input
-                                        {...{
-                                            id,
-                                            checked: checkedStatusId === item.statusId,
-                                            type: "radio",
-                                            name: "totalStatus",
-                                            onChange: () => { this.handleOnChange(statusId); }
-                                        }}
-                                    />
+                                    <input {...inputProps}/>
                                     <label className="label-text" htmlFor={id} >
                                         {title}
                                         <span className={className}>

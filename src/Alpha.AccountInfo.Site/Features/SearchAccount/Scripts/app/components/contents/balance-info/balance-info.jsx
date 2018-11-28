@@ -10,6 +10,10 @@ const BalanceInfo = ({
     mobileView,
     fetchCustomerInfoFromServer
 }) => {
+	if (customerInfo === null) {
+		return <div className="no-information">{resources.NoInfo}</div>
+	}
+
     let balanceInfo = customerInfo.BalanceInfo;
 
     let sharedContents = [

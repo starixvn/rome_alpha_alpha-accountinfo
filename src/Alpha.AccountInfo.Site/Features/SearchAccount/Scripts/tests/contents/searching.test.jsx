@@ -114,47 +114,47 @@ describe('Searching', () => {
             expect(spy).toBeCalledTimes(1);
         });
 
-        test('set suggestions states called when input change', () => {
-            const resp = {
-                "data": {
-                    "Result": [
-                        {
-                            "UserName": "SUPERTEST120",
-                            "FirstName": "---",
-                            "LastName": "---"
-                        }
-                    ]
-                }
-            };
+        // test('set suggestions states called when input change', () => {
+        //     const resp = {
+        //         "data": {
+        //             "Result": [
+        //                 {
+        //                     "UserName": "SUPERTEST120",
+        //                     "FirstName": "---",
+        //                     "LastName": "---"
+        //                 }
+        //             ]
+        //         }
+        //     };
     
-            buildSearching();
-            searchingMount.find('.txt-search').simulate('change', { target: { value: 'su' } });
+        //     buildSearching();
+        //     searchingMount.find('.txt-search').simulate('change', { target: { value: 'su' } });
     
-            mockAxios.mockResponse(resp);
-            expect(searchingMount.state('suggestions')).toEqual(resp.data.Result);
-        });
+        //     mockAxios.mockResponse(resp);
+        //     expect(searchingMount.state('suggestions')).toEqual(resp.data.Result);
+        // });
     });
 
-    test('set suggestions states called when input change0000', () => {
-        const resp = {
-            "data": {
-                "Result": [
-                    {
-                        "UserName": "SUPERTEST120",
-                        "FirstName": "---",
-                        "LastName": "---"
-                    }
-                ]
-            }
-        };
+    // test('set suggestions states called when input change0000', () => {
+    //     const resp = {
+    //         "data": {
+    //             "Result": [
+    //                 {
+    //                     "UserName": "SUPERTEST120",
+    //                     "FirstName": "---",
+    //                     "LastName": "---"
+    //                 }
+    //             ]
+    //         }
+    //     };
 
-        buildSearching();
-        searchingMount.find('.txt-search').simulate('change', { target: { value: 'su' } });
+    //     buildSearching();
+    //     searchingMount.find('.txt-search').simulate('change', { target: { value: 'su' } });
 
-        mockAxios.mockResponse(resp);
-        expect(searchingMount.state('suggestions')).toEqual(resp.data.Result);
-        expect(searchingMount.find('#SUPERTEST120-suggestion').length).toBe(0);
-      //  searchingMount.find('#SUPERTEST120-suggestion').simulate('click');
-    });
+    //     mockAxios.mockResponse(resp);
+    //     expect(searchingMount.state('suggestions')).toEqual(resp.data.Result);
+    //     expect(searchingMount.find('#SUPERTEST120-suggestion').length).toBe(0);
+    //   //  searchingMount.find('#SUPERTEST120-suggestion').simulate('click');
+    // });
 
 });
