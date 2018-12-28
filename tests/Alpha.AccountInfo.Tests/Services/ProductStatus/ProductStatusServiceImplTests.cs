@@ -29,6 +29,7 @@
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ProductStatusServiceImpl productStatusServiceImpl;
+        private readonly IProductProfileService productProfileService;
 
         public ProductStatusServiceImplTests()
         {
@@ -37,13 +38,15 @@
             criteriaFactory = Substitute.For<ProductStatusCriteriaFactory>();
             authorizationService = Substitute.For<ProductStatusAuthorizationService>();
             rnGCasinoService = Substitute.For<RnGCasinoService>();
+            productProfileService = Substitute.For<IProductProfileService>();
 
             productStatusServiceImpl = new ProductStatusServiceImpl(
                 dynamicRepository, 
                 cacheRefService, 
                 criteriaFactory, 
                 authorizationService,
-                rnGCasinoService);
+                rnGCasinoService,
+                productProfileService);
 
             rnGCasinoService.Update3rdRnGCasino(CustIdTest, true, "127.0.0.1", 1176070, "User Test", 2);
         }
@@ -250,6 +253,38 @@
                 expectedResults[1].IsDisabled == actualResults[1].IsDisabled &&
                 expectedResults[1].IsDisabledUpline == actualResults[1].IsDisabledUpline &&
                 expectedResults[1].Name == actualResults[1].Name);
+        }
+
+        [Fact]
+        public async Task GetProductStatusAsync_SettingTypeIsProduct_ReturnsNameByProductName()
+        {
+            // Arrange
+            var productId = 21;
+            var sportType = 211;
+            var productStatusList = new List<ProductStatusModel>
+            {
+                new ProductStatusModel(productId, sportType, 2401, false, false)
+            };
+            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
+            criteriaFactory
+                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
+                .Returns(criteria);
+            dynamicRepository
+                .FetchAsync<ProductStatusModel>(criteria)
+                .Returns(productStatusList);
+            productProfileService.GetSettingLevel(productId).Returns((int)ProductSettingLevel.Product);
+
+            cacheRefService.GetProductName(productId).Returns("macaugame");
+
+            // Act
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
+            var actualResults = actualData.ToList();
+
+            // Assert
+            Assert.True("macaugame" == actualResults[0].Name);
         }
 
         [Fact]
