@@ -125,11 +125,11 @@
                 }
                 else if (settingLevel == (int)ProductSettingLevel.BetType)
                 {
-                    item.Name = cacheRefService.GetBetTypeName(item.BetType);
+                    item.Name = GetBetTypeName(item.BetType);
                 }
                 else
                 {
-                    item.Name = cacheRefService.GetBetTypeName(item.BetType);
+                    item.Name = GetBetTypeName(item.BetType);
                 }
              
 
