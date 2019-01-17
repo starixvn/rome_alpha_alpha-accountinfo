@@ -31,19 +31,22 @@
         private readonly ProductStatusCriteriaFactory criteriaFactory;
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
+        private readonly IProductProfileService productProfileService;
 
         public ProductStatusServiceImpl(
             IDynamicRepository dynamicRepository,
             CacheRefService cacheRefService,
             ProductStatusCriteriaFactory criteriaFactory,
             ProductStatusAuthorizationService authorizationService,
-            RnGCasinoService rnGCasinoService)
+            RnGCasinoService rnGCasinoService,
+            IProductProfileService productProfileService)
         {
             repository = dynamicRepository;
             this.cacheRefService = cacheRefService;
             this.criteriaFactory = criteriaFactory;
             this.authorizationService = authorizationService;
             this.rnGCasinoService = rnGCasinoService;
+            this.productProfileService = productProfileService;
         }
 
         public async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -108,13 +111,27 @@
             int productId,
             IEnumerable<ProductStatusModel> rawData)
         {
-            var setNameByBetTypeId = rawData.Count() > 1;
+            var settingLevel = productProfileService.GetSettingLevel(productId);
 
             foreach (var item in rawData)
             {
-                item.Name = setNameByBetTypeId
-                    ? GetBetTypeName(item.BetType)
-                    : cacheRefService.GetProductName(productId);
+                if (settingLevel == (int)ProductSettingLevel.Product)
+                {
+                    item.Name = cacheRefService.GetProductName(productId);
+                }
+                else if (settingLevel == (int)ProductSettingLevel.SportType)
+                {
+                    item.Name = cacheRefService.GetSportTypeName(item.SportType);
+                }
+                else if (settingLevel == (int)ProductSettingLevel.BetType)
+                {
+                    item.Name = cacheRefService.GetBetTypeName(item.BetType);
+                }
+                else
+                {
+                    item.Name = cacheRefService.GetBetTypeName(item.BetType);
+                }
+             
 
                 yield return item;
             }
