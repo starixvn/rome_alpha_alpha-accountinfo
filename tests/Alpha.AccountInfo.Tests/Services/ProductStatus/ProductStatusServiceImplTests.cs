@@ -140,6 +140,37 @@
         }
 
         [Fact]
+        public async Task GetProductStatusAsync_Allbet_ReturnNameWithHardCode()
+        {
+            // Arrange
+            var exceptedNameAllbet = AppResources.ProductStatus.BetType_2401;
+            var expectedResults = new List<ProductStatusModel>
+            {
+                new ProductStatusModel(21, 211, 2401,  false, false)
+            };
+            var criteria = new SelectProductStatusCriteria(21, CustIdTest);
+            authorizationService
+                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
+                .Returns(true);
+            criteriaFactory
+                .CreateSelectCriteria(21, CustIdTest, CustRoleTest.Value)
+                .Returns(criteria);
+            dynamicRepository
+                .FetchAsync<ProductStatusModel>(criteria)
+                .Returns(expectedResults);
+            cacheRefService
+                .GetBetTypeName(2401)
+                .Returns("Baccarat");
+
+            // Act
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(21, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
+            var actualResults = actualData.ToList();
+
+            // Assert
+            Assert.True(exceptedNameAllbet == actualResults[0].Name);
+        }
+
+        [Fact]
         public async Task GetProductStatusAsync_NG2_ReturnsDataFromDynamicRepository()
         {
             // Arrange
