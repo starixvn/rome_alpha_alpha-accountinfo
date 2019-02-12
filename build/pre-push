@@ -2,4 +2,4 @@
 
 # cmd "/C BuildTask.Release.bat"
 
-cmd "/C build.bat"
+cmd "/C build.cmd"

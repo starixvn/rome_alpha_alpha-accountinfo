@@ -8,9 +8,10 @@ const Status = ({
 	username,
 	statusData,
 	mobileView,
+	searchCounter,
 	fetchCustomerInfoFromServer,
 	fetchCustomerAllStatusFromServer }) => {
-	if (statusData === null) {
+	if ((mobileView || searchCounter > 0) && statusData === null) {
 		return <div className="no-information">{resources.NoInfo}</div>
 	}
 

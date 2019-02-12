@@ -10,6 +10,7 @@ import Settings from '../components/contents/settings';
 import Status from '../components/contents/status/status';
 import LoginInfo from '../components/contents/login-info';
 import OnlineList from '../components/contents/online-list';
+
 import AccountInfoMobile from '../components/mobile-version/account-info-mobile';
 import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
 import * as Raven from 'raven-js';
@@ -173,6 +174,7 @@ export default class AccountInfo extends React.Component {
 			resources,
 			mobileView,
 			customerInfo,
+			searchCounter,
 			downlineListData,
 			onlineListData,
 			statusData,
@@ -219,6 +221,7 @@ export default class AccountInfo extends React.Component {
 							resources,
 							downlineListData,
 							mobileView,
+							searchCounter,
 							searchAccountRoleId,
 							fetchDownlineListFromServer,
 							fetchCustomerInfoFromServer
@@ -237,8 +240,10 @@ export default class AccountInfo extends React.Component {
 						{...{
 							resources,
 							mobileView,
-							statusData,
 							username,
+							statusData,
+							mobileView,
+							searchCounter,
 							fetchCustomerAllStatusFromServer,
 							fetchCustomerInfoFromServer
 						}}
@@ -250,7 +255,7 @@ export default class AccountInfo extends React.Component {
 				pathname: "/setting",
 				visible: true,
 				fetchDataFromServer: fetchCustomerAllStatusFromServer,
-				children: <Settings {...{ resources, mobileView, settingData }} />
+				children: <Settings {...{ resources, mobileView, settingData, searchCounter }} />
 			},
 			loginInfoProps: {
 				iconClass: "icon-login",
@@ -273,8 +278,8 @@ export default class AccountInfo extends React.Component {
 	}
 
 	componentDidCatch(error, errorInfo) {
-	    this.setState({ error });
-	    Raven.captureException(error, { extra: errorInfo });
+		this.setState({ error });
+		Raven.captureException(error, { extra: errorInfo });
 	}
 
 	render() {
