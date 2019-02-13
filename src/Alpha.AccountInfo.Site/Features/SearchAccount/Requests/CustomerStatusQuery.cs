@@ -4,7 +4,7 @@
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using MediatR;
 
-    public class CustomerStatusQuery : SearchAccountQueryBase, IRequest<CustomererStatusViewModel>
+    public class CustomerStatusQuery : SearchAccountQueryBase, IRequest<CustomerStatusViewModel>
     {
         private readonly IUser viewer;
 

@@ -509,6 +509,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountController.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
     <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -547,7 +548,6 @@
     <Compile Include="Features\SearchAccount\ViewModels\DownlineListViewModel.cs" />
     <Compile Include="Features\Shared\Helpers\ProductJsonConverter.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\LoginInfoViewModel.cs" />
-    <Compile Include="Features\SearchAccount\ViewModels\CustomererStatusViewModel.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\Link.cs" />
     <Compile Include="Features\ProductStatusPopup\ViewModels\ProductStatusViewModel.cs" />
   </ItemGroup>

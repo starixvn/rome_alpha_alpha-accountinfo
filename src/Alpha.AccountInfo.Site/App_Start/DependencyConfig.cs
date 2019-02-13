@@ -1,11 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.App_Start
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Resources;
-    using System.Web;
-    using System.Web.Mvc;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -15,8 +9,14 @@
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Alpha.AccountInfo.Site.Features.Shared.Models;
     using Alpha.Products.AccountInfo;
+    using Alpha.Products.AccountInfo.Requests;
+    using Alpha.Products.AccountInfo.Setting;
+    using Alpha.Products.AccountInfo.Setting.ViewModels.Base;
+    using Alpha.Products.AccountInfo.Status;
+    using Alpha.Products.AccountInfo.Status.ViewModels.Base;
     using Alpha.Products.Core.Configuration;
     using Alpha.Products.Core.Services;
+    using Alpha.Products.Core.ViewModels;
     using Alpha.Web.Helpers;
     using Fanex.Data.Repository;
     using Fanex.Logging;
@@ -29,11 +29,19 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Resources;
+    using System.Web;
+    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
         public static void Init()
         {
+            RegisterProductConfiguration();
+
             var container = new Container();
 
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
@@ -105,14 +113,23 @@
 
         private static void StartConfiguration(Container container)
         {
-            var productConfigFile = HttpContext.Current.Server.MapPath("../ProductConfigs/ProductConfiguration.json");
             SimpleServiceLocator
               .Instance
-              .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), productConfigFile))
               .Register<Func<int, string>>(new CacheRefServiceImpl(container.GetInstance<IRemotingRefService>()).GetProductName)
               .Register<Func<string, string>>(Resources.ResourceManager.GetString)
               .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
               .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert);
+        }
+
+        private static void RegisterProductConfiguration()
+        {
+            var productConfigFile = HttpContext.Current.Server.MapPath("../ProductConfigs/ProductConfiguration.json");
+
+            SimpleServiceLocator
+              .Instance
+              .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), productConfigFile))
+              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
+              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory());
         }
     }
 }

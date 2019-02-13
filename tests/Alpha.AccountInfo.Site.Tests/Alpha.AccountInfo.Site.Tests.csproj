@@ -218,10 +218,16 @@
     <Compile Include="Features\Shared\Helpers\AccountInfoHelper.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\BalanceInfoViewModelBaseTest.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomerInfoViewModelTest.cs" />
+    <Compile Include="Utility\AppProductConfigurationHelper.cs" />
+    <Compile Include="Utility\CustomerHelper.cs" />
+    <Compile Include="Utility\RequestHelper.cs" />
+    <Compile Include="Utility\SearchAccountRequestStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
@@ -237,6 +243,10 @@
     <ProjectReference Include="..\..\src\Alpha.AccountInfo\Alpha.AccountInfo.csproj">
       <Project>{19fff821-8518-4c8f-b23b-db8d91c1552a}</Project>
       <Name>Alpha.AccountInfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Alpha.Products.AccountInfo\Alpha.Products.AccountInfo.csproj">
+      <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
+      <Name>Alpha.Products.AccountInfo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
