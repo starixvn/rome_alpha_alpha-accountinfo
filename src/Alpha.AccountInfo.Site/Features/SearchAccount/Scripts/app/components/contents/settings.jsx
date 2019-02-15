@@ -1,9 +1,9 @@
 ﻿import React from 'react';
 import CustomAnchorTag from '../common/custom-anchor-tag';
 
-const Settings = ({ resources, settingData, mobileView, searchCounter }) => {
-	if ((mobileView || searchCounter > 0) && settingData === null) {
-		return <div className="no-information">{resources.NoInfo}</div>
+const Settings = ({ resources, settingData, mobileView }) => {
+	if (settingData === null) {
+		return mobileView ? <div className="no-information">{resources.NoInfo}</div> : null;
 	}
 
 	return (

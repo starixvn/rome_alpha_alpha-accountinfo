@@ -58,16 +58,18 @@ export default class TotalDirectDownlines extends React.Component {
                         data.map((item, index) => {
                             let { statusId, title, className, value } = item;
 							let id = `${title}-${statusId}`;
+							let isDisabled = value === 0;
 							let inputProps = {
 								id,
+								disabled: isDisabled,
 								checked: checkedStatusId === item.statusId,
 								type: "radio",
 								name: "totalStatus",
 								onChange: () => { this.handleOnChange(statusId); }
 							};
 
-                            return (
-                                <div className="radio" key={index}>
+							return (
+								<div className={`radio ${isDisabled ? 'disabled' : ''}`} key={index}>
                                     <input {...inputProps}/>
                                     <label className="label-text" htmlFor={id} >
                                         {title}
@@ -81,7 +83,6 @@ export default class TotalDirectDownlines extends React.Component {
                     }
                 </div>
             </div>
-            
         );
     }
 }

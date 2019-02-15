@@ -9,12 +9,15 @@ const DownlineList = ({
 	downlineListData,
 	searchAccountRoleId,
 	mobileView,
-	searchCounter,
 	fetchDownlineListFromServer,
 	fetchCustomerInfoFromServer
 }) => {
-	if ((mobileView || searchCounter > 0) && downlineListData === null) {
-		return <div className="no-information">{resources.NoInfo}</div>
+	if (!mobileView && downlineListData === null) {
+		return null;
+	}
+
+	if (mobileView && downlineListData === null || downlineListData.TotalPages === 0) {
+		return <div className="no-information">{resources.NoInfo}</div>;
 	}
 
 	const totalDirectDownlines = downlineListData.TotalDownlines[0];

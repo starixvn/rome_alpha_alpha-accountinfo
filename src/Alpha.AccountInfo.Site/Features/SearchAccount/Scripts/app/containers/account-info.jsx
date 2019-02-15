@@ -174,7 +174,6 @@ export default class AccountInfo extends React.Component {
 			resources,
 			mobileView,
 			customerInfo,
-			searchCounter,
 			downlineListData,
 			onlineListData,
 			statusData,
@@ -221,7 +220,6 @@ export default class AccountInfo extends React.Component {
 							resources,
 							downlineListData,
 							mobileView,
-							searchCounter,
 							searchAccountRoleId,
 							fetchDownlineListFromServer,
 							fetchCustomerInfoFromServer
@@ -243,7 +241,6 @@ export default class AccountInfo extends React.Component {
 							username,
 							statusData,
 							mobileView,
-							searchCounter,
 							fetchCustomerAllStatusFromServer,
 							fetchCustomerInfoFromServer
 						}}
@@ -255,7 +252,7 @@ export default class AccountInfo extends React.Component {
 				pathname: "/setting",
 				visible: true,
 				fetchDataFromServer: fetchCustomerAllStatusFromServer,
-				children: <Settings {...{ resources, mobileView, settingData, searchCounter }} />
+				children: <Settings {...{ resources, mobileView, settingData }} />
 			},
 			loginInfoProps: {
 				iconClass: "icon-login",
