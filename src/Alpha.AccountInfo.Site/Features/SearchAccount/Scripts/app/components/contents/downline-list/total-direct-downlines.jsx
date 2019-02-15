@@ -58,10 +58,11 @@ export default class TotalDirectDownlines extends React.Component {
                         data.map((item, index) => {
                             let { statusId, title, className, value } = item;
 							let id = `${title}-${statusId}`;
-							let isDisabled = value === 0;
+							let disabled = value === 0;
+
 							let inputProps = {
 								id,
-								disabled: isDisabled,
+								disabled: disabled,
 								checked: checkedStatusId === item.statusId,
 								type: "radio",
 								name: "totalStatus",
@@ -69,7 +70,7 @@ export default class TotalDirectDownlines extends React.Component {
 							};
 
 							return (
-								<div className={`radio ${isDisabled ? 'disabled' : ''}`} key={index}>
+								<div className={`radio ${disabled ? 'disabled' : ''}`} key={index}>
                                     <input {...inputProps}/>
                                     <label className="label-text" htmlFor={id} >
                                         {title}
