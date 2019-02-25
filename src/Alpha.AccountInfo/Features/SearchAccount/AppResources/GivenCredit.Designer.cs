@@ -106,6 +106,15 @@ namespace Alpha.AccountInfo.Features.SearchAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no change !.
+        /// </summary>
+        public static string ThereIsNoChange {
+            get {
+                return ResourceManager.GetString("ThereIsNoChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Given Credit Successfully !.
         /// </summary>
         public static string UpdateGivenCreditSuccessfully {

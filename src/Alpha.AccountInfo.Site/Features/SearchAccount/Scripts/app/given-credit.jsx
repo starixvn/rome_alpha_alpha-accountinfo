@@ -36,16 +36,36 @@ export default class GivenCredit extends React.Component {
         };
 
         this.handleClose = this.handleClose.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
     }
+
+	handleKeyPress(e) {
+		if (e.key === 'Enter') {
+			this.handleSubmit(e);
+		}
+	}
 
     handleClose(e) {
         window.top.closedPopup = true;
         window.top.ageWnd.close();
     }
 
-    handleSubmit(e) {
-        $.blockUI();
+	handleSubmit(e) {
+		let self = this, { resources } = this.props;
+
+		if (this.state.newGivenCredit === this.props.currentGivenCredit) {
+			this.setState((prevState) => ({
+				hideMessages: false,
+				message: resources.ThereIsNoChange,
+				updateSuccess: false
+			}));
+
+			return;
+		}
+
+		$.blockUI();
+	
         var params = {
             SearchAccountId: this.props.searchAccountId,
             SearchAccountRoleId: this.props.searchAccountRoleId,
@@ -53,8 +73,6 @@ export default class GivenCredit extends React.Component {
         };
 
         accountInfoAPI.updateGivenCredit(params).then((data) => {
-            let self = this;
-            let { resources } = this.props;
             self.setState({
                 hideMessages: false,
                 message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message,
@@ -82,15 +100,15 @@ export default class GivenCredit extends React.Component {
         );
     }
 
-    buildGivenCreditLimitNote() {
-        const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
-        const { resources } = this.state;
-        const buildNumberFormat = (value) =>
-            <NumberFormat
-                className="number"
-                value={value}
-                displayType={'text'}
-                decimalScale={2}
+	buildGivenCreditLimitNote() {
+		const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
+		const { resources } = this.state;
+		const buildNumberFormat = (value) =>
+			<NumberFormat
+				className="number"
+				value={value}
+				displayType={'text'}
+				decimalScale={2}
                 fixedDecimalScale={true}
                 thousandSeparator={true}
             />;
@@ -111,7 +129,8 @@ export default class GivenCredit extends React.Component {
                   {noted}
             </div>
         );
-    }
+	}
+
     render() {
         const rowClasses = "col-xs-12 form-group";
         const { newGivenCredit, updateSuccess, message, hideMessages, resources } = this.state;
@@ -131,7 +150,8 @@ export default class GivenCredit extends React.Component {
                         value={newGivenCredit}
                         fixedDecimalScale={true}
                         thousandSeparator={true}
-                        decimalScale={2}
+						decimalScale={2}
+						onKeyPress={this.handleKeyPress}
                         onValueChange={(values) => {
                             const { formattedValue, value, floatValue } = values;
                             this.setState({ newGivenCredit: floatValue === undefined ? 0 : floatValue });
