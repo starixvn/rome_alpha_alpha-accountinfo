@@ -4,6 +4,7 @@
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
+    using System;
 
     public class CustomerInfoQuery : BaseRequest, IRequest<CustomerInfoViewModel>
     {
@@ -30,6 +31,6 @@
 
         public override bool IsValid() =>
             IsValidName(SearchAccountName) &&
-            SearchAccountName != viewer.Name;
+            !SearchAccountName.Trim().Equals(viewer.Name, StringComparison.OrdinalIgnoreCase);
     }
 }

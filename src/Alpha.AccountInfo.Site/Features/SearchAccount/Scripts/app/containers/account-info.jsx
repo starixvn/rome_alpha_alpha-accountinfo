@@ -64,19 +64,36 @@ export default class AccountInfo extends React.Component {
 		let self = this;
 		accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
 			(responeData) => {
-				self.setState((prevState) => ({
-					username: username,
-					custId: responeData !== null ? responeData.CustId : 0,
-					customerInfo: responeData,
-					searchCounter: prevState.searchCounter + 1,
-					redirectToBalanceInfoPage: redirectToBalanceInfoPage,
-					onlineListData: responeData !== null ? null : prevState.onlineListData,
-					downlineListData: responeData !== null ? null : prevState.downlineListData,
-					statusData: responeData !== null && resetSetting ? null : prevState.statusData,
-					settingData: responeData !== null && resetSetting ? null : prevState.settingData
-				}));
+				if (typeof responeData !== "undefined" && responeData !== null) {
+					self.setState((prevState) => ({
+						username: username,
+						custId: responeData !== null ? responeData.CustId : 0,
+						customerInfo: responeData,
+						searchCounter: prevState.searchCounter + 1,
+						redirectToBalanceInfoPage: redirectToBalanceInfoPage,
+						onlineListData: responeData !== null ? null : prevState.onlineListData,
+						downlineListData: responeData !== null ? null : prevState.downlineListData,
+						statusData: responeData !== null && resetSetting ? null : prevState.statusData,
+						settingData: responeData !== null && resetSetting ? null : prevState.settingData
+					}));
 
-				responeData !== null ? localStorage.setItem('lastSearchUsername', username) : localStorage.removeItem('lastSearchUsername');
+					localStorage.setItem('lastSearchUsername', username)
+				}
+				else {
+					self.setState((prevState) => ({
+						username: '',
+						custId: 0,
+						customerInfo: null,
+						searchCounter: prevState.searchCounter + 1,
+						onlineListData: null,
+						downlineListData: null,
+						statusData: null,
+						settingData: null
+					}));
+
+					localStorage.removeItem('lastSearchUsername');
+				}
+
 				$.unblockUI();
 			});
 	}

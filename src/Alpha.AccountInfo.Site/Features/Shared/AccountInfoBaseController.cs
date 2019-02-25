@@ -30,7 +30,7 @@
         {
             if (!(message as BaseRequest).IsValid())
             {
-                return Json(Result.CreateForbiddenResult());
+                return Json(Result.CreateForbiddenResult(), jsonRequestBehavior);
             }
 
             return Json(mediator.Send(message), jsonRequestBehavior);
@@ -42,7 +42,7 @@
         {
             if (!(message as BaseRequest).IsValid())
             {
-                return Json(Result.CreateForbiddenResult());
+                return Json(Result.CreateForbiddenResult(), jsonRequestBehavior);
             }
 
             return Json(await mediator.Send(message).ConfigureAwait(false), jsonRequestBehavior);
