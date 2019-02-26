@@ -56,10 +56,10 @@
         }
 
         [Theory]
-        [InlineData(true, 2, "InCaseClosedDownlinesMessage")]
-        [InlineData(true, 3, "InCaseClosedDownlinesMessage")]
-        [InlineData(false, 2, "InCaseChangeClosedStatusMessage")]
-        [InlineData(false, 3, "InCaseChangeClosedStatusMessage")]
+        [InlineData(false, 2, "InCaseClosedDownlinesMessage")]
+        [InlineData(false, 3, "InCaseClosedDownlinesMessage")]
+        [InlineData(true, 2, "InCaseChangeClosedStatusMessage")]
+        [InlineData(true, 3, "InCaseChangeClosedStatusMessage")]
         [InlineData(true, 1, "InCaseChangeClosedStatusMessage")]
         [InlineData(false, 1, "InCaseChangeClosedStatusMessage")]
         public void Return_CorrectSuffixMessage_By_Checked(bool closed, byte searchAccountRoleId, string expectedSuffixMessages)

@@ -17,7 +17,7 @@
         public override bool ReloadCustomerInfo => true;
 
         internal override string SuffixMessage => 
-            !Request.SearchAccount.IsMember && Checked ?
+            !Request.SearchAccount.IsMember && !Checked ?
                     "InCaseClosedDownlinesMessage" : "InCaseChangeClosedStatusMessage";
 
         internal override string StatusName => DataKey.StatusMapping.Closed;
