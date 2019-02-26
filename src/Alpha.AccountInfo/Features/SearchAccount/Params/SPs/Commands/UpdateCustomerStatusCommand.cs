@@ -69,6 +69,11 @@
 
             spParams.Add(StatusName, StatusValue);
 
+            if(StatusName.Equals(StatusNames.Closed))
+            {
+                spParams.Add("SystemID", 2);
+            }
+
             return spParams;
         }
 
