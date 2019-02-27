@@ -176,7 +176,10 @@ export default class AccountInfo extends React.Component {
 		if (custId > 0 && onlineListData === null) {
 			accountInfoAPI.getOnlineList({ SearchAccountId: custId }).then(
 				(responeData) => {
-					this.setState({ onlineListData: responeData });
+					this.setState({
+						onlineListData: responeData,
+						redirectToBalanceInfoPage: false
+					});
 				});
 		}
 	}
