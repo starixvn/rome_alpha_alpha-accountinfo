@@ -1,10 +1,24 @@
 ﻿import * as React from 'react';
+import { Tooltip } from 'react-tippy';
 
 export const ContactInfoRow = ({ title, value }) => {
+	let maxLength = 15;
+	let isTruncated = value.length > maxLength;
+	let tooltipProps = {
+		title: value,
+		position: "bottom",
+		trigger: "mouseenter",
+		arrow: "true"
+	};
+
+	let content = <div className="col-xs-7 col-right">{isTruncated ? `${value.substring(0, maxLength)}...` : value}</div>;
+
+	let contentWithTooltip = <Tooltip {...tooltipProps}>{content}</Tooltip>;
+
     return (
-        <div className="col-xs-12 row-info">
-            <div className="col-xs-5">{title}</div>
-            <div className="col-xs-7 col-right">{value}</div>
+		<div className="col-xs-12 row-info">
+			<div className="col-xs-5">{title}</div>
+			{isTruncated ? contentWithTooltip : content}
         </div>
     );
 }

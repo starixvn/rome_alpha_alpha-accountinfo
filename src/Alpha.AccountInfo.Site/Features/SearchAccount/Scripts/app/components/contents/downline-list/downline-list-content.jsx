@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import { InfiniteLoader, AutoSizer, List, WindowScroller } from 'react-virtualized';
 import { Scale } from '../../../helpers/accountinfo-helper';
+import { Tooltip } from 'react-tippy';
 
 const STATUS_LOADING = 1;
 const STATUS_LOADED = 2;
@@ -98,17 +99,29 @@ export default class DownlineListContent extends React.PureComponent {
     rowRenderer({ index, key, style }) {
         const { loadedRowsMap, list } = this.state;
         const { fetchCustomerInfoFromServer } = this.props;
-
+		
         let content = list[index].map((item, itemIndex) => {
-            let { Username } = item;
-            return (
-                <div className='col-xs-6' key={itemIndex}>
-                    {
-                        loadedRowsMap[index] === STATUS_LOADED ?
-                            <a href="#" onClick={() => { fetchCustomerInfoFromServer(Username) }}>{Username}</a> :
-                            <div className='placeholder' style={{ width: Username.size }} />
-                    }
-                </div>
+			let { Username } = item;
+			let tooltipProps = {
+				title: Username,
+				position: "bottom",
+				trigger: "mouseenter",
+				arrow: "true"
+			};
+			let maxLength = 8;
+			let isTruncated = Username.length > maxLength;
+			let content = loadedRowsMap[index] === STATUS_LOADED ?
+				<a href="#" onClick={() => { fetchCustomerInfoFromServer(Username) }}>
+					{isTruncated ? `${Username.substring(0, maxLength)}...` : Username }
+				</a> :
+				<div className='placeholder' style={{ width: Username.size }} />;
+
+			let contentWithTooltip = <Tooltip {...tooltipProps}>{content}</Tooltip>;
+
+			return (
+				<div className='col-xs-6' key={itemIndex}>
+					{isTruncated ? contentWithTooltip : content}
+				</div>
             );
         });
 

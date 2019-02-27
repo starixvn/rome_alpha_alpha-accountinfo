@@ -85,8 +85,16 @@ export default class SearchAccountInfo extends React.Component {
 
     render() {
         let { customerInfo, resources, mobileView } = this.props;
-        let { Css, Tootltip } = this.state;
+		let { Css, Tootltip } = this.state;
 
+		let username = customerInfo.UserName;
+		let maxLength = 15;
+		let isTruncate = username.length > maxLength;
+
+		if (Tootltip === '' && isTruncate) {
+			Tootltip = username;
+		}
+		
         let customAnchorTagProps = {
             title: resources.Viewlog,
             classNames: "pointer",
@@ -102,8 +110,8 @@ export default class SearchAccountInfo extends React.Component {
         };
 
         const content =
-            <CustomAnchorTag {...customAnchorTagProps}>
-                <span className={Css} data-username={customerInfo.UserName}> {customerInfo.UserName} </span>
+			<CustomAnchorTag {...customAnchorTagProps}>
+				<span className={Css} data-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>
                 <span className="icon-viewlog" />
             </CustomAnchorTag>;
 
