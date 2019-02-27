@@ -49,7 +49,7 @@
 
         public string TransferOption { get; private set; }
 
-        public bool TransferDaily => !string.IsNullOrWhiteSpace(TransferOption) && TransferOption[7].Equals(0);
+        public bool TransferDaily => !string.IsNullOrWhiteSpace(TransferOption) && TransferOption[7].Equals('0');
 
         public bool DoubleCommLosing { get; private set; }
 
