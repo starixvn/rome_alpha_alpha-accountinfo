@@ -13,6 +13,7 @@ import OnlineList from '../components/contents/online-list';
 
 import AccountInfoMobile from '../components/mobile-version/account-info-mobile';
 import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
+import { resizePopupOnMobile } from '../helpers/accountinfo-helper';
 import * as Raven from 'raven-js';
 
 export default class AccountInfo extends React.Component {
@@ -183,6 +184,8 @@ export default class AccountInfo extends React.Component {
 	handleOpenIPInfo(e) {
 		let IPInfoPath = `${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`;
 		window.top.ageWnd.open(IPInfoPath);
+
+		resizePopupOnMobile();
 	}
 
 	buildContentItems() {

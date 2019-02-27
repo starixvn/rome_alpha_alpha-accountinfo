@@ -30,7 +30,7 @@ const OnlineList = ({ resources, onlineListData, handleOpenIPInfo }) => {
                     <tr>
                         <th>{resources.NumberOrder}</th>
                         <th>{resources.IP}</th>
-                        <th>{resources.FormattedLoginTime}</th>
+						<th>{resources.LoginTime}</th>
                     </tr>
                 </thead>
                 <tbody>
