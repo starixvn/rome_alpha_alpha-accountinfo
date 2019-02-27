@@ -29,8 +29,10 @@
       <Mapping ObjectProperty="MemMaxCreditMin" DataField="memMaxCredit_Min" />
     </Setting>
     <Setting Key="Age_BalanceMemberSel" SpName="Age_BalanceMemberSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" >
-      <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_CustomerCash" />
+      <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_Cash" />
       <Mapping ObjectProperty="MemMaxCreditMax" DataField="memMaxCredit_Max" />
+      <Mapping ObjectProperty="CustomerCash" DataField="Cash" />
+      <Mapping ObjectProperty="CustomerOutstanding" DataField="outstanding" />
     </Setting>
   </Function>
 </Functions>
