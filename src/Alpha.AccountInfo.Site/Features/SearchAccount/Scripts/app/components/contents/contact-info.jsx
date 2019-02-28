@@ -2,7 +2,7 @@
 import { Tooltip } from 'react-tippy';
 
 export const ContactInfoRow = ({ title, value }) => {
-	let maxLength = 15;
+	let maxLength = 18;
 	let isTruncated = value.length > maxLength;
 	let tooltipProps = {
 		title: value,

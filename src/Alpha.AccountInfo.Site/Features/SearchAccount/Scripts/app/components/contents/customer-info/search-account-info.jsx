@@ -88,7 +88,7 @@ export default class SearchAccountInfo extends React.Component {
 		let { Css, Tootltip } = this.state;
 
 		let username = customerInfo.UserName;
-		let maxLength = 15;
+		let maxLength = 18;
 		let isTruncate = username.length > maxLength;
 
 		if (Tootltip === '' && isTruncate) {
