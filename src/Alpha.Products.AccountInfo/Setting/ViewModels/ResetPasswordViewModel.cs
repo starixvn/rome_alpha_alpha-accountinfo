@@ -1,8 +1,9 @@
 ﻿namespace Alpha.Products.AccountInfo.Setting.ViewModels
 {
-    using System.Collections.Generic;
     using Alpha.Products.AccountInfo.Requests;
+    using Alpha.Products.Core.Shared;
     using Base;
+    using System.Collections.Generic;
 
     public class ResetPasswordViewModel : SettingItemViewModel
     {
@@ -19,7 +20,7 @@
               ["custId"] = SearchAccount.Id.ToString(),
               ["username"] = SearchAccount.Username,
               ["custRoleId"] = SearchAccount.CusomerLevelValue.ToString(),
-              ["isCasinoSync"] = "true",
+              ["isCasinoSync"] = Request.SearchAccount.ProductStatusOf(ProductConstants.RNGCasino).Synced ? "1" : "0"
           };
 
         public override bool Visible => Actor.IsMainAccount || Request.GetData<bool>(DataKey.Actor.HasUpdateAccountPermission);

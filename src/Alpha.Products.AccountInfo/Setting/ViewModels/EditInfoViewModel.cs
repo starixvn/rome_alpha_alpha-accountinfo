@@ -1,8 +1,9 @@
 ﻿namespace Alpha.Products.AccountInfo.Setting.ViewModels
 {
-    using System.Collections.Generic;
     using Alpha.Products.AccountInfo.Requests;
+    using Alpha.Products.Core.Shared;
     using Base;
+    using System.Collections.Generic;
 
     public class EditInfoViewModel : SettingItemViewModel
     {
@@ -18,7 +19,8 @@
             => new Dictionary<string, string>
             {
                 ["custId"] = SearchAccount.Id.ToString(),
-                ["username"] = SearchAccount.Username
+                ["username"] = SearchAccount.Username,
+                ["isSyncCasino"] = Request.SearchAccount.ProductStatusOf(ProductConstants.RNGCasino).Synced ? "1" : "0"
             };
     }
 }
