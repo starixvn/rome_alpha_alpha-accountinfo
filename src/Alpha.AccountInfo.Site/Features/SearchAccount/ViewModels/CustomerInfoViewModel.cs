@@ -87,26 +87,14 @@
 
         public IBalanceInfoViewModel BalanceInfo { get; }
 
-        public Link CustomerListOrBetListLink
-        {
-            get
-            {
-                var labels = new Dictionary<UserLevel, string>
-                {
-                    {UserLevel.Master, Resources.AgentList },
-                    {UserLevel.Agent, Resources.MemberList },
-                    {UserLevel.Member, Resources.BetList },
-                };
+        internal Link CustomerListLink =>
+            new Link(SearchAccountLevel.IsMasterLevel() ? Resources.AgentList : Resources.MemberList, 
+            $"{OldMainUrl}_MemberInfo/CustomerList/{ActorLevel.DisplayName}/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}List.aspx?custid={CustId}");
 
-                var link = SearchAccountLevel.IsMemberLevel() ?
-                     $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}" :
-                     $"{OldMainUrl}_MemberInfo/CustomerList/{ActorLevel.DisplayName}/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}List.aspx?custid={CustId}";
+        internal Link BetListLink => 
+            new Link(Resources.BetList, $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}");
 
-                return new Link(labels[SearchAccountLevel], link);
-            }
-        }
-
-        public Link StatemenLink
+        internal Link StatemenLink
         {
             get
             {
@@ -115,6 +103,32 @@
                 return new Link(Resources.Statement, link);
             }
         }
+
+        public IEnumerable<Link> Buttons
+        {
+            get
+            {
+                var buttons = new List<Link>();
+
+                if (!SearchAccountLevel.IsMemberLevel()) {
+                    buttons.Add(CustomerListLink);
+                }
+
+                if(SearchAccountLevel.IsMemberLevel() && message.CanViewReports)
+                {
+                    buttons.Add(BetListLink);
+                }
+
+                if(message.CanViewReports)
+                {
+                    buttons.Add(StatemenLink);
+                }
+
+                return buttons;
+            }
+        }
+
+        public bool CanViewLog => message.CanViewLog;
 
         public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
 

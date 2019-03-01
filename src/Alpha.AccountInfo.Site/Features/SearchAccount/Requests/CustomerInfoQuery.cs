@@ -27,7 +27,9 @@
 
         public bool AllowTransfer => viewer.AllowTransfer;
 
-        public bool ViewReports => viewer.CanViewReports;
+        public bool CanViewReports => viewer.CanViewReports;
+
+        public bool CanViewLog => viewer.CanViewLog;
 
         public override bool IsValid() =>
             IsValidName(SearchAccountName) &&

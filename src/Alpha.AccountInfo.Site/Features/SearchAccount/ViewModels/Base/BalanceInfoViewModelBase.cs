@@ -32,7 +32,7 @@
 
         internal virtual bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
 
-        public bool ShowOutstandingLink => message.ViewReports && Outstanding > 0;
+        public bool ShowOutstandingLink => message.CanViewReports && Outstanding > 0;
 
         public Link ReportLink
         {

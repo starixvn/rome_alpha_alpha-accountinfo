@@ -109,15 +109,19 @@ export default class SearchAccountInfo extends React.Component {
             arrow: "true"
         };
 
-        const content =
+		const spanContent = <span className={Css} data-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>;
+
+		const spanContentViewLog =
 			<CustomAnchorTag {...customAnchorTagProps}>
-				<span className={Css} data-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>
+				{spanContent}
                 <span className="icon-viewlog" />
             </CustomAnchorTag>;
 
-        const contentWithTooltip =
+		let content = customerInfo.CanViewLog ? spanContentViewLog : spanContent;
+
+		let contentWithTooltip =
             <Tooltip {...tooltipProps}>
-                {content}
+				{content}
             </Tooltip>;
 
         return Tootltip === '' ? content : contentWithTooltip;

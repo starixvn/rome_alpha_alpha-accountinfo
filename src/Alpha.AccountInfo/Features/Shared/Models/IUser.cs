@@ -32,6 +32,8 @@
 
         bool CanViewReports { get; }
 
+        bool CanViewLog { get; }
+
         bool GetDisabledProduct(int productId);
 
         bool GetHideProduct(int productId);

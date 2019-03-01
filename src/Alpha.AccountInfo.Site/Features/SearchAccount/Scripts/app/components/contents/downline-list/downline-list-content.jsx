@@ -108,7 +108,7 @@ export default class DownlineListContent extends React.PureComponent {
 				trigger: "mouseenter",
 				arrow: "true"
 			};
-			let maxLength = 12;
+			let maxLength = 13;
 			let isTruncated = Username.length > maxLength;
 			let content = loadedRowsMap[index] === STATUS_LOADED ?
 				<a href="#" onClick={() => { fetchCustomerInfoFromServer(Username) }}>

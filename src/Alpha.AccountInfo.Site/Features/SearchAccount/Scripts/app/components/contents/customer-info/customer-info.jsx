@@ -40,8 +40,6 @@ const CustomerInfo = ({
         }
     ];
 
-    const buttons = [customerInfo.CustomerListOrBetListLink, customerInfo.StatemenLink];
-
     return (
         <div id="customer-info" className="block-info">
             {
@@ -75,7 +73,7 @@ const CustomerInfo = ({
 
             <div className="col-xs-12 row-info text-center list-button">
                 {
-                    buttons.map((buton, index) => {
+					customerInfo.Buttons.map((buton, index) => {
                         let customAnchorTagProps = {
                             mobileView,
                             classNames: "btn-default with-level",

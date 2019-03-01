@@ -25,7 +25,7 @@
                 !messages.AllDayBalTransfer &&
                 messages.AllowedTotalBalanceTransfer &&
                 messages.AllowTransfer &&
-                messages.ViewReports);
+                messages.CanViewReports);
         }
 
         [Theory]

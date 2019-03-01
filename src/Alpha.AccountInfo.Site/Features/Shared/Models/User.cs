@@ -43,6 +43,8 @@
 
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;
 
+        public bool CanViewLog => userSession.SubPageAccess.ViewLog;
+
         public bool GetDisabledProduct(int productId) => userSession.GetDisabledProduct(productId);
 
         public bool GetHideProduct(int productId) => userSession.GetHideProduct(productId);
