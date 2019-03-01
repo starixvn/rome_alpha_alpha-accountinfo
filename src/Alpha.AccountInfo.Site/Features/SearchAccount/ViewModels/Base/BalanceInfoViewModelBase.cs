@@ -64,6 +64,8 @@
 
         public string YesterdayBalanceTransferLink => BuildTransferLink(YesterdayBalance);
 
+        public bool CanUpdateAccount => message.CanUpdateAccount;
+
         internal string BuildTransferLink(decimal transferValue)
             => SearchAccountLevel.IsMemberLevel() ?
              $"{OldMainUrl}_Transfer/Agent/MemberTransfer.aspx?custid={customerInfo.CustId}&CallBack=false" :

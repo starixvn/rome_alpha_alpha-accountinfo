@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import NumberFormat from 'react-number-format';
 import { mobileScale, resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
+import BalanceInfoRow from './balance-info-row';
 
 export default class GivenCreditRow extends React.Component {
     constructor(props) {
@@ -54,16 +55,23 @@ export default class GivenCreditRow extends React.Component {
             thousandSeparator: true
         }
 
-        return (
-            <div className="row-info">
-                <div className="col">{resources.GivenCredit}</div>
-                <div id="given-credit-popup" className="col col-right" onClick={this.handleOpenGivenCreditPopup} >
-                    <div className="given-credit">
-                        <span className="icon-border-color icon-edited" />
-                        <NumberFormat {...numberFormatProps} />
-                    </div>
-                </div>
-            </div>
-        );
+		let editableGivenCredit = <div className="row-info">
+			<div className="col">{resources.GivenCredit}</div>
+			<div id="given-credit-popup" className="col col-right" onClick={this.handleOpenGivenCreditPopup} >
+				<div className="given-credit">
+					<span className="icon-border-color icon-edited" />
+					<NumberFormat {...numberFormatProps} />
+				</div>
+			</div>
+		</div>;
+
+		let nonEditableGivenCredit =
+			<BalanceInfoRow
+				id="non-editable-given-credit"
+				title={resources.GivenCredit}
+			    value={balanceInfo.GivenCredit}
+			/>
+
+		return balanceInfo.CanUpdateAccount ? editableGivenCredit : nonEditableGivenCredit;
     }
 }

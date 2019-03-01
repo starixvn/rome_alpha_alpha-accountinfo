@@ -6,9 +6,11 @@
 
     public class GivenCreditQuery : SearchAccountQueryBase, IRequest<GivenCreditViewModel>
     {
+        private IUser viewer;
+
         public GivenCreditQuery(IUser viewer) : base(viewer)
         {
-            Language = viewer.Language;
+            this.viewer = viewer;
         }
 
         public string SearchAccountName { get; set; }
@@ -21,11 +23,12 @@
 
         public decimal GivenCreditMax { get; set; }
 
-        public string Language { get; }
+        public string Language => viewer.Language;
 
         public override bool IsValid() =>
             base.IsValid() &&
             IsValidSearchAccountRoleId(SearchAccountRoleId) &&
-            !string.IsNullOrEmpty(SearchAccountName);
+            !string.IsNullOrEmpty(SearchAccountName) &&
+            viewer.CanUpdateAccount;
     }
 }

@@ -31,6 +31,8 @@
 
         public bool CanViewLog => viewer.CanViewLog;
 
+        public bool CanUpdateAccount => viewer.CanUpdateAccount;
+
         public override bool IsValid() =>
             IsValidName(SearchAccountName) &&
             !SearchAccountName.Trim().Equals(viewer.Name, StringComparison.OrdinalIgnoreCase);

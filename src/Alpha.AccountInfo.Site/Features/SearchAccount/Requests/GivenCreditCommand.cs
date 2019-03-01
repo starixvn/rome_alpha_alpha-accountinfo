@@ -26,6 +26,7 @@
 
         public override bool IsValid() =>
             base.IsValid() &&
-            IsValidSearchAccountRoleId(SearchAccountRoleId);
+            IsValidSearchAccountRoleId(SearchAccountRoleId) &&
+            viewer.CanUpdateAccount;
     }
 }
