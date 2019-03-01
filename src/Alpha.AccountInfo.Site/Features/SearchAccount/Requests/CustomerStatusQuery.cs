@@ -53,6 +53,10 @@
 
         public bool IsNumberGameDisabled => viewer.IsNumberGameDisabled;
 
+        public bool IsHideGoldDeluxe => viewer.IsHideGoldDeluxe;
+
+        public bool DisableGoldDeluxe => viewer.DisableGoldDeluxe;
+
         public override bool IsValid() => IsValidSearchAccount && IsValidUpline;
 
         internal bool IsValidSearchAccount =>

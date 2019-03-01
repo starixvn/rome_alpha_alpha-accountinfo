@@ -53,5 +53,9 @@
         bool IsDisabledESports { get; }
 
         bool IsNumberGameDisabled { get; }
+
+        bool IsHideGoldDeluxe { get; }
+
+        bool DisableGoldDeluxe { get; }
     }
 }

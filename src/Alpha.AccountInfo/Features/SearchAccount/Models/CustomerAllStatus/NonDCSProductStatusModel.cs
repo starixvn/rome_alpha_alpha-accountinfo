@@ -15,7 +15,11 @@
             bool disableColossusBet,
             bool hideColossusBet,
             bool uplineDisableColossusBet,
-            bool hideKeno)
+            bool hideKeno,
+            bool uplineHideGoldDeluxe,
+            bool uplineDisableGoldDeluxe,
+            bool disableGoldDeluxe,
+            bool hideGoldDeluxe)
         {
             SyncCasino = syncCasino;
             DisableCasino = disableCasino;
@@ -32,6 +36,11 @@
             UplineDisableColossusBet = uplineDisableColossusBet;
 
             HideKeno = hideKeno;
+
+            HideGoldDeluxe = hideGoldDeluxe;
+            DisableGoldDeluxe = disableGoldDeluxe;
+            UplineDisableGoldDeluxe = uplineDisableGoldDeluxe;
+            UplineHideGoldDeluxe = uplineHideGoldDeluxe;
         }
 
         public bool SyncCasino { get; private set; }
@@ -55,5 +64,13 @@
         public bool UplineDisableColossusBet { get; private set; }
 
         public bool HideKeno { get; private set; }
+
+        public bool UplineHideGoldDeluxe { get; private set; }
+
+        public bool UplineDisableGoldDeluxe { get; private set; }
+
+        public bool DisableGoldDeluxe { get; private set; }
+
+        public bool HideGoldDeluxe { get; private set; }
     }
 }

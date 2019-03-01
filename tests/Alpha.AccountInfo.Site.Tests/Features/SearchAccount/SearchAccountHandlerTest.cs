@@ -460,7 +460,11 @@
                        disableColossusBet: true,
                        hideColossusBet: true,
                        uplineDisableColossusBet: true,
-                       hideKeno: true);
+                       hideKeno: true,
+                       uplineHideGoldDeluxe: true,
+                       uplineDisableGoldDeluxe: true,
+                       disableGoldDeluxe: true,
+                       hideGoldDeluxe: true);
 
         private static NonProductStatusModel StubNonProductStatus()
             => new NonProductStatusModel(

@@ -64,5 +64,9 @@
         public bool IsDisabledESports => userSession.IsDisabledESports;
 
         public bool IsNumberGameDisabled => userSession.IsNumberGameDisabled;
+
+        public bool IsHideGoldDeluxe => userSession.IsHideGoldDeluxe;
+
+        public bool DisableGoldDeluxe => userSession.DisableGoldDeluxe;
     }
 }
