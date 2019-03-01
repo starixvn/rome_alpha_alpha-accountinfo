@@ -404,7 +404,8 @@
                 new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
                 new CustomerProductStatus(ProductConstants.ESport, true),
                 new CustomerProductStatus(ProductConstants.ColossusBets, true, hidden: true),
-                new CustomerProductStatus(ProductConstants.Keno, true)
+                new CustomerProductStatus(ProductConstants.Keno, hidden: true),
+                new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
             };
 
             var actualActorProductStatus = accountInfoHandler.BuildActorProductStatus(message, Enumerable.Empty<DCSProductStatusModel>());
@@ -421,7 +422,8 @@
                 new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
                 new CustomerProductStatus(ProductConstants.ESport, true),
                 new CustomerProductStatus(ProductConstants.ColossusBets, true, hidden: true),
-                new CustomerProductStatus(ProductConstants.Keno, true)
+                new CustomerProductStatus(ProductConstants.Keno, hidden: true),
+                new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
             };
 
             var actualSearchAccountProduct = accountInfoHandler.BuildSearchAccountProductStatus(StubNonDCSProduct(), Enumerable.Empty<DCSProductStatusModel>());
@@ -437,8 +439,9 @@
                 new CustomerProductStatus(ProductConstants.NumberGame, true),
                 new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
                 new CustomerProductStatus(ProductConstants.ESport, true),
-                new CustomerProductStatus(ProductConstants.ColossusBets, true, hidden: true),
-                new CustomerProductStatus(ProductConstants.Keno, true)
+                new CustomerProductStatus(ProductConstants.ColossusBets, true),
+                new CustomerProductStatus(ProductConstants.Keno, hidden: true),
+                new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
             };
 
             var actualUplineProductStatus = accountInfoHandler.BuildUplineProductStatus(StubNonDCSProduct(), Enumerable.Empty<DCSProductStatusModel>());

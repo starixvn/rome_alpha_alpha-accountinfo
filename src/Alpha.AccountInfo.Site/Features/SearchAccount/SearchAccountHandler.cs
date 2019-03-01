@@ -203,7 +203,7 @@
                 new CustomerProductStatus(ProductConstants.RNGCasino, nonDCSProduct.DisableCasino, synced: nonDCSProduct.SyncCasino),
                 new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.DisableEsports),
                 new CustomerProductStatus(ProductConstants.ColossusBets, nonDCSProduct.DisableColossusBet, hidden: nonDCSProduct.HideColossusBet),
-                new CustomerProductStatus(ProductConstants.Keno, nonDCSProduct.HideKeno),
+                new CustomerProductStatus(ProductConstants.Keno, hidden: nonDCSProduct.HideKeno),
                 new CustomerProductStatus(ProductConstants.GoldDeluxe, nonDCSProduct.DisableGoldDeluxe, hidden: nonDCSProduct.HideGoldDeluxe)
             };
 
@@ -227,7 +227,7 @@
                 new CustomerProductStatus(ProductConstants.RNGCasino, nonDCSProduct.UplineDisableCS),
                 new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.UplineDisableEsports),
                 new CustomerProductStatus(ProductConstants.ColossusBets, nonDCSProduct.UplineDisableColossusBet),
-                new CustomerProductStatus(ProductConstants.Keno, nonDCSProduct.HideKeno),
+                new CustomerProductStatus(ProductConstants.Keno, hidden: nonDCSProduct.HideKeno),
                 new CustomerProductStatus(ProductConstants.GoldDeluxe, nonDCSProduct.UplineDisableGoldDeluxe, hidden: nonDCSProduct.UplineHideGoldDeluxe)
             };
 
@@ -251,7 +251,7 @@
                 new CustomerProductStatus(ProductConstants.RNGCasino, message.IsCasinoDisabled, synced: message.IsCasinoSync),
                 new CustomerProductStatus(ProductConstants.ESport, message.IsDisabledESports),
                 new CustomerProductStatus(ProductConstants.ColossusBets, message.DisableColossusBets, hidden: message.IsHideColossusBets),
-                new CustomerProductStatus(ProductConstants.Keno, message.IsHideKeno),
+                new CustomerProductStatus(ProductConstants.Keno, hidden:message.IsHideKeno),
                 new CustomerProductStatus(ProductConstants.GoldDeluxe, message.DisableGoldDeluxe, hidden: message.IsHideGoldDeluxe)
             };
 
