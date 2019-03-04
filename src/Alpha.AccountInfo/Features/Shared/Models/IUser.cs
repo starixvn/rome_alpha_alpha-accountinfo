@@ -57,5 +57,7 @@
         bool IsHideGoldDeluxe { get; }
 
         bool DisableGoldDeluxe { get; }
+
+        bool IsEnabledCustomerDateLimit { get; }
     }
 }

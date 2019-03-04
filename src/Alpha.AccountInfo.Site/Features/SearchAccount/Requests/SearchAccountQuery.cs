@@ -7,22 +7,24 @@
 
     public class SearchAccountQuery : BaseRequest, IRequest<AccountInfoViewModel>
     {
+        private readonly IUser viewer ;
+
         public SearchAccountQuery(IUser viewer) : base(viewer)
         {
-            ActorRoleId = viewer.LevelId;
-            ActorName = viewer.Name;
-            Language = viewer.Language;
+            this.viewer = viewer;
         }
 
         public string SearchAccountName { get; set; }
 
-        public byte ActorRoleId { get; }
+        public byte ActorRoleId => viewer.LevelId;
 
-        public string ActorName { get; }
+        public string ActorName => viewer.Name;
 
-        public string Language { get; }
+        public string Language => viewer.Language;
 
         public bool MobileView { get; set; }
+
+        public bool IsEnabledCustomerDateLimit => viewer.IsEnabledCustomerDateLimit;
 
         public override bool IsValid() => true;
     }

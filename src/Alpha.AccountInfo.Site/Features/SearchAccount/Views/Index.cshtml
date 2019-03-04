@@ -28,6 +28,7 @@
             '@Model.ActorRoleId',
             '@Model.ActoreName',
             JSON.parse('@Model.MobileView'.toLowerCase()),
+			JSON.parse('@Model.ShowLoginInfo'.toLowerCase()),
             @Html.Raw(Model.AccountInfoResources)
         );
     </script>

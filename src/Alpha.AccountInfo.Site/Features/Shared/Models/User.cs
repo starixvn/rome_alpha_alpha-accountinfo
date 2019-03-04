@@ -2,12 +2,18 @@
 {
     using Alpha.AccountInfo.Features.Shared.Models;
     using Sunplus.Agent.Model.Entities;
+    using System;
 
     public class User : IUser
     {
+        private const string CustomerDateLimitSessionKey = "CustomerDateLimit";
+#pragma warning disable CS0618 // Type or member is obsolete
         private readonly IUserSession userSession;
+#pragma warning restore CS0618 // Type or member is obsolete
 
+#pragma warning disable CS0618 // Type or member is obsolete
         public User(IUserSession userSession)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             this.userSession = userSession;
         }
@@ -68,5 +74,8 @@
         public bool IsHideGoldDeluxe => userSession.IsHideGoldDeluxe;
 
         public bool DisableGoldDeluxe => userSession.DisableGoldDeluxe;
+
+        public bool IsEnabledCustomerDateLimit
+           => userSession.GetProperty<DateTime>(CustomerDateLimitSessionKey) != default(DateTime);
     }
 }

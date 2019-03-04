@@ -33,6 +33,8 @@
 
         public bool MobileView => message.MobileView;
 
+        public bool ShowLoginInfo => !message.IsEnabledCustomerDateLimit;
+
         public string AccountInfoResources => ConvertResourcesJson(message.Language, Resources.ResourceManager);
     }
 }

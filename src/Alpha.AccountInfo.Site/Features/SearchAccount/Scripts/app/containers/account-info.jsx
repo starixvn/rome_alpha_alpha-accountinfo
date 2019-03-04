@@ -19,7 +19,7 @@ import * as Raven from 'raven-js';
 export default class AccountInfo extends React.Component {
 	constructor(props) {
 		super(props);
-		let { searchAccountName, actorRoleId, actorName, mobileView, resources } = this.props;
+		let { searchAccountName, actorRoleId, actorName, mobileView, showLoginInfo, resources } = this.props;
 		let username = searchAccountName;
 
 		if (username === '' && localStorage.getItem("actorName") === actorName) {
@@ -36,6 +36,7 @@ export default class AccountInfo extends React.Component {
 			custId: 0,
 			actorRoleId: actorRoleId,
 			mobileView: mobileView,
+			showLoginInfo: showLoginInfo,
 			redirectToBalanceInfoPage: true,
 			searchCounter: 0,
 			customerInfo: null,
@@ -196,6 +197,7 @@ export default class AccountInfo extends React.Component {
 			actorRoleId,
 			resources,
 			mobileView,
+			showLoginInfo,
 			customerInfo,
 			downlineListData,
 			onlineListData,
@@ -281,7 +283,7 @@ export default class AccountInfo extends React.Component {
 				iconClass: "icon-login",
 				featureText: resources.LoginInfo,
 				pathname: "/loginInfo",
-				visible: actorRoleId !== UserLevel.Super && searchAccountRoleId !== UserLevel.Agent,
+				visible: showLoginInfo,
 				children: <LoginInfo {...{ resources, loginInfo, handleOpenIPInfo }} />
 			},
 			onlineListProps: {
