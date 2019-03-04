@@ -396,4 +396,7 @@
   <data name="Nickname" xml:space="preserve">
     <value>ชื่อเล่น</value>
   </data>
+  <data name="OutrightDisabledUpline" xml:space="preserve">
+    <value>Upline has been disabled Outright betting</value>
+  </data>
 </root>

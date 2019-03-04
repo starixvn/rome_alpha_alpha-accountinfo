@@ -637,6 +637,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upline has been disabled Outright betting.
+        /// </summary>
+        public static string OutrightDisabledUpline {
+            get {
+                return ResourceManager.GetString("OutrightDisabledUpline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outstanding.
         /// </summary>
         public static string Outstanding {

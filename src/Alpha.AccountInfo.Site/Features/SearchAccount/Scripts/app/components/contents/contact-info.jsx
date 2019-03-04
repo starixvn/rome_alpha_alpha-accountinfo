@@ -11,14 +11,16 @@ export const ContactInfoRow = ({ title, value }) => {
 		arrow: "true"
 	};
 
-	let content = <div className="col-xs-7 col-right">{isTruncated ? `${value.substring(0, maxLength)}...` : value}</div>;
+	let content = <div>{isTruncated ? `${value.substring(0, maxLength)}...` : value}</div>;
 
 	let contentWithTooltip = <Tooltip {...tooltipProps}>{content}</Tooltip>;
 
     return (
 		<div className="col-xs-12 row-info">
 			<div className="col-xs-5">{title}</div>
-			{isTruncated ? contentWithTooltip : content}
+			<div className="col-xs-7 col-right">
+				{isTruncated ? contentWithTooltip : content}
+			</div>
         </div>
     );
 }

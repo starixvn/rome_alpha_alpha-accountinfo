@@ -12,6 +12,8 @@
         public override bool Disabled
             => base.Disabled || !Request.GetData<bool>(DataKey.SearchAccount.Upline.IsAllowedOutright);
 
+        public string Tooltip => Disabled ? Request.GetResource("OutrightDisabledUpline") : string.Empty;
+
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsAllowedOutright);
 
         internal override string SuffixMessage => Checked ? "InCaseDisabledMessage" : "InCaseEnabledMessage";
@@ -20,6 +22,6 @@
 
         internal override bool StatusValue => Checked;
 
-        internal override bool SyncedCasino3rd => false;
+        internal override bool SyncedCasino3rd => false;  
     }
 }

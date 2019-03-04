@@ -1,6 +1,15 @@
 export const Scale = 0.7
 export const mobileScale = (value) => value / Scale;
 
+export const buildTooltipProps = (tooltip) => {
+	return {
+		title: tooltip,
+		position: "bottom",
+		trigger: "mouseenter",
+		arrow: "true"
+	}
+}
+
 export const resizePopupOnMobile = () => {
     let modalElement = window.top.document.querySelector('[id^="page-popup-"]');
     if (modalElement) {
