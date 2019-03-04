@@ -17,13 +17,14 @@
         protected override Dictionary<string, string> QueryStringParamaters
             => new Dictionary<string, string>
             {
-                ["uplineId"] = SearchAccount.Upline.Id.ToString(),
-                ["uplineLevel"] = SearchAccount.Upline.CusomerLevelValue.ToString(),
+                ["uplineId"] = Actor.Id.ToString(),
+                ["uplineLevel"] = Actor.CusomerLevelValue.ToString(),
                 ["actorId"] = Actor.Id.ToString(),
                 ["custId"] = SearchAccount.Id.ToString(),
                 ["level"] = SearchAccount.CusomerLevelValue.ToString(),
                 ["subAccId"] = Actor.SubAccountId.ToString(),
-                ["formType"] = "1"
+                ["formType"] = "1",
+                ["language"] = "E"
             };
 
         public override bool Visible => base.Visible && !Actor.ProductStatusOf(ProductId).Hidden;
