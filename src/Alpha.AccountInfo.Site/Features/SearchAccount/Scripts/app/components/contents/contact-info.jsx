@@ -1,19 +1,13 @@
 ﻿import * as React from 'react';
 import { Tooltip } from 'react-tippy';
+import { buildTooltipProps } from '../../helpers/accountinfo-helper';
 
 export const ContactInfoRow = ({ title, value }) => {
 	let maxLength = 18;
 	let isTruncated = value.length > maxLength;
-	let tooltipProps = {
-		title: value,
-		position: "bottom",
-		trigger: "mouseenter",
-		arrow: "true"
-	};
-
 	let content = <div>{isTruncated ? `${value.substring(0, maxLength)}...` : value}</div>;
 
-	let contentWithTooltip = <Tooltip {...tooltipProps}>{content}</Tooltip>;
+	let contentWithTooltip = <Tooltip {...buildTooltipProps(value)}>{content}</Tooltip>;
 
     return (
 		<div className="col-xs-12 row-info">

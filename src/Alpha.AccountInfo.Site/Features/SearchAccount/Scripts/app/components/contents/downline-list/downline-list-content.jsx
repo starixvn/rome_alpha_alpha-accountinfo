@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import { InfiniteLoader, AutoSizer, List, WindowScroller } from 'react-virtualized';
-import { Scale } from '../../../helpers/accountinfo-helper';
+import { Scale, buildTooltipProps } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
 const STATUS_LOADING = 1;
@@ -102,12 +102,6 @@ export default class DownlineListContent extends React.PureComponent {
 		
         let content = list[index].map((item, itemIndex) => {
 			let { Username } = item;
-			let tooltipProps = {
-				title: Username,
-				position: "bottom",
-				trigger: "mouseenter",
-				arrow: "true"
-			};
 			let maxLength = 13;
 			let isTruncated = Username.length > maxLength;
 			let content = loadedRowsMap[index] === STATUS_LOADED ?
@@ -116,7 +110,7 @@ export default class DownlineListContent extends React.PureComponent {
 				</a> :
 				<div className='placeholder' style={{ width: Username.size }} />;
 
-			let contentWithTooltip = <Tooltip {...tooltipProps}>{content}</Tooltip>;
+			let contentWithTooltip = <Tooltip {...buildTooltipProps(Username)}>{content}</Tooltip>;
 
 			return (
 				<div className='col-xs-6' key={itemIndex}>

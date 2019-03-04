@@ -2,6 +2,7 @@
 import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 import CustomAnchorTag from '../../common/custom-anchor-tag';
+import { buildTooltipProps } from '../../../helpers/accountinfo-helper';
 
 const ClosedReason = {
     ByOtherReason: 0,
@@ -102,13 +103,6 @@ export default class SearchAccountInfo extends React.Component {
             mobileView
         };
 
-        let tooltipProps = {
-            title: Tootltip,
-            position: "bottom",
-            trigger: "mouseenter",
-            arrow: "true"
-        };
-
 		const spanContent = <span className={Css} data-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>;
 
 		const spanContentViewLog =
@@ -120,7 +114,7 @@ export default class SearchAccountInfo extends React.Component {
 		let content = customerInfo.CanViewLog ? spanContentViewLog : spanContent;
 
 		let contentWithTooltip =
-            <Tooltip {...tooltipProps}>
+			<Tooltip {...buildTooltipProps(Tootltip)}>
 				{content}
             </Tooltip>;
 
