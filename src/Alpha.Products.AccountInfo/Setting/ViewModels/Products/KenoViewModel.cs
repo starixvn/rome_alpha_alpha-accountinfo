@@ -14,7 +14,7 @@
         protected override string BaseAddress
             => OldMainUrl + "customersetting/kenosetting/kenosetting/" + 
             (SearchAccount.IsMember
-            ? $"{Actor.CustomerLevel.DisplayName}EditMember?isMultipleEdit=0"
+            ? $"{Actor.CustomerLevel.DisplayName}EditMember"
             : $"Edit{SearchAccount.CustomerLevel.DisplayName}");
 
         protected override Dictionary<string, string> QueryStringParamaters
@@ -23,7 +23,8 @@
              ["custId"] = SearchAccount.Id.ToString(),
              ["username"] = SearchAccount.Username,
              ["userId"] = Actor.Id.ToString(),
-             ["SubAccId"] = Actor.SubAccountId.ToString()
+             ["SubAccId"] = Actor.SubAccountId.ToString(),
+             ["isMultipleEdit"] = "0"
          };
 
         public override bool Visible => base.Visible && !Actor.ProductStatusOf(ProductId).Hidden;
