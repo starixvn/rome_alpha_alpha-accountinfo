@@ -6,7 +6,7 @@
 
     public class GivenCreditQuery : SearchAccountQueryBase, IRequest<GivenCreditViewModel>
     {
-        private IUser viewer;
+        private readonly IUser viewer;
 
         public GivenCreditQuery(IUser viewer) : base(viewer)
         {
