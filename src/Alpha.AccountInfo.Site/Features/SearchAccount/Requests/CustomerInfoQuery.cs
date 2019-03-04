@@ -5,6 +5,7 @@
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
     using System;
+    using System.Web.Mvc;
 
     public class CustomerInfoQuery : BaseRequest, IRequest<CustomerInfoViewModel>
     {
@@ -15,6 +16,7 @@
             this.viewer = viewer;
         }
 
+        [AllowHtml]
         public string SearchAccountName { get; set; }
 
         public int ActorId => viewer.Id;
