@@ -23,8 +23,7 @@
                 ["custId"] = SearchAccount.Id.ToString(),
                 ["level"] = SearchAccount.CusomerLevelValue.ToString(),
                 ["subAccId"] = Actor.SubAccountId.ToString(),
-                ["formType"] = "1",
-                ["language"] = "E"
+                ["formType"] = "1"
             };
 
         public override bool Visible => base.Visible && !Actor.ProductStatusOf(ProductId).Hidden;

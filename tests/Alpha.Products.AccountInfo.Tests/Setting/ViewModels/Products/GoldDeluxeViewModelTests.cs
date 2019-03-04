@@ -27,7 +27,7 @@
             var request = RequestHelper.CreateRequest(4, 3);
             var viewModel = new GoldDeluxeViewModel(request);
 
-            Assert.True(viewModel.Url.IndexOf($"uplineId={request.SearchAccount.Upline}", StringComparison.OrdinalIgnoreCase) >= 0);
+            Assert.True(viewModel.Url.IndexOf($"uplineId={request.Actor.Id}", StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         [Theory]
@@ -37,7 +37,7 @@
             var request = RequestHelper.CreateRequest(actorLevel, searchAccountLevel);
             var viewModel = new GoldDeluxeViewModel(request);
 
-            Assert.True(viewModel.Url.IndexOf($"uplineLevel={request.SearchAccount.Upline.CusomerLevelValue}", StringComparison.OrdinalIgnoreCase) >= 0);
+            Assert.True(viewModel.Url.IndexOf($"uplineLevel={request.Actor.CusomerLevelValue}", StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         [Fact]
@@ -84,15 +84,6 @@
             var viewModel = new GoldDeluxeViewModel(request);
 
             Assert.True(viewModel.Url.IndexOf("formType=", StringComparison.OrdinalIgnoreCase) >= 0);
-        }
-
-        [Fact]
-        public void Url_QueryString_Contains_Language_Param()
-        {
-            var request = RequestHelper.CreateRequest(4, 3);
-            var viewModel = new GoldDeluxeViewModel(request);
-
-            Assert.True(viewModel.Url.IndexOf("language=", StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         [Theory]
