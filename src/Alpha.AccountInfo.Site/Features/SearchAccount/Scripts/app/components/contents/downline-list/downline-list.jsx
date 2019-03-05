@@ -16,12 +16,19 @@ const DownlineList = ({
 		return null;
 	}
 
-	if (mobileView && downlineListData === null || downlineListData.TotalPages === 0) {
-		return <div className="no-information">{resources.NoInfo}</div>;
+	const noInfoRow = <div className="no-information">{resources.NoInfo}</div>;
+
+	if (mobileView && downlineListData === null) {
+		return noInfoRow;
 	}
 
 	const totalDirectDownlines = downlineListData.TotalDownlines[0];
 	const searchAccountIsMaster = searchAccountRoleId === UserLevel.Master;
+	const { TotalActive, TotalClosed, TotalSuspended } = totalDirectDownlines;
+
+	if (TotalActive + TotalClosed + TotalSuspended === 0) {
+		return noInfoRow;
+	}
 
 	return (
 		<div id="total-downlines">
