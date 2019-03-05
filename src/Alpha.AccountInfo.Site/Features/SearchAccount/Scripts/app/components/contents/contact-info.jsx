@@ -3,7 +3,7 @@ import { Tooltip } from 'react-tippy';
 import { buildTooltipProps } from '../../helpers/accountinfo-helper';
 
 export const ContactInfoRow = ({ title, value }) => {
-	let maxLength = 18;
+	let maxLength = 15;
 	let isTruncated = value.length > maxLength;
 	let content = <div>{isTruncated ? `${value.substring(0, maxLength)}...` : value}</div>;
 

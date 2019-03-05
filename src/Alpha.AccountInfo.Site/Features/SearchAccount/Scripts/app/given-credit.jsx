@@ -52,9 +52,9 @@ export default class GivenCredit extends React.Component {
     }
 
 	handleSubmit(e) {
-		let self = this, { resources } = this.props;
+		let self = this, { resources, currentGivenCredit } = this.props;
 
-		if (this.state.newGivenCredit === this.props.currentGivenCredit) {
+		if (this.state.newGivenCredit === currentGivenCredit) {
 			this.setState((prevState) => ({
 				hideMessages: false,
 				message: resources.ThereIsNoChange,
@@ -75,7 +75,7 @@ export default class GivenCredit extends React.Component {
         accountInfoAPI.updateGivenCredit(params).then((data) => {
             self.setState({
                 hideMessages: false,
-                message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message,
+				message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
                 updateSuccess: data.IsSuccess
             });
 

@@ -26,7 +26,7 @@
                 messages.ActorId == 1 &&
                 messages.SubAccountId == 0 &&
                 messages.IP == "::1" &&
-                messages.Language == "En");
+                messages.LangKey == "E");
         }
     }
 }

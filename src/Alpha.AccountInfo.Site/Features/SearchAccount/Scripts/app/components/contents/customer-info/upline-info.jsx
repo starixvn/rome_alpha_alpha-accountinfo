@@ -3,7 +3,7 @@ import { Tooltip } from 'react-tippy';
 import { buildTooltipProps } from '../../../helpers/accountinfo-helper';
 
 const UplineInfo = ({ username, fetchCustomerInfoFromServer }) => {
-	let maxLength = 18;
+	let maxLength = 15;
 	let isTruncated = username.length > maxLength;
 
 	let content = <span

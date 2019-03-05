@@ -20,7 +20,7 @@
 
         public int SubAccountId => viewer.SubAccId;
 
-        public string Language => viewer.Language;
+        public string LangKey => viewer.LangKey;
 
         public string IP => viewer.IP;
 

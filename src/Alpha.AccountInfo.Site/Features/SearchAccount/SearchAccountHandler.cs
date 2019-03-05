@@ -158,7 +158,7 @@
                     message.CreditAmount,
                     message.ActorId,
                     message.SubAccountId,
-                    message.Language,
+                    message.LangKey,
                     message.IP));
 
         public Task<Result> Handle(CustomerNonProductStatusCommand message)
