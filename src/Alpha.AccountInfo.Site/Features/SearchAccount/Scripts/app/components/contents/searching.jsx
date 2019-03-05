@@ -48,7 +48,10 @@ export default class Searching extends React.Component {
     handleSearchClick(e) {
         let { username } = this.state;
         if (username !== '') {
-            this.props.fetchCustomerInfoFromServer(username);
+			this.props.fetchCustomerInfoFromServer(username);
+			this.setState({
+				suggestions: []
+			});
         }
     }
 
