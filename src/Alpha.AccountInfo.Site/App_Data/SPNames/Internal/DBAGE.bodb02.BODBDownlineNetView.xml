@@ -7,28 +7,26 @@
     <Setting Key="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" SpName="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
   </Function>
-
   <Function Name="Account Info">
-    <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Acc_CustomerSelTotalDownline" SpName="Acc_CustomerSelTotalDownline_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    
-    <Setting Key="Age_BalanceMasterSel" SpName="Age_BalanceMasterSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
+    <Setting Key="Acc_CustomerSelTotalDownline" SpName="Acc_CustomerSelTotalDownline" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_BalanceMasterSel" SpName="Age_BalanceMasterSel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping ObjectProperty="YesterdayMasterCash" DataField="yesterday_MasterCash" />
       <Mapping ObjectProperty="YesterdayAgentCash" DataField="yesterday_AgentCash" />
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_CustomerCash" />
       <Mapping ObjectProperty="MasterCreditMin" DataField="masterCredit_Min" />
       <Mapping ObjectProperty="MasterCreditMax" DataField="masterCredit_Max" />
     </Setting>
-    <Setting Key="Age_BalanceAgentSel" SpName="Age_BalanceAgentSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
+    <Setting Key="Age_BalanceAgentSel" SpName="Age_BalanceAgentSel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping ObjectProperty="YesterdayAgentCash" DataField="yesterday_AgentCash" />
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_CustomerCash" />
       <Mapping ObjectProperty="AgentCreditMin" DataField="agentCredit_Min" />
       <Mapping ObjectProperty="AgentCreditMax" DataField="agentCredit_Max" />
       <Mapping ObjectProperty="MemMaxCreditMin" DataField="memMaxCredit_Min" />
     </Setting>
-    <Setting Key="Age_BalanceMemberSel" SpName="Age_BalanceMemberSel_xpre" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
+    <Setting Key="Age_BalanceMemberSel" SpName="Age_BalanceMemberSel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_Cash" />
       <Mapping ObjectProperty="MemMaxCreditMax" DataField="memMaxCredit_Max" />
       <Mapping ObjectProperty="CustomerCash" DataField="Cash" />
