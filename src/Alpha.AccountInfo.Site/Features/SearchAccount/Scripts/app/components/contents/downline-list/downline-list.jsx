@@ -24,9 +24,8 @@ const DownlineList = ({
 
 	const totalDirectDownlines = downlineListData.TotalDownlines[0];
 	const searchAccountIsMaster = searchAccountRoleId === UserLevel.Master;
-	const { TotalActive, TotalClosed, TotalSuspended } = totalDirectDownlines;
 
-	if (TotalActive + TotalClosed + TotalSuspended === 0) {
+	if (downlineListData.TotalDownlines.length === 0) {
 		return noInfoRow;
 	}
 
