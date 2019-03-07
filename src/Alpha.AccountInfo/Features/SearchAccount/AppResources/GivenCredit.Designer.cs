@@ -97,6 +97,15 @@ namespace Alpha.AccountInfo.Features.SearchAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {
@@ -106,7 +115,7 @@ namespace Alpha.AccountInfo.Features.SearchAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no change !.
+        ///   Looks up a localized string similar to There is no change to update !.
         /// </summary>
         public static string ThereIsNoChange {
             get {

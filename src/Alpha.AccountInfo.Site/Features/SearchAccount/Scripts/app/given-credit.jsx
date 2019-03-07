@@ -125,7 +125,7 @@ export default class GivenCredit extends React.Component {
         return (
             <div className="note">
                 <span className="text-red">*</span>
-                <strong>Note</strong>:
+				<strong>{resources.Note}</strong>:
                   {noted}
             </div>
         );

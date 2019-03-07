@@ -129,8 +129,14 @@
   <data name="NewGivenCredit" xml:space="preserve">
     <value>New Given Credit</value>
   </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>확인</value>
+  </data>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>There is no change to update !</value>
   </data>
   <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
     <value>Update Given Credit Successfully !</value>
