@@ -27,6 +27,7 @@ export default class ConfirmStatus extends React.Component {
 					}, 3000);
 				}
 				else {
+					window.top.bootboxAlert(data.Message, $(`#confirm-${status.Text}`)[0]);
 					$.unblockUI();
 				}
 			});
