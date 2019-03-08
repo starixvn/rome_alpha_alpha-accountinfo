@@ -10,7 +10,7 @@ const Status = ({
 	mobileView,
 	fetchCustomerInfoFromServer,
 	fetchCustomerAllStatusFromServer }) => {
-	if (statusData === null) {
+	if (statusData === null || statusData.length === 0) {
 		return mobileView ? <div className="no-information">{resources.NoInfo}</div> : null;
 	}
 
