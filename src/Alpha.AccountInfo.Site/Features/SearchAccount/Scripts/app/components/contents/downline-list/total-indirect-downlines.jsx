@@ -19,8 +19,17 @@ export const DownlineStatusTooltip = ({ title, classNames, value }) => {
 }
 
 const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
-    const activeClass = 'status-active', closedClass = 'status-closed', suspendedClass = 'status-suspended';
-    const { TotalActive, TotalClosed, TotalSuspended, LevelName } = totalIndirectDownline;
+	const activeClass = 'status-active', closedClass = 'status-closed', suspendedClass = 'status-suspended';
+
+	if (typeof totalIndirectDownline === 'undefined' || totalIndirectDownline === null) {
+		totalIndirectDownline = {
+			TotalActive: 0,
+			TotalClosed: 0,
+			TotalSuspended: 0
+		};
+	}
+
+    const { TotalActive, TotalClosed, TotalSuspended } = totalIndirectDownline;
 
     const statusTooltips = [
         {
@@ -81,7 +90,7 @@ const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
 
     return (
         <div className="col-xs-12 row-info">
-            <div className="col-xs-6 px-0">{LevelName} (A/C/S)</div>
+			<div className="col-xs-6 px-0">{resources.Members} (A/C/S)</div>
             <div className="col-xs-6 col-right px-0">
                 <div className="pull-right pointer">
                     <Tooltip {...tooltipProps}>
