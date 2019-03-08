@@ -3,25 +3,32 @@ import { closeLeftPanelOnMobile } from '../../helpers/accountinfo-helper';
 
 export default class CustomAnchorTag extends React.Component {
     constructor(props) {
-        super(props);
+		super(props);
         this.handleOnclick = this.handleOnclick.bind(this);
     }
 
-    handleOnclick() {
-        if (this.props.mobileView) {
-            closeLeftPanelOnMobile();
-        }
-    }
+	handleOnclick(e) {
+		e.preventDefault();
+		if (this.props.mobileView) {
+			closeLeftPanelOnMobile();
+		}
+
+		let self = this;
+		let mainFrame = window.top.$('#main');
+		mainFrame.contents().find("head").append(_assetCommonCssLink);
+		mainFrame.contents().find("body").empty().block();
+		mainFrame.attr('src', self.props.href);
+    } 
 
     render() {
-        const { title = null, href, classNames = '', children } = this.props;
+        const { title = null, classNames = '', children } = this.props;
         return (
             <a {...{
                 title,
-                href,
+				href: '#',
                 target: 'main',
                 className: classNames ,
-                onClick: this.handleOnclick}}
+				onClick: this.handleOnclick}}
             >
                 {children}
             </a>

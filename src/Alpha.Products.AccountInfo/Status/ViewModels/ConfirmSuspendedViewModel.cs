@@ -10,7 +10,9 @@
         {
         }
 
-        public override bool Disabled => base.Disabled || Request.GetData<bool>(DataKey.SearchAccount.Upline.IsSuspended);
+        public override bool Disabled => base.Disabled || 
+            Request.GetData<bool>(DataKey.SearchAccount.Upline.IsClosed) ||
+            Request.GetData<bool>(DataKey.SearchAccount.Upline.IsSuspended);
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsSuspended);
 

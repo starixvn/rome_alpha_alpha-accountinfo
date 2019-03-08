@@ -106,6 +106,7 @@ export default class AccountInfo extends React.Component {
 		let { customerInfo, statusData } = this.state;
 
 		if ((customerInfo !== null && statusData === null) || reload) {
+			$.blockUI();
 			switch (customerInfo.RoleId) {
 				case UserLevel.Master:
 					uplineId = customerInfo.SuperId;
@@ -137,6 +138,8 @@ export default class AccountInfo extends React.Component {
 						statusData: responeData.Status,
 						redirectToBalanceInfoPage: false
 					});
+
+					$.unblockUI();
 				});
 		}
 	}
@@ -144,15 +147,16 @@ export default class AccountInfo extends React.Component {
 	fetchDownlineListFromServer(pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) {
 		let { custId, downlineListData, customerInfo } = this.state;
 		if (custId > 0 && (downlineListData === null || pageIndex > 1 || reloadByStatus)) {
-			accountInfoAPI.getDownlineList(
-				{
-					SearchAccountId: custId,
-					PageIndex: pageIndex,
-					StatusId: statusId,
-					RoleId: customerInfo.RoleId,
-					TotalPages: totalPages
-				})
-				.then((responeData) => {
+			$.blockUI();
+			var params = {
+				SearchAccountId: custId,
+				PageIndex: pageIndex,
+				StatusId: statusId,
+				RoleId: customerInfo.RoleId,
+				TotalPages: totalPages
+			};
+
+			accountInfoAPI.getDownlineList(params).then((responeData) => {
 					responeData.PageIndex = pageIndex;
 					responeData.StatusId = statusId;
 
@@ -168,6 +172,8 @@ export default class AccountInfo extends React.Component {
 						downlineListData: responeData,
 						redirectToBalanceInfoPage: false
 					});
+
+					$.unblockUI();
 				});
 		}
 	}
@@ -175,12 +181,15 @@ export default class AccountInfo extends React.Component {
 	fetchOnlineListFromServer() {
 		let { custId, onlineListData } = this.state;
 		if (custId > 0 && onlineListData === null) {
+			$.blockUI();
 			accountInfoAPI.getOnlineList({ SearchAccountId: custId }).then(
 				(responeData) => {
 					this.setState({
 						onlineListData: responeData,
 						redirectToBalanceInfoPage: false
 					});
+
+					$.unblockUI();
 				});
 		}
 	}

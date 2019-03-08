@@ -7,9 +7,10 @@ export default class ConfirmStatus extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleOpenPopup = this.handleOpenPopup.bind(this);
+		this.updateCustomerStatus = this.updateCustomerStatus.bind(this);
 	}
 
-	updateCustomerStatus() {
+	updateCustomerStatus(e) {
 		$.blockUI();
 		let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status } = this.props;
 
@@ -40,7 +41,7 @@ export default class ConfirmStatus extends React.Component {
 			window.top.bootboxConfirm(
 				status.ConfirmMessage,
 				e.target,
-				() => this.updateCustomerStatus()
+				this.updateCustomerStatus
 			);
 
 			if (mobileView) {
