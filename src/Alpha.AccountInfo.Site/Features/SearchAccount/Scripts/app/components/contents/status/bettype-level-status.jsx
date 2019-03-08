@@ -5,20 +5,28 @@ import { ProductConstants } from '../../../constants';
 export default class BettypeLevelStatus extends React.Component {
     constructor(props) {
         super(props);
-        let productId = this.props.status.ProductId;
         this.state = {
             left: 200,
             top: 200,
-            width: 475,
-            height: productId === ProductConstants.Keno ? 530 : productId >= ProductConstants.AllBet ? 300 : 200
+			width: 475,
+			height: this.getPopupHeightByProduct(this.props.status.ProductId)
         };
 
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
     }
 
+	getPopupHeightByProduct(productId) {
+		switch (productId) {
+			case ProductConstants.Keno: return 530;
+			case ProductConstants.AllBet: return 300;
+			case ProductConstants.PokerGames: return 400;
+			default: return 200;
+		}
+	}
+
     handleOpenPopup(e) {
         let { resources, mobileView, status } = this.props;
-        let { left, top, width, height } = this.state;
+		let { left, top, width, height } = this.state;
 
         let productName = status.Text;
         let popupTitle = `${resources.Update} ${productName} ${resources.Status}`;
