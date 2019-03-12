@@ -108,8 +108,7 @@ export default class Searching extends React.Component {
                         renderSuggestion,
                         shouldRenderSuggestions,
 						inputProps,
-						focusInputOnSuggestionClick: false,
-						highlightFirstSuggestion: true
+						focusInputOnSuggestionClick: false
                     }}
                 />
                 <span className="icon-search" onClick={this.handleSearchClick} />
