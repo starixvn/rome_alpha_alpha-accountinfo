@@ -49,9 +49,7 @@ export default class Searching extends React.Component {
         let { username } = this.state;
         if (username !== '') {
 			this.props.fetchCustomerInfoFromServer(username);
-			this.setState({
-				suggestions: []
-			});
+			this.onSuggestionsClearRequested();
         }
     }
 
@@ -80,7 +78,7 @@ export default class Searching extends React.Component {
     render() {
         const { username, suggestions } = this.state;
         const inputProps = {
-            type: 'text',
+			type: 'search',
             className: 'txt-search',
             onChange: this.onChangeSearchBox,
             onKeyPress: this.handleSearchKeyPress,
@@ -104,7 +102,9 @@ export default class Searching extends React.Component {
                         getSuggestionValue,
                         renderSuggestion,
                         shouldRenderSuggestions,
-                        inputProps
+						inputProps,
+						focusInputOnSuggestionClick: false,
+						highlightFirstSuggestion: true
                     }}
                 />
                 <span className="icon-search" onClick={this.handleSearchClick} />
