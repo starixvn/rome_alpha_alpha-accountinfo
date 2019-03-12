@@ -43,13 +43,18 @@ export default class Searching extends React.Component {
         if (e.key === 'Enter') {
             this.handleSearchClick(e);
         }
-    }
+	}
+
+	hideKeyboard() {
+		$('.txt-search').blur();
+	}
 
     handleSearchClick(e) {
         let { username } = this.state;
         if (username !== '') {
 			this.props.fetchCustomerInfoFromServer(username);
 			this.onSuggestionsClearRequested();
+			this.hideKeyboard();
         }
     }
 
