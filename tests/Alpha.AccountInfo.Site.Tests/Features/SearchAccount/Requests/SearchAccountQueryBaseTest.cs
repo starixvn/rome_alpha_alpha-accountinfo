@@ -27,35 +27,39 @@
         }
 
         [Theory]
-        [InlineData(1, true)]
-        [InlineData(0, false)]
-        [InlineData(-1, false)]
-        public void IsValid_Always_ReturnsCorrectValue(int searchAccountId, bool expectedValue)
+        [InlineData(4, 3, false)]
+        [InlineData(3, 4, true)]
+        public void IsValidSearchAccountRoleId_Always_ReturnsCorrectValue(byte searchAccountRoleId, byte viewerRoleId, bool expectedValue)
         {
-            var query = new SearchAccountQueryBase(viewer)
+            var fakeViewer = AccountInfoHelper.ViewerFixture(viewerRoleId);
+            var fakeMessages = new SearchAccountQueryBase(fakeViewer)
+            {
+                SearchAccountId = 1
+            };
+
+            Assert.Equal(fakeMessages.IsValidSearchAccountRoleId(searchAccountRoleId), expectedValue);
+        }
+
+        [Theory]
+        [InlineData(2, true)]
+        [InlineData(1, false)]
+        [InlineData(0, false)]
+        public void IsValid_InputSearchAccountRoleId_Always_ReturnsCorrectValue(byte searchAccountId, bool expectedValue)
+        {
+            var fakeMessages = new SearchAccountQueryBase(viewer)
             {
                 SearchAccountId = searchAccountId
             };
 
-            Assert.Equal(query.IsValid(), expectedValue);
+            Assert.Equal(fakeMessages.IsValid(), expectedValue);
         }
 
-        [Theory]
-        [InlineData(4, false)]
-        [InlineData(3, true)]
-        [InlineData(2, true)]
-        [InlineData(1, true)]
-        [InlineData(0, false)]
-        public void IsValidSearchAccountRoleId_Always_ReturnsCorrectValue(byte searchAccountRoleId, bool expectedValue)
-        {
-            Assert.Equal(messages.IsValidSearchAccountRoleId(searchAccountRoleId), expectedValue);
-        }
 
         [Theory]
         [InlineData("test", true)]
         [InlineData(null, false)]
         [InlineData("", false)]
-        public void IsValidName_Always_ReturnsCorrectValue(string name, bool expectedValue)
+        public void IsValid_InputSearchAccountName_Always_ReturnsCorrectValue(string name, bool expectedValue)
         {
             Assert.Equal(messages.IsValidName(name), expectedValue);
         }

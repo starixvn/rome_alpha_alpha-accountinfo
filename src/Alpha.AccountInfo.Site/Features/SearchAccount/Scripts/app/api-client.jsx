@@ -6,7 +6,7 @@ const handleErrors = (err) => {
     throw err;
 };
 
-const responseData = (res) => res.data.Result;
+const responseData = (res) => typeof res.data.Result === 'undefined' ? res.data : res.data.Result;
 
 export const requests = {
 	get: (url, data) => {

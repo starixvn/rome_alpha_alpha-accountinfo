@@ -1,31 +1,22 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.SearchAccount.Requests
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.Shared;
 
     public class SearchAccountQueryBase : BaseRequest
     {
-        private static readonly IEnumerable<byte> defaultLevelIdRanges = new List<byte>
-                {
-                    UserLevel.Master.Value,
-                    UserLevel.Agent.Value,
-                    UserLevel.Member.Value
-                };
-
-        protected readonly IEnumerable<byte> SearchAccountRoleIdRange;
+        private readonly IUser viewer;
 
         public SearchAccountQueryBase(IUser viewer) : base(viewer)
         {
-            SearchAccountRoleIdRange = defaultLevelIdRanges;
+            this.viewer = viewer;
         }
 
         public int SearchAccountId { get; set; }
 
-        public override bool IsValid() => SearchAccountId > 0;
+        public override bool IsValid() => SearchAccountId > 0 && !SearchAccountId.Equals(viewer.Id);
 
         internal bool IsValidSearchAccountRoleId(byte searchAccountRoleId)
-            => SearchAccountRoleIdRange.Contains(searchAccountRoleId);
+            => searchAccountRoleId < viewer.LevelId;
     }
 }

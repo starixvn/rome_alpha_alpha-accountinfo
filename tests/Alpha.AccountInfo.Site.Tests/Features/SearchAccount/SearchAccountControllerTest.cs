@@ -110,7 +110,7 @@
         {
             var message = new DownlineListQuery(viewer)
             {
-                SearchAccountId = 1
+                SearchAccountId = 2
             };
 
             accountInfoController.GetDownlineList(message);
@@ -139,7 +139,7 @@
         {
             var message = new OnlineListQuery(viewer)
             {
-                SearchAccountId = 1
+                SearchAccountId = 2
             };
 
             accountInfoController.GetOnlineList(message);
@@ -168,9 +168,9 @@
         {
             var message = new CustomerStatusQuery(viewer)
             {
-                SearchAccountId = 1,
+                SearchAccountId = 2,
                 SearchAccountName = "SearchAccountName",
-                SearchAccountRoleId = 3,
+                SearchAccountRoleId = 1,
                 UplineId = 2,
                 UplineName = "UplineName",
                 UplineRoleId = 4
@@ -207,9 +207,9 @@
         {
             var message = new GivenCreditQuery(viewer)
             {
-                SearchAccountId = 1,
+                SearchAccountId = 2,
                 SearchAccountName = "test",
-                SearchAccountRoleId = 2
+                SearchAccountRoleId = 1
             };
 
             await accountInfoController.GivenCredit(message);
@@ -275,7 +275,7 @@
         {
             var message = new GivenCreditCommand(viewer)
             {
-                SearchAccountId = 1,
+                SearchAccountId = 2,
                 CreditAmount = 1000,
                 SearchAccountRoleId = 1
             };
@@ -326,7 +326,7 @@
         {
             var message = new CustomerNonProductStatusCommand(viewer)
             {
-                SearchAccountId = 1,
+                SearchAccountId = 2,
                 SyncedCasino3rd = true,
                 StatusName = "outright",
                 StatusValue = true

@@ -25,6 +25,7 @@
             var request = RequestHelper.CreateRequest(4, 3);
             request.AddData("Actor.HasUpdateAccountPermission", true);
             request.AddData("SearchAccount.Upline.IsSuspended", true);
+            request.AddData("SearchAccount.Upline.IsClosed", false);
 
             var viewModel = new ConfirmSuspendedViewModel(request);
 
