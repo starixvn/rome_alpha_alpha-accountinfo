@@ -17,6 +17,7 @@
     using Alpha.Products.Core.Configuration;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.ViewModels;
+    using Alpha.SecurityCode.Services;
     using Alpha.Web.Helpers;
     using Fanex.Data.Repository;
     using Fanex.Logging;
@@ -91,8 +92,13 @@
 
         private static void RegisterServices(Container container)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             container.Register<IUserSession, UserSessionExt>(Lifestyle.Singleton);
+#pragma warning restore CS0618 // Type or member is obsolete
             container.Register<IUser, User>(Lifestyle.Singleton);
+#pragma warning disable CS0618 // Type or member is obsolete
+            container.RegisterPerWebRequest<SecurityCodeChecker, SecurityCodeCheckerImpl>();
+#pragma warning restore CS0618 // Type or member is obsolete
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
             container.RegisterSingleton(Logger.Log);
@@ -100,7 +106,9 @@
             container.Register<ProductStatusAuthorizationService>(
                 () => new ProductStatusAuthorizationServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
+#pragma warning disable CS0618 // Type or member is obsolete
                     UserPermission.HasPermissionOnProduct),
+#pragma warning restore CS0618 // Type or member is obsolete
                 Lifestyle.Scoped);
 
             container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Singleton);
