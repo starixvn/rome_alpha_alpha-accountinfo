@@ -338,7 +338,7 @@ hr {
     transform-origin: top center;
 
     &.expanded {
-        transition: all 0.4s;
+        transition: all 0.2s;
         max-height: 500px;
 
         .feature-item {
@@ -369,13 +369,17 @@ hr {
 
     &:after {
         position: absolute;
-        top: 9px;
+        top: 10px;
         right: 4px;
         font-family: Iconalpha;
         font-size: 19px;
         font-weight: 400;
         content: "\E942";
         transition: transform 0.3s ease-out;
+    }
+
+    .feature-item-nav {
+        display: none;
     }
 
     [class^=icon] {
@@ -415,7 +419,13 @@ hr {
     width: 100%;
 
     &.translate-from-left {
-        animation: TranslateFromLeft 0.3s;
+        animation: TranslateFromLeft 0.4s;
+    }
+
+    .feature-item-nav {
+        display: inline-block;
+        float: right;
+        text-transform: capitalize;
     }
 
     .feature-item:after {

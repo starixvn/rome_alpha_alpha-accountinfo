@@ -72,6 +72,7 @@ export const CustomLink = ({ pathname, iconClass, featureText }) =>
     >
         <span className={iconClass} />
         {featureText}
+        <span className="feature-item-nav">Back</span>
     </Link>;
 
 export const ContentPage = ({
