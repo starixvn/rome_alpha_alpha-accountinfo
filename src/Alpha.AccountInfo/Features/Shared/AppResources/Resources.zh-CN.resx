@@ -337,7 +337,7 @@
     <value>重置保安码</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
-    <value>Contact Info</value>
+    <value>联系资料</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>体育博彩最低占成</value>
@@ -346,34 +346,34 @@
     <value>转账</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Update Successfully !</value>
+    <value>更新成功！</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>Update Given Credit</value>
+    <value>更新信用额度</value>
   </data>
   <data name="LoginInfo" xml:space="preserve">
-    <value>Login Info</value>
+    <value>登入资料</value>
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
-    <value>This account was closed by admin.</value>
+    <value>此账号已被管理员关闭。</value>
   </data>
   <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>This account was closed by failed login or account expired.</value>
+    <value>由于输入密码错误或是账号已过期，此账号已被关闭。</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
     <value>This account was closed by false input of OTP/Security Code.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
-    <value>This account was closed by upline.</value>
+    <value>此账号已被上线关闭。</value>
   </data>
   <data name="Viewlog" xml:space="preserve">
-    <value>Viewlog</value>
+    <value>察看日志</value>
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>这个帐号禁用</value>
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
-    <value>This account was suspended.</value>
+    <value>此账号已经被暂停。</value>
   </data>
   <data name="Phone1" xml:space="preserve">
     <value>电话</value>
@@ -385,18 +385,18 @@
     <value>更改</value>
   </data>
   <data name="Agents" xml:space="preserve">
-    <value>Agents</value>
+    <value>代理们</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>Members</value>
+    <value>会员们</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
-    <value>Account not found!</value>
+    <value>用户名不存在！</value>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>昵称</value>
   </data>
   <data name="OutrightDisabledUpline" xml:space="preserve">
-    <value>Upline has been disabled Outright betting</value>
+    <value>优胜冠军投注已被上线禁用</value>
   </data>
 </root>

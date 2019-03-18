@@ -337,7 +337,7 @@
     <value>Reset Security Code</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
-    <value>Contact Info</value>
+    <value>ข้อมูลติดต่อ</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>แบ่งสู้ สปอตร์</value>
@@ -346,34 +346,34 @@
     <value>ตั้งค่าใหม่</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Update Successfully !</value>
+    <value>อัปเดตสำเร็จแล้ว!</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>Update Given Credit</value>
+    <value>อัปเดตเครดิตใหม่</value>
   </data>
   <data name="LoginInfo" xml:space="preserve">
-    <value>Login Info</value>
+    <value>ข้อมูลการเข้าสู่ระบบ</value>
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
-    <value>This account was closed by admin.</value>
+    <value>บัญชีนี้ถูกปิดโดยระบบ</value>
   </data>
   <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>This account was closed by failed login or account expired.</value>
+    <value>บัญชีนี้ถูกปิดเนื่องจากการเข้าสู่ระบบล้มเหลวหรือบัญชีหมดอายุ</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
     <value>This account was closed by false input of OTP/Security Code.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
-    <value>This account was closed by upline.</value>
+    <value>บัญชีนี้ถูกปิดโดยอับไลน์</value>
   </data>
   <data name="Viewlog" xml:space="preserve">
-    <value>Viewlog</value>
+    <value>ดูบันทึก</value>
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>บัญชีนี้ได้ถูกปิดไปแล้ว</value>
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
-    <value>This account was suspended.</value>
+    <value>บัญชีนี้ถูกระงับ</value>
   </data>
   <data name="Phone1" xml:space="preserve">
     <value>โทรศัพท์</value>
@@ -385,18 +385,18 @@
     <value>ล่าสุด</value>
   </data>
   <data name="Agents" xml:space="preserve">
-    <value>Agents</value>
+    <value>เอเย่นต์</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>Members</value>
+    <value>สมาชิก</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
-    <value>Account not found!</value>
+    <value>ไม่พบบัญชี!</value>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>ชื่อเล่น</value>
   </data>
   <data name="OutrightDisabledUpline" xml:space="preserve">
-    <value>Upline has been disabled Outright betting</value>
+    <value>ต้นสายปิดการใช้งาน เดิมพัน Outright</value>
   </data>
 </root>

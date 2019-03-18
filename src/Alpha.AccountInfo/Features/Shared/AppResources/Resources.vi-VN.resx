@@ -337,7 +337,7 @@
     <value>Thay đổi Mã bảo mật</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
-    <value>Contact Info</value>
+    <value>Thông tin liên hệ</value>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>PT nhỏ nhất cho Sportsbook</value>
@@ -346,28 +346,28 @@
     <value>Chuyển khoản</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Update Successfully !</value>
+    <value>Đã cập nhật thành công!</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>Update Given Credit</value>
+    <value>Cập nhật hạn mức tín dụng</value>
   </data>
   <data name="LoginInfo" xml:space="preserve">
-    <value>Login Info</value>
+    <value>Thông tin đăng nhập</value>
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
-    <value>This account was closed by admin.</value>
+    <value>Tài khoản bị đóng bởi admin.</value>
   </data>
   <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>This account was closed by failed login or account expired.</value>
+    <value>Tài khoản bị đóng do đăng nhập sai mật khẩu hoặc tài khoản đã hết hạn.</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
     <value>This account was closed by false input of OTP/Security Code.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
-    <value>This account was closed by upline.</value>
+    <value>Tài khoản bị đóng bởi cấp trên.</value>
   </data>
   <data name="Viewlog" xml:space="preserve">
-    <value>Viewlog</value>
+    <value>Nhật ký</value>
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>Tài khoản bị vô hiệu hóa.</value>
@@ -391,12 +391,15 @@
     <value>Members</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
-    <value>Account not found!</value>
+    <value>Không tìm thấy tài khoản!</value>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>Biệt danh</value>
   </data>
   <data name="OutrightDisabledUpline" xml:space="preserve">
-    <value>Upline has been disabled Outright betting</value>
+    <value>Cấp trên đã vô hiệu hóa cược Outright</value>
+  </data>
+  <data name="ThisAccountWasSuspended" xml:space="preserve">
+    <value>Tài khoản này đã bị đình chỉ.</value>
   </data>
 </root>

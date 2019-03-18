@@ -19,7 +19,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -178,7 +178,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was closed by failed login or account expired..
+        ///   Looks up a localized string similar to This account was closed due to failed login attempts or expired account.
         /// </summary>
         public static string ClosedByFailedLoginOrAccountExpired {
             get {
@@ -844,7 +844,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Successfully !.
+        ///   Looks up a localized string similar to Successfully updated!.
         /// </summary>
         public static string UpdateSuccessfully {
             get {
@@ -871,7 +871,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Viewlog.
+        ///   Looks up a localized string similar to View Log.
         /// </summary>
         public static string Viewlog {
             get {
