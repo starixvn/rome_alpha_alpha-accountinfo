@@ -121,24 +121,24 @@
     <value>Hủy</value>
   </data>
   <data name="CurrentGivenCredit" xml:space="preserve">
-    <value>Current Given Credit</value>
+    <value>Hạn mức tín dụng hiện tại</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>Chênh lệch</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
-    <value>New Given Credit</value>
+    <value>Hạn mức tín dụng mới</value>
   </data>
   <data name="Note" xml:space="preserve">
-    <value>Note</value>
+    <value>Ghi chú</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
   </data>
   <data name="ThereIsNoChange" xml:space="preserve">
-    <value>There is no change to update !</value>
+    <value>Không có gi thay đổi để cập nhật.</value>
   </data>
   <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
-    <value>Không có gi thay đổi để cập nhật.</value>
+    <value>Đã cập nhật hạn mức tín dụng thành công!</value>
   </data>
 </root>

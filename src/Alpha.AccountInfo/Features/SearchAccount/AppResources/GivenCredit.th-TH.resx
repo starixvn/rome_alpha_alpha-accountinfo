@@ -121,16 +121,16 @@
     <value>ยกเลิก</value>
   </data>
   <data name="CurrentGivenCredit" xml:space="preserve">
-    <value>Current Given Credit</value>
+    <value>เครดิต ปัจจุบัน</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>ผลต่าง</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
-    <value>New Given Credit</value>
+    <value>เครดิต ใหม่</value>
   </data>
   <data name="Note" xml:space="preserve">
-    <value>Note</value>
+    <value>หมายเหตุ</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>ตกลง</value>
@@ -139,6 +139,6 @@
     <value>ไม่มีการเปลี่ยนแปลงการอัพเดท</value>
   </data>
   <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
-    <value>Update Given Credit Successfully !</value>
+    <value>อัปเดตเครดิตสำเร็จแล้ว!</value>
   </data>
 </root>

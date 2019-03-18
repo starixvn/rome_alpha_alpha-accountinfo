@@ -121,21 +121,24 @@
     <value>取消</value>
   </data>
   <data name="CurrentGivenCredit" xml:space="preserve">
-    <value>Current Given Credit</value>
+    <value>目前信用額度</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>差別</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
-    <value>New Given Credit</value>
+    <value>新的信用額度</value>
   </data>
   <data name="Note" xml:space="preserve">
-    <value>Note</value>
+    <value>注意</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
   </data>
   <data name="ThereIsNoChange" xml:space="preserve">
     <value>沒有任何的變化更新。</value>
+  </data>
+  <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
+    <value>信用額度更新成功！</value>
   </data>
 </root>

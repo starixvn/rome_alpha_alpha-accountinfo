@@ -139,6 +139,6 @@
     <value>There is no change to update !</value>
   </data>
   <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
-    <value>Update Given Credit Successfully !</value>
+    <value>Successfully updated Given Credit!</value>
   </data>
 </root>

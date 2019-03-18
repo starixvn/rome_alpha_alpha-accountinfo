@@ -346,7 +346,7 @@
     <value>전송</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Update Successfully !</value>
+    <value>Successfully updated!</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
     <value>Update Given Credit</value>
@@ -358,7 +358,7 @@
     <value>This account was closed by admin.</value>
   </data>
   <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>This account was closed by failed login or account expired.</value>
+    <value>This account was closed due to failed login attempts or expired account</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
     <value>This account was closed by false input of OTP/Security Code.</value>
