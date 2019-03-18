@@ -338,7 +338,7 @@ hr {
     transform-origin: top center;
 
     &.expanded {
-        transition: all 0.2s;
+        transition: all 0.4s;
         max-height: 500px;
 
         .feature-item {
@@ -419,7 +419,7 @@ hr {
     width: 100%;
 
     &.translate-from-left {
-        animation: TranslateFromLeft 0.4s;
+        animation: TranslateFromLeft 0.3s;
     }
 
     .feature-item-nav {
