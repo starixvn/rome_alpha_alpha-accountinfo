@@ -14,6 +14,8 @@
         {
         }
 
+        public override string Text => Request.GetProductName(ProductId);
+
         protected override string BaseAddress 
             => $"{OldMainUrl}dcs/viewcustomersetting";
 

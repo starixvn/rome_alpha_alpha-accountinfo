@@ -63,6 +63,7 @@
     <Compile Include="Setting\ViewModels\Base\ProductSettingItemViewModel.cs" />
     <Compile Include="Setting\ViewModels\Products\KenoViewModel.cs" />
     <Compile Include="Setting\ViewModels\Products\RNGCasinoViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\Sportsbook2ViewModel.cs" />
     <Compile Include="Setting\ViewModels\RemoveOtpViewModel.cs" />
     <Compile Include="Setting\ViewModels\ResetPasswordViewModel.cs" />
     <Compile Include="Setting\ViewModels\TransferViewModel.cs" />

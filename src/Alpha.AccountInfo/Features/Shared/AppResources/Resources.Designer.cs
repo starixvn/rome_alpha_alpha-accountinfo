@@ -457,6 +457,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gold Deluxe.
+        /// </summary>
+        public static string GoldDeluxeViewModelText {
+            get {
+                return ResourceManager.GetString("GoldDeluxeViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
         public static string IP {
@@ -723,6 +732,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         public static string ShowContactInfo {
             get {
                 return ResourceManager.GetString("ShowContactInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sportsbook 2.
+        /// </summary>
+        public static string Sportsbook2ViewModelText {
+            get {
+                return ResourceManager.GetString("Sportsbook2ViewModelText", resourceCulture);
             }
         }
         

@@ -11,6 +11,8 @@
         {
         }
 
+        public override string Text => Request.GetProductName(ProductId);
+
         protected override string BaseAddress
             => OldMainUrl + "customersetting/kenosetting/kenosetting/" + 
             (SearchAccount.IsMember

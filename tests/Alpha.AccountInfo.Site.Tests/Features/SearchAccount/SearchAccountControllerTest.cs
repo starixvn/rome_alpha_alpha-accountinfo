@@ -355,17 +355,14 @@
 
             Assert.True(!actualData.IsSuccess);
         }
-
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void CustomerStatusCommand_InvalidStatusName_ReturnsInvalidPageView(string statusname)
+        [Fact]
+        public void CustomerStatusCommand_InvalidStatusName_ReturnsInvalidPageView()
         {
             var message = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = 1,
                 SyncedCasino3rd = true,
-                StatusName = statusname,
+                StatusName = string.Empty,
                 StatusValue = true
             };
 

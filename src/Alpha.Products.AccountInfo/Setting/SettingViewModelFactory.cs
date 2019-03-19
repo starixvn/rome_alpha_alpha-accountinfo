@@ -50,6 +50,9 @@
                 case ColossusBets:
                     return new ColossusBetsViewModel(request);
 
+                case Sportsbook2:
+                    return new Sportsbook2ViewModel(request);
+
                 default:
                     return new DynamicProductViewModel(request, productItem.ProductId);
             }

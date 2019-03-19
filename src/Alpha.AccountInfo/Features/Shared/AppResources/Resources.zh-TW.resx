@@ -405,4 +405,10 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="GoldDeluxeViewModelText" xml:space="preserve">
+    <value>GD真人娛樂場</value>
+  </data>
+  <data name="Sportsbook2ViewModelText" xml:space="preserve">
+    <value>體育博彩 2</value>
+  </data>
 </root>

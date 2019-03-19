@@ -14,8 +14,6 @@
 
         internal int ProductId { get; }
 
-        public override string Text => Request.GetProductName(ProductId);
-
         public override bool Visible => Actor.IsNotSuper || SearchAccount.IsNotAgent;
     }
 }

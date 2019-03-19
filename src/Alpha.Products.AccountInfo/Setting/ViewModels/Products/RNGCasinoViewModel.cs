@@ -11,6 +11,8 @@
         {
         }
 
+        public override string Text => Request.GetProductName(ProductId);
+
         protected override string BaseAddress
         {
             get
