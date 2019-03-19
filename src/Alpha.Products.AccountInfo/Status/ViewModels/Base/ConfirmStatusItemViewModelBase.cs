@@ -33,6 +33,7 @@
             new Dictionary<string, object>
                     {
                         {"SearchAccountId", SearchAccount.Id.ToString()},
+                        {"SearchAccountRoleId", SearchAccount.CusomerLevelValue.ToString()},
                         {"SyncedCasino3rd", SyncedCasino3rd},
                         {"StatusName", StatusName},
                         {"StatusValue", StatusValue}

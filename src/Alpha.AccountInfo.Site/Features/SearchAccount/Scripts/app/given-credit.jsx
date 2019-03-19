@@ -4,6 +4,7 @@ import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
 import { accountInfoAPI } from './api-client';
 import { UserLevel } from './constants';
+import { base64Helper } from './helpers/accountinfo-helper';
 
 window.renderGivenCredit = function (
     searchAccountId,
@@ -18,7 +19,7 @@ window.renderGivenCredit = function (
             currentGivenCredit={currentGivenCredit}
             givenCreditMin={givenCreditMin}
             givenCreditMax={givenCreditMax}
-            resources={resources}
+			resources={base64Helper.decodeResources(resources)}
         />,
         document.getElementById('given-credit')
     );

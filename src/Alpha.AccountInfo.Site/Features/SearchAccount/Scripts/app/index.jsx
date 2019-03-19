@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 import AccountInfo from './containers/account-info';
+import { base64Helper } from './helpers/accountinfo-helper';
 
 window.renderAccountInfo = function (
 	searchAccountName,
@@ -16,7 +17,7 @@ window.renderAccountInfo = function (
             actorName={actorName}
 			mobileView={mobileView}
 			showLoginInfo={showLoginInfo}
-            resources={accountInfoResources}
+			resources={base64Helper.decodeResources(accountInfoResources)}
         />,
         document.getElementById('account-info')
     );

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.SearchAccount.Requests
 {
+    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using MediatR;
 
@@ -13,6 +14,8 @@
         }
 
         public string ActorName => viewer.Name;
+
+        public byte SearchAccountRoleId { get; set; }
 
         public bool SyncedCasino3rd { get; set; }
 
@@ -28,6 +31,12 @@
 
         public string IP => viewer.IP;
 
-        public override bool IsValid() => base.IsValid() && IsValidName(StatusName);
+        public override bool IsValid()
+        {
+            var isValid = base.IsValid() && IsValidName(StatusName);
+            return !StatusName.Equals(StatusNames.DoubleComm) ? isValid : isValid && IsValidDoubleComm;
+        }
+
+        internal bool IsValidDoubleComm =>  viewer.LevelId.Equals(SearchAccountRoleId + 1);
     }
 }

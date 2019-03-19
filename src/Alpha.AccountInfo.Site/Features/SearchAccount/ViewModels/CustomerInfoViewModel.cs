@@ -58,25 +58,25 @@
 
         public bool ShowMember => SearchAccountLevel.IsMemberLevel();
 
-        public string MemberName => customerInfo.MemberName;
+        public string MemberName => ShowMember ? customerInfo.MemberName : string.Empty;
 
         public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel()
             && SearchAccountLevel.IsDownlineOfMasterLevel();
 
-        public int AgentId => customerInfo.AgentId;
+        public int AgentId => ShowAgent ? customerInfo.AgentId : 0;
 
-        public string AgentName => customerInfo.AgentName;
+        public string AgentName => ShowAgent ? customerInfo.AgentName : string.Empty;
 
         public bool ShowMaster => ActorLevel.IsSuperLevel()
             && SearchAccountLevel.IsDownlineOfSuperLevel();
 
-        public int MasterId => customerInfo.MasterId;
+        public int MasterId => ShowMaster ? customerInfo.MasterId : 0;
 
-        public string MasterName => customerInfo.MasterName;
+        public string MasterName => ShowMaster ? customerInfo.MasterName : string.Empty;
 
-        public int SuperId => customerInfo.SuperId;
+        public int SuperId => ActorLevel.IsSuperLevel() ? customerInfo.SuperId : 0;
 
-        public string SuperName => customerInfo.SuperName;
+        public string SuperName => ActorLevel.IsSuperLevel() ? customerInfo.SuperName : string.Empty;
 
         public LoginInfoViewModel LoginInfo =>
             new LoginInfoViewModel(
