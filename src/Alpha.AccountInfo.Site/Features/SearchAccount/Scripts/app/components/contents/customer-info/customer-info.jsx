@@ -71,7 +71,7 @@ const CustomerInfo = ({
                 })
             }
 
-            <div className="col-xs-12 row-info text-center list-button">
+            <div className={`col-xs-12 row-info text-center list-button ${customerInfo.Buttons.length === 2 ? "two-button" : "one-button"}`}>
                 {
 					customerInfo.Buttons.map((buton, index) => {
                         let customAnchorTagProps = {

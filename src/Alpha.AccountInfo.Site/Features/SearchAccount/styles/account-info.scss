@@ -204,7 +204,7 @@ hr {
     padding-bottom: 8px;
     text-align: center;
 
-    [class^="btn"] {
+    &.two-button [class^="btn"] {
         display: inline-block;
         width: 48%;
         line-height: 28px;
@@ -215,6 +215,13 @@ hr {
         &:last-child {
             margin-left: 4%;
         }
+    }
+
+    &.one-button [class^="btn"] {
+        display: inline-block;
+        width: 100%;
+        line-height: 28px;
+        margin-right: 0;
     }
 }
 
