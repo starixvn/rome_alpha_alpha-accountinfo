@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
-    using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
@@ -15,6 +14,7 @@
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
     using Alpha.Products.Core.ViewModels;
+    using Alpha.SecurityCode.Services;
     using MediatR;
     using Services.AccountInfo;
     using System;
@@ -37,8 +37,10 @@
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory;
+        private readonly SecurityCodeChecker securityCodeChecker;
 
-        public SearchAccountHandler(SearchAccountService accountInfoService) : this(accountInfoService, null, null, null)
+        public SearchAccountHandler(SearchAccountService accountInfoService, SecurityCodeChecker securityCodeChecker) :
+            this(accountInfoService, null, null, null, securityCodeChecker)
         {
         }
 
@@ -46,7 +48,8 @@
             SearchAccountService accountInfoService,
             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
             GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory,
-            GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory)
+            GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory,
+            SecurityCodeChecker securityCodeChecker)
         {
             this.accountInfoService = accountInfoService;
 
@@ -63,6 +66,8 @@
 
             this.statusViewModelFactory = statusViewModelFactory ??
                  SimpleServiceLocator.GetService<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>();
+
+            this.securityCodeChecker = securityCodeChecker;
         }
 
         public Task<AccountInfoViewModel> Handle(SearchAccountQuery message)
@@ -306,7 +311,8 @@
             var request = new SettingSearchAccountRequest(actor, searchAccount);
             request
                  .AddData(DataKey.Actor.CanEditDailyTransferOption, model.NonProduct.TransferDaily)
-                 .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount);
+                 .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount)
+                 .AddData(DataKey.SearchAccount.IsEnableSecurityCode, securityCodeChecker.IsEnableSecurityCode());
 
             return settingViewModelFactory.GetViewModels(request).Where(setting => setting.Visible).OrderBy(setting => setting.DisplayOrder);
         }

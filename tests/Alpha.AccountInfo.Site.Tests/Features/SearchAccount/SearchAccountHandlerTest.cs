@@ -32,6 +32,7 @@
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
     using Alpha.Products.Core.ViewModels;
+    using Alpha.SecurityCode.Services;
     using AutoFixture;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
@@ -44,6 +45,7 @@
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
         private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo();
         private readonly SearchAccountService accountInfoService;
+        private readonly SecurityCodeChecker securityCodeChecker;
         private readonly SearchAccountHandler accountInfoHandler;
         private readonly Fixture fixture = new Fixture();
         private readonly CustomerInfoQuery customerInfoQuery;
@@ -65,9 +67,9 @@
              .Register<IConfigurationLoader>(configurationLoader)
              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
-              .Register<Func<int, string>>((productId) => $"Product Name of {productId}")
-               .Register<Func<string, string>>(key => $"value of {key}")
-               .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/");
+             .Register<Func<int, string>>((productId) => $"Product Name of {productId}")
+             .Register<Func<string, string>>(key => $"value of {key}")
+             .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/");
 
             getBalanceInfoViewModelByLevel =
                new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>>
@@ -78,7 +80,9 @@
                };
 
             accountInfoService = Substitute.For<SearchAccountService>();
-            accountInfoHandler = new SearchAccountHandler(accountInfoService, getBalanceInfoViewModelByLevel, null, null);
+            securityCodeChecker = Substitute.For<SecurityCodeChecker>();
+            securityCodeChecker.IsEnableSecurityCode().Returns(true);
+            accountInfoHandler = new SearchAccountHandler(accountInfoService, getBalanceInfoViewModelByLevel, null, null, securityCodeChecker);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {

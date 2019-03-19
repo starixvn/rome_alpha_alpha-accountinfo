@@ -9,6 +9,7 @@
             public const string IsAllowedOutright = "SearchAccount.IsAllowedOutright";
             public const string IsAllowedDoubleComm = "SearchAccount.IsAllowedDoubleComm";
             public const string IsClosed = "SearchAccount.IsClosed";
+            public const string IsEnableSecurityCode = "SearchAccount.IsEnableSecurityCode";
 
             public static class Upline
             {

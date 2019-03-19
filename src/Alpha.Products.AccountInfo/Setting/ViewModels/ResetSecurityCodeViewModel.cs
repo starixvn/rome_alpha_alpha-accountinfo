@@ -21,6 +21,10 @@
               ["popup"] = "0",
           };
 
-        public override bool Visible => base.Visible && SearchAccount.IsNotMember;
+        public override bool Visible => 
+            base.Visible && 
+            SearchAccount.IsNotMember &&
+            Request.GetData<bool>(DataKey.Actor.HasUpdateAccountPermission) &&
+            Request.GetData<bool>(DataKey.SearchAccount.IsEnableSecurityCode);
     }
 }
