@@ -399,6 +399,9 @@
   <data name="OutrightDisabledUpline" xml:space="preserve">
     <value>Upline has been disabled Outright betting</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>戻る</value>
+  </data>
   <data name="GoldDeluxeViewModelText" xml:space="preserve">
     <value>Gold Deluxe</value>
   </data>

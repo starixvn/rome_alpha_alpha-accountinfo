@@ -52,16 +52,24 @@ export default class GivenCredit extends React.Component {
         window.top.ageWnd.close();
     }
 
+	showErrorMessage(message) {
+		this.setState((prevState) => ({
+			hideMessages: false,
+			message: message,
+			updateSuccess: false
+		}));
+	}
+
 	handleSubmit(e) {
-		let self = this, { resources, currentGivenCredit } = this.props;
+		let self = this, { resources, currentGivenCredit, givenCreditMin, givenCreditMax } = this.props, { newGivenCredit } = this.state;
 
-		if (this.state.newGivenCredit === currentGivenCredit) {
-			this.setState((prevState) => ({
-				hideMessages: false,
-				message: resources.ThereIsNoChange,
-				updateSuccess: false
-			}));
+		if (newGivenCredit < parseFloat(givenCreditMin) || newGivenCredit > parseFloat(givenCreditMax)) {
+			this.showErrorMessage(resources.InvalidValue);
+			return;
+		}
 
+		if (newGivenCredit === parseFloat(currentGivenCredit)) {
+			this.showErrorMessage(resources.ThereIsNoChange);
 			return;
 		}
 

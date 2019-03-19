@@ -126,6 +126,9 @@
   <data name="Difference" xml:space="preserve">
     <value>Difference</value>
   </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>Invalid Amount</value>
+  </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>New Given Credit</value>
   </data>

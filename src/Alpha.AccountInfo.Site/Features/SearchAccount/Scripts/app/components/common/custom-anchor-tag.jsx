@@ -13,11 +13,10 @@ export default class CustomAnchorTag extends React.Component {
 			closeLeftPanelOnMobile();
 		}
 
-		let self = this;
 		let mainFrame = window.top.$('#main');
 		mainFrame.contents().find("head").append(_assetCommonCssLink);
 		mainFrame.contents().find("body").empty().block();
-		mainFrame.attr('src', self.props.href);
+		mainFrame.attr('src', this.props.href);
     } 
 
     render() {

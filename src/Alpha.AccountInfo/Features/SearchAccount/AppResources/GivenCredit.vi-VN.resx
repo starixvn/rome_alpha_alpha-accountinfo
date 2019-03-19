@@ -126,6 +126,9 @@
   <data name="Difference" xml:space="preserve">
     <value>Chênh lệch</value>
   </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>Giá trị không hợp lệ</value>
+  </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>Hạn mức tín dụng mới</value>
   </data>

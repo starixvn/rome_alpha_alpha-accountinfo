@@ -126,6 +126,9 @@
   <data name="Difference" xml:space="preserve">
     <value>差别</value>
   </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>数额无效</value>
+  </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>新的信用额度</value>
   </data>
