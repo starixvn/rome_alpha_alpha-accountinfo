@@ -38,8 +38,8 @@
 
         public string NickName => customerInfo.UserName2;
 
-        public bool ShowNickName => 
-            SearchAccountLevel.IsDirectDownlineOf(ActorLevel) 
+        public bool ShowNickName =>
+            SearchAccountLevel.IsDirectDownlineOf(ActorLevel)
             && !string.IsNullOrEmpty(NickName);
 
         public string FullName => $"{customerInfo.FirstName} {customerInfo.LastName}";
@@ -58,25 +58,25 @@
 
         public bool ShowMember => SearchAccountLevel.IsMemberLevel();
 
-        public string MemberName => ShowMember ? customerInfo.MemberName : string.Empty;
+        public string MemberName => customerInfo.MemberName;
 
         public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel()
             && SearchAccountLevel.IsDownlineOfMasterLevel();
 
-        public int AgentId => ShowAgent ? customerInfo.AgentId : 0;
+        public int AgentId => customerInfo.AgentId;
 
-        public string AgentName => ShowAgent ? customerInfo.AgentName : string.Empty;
+        public string AgentName => customerInfo.AgentName;
 
         public bool ShowMaster => ActorLevel.IsSuperLevel()
             && SearchAccountLevel.IsDownlineOfSuperLevel();
 
-        public int MasterId => ShowMaster ? customerInfo.MasterId : 0;
+        public int MasterId => customerInfo.MasterId;
 
-        public string MasterName => ShowMaster ? customerInfo.MasterName : string.Empty;
+        public string MasterName => customerInfo.MasterName;
 
-        public int SuperId => ActorLevel.IsSuperLevel() ? customerInfo.SuperId : 0;
+        public int SuperId => customerInfo.SuperId;
 
-        public string SuperName => ActorLevel.IsSuperLevel() ? customerInfo.SuperName : string.Empty;
+        public string SuperName => customerInfo.SuperName;
 
         public LoginInfoViewModel LoginInfo =>
             new LoginInfoViewModel(
@@ -88,10 +88,10 @@
         public IBalanceInfoViewModel BalanceInfo { get; }
 
         internal Link CustomerListLink =>
-            new Link(SearchAccountLevel.IsMasterLevel() ? Resources.AgentList : Resources.MemberList, 
+            new Link(SearchAccountLevel.IsMasterLevel() ? Resources.AgentList : Resources.MemberList,
             $"{OldMainUrl}_MemberInfo/CustomerList/{ActorLevel.DisplayName}/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}List.aspx?custid={CustId}");
 
-        internal Link BetListLink => 
+        internal Link BetListLink =>
             new Link(Resources.BetList, $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}");
 
         internal Link StatemenLink
@@ -110,16 +110,17 @@
             {
                 var buttons = new List<Link>();
 
-                if (!SearchAccountLevel.IsMemberLevel()) {
+                if (!SearchAccountLevel.IsMemberLevel())
+                {
                     buttons.Add(CustomerListLink);
                 }
 
-                if(SearchAccountLevel.IsMemberLevel() && message.CanViewReports)
+                if (SearchAccountLevel.IsMemberLevel() && message.CanViewReports)
                 {
                     buttons.Add(BetListLink);
                 }
 
-                if(message.CanViewReports)
+                if (message.CanViewReports)
                 {
                     buttons.Add(StatemenLink);
                 }
