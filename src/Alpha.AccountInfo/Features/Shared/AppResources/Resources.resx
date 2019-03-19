@@ -396,4 +396,7 @@
   <data name="OutrightDisabledUpline" xml:space="preserve">
     <value>Upline has been disabled Outright betting</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>

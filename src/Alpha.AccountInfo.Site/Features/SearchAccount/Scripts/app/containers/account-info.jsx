@@ -231,6 +231,7 @@ export default class AccountInfo extends React.Component {
 			contactInfoProps: {
 				iconClass: "icon-contact-info",
 				featureText: resources.ShowContactInfo,
+				backText: resources.Back,
 				pathname: "/contactInfo",
 				visible: true,
 				children: <ContactInfo {...{ resources, customerInfo }} />

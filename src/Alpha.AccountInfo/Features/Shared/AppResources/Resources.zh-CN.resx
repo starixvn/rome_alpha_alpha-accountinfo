@@ -399,4 +399,7 @@
   <data name="OutrightDisabledUpline" xml:space="preserve">
     <value>优胜冠军投注已被上线禁用</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>

@@ -373,7 +373,7 @@
     <value>Tài khoản bị vô hiệu hóa.</value>
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
-    <value>Tài khoản bị đình chỉ.</value>
+    <value>Tài khoản này đã bị đình chỉ.</value>
   </data>
   <data name="Phone1" xml:space="preserve">
     <value>Điện thoại</value>
@@ -399,7 +399,7 @@
   <data name="OutrightDisabledUpline" xml:space="preserve">
     <value>Cấp trên đã vô hiệu hóa cược Outright</value>
   </data>
-  <data name="ThisAccountWasSuspended" xml:space="preserve">
-    <value>Tài khoản này đã bị đình chỉ.</value>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
   </data>
 </root>

@@ -402,4 +402,7 @@
   <data name="OutrightDisabledUpline" xml:space="preserve">
     <value>優勝冠軍投註已被上線禁用</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>
