@@ -1,5 +1,7 @@
 ﻿@{
-    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+	Layout = "~/Features/Shared/Views/_Layout.cshtml";
+	string pattern = @"([a-zA-Z]+) (\d+)";
+
 }
 @model AccountInfoViewModel
 
@@ -29,7 +31,7 @@
             '@Model.ActoreName',
             JSON.parse('@Model.MobileView'.toLowerCase()),
 			JSON.parse('@Model.ShowLoginInfo'.toLowerCase()),
-			JSON.parse('@Model.AccountInfoResources'.replace(/&quot;/g, '\"'))
+			@Html.Raw(Model.AccountInfoResources)
         );
     </script>
 }

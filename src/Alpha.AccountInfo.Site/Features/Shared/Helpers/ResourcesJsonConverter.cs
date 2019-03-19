@@ -20,7 +20,7 @@ namespace Alpha.AccountInfo.Site.Features.Shared.Helpers
 
             var resourceJson = string.Join(",",
                 resourceSet.Cast<DictionaryEntry>()
-                .Select(x => $"\"{x.Key.ToString()}\":\"{Convert.ToBase64String(Encoding.UTF8.GetBytes(x.Value.ToString()))}\""));
+                .Select(x => $"\"{x.Key.ToString()}\":\"{WebUtility.HtmlEncode(x.Value.ToString())}\""));
 
             return string.Format("{0}{1}{2}", "{", resourceJson, "}");
         }
