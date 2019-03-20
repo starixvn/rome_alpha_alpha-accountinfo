@@ -29,7 +29,7 @@
                 messages.StatusName == "outright" &&
                 messages.StatusValue &&
                 messages.IP == "::1" &&
-                messages.Language == "En");
+                messages.Language == "E");
         }
     }
 }

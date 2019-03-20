@@ -50,9 +50,7 @@
 
                 if (Actor.ProductStatusOf(ProductId).Synced)
                 {
-                    var memberProductStatus = SearchAccount.ProductStatusOf(ProductId);
-
-                    return memberProductStatus.Synced && memberProductStatus.Enabled;
+                    return SearchAccount.ProductStatusOf(ProductId).Synced && Actor.ProductStatusOf(ProductId).Enabled;
                 }
 
                 return false;
