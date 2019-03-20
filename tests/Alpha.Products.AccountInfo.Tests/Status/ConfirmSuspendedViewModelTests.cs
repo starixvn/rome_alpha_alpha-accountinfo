@@ -7,18 +7,6 @@
     [Trait("Status.ViewModels", "ConfirmSuspendedViewModel")]
     public class ConfirmSuspendedViewModelTests
     {
-
-        [Fact]
-        public void Disabled_Is_True_When_Actor_Does_Not_HasUpdateAccountPermission()
-        {
-            var request = RequestHelper.CreateRequest(4, 3);
-            request.AddData("Actor.HasUpdateAccountPermission", false);
-
-            var viewModel = new ConfirmSuspendedViewModel(request);
-
-            Assert.True(viewModel.Disabled);
-        }
-
         [Fact]
         public void Disabled_Is_True_When_SearchAccount_Upline_Is_Suspended()
         {

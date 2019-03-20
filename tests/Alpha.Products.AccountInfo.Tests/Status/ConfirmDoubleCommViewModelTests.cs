@@ -8,17 +8,6 @@
     public class ConfirmDoubleCommViewModelTests
     {
         [Fact]
-        public void Disabled_Is_True_When_Actor_Does_Not_HasUpdateAccountPermission()
-        {
-            var request = RequestHelper.CreateRequest(4, 3);
-            request.AddData("Actor.HasUpdateAccountPermission", false);
-
-            var viewModel = new ConfirmDoubleCommViewModel(request);
-
-            Assert.True(viewModel.Disabled);
-        }
-
-        [Fact]
         public void Disabled_Is_True_When_SearchAccount_Upline_Does_Not_Allow_DoubleComm()
         {
             var request = RequestHelper.CreateRequest(4, 3);

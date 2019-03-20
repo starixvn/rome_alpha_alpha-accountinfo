@@ -21,17 +21,6 @@
         }
 
         [Fact]
-        public void Disabled_Is_True_When_Actor_Does_Not_HasUpdateAccountPermission()
-        {
-            var request = RequestHelper.CreateRequest(4, 3);
-            request.AddData("Actor.HasUpdateAccountPermission", false);
-
-            var viewModel = new ConfirmAllowOutrightViewModel(request);
-
-            Assert.True(viewModel.Disabled);
-        }
-
-        [Fact]
         public void Disabled_Is_True_When_Upline_Does_Not_AllowedOutright()
         {
             var request = RequestHelper.CreateRequest(4, 3);

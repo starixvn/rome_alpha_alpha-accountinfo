@@ -44,19 +44,6 @@
         }
 
         [Theory]
-        [InlineData(true, false)]
-        [InlineData(false, true)]
-        public void Return_Disabled_By_Actor_HasUpdateAccountPermission(bool hasUpdateAccountPermission, bool expectedValue)
-        {
-            var request = RequestHelper.CreateRequest(4, 3);
-            request.AddData("Actor.HasUpdateAccountPermission", hasUpdateAccountPermission);
-
-            var viewModel = new ConfirmAllowAutoMasterPTViewModel(request);
-
-            Assert.Equal(expectedValue, viewModel.Disabled);
-        }
-
-        [Theory]
         [InlineData(true, true)]
         [InlineData(false, false)]
         public void Return_Checked_By_SearchAccount_IsAllowedMasterAutoPT(bool isAllowedMasterAutoPT, bool expectedValue)

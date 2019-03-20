@@ -34,7 +34,7 @@
 
         public virtual bool Visible => true;
 
-        public virtual bool Disabled { get; }
+        public virtual bool Disabled => false;
 
         public abstract bool Checked { get; }
 

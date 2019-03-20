@@ -59,8 +59,8 @@ export default class Searching extends React.Component {
     }
 
     onSuggestionsFetchRequested(input) {
-        accountInfoAPI
-            .getAutoUsernameSuggestion({ SuggestionQuery: input.value })
+		accountInfoAPI
+			.getAutoUsernameSuggestion({ SuggestionQuery: input.value.trim() })
             .then((data) => {
                 this.setState({ suggestions: data });
             });
