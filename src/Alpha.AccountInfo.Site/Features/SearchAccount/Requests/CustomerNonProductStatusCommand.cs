@@ -33,10 +33,12 @@
 
         public override bool IsValid()
         {
-            var isValid = base.IsValid() && IsValidName(StatusName);
+            var isValid = base.IsValid() && IsValidName(StatusName) && CanUpdateAccount;
             return !StatusName.Equals(StatusNames.DoubleComm) ? isValid : isValid && IsValidDoubleComm;
         }
 
-        internal bool IsValidDoubleComm =>  viewer.LevelId.Equals(SearchAccountRoleId + 1);
+        internal bool IsValidDoubleComm => viewer.LevelId.Equals(SearchAccountRoleId + 1);
+
+        internal bool CanUpdateAccount => !viewer.IsInternal && viewer.CanUpdateAccount;
     }
 }
