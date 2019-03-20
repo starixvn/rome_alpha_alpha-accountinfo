@@ -124,7 +124,7 @@
 
             foreach (var item in rawData)
             {
-                item.Name = setNameByBetTypeId
+                item.Name = setNameByBetTypeId || item.BetType == AllbetStartRange
                     ? GetBetTypeName(item.BetType)
                     : cacheRefService.GetProductName(productId);
 
