@@ -5,7 +5,7 @@
 
     public class Sportsbook2ViewModel : DynamicProductViewModel
     {
-        public Sportsbook2ViewModel(ISearchAccountInfoRequest request) : base(request, Sportsbook)
+        public Sportsbook2ViewModel(ISearchAccountInfoRequest request) : base(request, Sportsbook2)
         {
         }
 
