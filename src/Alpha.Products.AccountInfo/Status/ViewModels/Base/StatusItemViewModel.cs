@@ -34,10 +34,10 @@
 
         public virtual bool Visible => true;
 
-        public virtual bool Disabled => !Request.GetData<bool>("Actor.HasUpdateAccountPermission");
+        public virtual bool Disabled { get; }
 
         public abstract bool Checked { get; }
 
         protected virtual string AccountInfoUrl => Request.GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
     }
-}
+} 

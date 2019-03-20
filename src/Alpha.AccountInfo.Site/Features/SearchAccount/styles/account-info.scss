@@ -207,7 +207,6 @@ hr {
     &.two-button [class^="btn"] {
         display: inline-block;
         width: 48%;
-        line-height: 28px;
         margin-right: 0;
         padding-left: calculateScale(6px);
         padding-right: calculateScale(6px);
@@ -220,7 +219,6 @@ hr {
     &.one-button [class^="btn"] {
         display: inline-block;
         width: 100%;
-        line-height: 28px;
         margin-right: 0;
     }
 }

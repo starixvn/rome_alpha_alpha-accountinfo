@@ -40,3 +40,7 @@ export const closeLeftPanelOnMobile = () => {
         closeIconElement.click();
     }
 }
+
+export const formatMessage = (message) => {
+	return message.replace(/\\n/g, '<br />');
+}

@@ -29,6 +29,8 @@
 
         internal virtual bool SyncedCasino3rd { get; }
 
+        public override bool Disabled => !Request.GetData<bool>("Actor.HasUpdateAccountPermission");
+
         private IDictionary<string, object> Params =>
             new Dictionary<string, object>
                     {

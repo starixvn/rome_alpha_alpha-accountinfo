@@ -83,21 +83,6 @@
         }
 
         [Theory]
-        [InlineData(true, false)]
-        [InlineData(false, true)]
-        public void Return_Disabled_By_Actor_HasUpdateAccountPermission(bool hasUpdateAccountPermission, bool expectedValue)
-        {
-            var configItem = Substitute.For<IConfigurationItem>();
-            configItem.ProductId.Returns(5);
-            var request = RequestHelper.CreateRequest(4, 3);
-            request.AddData("Actor.HasUpdateAccountPermission", hasUpdateAccountPermission);
-
-            var viewModel = new ProductStatusItemViewModel(request, configItem);
-
-            Assert.Equal(expectedValue, viewModel.Disabled);
-        }
-
-        [Theory]
         [ClassData(typeof(ActorAndCrossDownlineSearchAccountLevelTestData))]
         public void Disabled_Is_True_When_SearchAccount_Is_Not_DirectDownline_Of_Actor(byte actorLevel, byte searchAccountLevel)
         {

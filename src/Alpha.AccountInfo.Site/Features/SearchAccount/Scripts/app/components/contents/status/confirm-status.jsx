@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../../api-client';
-import { resizeBootboxOnMobile, buildTooltipProps } from '../../../helpers/accountinfo-helper';
+import { resizeBootboxOnMobile, buildTooltipProps, formatMessage } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
 export default class ConfirmStatus extends React.Component {
@@ -39,7 +39,7 @@ export default class ConfirmStatus extends React.Component {
 
 		if (!status.Disabled) {
 			window.top.bootboxConfirm(
-				status.ConfirmMessage,
+				formatMessage(status.ConfirmMessage),
 				e.target,
 				this.updateCustomerStatus
 			);
