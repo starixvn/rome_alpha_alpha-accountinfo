@@ -21,6 +21,9 @@
                ["username"] = SearchAccount.Username
            };
 
-        public override bool Visible => base.Visible && SearchAccount.IsNotMember;
+        public override bool Visible =>
+            base.Visible &&
+            SearchAccount.IsNotMember &&
+            Request.GetData<bool>(DataKey.Actor.HasUpdateAccountPermission);
     }
 }
