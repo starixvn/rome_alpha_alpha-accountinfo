@@ -15,6 +15,7 @@
     using Fanex.Logging;
     using Models.ProductStatus;
     using Params.ProductStatus;
+    using System.Globalization;
 
     public interface ProductStatusService
     {
@@ -157,7 +158,7 @@
             }
 
             return errorMessages.Count == 0
-                ? Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully)
+                ? Result.CreateSuccessResult(ProductStatus.ResourceManager.GetString("StatusUpdatedSuccessfully", new CultureInfo(param.Language)))
                 : Result.CreateErrorResult(101, string.Join("<br>", errorMessages));
         }
 
@@ -168,8 +169,8 @@
             await repository.ExecuteAsync(criteria).ConfigureAwait(false);
 
             return criteria.Success ?
-                Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully) :
-                Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.ProductId));
+                Result.CreateSuccessResult(ProductStatus.ResourceManager.GetString("StatusUpdatedSuccessfully", new CultureInfo(param.Language))) :
+                Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.ProductId, param.Language));
         }
 
         private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
@@ -190,19 +191,19 @@
                       criteria.IP
                      ));
 
-                return Result.CreateSuccessResult(ProductStatus.StatusUpdatedSuccessfully);
+                return Result.CreateSuccessResult(ProductStatus.ResourceManager.GetString("StatusUpdatedSuccessfully", new CultureInfo(param.Language)));
             }
 
             return Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
         }
 
-        private string ParseDCSXmlErrorMessage(string errMsg, int productId)
+        private string ParseDCSXmlErrorMessage(string errMsg, int productId, string language)
         {
             if (IsValidXml(errMsg))
             {
                 var xmlRoot = XElement.Parse(errMsg);
                 var errCode = xmlRoot.Attributes("MsgID").FirstOrDefault().Value;
-                var errMsgFromResource = ProductStatus.ResourceManager.GetString($"Msg{errCode}");
+                var errMsgFromResource = ProductStatus.ResourceManager.GetString($"Msg{errCode}", new CultureInfo(language));
 
                 var errors = new List<string>
                 {

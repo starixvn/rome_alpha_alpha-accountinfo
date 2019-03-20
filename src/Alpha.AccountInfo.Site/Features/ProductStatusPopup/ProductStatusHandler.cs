@@ -67,6 +67,7 @@
                 message.SubAccId,
                 message.LangKey,
                 message.IP,
-                message.BetTypeStatus.Select(status => new BetTypeStatusParam(status.SportType, status.BetType, status.IsDisabled)));
+                message.BetTypeStatus.Select(status => new BetTypeStatusParam(status.SportType, status.BetType, status.IsDisabled)),
+                message.Language);
     }
 }

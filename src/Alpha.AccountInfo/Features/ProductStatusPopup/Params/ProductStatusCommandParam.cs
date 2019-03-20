@@ -18,7 +18,8 @@
             int subAccId,
             string langKey,
             string ip,
-            IEnumerable<BetTypeStatusParam> productStatusParams)
+            IEnumerable<BetTypeStatusParam> productStatusParams,
+            string language)
 #pragma warning restore S107 // Methods should not have too many parameters
         {
             ProductId = productId;
@@ -32,6 +33,7 @@
             LangKey = langKey;
             IP = ip;
             ProductStatusParams = productStatusParams;
+            Language = language;
         }
 
         public int ProductId { get; }
@@ -55,5 +57,7 @@
         public string IP { get; }
 
         public IEnumerable<BetTypeStatusParam> ProductStatusParams { get; }
+
+        public string Language { get; }
     }
 }

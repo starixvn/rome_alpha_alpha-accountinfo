@@ -110,7 +110,8 @@
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
-                productStatus);
+                productStatus,
+                "en-US");
 
             // Act
             var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);
@@ -136,7 +137,8 @@
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
-                productStatus);
+                productStatus,
+                "en-US");
 
             // Act
             var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);
@@ -161,7 +163,8 @@
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
-                productStatus);
+                productStatus,
+                "en-US");
             var expectedCriteria = new UpdateNG2StatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, productStatus);
 
             // Act
@@ -189,7 +192,8 @@
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
-                productStatus);
+                productStatus,
+                "en-US");
             var expectedCriteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, productStatus);
 
             // Act
@@ -219,7 +223,8 @@
                 SubAccIdTest,
                 LanguageTest,
                 IPTest,
-                productStatus);
+                productStatus,
+                "en-US");
             var expectedCriteria = new UpdateKenoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, 1501, false, UplineIdTest);
 
             // Act

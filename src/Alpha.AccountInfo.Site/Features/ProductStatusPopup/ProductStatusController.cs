@@ -9,7 +9,6 @@
     using MediatR;
     using Web.Filters;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ProductStatusController : AccountInfoBaseController
     {
         private const string ProductStatusPopupViewPath = "~/Features/ProductStatusPopup/Views/Index.cshtml";

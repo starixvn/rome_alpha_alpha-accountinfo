@@ -318,7 +318,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             var criteria = new List<UpdateKenoStatusCriteria>
             {
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070),
@@ -356,7 +357,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             var criteria = new List<UpdateKenoStatusCriteria>
             {
                 new UpdateKenoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", 1501, false, 1176070)
@@ -406,7 +408,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
@@ -440,7 +443,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
             {
                 ErrCode = 102,
@@ -479,7 +483,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             var criteria = new UpdateColossusBetStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
@@ -513,7 +518,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             var criteria = new UpdateColossusBetStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
             {
                 ErrCode = 102,
@@ -552,7 +558,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
                 new BetTypeStatusParam(211, 2401, false),
@@ -590,7 +597,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
                 new BetTypeStatusParam(211, 2401, false),
@@ -634,7 +642,8 @@
                 0,
                 null,
                 null,
-                null);
+                null,
+                "en-US");
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(false);

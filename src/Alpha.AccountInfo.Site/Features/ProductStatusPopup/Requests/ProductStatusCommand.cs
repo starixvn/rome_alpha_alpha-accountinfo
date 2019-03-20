@@ -12,6 +12,7 @@
             ActorName = viewer.Name;
             SubAccId = viewer.SubAccId;
             LangKey = viewer.LangKey;
+            Language = viewer.Language;
             IP = viewer.IP;
         }
 
@@ -26,6 +27,8 @@
         public string LangKey { get; }
 
         public string IP { get; }
+
+        public string Language { get; }
 
         public override bool IsValid()
             => base.IsValid() && BetTypeStatus?.Length > 0;
