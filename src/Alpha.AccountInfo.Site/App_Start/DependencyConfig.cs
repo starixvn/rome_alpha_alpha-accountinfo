@@ -112,7 +112,6 @@
                 Lifestyle.Scoped);
 
             container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Singleton);
-            container.Register<IProductProfileService, ProductProfileService>(Lifestyle.Singleton);
             container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
             container.Register<RnGCasinoService, RnGCasinoServiceImpl>(Lifestyle.Scoped);
             container.Register<SearchAccountService, SearchAccountServiceImpl>(Lifestyle.Scoped);

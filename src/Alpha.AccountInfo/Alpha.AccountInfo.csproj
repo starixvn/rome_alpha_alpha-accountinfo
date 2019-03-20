@@ -240,7 +240,6 @@
     <Compile Include="Features\ProductStatusPopup\Params\ProductStatusCommandParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Shared\Services\CacheRefService.cs" />
-    <Compile Include="Services\ProductStatus\ProductProfileService.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountService.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusAuthorizationService.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusCriteriaFactory.cs" />

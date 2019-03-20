@@ -37,7 +37,6 @@
         private readonly ProductStatusCriteriaFactory criteriaFactory;
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
-        private readonly IProductProfileService productProfileService;
         private readonly ILogger logger;
 
         public ProductStatusServiceImpl(
@@ -120,27 +119,13 @@
             int productId,
             IEnumerable<ProductStatusModel> rawData)
         {
-            var settingLevel = productProfileService.GetSettingLevel(productId);
+            var setNameByBetTypeId = rawData.Count() > 1;
 
             foreach (var item in rawData)
             {
-                if (settingLevel == (int)ProductSettingLevel.Product)
-                {
-                    item.Name = cacheRefService.GetProductName(productId);
-                }
-                else if (settingLevel == (int)ProductSettingLevel.SportType)
-                {
-                    item.Name = cacheRefService.GetSportTypeName(item.SportType);
-                }
-                else if (settingLevel == (int)ProductSettingLevel.BetType)
-                {
-                    item.Name = GetBetTypeName(item.BetType);
-                }
-                else
-                {
-                    item.Name = GetBetTypeName(item.BetType);
-                }
-             
+                item.Name = setNameByBetTypeId
+                    ? GetBetTypeName(item.BetType)
+                    : cacheRefService.GetProductName(productId);
 
                 yield return item;
             }

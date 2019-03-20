@@ -31,7 +31,6 @@
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ProductStatusServiceImpl productStatusServiceImpl;
-        private readonly IProductProfileService productProfileService;
         private readonly ILogger logger;
 
         public ProductStatusServiceImplTests()
@@ -41,16 +40,13 @@
             criteriaFactory = Substitute.For<ProductStatusCriteriaFactory>();
             authorizationService = Substitute.For<ProductStatusAuthorizationService>();
             rnGCasinoService = Substitute.For<RnGCasinoService>();
-            productProfileService = Substitute.For<IProductProfileService>();
             logger = Substitute.For<ILogger>();
-
             productStatusServiceImpl = new ProductStatusServiceImpl(
                 dynamicRepository,
                 cacheRefService,
                 criteriaFactory,
                 authorizationService,
                 rnGCasinoService,
-                productProfileService);
                 logger);
 
             rnGCasinoService.SyncedToRnGCasino3rdByStatus(
@@ -149,37 +145,6 @@
                 expectedResults[1].IsDisabled == actualResults[1].IsDisabled &&
                 expectedResults[1].IsDisabledUpline == actualResults[1].IsDisabledUpline &&
                 expectedResults[1].Name == actualResults[1].Name);
-        }
-
-        [Fact]
-        public async Task GetProductStatusAsync_Allbet_ReturnNameWithHardCode()
-        {
-            // Arrange
-            var exceptedNameAllbet = AppResources.ProductStatus.BetType_2401;
-            var expectedResults = new List<ProductStatusModel>
-            {
-                new ProductStatusModel(21, 211, 2401,  false, false)
-            };
-            var criteria = new SelectProductStatusCriteria(21, CustIdTest);
-            authorizationService
-                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateSelectCriteria(21, CustIdTest, CustRoleTest.Value)
-                .Returns(criteria);
-            dynamicRepository
-                .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(expectedResults);
-            cacheRefService
-                .GetBetTypeName(2401)
-                .Returns("Baccarat");
-
-            // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(21, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
-            var actualResults = actualData.ToList();
-
-            // Assert
-            Assert.True(exceptedNameAllbet == actualResults[0].Name);
         }
 
         [Fact]
@@ -296,38 +261,6 @@
                 expectedResults[1].IsDisabled == actualResults[1].IsDisabled &&
                 expectedResults[1].IsDisabledUpline == actualResults[1].IsDisabledUpline &&
                 expectedResults[1].Name == actualResults[1].Name);
-        }
-
-        [Fact]
-        public async Task GetProductStatusAsync_SettingTypeIsProduct_ReturnsNameByProductName()
-        {
-            // Arrange
-            var productId = 21;
-            var sportType = 211;
-            var productStatusList = new List<ProductStatusModel>
-            {
-                new ProductStatusModel(productId, sportType, 2401, false, false)
-            };
-            var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
-            authorizationService
-                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
-                .Returns(criteria);
-            dynamicRepository
-                .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(productStatusList);
-            productProfileService.GetSettingLevel(productId).Returns((int)ProductSettingLevel.Product);
-
-            cacheRefService.GetProductName(productId).Returns("macaugame");
-
-            // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
-            var actualResults = actualData.ToList();
-
-            // Assert
-            Assert.True("macaugame" == actualResults[0].Name);
         }
 
         [Fact]
