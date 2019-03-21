@@ -73,7 +73,7 @@
              $"&status=1&CallBack=false&username={message.SearchAccountName}&isyesterday=1&amt={transferValue}";
 
         protected static decimal RoundNumber(decimal value, byte decimalScale = 2)
-            => Math.Round(value, decimalScale, MidpointRounding.AwayFromZero);
+            => Math.Round(value, decimalScale, MidpointRounding.ToEven);
 
         private string BreadcrumbLevelJson
         {
