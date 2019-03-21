@@ -38,7 +38,5 @@
         }
 
         internal bool IsValidDoubleComm => viewer.LevelId.Equals(SearchAccountRoleId + 1);
-
-        internal bool CanUpdateAccount => !viewer.IsInternal && viewer.CanUpdateAccount;
     }
 }

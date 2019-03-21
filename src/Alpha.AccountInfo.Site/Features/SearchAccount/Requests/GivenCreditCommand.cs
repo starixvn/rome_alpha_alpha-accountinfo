@@ -24,9 +24,6 @@
 
         public string IP => viewer.IP;
 
-        public override bool IsValid() =>
-            base.IsValid() &&
-            IsValidSearchAccountRoleId(SearchAccountRoleId) &&
-            viewer.CanUpdateAccount;
+        public override bool IsValid() => base.IsValid() && CanUpdateAccount && IsValidSearchAccountRoleId(SearchAccountRoleId);
     }
 }
