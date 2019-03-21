@@ -506,6 +506,15 @@ hr {
             color: $link-color;
         }
 
+        .checkbox.disabled {
+            opacity: 1;
+        }
+
+        .checkbox.disabled label:before,
+        .checkbox.disabled label:after {
+            opacity: .4;
+        }
+
         .icon-ic_list {
             @include ripple-effect-icon($top: -2px, $margin-left: -5px);
             float: left;
