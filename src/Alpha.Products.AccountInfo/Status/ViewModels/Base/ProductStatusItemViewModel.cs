@@ -37,9 +37,10 @@
                                           $"uid={Guid.NewGuid()}");
 
         public override bool Disabled
-            => IsSuperCanViewAgentOnThisProduct(ProductId)
-            || Actor.IsNotDirectUplineOf(SearchAccount)
-            || SearchAccount.Upline.ProductStatusOf(productItem.ProductId).Disabled;
+            => base.Disabled || 
+            IsSuperCanViewAgentOnThisProduct(ProductId) || 
+            Actor.IsNotDirectUplineOf(SearchAccount) || 
+            SearchAccount.Upline.ProductStatusOf(productItem.ProductId).Disabled;
 
         public override bool Visible => IsSuperCanViewAgentOnThisProduct(ProductId)
             ? SearchAccount.CanSeeProduct(productItem.ProductId)

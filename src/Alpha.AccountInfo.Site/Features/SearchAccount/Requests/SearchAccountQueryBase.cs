@@ -19,6 +19,8 @@
         internal bool IsValidSearchAccountRoleId(byte searchAccountRoleId)
             => searchAccountRoleId < viewer.LevelId;
 
-        internal bool CanUpdateAccount => !viewer.IsInternal && viewer.CanUpdateAccount;
+        internal bool CanUpdateAccount => viewer.CanUpdateAccount;
+
+        internal bool IsInternal => viewer.IsInternal;
     }
 }

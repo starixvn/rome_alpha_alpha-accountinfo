@@ -364,7 +364,7 @@
     <value>由於輸入密碼錯誤或是賬號已過期，此賬號已被關閉。</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>This account was closed by false input of OTP/Security Code.</value>
+    <value>由於動態密碼輸入錯誤，該帳戶已被停用。</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>此賬號已被上線關閉。</value>

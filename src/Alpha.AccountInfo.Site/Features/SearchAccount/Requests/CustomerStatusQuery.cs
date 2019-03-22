@@ -31,8 +31,6 @@
 
         public int SubAccountId => viewer.SubAccId;
 
-        public bool CanUpdateAccount => !viewer.IsInternal && viewer.CanUpdateAccount;
-
         public bool GetDisabledProduct(int productId) => viewer.GetDisabledProduct(productId);
 
         public bool GetHideProduct(int productId) => viewer.GetHideProduct(productId);

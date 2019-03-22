@@ -14,7 +14,7 @@ export default class CustomAnchorTag extends React.Component {
 		}
 
 		let mainFrame = window.top.$('#main');
-		mainFrame.contents().find("head").append(_assetCommonCssLink);
+		mainFrame.contents().find("head").append(_AssetCommonCssLink);
 		mainFrame.contents().find("body").empty().block();
 		mainFrame.attr('src', this.props.href);
     } 

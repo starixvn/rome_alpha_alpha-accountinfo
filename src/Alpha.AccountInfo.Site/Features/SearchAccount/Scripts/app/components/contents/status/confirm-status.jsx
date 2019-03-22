@@ -28,7 +28,7 @@ export default class ConfirmStatus extends React.Component {
 					}, 3000);
 				}
 				else {
-					window.top.bootboxAlert(data.Message, $(`#confirm-${status.Text}`)[0]);
+					window.top.bootboxAlert(data.Message, $(`#confirm-${status.DisplayOrder}`)[0]);
 					$.unblockUI();
 				}
 			});
@@ -70,7 +70,7 @@ export default class ConfirmStatus extends React.Component {
 
 
 		return (<div
-			id={`confirm-${status.Text}`}
+			id={`confirm-${status.DisplayOrder}`}
 			className={`col-xs-6 checkbox ${status.Disabled ? 'disabled' : ''}`}
 			onClick={this.handleOpenPopup}
 		>

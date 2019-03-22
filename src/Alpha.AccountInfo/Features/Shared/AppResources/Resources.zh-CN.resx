@@ -361,7 +361,7 @@
     <value>由于输入密码错误或是账号已过期，此账号已被关闭。</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>This account was closed by false input of OTP/Security Code.</value>
+    <value>由于动态密码输入错误，该帐户已被停用。</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>此账号已被上线关闭。</value>

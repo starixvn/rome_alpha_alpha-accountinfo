@@ -24,7 +24,9 @@
         Raven.config('http://21a8f21f7c5a4cc1b9c79bb68fb0ebb9@sentry.nexdev.net/3').install();
         var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
-		var _assetCommonCssLink = '@StaticResources.AssetStyles.RenderCommon("/bundles/common/common")'
+		var _AssetCommonCssLink = '@StaticResources.AssetStyles.RenderCommon("/bundles/common/common")'
+		var _NotAuthorized = '@Resources.NotAuthorized';
+
         renderAccountInfo(
             '@Model.SearchAccountName',
             '@Model.ActorRoleId',

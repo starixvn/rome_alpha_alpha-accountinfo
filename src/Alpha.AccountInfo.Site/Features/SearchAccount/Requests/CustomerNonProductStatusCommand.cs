@@ -33,7 +33,7 @@
 
         public override bool IsValid()
         {
-            var isValid = base.IsValid() && IsValidName(StatusName) && CanUpdateAccount;
+            var isValid = base.IsValid() && IsValidName(StatusName) && CanUpdateAccount && !IsInternal;
             return !StatusName.Equals(StatusNames.DoubleComm) ? isValid : isValid && IsValidDoubleComm;
         }
 
