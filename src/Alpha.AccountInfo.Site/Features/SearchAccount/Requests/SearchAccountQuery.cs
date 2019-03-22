@@ -26,6 +26,6 @@
 
         public bool IsEnabledCustomerDateLimit => viewer.IsEnabledCustomerDateLimit;
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => viewer.ViewMemberInfo;
     }
 }

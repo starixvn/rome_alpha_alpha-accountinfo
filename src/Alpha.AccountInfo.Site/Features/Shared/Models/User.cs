@@ -47,6 +47,8 @@
 
         public bool AllowTransfer => userSession.SubPageAccess.Transfer;
 
+        public bool ViewMemberInfo => userSession.SubPageAccess.ViewMemberInfo;
+
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;
 
         public bool CanViewLog => userSession.SubPageAccess.ViewLog;

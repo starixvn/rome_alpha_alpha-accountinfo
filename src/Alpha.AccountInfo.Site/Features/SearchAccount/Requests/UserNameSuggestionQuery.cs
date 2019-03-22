@@ -21,6 +21,6 @@
 
         public bool IsInternal => viewer.IsInternal;
 
-        public override bool IsValid() => IsValidName(SuggestionQuery);
+        public override bool IsValid() => viewer.ViewMemberInfo && IsValidName(SuggestionQuery);
     }
 }

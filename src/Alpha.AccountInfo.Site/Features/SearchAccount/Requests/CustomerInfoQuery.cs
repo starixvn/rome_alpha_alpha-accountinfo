@@ -37,6 +37,7 @@
 
         public override bool IsValid() =>
             IsValidName(SearchAccountName) &&
+            viewer.ViewMemberInfo &&
             !SearchAccountName.Trim().Equals(viewer.Name, StringComparison.OrdinalIgnoreCase);
     }
 }
