@@ -72,8 +72,7 @@
              $"{OldMainUrl}_Transfer/{ActorLevel.DisplayName}/{SearchAccountLevel.DisplayName}Transfer.aspx?custid={customerInfo.CustId}" +
              $"&status=1&CallBack=false&username={message.SearchAccountName}&isyesterday=1&amt={transferValue}";
 
-        protected static decimal RoundNumber(decimal value, byte decimalScale = 2)
-            => Math.Round(value, decimalScale, MidpointRounding.ToEven);
+        protected static decimal RoundDownNumber(decimal value) => Math.Truncate(100 * value) / 100;
 
         private string BreadcrumbLevelJson
         {

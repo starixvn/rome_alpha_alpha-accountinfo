@@ -18,21 +18,27 @@
             this.balanceInfoModel = (MasterBalanceInfoModel)balanceInfoModel;
         }
 
-        public decimal TotalCash => RoundNumber(balanceInfoModel.MasterCash);
+        public decimal TotalCash => RoundDownNumber(balanceInfoModel.MasterCash);
 
-        public decimal YesterdayCash => RoundNumber(balanceInfoModel.YesterdayMasterCash);
+        public decimal YesterdayCash => RoundDownNumber(balanceInfoModel.YesterdayMasterCash);
 
         public override decimal TotalBalance
-            => RoundNumber(balanceInfoModel.MasterCash + balanceInfoModel.AgentCash + balanceInfoModel.CustomerCash);
+            => RoundDownNumber(
+                balanceInfoModel.MasterCash + 
+                balanceInfoModel.AgentCash + 
+                balanceInfoModel.CustomerCash);
 
         public override decimal YesterdayBalance
-            => RoundNumber(balanceInfoModel.YesterdayMasterCash + balanceInfoModel.YesterdayAgentCash + balanceInfoModel.YesterdayCustomerCash);
+            => RoundDownNumber(
+                balanceInfoModel.YesterdayMasterCash + 
+                balanceInfoModel.YesterdayAgentCash + 
+                balanceInfoModel.YesterdayCustomerCash);
 
-        public override decimal Outstanding => RoundNumber(balanceInfoModel.MasterPositionTaking);
+        public override decimal Outstanding => RoundDownNumber(balanceInfoModel.MasterPositionTaking);
 
-        public decimal UsedCredit => RoundNumber(balanceInfoModel.MasterUsedCredit);
+        public decimal UsedCredit => RoundDownNumber(balanceInfoModel.MasterUsedCredit);
 
-        public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
+        public decimal GivenCredit => RoundDownNumber(balanceInfoModel.Credit);
 
         public decimal GivenCreditMin => balanceInfoModel.MasterCreditMin;
 

@@ -18,17 +18,22 @@
             this.balanceInfoModel = (MemberBalanceInfoModel)balanceInfoModel;
         }
 
-        public override decimal TotalBalance => RoundNumber(balanceInfoModel.CustomerCash);
+        public override decimal TotalBalance => RoundDownNumber(balanceInfoModel.CustomerCash);
 
-        public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.YesterdayCustomerCash);
+        public override decimal YesterdayBalance => RoundDownNumber(balanceInfoModel.YesterdayCustomerCash);
 
-        public override decimal Outstanding => RoundNumber(balanceInfoModel.CustomerOutstanding);
+        public override decimal Outstanding => RoundDownNumber(balanceInfoModel.CustomerOutstanding);
 
-        public decimal NetPosition => RoundNumber(balanceInfoModel.NetPosition);
+        public decimal NetPosition => RoundDownNumber(balanceInfoModel.NetPosition);
 
-        public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
+        public decimal GivenCredit => RoundDownNumber(balanceInfoModel.Credit);
 
-        public decimal BetCredit => RoundNumber(GivenCredit + balanceInfoModel.CustomerCash - Outstanding + NetPosition);
+        public decimal BetCredit => 
+            RoundDownNumber(
+                balanceInfoModel.Credit + 
+                balanceInfoModel.CustomerCash - 
+                balanceInfoModel.CustomerOutstanding + 
+                balanceInfoModel.NetPosition);
 
         public decimal GivenCreditMax => balanceInfoModel.MemMaxCreditMax;
 

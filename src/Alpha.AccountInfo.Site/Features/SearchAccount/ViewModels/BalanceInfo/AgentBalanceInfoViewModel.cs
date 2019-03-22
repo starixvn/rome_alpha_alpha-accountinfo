@@ -19,21 +19,21 @@
             this.balanceInfoModel = (AgentBalanceInfoModel)balanceInfoModel;
         }
 
-        public decimal TotalCash => RoundNumber(balanceInfoModel.AgentCash);
+        public decimal TotalCash => RoundDownNumber(balanceInfoModel.AgentCash);
 
-        public decimal YesterdayCash => RoundNumber(balanceInfoModel.YesterdayAgentCash);
+        public decimal YesterdayCash => RoundDownNumber(balanceInfoModel.YesterdayAgentCash);
 
-        public override decimal TotalBalance => RoundNumber(balanceInfoModel.AgentCash + balanceInfoModel.CustomerCash);
+        public override decimal TotalBalance => RoundDownNumber(balanceInfoModel.AgentCash + balanceInfoModel.CustomerCash);
 
-        public override decimal YesterdayBalance => RoundNumber(balanceInfoModel.YesterdayAgentCash + balanceInfoModel.YesterdayCustomerCash);
+        public override decimal YesterdayBalance => RoundDownNumber(balanceInfoModel.YesterdayAgentCash + balanceInfoModel.YesterdayCustomerCash);
 
-        public override decimal Outstanding => RoundNumber(balanceInfoModel.AgentPositionTaking);
+        public override decimal Outstanding => RoundDownNumber(balanceInfoModel.AgentPositionTaking);
 
-        public decimal MemberMaxCredit => RoundNumber(balanceInfoModel.MemberMaxCredit);
+        public decimal MemberMaxCredit => RoundDownNumber(balanceInfoModel.MemberMaxCredit);
 
-        public decimal UsedCredit => RoundNumber(balanceInfoModel.AgentUsedCredit);
+        public decimal UsedCredit => RoundDownNumber(balanceInfoModel.AgentUsedCredit);
 
-        public decimal GivenCredit => RoundNumber(balanceInfoModel.Credit);
+        public decimal GivenCredit => RoundDownNumber(balanceInfoModel.Credit);
 
         public bool ShowMemberMaxCreditLimit => ActorLevel.IsMasterLevel();
 
