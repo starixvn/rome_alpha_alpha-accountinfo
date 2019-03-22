@@ -61,14 +61,18 @@ export default class GivenCredit extends React.Component {
 	}
 
 	handleSubmit(e) {
-		let self = this, { resources, currentGivenCredit, givenCreditMin, givenCreditMax } = this.props, { newGivenCredit } = this.state;
+		let self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
+			currentGivenCredit = parseFloat(this.props.currentGivenCredit),
+			givenCreditMin = parseFloat(this.props.givenCreditMin),
+			givenCreditMax = parseFloat(this.props.givenCreditMax),
+			newGivenCredit = parseFloat(this.state.newGivenCredit);
 
-		if (newGivenCredit < parseFloat(givenCreditMin) || newGivenCredit > parseFloat(givenCreditMax)) {
+		if (newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
 			this.showErrorMessage(resources.InvalidValue);
 			return;
 		}
 
-		if (newGivenCredit === parseFloat(currentGivenCredit)) {
+		if (newGivenCredit === currentGivenCredit) {
 			this.showErrorMessage(resources.ThereIsNoChange);
 			return;
 		}
@@ -76,9 +80,9 @@ export default class GivenCredit extends React.Component {
 		$.blockUI();
 	
         var params = {
-            SearchAccountId: this.props.searchAccountId,
-            SearchAccountRoleId: this.props.searchAccountRoleId,
-            CreditAmount: this.state.newGivenCredit
+            SearchAccountId: searchAccountId,
+            SearchAccountRoleId: searchAccountRoleId,
+            CreditAmount: newGivenCredit
         };
 
         accountInfoAPI.updateGivenCredit(params).then((data) => {
