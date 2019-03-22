@@ -120,7 +120,7 @@
             int productId,
             IEnumerable<ProductStatusModel> rawData)
         {
-            var setNameByBetTypeId = rawData.Count() > 1;
+            var setNameByBetTypeId = rawData.Any();
 
             foreach (var item in rawData)
             {
@@ -158,7 +158,7 @@
             }
 
             return errorMessages.Count == 0
-                ? Result.CreateSuccessResult(ProductStatus.ResourceManager.GetString("StatusUpdatedSuccessfully", new CultureInfo(param.Language)))
+                ? Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language))
                 : Result.CreateErrorResult(101, string.Join("<br>", errorMessages));
         }
 
@@ -169,7 +169,7 @@
             await repository.ExecuteAsync(criteria).ConfigureAwait(false);
 
             return criteria.Success ?
-                Result.CreateSuccessResult(ProductStatus.ResourceManager.GetString("StatusUpdatedSuccessfully", new CultureInfo(param.Language))) :
+                Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language)) :
                 Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.ProductId, param.Language));
         }
 
@@ -191,7 +191,7 @@
                       criteria.IP
                      ));
 
-                return Result.CreateSuccessResult(ProductStatus.ResourceManager.GetString("StatusUpdatedSuccessfully", new CultureInfo(param.Language)));
+                return Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language));
             }
 
             return Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
@@ -203,7 +203,7 @@
             {
                 var xmlRoot = XElement.Parse(errMsg);
                 var errCode = xmlRoot.Attributes("MsgID").FirstOrDefault().Value;
-                var errMsgFromResource = ProductStatus.ResourceManager.GetString($"Msg{errCode}", new CultureInfo(language));
+                var errMsgFromResource = GetResource($"Msg{errCode}", language);
 
                 var errors = new List<string>
                 {
@@ -239,5 +239,8 @@
 
             return false;
         }
+
+        private static string GetResource(string name, string language)
+            => ProductStatus.ResourceManager.GetString(name, new CultureInfo(language));
     }
 }
