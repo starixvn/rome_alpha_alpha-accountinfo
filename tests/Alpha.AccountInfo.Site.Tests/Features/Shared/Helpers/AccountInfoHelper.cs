@@ -64,6 +64,7 @@
             viewer.AllowedTotalBalanceTransfer.Returns(true);
             viewer.AllowedAllDayBalTransfer.Returns(false);
             viewer.CanViewReports.Returns(true);
+            viewer.ViewMemberInfo.Returns(true);
             viewer.AllowTransfer.Returns(true);
             viewer.GetDisabledProduct(Arg.Any<int>()).Returns(true);
             viewer.GetHideProduct(Arg.Any<int>()).Returns(true);
