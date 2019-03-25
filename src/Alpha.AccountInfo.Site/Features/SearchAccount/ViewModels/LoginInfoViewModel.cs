@@ -11,8 +11,8 @@
             string loginIP)
         {
             CreatedDate = createdDate.ToString();
-            LastLogin = lastLogin.ToString();
-            LastTxn = lastTxn.ToString();
+            LastLogin = DateTime.MinValue == lastLogin ? string.Empty : lastLogin.ToString();
+            LastTxn = DateTime.MinValue == lastTxn ? string.Empty : lastTxn.ToString();
             LoginIP = loginIP;
         }
 

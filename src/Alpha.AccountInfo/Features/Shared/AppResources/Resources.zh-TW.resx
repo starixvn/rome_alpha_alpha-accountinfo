@@ -411,4 +411,10 @@
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>體育博彩 2</value>
   </data>
+  <data name="RNGCasinoViewModelText" xml:space="preserve">
+    <value>娛樂城</value>
+  </data>
+  <data name="SyncRNGCasinoViewModel" xml:space="preserve">
+    <value>娛樂城同步校準</value>
+  </data>
 </root>

@@ -408,4 +408,10 @@
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>กีฬ่า 2</value>
   </data>
+  <data name="RNGCasinoViewModelText" xml:space="preserve">
+    <value>คาสิโน</value>
+  </data>
+  <data name="SyncRNGCasinoViewModel" xml:space="preserve">
+    <value>คาสิโนตรงกัน</value>
+  </data>
 </root>

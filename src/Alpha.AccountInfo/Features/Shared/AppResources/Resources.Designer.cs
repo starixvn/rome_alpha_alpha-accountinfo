@@ -19,7 +19,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -718,6 +718,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Casino.
+        /// </summary>
+        public static string RNGCasinoViewModelText {
+            get {
+                return ResourceManager.GetString("RNGCasinoViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Setting.
         /// </summary>
         public static string Setting {
@@ -786,6 +795,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         public static string Super {
             get {
                 return ResourceManager.GetString("Super", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync Casino.
+        /// </summary>
+        public static string SyncRNGCasinoViewModel {
+            get {
+                return ResourceManager.GetString("SyncRNGCasinoViewModel", resourceCulture);
             }
         }
         

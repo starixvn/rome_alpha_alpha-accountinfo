@@ -11,7 +11,10 @@
         {
         }
 
-        public override string Text => Request.GetProductName(ProductId);
+        public override string Text => 
+            Request.ActorIsEdittingDirectDownline && !SearchAccount.ProductStatusOf(ProductId).Synced ?
+            Request.GetResource($"Sync{GetType().Name}Text") :
+            Request.GetResource($"{GetType().Name}Text");
 
         protected override string BaseAddress
         {

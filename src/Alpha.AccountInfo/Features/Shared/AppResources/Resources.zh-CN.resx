@@ -408,4 +408,10 @@
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>体育博彩 2</value>
   </data>
+  <data name="RNGCasinoViewModelText" xml:space="preserve">
+    <value>娱乐城</value>
+  </data>
+  <data name="SyncRNGCasinoViewModel" xml:space="preserve">
+    <value>娱乐城同步校准</value>
+  </data>
 </root>
