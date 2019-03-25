@@ -361,7 +361,7 @@
     <value>Tài khoản bị đóng do đăng nhập sai mật khẩu hoặc tài khoản đã hết hạn.</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>This account was closed by false input of OTP/Security Code.</value>
+    <value>Tài khoản bị đóng do nhập sai mã OTP/mã bảo mật.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>Tài khoản bị đóng bởi cấp trên.</value>

@@ -13,7 +13,7 @@ export const Resources =  {
     Cancel: "Cancel",
     ClosedByAdmin: "This account was closed by admin.",
     ClosedByFailedLoginOrAccountExpired: "This account was closed by failed login or account expired.",
-    ClosedByFailedOTPOrSC: "This account was closed by false input of OTP/Security Code.",
+    ClosedByFailedOTPOrSC: "This account was closed due to failed OTP/Security Code attempts.",
     ClosedByUpline: "This account was closed by upline.",
     CommissionViewModelText: "Commission",
     ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage: "Are you sure you want to disable auto position taking feature of this master?",

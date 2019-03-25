@@ -34,7 +34,7 @@ describe('SearchAccountInfo', () => {
         [true, 0, false, false, "closed-wrongPwdOthers", "This account was closed by failed login or account expired."],
         [true, 1, false, false, "closed-byAdmin", "This account was closed by admin."],
         [true, 2, false, false, "closed-byUpline", "This account was closed by upline."],
-        [true, 3, false, false, "closed-wrongOTPSC", "This account was closed by false input of OTP/Security Code."],
+        [true, 3, false, false, "closed-wrongOTPSC", "This account was closed due to failed OTP/Security Code attempts."],
         [false, 0, true, false, "suspended", "This account was suspended."],
         [false, 0, false, false, "disabled", "This account was disabled."],
         [false, 0, false, true, "enabled", ""]])(
