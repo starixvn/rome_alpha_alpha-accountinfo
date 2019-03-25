@@ -120,7 +120,7 @@
             int productId,
             IEnumerable<ProductStatusModel> rawData)
         {
-            var setNameByBetTypeId = rawData.Any();
+            var setNameByBetTypeId = rawData.Skip(1).Any();
 
             foreach (var item in rawData)
             {
