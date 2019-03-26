@@ -74,7 +74,7 @@
 
         protected static decimal RoundDownNumber(decimal value) => Math.Truncate(100 * value) / 100;
 
-        protected static decimal RoundUpNumber(decimal value) => Math.Round(value, 2);
+        protected static decimal RoundUpNumber(decimal value) => Math.Round(value, 2, MidpointRounding.AwayFromZero);
 
         private string BreadcrumbLevelJson
         {
