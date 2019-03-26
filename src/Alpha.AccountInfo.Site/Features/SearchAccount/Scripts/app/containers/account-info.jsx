@@ -45,9 +45,7 @@ export default class AccountInfo extends React.Component {
 			settingData: null,
 			downlineListPageIndex: 1,
 			downlineListData: null,
-			onlineListData: null,
-			initialHeight: 0,
-			initialWidth:0
+			onlineListData: null
 		};
 
 		this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
@@ -55,49 +53,14 @@ export default class AccountInfo extends React.Component {
 		this.fetchDownlineListFromServer = this.fetchDownlineListFromServer.bind(this);
 		this.fetchOnlineListFromServer = this.fetchOnlineListFromServer.bind(this);
 		this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
-		this.resizeDemension = this.resizeDemension.bind(this);
 
-		//$(window).on('orientationchange resize', function () {
-		//	window.top.$('#account-info-tab').css("height", screen.height - window.top.$('.main-tab').height() - 60);
-		//}, false);
-
-		let self = this;
 		$(window).on({
 			orientationchange: function (e) {
 				let iframe = window.top.$('#accountinfo-content');
 				let src = $(iframe).attr('src');
-				$(iframe).attr('src', '').css("height", 0);
-				$(iframe).attr('src', src);
-				// self.resizeDemension(e);
-			},
-			resize: function (e) {
-			//	self.resizeDemension(e);
+				$(iframe).attr('src', '').css("height", 0).attr('src', src);
 			}
 		});
-	}
-
-	resizeDemension(e) {
-		//let aa = window.top.$('#accountinfo-content').contents().find("body").height() - window.top.$('.main-tab').height();
-		$.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
-
-		/* Detect Chrome */
-		if ($.browser.chrome) {
-			/* Do something for Chrome at this point */
-			/* Finally, if it is Chrome then jQuery thinks it's 
-			   Safari so we have to tell it isn't */
-			$.browser.safari = false;
-		}
-
-		let height = (screen.height > screen.width ? this.state.initialHeight : this.state.initialWidth) - window.top.$('.main-tab').height();
-		window.top.$('#account-info-tab').css("height", height);
-		window.top.$('#accountinfo-content').css("height", height - 20);
-
-		console.log(`height: ${screen.height }`);
-		console.log(`width: ${screen.width}`);
-		console.log(`potrait: ${screen.height > screen.width}`);
-		console.log(height);
-
-		//$(window).scrollTop(0);
 	}
 
 	componentDidMount() {
@@ -105,11 +68,6 @@ export default class AccountInfo extends React.Component {
 		if (username !== '') {
 			this.fetchCustomerInfoFromServer(username);
 		}
-
-		this.setState((prevState) => ({
-			initialHeight: window.top.$('#account-info-tab').height(),
-			initialWidth: window.top.$('#account-info-tab').width(),
-		}));
 	}
 
 	fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {

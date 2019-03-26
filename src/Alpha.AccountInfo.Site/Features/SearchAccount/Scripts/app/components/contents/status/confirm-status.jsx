@@ -12,7 +12,7 @@ export default class ConfirmStatus extends React.Component {
 
 	updateCustomerStatus(e) {
 		$.blockUI();
-		let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status } = this.props;
+		let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
 
 		accountInfoAPI
 			.updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
@@ -28,7 +28,7 @@ export default class ConfirmStatus extends React.Component {
 					}, 3000);
 				}
 				else {
-					window.top.bootboxAlert(data.Message, $(`#confirm-${status.DisplayOrder}`)[0]);
+					window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
 					$.unblockUI();
 				}
 			});
