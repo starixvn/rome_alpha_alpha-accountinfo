@@ -23,7 +23,7 @@ namespace Alpha.AccountInfo.Site.App_Start
                 logEngines.Add(new SentryLogging(new SentryEngineOptions
                 {
                     Dsn = new SharpRaven.Dsn(sentryUrl)
-                }));
+                }, $"{Alpha.Web.Configurations.AppSettings.AssetAppPath}/bundles/common/raven.min.js"));
             }
 
             LogManager
