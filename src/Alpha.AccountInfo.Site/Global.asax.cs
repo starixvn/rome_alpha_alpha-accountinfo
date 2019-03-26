@@ -34,6 +34,7 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            LoggingManager.Init();
             DependencyConfig.Init();
 
             DbSettingProviderManager
@@ -54,10 +55,6 @@
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
 
             StaticResources.Init(GetBuildVersion());
-
-            var loggingConfiguration = new LoggingConfiguration().UseGetDbExceptionInfo(DatabaseInfoGetters.GetDbExceptionInfo);
-
-            ExceptionHandler.UseConfig(loggingConfiguration);
 
             RefDataTypeContainer
                 .ConnectTo(new Uri(AppSettings.RemoteRefURL))
