@@ -411,7 +411,7 @@
   <data name="RNGCasinoViewModelText" xml:space="preserve">
     <value>Casino</value>
   </data>
-  <data name="SyncRNGCasinoViewModel" xml:space="preserve">
+  <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
     <value>Đồng bộ hóa Casino</value>
   </data>
 </root>

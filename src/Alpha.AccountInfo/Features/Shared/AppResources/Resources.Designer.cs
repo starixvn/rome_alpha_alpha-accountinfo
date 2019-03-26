@@ -801,9 +801,9 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Sync Casino.
         /// </summary>
-        public static string SyncRNGCasinoViewModel {
+        public static string SyncRNGCasinoViewModelText {
             get {
-                return ResourceManager.GetString("SyncRNGCasinoViewModel", resourceCulture);
+                return ResourceManager.GetString("SyncRNGCasinoViewModelText", resourceCulture);
             }
         }
         

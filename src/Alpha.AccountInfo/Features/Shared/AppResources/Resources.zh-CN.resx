@@ -411,7 +411,7 @@
   <data name="RNGCasinoViewModelText" xml:space="preserve">
     <value>娱乐城</value>
   </data>
-  <data name="SyncRNGCasinoViewModel" xml:space="preserve">
+  <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
     <value>娱乐城同步校准</value>
   </data>
 </root>
