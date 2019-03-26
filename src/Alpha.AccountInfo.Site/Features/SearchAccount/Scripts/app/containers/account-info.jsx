@@ -15,6 +15,7 @@ import AccountInfoMobile from '../components/mobile-version/account-info-mobile'
 import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
 import { resizePopupOnMobile } from '../helpers/accountinfo-helper';
 import * as Raven from 'raven-js';
+import { setTimeout } from 'core-js';
 
 export default class AccountInfo extends React.Component {
 	constructor(props) {
@@ -44,7 +45,9 @@ export default class AccountInfo extends React.Component {
 			settingData: null,
 			downlineListPageIndex: 1,
 			downlineListData: null,
-			onlineListData: null
+			onlineListData: null,
+			initialHeight: 0,
+			initialWidth:0
 		};
 
 		this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
@@ -52,6 +55,49 @@ export default class AccountInfo extends React.Component {
 		this.fetchDownlineListFromServer = this.fetchDownlineListFromServer.bind(this);
 		this.fetchOnlineListFromServer = this.fetchOnlineListFromServer.bind(this);
 		this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
+		this.resizeDemension = this.resizeDemension.bind(this);
+
+		//$(window).on('orientationchange resize', function () {
+		//	window.top.$('#account-info-tab').css("height", screen.height - window.top.$('.main-tab').height() - 60);
+		//}, false);
+
+		let self = this;
+		$(window).on({
+			orientationchange: function (e) {
+				let iframe = window.top.$('#accountinfo-content');
+				let src = $(iframe).attr('src');
+				$(iframe).attr('src', '').css("height", 0);
+				$(iframe).attr('src', src);
+				// self.resizeDemension(e);
+			},
+			resize: function (e) {
+			//	self.resizeDemension(e);
+			}
+		});
+	}
+
+	resizeDemension(e) {
+		//let aa = window.top.$('#accountinfo-content').contents().find("body").height() - window.top.$('.main-tab').height();
+		$.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+
+		/* Detect Chrome */
+		if ($.browser.chrome) {
+			/* Do something for Chrome at this point */
+			/* Finally, if it is Chrome then jQuery thinks it's 
+			   Safari so we have to tell it isn't */
+			$.browser.safari = false;
+		}
+
+		let height = (screen.height > screen.width ? this.state.initialHeight : this.state.initialWidth) - window.top.$('.main-tab').height();
+		window.top.$('#account-info-tab').css("height", height);
+		window.top.$('#accountinfo-content').css("height", height - 20);
+
+		console.log(`height: ${screen.height }`);
+		console.log(`width: ${screen.width}`);
+		console.log(`potrait: ${screen.height > screen.width}`);
+		console.log(height);
+
+		//$(window).scrollTop(0);
 	}
 
 	componentDidMount() {
@@ -59,6 +105,11 @@ export default class AccountInfo extends React.Component {
 		if (username !== '') {
 			this.fetchCustomerInfoFromServer(username);
 		}
+
+		this.setState((prevState) => ({
+			initialHeight: window.top.$('#account-info-tab').height(),
+			initialWidth: window.top.$('#account-info-tab').width(),
+		}));
 	}
 
 	fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
@@ -310,8 +361,8 @@ export default class AccountInfo extends React.Component {
 	}
 
 	componentDidCatch(error, errorInfo) {
-		this.setState({ error });
-		Raven.captureException(error, { extra: errorInfo });
+	//	this.setState({ error });
+	//	Raven.captureException(error, { extra: errorInfo });
 	}
 
 	render() {
