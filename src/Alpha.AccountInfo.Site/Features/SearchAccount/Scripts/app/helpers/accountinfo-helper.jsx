@@ -44,3 +44,20 @@ export const closeLeftPanelOnMobile = () => {
 export const formatMessage = (message) => {
 	return message.replace(/\\n/g, '<br />');
 }
+
+
+export const zoomDisable = () => {
+	$('head meta[name=viewport]').remove();
+	$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />');
+
+	window.top.$('head meta[name=viewport]').remove();
+	window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=no" />');
+}
+
+export const zoomEnable = () => {
+	$('head meta[name=viewport]').remove();
+	$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
+
+	window.top.$('head meta[name=viewport]').remove();
+	window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
+} 

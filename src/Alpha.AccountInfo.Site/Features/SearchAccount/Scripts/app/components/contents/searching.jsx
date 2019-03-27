@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import Autosuggest from 'react-autosuggest';
 import { accountInfoAPI } from '../../api-client';
+import { zoomEnable, zoomDisable } from '../../helpers/accountinfo-helper';
 
 export const getSuggestionValue = suggestion => suggestion.UserName;
 
@@ -24,7 +25,7 @@ export default class Searching extends React.Component {
 
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-        this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+		this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -87,7 +88,9 @@ export default class Searching extends React.Component {
             className: 'txt-search',
             onChange: this.onChangeSearchBox,
             onKeyPress: this.handleSearchKeyPress,
-            placeholder: this.props.userNamePlaceHolder,
+			placeholder: this.props.userNamePlaceHolder,
+			onFocus: zoomDisable,
+			onBlur: zoomEnable,
             value: username
         };
 
