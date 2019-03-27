@@ -599,3 +599,8 @@ hr {
 .col-xs-6 {
     width: 50% !important;
 }
+
+input[type="search"]:focus
+{
+	-webkit-text-size-adjust: 100% !important;
+}

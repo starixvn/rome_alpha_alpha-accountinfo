@@ -56,9 +56,11 @@ export default class AccountInfo extends React.Component {
 
 		$(window).on({
 			orientationchange: function (e) {
-				let iframe = window.top.$('#accountinfo-content');
-				let src = $(iframe).attr('src');
-				$(iframe).attr('src', '').css("height", 0).attr('src', src);
+				if (mobileView) {
+					let iframe = window.top.$('#accountinfo-content');
+					let src = $(iframe).attr('src');
+					$(iframe).attr('src', '').css("height", 0).attr('src', src);
+				}
 			}
 		});
 	}
@@ -319,8 +321,8 @@ export default class AccountInfo extends React.Component {
 	}
 
 	componentDidCatch(error, errorInfo) {
-	//	this.setState({ error });
-	//	Raven.captureException(error, { extra: errorInfo });
+		this.setState({ error });
+		Raven.captureException(error, { extra: errorInfo });
 	}
 
 	render() {
