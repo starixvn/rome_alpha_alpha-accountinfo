@@ -53,7 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0-beta92\lib\net461\Alpha.Products.Core.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
@@ -63,7 +63,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Web, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.2-accountinfo\lib\net461\Alpha.Web.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Web.1.0.2\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="CasinoLibrary, Version=2.0.2.28015, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015-ChangeRequestOnProduct\lib\net40\CasinoLibrary.dll</HintPath>
@@ -117,9 +117,8 @@
       <HintPath>..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging.Extensions, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.5\lib\net40\Fanex.Logging.Extensions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Logging.Extensions, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.6\lib\net461\Fanex.Logging.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging.Extensions.Database, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.Extensions.Database.1.0.3\lib\net40\Fanex.Logging.Extensions.Database.dll</HintPath>
@@ -242,7 +241,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.2-AccInfo-2\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.2\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>

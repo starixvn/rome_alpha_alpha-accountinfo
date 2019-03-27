@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0-beta92\lib\net461\Alpha.Products.Core.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
@@ -49,7 +49,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Web, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.2-accountinfo\lib\net461\Alpha.Web.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Web.1.0.2\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="AutoFixture, Version=4.5.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoFixture.4.5.0\lib\net452\AutoFixture.dll</HintPath>
@@ -73,9 +73,8 @@
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.1.0.4\lib\net40\Fanex.Logging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
@@ -131,7 +130,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.2-AccInfo-2\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.2\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
