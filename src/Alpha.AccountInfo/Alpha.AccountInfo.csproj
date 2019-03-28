@@ -31,9 +31,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Alpha.AccountInfo.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Alpha.AccountInfo.Release.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
+    </Reference>
     <Reference Include="CasinoLibrary, Version=2.0.2.28015, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015\lib\net40\CasinoLibrary.dll</HintPath>
       <Private>True</Private>
@@ -50,6 +53,9 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.2.1.0.1\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
@@ -58,13 +64,11 @@
       <HintPath>..\..\packages\Fanex.Data.Repository.1.0.2.1\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Logging.Extensions, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.5\lib\net40\Fanex.Logging.Extensions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Logging.Extensions, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.6\lib\net461\Fanex.Logging.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.6\lib\net40\Fanex.Logging.Extensions.Web.dll</HintPath>
@@ -166,181 +170,130 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppResources\ProductStatus.Designer.cs">
+    <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductStatus.resx</DependentUpon>
     </Compile>
-    <Compile Include="AppResources\ProductStatus.ja-JP.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.ja-JP.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.ko-KR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.ko-KR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.th-TH.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.th-TH.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.vi-VN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.vi-VN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.zh-CN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.zh-CN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\ProductStatus.zh-TW.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductStatus.zh-TW.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.ja-JP.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ja-JP.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.ko-KR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ko-KR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.th-TH.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.th-TH.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.vi-VN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.vi-VN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.zh-CN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.zh-CN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="AppResources\Resources.zh-TW.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.zh-TW.resx</DependentUpon>
-    </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Constants\BetTypeConstants.cs" />
-    <Compile Include="Constants\ProductIdConstants.cs" />
-    <Compile Include="Criteria\ProductStatus\NonQueryProductStatusCriteria.cs" />
+    <Compile Include="Features\SearchAccount\AppResources\GivenCredit.Designer.cs">
+      <DependentUpon>GivenCredit.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectAutoSuggestionCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateCustomerStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerAllStatusModelCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\AccountInfoCriteriaBase.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectTotalDownlineSummaryCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectOnlineListCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectDownlineListCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectBalanceInfoCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerInfoCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\NonQueryProductStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateCasinoStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateColossusBetStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateDCSProductStatusCriteria.cs" />
     <Compile Include="Criteria\ProductStatus\SelectProductProfileCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateCasinoStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateColossusBetStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateDCSProductStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateNG2StatusCriteria.cs">
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateNG2StatusCriteria.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Criteria\SelectCustomerInformationCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\SelectDCSProductStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\SelectNG2StatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\SelectProductStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\UpdateKenoStatusCriteria.cs" />
-    <Compile Include="Enumerations\Enumeration.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectCustomerInformationCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectDCSProductStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectNG2StatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectProductStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateKenoStatusCriteria.cs" />
+    <Compile Include="Features\SearchAccount\SearchAccountDataAccess.cs" />
+    <Compile Include="Features\Shared\AppResources\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\Shared\StatusNames.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\CustomerInformation.cs" />
-    <Compile Include="Models\IUser.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\AgentBalanceInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\IBalanceInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\MemberBalanceInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\MasterBalanceInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\CustomerStatusModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CutomerInfo\UsernameSuggestion.cs" />
+    <Compile Include="Features\SearchAccount\Models\CutomerInfo\CustomerInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonProductStatusModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonDCSProductStatusModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\DCSProductStatusModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\OnlineUserModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\DownlineListModel.cs" />
+    <Compile Include="Features\ProductStatusPopup\Models\CustomerInformation.cs" />
+    <Compile Include="Features\Shared\Models\IUser.cs" />
     <Compile Include="Models\ProductStatus\ProductProfile.cs" />
-    <Compile Include="Models\ProductStatus\ProductStatusModel.cs" />
-    <Compile Include="Models\Result.cs" />
-    <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Params\ProductStatus\ProductStatusAuthorizationParam.cs" />
-    <Compile Include="Params\ProductStatus\BetTypeStatusParam.cs" />
-    <Compile Include="Params\ProductStatus\ProductStatusCommandParam.cs" />
+    <Compile Include="Features\ProductStatusPopup\Models\ProductStatusModel.cs" />
+    <Compile Include="Features\Shared\Models\Result.cs" />
+    <Compile Include="Features\Shared\Models\UserLevel.cs" />
+    <Compile Include="Features\SearchAccount\Params\UpdateRnGCasino3rdParam.cs" />
+    <Compile Include="Features\SearchAccount\Params\UpdateCustomerStatusParam.cs" />
+    <Compile Include="Features\SearchAccount\Params\UpdateGivenCreditParam.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\ProductStatusAuthorizationParam.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\BetTypeStatusParam.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\ProductStatusCommandParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CacheRefService.cs" />
-    <Compile Include="Services\ProductStatus\ProductProfileService.cs" />
-    <Compile Include="Constants\ProductSettingLevel.cs" />
-    <Compile Include="Services\ProductStatus\ProductStatusAuthorizationService.cs" />
-    <Compile Include="Services\ProductStatus\ProductStatusCriteriaFactory.cs" />
-    <Compile Include="Services\ProductStatus\ProductStatusService.cs" />
-    <Compile Include="Services\ProductStatus\RnGCasino\RnGCasinoService.cs" />
+    <Compile Include="Features\Shared\Services\CacheRefService.cs" />
+    <Compile Include="Features\SearchAccount\SearchAccountService.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductStatusAuthorizationService.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductStatusCriteriaFactory.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductStatusService.cs" />
+    <Compile Include="Features\Shared\Services\RnGCasinoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Alpha.AccountInfo.Debug.ruleset" />
-    <None Include="Alpha.AccountInfo.ruleset" />
+    <None Include="Alpha.AccountInfo.Release.ruleset" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources\ProductStatus.ja-JP.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.ja-JP.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.ko-KR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.ko-KR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.resx">
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.ja-JP.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.ko-KR.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProductStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.th-TH.resx">
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.th-TH.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.vi-VN.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.zh-CN.resx" />
+    <EmbeddedResource Include="Features\ProductStatusPopup\AppResources\ProductStatus.zh-TW.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.ja-JP.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.ko-KR.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.th-TH.Designer.cs</LastGenOutput>
+      <LastGenOutput>GivenCredit.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.vi-VN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.vi-VN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.zh-CN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.zh-CN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\ProductStatus.zh-TW.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductStatus.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.ja-JP.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ja-JP.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.ko-KR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ko-KR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.resx">
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.th-TH.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.vi-VN.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.zh-CN.resx" />
+    <EmbeddedResource Include="Features\SearchAccount\AppResources\GivenCredit.zh-TW.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.ja-JP.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.ko-KR.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.th-TH.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.th-TH.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.vi-VN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.vi-VN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.zh-CN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.zh-CN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.zh-TW.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.th-TH.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.vi-VN.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.zh-CN.resx" />
+    <EmbeddedResource Include="Features\Shared\AppResources\Resources.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alpha.Products.AccountInfo\Alpha.Products.AccountInfo.csproj">
+      <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
+      <Name>Alpha.Products.AccountInfo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -6,6 +6,8 @@
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
+    using Alpha.Auth.Filters;
     using App_Start;
     using CasinoLibrary.Model.UserException;
     using Configurations;
@@ -15,7 +17,6 @@
     using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.Extensions.Web;
     using Fanex.RemotingRef;
-    using Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
     using Web;
@@ -33,9 +34,8 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            LoggingManager.Init();
             DependencyConfig.Init();
-
-            AppSettings.Verify();
 
             DbSettingProviderManager
                 .StartNewSession()
@@ -47,15 +47,14 @@
             ShareSession.Init();
 
             GlobalFilters.Filters.Add(new CheckUMFilter());
+            GlobalFilters.Filters.Add(new CheckBelongingFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
+
+            AppSettings.Verify();
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
 
             StaticResources.Init(GetBuildVersion());
-
-            var loggingConfiguration = new LoggingConfiguration().UseGetDbExceptionInfo(DatabaseInfoGetters.GetDbExceptionInfo);
-
-            ExceptionHandler.UseConfig(loggingConfiguration);
 
             RefDataTypeContainer
                 .ConnectTo(new Uri(AppSettings.RemoteRefURL))

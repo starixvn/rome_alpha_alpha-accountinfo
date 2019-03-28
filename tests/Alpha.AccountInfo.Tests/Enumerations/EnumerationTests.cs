@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AccountInfo.Enumerations;
-    using AccountInfo.Models;
-    using Models;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Tests.Features.Shared.Models;
+    using Alpha.Products.Core.Shared;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]

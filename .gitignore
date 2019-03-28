@@ -24,6 +24,7 @@ Thumbs.db
 *.lib
 *.sbr
 obj/
+node_modules/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
@@ -38,6 +39,7 @@ _CodeCoverageReport
 *.suo
 .vs/config/applicationhost.config
 /OpenCover/*
+.vs/
 
 *.min.js
 bundles
@@ -45,8 +47,11 @@ bundles
 *.js.map
 */**/assets/scripts/**/*.js
 */**/bundles/**/*.js
+*/**/app/**/*.js
 *.ncrunchproject
 *.ncrunchsolution
+*/**/output
+*.snap
 
 artifacts/
 _Chutzpah.coverage.html

@@ -1,0 +1,38 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "no-set-state": "off",
+    "react/no-multi-comp": [
+      0,
+      { "ignoreStateless": true }
+    ]
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "globals": {
+    "localStorage": true,
+    "fetch": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.4.1"
+    }
+  }
+}

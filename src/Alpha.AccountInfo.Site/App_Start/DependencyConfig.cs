@@ -1,15 +1,28 @@
 ﻿namespace Alpha.AccountInfo.Site.App_Start
 {
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using AccountInfo.Models;
-    using Controllers;
+    using Alpha.AccountInfo.DataAccess;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.Services;
+    using Alpha.AccountInfo.Services.AccountInfo;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
+    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
+    using Alpha.AccountInfo.Site.Features.Shared.Models;
+    using Alpha.Products.AccountInfo;
+    using Alpha.Products.AccountInfo.Requests;
+    using Alpha.Products.AccountInfo.Setting;
+    using Alpha.Products.AccountInfo.Setting.ViewModels.Base;
+    using Alpha.Products.AccountInfo.Status;
+    using Alpha.Products.AccountInfo.Status.ViewModels.Base;
+    using Alpha.Products.Core.Configuration;
+    using Alpha.Products.Core.Services;
+    using Alpha.Products.Core.ViewModels;
+    using Alpha.SecurityCode.Services;
+    using Alpha.Web.Helpers;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
     using Fanex.RemotingRef;
     using MediatR;
-    using Models;
-    using Services;
     using Services.ProductStatus;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
@@ -17,11 +30,19 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Resources;
+    using System.Web;
+    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
         public static void Init()
         {
+            RegisterProductConfiguration();
+
             var container = new Container();
 
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
@@ -42,7 +63,7 @@
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
 
-            RegisterStaticInstances(container);
+            StartConfiguration(container);
         }
 
         private static void RegisterMediator(Container container)
@@ -71,26 +92,51 @@
 
         private static void RegisterServices(Container container)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             container.Register<IUserSession, UserSessionExt>(Lifestyle.Singleton);
+#pragma warning restore CS0618 // Type or member is obsolete
             container.Register<IUser, User>(Lifestyle.Singleton);
+#pragma warning disable CS0618 // Type or member is obsolete
+            container.RegisterSingleton<SecurityCodeChecker, SecurityCodeCheckerImpl>();
+#pragma warning restore CS0618 // Type or member is obsolete
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.RegisterSingleton(Logger.Log);
 
             container.Register<ProductStatusAuthorizationService>(
                 () => new ProductStatusAuthorizationServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
+#pragma warning disable CS0618 // Type or member is obsolete
                     UserPermission.HasPermissionOnProduct),
+#pragma warning restore CS0618 // Type or member is obsolete
                 Lifestyle.Scoped);
 
             container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Singleton);
-            container.Register<IProductProfileService, ProductProfileService>(Lifestyle.Singleton);
             container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
             container.Register<RnGCasinoService, RnGCasinoServiceImpl>(Lifestyle.Scoped);
+            container.Register<SearchAccountService, SearchAccountServiceImpl>(Lifestyle.Scoped);
+            container.Register<SearchAccountDataAccess, SearchAccountDataAccessImpl>(Lifestyle.Scoped);
         }
 
-        private static void RegisterStaticInstances(Container container)
+        private static void StartConfiguration(Container container)
         {
-            ////ReportDateServiceImpl.Instance = container.GetInstance<ReportDateService>();
+            SimpleServiceLocator
+              .Instance
+              .Register<Func<int, string>>(new CacheRefServiceImpl(container.GetInstance<IRemotingRefService>()).GetProductName)
+              .Register<Func<string, string>>(Resources.ResourceManager.GetString)
+              .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
+              .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert);
+        }
+
+        private static void RegisterProductConfiguration()
+        {
+            var productConfigFile = HttpContext.Current.Server.MapPath("../ProductConfigs/ProductConfiguration.json");
+
+            SimpleServiceLocator
+              .Instance
+              .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), productConfigFile))
+              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
+              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory());
         }
     }
 }

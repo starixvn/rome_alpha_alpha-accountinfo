@@ -1,0 +1,27 @@
+#!/bin/groovy
+pipeline {
+  tools {
+    nodejs 'node'
+  }
+  stages {
+    stage('Startup') {
+      steps {
+        script {
+          sh 'npm install'
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        script {
+          sh 'npm run test:coverage'
+        }
+      }
+      post {
+        always {
+          junit 'src/Alpha.AccountInfo.Site/output/coverage/junit/junit.xml'
+        }
+      }
+    }
+  }
+}

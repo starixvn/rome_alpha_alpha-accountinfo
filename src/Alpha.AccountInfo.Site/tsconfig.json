@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    //"outDir": "./dist/",
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    //"strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+   // "allowJs": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2016",
+      "dom",
+      "es5"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist"
+  ]
+}

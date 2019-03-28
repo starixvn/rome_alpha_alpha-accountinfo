@@ -1,0 +1,290 @@
+﻿@import '../../Shared/Styles/_variables';
+@import '../../Shared/Styles/mixins';
+
+@include keyframes-ripple;
+
+body {
+    font-size: calculateScale($font-size);
+}
+
+hr {
+    margin-top: calculateScale(4px);
+    margin-bottom: calculateScale(4px);
+}
+
+.no-information {
+    padding: calculateScale(4px) calculateScale(10px) 0;
+}
+
+.row-info {
+    line-height: calculateScale(30px);
+    padding-left: calculateScale(10px);
+    padding-right: calculateScale(10px);
+}
+
+
+.accountinfo-container {
+    padding-top: calculateScale(52px);
+}
+
+// Search box
+.search-box {
+    height: calculateScale(40px);
+    padding: calculateScale(10px);
+
+    .txt-search {
+        height: calculateScale(30px);
+        padding: calculateScale(10px) calculateScale(30px) calculateScale(4px) 0;
+        font-size: calculateScale($font-size);
+
+        &:focus {
+            border-bottom: calculateScale(2px) solid #67151b;
+        }
+    }
+
+    .icon-search {
+        top: calculateScale(9px);
+        right: calculateScale(6px);
+        padding: calculateScale(6px);
+
+        &:hover:after {
+            top: calculateScale(3px);
+            width: calculateScale(26px);
+            height: calculateScale(26px);
+            margin-left: calculateScale(-1px);
+            margin-top: calculateScale(-4px);
+        }
+    }
+}
+
+.block-info {
+    .icon-viewlog {
+        margin-left: calculateScale(4px);
+    }
+
+    .no-information-search {
+        padding: calculateScale(8px) calculateScale(12px);
+    }
+    // User status for business
+    .actived, .closed, .suspended {
+        padding: 0 calculateScale(2px);
+    }
+}
+
+// Buttons
+
+.list-button {
+    padding-top: calculateScale(8px);
+    padding-bottom: calculateScale(8px);
+
+    [class^="btn"] {
+        line-height: calculateScale($height-mobile);
+        height: calculateScale($height-mobile);
+        padding-left: calculateScale(6px);
+        padding-right: calculateScale(6px);
+    }
+}
+
+// custom checkbox
+
+.checkbox label {
+    padding-left: calculateScale(22px);
+
+    &:before {
+        height: calculateScale(16px);
+        width: calculateScale(16px);
+    }
+
+    &:after {
+        top: calculateScale(5px);
+        left: calculateScale(4px);
+        height: calculateScale(4px);
+        width: calculateScale(9px);
+    }
+}
+
+.radio label {
+    padding-left: calculateScale(22px);
+
+    &:before {
+        height: calculateScale(14px);
+        width: calculateScale(14px);
+    }
+
+    &:after {
+        top: calculateScale(3px);
+        left: calculateScale(3px);
+        height: calculateScale(8px);
+        width: calculateScale(8px);
+    }
+}
+
+// Customize UI for auto suggestion
+
+.react-autosuggest__suggestions-list {
+    border: calculateScale(1px) solid #dfdfdf;
+    border-radius: calculateScale(1px);
+    box-shadow: 0 calculateScale(3px) calculateScale(6px) rgba(0,0,0,.16),0 calculateScale(3px) calculateScale(6px) rgba(0,0,0,.23);
+}
+
+.react-autosuggest__suggestion {
+    padding: calculateScale(8px) calculateScale(10px);
+}
+
+
+/* Customize tooltip*/
+
+.tippy-tooltip {
+    @include border-radius(calculateScale(2px));
+    font-size: calculateScale($font-size);
+}
+
+.tippy-popper .tippy-tooltip.light-theme {
+    min-width: calculateScale(106px);
+}
+
+.tippy-popper[x-placement^=top] .tippy-tooltip.light-theme [x-arrow] {
+    &:after {
+        border-width: calculateScale(7px);
+        margin-left: calculateScale(-7px);
+    }
+
+    &:before {
+        border-width: calculateScale(8px);
+        margin-left: calculateScale(-8px);
+    }
+}
+
+.feature-item {
+    padding: calculateScale(14px) calculateScale(25px) calculateScale(14px) calculateScale(10px);
+    font-size: calculateScale(13px);
+
+    &:after {
+        top: calculateScale(10px);
+        right: calculateScale(4px);
+        font-size: calculateScale(19px);
+    }
+
+    [class^=icon] {
+        top: calculateScale(2px);
+    }
+
+    .icon-contact-info {
+        margin-right: calculateScale(6px);
+        font-size: calculateScale(16px);
+    }
+
+    .icon-balance {
+        font-size: calculateScale(14px);
+        margin-right: calculateScale(9px);
+        left: calculateScale(1px);
+    }
+
+    .icon-status {
+        top: calculateScale(4px);
+        margin-right: calculateScale(5px);
+        font-size: calculateScale(19px);
+    }
+
+    .icon-settings,
+    .icon-login,
+    .icon-downline,
+    .icon-onlinelist {
+        margin-right: calculateScale(7px);
+        font-size: calculateScale(16px);
+    }
+}
+
+.feature-detail {
+    .balance-info {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
+
+        .icon-edited {
+            top: calculateScale(10px);
+            font-size: calculateScale(16px);
+        }
+
+        .icon-edited:hover:after {
+            top: calculateScale(-2px);
+            width: calculateScale(26px);
+            height: calculateScale(26px);
+            margin-left: calculateScale(-5px);
+            margin-top: calculateScale(-12px);
+        }
+
+        .given-credit {
+            padding-left: calculateScale(24px);
+        }
+    }
+
+    .status-setting {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
+
+        [class^='col'] {
+            line-height: calculateScale(20px);
+            margin: calculateScale(6px) 0;
+        }
+
+        .icon-ic_list {
+            margin-right: calculateScale(8px);
+            line-height: calculateScale(20px);
+            font-size: calculateScale(15px);
+        }
+
+        .icon-ic_list:hover:after {
+            top: calculateScale(-2px);
+            width: calculateScale(26px);
+            height: calculateScale(26px);
+            margin-left: calculateScale(-5px);
+            margin-top: calculateScale(-4px);
+        }
+    }
+
+    .setting {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
+
+        a {
+            line-height: calculateScale(32px);
+        }
+    }
+
+    .totalstatus-list {
+        padding: calculateScale(10px) calculateScale(10px) calculateScale(5px);
+    }
+
+    .customer-list {
+        padding: 10px;
+        max-height: initial;
+    }
+
+    .ReactVirtualized__List {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
+    }
+
+    .login-info {
+        .group {
+            margin-bottom: calculateScale(8px);
+        }
+
+        .row-info {
+            line-height: calculateScale(22px);
+        }
+    }
+
+    .online-list {
+        padding: calculateScale(6px) calculateScale(10px);
+    }
+}
+
+.customer-list a,
+.setting-block a {
+    line-height: calculateScale(28px);
+}
+
+.modal {
+    z-index: 9999999 !important;
+}

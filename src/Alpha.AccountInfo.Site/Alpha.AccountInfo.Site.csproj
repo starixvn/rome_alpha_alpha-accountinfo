@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -25,7 +25,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.7</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,24 +45,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Alpha.AccountInfo.Site.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Alpha.AccountInfo.Site.Release.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.Auth, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Auth.3.0.2.1\lib\net461\Alpha.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.SubAccount, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.1.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.1.8\lib\net461\Alpha.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Alpha.Web, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.3.2\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="CasinoLibrary, Version=2.0.2.28015, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015-ChangeRequestOnProduct\lib\net40\CasinoLibrary.dll</HintPath>
@@ -81,6 +83,10 @@
     </Reference>
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EasyNetQ, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EasyNetQ.2.3.3\lib\net451\EasyNetQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Enyim.Caching, Version=2.12.0.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -107,13 +113,12 @@
       <HintPath>..\..\packages\Fanex.Data.Repository.1.0.2.1\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.1.0.4\lib\net40\Fanex.Logging.dll</HintPath>
+    <Reference Include="Fanex.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging.Extensions, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.5\lib\net40\Fanex.Logging.Extensions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Logging.Extensions, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.6\lib\net461\Fanex.Logging.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging.Extensions.Database, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.Extensions.Database.1.0.3\lib\net40\Fanex.Logging.Extensions.Database.dll</HintPath>
@@ -123,13 +128,20 @@
       <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.5\lib\net40\Fanex.Logging.Extensions.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Logging.RabbitMQ, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.RabbitMQ.1.0.1\lib\net461\Fanex.Logging.RabbitMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Sentry.RavenClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Sentry.RavenClient.1.0.0\lib\net461\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.RemotingRef, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.RemotingRef.1.3.0\lib\net461\Fanex.RemotingRef.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="HandHistoryLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.0.2.28015-ChangeRequestOnProduct\lib\net40\HandHistoryLibrary.dll</HintPath>
@@ -164,6 +176,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
       <Private>True</Private>
@@ -188,16 +204,24 @@
       <HintPath>..\..\packages\NetUtility.4.5.6325.30210\lib\net40\NetUtility.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.4.5.6.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ONEbook.UM, Version=2.0.2.9, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ONEbook.UM.2.0.2.9\lib\net40\ONEbook.UM.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RabbitMQ.Client.5.0.1\lib\net451\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SimpleInjector, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
@@ -216,9 +240,8 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.2\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
@@ -232,8 +255,13 @@
       <HintPath>..\..\packages\Sunplus.Libraries.AOP.1.0.4218.28561\lib\net40\Sunplus.Libraries.AOP.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Security" />
@@ -303,58 +331,104 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
-    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="assets\bundles\default.css" />
-    <Content Include="assets\bundles\default.min.css">
-      <DependentUpon>default.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\productstatus\productstatus.css" />
-    <Content Include="assets\bundles\productstatus\productstatus.js" />
-    <Content Include="assets\bundles\productstatus\productstatus.min.css">
-      <DependentUpon>productstatus.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\productstatus\productstatus.min.js">
-      <DependentUpon>productstatus.js</DependentUpon>
-    </Content>
-    <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
-    <Content Include="assets\scripts\tests\libs\jasmine.js" />
-    <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
-    <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
-    <Content Include="assets\styles\productstatus\productstatus.css">
-      <DependentUpon>productstatus.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\productstatus\productstatus.min.css">
-      <DependentUpon>productstatus.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\site.css">
-      <DependentUpon>site.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\site.min.css">
-      <DependentUpon>site.css</DependentUpon>
-    </Content>
+    <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="Features\ProductStatusPopup\Bundles\index.min.css" />
+    <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
+    <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\given-credit.min.css" />
+    <Content Include="Features\SearchAccount\Bundles\given-credit.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\index.min.css" />
+    <Content Include="Features\SearchAccount\Bundles\index.min.js" />
+    <Content Include="Features\SearchAccount\Scripts\tests\common\cell-contain-number-format.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\common\custom-anchor-tag.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\balance-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\balance-info-row.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\member-credit-max-row.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\given-credit-row.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\settings.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\online-list.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\login-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\contact-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\customer-info\search-account-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\customer-info\customer-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\customer-info\upline-info.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\downline-list\downline-list.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\downline-list\total-downlines.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\searching.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\status\status.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\status\product-level-status.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\status\confirm-status.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\contents\status\bettype-level-status.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\desktop-version\account-info-desktop.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\desktop-version\customized-accordion-item.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\account-info-props-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\down-line-list-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\actor-is-agent-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\actor-is-master-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\actor-is-super-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\helpers\resources-sample.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\tests\mobile-version\content-mobile.test.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\api-client.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\common\custom-anchor-tag.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\member-credit-max-row.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\given-credit-row.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\balance-info-row.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\balance-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\customer-info\upline-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\customer-info\search-account-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\downline-list\total-direct-downlines.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\downline-list\downline-list-content.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\status\product-level-status.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\status\confirm-status.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\status\bettype-level-status.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\desktop-version\customized-accordion-item.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\mobile-version\content-mobile.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\common\cell-contain-number-format.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\contact-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\downline-list\downline-list.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\login-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\online-list.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\settings.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\customer-info\customer-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\downline-list\total-indirect-downlines.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\searching.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\status\status.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\constants.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\desktop-version\account-info-desktop.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\mobile-version\account-info-mobile.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\containers\account-info.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\given-credit.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\index.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\helpers\accountinfo-helper.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\helpers\router-debugger.jsx" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine-jquery.js" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine.js" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
-    <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
-    <Content Include="Alpha.AccountInfo.Site.ruleset" />
     <Content Include="App_Data\securitycode.json" />
-    <Content Include="Views\ProductStatus\Index.cshtml" />
-    <Content Include="assets\styles\productstatus\productstatus.scss" />
+    <Content Include="Features\ProductStatusPopup\Views\Index.cshtml" />
+    <Content Include="Features\ProductStatusPopup\Styles\product-status-popup.scss" />
+    <Content Include=".babelrc" />
+    <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
     <Content Include="typings\globals\jquery\typings.json" />
     <Content Include="typings\globals\jquery.blockui\typings.json" />
-    <Content Include="assets\scripts\tests\chutzpah.json" />
+    <Content Include="Features\ProductStatusPopup\Scripts\tests\chutzpah.json" />
     <Content Include="Web.AppSettings.backupMNL.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -367,6 +441,16 @@
     <Content Include="Web.AppSettings.backupMNLNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Features\SearchAccount\Styles\account-info.scss" />
+    <Content Include="Features\Shared\Styles\_mixins.scss" />
+    <Content Include="Features\SearchAccount\Views\Index.cshtml" />
+    <Content Include="webpack.config.dev.js">
+      <DependentUpon>webpack.config.js</DependentUpon>
+    </Content>
+    <Content Include="webpack.config.js" />
+    <Content Include="package.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="Features\SearchAccount\Views\GivenCredit.cshtml" />
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -439,41 +523,72 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="webpack.config.local.js">
+      <DependentUpon>webpack.config.js</DependentUpon>
+    </Content>
+    <Content Include="webpack.config.prod.js">
+      <DependentUpon>webpack.config.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
+    <Compile Include="App_Start\LoggingManager.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ProductStatusController.cs" />
-    <Compile Include="Controllers\AccountInfoBaseController.cs" />
+    <Compile Include="Features\SearchAccount\SearchAccountController.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
+    <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Handlers\ProductStatusHandler.cs" />
-    <Compile Include="Helpers\QueryEntityModelBinder.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Features\SearchAccount\SearchAccountHandler.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductStatusHandler.cs" />
+    <Compile Include="Features\Shared\Helpers\ResourcesJsonConverter.cs" />
+    <Compile Include="Features\Shared\Helpers\QueryEntityModelBinder.cs" />
+    <Compile Include="Features\Shared\Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\BaseRequest.cs" />
-    <Compile Include="Requests\ProductStatus\BetTypeStatus.cs" />
-    <Compile Include="Requests\ProductStatus\ProductStatusCommand.cs" />
-    <Compile Include="Requests\ProductStatus\ProductStatusQuery.cs" />
-    <Compile Include="ViewModels\ProductStatus\ProductStatusViewModel.cs" />
+    <Compile Include="Features\SearchAccount\Requests\SearchAccountQuery.cs" />
+    <Compile Include="Features\SearchAccount\Requests\SearchAccountQueryBase.cs" />
+    <Compile Include="Features\SearchAccount\Requests\CustomerNonProductStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Requests\GivenCreditQuery.cs" />
+    <Compile Include="Features\SearchAccount\Requests\GivenCreditCommand.cs" />
+    <Compile Include="Features\SearchAccount\Requests\CustomerStatusQuery.cs" />
+    <Compile Include="Features\SearchAccount\Requests\OnlineListQuery.cs" />
+    <Compile Include="Features\SearchAccount\Requests\UserNameSuggestionQuery.cs" />
+    <Compile Include="Features\SearchAccount\Requests\DownlineListQuery.cs" />
+    <Compile Include="Features\SearchAccount\Requests\CustomerInfoQuery.cs" />
+    <Compile Include="Features\Shared\BaseRequest.cs" />
+    <Compile Include="Features\ProductStatusPopup\Requests\BetTypeStatus.cs" />
+    <Compile Include="Features\ProductStatusPopup\Requests\ProductStatusCommand.cs" />
+    <Compile Include="Features\ProductStatusPopup\Requests\ProductStatusQuery.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\Base\AccountInfoViewModelBase.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\AccountInfoViewModel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\BalanceInfo\IBalanceInfoViewModel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\Base\BalanceInfoViewModelBase.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\BalanceInfo\GivenCreditViewModel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\BalanceInfo\BreadcrumbLevel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\BalanceInfo\AgentBalanceInfoViewModel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\BalanceInfo\MemberBalanceInfoViewModel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\BalanceInfo\MasterBalanceInfoViewModel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\CustomerInfoViewModel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\DownlineListViewModel.cs" />
+    <Compile Include="Features\Shared\Helpers\ProductJsonConverter.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\LoginInfoViewModel.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\Link.cs" />
+    <Compile Include="Features\ProductStatusPopup\ViewModels\ProductStatusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
-    <Content Include="Views\Shared\NoInformation.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="assets\styles\site.scss" />
-    <Content Include="assets\styles\_variables.scss" />
-    <Content Include="bundleconfig.json" />
-    <None Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
+    <Content Include="Features\Shared\Views\web.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Features\Shared\Views\NoInformation.cshtml" />
+    <Content Include="Features\Shared\Views\_Layout.cshtml" />
+    <Content Include="Features\Shared\Views\_ViewStart.cshtml" />
+    <Content Include="Features\Shared\Styles\_variables.scss" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -512,19 +627,20 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Themes\Apo\" />
-    <Folder Include="assets\styles\images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Alpha.AccountInfo\Alpha.AccountInfo.csproj">
       <Project>{19fff821-8518-4c8f-b23b-db8d91c1552a}</Project>
       <Name>Alpha.AccountInfo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Alpha.Products.AccountInfo\Alpha.Products.AccountInfo.csproj">
+      <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
+      <Name>Alpha.Products.AccountInfo</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="assets\scripts\productstatus\productstatus.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\apps\productstatus\productstatus-tests.ts" />
+    <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\product-status-popup.ts" />
+    <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\tests\productstatus-tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery.blockui\index.d.ts" />
@@ -539,6 +655,22 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\SearchAccount\Styles\given-credit.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\AuthorizationSection.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\SearchAccount\Styles\account-info-mobile-calculate-07.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\SearchAccount\Views\web.config" />
+    <Content Include="Features\ProductStatusPopup\Views\web.config" />
+    <Content Include="Alpha.AccountInfo.Site.Debug.ruleset" />
+    <Content Include="Alpha.AccountInfo.Site.Release.ruleset" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -570,19 +702,19 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <PropertyGroup>
     <PostBuildEvent>cd $(ProjectDir)
-      cd ..
-      cd ..
-      cd build
-      assets.build.cmd
-      if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
-      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"</PostBuildEvent>
+cd..
+cd..
+cd build
+webpack.dev.bat
+if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
+start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

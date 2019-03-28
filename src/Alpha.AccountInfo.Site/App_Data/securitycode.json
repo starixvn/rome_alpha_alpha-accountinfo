@@ -1,13 +1,13 @@
 {
-  "isActive": true,
-  "siteMainApp": "/site-main",
-  "paths": [
-    "productstatus?productid=23",
-    "productstatus/index?productid=23"
-  ],
-  "sites": [
-  ],
-  "verifyingOtpPath": "Otp/VerifyOtp",
-  "verifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
-  "resetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
+	"isActive": true,
+	"paths": [
+		"productstatus3rd/index?productid=23",
+		"SearchAccount/GivenCredit",
+		"SearchAccount/UpdateGivenCredit"
+	],
+	"sites": [
+	],
+	"verifyingOtpPath": "Otp/VerifyOtp",
+	"verifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+	"resetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
 }
