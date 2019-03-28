@@ -36,17 +36,17 @@
 
         public string UserName => customerInfo.UserName;
 
-        public string NickName => customerInfo.UserName2;
+        public string NickName => DefaultStringValueIfNull(customerInfo.UserName2);
 
         public bool ShowNickName =>
             SearchAccountLevel.IsDirectDownlineOf(ActorLevel)
             && !string.IsNullOrEmpty(NickName);
 
-        public string FullName => $"{customerInfo.FirstName} {customerInfo.LastName}";
+        public string FullName => DefaultStringValueIfNull($"{customerInfo.FirstName} {customerInfo.LastName}");
 
-        public string Phone => customerInfo.Phone;
+        public string Phone => DefaultStringValueIfNull(customerInfo.Phone);
 
-        public string Fax => customerInfo.Fax;
+        public string Fax => DefaultStringValueIfNull(customerInfo.Fax);
 
         public bool Closed => customerInfo.Closed;
 
@@ -58,25 +58,25 @@
 
         public bool ShowMember => SearchAccountLevel.IsMemberLevel();
 
-        public string MemberName => customerInfo.MemberName;
+        public string MemberName => DefaultStringValueIfNull(customerInfo.MemberName);
 
         public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel()
             && SearchAccountLevel.IsDownlineOfMasterLevel();
 
         public int AgentId => customerInfo.AgentId;
 
-        public string AgentName => customerInfo.AgentName;
+        public string AgentName => DefaultStringValueIfNull(customerInfo.AgentName);
 
         public bool ShowMaster => ActorLevel.IsSuperLevel()
             && SearchAccountLevel.IsDownlineOfSuperLevel();
 
         public int MasterId => customerInfo.MasterId;
 
-        public string MasterName => customerInfo.MasterName;
+        public string MasterName => DefaultStringValueIfNull(customerInfo.MasterName);
 
         public int SuperId => customerInfo.SuperId;
 
-        public string SuperName => customerInfo.SuperName;
+        public string SuperName => DefaultStringValueIfNull(customerInfo.SuperName);
 
         public LoginInfoViewModel LoginInfo =>
             new LoginInfoViewModel(
@@ -134,5 +134,10 @@
         public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
 
         public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
+
+        internal string DefaultStringValueIfNull(string value)
+        {
+            return string.IsNullOrEmpty(value) ? string.Empty : value;
+        }
     }
 }
