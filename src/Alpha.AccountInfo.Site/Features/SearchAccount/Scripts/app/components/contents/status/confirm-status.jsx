@@ -24,7 +24,7 @@ export default class ConfirmStatus extends React.Component {
 						}
 
 						fetchCustomerAllStatusFromServer(true);
-					}, 1000);
+					}, 1500);
 				}
 				else {
 					window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);

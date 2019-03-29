@@ -103,7 +103,7 @@ class ProductStatusPopup {
             setTimeout(() => {
                 this.topWindow.realoadLeftPanel = true;
                 this.topWindow.ageWnd.close();
-            }, 1000);
+            }, 1500);
         }
     };
 

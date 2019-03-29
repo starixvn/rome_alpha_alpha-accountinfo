@@ -97,7 +97,7 @@ export default class GivenCredit extends React.Component {
                     window.top.realoadLeftPanel = true;
                     window.top.closedPopup = true;
                     window.top.ageWnd.close();
-                }, 3000);
+                }, 1500);
             }
 
             $.unblockUI();

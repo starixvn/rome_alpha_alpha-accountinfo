@@ -76,7 +76,7 @@ var ProductStatusPopup = (function () {
                 setTimeout(function () {
                     _this.topWindow.realoadLeftPanel = true;
                     _this.topWindow.ageWnd.close();
-                }, 1000);
+                }, 1500);
             }
         };
         this.showNoDataChange = function () {
