@@ -15,7 +15,6 @@ import AccountInfoMobile from '../components/mobile-version/account-info-mobile'
 import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
 import { resizePopupOnMobile } from '../helpers/accountinfo-helper';
 import * as Raven from 'raven-js';
-import { setTimeout } from 'core-js';
 
 export default class AccountInfo extends React.Component {
 	constructor(props) {
@@ -72,8 +71,15 @@ export default class AccountInfo extends React.Component {
 		}
 	}
 
+	blockUIWrapper() {
+		if ($('.ui-widget-overlay:visible').length > 0) {
+			$.blockUI();
+		}
+	}
+
 	fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
-		$.blockUI();
+		this.blockUIWrapper();
+
 		let self = this;
 		accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
 			(responeData) => {
@@ -117,7 +123,8 @@ export default class AccountInfo extends React.Component {
 		let { customerInfo, statusData } = this.state;
 
 		if ((customerInfo !== null && statusData === null) || reload) {
-			$.blockUI();
+			this.blockUIWrapper();
+
 			switch (customerInfo.RoleId) {
 				case UserLevel.Master:
 					uplineId = customerInfo.SuperId;
