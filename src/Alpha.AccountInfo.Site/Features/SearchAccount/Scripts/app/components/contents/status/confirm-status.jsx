@@ -19,13 +19,12 @@ export default class ConfirmStatus extends React.Component {
 			.then((data) => {
 				if (data.IsSuccess) {
 					setTimeout(() => {
-						$.unblockUI();
 						if (status.ReloadCustomerInfo) {
 							fetchCustomerInfoFromServer(username, false, false);
 						}
 
 						fetchCustomerAllStatusFromServer(true);
-					}, 3000);
+					}, 1000);
 				}
 				else {
 					window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);

@@ -30,8 +30,8 @@
         IAsyncRequestHandler<CustomerStatusQuery, CustomerStatusViewModel>,
         IAsyncRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
-        IAsyncRequestHandler<GivenCreditCommand, Result>,
-        IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>
+        IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>,
+        IAsyncRequestHandler<GivenCreditCommand, Result>   
     {
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
