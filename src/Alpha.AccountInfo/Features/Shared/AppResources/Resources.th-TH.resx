@@ -361,7 +361,7 @@
     <value>บัญชีนี้ถูกปิดเนื่องจากการเข้าสู่ระบบล้มเหลวหรือบัญชีหมดอายุ</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>This account was closed due to failed OTP/Security Code attempts.</value>
+    <value>บัญชีนี้ถูกปิดเนื่องจากพิมพ์ รหัส OTP/Security Code ผิด</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>บัญชีนี้ถูกปิดโดยอับไลน์</value>
