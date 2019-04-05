@@ -1,4 +1,5 @@
 ﻿using Fanex.Logging;
+using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.Database;
 using Fanex.Logging.Extensions.Web;
 using Fanex.Logging.RabbitMQ;
