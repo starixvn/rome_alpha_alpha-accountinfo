@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BetType_2401" xml:space="preserve">
-    <value>บาคาร่า, รูเล็ต, ไฮโล, Dragon Tiger</value>
+    <value>บาคาร่า, รูเล็ต, Sicbo, มังกรเสือ, Win 3 Cards</value>
   </data>
   <data name="Msg60033" xml:space="preserve">
     <value>ไม่สามารถแก้ไขสถานะผลิตภัณฑ์ของดาวน์ไลน์ได้ เนื่องจากไม่ได้เปิดการใช้งานผลิตภัณฑ์นี้</value>
