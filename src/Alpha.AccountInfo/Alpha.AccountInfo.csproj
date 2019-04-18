@@ -211,6 +211,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Features\Shared\StatusNames.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendDownlinesModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesService.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\AgentBalanceInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\IBalanceInfoModel.cs" />
@@ -293,7 +296,10 @@
       <Name>Alpha.Products.AccountInfo</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Features\UnsuspendDownlines\AppResources\" />
+    <Folder Include="Features\UnsuspendDownlines\Params\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

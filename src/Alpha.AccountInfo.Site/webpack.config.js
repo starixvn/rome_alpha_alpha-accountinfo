@@ -18,7 +18,13 @@ module.exports = {
         ],
         "./SearchAccount/Bundles/account-info-mobile-calculate-07": [
             "./Features/SearchAccount/Styles/account-info-mobile-calculate-07.scss"
-        ]
+		],
+		"./UnsuspendDownlines/Bundles/unsuspend-downlines": [
+			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-downlines.jsx"
+		],
+		"./UnsuspendDownlines/Bundles/unspend-list": [
+			"./Features/UnsuspendDownlines/Scripts/app/unspend-list.jsx"
+		]
     },
 
     resolve: {

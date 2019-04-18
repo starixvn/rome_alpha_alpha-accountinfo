@@ -417,12 +417,17 @@
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unspend-list.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-downlines.jsx" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
     <Content Include="App_Data\securitycode.json" />
     <Content Include="Features\ProductStatusPopup\Views\Index.cshtml" />
     <Content Include="Features\ProductStatusPopup\Styles\product-status-popup.scss" />
     <Content Include=".babelrc" />
+    <Content Include="Features\UnsuspendDownlines\Views\EditSingle.cshtml" />
+    <Content Include="Features\UnsuspendDownlines\Views\web.config" />
+    <Content Include="Features\UnsuspendDownlines\Views\ViewUnsuspendList.cshtml" />
     <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
@@ -540,6 +545,10 @@
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
     <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendRequest.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendDownlinesRequest.cs" />
+    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesController.cs" />
+    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -627,7 +636,12 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Features\UnsuspendDownlines\Bundles\" />
+    <Folder Include="Features\UnsuspendDownlines\Scripts\tests\" />
+    <Folder Include="Features\UnsuspendDownlines\Styles\" />
+    <Folder Include="Features\UnsuspendDownlines\ViewModels\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alpha.AccountInfo\Alpha.AccountInfo.csproj">
       <Project>{19fff821-8518-4c8f-b23b-db8d91c1552a}</Project>

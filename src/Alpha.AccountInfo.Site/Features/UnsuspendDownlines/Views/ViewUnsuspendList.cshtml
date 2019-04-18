@@ -1,0 +1,25 @@
+﻿@{
+	Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@model UnsuspendDownlinesModel
+
+@section Styles {
+	@StaticResources.RenderStyles("/assets/bundles/common/common-super")
+	@StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
+	@StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")}
+
+<div id="unsuspend-list" />
+
+@Html.AntiForgeryToken()
+
+@section Scripts {
+	@StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unspend-list")
+
+	<script>
+        var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
+
+		renderUnsuspendList(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
+Newtonsoft.Json.Formatting.Indented)));
+	</script>
+}
