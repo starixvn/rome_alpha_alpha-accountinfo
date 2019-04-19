@@ -1,7 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines.Models
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     public class UnsuspendMultipleByUserModel
     {
@@ -26,14 +25,4 @@
 
         public IEnumerable<UnsuspendByLevelModel> UnsuspendByLevel { get; private set; }
     }
-
-    //public class UnsuspendMultipleModel
-    //{
-    //    public UnsuspendMultipleModel(IEnumerable<UnsuspendMultipleByUserModel> unsuspendByLevel)
-    //    {
-    //        UnsuspendByLevel = unsuspendByLevel;
-    //    }
-
-    //    public IEnumerable<UnsuspendMultipleByUserModel> UnsuspendByLevel { get; private set; }
-    //}
 }

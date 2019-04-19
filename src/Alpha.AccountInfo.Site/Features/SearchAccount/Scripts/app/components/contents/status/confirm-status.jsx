@@ -36,12 +36,18 @@ export default class ConfirmStatus extends React.Component {
 	handleOpenPopup(e) {
 		let { mobileView, status } = this.props;
 
+		
 		if (!status.Disabled) {
-			window.top.bootboxConfirm(
-				formatMessage(status.ConfirmMessage),
-				e.target,
-				this.updateCustomerStatus
-			);
+			if (status.IsPopup) {
+				window.top.ageWnd.open(status.Url, `Update Unspend Status For AAAAA`);
+			}
+			else {
+				window.top.bootboxConfirm(
+					formatMessage(status.ConfirmMessage),
+					e.target,
+					this.updateCustomerStatus
+				);
+			}
 
 			if (mobileView) {
 				resizeBootboxOnMobile();

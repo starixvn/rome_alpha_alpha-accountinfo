@@ -49,13 +49,13 @@ export default class UnsuspendDownlines extends React.Component {
 		const { unsuspendModel } = this.props;
 
 		return (
-			< div className="online-list" >
+			< div className="col-xs-12 " >
 				<div className={hideMessages ? `hidden` : ``}>
 					<span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
 				</div>
 
 				{this.buildNote()}
-
+				< div className="col-xs-12 " >
 				<table className="tblRpt tblRpt-bordered width-100per">
 					<thead>
 						<tr>
@@ -76,8 +76,9 @@ export default class UnsuspendDownlines extends React.Component {
 							<th className="text-center"><a href='#'>{unsuspendModel.UnchangedDownlinesTotal}</a></th>
 						</tr>
 					</tfoot>
-				</table>
-				<div className="col-xs-12 row-info popup-bottom list-button">
+					</table>
+				</ div>
+				<div className="col-xs-12 row-info popup-bottom list-button text-right">
 					<button className="btn-submit">Unsuspend</button>
 				</div>
 			</div >

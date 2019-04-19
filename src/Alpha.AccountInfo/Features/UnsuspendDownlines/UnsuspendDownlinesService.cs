@@ -1,13 +1,15 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines
 {
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.UnsuspendDownlines.Models;
+    using Fanex.Data.Repository;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     public interface UnsuspendDownlinesService
     {
-        Task<UnsuspendModel> GetUnsuspendModel();
+        Task<IEnumerable<UnsuspendByLevelModel>> GetUnsuspendModel(int searchAccountId);
 
         Task<UnsuspendDownlinesModel> GetUnsuspendDownlinesModel();
 
@@ -16,16 +18,25 @@
 
     public class UnsuspendDownlinesServiceImpl : UnsuspendDownlinesService
     {
-        public async Task<UnsuspendModel> GetUnsuspendModel()
+        private readonly IDynamicRepository dynamicRepository;
+
+        public UnsuspendDownlinesServiceImpl(IDynamicRepository dynamicRepository)
         {
-           var unsuspendByLevel = new List<UnsuspendByLevelModel>();
+            this.dynamicRepository = dynamicRepository;
+        }
 
-            for (int i = 3; i > 0; i--)
-            {
-                unsuspendByLevel.Add(new UnsuspendByLevelModel((byte)i, i * 15, i *30));
-            }
+        public Task<IEnumerable<UnsuspendByLevelModel>> GetUnsuspendModel(int searchAccountId)
+        {
+           return dynamicRepository.FetchAsync<UnsuspendByLevelModel>(new SelectCustomerSuspendInfoCriteria(searchAccountId));
 
-            return new UnsuspendModel(unsuspendByLevel);
+            //var unsuspendByLevel = new List<UnsuspendByLevelModel>();
+
+            //for (int i = 3; i > 0; i--)
+            //{
+            //    unsuspendByLevel.Add(new UnsuspendByLevelModel((byte)i, i * 15, i *30));
+            //}
+
+            //return new UnsuspendModel(model);
         }
 
         public async Task<UnsuspendDownlinesModel> GetUnsuspendDownlinesModel()

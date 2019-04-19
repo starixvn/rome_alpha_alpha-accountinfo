@@ -430,6 +430,7 @@
     <Content Include="Features\UnsuspendDownlines\Views\web.config" />
     <Content Include="Features\UnsuspendDownlines\Views\ViewUnsuspendList.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Views\EditMultiplePath.cshtml" />
+    <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines.scss" />
     <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
@@ -552,6 +553,7 @@
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendDownlinesRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesController.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandler.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendInfoViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -642,8 +644,6 @@
   <ItemGroup>
     <Folder Include="Features\UnsuspendDownlines\Bundles\" />
     <Folder Include="Features\UnsuspendDownlines\Scripts\tests\" />
-    <Folder Include="Features\UnsuspendDownlines\Styles\" />
-    <Folder Include="Features\UnsuspendDownlines\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alpha.AccountInfo\Alpha.AccountInfo.csproj">

@@ -1,8 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines.Models
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     public class UnsuspendByLevelModel
     {
         public UnsuspendByLevelModel() { }

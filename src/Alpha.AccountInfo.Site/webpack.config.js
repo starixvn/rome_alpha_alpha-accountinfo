@@ -20,7 +20,8 @@ module.exports = {
             "./Features/SearchAccount/Styles/account-info-mobile-calculate-07.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unsuspend-downlines": [
-			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-downlines.jsx"
+			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-downlines.jsx",
+			"./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unsuspend-downlines-multiple": [
 			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-downlines-multiple.jsx"
