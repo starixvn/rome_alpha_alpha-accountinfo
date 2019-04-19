@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import Autosuggest from 'react-autosuggest';
-import { accountInfoAPI } from '../../api-client';
+import { accountInfoAPI } from '../../accountinfo-api';
 import { zoomEnable, zoomDisable } from '../../helpers/accountinfo-helper';
 
 export const getSuggestionValue = suggestion => suggestion.UserName;

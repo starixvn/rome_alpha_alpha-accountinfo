@@ -380,7 +380,7 @@
     <Content Include="Features\SearchAccount\Scripts\tests\helpers\actor-is-super-sample.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\helpers\resources-sample.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\mobile-version\content-mobile.test.jsx" />
-    <Content Include="Features\SearchAccount\Scripts\app\api-client.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\accountinfo-api.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\components\common\custom-anchor-tag.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\member-credit-max-row.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\given-credit-row.jsx" />
@@ -417,6 +417,7 @@
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
+    <Content Include="Features\Shared\Scripts\api-client.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unspend-list.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-downlines-multiple.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-downlines.jsx" />

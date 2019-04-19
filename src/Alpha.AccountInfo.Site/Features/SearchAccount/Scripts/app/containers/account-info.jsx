@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { accountInfoAPI } from '../api-client';
+import { accountInfoAPI } from '../accountinfo-api';
 import { UserLevel } from '../constants';
 import Searching from '../components/contents/searching';
 import CustomerInfo from '../components/contents/customer-info/customer-info';

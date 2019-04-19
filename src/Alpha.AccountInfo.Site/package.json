@@ -56,7 +56,7 @@
       "DownlineList": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/downline-list/downline-list.jsx",
       "Searching": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/searching.jsx",
       "AutoSuggestion": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/searching/auto-suggestion.jsx",
-      "APIClient": "<rootDir>/Features/SearchAccount/Scripts/app/api-client.jsx",
+      "AccountinfoAPI": "<rootDir>/Features/SearchAccount/Scripts/app/accountinfo-api.jsx",
       "BettypeLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/bettype-level-status.jsx",
       "ConfirmStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/confirm-status.jsx",
       "ProductLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/product-level-status.jsx",

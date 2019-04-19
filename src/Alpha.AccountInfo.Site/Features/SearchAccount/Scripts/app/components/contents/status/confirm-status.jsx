@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { accountInfoAPI } from '../../../api-client';
+import { accountInfoAPI } from '../../../accountinfo-api';
 import { resizeBootboxOnMobile, buildTooltipProps, formatMessage } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
