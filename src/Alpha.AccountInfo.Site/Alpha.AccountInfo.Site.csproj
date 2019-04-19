@@ -418,6 +418,7 @@
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unspend-list.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-downlines-multiple.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-downlines.jsx" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
@@ -428,6 +429,7 @@
     <Content Include="Features\UnsuspendDownlines\Views\EditSingle.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Views\web.config" />
     <Content Include="Features\UnsuspendDownlines\Views\ViewUnsuspendList.cshtml" />
+    <Content Include="Features\UnsuspendDownlines\Views\EditMultiplePath.cshtml" />
     <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
@@ -545,6 +547,7 @@
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
     <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendDownlinesRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesController.cs" />

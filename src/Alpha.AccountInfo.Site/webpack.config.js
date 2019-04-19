@@ -22,6 +22,9 @@ module.exports = {
 		"./UnsuspendDownlines/Bundles/unsuspend-downlines": [
 			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-downlines.jsx"
 		],
+		"./UnsuspendDownlines/Bundles/unsuspend-downlines-multiple": [
+			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-downlines-multiple.jsx"
+		],
 		"./UnsuspendDownlines/Bundles/unspend-list": [
 			"./Features/UnsuspendDownlines/Scripts/app/unspend-list.jsx"
 		]

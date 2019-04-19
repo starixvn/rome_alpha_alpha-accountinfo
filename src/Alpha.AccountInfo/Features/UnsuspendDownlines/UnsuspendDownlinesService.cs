@@ -10,6 +10,8 @@
         Task<UnsuspendModel> GetUnsuspendModel();
 
         Task<UnsuspendDownlinesModel> GetUnsuspendDownlinesModel();
+
+        Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModelModel();
     }
 
     public class UnsuspendDownlinesServiceImpl : UnsuspendDownlinesService
@@ -38,6 +40,24 @@
             return new UnsuspendDownlinesModel(unsuspendDownlines.GroupBy(item => item.RoleId).Select(group => {
                 return new UnsuspendDownlineByLevelModel(group.Key, group);
             }), 5);
+        }
+
+        public async Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModelModel()
+        {
+            var model = new List<UnsuspendMultipleByUserModel>();
+
+            for (int j = 5; j > 0; j--)
+            {
+                var unsuspendByLevel = new List<UnsuspendByLevelModel>();
+                for (int i = 3; i > 0; i--)
+                {
+                    unsuspendByLevel.Add(new UnsuspendByLevelModel((byte)i, i * 15 + j, i * 30 + j));
+                }
+
+                model.Add(new UnsuspendMultipleByUserModel(j * 2, $"Username-{j}", j % 2 == 0, unsuspendByLevel));
+            }
+
+            return model;
         }
     }
 }

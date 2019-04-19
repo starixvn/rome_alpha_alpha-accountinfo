@@ -9,6 +9,7 @@
     public class UnsuspendDownlinesController : AccountInfoBaseController
     {
         private const string EditSinglePath = "~/Features/UnsuspendDownlines/Views/EditSingle.cshtml";
+        private const string EditMultiplePath = "~/Features/UnsuspendDownlines/Views/EditMultiplePath.cshtml";
         private const string ViewUnsuspendListPath = "~/Features/UnsuspendDownlines/Views/ViewUnsuspendList.cshtml";
         public UnsuspendDownlinesController(IMediator mediator)
             : base(mediator)
@@ -20,5 +21,8 @@
 
         public async Task<ActionResult> ViewUnsuspendList(UnsuspendDownlinesRequest message)
          => await ViewAsync(message, ViewUnsuspendListPath).ConfigureAwait(false);
+
+        public async Task<ActionResult> EditMultiple(UnsuspendMultipleRequest message)
+         => await ViewAsync(message, EditMultiplePath).ConfigureAwait(false);
     }
 }
