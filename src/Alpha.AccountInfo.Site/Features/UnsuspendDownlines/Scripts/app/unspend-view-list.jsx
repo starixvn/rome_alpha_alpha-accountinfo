@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 
 window.renderUnsuspendViewList = function (viewModel) {
 	ReactDOM.render(
-		<UnsuspendList viewModel={viewModel}/>,
+        <UnsuspendViewList viewModel={viewModel}/>,
 		document.getElementById('unsuspend-list')
 	);
 };
 
-export default class UnsuspendList extends React.Component {
+export default class UnsuspendViewList extends React.Component {
 	constructor(props) {
 		super(props);
 	}

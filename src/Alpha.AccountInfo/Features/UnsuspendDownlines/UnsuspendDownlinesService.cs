@@ -9,11 +9,11 @@
 
     public interface UnsuspendDownlinesService
     {
-        Task<IEnumerable<UnsuspendInfoModel>> GetUnsuspendInfoModel(int searchAccountId);
+        Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendInfoModel(int searchAccountId);
 
         Task<UnsuspendViewListModel> GetUnsuspendViewListModel();
 
-        Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel();
+        Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel(string custIds, byte roleId);
     }
 
     public class UnsuspendDownlinesServiceImpl : UnsuspendDownlinesService
@@ -25,19 +25,8 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public Task<IEnumerable<UnsuspendInfoModel>> GetUnsuspendInfoModel(int searchAccountId)
-        {
-           return dynamicRepository.FetchAsync<UnsuspendInfoModel>(new SelectCustomerSuspendInfoCriteria(searchAccountId));
-
-            //var unsuspendByLevel = new List<UnsuspendByLevelModel>();
-
-            //for (int i = 3; i > 0; i--)
-            //{
-            //    unsuspendByLevel.Add(new UnsuspendByLevelModel((byte)i, i * 15, i *30));
-            //}
-
-            //return new UnsuspendModel(model);
-        }
+        public Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendInfoModel(int searchAccountId)
+            => dynamicRepository.FetchAsync<UnsuspendMultipleModel>(new SelectSuspendInfoCriteria(searchAccountId));
 
         public async Task<UnsuspendViewListModel> GetUnsuspendViewListModel()
         {
@@ -53,22 +42,23 @@
             }), 5);
         }
 
-        public async Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel()
-        {
-            var model = new List<UnsuspendMultipleByUserModel>();
+        public Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel(string custIds, byte roleId)
+            => dynamicRepository.FetchAsync<UnsuspendMultipleByUserModel>(new SelectSuspendInfoMultipleCriteria(custIds, roleId));
+        //{
+        //    var model = new List<UnsuspendMultipleByUserModel>();
 
-            for (int j = 5; j > 0; j--)
-            {
-                var unsuspendByLevel = new List<UnsuspendInfoModel>();
-                for (int i = 3; i > 0; i--)
-                {
-                    unsuspendByLevel.Add(new UnsuspendInfoModel((byte)i, i * 15 + j, i * 30 + j));
-                }
+        //    for (int j = 5; j > 0; j--)
+        //    {
+        //        var unsuspendByLevel = new List<UnsuspendInfoModel>();
+        //        for (int i = 3; i > 0; i--)
+        //        {
+        //            unsuspendByLevel.Add(new UnsuspendInfoModel((byte)i, i * 15 + j, i * 30 + j));
+        //        }
 
-                model.Add(new UnsuspendMultipleByUserModel(j * 2, $"Username-{j}", j % 2 == 0, unsuspendByLevel));
-            }
+        //        model.Add(new UnsuspendMultipleByUserModel(j * 2, $"Username-{j}", j % 2 == 0, unsuspendByLevel));
+        //    }
 
-            return model;
-        }
+        //    return model;
+        //}
     }
 }

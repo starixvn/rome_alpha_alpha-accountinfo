@@ -418,6 +418,7 @@
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="Features\Shared\Scripts\api-client.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-api.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unspend-view-list.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-single.jsx" />
@@ -430,7 +431,7 @@
     <Content Include="Features\UnsuspendDownlines\Views\EditSingle.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Views\web.config" />
     <Content Include="Features\UnsuspendDownlines\Views\ViewList.cshtml" />
-    <Content Include="Features\UnsuspendDownlines\Views\EditMultiplePath.cshtml" />
+    <Content Include="Features\UnsuspendDownlines\Views\EditMultiple.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines.scss" />
     <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
@@ -549,11 +550,14 @@
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
     <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleCommand.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendSingleCommand.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendSingleRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendViewListRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesController.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandler.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendInfoMultipleViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendListViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendInfoViewModel.cs" />
     <Compile Include="Global.asax.cs">

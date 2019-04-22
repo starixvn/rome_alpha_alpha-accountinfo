@@ -1,23 +1,33 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.UnsuspendDownlines
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using Alpha.AccountInfo.Features.SearchAccount.Params;
+    using Alpha.AccountInfo.Features.Shared;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.UnsuspendDownlines;
-    using Alpha.AccountInfo.Features.UnsuspendDownlines.Models;
+    using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.AccountInfo.Site.Features.UnsuspendDownlines.Requests;
     using MediatR;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
-    public class UnsuspendDownlinesHandler : 
+    public class UnsuspendDownlinesHandler :
         IAsyncRequestHandler<UnsuspendViewListRequest, UnsuspendListViewModel>,
         IAsyncRequestHandler<UnsuspendSingleRequest, UnsuspendInfoViewModel>,
-        IAsyncRequestHandler<UnsuspendMultipleRequest, IEnumerable<UnsuspendMultipleByUserModel>>
+        IAsyncRequestHandler<UnsuspendMultipleRequest, IEnumerable<UnsuspendInfoMultipleViewModel>>,
+        IAsyncRequestHandler<UnsuspendSingleCommand, Result>,
+        IAsyncRequestHandler<UnsuspendMultipleCommand, IEnumerable<Result>>
     {
         private readonly UnsuspendDownlinesService unsuspendDownlinesService;
+        private readonly SearchAccountService accountInfoService;
 
-        public UnsuspendDownlinesHandler(UnsuspendDownlinesService unsuspendDownlinesService)
+        public UnsuspendDownlinesHandler(
+            UnsuspendDownlinesService unsuspendDownlinesService,
+            SearchAccountService accountInfoService)
         {
             this.unsuspendDownlinesService = unsuspendDownlinesService;
+            this.accountInfoService = accountInfoService;
         }
 
         public async Task<UnsuspendInfoViewModel> Handle(UnsuspendSingleRequest message)
@@ -31,7 +41,49 @@
                  message.SearchAccountId,
                  await unsuspendDownlinesService.GetUnsuspendViewListModel().ConfigureAwait(false));
 
-        public async Task<IEnumerable<UnsuspendMultipleByUserModel>> Handle(UnsuspendMultipleRequest message)
-            => await unsuspendDownlinesService.GetUnsuspendMultipleModel().ConfigureAwait(false);
+        public async Task<IEnumerable<UnsuspendInfoMultipleViewModel>> Handle(UnsuspendMultipleRequest message)
+        {
+            var model = await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false);
+
+           return model.GroupBy(item => item.CustId).Select(aa => {
+                var firstItem = aa.FirstOrDefault();
+                return new UnsuspendInfoMultipleViewModel(
+                     aa.Key,
+                     firstItem.Username,
+                     firstItem.Suspended,
+                     aa);
+                 });
+        }
+
+        public Task<Result> Handle(UnsuspendSingleCommand message)
+          => accountInfoService.UpdateCustomerStatus(
+              new UpdateCustomerStatusParam(
+                  message.SearchAccountId,
+                  message.ActorId,
+                  message.SubAccountId,
+                  message.Language,
+                  message.IP,
+                  false,
+                  StatusNames.Suspended,
+                  message.ActorName,
+                  false));
+
+        public async Task<IEnumerable<Result>> Handle(UnsuspendMultipleCommand message)
+        {
+             var results = await Task.WhenAll(message.UnsuspendList.Select(
+                 customer => accountInfoService.UpdateCustomerStatus(
+                      new UpdateCustomerStatusParam(
+                          customer.CustId,
+                          message.ActorId,
+                          message.SubAccountId,
+                          message.Language,
+                          message.IP,
+                          customer.Suspended,
+                          StatusNames.Suspended,
+                          message.ActorName,
+                          false)))).ConfigureAwait(false);
+
+            return results.Where(result => !result.IsSuccess);
+        }
     }
 }

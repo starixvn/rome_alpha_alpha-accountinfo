@@ -1,24 +1,24 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.UnsuspendDownlines.Requests
 {
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Features.UnsuspendDownlines.Models;
+    using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
     using System.Collections.Generic;
-    using System.Web.Mvc;
-    using System.Web.SessionState;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
-    public class UnsuspendMultipleRequest : BaseRequest, IRequest<IEnumerable<UnsuspendMultipleByUserModel>>
+    public class UnsuspendMultipleRequest : BaseRequest, IRequest<IEnumerable<UnsuspendInfoMultipleViewModel>>
     {
+        private readonly IUser viewer;
+
         public UnsuspendMultipleRequest(IUser viewer) : base(viewer)
         {
-
+            this.viewer = viewer;
         }
 
-        public override bool IsValid()
-        {
-            return true;
-        }
+        public string CustIds { get; set; }
+
+        public byte RoleId { get; set; }
+
+        public override bool IsValid() => !string.IsNullOrEmpty(CustIds) && RoleId < viewer.LevelId;
     }
 }

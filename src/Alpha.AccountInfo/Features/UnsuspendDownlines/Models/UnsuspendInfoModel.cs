@@ -1,10 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines.Models
 {
-    public class UnsuspendInfoModel
+    public class UnsuspendMultipleModel
     {
-        public UnsuspendInfoModel() { }
+        public UnsuspendMultipleModel() { }
 
-        public UnsuspendInfoModel(byte roleId, int affectedDownlines, int unchangedDownlines)
+        public UnsuspendMultipleModel(byte roleId, int affectedDownlines, int unchangedDownlines)
         {
             RoleId = roleId;
             AffectedDownlines = affectedDownlines;

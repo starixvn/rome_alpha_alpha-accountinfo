@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria
 {
-    public class SelectCustomerSuspendInfoCriteria : AccountInfoCriteriaBase
+    public class SelectSuspendInfoCriteria : AccountInfoCriteriaBase
     {
-        public SelectCustomerSuspendInfoCriteria(int searchAccountId) 
+        public SelectSuspendInfoCriteria(int searchAccountId) 
             : base(searchAccountId)
         {
         }

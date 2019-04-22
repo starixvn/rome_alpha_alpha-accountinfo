@@ -214,8 +214,9 @@
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendInfoModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendMultipleModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendDownlinesModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoMultipleCriteria.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoDetailCriteria.cs" />
-    <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectCustomerSuspendInfoCriteria.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoCriteria.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesService.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\AgentBalanceInfoModel.cs" />

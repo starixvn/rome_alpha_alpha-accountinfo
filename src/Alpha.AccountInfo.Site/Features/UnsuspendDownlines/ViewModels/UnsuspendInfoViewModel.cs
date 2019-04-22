@@ -6,7 +6,7 @@
 
     public class UnsuspendInfoViewModel : AccountInfoViewModelBase
     {
-        public UnsuspendInfoViewModel(int searchAccountId, IEnumerable<UnsuspendInfoModel> unsuspendByLevel)
+        public UnsuspendInfoViewModel(int searchAccountId, IEnumerable<UnsuspendMultipleModel> unsuspendByLevel)
         {
             SearchAccountId = searchAccountId;
             UnsuspendByLevel = unsuspendByLevel;
@@ -14,7 +14,7 @@
 
         public int SearchAccountId { get; private set; }
 
-        public IEnumerable<UnsuspendInfoModel> UnsuspendByLevel { get; private set; }
+        public IEnumerable<UnsuspendMultipleModel> UnsuspendByLevel { get; private set; }
 
         public int AffectedDownlinesTotal => UnsuspendByLevel.Sum(item => item.AffectedDownlines);
 

@@ -1,19 +1,23 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines.Models
 {
-    using System.Collections.Generic;
-
     public class UnsuspendMultipleByUserModel
     {
+        public UnsuspendMultipleByUserModel() { }
+
         public UnsuspendMultipleByUserModel(
             int custId,
             string username,
             bool suspended,
-            IEnumerable<UnsuspendInfoModel> unsuspendByLevel)
+            byte roleId,
+            int affectedDownlines, 
+            int unchangedDownlines)
         {
             CustId = custId;
             Username = username;
             Suspended = suspended;
-            UnsuspendByLevel = unsuspendByLevel;
+            RoleId = roleId;
+            AffectedDownlines = affectedDownlines;
+            UnchangedDownlines = unchangedDownlines;
         }
 
         public int CustId { get; private set; }
@@ -22,6 +26,10 @@
 
         public bool Suspended { get; private set; }
 
-        public IEnumerable<UnsuspendInfoModel> UnsuspendByLevel { get; private set; }
+        public byte RoleId { get; private set; }
+
+        public int AffectedDownlines { get; private set; }
+
+        public int UnchangedDownlines { get; private set; }
     }
 }

@@ -34,11 +34,24 @@ export default class ConfirmStatus extends React.Component {
 	}
 
 	handleOpenPopup(e) {
-		let { mobileView, status } = this.props;
-
+        let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
 		
 		if (!status.Disabled) {
-			if (status.IsPopup) {
+            if (status.IsPopup) {
+                window.top.closedPopup = false;
+                window.top.realoadLeftPanel = false;
+                let timer = setInterval(reloadCustomerStatus, 1000);
+
+                function reloadCustomerStatus() {
+                    if (window.top.closedPopup) {
+                        clearInterval(timer);
+                        if (window.top.realoadLeftPanel) {
+                            fetchCustomerInfoFromServer(username, false, false);
+                            fetchCustomerAllStatusFromServer(true);
+                        }
+                    }
+                }
+
 				window.top.ageWnd.open(status.Url, `Update Unspend Status For AAAAA`);
 			}
 			else {
