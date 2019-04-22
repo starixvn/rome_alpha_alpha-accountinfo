@@ -9,9 +9,9 @@
     using MediatR;
 
     public class UnsuspendDownlinesHandler : 
-        IAsyncRequestHandler<UnsuspendDownlinesRequest, UnsuspendDownlinesModel>,
-        IAsyncRequestHandler<UnsuspendRequest, UnsuspendInfoViewModel>,
-         IAsyncRequestHandler<UnsuspendMultipleRequest, IEnumerable<UnsuspendMultipleByUserModel>>
+        IAsyncRequestHandler<UnsuspendViewListRequest, UnsuspendListViewModel>,
+        IAsyncRequestHandler<UnsuspendSingleRequest, UnsuspendInfoViewModel>,
+        IAsyncRequestHandler<UnsuspendMultipleRequest, IEnumerable<UnsuspendMultipleByUserModel>>
     {
         private readonly UnsuspendDownlinesService unsuspendDownlinesService;
 
@@ -20,17 +20,18 @@
             this.unsuspendDownlinesService = unsuspendDownlinesService;
         }
 
-        public async Task<UnsuspendInfoViewModel> Handle(UnsuspendRequest message)
-            => new UnsuspendInfoViewModel(await unsuspendDownlinesService.GetUnsuspendModel(message.SearchAccountId).ConfigureAwait(false));
+        public async Task<UnsuspendInfoViewModel> Handle(UnsuspendSingleRequest message)
+            => new UnsuspendInfoViewModel(
+                message.SearchAccountId,
+                await unsuspendDownlinesService.GetUnsuspendInfoModel(message.SearchAccountId)
+                .ConfigureAwait(false));
 
-        public async Task<UnsuspendDownlinesModel> Handle(UnsuspendDownlinesRequest message)
-        {
-            return await unsuspendDownlinesService.GetUnsuspendDownlinesModel().ConfigureAwait(false);
-        }
+        public async Task<UnsuspendListViewModel> Handle(UnsuspendViewListRequest message)
+             => new UnsuspendListViewModel(
+                 message.SearchAccountId,
+                 await unsuspendDownlinesService.GetUnsuspendViewListModel().ConfigureAwait(false));
 
         public async Task<IEnumerable<UnsuspendMultipleByUserModel>> Handle(UnsuspendMultipleRequest message)
-        {
-            return await unsuspendDownlinesService.GetUnsuspendMultipleModelModel().ConfigureAwait(false);
-        }
+            => await unsuspendDownlinesService.GetUnsuspendMultipleModel().ConfigureAwait(false);
     }
 }

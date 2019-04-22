@@ -21,8 +21,6 @@
 
     public class UnsuspendDownlineByLevelModel
     {
-        public UnsuspendDownlineByLevelModel() { }
-
         public UnsuspendDownlineByLevelModel(byte roleId, IEnumerable<UnsuspendDownlineDto> unsuspendDownlines)
         {
             UnsuspendDownlines = unsuspendDownlines;
@@ -34,11 +32,9 @@
         public byte RoleId { get; private set; }
     }
 
-    public class UnsuspendDownlinesModel
+    public class UnsuspendViewListModel
     {
-        public UnsuspendDownlinesModel() { }
-
-        public UnsuspendDownlinesModel(
+        public UnsuspendViewListModel(
             IEnumerable<UnsuspendDownlineByLevelModel> unsuspendDownlinesByLevel, 
             int totalPages)
         {

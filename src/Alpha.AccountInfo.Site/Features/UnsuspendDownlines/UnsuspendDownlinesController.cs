@@ -10,16 +10,16 @@
     {
         private const string EditSinglePath = "~/Features/UnsuspendDownlines/Views/EditSingle.cshtml";
         private const string EditMultiplePath = "~/Features/UnsuspendDownlines/Views/EditMultiplePath.cshtml";
-        private const string ViewUnsuspendListPath = "~/Features/UnsuspendDownlines/Views/ViewUnsuspendList.cshtml";
+        private const string ViewUnsuspendListPath = "~/Features/UnsuspendDownlines/Views/ViewList.cshtml";
         public UnsuspendDownlinesController(IMediator mediator)
             : base(mediator)
         {
         }
 
-        public async Task<ActionResult> EditSingle(UnsuspendRequest message)
+        public async Task<ActionResult> EditSingle(UnsuspendSingleRequest message)
          => await ViewAsync(message, EditSinglePath).ConfigureAwait(false);
 
-        public async Task<ActionResult> ViewUnsuspendList(UnsuspendDownlinesRequest message)
+        public async Task<ActionResult> ViewUnsuspendList(UnsuspendViewListRequest message)
          => await ViewAsync(message, ViewUnsuspendListPath).ConfigureAwait(false);
 
         public async Task<ActionResult> EditMultiple(UnsuspendMultipleRequest message)

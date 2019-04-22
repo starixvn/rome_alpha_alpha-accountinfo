@@ -9,11 +9,11 @@
 
     public interface UnsuspendDownlinesService
     {
-        Task<IEnumerable<UnsuspendByLevelModel>> GetUnsuspendModel(int searchAccountId);
+        Task<IEnumerable<UnsuspendInfoModel>> GetUnsuspendInfoModel(int searchAccountId);
 
-        Task<UnsuspendDownlinesModel> GetUnsuspendDownlinesModel();
+        Task<UnsuspendViewListModel> GetUnsuspendViewListModel();
 
-        Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModelModel();
+        Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel();
     }
 
     public class UnsuspendDownlinesServiceImpl : UnsuspendDownlinesService
@@ -25,9 +25,9 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public Task<IEnumerable<UnsuspendByLevelModel>> GetUnsuspendModel(int searchAccountId)
+        public Task<IEnumerable<UnsuspendInfoModel>> GetUnsuspendInfoModel(int searchAccountId)
         {
-           return dynamicRepository.FetchAsync<UnsuspendByLevelModel>(new SelectCustomerSuspendInfoCriteria(searchAccountId));
+           return dynamicRepository.FetchAsync<UnsuspendInfoModel>(new SelectCustomerSuspendInfoCriteria(searchAccountId));
 
             //var unsuspendByLevel = new List<UnsuspendByLevelModel>();
 
@@ -39,7 +39,7 @@
             //return new UnsuspendModel(model);
         }
 
-        public async Task<UnsuspendDownlinesModel> GetUnsuspendDownlinesModel()
+        public async Task<UnsuspendViewListModel> GetUnsuspendViewListModel()
         {
             var unsuspendDownlines = new List<UnsuspendDownlineDto>();
 
@@ -48,21 +48,21 @@
                 unsuspendDownlines.Add( new UnsuspendDownlineDto($"Username-{i}", i, i < 30 ? (byte)1 : i < 60 ? (byte)2 : (byte)3));
             }
 
-            return new UnsuspendDownlinesModel(unsuspendDownlines.GroupBy(item => item.RoleId).Select(group => {
+            return new UnsuspendViewListModel(unsuspendDownlines.GroupBy(item => item.RoleId).Select(group => {
                 return new UnsuspendDownlineByLevelModel(group.Key, group);
             }), 5);
         }
 
-        public async Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModelModel()
+        public async Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel()
         {
             var model = new List<UnsuspendMultipleByUserModel>();
 
             for (int j = 5; j > 0; j--)
             {
-                var unsuspendByLevel = new List<UnsuspendByLevelModel>();
+                var unsuspendByLevel = new List<UnsuspendInfoModel>();
                 for (int i = 3; i > 0; i--)
                 {
-                    unsuspendByLevel.Add(new UnsuspendByLevelModel((byte)i, i * 15 + j, i * 30 + j));
+                    unsuspendByLevel.Add(new UnsuspendInfoModel((byte)i, i * 15 + j, i * 30 + j));
                 }
 
                 model.Add(new UnsuspendMultipleByUserModel(j * 2, $"Username-{j}", j % 2 == 0, unsuspendByLevel));

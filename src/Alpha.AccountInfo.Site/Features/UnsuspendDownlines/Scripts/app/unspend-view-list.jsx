@@ -1,11 +1,9 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-window.renderUnsuspendList = function (unsuspendDownlinesModel) {
+window.renderUnsuspendViewList = function (viewModel) {
 	ReactDOM.render(
-		<UnsuspendList 
-			unsuspendDownlinesModel={unsuspendDownlinesModel}
-		/>,
+		<UnsuspendList viewModel={viewModel}/>,
 		document.getElementById('unsuspend-list')
 	);
 };
@@ -24,11 +22,15 @@ export default class UnsuspendList extends React.Component {
 	}
 
 	render() {
-		const { unsuspendDownlinesModel } = this.props;
+        const { viewModel } = this.props;
 
 		return (
-			< div className="online-list" >
-
+			< div className="" >
+                <div>
+                    <a href={`${top.alpha.urls.accountInfoRootPath}/UnsuspendDownlines/EditSingle?SearchAccountId=${viewModel.SearchAccountId}`}>
+                      Back
+                    </a>
+                </div>
 				{this.buildNote()}
 
 				<table className="tblRpt tblRpt-bordered width-100per">
@@ -40,7 +42,7 @@ export default class UnsuspendList extends React.Component {
 					</thead>
 					<tbody>
 						{
-							unsuspendDownlinesModel.UnsuspendDownlinesByLevel.map((level, index) => {
+                            viewModel.UnsuspendDownlinesViewList.UnsuspendDownlinesByLevel.map((level, index) => {
 								const length = level.UnsuspendDownlines.length;
 								return (
 									level.UnsuspendDownlines.map((username, index1, arr) => {

@@ -9,17 +9,17 @@
 	@StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
 	@StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")}
 
-<div id="unsuspend-downlines-multiple" />
+<div id="unsuspend-multiple" />
 
 @Html.AntiForgeryToken()
 
 @section Scripts {
-	@StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-downlines-multiple")
+	@StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple")
 
 	<script>
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
-		renderUnsuspendDownlinesMultipe(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
+        renderUnsuspendMultipe(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
 Newtonsoft.Json.Formatting.Indented)));
 	</script>
 }

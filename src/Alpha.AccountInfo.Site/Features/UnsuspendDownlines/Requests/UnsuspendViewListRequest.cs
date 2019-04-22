@@ -5,10 +5,16 @@
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using MediatR;
 
-    public class UnsuspendRequest : SearchAccountQueryBase, IRequest<UnsuspendInfoViewModel>
+    public class UnsuspendViewListRequest : SearchAccountQueryBase, IRequest<UnsuspendListViewModel>
     {
-        public UnsuspendRequest(IUser viewer) : base(viewer)
+        public UnsuspendViewListRequest(IUser viewer) : base(viewer)
         {
+
+        }
+
+        public override bool IsValid()
+        {
+            return true;
         }
     }
 }

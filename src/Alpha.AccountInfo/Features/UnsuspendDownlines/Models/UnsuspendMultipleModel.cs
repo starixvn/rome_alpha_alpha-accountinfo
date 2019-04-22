@@ -8,8 +8,7 @@
             int custId,
             string username,
             bool suspended,
-            IEnumerable<UnsuspendByLevelModel> unsuspendByLevel
-            )
+            IEnumerable<UnsuspendInfoModel> unsuspendByLevel)
         {
             CustId = custId;
             Username = username;
@@ -23,6 +22,6 @@
 
         public bool Suspended { get; private set; }
 
-        public IEnumerable<UnsuspendByLevelModel> UnsuspendByLevel { get; private set; }
+        public IEnumerable<UnsuspendInfoModel> UnsuspendByLevel { get; private set; }
     }
 }

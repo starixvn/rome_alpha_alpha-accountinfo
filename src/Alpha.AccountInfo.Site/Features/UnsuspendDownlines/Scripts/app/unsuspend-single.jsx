@@ -1,12 +1,10 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-window.renderUnsuspendDownlines = function (unsuspendModel) {
+window.renderUnsuspendSingle = function (viewModel) {
 	ReactDOM.render(
-		<UnsuspendDownlines 
-			unsuspendModel={unsuspendModel}
-		/>,
-		document.getElementById('unsuspend-downlines')
+		<UnsuspendDownlines viewModel={viewModel} />,
+        document.getElementById('unsuspend-single')
 	);
 };
 
@@ -16,7 +14,7 @@ export default class UnsuspendDownlines extends React.Component {
 		this.state = {
 			hideMessages: true,
 			updateSuccess: false,
-			message: '',
+			message: ''
 		};
 
 		this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -46,7 +44,7 @@ export default class UnsuspendDownlines extends React.Component {
 
 	render() {
 		const { updateSuccess, message, hideMessages, resources } = this.state;
-		const { unsuspendModel } = this.props;
+        const { viewModel } = this.props;
 
 		return (
 			< div className="col-xs-12 " >
@@ -66,14 +64,15 @@ export default class UnsuspendDownlines extends React.Component {
 					</thead>
 					<tbody>
 						{
-							unsuspendModel.UnsuspendByLevel.map((level, index) => <UnsuspendRow {...{ level, key: index }} />)
+                                viewModel.UnsuspendByLevel.map((level, index) =>
+                                    <UnsuspendRow {...{ level, searchAccountId: viewModel.SearchAccountId, key: index }} />)
 						}
 					</tbody>
 					<tfoot>
 						<tr>
 							<th className="text-center">Total</th>
-							<th className="text-center"><a href='#'>{unsuspendModel.AffectedDownlinesTotal}</a></th>
-							<th className="text-center"><a href='#'>{unsuspendModel.UnchangedDownlinesTotal}</a></th>
+                                <th className="text-center"><a href='#'>{viewModel.AffectedDownlinesTotal}</a></th>
+                                <th className="text-center"><a href='#'>{viewModel.UnchangedDownlinesTotal}</a></th>
 						</tr>
 					</tfoot>
 					</table>
@@ -86,20 +85,22 @@ export default class UnsuspendDownlines extends React.Component {
 	}
 }
 
-export const UnsuspendRow = ({ level}) => {
+export const UnsuspendRow = ({ level, searchAccountId }) => {
+    const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
+
 	return (
 		<tr>
 			<td className="text-center">
 				{level.RoleId}
 			</td>
 			<td className="text-center">
-				<a href='#'>
+                <a href={`${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList?SearchAccountId=${searchAccountId}`}>
 					{level.AffectedDownlines}
 				</a>
 			</td>
 			<td className="text-center">
-				<a href='#'>
-					{level.UnchangedDownlines}
+                <a href={`${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList?SearchAccountId=${searchAccountId}`}>
+                    {level.UnchangedDownlines}
 				</a>
 			</td>
 		</tr>

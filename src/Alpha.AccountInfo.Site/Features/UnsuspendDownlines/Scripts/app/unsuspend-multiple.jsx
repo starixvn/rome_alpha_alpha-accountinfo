@@ -1,12 +1,10 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-window.renderUnsuspendDownlinesMultipe = function (unsuspendMultipleModel) {
+window.renderUnsuspendMultipe = function (viewModel) {
 	ReactDOM.render(
-		<UnsuspendDownlinesMultiple 
-			unsuspendMultipleModel={unsuspendMultipleModel}
-		/>,
-		document.getElementById('unsuspend-downlines-multiple')
+		<UnsuspendDownlinesMultiple viewModel={viewModel}/>,
+		document.getElementById('unsuspend-multiple')
 	);
 };
 
@@ -39,10 +37,10 @@ export default class UnsuspendDownlinesMultiple extends React.Component {
 
 	render() {
 		const { updateSuccess, message, hideMessages, resources } = this.state;
-		const { unsuspendMultipleModel } = this.props;
+        const { viewModel } = this.props;
 
 		return (
-			< div className="online-list" >
+			< div className="" >
 				<div className={hideMessages ? `hidden` : ``}>
 					<span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
 				</div>
@@ -61,7 +59,7 @@ export default class UnsuspendDownlinesMultiple extends React.Component {
 					</thead>
 					<tbody>
 						{
-							unsuspendMultipleModel.map((item, index) => <UnsuspendRow {...{ item, key: index }} />)
+                            viewModel.map((item, index) => <UnsuspendRow {...{ item, key: index }} />)
 						}
 					</tbody>
 				</table>

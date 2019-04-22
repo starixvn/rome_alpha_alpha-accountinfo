@@ -2,7 +2,7 @@
 	Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
-@model UnsuspendDownlinesModel
+@model UnsuspendListViewModel
 
 @section Styles {
 	@StaticResources.RenderStyles("/assets/bundles/common/common-super")
@@ -14,12 +14,12 @@
 @Html.AntiForgeryToken()
 
 @section Scripts {
-	@StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unspend-list")
+	@StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unspend-view-list")
 
 	<script>
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
-		renderUnsuspendList(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
+        renderUnsuspendViewList(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
 Newtonsoft.Json.Formatting.Indented)));
 	</script>
 }

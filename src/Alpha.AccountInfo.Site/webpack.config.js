@@ -19,15 +19,15 @@ module.exports = {
         "./SearchAccount/Bundles/account-info-mobile-calculate-07": [
             "./Features/SearchAccount/Styles/account-info-mobile-calculate-07.scss"
 		],
-		"./UnsuspendDownlines/Bundles/unsuspend-downlines": [
-			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-downlines.jsx",
+		"./UnsuspendDownlines/Bundles/unsuspend-single": [
+			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-single.jsx",
 			"./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
 		],
-		"./UnsuspendDownlines/Bundles/unsuspend-downlines-multiple": [
-			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-downlines-multiple.jsx"
+		"./UnsuspendDownlines/Bundles/unsuspend-multiple": [
+			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple.jsx"
 		],
-		"./UnsuspendDownlines/Bundles/unspend-list": [
-			"./Features/UnsuspendDownlines/Scripts/app/unspend-list.jsx"
+		"./UnsuspendDownlines/Bundles/unspend-view-list": [
+			"./Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx"
 		]
     },
 

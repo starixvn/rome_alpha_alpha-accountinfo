@@ -25,12 +25,14 @@
 
         internal override string StatusName => DataKey.StatusMapping.Suspended;
 
-        internal override bool StatusValue => Checked;
+        internal override bool StatusValue => !Checked;
 
         internal override bool SyncedCasino3rd => Request.SearchAccount.ProductStatusOf(ProductConstants.RNGCasino).Synced;
 
         public override bool IsPopup => Checked;
 
-        public override string Url =>$"{AccountInfoUrl}UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}";
+        public override string Url => Checked ?
+            $"{AccountInfoUrl}UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}" :
+            base.Url;
     }
 }

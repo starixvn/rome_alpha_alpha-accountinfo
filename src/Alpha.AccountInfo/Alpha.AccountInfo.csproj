@@ -211,9 +211,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Features\Shared\StatusNames.cs" />
-    <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendByLevelModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendInfoModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendMultipleModel.cs" />
-    <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendDownlinesModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoDetailCriteria.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectCustomerSuspendInfoCriteria.cs" />
