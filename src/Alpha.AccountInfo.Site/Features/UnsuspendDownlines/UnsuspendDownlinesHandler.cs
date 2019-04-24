@@ -39,6 +39,8 @@
         public async Task<UnsuspendListViewModel> Handle(UnsuspendViewListRequest message)
              => new UnsuspendListViewModel(
                  message.SearchAccountId,
+                 message.SearchAccountRoleId,
+                 message.CustIds,
                  await unsuspendDownlinesService.GetUnsuspendViewListModel(
                      message.SearchAccountId,
                      message.IsAffected,
@@ -55,11 +57,12 @@
                 var firstItem = group.FirstOrDefault();
                 return new UnsuspendInfoMultipleViewModel(
                      group.Key,
+                     message.RoleId,
                      firstItem.Username,
                      firstItem.Suspended,
                      message.RoleId,
-                     group);
-            });
+                     group.OrderByDescending(level=> level.RoleId));
+            }).OrderBy(group => group.Username);
         }
 
         public Task<Result> Handle(UnsuspendSingleCommand message)

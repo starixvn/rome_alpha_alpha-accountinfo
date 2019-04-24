@@ -105,10 +105,72 @@ export default class UnsuspendMultiple extends React.Component {
     buildErrorMessage(errors) {
         return (
             <div>
+                { errors.map((eror, index) => <div key={index}>{eror.Message}</div>) }
+            </div>
+        );
+    }
+
+    handleChange(index, value) {
+        const { viewModel } = this.state;
+        let viewModelCopy = _.cloneDeep(viewModel);
+
+        viewModelCopy[index].Suspended = value;
+
+        this.setState({ viewModel: viewModelCopy });
+    }
+
+    buildViewListUrl(searchAccountId, searchAccountRoleId, downlines, IsAffected, downlineRoleId, showSlash) {
+        const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
+        let custIds = '';
+        const { viewModel } = this.state;
+
+        viewModel.forEach(function (item) {
+            custIds = custIds + item.CustId + ',';
+        })
+
+        const href = `${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList` +
+            `?SearchAccountId=${searchAccountId}&SearchAccountRoleId=${searchAccountRoleId}&CustIds=${custIds}&DownlineRoleId=${downlineRoleId}` +
+            `&IsAffected=${IsAffected}`;
+
+        const text = `${downlines} ${showSlash ? '/': ''}`;
+        return downlines === 0 ? text : <a href={href}> {text}</a>
+    }
+
+    buildRow(item, downlineRoleId, index) {
+        const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
+
+        const length = item.UnsuspendByLevel.length;
+        const { originalViewModel } = this.state;
+        const showValue = originalViewModel[index].Suspended !== item.Suspended;
+        return (
+            <tr key={index}>
+                <td className="text-center">
+                    {item.Username}
+                </td>
+                <td className="text-center">
+                    <a onClick={() => this.handleChange(index, !item.Suspended)}>
+                        <img alt="test" className="suspend-button" src={`${accountinfoUrl}/Features/UnsuspendDownlines/Styles/Images/${item.Suspended ? 'suspened.png' : 'Unsuspend.png'}`} />
+                        {item.Suspended ? `Suspended` : `Unsuspended`}
+                    </a>
+                </td>
                 {
-                    errors.map((eror, index) => <div key={index}>{eror.Message}</div>)
+                    downlineRoleId > 1 && <td className="text-center">
+                        {
+                            showValue && (originalViewModel[index].Suspended ? item.UnsuspendByLevel.map((level, index) =>
+                                        this.buildViewListUrl(level.CustId, item.UplineRoleId, level.AffectedDownlines, true, level.RoleId, index < length - 1)) : 'All')
+                        }
+                    </td>
                 }
-            </div>);
+
+                {
+                    downlineRoleId > 1 && <td className="text-center">
+                        {
+                            showValue && (originalViewModel[index].Suspended ?  item.UnsuspendByLevel.map((level, index) =>
+                                this.buildViewListUrl(level.CustId, item.UplineRoleId, level.UnchangedDownlines, true, level.RoleId, index < length - 1)) : 'All')
+                        }
+                    </td>
+                }
+            </tr>);
     }
 
     render() {
@@ -141,7 +203,7 @@ export default class UnsuspendMultiple extends React.Component {
                     </thead>
                     <tbody>
                         {
-                            viewModel.map((item, index) => <UnsuspendRow {...{ item, downlineRoleId, key: index }} />)
+                            viewModel.map((item, index) => this.buildRow(item, downlineRoleId, index))
                         }
                     </tbody>
                 </table>
@@ -152,52 +214,4 @@ export default class UnsuspendMultiple extends React.Component {
             </div >
         );
     }
-}
-
-export const UnsuspendRow = ({ item, downlineRoleId }) => {
-    //const checked = item.Suspended ? 'checked' : '';
-    const inputProps = {
-        type: "checkbox",
-        checked: item.Suspended,
-        onChange: () => { }
-    };
-
-    const length = item.UnsuspendByLevel.length;
-
-    return (
-        <tr>
-            <td className="text-center">
-                {item.Username}
-            </td>
-            <td className="text-center">
-                <input {...inputProps} />
-            </td>
-
-            {
-                downlineRoleId > 1 && <td className="text-center">
-                    {
-                        item.UnsuspendByLevel.map((level, index) => {
-                            return (
-                                <a href='#' key={index}>
-                                    {level.AffectedDownlines} {index === length - 1 ? `` : `/ `}
-                                </a>
-                            );
-                        })
-                    }
-                </td>
-            }
-
-            {
-                downlineRoleId > 1 && <td className="text-center"> {
-                    item.UnsuspendByLevel.map((level, index) => {
-                        return (
-                            <a href='#' key={index}>
-                                {level.UnchangedDownlines} {index === length - 1 ? `` : `/ `}
-                            </a>
-                        );
-                    })
-                }
-                </td>
-            }
-        </tr>);
 }

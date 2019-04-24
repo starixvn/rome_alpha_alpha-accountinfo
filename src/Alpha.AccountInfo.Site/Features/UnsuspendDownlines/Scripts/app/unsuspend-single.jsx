@@ -73,12 +73,12 @@ export default class UnsuspendSingle extends React.Component {
         });
     }
 
-    buildViewListUrl(downlines, IsAffected, downlineRoleId, pagesize = 50, pageIndex = 0) {
+    buildViewListUrl(downlines, IsAffected, downlineRoleId) {
         const { accountinfoUrl, searchAccountId } = this.state;
 
         const href = `${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList` +
             `?SearchAccountId=${searchAccountId}&DownlineRoleId=${downlineRoleId}` +
-            `&IsAffected=${IsAffected}&PageSize=${pagesize}&PageIndex=${pageIndex}`;
+            `&IsAffected=${IsAffected}`;
 
         return downlines === 0 ? 0 : <a href={href}> {downlines} </a>
     }

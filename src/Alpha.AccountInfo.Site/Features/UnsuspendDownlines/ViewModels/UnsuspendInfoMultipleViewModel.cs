@@ -7,12 +7,14 @@
     {
         public UnsuspendInfoMultipleViewModel(
             int custId,
+            byte uplineRoleId,
             string username,
             bool suspended,
             byte roleId,
             IEnumerable<UnsuspendMultipleByUserModel> unsuspendByLevel)
         {
             CustId = custId;
+            UplineRoleId = uplineRoleId;
             Username = username;
             Suspended = suspended;
             RoleId = roleId;
@@ -20,6 +22,8 @@
         }
 
         public int CustId { get; private set; }
+
+        public byte UplineRoleId { get; private set; }
 
         public string Username { get; private set; }
 

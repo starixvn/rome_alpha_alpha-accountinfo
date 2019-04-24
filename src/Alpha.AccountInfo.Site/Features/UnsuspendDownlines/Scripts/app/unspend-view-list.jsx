@@ -23,11 +23,14 @@ export default class UnsuspendViewList extends React.Component {
 
 	render() {
         const { viewModel } = this.props;
+        const backHref = viewModel.CustIds !== undefined ? 
+            `${top.alpha.urls.accountInfoRootPath}/UnsuspendDownlines/EditMultiple?CustIds=${viewModel.CustIds}&RoleId=${viewModel.DownlineRoleId}` :
+            `${top.alpha.urls.accountInfoRootPath}/UnsuspendDownlines/EditSingle?SearchAccountId=${viewModel.SearchAccountId}`;
 
 		return (
 			< div className="" >
                 <div>
-                    <a href={`${top.alpha.urls.accountInfoRootPath}/UnsuspendDownlines/EditSingle?SearchAccountId=${viewModel.SearchAccountId}`}>
+                    <a href={viewModel.PreviousPage}>
                       Back
                     </a>
                 </div>
