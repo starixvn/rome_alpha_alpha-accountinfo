@@ -24,10 +24,12 @@ module.exports = {
 			"./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unsuspend-multiple": [
-			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple.jsx"
+            "./Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple.jsx",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unspend-view-list": [
-			"./Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx"
+            "./Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
 		]
     },
 

@@ -45,14 +45,16 @@
         {
             var model = await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false);
 
-           return model.GroupBy(item => item.CustId).Select(aa => {
-                var firstItem = aa.FirstOrDefault();
+            return model.GroupBy(item => item.CustId).Select(group =>
+            {
+                var firstItem = group.FirstOrDefault();
                 return new UnsuspendInfoMultipleViewModel(
-                     aa.Key,
+                     group.Key,
                      firstItem.Username,
                      firstItem.Suspended,
-                     aa);
-                 });
+                     message.RoleId,
+                     group);
+            });
         }
 
         public Task<Result> Handle(UnsuspendSingleCommand message)
@@ -70,18 +72,18 @@
 
         public async Task<IEnumerable<Result>> Handle(UnsuspendMultipleCommand message)
         {
-             var results = await Task.WhenAll(message.UnsuspendList.Select(
-                 customer => accountInfoService.UpdateCustomerStatus(
-                      new UpdateCustomerStatusParam(
-                          customer.CustId,
-                          message.ActorId,
-                          message.SubAccountId,
-                          message.Language,
-                          message.IP,
-                          customer.Suspended,
-                          StatusNames.Suspended,
-                          message.ActorName,
-                          false)))).ConfigureAwait(false);
+            var results = await Task.WhenAll(message.UnsuspendList.Select(
+                customer => accountInfoService.UpdateCustomerStatus(
+                     new UpdateCustomerStatusParam(
+                         customer.CustId,
+                         message.ActorId,
+                         message.SubAccountId,
+                         message.Language,
+                         message.IP,
+                         customer.Suspended,
+                         StatusNames.Suspended,
+                         message.ActorName,
+                         false)))).ConfigureAwait(false);
 
             return results.Where(result => !result.IsSuccess);
         }

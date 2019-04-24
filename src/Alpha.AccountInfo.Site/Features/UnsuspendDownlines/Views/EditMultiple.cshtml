@@ -1,25 +1,28 @@
 ﻿@{
-	Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
 @model IEnumerable<UnsuspendInfoMultipleViewModel>
 
 @section Styles {
-	@StaticResources.RenderStyles("/assets/bundles/common/common-super")
-	@StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
-	@StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")}
+    @StaticResources.RenderStyles("/assets/bundles/common/common-super")
+    @StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
+    @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
+    @StaticResources.RenderStyles("~/Features/UnsuspendDownlines/Bundles/unspend-view-list")
+
+}
 
 <div id="unsuspend-multiple" />
 
 @Html.AntiForgeryToken()
 
 @section Scripts {
-	@StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple")
+    @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple")
 
-	<script>
+    <script>
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
         renderUnsuspendMultipe(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
 Newtonsoft.Json.Formatting.Indented)));
-	</script>
+    </script>
 }

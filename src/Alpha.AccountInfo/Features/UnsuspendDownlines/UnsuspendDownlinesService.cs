@@ -44,21 +44,5 @@
 
         public Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel(string custIds, byte roleId)
             => dynamicRepository.FetchAsync<UnsuspendMultipleByUserModel>(new SelectSuspendInfoMultipleCriteria(custIds, roleId));
-        //{
-        //    var model = new List<UnsuspendMultipleByUserModel>();
-
-        //    for (int j = 5; j > 0; j--)
-        //    {
-        //        var unsuspendByLevel = new List<UnsuspendInfoModel>();
-        //        for (int i = 3; i > 0; i--)
-        //        {
-        //            unsuspendByLevel.Add(new UnsuspendInfoModel((byte)i, i * 15 + j, i * 30 + j));
-        //        }
-
-        //        model.Add(new UnsuspendMultipleByUserModel(j * 2, $"Username-{j}", j % 2 == 0, unsuspendByLevel));
-        //    }
-
-        //    return model;
-        //}
     }
 }
