@@ -39,7 +39,12 @@
         public async Task<UnsuspendListViewModel> Handle(UnsuspendViewListRequest message)
              => new UnsuspendListViewModel(
                  message.SearchAccountId,
-                 await unsuspendDownlinesService.GetUnsuspendViewListModel().ConfigureAwait(false));
+                 await unsuspendDownlinesService.GetUnsuspendViewListModel(
+                     message.SearchAccountId,
+                     message.IsAffected,
+                     message.DownlineRoleId,
+                     message.PageSize,
+                     message.PageIndex).ConfigureAwait(false));
 
         public async Task<IEnumerable<UnsuspendInfoMultipleViewModel>> Handle(UnsuspendMultipleRequest message)
         {

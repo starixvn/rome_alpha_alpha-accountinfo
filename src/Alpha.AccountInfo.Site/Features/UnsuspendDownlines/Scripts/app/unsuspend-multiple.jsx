@@ -114,6 +114,7 @@ export default class UnsuspendMultiple extends React.Component {
     render() {
         const { updateSuccess, message, hideMessages, resources, viewModel } = this.state;
         const downlineRoleId = viewModel.length > 0 ? viewModel[0].RoleId : 1;
+        const headerLevel = downlineRoleId == 2 ? 'Master/Agent/Member' : 'Agent/Member';
 
         return (
             <div className="">
@@ -128,8 +129,8 @@ export default class UnsuspendMultiple extends React.Component {
                             <th>
                                 Suspend Status
                             </th>
-                            {downlineRoleId > 1 && <th rowSpan='2'>Affected Downlines <br /> (Master/Agent/Member)</th>}
-                            {downlineRoleId > 1 && <th rowSpan='2'>Remain Unchanged Downlines <br /> (Master/Agent/Member)</th>}
+                            {downlineRoleId > 1 && <th rowSpan='2'>Affected Downlines <br /> ({headerLevel})</th>}
+                            {downlineRoleId > 1 && <th rowSpan='2'>Remain Unchanged Downlines <br /> ({headerLevel})</th>}
                         </tr>
                         <tr>
                             <th>

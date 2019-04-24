@@ -15,7 +15,9 @@ export default class UnsuspendSingle extends React.Component {
 		this.state = {
 			hideMessages: true,
 			updateSuccess: false,
-			message: ''
+            message: '',
+            accountinfoUrl: top.alpha.urls.accountInfoRootPath,
+            searchAccountId: this.props.viewModel.SearchAccountId
 		};
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,7 +53,7 @@ export default class UnsuspendSingle extends React.Component {
 
         unsuspendAPI.updateSuspend(
             "UnsuspendDownlines/UnsuspendSingle",
-            { SearchAccountId: this.props.viewModel.SearchAccountId })
+            { SearchAccountId: this.state.SearchAccountId })
             .then((data) => {
             self.setState({
                 hideMessages: false,
@@ -71,24 +73,78 @@ export default class UnsuspendSingle extends React.Component {
         });
     }
 
-    buildBodyRow(level, searchAccountId, index) {
-        const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
+    buildViewListUrl(downlines, IsAffected, downlineRoleId, pagesize = 50, pageIndex = 0) {
+        const { accountinfoUrl, searchAccountId } = this.state;
+
+        const href = `${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList` +
+            `?SearchAccountId=${searchAccountId}&DownlineRoleId=${downlineRoleId}` +
+            `&IsAffected=${IsAffected}&PageSize=${pagesize}&PageIndex=${pageIndex}`;
+
+        return downlines === 0 ? 0 : <a href={href}> {downlines} </a>
+    }
+
+    buildBodyRow(level, index) {
+        const columns = [
+            {
+                downlines: level.AffectedDownlines,
+                isAffected: true,
+                roleId: level.RoleId
+            },
+            {
+                downlines: level.UnchangedDownlines,
+                isAffected: false,
+                roleId: level.RoleId
+            }];
 
         return (
             <tr key={index}>
                 <td className="text-center">
-                    {level.RoleId}
+                    {level.RoleId == 3 ? `Master` : level.RoleId == 2 ? `Agent` :  `Member`}
                 </td>
-                <td className="text-center">
-                    <a href={`${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList?SearchAccountId=${searchAccountId}`}>
-                        {level.AffectedDownlines}
-                    </a>
-                </td>
-                <td className="text-center">
-                    <a href={`${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList?SearchAccountId=${searchAccountId}`}>
-                        {level.UnchangedDownlines}
-                    </a>
-                </td>
+                {
+                    columns.map((columns, index01) => {
+                        return (
+                            <td className="text-center" key={index01}>
+                                {
+                                    this.buildViewListUrl(columns.downlines, columns.isAffected, columns.roleId)
+                                }
+                            </td>
+                        );
+                    })
+
+                }
+            </tr>
+        );
+    }
+
+    buildFooterRow(AffectedDownlinesTotal, UnchangedDownlinesTotal) {
+        const columns = [
+            {
+                downlines: AffectedDownlinesTotal,
+                isAffected: true,
+                roleId: 0
+            },
+            {
+                downlines: UnchangedDownlinesTotal,
+                isAffected: false,
+                roleId: 0
+            }];
+
+        return (
+            <tr>
+                <th className="text-center">Total</th>
+                {
+                    columns.map((columns, index01) => {
+                        return (
+                            <th className="text-center" key={index01}>
+                                {
+                                    this.buildViewListUrl(columns.downlines, columns.isAffected, columns.roleId)
+                                }
+                            </th>
+                        );
+                    })
+
+                }
             </tr>
         );
     }
@@ -115,24 +171,13 @@ export default class UnsuspendSingle extends React.Component {
 					</thead>
 					<tbody>
 						{
-                                viewModel.UnsuspendByLevel.map((level, index) =>
-                                    this.buildBodyRow(level, viewModel.SearchAccountId, index))
+                                viewModel.UnsuspendByLevel.map((level, index) => this.buildBodyRow(level, index))
 						}
 					</tbody>
-					<tfoot>
-						<tr>
-							<th className="text-center">Total</th>
-                                <th className="text-center">
-                                    <a href='#'>
-                                        {viewModel.AffectedDownlinesTotal}
-                                    </a>
-                                </th>
-                                <th className="text-center">
-                                    <a href='#'>
-                                        {viewModel.UnchangedDownlinesTotal}
-                                    </a>
-                                </th>
-						</tr>
+                    <tfoot>
+                            {
+                                this.buildFooterRow(viewModel.AffectedDownlinesTotal, viewModel.UnchangedDownlinesTotal)
+                            }
 					</tfoot>
 					</table>
 				</ div>

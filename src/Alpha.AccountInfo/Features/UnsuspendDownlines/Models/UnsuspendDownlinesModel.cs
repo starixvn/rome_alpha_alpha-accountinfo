@@ -6,15 +6,12 @@
     {
         public UnsuspendDownlineDto() { }
 
-        public UnsuspendDownlineDto(string username, int custId, byte roleId) {
+        public UnsuspendDownlineDto(string username, byte roleId) {
             Username = username;
-            CustId = custId;
             RoleId = roleId;
         }
 
         public string Username { get; private set; }
-
-        public int CustId { get; private set; }
 
         public byte RoleId { get; private set; }
     }
@@ -36,14 +33,14 @@
     {
         public UnsuspendViewListModel(
             IEnumerable<UnsuspendDownlineByLevelModel> unsuspendDownlinesByLevel, 
-            int totalPages)
+            int totalRows)
         {
             UnsuspendDownlinesByLevel = unsuspendDownlinesByLevel;
-            TotalPages = totalPages;
+            TotalRows = totalRows;
         }
 
         public IEnumerable<UnsuspendDownlineByLevelModel> UnsuspendDownlinesByLevel { get; private set; }
 
-        public int TotalPages { get; private set; }
+        public int TotalRows { get; private set; }
     }
 }

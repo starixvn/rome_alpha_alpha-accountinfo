@@ -6,18 +6,16 @@
     {
         public SelectSuspendInfoDetailCriteria(
             int searchAccountId,
+            byte roleId,
             bool isAffected,
             int pageSize,
-            int pageIndex,
-            byte roleId,
-            int totalPages)
+            int pageIndex)
             : base(searchAccountId)
         {
             IsAffected = isAffected;
             PageSize = pageSize;
             PageIndex = pageIndex;
             RoleId = roleId;
-            TotalPages = totalPages;
         }
 
         public bool IsAffected { get; }
@@ -29,7 +27,7 @@
         [SpParam(SqlParamName = "DownlineRoleid")]
         public byte RoleId { get; }
 
-        public int TotalPages { get; }
+        public int TotalRows { get; set; }
 
         public override string GetSettingKey() => "Acc_Customer_SuspendInfoDetailSel";
     }

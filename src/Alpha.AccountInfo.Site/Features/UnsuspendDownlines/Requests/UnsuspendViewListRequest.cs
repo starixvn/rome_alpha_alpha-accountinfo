@@ -9,12 +9,16 @@
     {
         public UnsuspendViewListRequest(IUser viewer) : base(viewer)
         {
-
         }
 
-        public override bool IsValid()
-        {
-            return true;
-        }
+        public bool IsAffected { get; set; }
+
+        public byte DownlineRoleId { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int PageIndex { get; set; }
+
+        public override bool IsValid() => base.IsValid() && IsValidSearchAccountRoleId(DownlineRoleId);
     }
 }

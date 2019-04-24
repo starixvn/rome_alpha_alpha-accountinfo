@@ -50,12 +50,10 @@ export default class UnsuspendViewList extends React.Component {
 											return (
 												<tr key={index1}>
 													<td className="text-center" rowSpan={length}>
-														{level.RoleId}
+                                                        {level.RoleId == 3 ? `Master` : level.RoleId == 2 ? `Agent` : `Member`}
 													</td>
 													<td className="text-center">
-														<a href='#'>
-															{username.Username}
-														</a>
+                                                        {username.Username}
 													</td>
 												</tr>
 											);
@@ -64,9 +62,7 @@ export default class UnsuspendViewList extends React.Component {
 											return (
 												<tr key={index1}>
 													<td className="text-center">
-														<a href='#'>
-															{username.Username}
-														</a>
+                                                        {username.Username}
 													</td>
 												</tr>
 											);
