@@ -1,14 +1,15 @@
 ﻿@{
-	Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
 @model UnsuspendInfoViewModel
 
 @section Styles {
-	@StaticResources.RenderStyles("/assets/bundles/common/common-super")
-	@StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
-	@StaticResources.RenderStyles("~/Features/UnsuspendDownlines/Bundles/unsuspend-single")
-	@StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
+    @StaticResources.RenderStyles("/assets/bundles/common/common-super")
+    @StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
+    @StaticResources.RenderStyles("~/Features/UnsuspendDownlines/Bundles/unsuspend-single")
+    @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
 }
 
 <div id="unsuspend-single" />
@@ -16,12 +17,12 @@
 @Html.AntiForgeryToken()
 
 @section Scripts {
-	@StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-single")
+    @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-single")
 
-	<script>
+    <script>
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
         renderUnsuspendSingle(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
 Newtonsoft.Json.Formatting.Indented)));
-	</script>
+    </script>
 }

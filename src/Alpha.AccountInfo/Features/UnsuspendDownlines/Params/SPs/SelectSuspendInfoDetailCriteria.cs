@@ -6,7 +6,7 @@
     {
         public SelectSuspendInfoDetailCriteria(
             int searchAccountId,
-            byte roleId,
+            byte downlineRoleId,
             bool isAffected,
             int pageSize,
             int pageIndex)
@@ -15,7 +15,7 @@
             IsAffected = isAffected;
             PageSize = pageSize;
             PageIndex = pageIndex;
-            RoleId = roleId;
+            DownlineRoleId = downlineRoleId;
         }
 
         public bool IsAffected { get; }
@@ -24,8 +24,7 @@
 
         public int PageIndex { get; }
 
-        [SpParam(SqlParamName = "DownlineRoleid")]
-        public byte RoleId { get; }
+        public byte DownlineRoleId { get; }
 
         public int TotalRows { get; set; }
 

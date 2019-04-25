@@ -432,7 +432,6 @@
     <Content Include=".babelrc" />
     <Content Include="Features\UnsuspendDownlines\Views\EditSingle.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Views\web.config" />
-    <Content Include="Features\UnsuspendDownlines\Views\ViewList.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Views\EditMultiple.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines.scss" />
     <None Include="jest.config.json" />

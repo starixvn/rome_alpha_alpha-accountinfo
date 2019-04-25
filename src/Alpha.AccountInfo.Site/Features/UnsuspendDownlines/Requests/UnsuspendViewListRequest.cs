@@ -13,10 +13,6 @@
 
         public bool IsAffected { get; set; }
 
-        public string CustIds { get; set; }
-
-        public byte SearchAccountRoleId { get; set; }
-
         public byte DownlineRoleId { get; set; }
 
         public int PageSize { get; set; } = 50;

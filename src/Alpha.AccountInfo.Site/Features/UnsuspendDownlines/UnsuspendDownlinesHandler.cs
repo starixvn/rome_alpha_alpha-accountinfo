@@ -39,8 +39,6 @@
         public async Task<UnsuspendListViewModel> Handle(UnsuspendViewListRequest message)
              => new UnsuspendListViewModel(
                  message.SearchAccountId,
-                 message.SearchAccountRoleId,
-                 message.CustIds,
                  await unsuspendDownlinesService.GetUnsuspendViewListModel(
                      message.SearchAccountId,
                      message.IsAffected,
