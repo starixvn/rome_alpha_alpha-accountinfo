@@ -1,25 +1,27 @@
 ﻿@{
-	Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
 @model UnsuspendListViewModel
 
 @section Styles {
-	@StaticResources.RenderStyles("/assets/bundles/common/common-super")
-	@StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
-	@StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")}
+    @StaticResources.RenderStyles("/assets/bundles/common/common-super")
+    @StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
+    @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+}
 
 <div id="unsuspend-list" />
 
 @Html.AntiForgeryToken()
 
 @section Scripts {
-	@StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unspend-view-list")
+    @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unspend-view-list")
 
-	<script>
+    <script>
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
         renderUnsuspendViewList(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
 Newtonsoft.Json.Formatting.Indented)));
-	</script>
+    </script>
 }

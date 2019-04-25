@@ -1,17 +1,36 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
+import Pagination from "react-js-pagination";
+import { unsuspendAPI } from './unsuspend-api';
 
 window.renderUnsuspendViewList = function (viewModel) {
 	ReactDOM.render(
-        <UnsuspendViewList viewModel={viewModel}/>,
+        <UnsuspendViewList viewListModel={viewModel}/>,
 		document.getElementById('unsuspend-list')
 	);
 };
 
 export default class UnsuspendViewList extends React.Component {
 	constructor(props) {
-		super(props);
+        super(props);
+        this.state = {
+            viewModel: null,
+            activePage: 1
+        };
+
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.fetchCustomerListFromServer = this.fetchCustomerListFromServer.bind(this);
+
+        
 	}
+
+    componentWillMount() {
+        this.fetchCustomerListFromServer(1);
+    }
+
+    handlePageChange(pageNumber) {
+        this.setState({ activePage: pageNumber });
+    }
 
 	buildNote() {
 		return (
@@ -21,16 +40,39 @@ export default class UnsuspendViewList extends React.Component {
 		);
 	}
 
-	render() {
-        const { viewModel } = this.props;
-        const backHref = viewModel.CustIds !== undefined ? 
-            `${top.alpha.urls.accountInfoRootPath}/UnsuspendDownlines/EditMultiple?CustIds=${viewModel.CustIds}&RoleId=${viewModel.DownlineRoleId}` :
-            `${top.alpha.urls.accountInfoRootPath}/UnsuspendDownlines/EditSingle?SearchAccountId=${viewModel.SearchAccountId}`;
+    fetchCustomerListFromServer(pageNumber) {
 
-		return (
+        $.blockUI();
+        this.setState({ activePage: pageNumber });
+
+            var params = {
+                SearchAccountId: 223322,
+                PageSize: 20,
+                PageIndex: pageNumber - 1,
+                CustIds: '223322,223323',
+                IsAffected: true,
+                SearchAccountRoleId: 3,
+                DownlineRoleId: 2
+            };
+
+        unsuspendAPI.fetchCustomerList(params).then(
+                (responeData) => {
+                    this.setState({
+                        viewModel: responeData
+                    });
+
+                    $.unblockUI();
+                });
+        
+    }
+
+    render() {
+        const { viewModel } = this.state;
+
+        return this.state.viewModel === null ? null : (
 			< div className="" >
                 <div>
-                    <a href={viewModel.PreviousPage}>
+                    <a href='#' onClick={() => this.props.hrefBack()}>
                       Back
                     </a>
                 </div>
@@ -76,7 +118,16 @@ export default class UnsuspendViewList extends React.Component {
 							})
 						}
 					</tbody>
-				</table>
+                </table>
+                <div className="text-center">
+                    <Pagination
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={20}
+                        totalItemsCount={100}
+                        pageRangeDisplayed={5}
+                        onChange={this.fetchCustomerListFromServer}
+                  />
+      </div>
 			</div >
 		);
 	}

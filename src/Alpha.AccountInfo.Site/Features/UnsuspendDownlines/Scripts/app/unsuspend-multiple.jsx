@@ -2,6 +2,7 @@
 import ReactDOM from 'react-dom';
 import * as _ from 'lodash';
 import { unsuspendAPI } from './unsuspend-api';
+import UnsuspendViewList from './unspend-view-list';
 
 window.renderUnsuspendMultipe = function (viewModel) {
     ReactDOM.render(
@@ -19,7 +20,8 @@ export default class UnsuspendMultiple extends React.Component {
             updateSuccess: false, 
             message: '',
             originalViewModel: _.cloneDeep(viewModel),
-            viewModel: viewModel
+            viewModel: viewModel,
+            showViewList: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,6 +30,10 @@ export default class UnsuspendMultiple extends React.Component {
         this.handleSuspendAll = this.handleSuspendAll.bind(this);
         this.handleUnsuspendAll = this.handleUnsuspendAll.bind(this);
         this.handleReset = this.handleReset.bind(this);
+        this.hrefViewlist = this.hrefViewlist.bind(this);
+        this.hrefBack = this.hrefBack.bind(this);
+        
+        
     }
 
     handleKeyPress(e) {
@@ -132,8 +138,16 @@ export default class UnsuspendMultiple extends React.Component {
             `?SearchAccountId=${searchAccountId}&SearchAccountRoleId=${searchAccountRoleId}&CustIds=${custIds}&DownlineRoleId=${downlineRoleId}` +
             `&IsAffected=${IsAffected}`;
 
-        const text = `${downlines} ${showSlash ? '/': ''}`;
-        return downlines === 0 ? text : <a href={href}> {text}</a>
+        const text = `${downlines} ${showSlash ? '/' : ''}`;
+        return downlines === 0 ? text : <a href='#' onClick={this.hrefViewlist}> {text}</a>
+    }
+
+    hrefViewlist() {
+        this.setState({ showViewList: true });
+    }
+
+    hrefBack() {
+        this.setState({ showViewList: false });
     }
 
     buildRow(item, downlineRoleId, index) {
@@ -178,40 +192,41 @@ export default class UnsuspendMultiple extends React.Component {
         const downlineRoleId = viewModel.length > 0 ? viewModel[0].RoleId : 1;
         const headerLevel = downlineRoleId == 2 ? 'Master/Agent/Member' : 'Agent/Member';
 
-        return (
-            <div className="">
-                <div className={hideMessages ? `hidden` : ``}>
-                    <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
-                </div>
+        const multipleView = <div className="">
+            <div className={hideMessages ? `hidden` : ``}>
+                <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
+            </div>
 
-                <table className="tblRpt tblRpt-bordered width-100per">
-                    <thead>
-                        <tr>
-                            <th rowSpan='2'>Username</th>
-                            <th>
-                                Suspend Status
+            <table className="tblRpt tblRpt-bordered width-100per">
+                <thead>
+                    <tr>
+                        <th rowSpan='2'>Username</th>
+                        <th>
+                            Suspend Status
                             </th>
-                            {downlineRoleId > 1 && <th rowSpan='2'>Affected Downlines <br /> ({headerLevel})</th>}
-                            {downlineRoleId > 1 && <th rowSpan='2'>Remain Unchanged Downlines <br /> ({headerLevel})</th>}
-                        </tr>
-                        <tr>
-                            <th>
-                                <button className="btn-refresh" onClick={this.handleSuspendAll}>Suspend</button>
-                                <button className="btn-default" onClick={this.handleUnsuspendAll}>Unsuspend</button>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            viewModel.map((item, index) => this.buildRow(item, downlineRoleId, index))
-                        }
-                    </tbody>
-                </table>
-                <div className="col-xs-12 row-info popup-bottom list-button text-right">
-                    <button className="btn-reset" onClick={this.handleReset}>Reset</button>
-                    <button className="btn-submit" onClick={this.handleSubmit}>Submit</button>
-                </div>
-            </div >
-        );
+                        {downlineRoleId > 1 && <th rowSpan='2'>Affected Downlines <br /> ({headerLevel})</th>}
+                        {downlineRoleId > 1 && <th rowSpan='2'>Remain Unchanged Downlines <br /> ({headerLevel})</th>}
+                    </tr>
+                    <tr>
+                        <th>
+                            <button className="btn-refresh" onClick={this.handleSuspendAll}>Suspend</button>
+                            <button className="btn-default" onClick={this.handleUnsuspendAll}>Unsuspend</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        viewModel.map((item, index) => this.buildRow(item, downlineRoleId, index))
+                    }
+                </tbody>
+            </table>
+            <div className="col-xs-12 row-info popup-bottom list-button text-right">
+                <button className="btn-reset" onClick={this.handleReset}>Reset</button>
+                <button className="btn-submit" onClick={this.handleSubmit}>Submit</button>
+            </div>
+        </div >;
+
+        const viewList = <UnsuspendViewList hrefBack={this.hrefBack}/>;
+        return this.state.showViewList ? viewList : multipleView;
     }
 }

@@ -1,5 +1,7 @@
 ﻿@{
-    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+                /**/
+
+                Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
 @model IEnumerable<UnsuspendInfoMultipleViewModel>
@@ -9,6 +11,7 @@
     @StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
     @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
     @StaticResources.RenderStyles("~/Features/UnsuspendDownlines/Bundles/unspend-view-list")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
 
 }
 

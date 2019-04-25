@@ -26,6 +26,9 @@
         public async Task<ActionResult> EditMultiple(UnsuspendMultipleRequest message)
          => await ViewAsync(message, EditMultiplePath).ConfigureAwait(false);
 
+        public ActionResult FetchCustomerList(UnsuspendViewListRequest message)
+           => JsonData(message);
+
         [HttpPost, AntiXsrfFilter]
         public ActionResult UnsuspendSingle(UnsuspendSingleCommand command)
           => JsonData(command, JsonRequestBehavior.DenyGet);

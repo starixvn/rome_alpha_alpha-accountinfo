@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { unsuspendAPI } from './unsuspend-api';
+import UnsuspendViewList from './unspend-view-list';
 
 window.renderUnsuspendSingle = function (viewModel) {
 	ReactDOM.render(
@@ -17,11 +18,14 @@ export default class UnsuspendSingle extends React.Component {
 			updateSuccess: false,
             message: '',
             accountinfoUrl: top.alpha.urls.accountInfoRootPath,
-            searchAccountId: this.props.viewModel.SearchAccountId
+            searchAccountId: this.props.viewModel.SearchAccountId,
+            showViewList: false
 		};
 
         this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.hrefViewlist = this.hrefViewlist.bind(this);
+        this.hrefBack = this.hrefBack.bind(this);
 	}
 
 	handleKeyPress(e) {
@@ -29,6 +33,14 @@ export default class UnsuspendSingle extends React.Component {
 			this.handleSubmit(e);
 		}
 	}
+
+    hrefViewlist() {
+        this.setState({ showViewList: true });
+    }
+
+    hrefBack() {
+        this.setState({ showViewList: false });
+    }
 
 	showErrorMessage(message) {
 		this.setState((prevState) => ({
@@ -80,7 +92,7 @@ export default class UnsuspendSingle extends React.Component {
             `?SearchAccountId=${searchAccountId}&DownlineRoleId=${downlineRoleId}` +
             `&IsAffected=${IsAffected}`;
 
-        return downlines === 0 ? 0 : <a href={href}> {downlines} </a>
+        return downlines === 0 ? 0 : <a href='#' onClick={this.hrefViewlist}> {downlines} </a>
     }
 
     buildBodyRow(level, index) {
@@ -153,38 +165,41 @@ export default class UnsuspendSingle extends React.Component {
 		const { updateSuccess, message, hideMessages, resources } = this.state;
         const { viewModel } = this.props;
 
-		return (
-			< div className="col-xs-12 " >
-				<div className={hideMessages ? `hidden` : ``}>
-					<span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
-				</div>
+        const singleView = (
+            < div className="col-xs-12 " >
+                <div className={hideMessages ? `hidden` : ``}>
+                    <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
+                </div>
 
-				{this.buildNote()}
-				< div className="col-xs-12 " >
-				<table className="tblRpt tblRpt-bordered width-100per">
-					<thead>
-						<tr>
-							<th>Level</th>
-							<th>Affected Downlines</th>
-							<th>Remain Unchanged Downlines</th>
-						</tr>
-					</thead>
-					<tbody>
-						{
+                {this.buildNote()}
+                < div className="col-xs-12 " >
+                    <table className="tblRpt tblRpt-bordered width-100per">
+                        <thead>
+                            <tr>
+                                <th>Level</th>
+                                <th>Affected Downlines</th>
+                                <th>Remain Unchanged Downlines</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
                                 viewModel.UnsuspendByLevel.map((level, index) => this.buildBodyRow(level, index))
-						}
-					</tbody>
-                    <tfoot>
+                            }
+                        </tbody>
+                        <tfoot>
                             {
                                 this.buildFooterRow(viewModel.AffectedDownlinesTotal, viewModel.UnchangedDownlinesTotal)
                             }
-					</tfoot>
-					</table>
-				</ div>
-				<div className="col-xs-12 row-info popup-bottom list-button text-right">
+                        </tfoot>
+                    </table>
+                </ div>
+                <div className="col-xs-12 row-info popup-bottom list-button text-right">
                     <button className="btn-submit" onClick={this.handleSubmit}>Unsuspend</button>
-				</div>
-			</div >
-		);
+                </div>
+            </div >
+        );
+
+        const viewList = <UnsuspendViewList hrefBack={this.hrefBack} />;
+        return this.state.showViewList ? viewList : singleView; 
 	}
 }

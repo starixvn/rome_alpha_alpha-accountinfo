@@ -21,7 +21,7 @@
 
         public int PageSize { get; set; } = 50;
 
-        public int PageIndex { get; set; } = 0;
+        public int PageIndex { get; set; }
 
         public override bool IsValid() => base.IsValid() && IsValidSearchAccountRoleId(DownlineRoleId);
     }
