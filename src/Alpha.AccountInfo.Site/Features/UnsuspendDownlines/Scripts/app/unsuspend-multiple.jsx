@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import ReactDOM from 'react-dom';
 import * as _ from 'lodash';
-import { unsuspendAPI } from './unsuspend-api';
+import { unsuspendAPI, accountinfoUrl } from './unsuspend-api';
 import UnsuspendViewList from './unspend-view-list';
 
 window.renderUnsuspendMultipe = function (viewModel) {
@@ -16,56 +16,29 @@ export default class UnsuspendMultiple extends React.Component {
         super(props);
         const { viewModel } = this.props
         this.state = {
-            hideMessages: true,
-            updateSuccess: false, 
-            message: '',
+            showViewList: false,
+            isAffected: false,
+            searchAccountId: 0,
+            downlineRoleId: 1,
             originalViewModel: _.cloneDeep(viewModel),
-            viewModel: viewModel,
-            showViewList: false
+            viewModel: viewModel
         };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-        this.handleToggleSuspendAll = this.handleToggleSuspendAll.bind(this);
-        this.handleSuspendAll = this.handleSuspendAll.bind(this);
-        this.handleUnsuspendAll = this.handleUnsuspendAll.bind(this);
         this.handleReset = this.handleReset.bind(this);
-        this.hrefViewlist = this.hrefViewlist.bind(this);
-        this.hrefBack = this.hrefBack.bind(this);
-        
-        
-    }
-
-    handleKeyPress(e) {
-        if (e.key === 'Enter') {
-            this.handleSubmit(e);
-        }
-    }
-
-    showErrorMessage(message) {
-        this.setState((prevState) => ({
-            hideMessages: false,
-            message: message,
-            updateSuccess: false
-        }));
+        this.toggleSuspendAll = this.toggleSuspendAll.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.redirectViewListDetail = this.redirectViewListDetail.bind(this);
+        this.redirectMainPage = this.redirectMainPage.bind(this);
     }
 
     handleReset() {
-        const { originalViewModel } = this.state;
-        this.setState({ viewModel: originalViewModel });
+        this.setState((prevState) => ({
+            viewModel: prevState.originalViewModel,
+        }));
     }
 
-    handleSuspendAll() {
-        this.handleToggleSuspendAll(true);
-    }
-
-    handleUnsuspendAll() {
-        this.handleToggleSuspendAll(false);
-    }
-
-    handleToggleSuspendAll(suspendAll) {
-        const { viewModel } = this.state;
-        let viewModelCopy = _.cloneDeep(viewModel);
+    toggleSuspendAll(suspendAll) {
+        let viewModelCopy = _.cloneDeep(this.state.viewModel);
 
         viewModelCopy.forEach(function (item) {
             item.Suspended = suspendAll;
@@ -74,11 +47,73 @@ export default class UnsuspendMultiple extends React.Component {
         this.setState({ viewModel: viewModelCopy });
     }
 
-    handleSubmit(e) {
-        let self = this;
+    handleChange(index, value) {
         const { viewModel } = this.state;
-        $.blockUI();
+        let viewModelCopy = _.cloneDeep(viewModel);
 
+        viewModelCopy[index].Suspended = value;
+
+        this.setState({ viewModel: viewModelCopy });
+    }
+
+    redirectViewListDetail(searchAccountId, downlineRoleId, isAffected) {
+        this.setState({
+            searchAccountId: searchAccountId,
+            showViewList: true,
+            isAffected: isAffected,
+            downlineRoleId: downlineRoleId
+        });
+    }
+
+    redirectMainPage() {
+        this.setState({ showViewList: false });
+    }
+
+    render() {
+        const { searchAccountId, isAffected, downlineRoleId, originalViewModel, viewModel} = this.state;
+
+        return this.state.showViewList ?
+            <UnsuspendViewList {...{
+                isAffected,
+                downlineRoleId,
+                searchAccountId,
+                redirectMainPage: this.redirectMainPage
+            }} /> :
+            <MultipleView
+                {...{
+                    viewModel,
+                    originalViewModel,
+                    handleReset: this.handleReset,
+                    toggleSuspendAll: this.toggleSuspendAll,
+                    handleChange: this.handleChange,
+                    redirectViewListDetail: this.redirectViewListDetail
+                }}/>;
+    }
+}
+
+export class MultipleView extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hideMessages: true,
+            updateSuccess: false,
+            message: ''
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+    }
+
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.handleSubmit(e);
+        }
+    }
+
+    handleSubmit(e) {
+        $.blockUI();
+        let self = this;
+        const { viewModel } = this.props;
         let unsuspendList = [];
 
         viewModel.map(function (item, index) {
@@ -111,122 +146,117 @@ export default class UnsuspendMultiple extends React.Component {
     buildErrorMessage(errors) {
         return (
             <div>
-                { errors.map((eror, index) => <div key={index}>{eror.Message}</div>) }
+                {errors.map((eror, index) => <div key={index}>{eror.Message}</div>)}
             </div>
         );
     }
 
-    handleChange(index, value) {
-        const { viewModel } = this.state;
-        let viewModelCopy = _.cloneDeep(viewModel);
-
-        viewModelCopy[index].Suspended = value;
-
-        this.setState({ viewModel: viewModelCopy });
-    }
-
-    buildViewListUrl(searchAccountId, searchAccountRoleId, downlines, IsAffected, downlineRoleId, showSlash) {
-        const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
-        let custIds = '';
-        const { viewModel } = this.state;
-
-        viewModel.forEach(function (item) {
-            custIds = custIds + item.CustId + ',';
-        })
-
-        const href = `${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList` +
-            `?SearchAccountId=${searchAccountId}&SearchAccountRoleId=${searchAccountRoleId}&CustIds=${custIds}&DownlineRoleId=${downlineRoleId}` +
-            `&IsAffected=${IsAffected}`;
-
-        const text = `${downlines} ${showSlash ? '/' : ''}`;
-        return downlines === 0 ? text : <a href='#' onClick={this.hrefViewlist}> {text}</a>
-    }
-
-    hrefViewlist() {
-        this.setState({ showViewList: true });
-    }
-
-    hrefBack() {
-        this.setState({ showViewList: false });
-    }
-
-    buildRow(item, downlineRoleId, index) {
-        const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
-
-        const length = item.UnsuspendByLevel.length;
-        const { originalViewModel } = this.state;
-        const showValue = originalViewModel[index].Suspended !== item.Suspended;
-        return (
-            <tr key={index}>
-                <td className="text-center">
-                    {item.Username}
-                </td>
-                <td className="text-center">
-                    <a onClick={() => this.handleChange(index, !item.Suspended)}>
-                        <img alt="test" className="suspend-button" src={`${accountinfoUrl}/Features/UnsuspendDownlines/Styles/Images/${item.Suspended ? 'suspened.png' : 'Unsuspend.png'}`} />
-                        {item.Suspended ? `Suspended` : `Unsuspended`}
-                    </a>
-                </td>
-                {
-                    downlineRoleId > 1 && <td className="text-center">
-                        {
-                            showValue && (originalViewModel[index].Suspended ? item.UnsuspendByLevel.map((level, index) =>
-                                        this.buildViewListUrl(level.CustId, item.UplineRoleId, level.AffectedDownlines, true, level.RoleId, index < length - 1)) : 'All')
-                        }
-                    </td>
-                }
-
-                {
-                    downlineRoleId > 1 && <td className="text-center">
-                        {
-                            showValue && (originalViewModel[index].Suspended ?  item.UnsuspendByLevel.map((level, index) =>
-                                this.buildViewListUrl(level.CustId, item.UplineRoleId, level.UnchangedDownlines, true, level.RoleId, index < length - 1)) : 'All')
-                        }
-                    </td>
-                }
-            </tr>);
-    }
-
     render() {
-        const { updateSuccess, message, hideMessages, resources, viewModel } = this.state;
+        const { updateSuccess, message, hideMessages, resources } = this.state;
+        const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset } = this.props
         const downlineRoleId = viewModel.length > 0 ? viewModel[0].RoleId : 1;
         const headerLevel = downlineRoleId == 2 ? 'Master/Agent/Member' : 'Agent/Member';
 
-        const multipleView = <div className="">
-            <div className={hideMessages ? `hidden` : ``}>
-                <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
-            </div>
+        return (
+            <div className="">
+                <div className={hideMessages ? `hidden` : ``}>
+                    <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
+                </div>
 
-            <table className="tblRpt tblRpt-bordered width-100per">
-                <thead>
-                    <tr>
-                        <th rowSpan='2'>Username</th>
-                        <th>
-                            Suspend Status
+                <table className="tblRpt tblRpt-bordered width-100per">
+                    <thead>
+                        <tr>
+                            <th rowSpan='2'>Username</th>
+                            <th>
+                                Suspend Status
                             </th>
-                        {downlineRoleId > 1 && <th rowSpan='2'>Affected Downlines <br /> ({headerLevel})</th>}
-                        {downlineRoleId > 1 && <th rowSpan='2'>Remain Unchanged Downlines <br /> ({headerLevel})</th>}
-                    </tr>
-                    <tr>
-                        <th>
-                            <button className="btn-refresh" onClick={this.handleSuspendAll}>Suspend</button>
-                            <button className="btn-default" onClick={this.handleUnsuspendAll}>Unsuspend</button>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        viewModel.map((item, index) => this.buildRow(item, downlineRoleId, index))
-                    }
-                </tbody>
-            </table>
-            <div className="col-xs-12 row-info popup-bottom list-button text-right">
-                <button className="btn-reset" onClick={this.handleReset}>Reset</button>
-                <button className="btn-submit" onClick={this.handleSubmit}>Submit</button>
-            </div>
-        </div >;
-
-        const viewList = <UnsuspendViewList hrefBack={this.hrefBack}/>;
-        return this.state.showViewList ? viewList : multipleView;
+                            {downlineRoleId > 1 && <th rowSpan='2'>Affected Downlines <br /> ({headerLevel})</th>}
+                            {downlineRoleId > 1 && <th rowSpan='2'>Remain Unchanged Downlines <br /> ({headerLevel})</th>}
+                        </tr>
+                        <tr>
+                            <th>
+                                <button className="btn-refresh" onClick={() => toggleSuspendAll(true)}>Suspend</button>
+                                <button className="btn-default" onClick={() => toggleSuspendAll(false)}>Unsuspend</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            viewModel.map((item, index) =>
+                                <RowContent originalViewModel={originalViewModel}
+                                    item={item}
+                                    downlineRoleId={downlineRoleId}
+                                    index={index}
+                                    handleChange={handleChange}
+                                    redirectViewListDetail={redirectViewListDetail}
+                                />)
+                        }
+                    </tbody>
+                </table>
+                <div className="col-xs-12 row-info popup-bottom list-button text-right">
+                    <button className="btn-reset" onClick={handleReset}>Reset</button>
+                    <button className="btn-submit" onClick={this.handleSubmit}>Submit</button>
+                </div>
+            </div >
+        );
     }
+}
+
+export const RowContent = ({ originalViewModel, item, downlineRoleId, index, handleChange, redirectViewListDetail}) => {
+    const length = item.UnsuspendByLevel.length;
+    const showValue = originalViewModel[index].Suspended !== item.Suspended;
+
+    return (
+        <tr key={index}>
+            <td className="text-center">
+                {item.Username}
+            </td>
+            <td className="text-center">
+                <a onClick={() => handleChange(index, !item.Suspended)}>
+                    <img alt="test" className="suspend-button" src={`${accountinfoUrl}/Features/UnsuspendDownlines/Styles/Images/${item.Suspended ? 'suspened.png' : 'Unsuspend.png'}`} />
+                    {item.Suspended ? `Suspended` : `Unsuspended`}
+                </a>
+            </td>
+            {
+                downlineRoleId > 1 && <td className="text-center">
+                    {
+                        showValue && (originalViewModel[index].Suspended ? item.UnsuspendByLevel.map((level, index) => {
+                            return <ColumnContentByLevel
+                                key={index}
+                                downlines={level.AffectedDownlines}
+                                showSlash={index < length - 1}
+                                isAffected={true}
+                                downlineRoleId={level.RoleId}
+                                searchAccountId={item.CustId}
+                                redirectViewListDetail={redirectViewListDetail}
+                            />;
+                        }) : 'All')
+                    }
+                </td>
+            }
+
+            {
+                downlineRoleId > 1 && <td className="text-center">
+                    {
+                        showValue && (originalViewModel[index].Suspended ? item.UnsuspendByLevel.map((level, index) => {
+                            return <ColumnContentByLevel
+                                key={index}
+                                downlines={level.UnchangedDownlines}
+                                showSlash={index < length - 1}
+                                isAffected={false}
+                                downlineRoleId={level.RoleId}
+                                searchAccountId={item.CustId}
+                                redirectViewListDetail={redirectViewListDetail}
+                            />;
+                        }) : 'All')
+                    }
+                </td>
+            }
+        </tr>);
+}
+
+export const ColumnContentByLevel = ({ downlines, showSlash, isAffected, downlineRoleId, searchAccountId, redirectViewListDetail }) => {
+    const text = `${downlines} ${showSlash ? '/' : ''}`;
+    return downlines === 0 ? <span>{text}</span> :
+        <a href='#' onClick={() => redirectViewListDetail(searchAccountId, downlineRoleId, isAffected)}> {text}</a>;
 }

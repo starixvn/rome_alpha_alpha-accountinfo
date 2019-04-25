@@ -2,204 +2,238 @@
 import ReactDOM from 'react-dom';
 import { unsuspendAPI } from './unsuspend-api';
 import UnsuspendViewList from './unspend-view-list';
+import { UserLevel } from '../../../SearchAccount/Scripts/app/constants';
+import { decodeResources } from '../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
-window.renderUnsuspendSingle = function (viewModel) {
-	ReactDOM.render(
-        <UnsuspendSingle viewModel={viewModel} />,
+window.renderUnsuspendSingle = function (viewModel, resources) {
+    ReactDOM.render(
+        <UnsuspendSingle  {...{ viewModel, resources: decodeResources(resources)}}/>,
         document.getElementById('unsuspend-single')
-	);
+    );
 };
 
 export default class UnsuspendSingle extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			hideMessages: true,
-			updateSuccess: false,
-            message: '',
-            accountinfoUrl: top.alpha.urls.accountInfoRootPath,
-            searchAccountId: this.props.viewModel.SearchAccountId,
-            showViewList: false
-		};
+    constructor(props) {
+        super(props);
+        this.state = {
+            showViewList: false,
+            isAffected: false,
+            downlineRoleId: 1
+        };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-        this.hrefViewlist = this.hrefViewlist.bind(this);
-        this.hrefBack = this.hrefBack.bind(this);
-	}
-
-	handleKeyPress(e) {
-		if (e.key === 'Enter') {
-			this.handleSubmit(e);
-		}
-	}
-
-    hrefViewlist() {
-        this.setState({ showViewList: true });
+        this.redirectViewListDetail = this.redirectViewListDetail.bind(this);
+        this.redirectMainPage = this.redirectMainPage.bind(this);
     }
 
-    hrefBack() {
+    redirectViewListDetail(isAffected, downlineRoleId) {
+        this.setState({
+            showViewList: true,
+            isAffected: isAffected,
+            downlineRoleId: downlineRoleId
+        });
+    }
+
+    redirectMainPage() {
         this.setState({ showViewList: false });
     }
 
-	showErrorMessage(message) {
-		this.setState((prevState) => ({
-			hideMessages: false,
-			message: message,
-			updateSuccess: false
-		}));
-	}
+    render() {
+        const { isAffected, downlineRoleId } = this.state;
+        const { viewModel, resources } = this.props;
 
-	buildNote() {
-		return (
-			<div className="note">
-				List of downlines whose status are changed/unchanged after going to unsuspend 'selected customer'
-            </div>
-		);
-	}
+        return this.state.showViewList ?
+            <UnsuspendViewList {...{
+                isAffected,
+                downlineRoleId,
+                searchAccountId: viewModel.SearchAccountId,
+                redirectMainPage: this.redirectMainPage
+            }} /> :
+            <SingleView {...{ viewModel, resources, redirectViewListDetail: this.redirectViewListDetail }} />;
+    }
+}
+
+export class SingleView extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hideMessages: true,
+            updateSuccess: false,
+            message: '',
+            searchAccountId: this.props.viewModel.SearchAccountId,
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+    }
+
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.handleSubmit(e);
+        }
+    }
 
     handleSubmit(e) {
-        let self = this;
-
         $.blockUI();
+        const { resources } = this.props;
+        let self = this;
 
         unsuspendAPI.updateSuspend(
             "UnsuspendDownlines/UnsuspendSingle",
             { SearchAccountId: this.state.SearchAccountId })
             .then((data) => {
-            self.setState({
-                hideMessages: false,
-                message: data.IsSuccess ? 'Update Successfully' : data.Message.trim(),
-                updateSuccess: data.IsSuccess
+                self.setState({
+                    hideMessages: false,
+                    message: data.IsSuccess ? resources.UpdateSuccessfully : data.Message.trim(),
+                    updateSuccess: data.IsSuccess
+                });
+
+                if (data.IsSuccess) {
+                    setTimeout(() => {
+                        window.top.realoadLeftPanel = true;
+                        window.top.closedPopup = true;
+                        window.top.ageWnd.close();
+                    }, 1500);
+                }
+
+                $.unblockUI();
             });
-
-            if (data.IsSuccess) {
-                setTimeout(() => {
-                    window.top.realoadLeftPanel = true;
-                    window.top.closedPopup = true;
-                    window.top.ageWnd.close();
-                }, 1500);
-            }
-
-            $.unblockUI();
-        });
     }
 
-    buildViewListUrl(downlines, IsAffected, downlineRoleId) {
-        const { accountinfoUrl, searchAccountId } = this.state;
-
-        const href = `${accountinfoUrl}/UnsuspendDownlines/ViewUnsuspendList` +
-            `?SearchAccountId=${searchAccountId}&DownlineRoleId=${downlineRoleId}` +
-            `&IsAffected=${IsAffected}`;
-
-        return downlines === 0 ? 0 : <a href='#' onClick={this.hrefViewlist}> {downlines} </a>
-    }
-
-    buildBodyRow(level, index) {
-        const columns = [
-            {
-                downlines: level.AffectedDownlines,
-                isAffected: true,
-                roleId: level.RoleId
-            },
-            {
-                downlines: level.UnchangedDownlines,
-                isAffected: false,
-                roleId: level.RoleId
-            }];
+    render() {
+        const { updateSuccess, message, hideMessages } = this.state;
+        const { viewModel, resources, redirectViewListDetail } = this.props;
 
         return (
-            <tr key={index}>
-                <td className="text-center">
-                    {level.RoleId == 3 ? `Master` : level.RoleId == 2 ? `Agent` :  `Member`}
-                </td>
-                {
-                    columns.map((columns, index01) => {
-                        return (
-                            <td className="text-center" key={index01}>
-                                {
-                                    this.buildViewListUrl(columns.downlines, columns.isAffected, columns.roleId)
-                                }
-                            </td>
-                        );
-                    })
+            < div className="col-xs-12 " >
+                <div className={hideMessages ? `hidden` : ``}>
+                    <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
+                </div>
 
-                }
-            </tr>
+                <div className="note">
+                    {resources.UnsuspendSingleNote}
+                </div>
+
+                < div className="col-xs-12 " >
+                    <table className="tblRpt tblRpt-bordered width-100per">
+                        <thead>
+                            <tr>
+                                <th>{resources.Level}</th>
+                                <th>{resources.AffectedDownlines}</th>
+                                <th>{resources.RemainUnchangedDownlines}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                viewModel.UnsuspendByLevel.map((level, index) =>
+                                    <BodyRowContent {...{ level, redirectViewListDetail, resources, key: index }}/>)
+                            }
+                        </tbody>
+                        <FooterContent {...{
+                            affectedDownlinesTotal: viewModel.AffectedDownlinesTotal,
+                            unchangedDownlinesTotal: viewModel.UnchangedDownlinesTotal,
+                            redirectViewListDetail,
+                            resources
+                        }} />
+                    </table>
+                </ div>
+                <div className="col-xs-12 row-info popup-bottom list-button text-right">
+                    <button className="btn-submit" onClick={this.handleSubmit}>{resources.Unsuspend}</button>
+                </div>
+            </div >
         );
     }
+}
 
-    buildFooterRow(AffectedDownlinesTotal, UnchangedDownlinesTotal) {
-        const columns = [
-            {
-                downlines: AffectedDownlinesTotal,
-                isAffected: true,
-                roleId: 0
-            },
-            {
-                downlines: UnchangedDownlinesTotal,
-                isAffected: false,
-                roleId: 0
-            }];
+export const FooterContent = ({ affectedDownlinesTotal, unchangedDownlinesTotal, redirectViewListDetail, resources }) => {
+    const columns = [
+        {
+            downlines: affectedDownlinesTotal,
+            isAffected: true
+        },
+        {
+            downlines: unchangedDownlinesTotal,
+            isAffected: false
+        }];
 
-        return (
+    return (
+        <tfoot>
             <tr>
-                <th className="text-center">Total</th>
+                <th className="text-center">{resources.Total}</th>
                 {
-                    columns.map((columns, index01) => {
+                    columns.map((columns, index) => {
                         return (
-                            <th className="text-center" key={index01}>
-                                {
-                                    this.buildViewListUrl(columns.downlines, columns.isAffected, columns.roleId)
-                                }
+                            <th className="text-center" key={index}>
+                                <ColumnContentByLevel
+                                    downlines={columns.downlines}
+                                    isAffected={columns.isAffected}
+                                    downlineRoleId={0}
+                                    redirectViewListDetail={redirectViewListDetail}
+                                />
                             </th>
                         );
                     })
 
                 }
             </tr>
-        );
-    }
+        </tfoot>
+    );
+}
 
-	render() {
-		const { updateSuccess, message, hideMessages, resources } = this.state;
-        const { viewModel } = this.props;
+export const BodyRowContent = ({ level, redirectViewListDetail, resources }) => {
+    const columns = [
+        {
+            downlines: level.AffectedDownlines,
+            isAffected: true,
+            roleId: level.RoleId
+        },
+        {
+            downlines: level.UnchangedDownlines,
+            isAffected: false,
+            roleId: level.RoleId
+        }];
 
-        const singleView = (
-            < div className="col-xs-12 " >
-                <div className={hideMessages ? `hidden` : ``}>
-                    <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
-                </div>
+    const levelNames = [
+        {
+            LevelId: UserLevel.Master,
+            LevelName: resources.Master
+        },
+        {
+            LevelId: UserLevel.Agent,
+            LevelName: resources.Agent
+        },
+        {
+            LevelId: UserLevel.Member,
+            LevelName: resources.Member
+        }];
 
-                {this.buildNote()}
-                < div className="col-xs-12 " >
-                    <table className="tblRpt tblRpt-bordered width-100per">
-                        <thead>
-                            <tr>
-                                <th>Level</th>
-                                <th>Affected Downlines</th>
-                                <th>Remain Unchanged Downlines</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                viewModel.UnsuspendByLevel.map((level, index) => this.buildBodyRow(level, index))
-                            }
-                        </tbody>
-                        <tfoot>
-                            {
-                                this.buildFooterRow(viewModel.AffectedDownlinesTotal, viewModel.UnchangedDownlinesTotal)
-                            }
-                        </tfoot>
-                    </table>
-                </ div>
-                <div className="col-xs-12 row-info popup-bottom list-button text-right">
-                    <button className="btn-submit" onClick={this.handleSubmit}>Unsuspend</button>
-                </div>
-            </div >
-        );
+    return (
+        <tr>
+            <td className="text-center">
+                {
+                    levelNames.filter(function (item) {
+                        return (item.LevelId === level.RoleId);
+                    })[0].LevelName
+                }
+            </td>
+            {
+                columns.map((columns, index) => {
+                    return (
+                        <td className="text-center" key={index}>
+                            <ColumnContentByLevel {...{
+                                downlines: columns.downlines,
+                                isAffected: columns.isAffected,
+                                downlineRoleId: columns.roleId,
+                                redirectViewListDetail
+                            }} />
+                        </td>
+                    );
+                })
 
-        const viewList = <UnsuspendViewList hrefBack={this.hrefBack} />;
-        return this.state.showViewList ? viewList : singleView; 
-	}
+            }
+        </tr>
+    );
+}
+
+export const ColumnContentByLevel = ({ downlines, isAffected, downlineRoleId, redirectViewListDetail }) => {
+    return downlines === 0 ? <span>0</span> : <a href='#' onClick={() => redirectViewListDetail(isAffected, downlineRoleId)}> {downlines} </a>
 }

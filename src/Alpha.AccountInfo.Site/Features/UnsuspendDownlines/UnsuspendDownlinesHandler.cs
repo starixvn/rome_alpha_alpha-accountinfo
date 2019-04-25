@@ -14,7 +14,7 @@
 
     public class UnsuspendDownlinesHandler :
         IAsyncRequestHandler<UnsuspendViewListRequest, UnsuspendListViewModel>,
-        IAsyncRequestHandler<UnsuspendSingleRequest, UnsuspendInfoViewModel>,
+        IAsyncRequestHandler<UnsuspendSingleRequest, UnsuspendSingleViewModel>,
         IAsyncRequestHandler<UnsuspendMultipleRequest, IEnumerable<UnsuspendInfoMultipleViewModel>>,
         IAsyncRequestHandler<UnsuspendSingleCommand, Result>,
         IAsyncRequestHandler<UnsuspendMultipleCommand, IEnumerable<Result>>
@@ -30,11 +30,13 @@
             this.accountInfoService = accountInfoService;
         }
 
-        public async Task<UnsuspendInfoViewModel> Handle(UnsuspendSingleRequest message)
-            => new UnsuspendInfoViewModel(
+        public async Task<UnsuspendSingleViewModel> Handle(UnsuspendSingleRequest message)
+            => new UnsuspendSingleViewModel(
+                message.Language,
+                new UnsuspendSingleDataViewModel (
                 message.SearchAccountId,
                 await unsuspendDownlinesService.GetUnsuspendInfoModel(message.SearchAccountId)
-                .ConfigureAwait(false));
+                .ConfigureAwait(false)));
 
         public async Task<UnsuspendListViewModel> Handle(UnsuspendViewListRequest message)
              => new UnsuspendListViewModel(

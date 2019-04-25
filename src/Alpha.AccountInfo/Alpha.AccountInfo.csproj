@@ -211,6 +211,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Features\Shared\StatusNames.cs" />
+    <Compile Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnsuspendDownlinesResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendInfoModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendMultipleModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendDownlinesModel.cs" />
@@ -256,6 +261,12 @@
     <None Include="Alpha.AccountInfo.Debug.ruleset" />
     <None Include="Alpha.AccountInfo.Release.ruleset" />
     <None Include="app.config" />
+    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.ko-KR.resx" />
+    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.th-TH.resx" />
+    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesvi-VN.resx" />
+    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.zh-CN.resx" />
+    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.zh-TW.resx" />
+    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.ja-JP.resx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +300,10 @@
     <EmbeddedResource Include="Features\Shared\AppResources\Resources.vi-VN.resx" />
     <EmbeddedResource Include="Features\Shared\AppResources\Resources.zh-CN.resx" />
     <EmbeddedResource Include="Features\Shared\AppResources\Resources.zh-TW.resx" />
+    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UnsuspendDownlinesResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
@@ -301,9 +316,7 @@
       <Name>Alpha.Products.AccountInfo</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\UnsuspendDownlines\AppResources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

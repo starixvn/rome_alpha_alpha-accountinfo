@@ -8,7 +8,7 @@
 
     public interface UnsuspendDownlinesService
     {
-        Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendInfoModel(int searchAccountId);
+        Task<IEnumerable<UnsuspendInfoModel>> GetUnsuspendInfoModel(int searchAccountId);
 
         Task<UnsuspendViewListModel> GetUnsuspendViewListModel(
             int custId,
@@ -33,8 +33,8 @@
             this.unsuspendDownlinesDataAccess = unsuspendDownlinesDataAccess;
         }
 
-        public Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendInfoModel(int searchAccountId)
-            => dynamicRepository.FetchAsync<UnsuspendMultipleModel>(new SelectSuspendInfoCriteria(searchAccountId));
+        public Task<IEnumerable<UnsuspendInfoModel>> GetUnsuspendInfoModel(int searchAccountId)
+            => dynamicRepository.FetchAsync<UnsuspendInfoModel>(new SelectSuspendInfoCriteria(searchAccountId));
 
         public async Task<UnsuspendViewListModel> GetUnsuspendViewListModel(
             int custId,

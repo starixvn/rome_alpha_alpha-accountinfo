@@ -19,15 +19,24 @@ export default class UnsuspendViewList extends React.Component {
 
     fetchCustomerListFromServer(pageNumber) {
         $.blockUI();
+        const { isAffected, downlineRoleId, searchAccountId } = this.props;
         this.setState({ activePage: pageNumber });
 
         var params = {
-            SearchAccountId: 223322,
+            SearchAccountId: searchAccountId,
             PageSize: 20,
             PageIndex: pageNumber - 1,
-            IsAffected: true,
-            DownlineRoleId: 2
+            IsAffected: isAffected,
+            DownlineRoleId: downlineRoleId
         };
+
+        //var params = {
+        //    SearchAccountId: 223322,
+        //    PageSize: 20,
+        //    PageIndex: pageNumber - 1,
+        //    IsAffected: true,
+        //    DownlineRoleId: 2
+        //};
 
         unsuspendAPI.fetchCustomerList(params).then(
             (responeData) => {
@@ -41,12 +50,12 @@ export default class UnsuspendViewList extends React.Component {
     }
 
     render() {
-        const { viewModel } = this.state;
+        const { viewModel, activePage } = this.state;
 
-        return this.state.viewModel === null ? null : (
+        return viewModel === null ? null : (
             < div className="" >
                 <div>
-                    <a href='#' onClick={() => this.props.hrefBack()}>
+                    <a href='#' onClick={() => this.props.redirectMainPage(false)}>
                         Back
                     </a>
                 </div>
@@ -95,15 +104,18 @@ export default class UnsuspendViewList extends React.Component {
                         }
                     </tbody>
                 </table>
-                <div className="text-center">
-                    <Pagination
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={20}
-                        totalItemsCount={400}
-                        pageRangeDisplayed={5}
-                        onChange={this.fetchCustomerListFromServer}
-                    />
-                </div>
+                {
+                    viewModel.TotalRows > 20 && <div className="text-center">
+                        <Pagination
+                            activePage={activePage}
+                            itemsCountPerPage={20}
+                            totalItemsCount={400}
+                            pageRangeDisplayed={5}
+                            onChange={this.fetchCustomerListFromServer}
+                        />
+                    </div>
+                }
+               
             </div >
         );
     }
