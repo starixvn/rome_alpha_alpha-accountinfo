@@ -20,11 +20,11 @@ module.exports = {
             "./Features/SearchAccount/Styles/account-info-mobile-calculate-07.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unsuspend-single": [
-			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-single.jsx",
+			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-container.jsx",
 			"./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unsuspend-multiple": [
-            "./Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple.jsx",
+            "./Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unspend-view-list": [
