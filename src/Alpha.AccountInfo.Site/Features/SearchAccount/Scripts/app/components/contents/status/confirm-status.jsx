@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../../accountinfo-api';
-import { resizeBootboxOnMobile, buildTooltipProps, formatMessage } from '../../../helpers/accountinfo-helper';
+import { resizeBootboxOnMobile, resizePopupOnMobile, buildTooltipProps, formatMessage } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
 export default class ConfirmStatus extends React.Component {
@@ -52,18 +52,21 @@ export default class ConfirmStatus extends React.Component {
                     }
                 }
 
-				window.top.ageWnd.open(status.Url, `Update Unspend Status For AAAAA`);
+                window.top.ageWnd.open(status.Url, `Update Unspend Status For AAAAA`);
+                if (mobileView) {
+                    resizePopupOnMobile();
+                }
 			}
 			else {
 				window.top.bootboxConfirm(
 					formatMessage(status.ConfirmMessage),
 					e.target,
 					this.updateCustomerStatus
-				);
-			}
+                );
 
-			if (mobileView) {
-				resizeBootboxOnMobile();
+                if (mobileView) {
+                    resizeBootboxOnMobile();
+                }
 			}
 		}
 	}
