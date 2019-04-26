@@ -11,7 +11,40 @@
 }
 
 .suspend-button {
-    width: 81px;
+    width: 110px;
+    text-align: left;
     height: 20px;
     margin: auto;
+    background: url('./Images/suspened.png');
+    background-size: 120px;
+    font-size: 11px;
+    padding-left: 2px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.unsuspend-button {
+    width: 110px;
+    text-align: right;
+    height: 20px;
+    margin: auto;
+    background: url('./Images/Unsuspend.png');
+    background-size: 120px;
+    font-size: 11px;
+    color: #fff;
+    padding-left: 2px;
+    cursor: pointer;
+}
+
+
+.suspend-all-button {
+    width: 60px;
+    text-align: center;
+    height: 20px;
+    margin: auto;
+    background-color: #da5050;
+    font-size: inherit;
+    color: #fff;
+    cursor: pointer;
 }

@@ -24,21 +24,21 @@ export default class UnsuspendViewList extends React.Component {
         const { isAffected, downlineRoleId, searchAccountId } = this.props;
         this.setState({ activePage: pageNumber });
 
-        var params = {
-            SearchAccountId: searchAccountId,
-            PageSize: 20,
-            PageIndex: pageNumber - 1,
-            IsAffected: isAffected,
-            DownlineRoleId: downlineRoleId
-        };
-
         //var params = {
-        //    SearchAccountId: 223322,
+        //    SearchAccountId: searchAccountId,
         //    PageSize: 20,
         //    PageIndex: pageNumber - 1,
-        //    IsAffected: true,
-        //    DownlineRoleId: 2
+        //    IsAffected: isAffected,
+        //    DownlineRoleId: downlineRoleId
         //};
+
+        var params = {
+            SearchAccountId: 223322,
+            PageSize: 20,
+            PageIndex: pageNumber - 1,
+            IsAffected: true,
+            DownlineRoleId: 2
+        };
 
         unsuspendAPI.fetchCustomerList(params).then(
             (responeData) => {
@@ -109,17 +109,15 @@ export default class UnsuspendViewList extends React.Component {
                         }
                     </tbody>
                 </table>
-                {
-                    viewModel.TotalRows > 20 && <div className="text-center">
-                        <Pagination
-                            activePage={activePage}
-                            itemsCountPerPage={20}
-                            totalItemsCount={400}
-                            pageRangeDisplayed={5}
-                            onChange={this.fetchCustomerListFromServer}
-                        />
-                    </div>
-                }
+                <div className="text-center">
+                    <Pagination
+                        activePage={activePage}
+                        itemsCountPerPage={20}
+                        totalItemsCount={400}
+                        pageRangeDisplayed={5}
+                        onChange={this.fetchCustomerListFromServer}
+                    />
+                </div>
                
             </div >
         );

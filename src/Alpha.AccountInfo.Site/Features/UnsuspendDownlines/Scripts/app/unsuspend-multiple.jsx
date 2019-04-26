@@ -120,7 +120,7 @@ export class MultipleView extends React.Component {
         const { viewModel } = this.props;
         let unsuspendList = [];
 
-        viewModel.map(function (item, index) {
+        viewModel.map(function (item) {
             unsuspendList.push({ CustId: item.CustId, Suspended: item.Suspended });
         });
 
@@ -131,7 +131,7 @@ export class MultipleView extends React.Component {
                 const isSuccess = data.length === 0;
                 self.setState({
                     hideMessages: false,
-                    message: isSuccess ? 'Update Successfully' : this.buildErrorMessage(data),
+                    message: isSuccess ? resources.UpdateSuccessfully : this.buildErrorMessage(data),
                     updateSuccess: isSuccess
                 });
 
@@ -179,7 +179,7 @@ export class MultipleView extends React.Component {
                         </tr>
                         <tr>
                             <th>
-                                <button className="btn-refresh" onClick={() => toggleSuspendAll(true)}>{resources.Suspend}</button>
+                                <button className="suspend-all-button" onClick={() => toggleSuspendAll(true)}>{resources.Suspend}</button>
                                 <button className="btn-default" onClick={() => toggleSuspendAll(false)}>{resources.Unsuspend}</button>
                             </th>
                         </tr>
@@ -219,10 +219,9 @@ export const RowContent = ({ originalViewModel, item, downlineRoleId, index, han
                 {item.Username}
             </td>
             <td className="text-center">
-                <a onClick={() => handleChange(index, !item.Suspended)}>
-                    <img alt="test" className="suspend-button" src={`${accountinfoUrl}/Features/UnsuspendDownlines/Styles/Images/${item.Suspended ? 'suspened.png' : 'Unsuspend.png'}`} />
+                <div onClick={() => handleChange(index, !item.Suspended)} className={item.Suspended ? `suspend-button` : `unsuspend-button`}>
                     {item.Suspended ? resources.Suspended : resources.Unsuspended}
-                </a>
+                </div>
             </td>
             {
                 downlineRoleId > 1 && <td className="text-center">

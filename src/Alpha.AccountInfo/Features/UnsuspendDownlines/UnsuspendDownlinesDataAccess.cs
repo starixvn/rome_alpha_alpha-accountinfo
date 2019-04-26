@@ -22,16 +22,16 @@
                 {
                     var downlines = await multiResultReader.ReadAsync<UnsuspendDownlineDto>().ConfigureAwait(false);
 
-                    //var dataFake = new List<UnsuspendDownlineDto>();
-                    //for(byte i = 1; i < 3; i++)
-                    //{
-                    //    for(int j = criteria.PageSize * criteria.PageIndex; j < criteria.PageSize * (criteria.PageIndex + 1); j ++)
-                    //    {
-                    //        dataFake.Add(new UnsuspendDownlineDto($"PageIndex:{criteria.PageIndex}-Affected:{criteria.IsAffected}-{i}-{j}", i));
-                    //    }
-                    //}
+                    var dataFake = new List<UnsuspendDownlineDto>();
+                    for (byte i = 1; i < 3; i++)
+                    {
+                        for (int j = criteria.PageSize * criteria.PageIndex; j < criteria.PageSize * (criteria.PageIndex + 1); j++)
+                        {
+                            dataFake.Add(new UnsuspendDownlineDto($"PageIndex:{criteria.PageIndex}-Affected:{criteria.IsAffected}-{i}-{j}", i));
+                        }
+                    }
 
-                    return new UnsuspendViewListModel(downlines.GroupBy(item => item.RoleId).Select(group => {
+                    return new UnsuspendViewListModel(dataFake.GroupBy(item => item.RoleId).Select(group => {
                         return new UnsuspendDownlineByLevelModel(group.Key, group);
                     }), criteria.TotalRows);
                 }
