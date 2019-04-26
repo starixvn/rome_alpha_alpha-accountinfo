@@ -1,10 +1,8 @@
 ﻿@{
-                /**/
-
-                Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
-@model IEnumerable<UnsuspendInfoMultipleViewModel>
+@model UnsuspendMultipleViewModel
 
 @section Styles {
     @StaticResources.RenderStyles("/assets/bundles/common/common-super")
@@ -25,7 +23,8 @@
     <script>
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
-        renderUnsuspendMultipe(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model,
-Newtonsoft.Json.Formatting.Indented)));
+        renderUnsuspendMultipe(
+            @Html.Raw(JsonConvert.SerializeObject(Model.Data, Newtonsoft.Json.Formatting.Indented)),
+            @Html.Raw(Model.Resources));
     </script>
 }

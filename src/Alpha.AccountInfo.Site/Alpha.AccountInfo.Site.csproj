@@ -418,6 +418,7 @@
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="Features\Shared\Scripts\api-client.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-helper.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-api.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unspend-view-list.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple.jsx" />
@@ -560,7 +561,7 @@
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandler.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendInfoMultipleViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendListViewModel.cs" />
-    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendInfoViewModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendSingleViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

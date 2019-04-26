@@ -1,13 +1,15 @@
 ﻿import * as React from 'react';
 import Pagination from "react-js-pagination";
 import { unsuspendAPI } from './unsuspend-api';
+import { getUserLevelName } from './unsuspend-helper';
 
 export default class UnsuspendViewList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             viewModel: null,
-            activePage: null
+            activePage: null,
+            resources: this.props.resources
         };
 
         this.fetchCustomerListFromServer = this.fetchCustomerListFromServer.bind(this);
@@ -50,7 +52,8 @@ export default class UnsuspendViewList extends React.Component {
     }
 
     render() {
-        const { viewModel, activePage } = this.state;
+        const { viewModel, activePage, resources } = this.state;
+       
 
         return viewModel === null ? null : (
             < div className="" >
@@ -66,8 +69,8 @@ export default class UnsuspendViewList extends React.Component {
                 <table className="tblRpt tblRpt-bordered width-100per">
                     <thead>
                         <tr>
-                            <th>Level</th>
-                            <th>Username</th>
+                            <th>{resources.Level}</th>
+                            <th>{resources.Username}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,7 +83,9 @@ export default class UnsuspendViewList extends React.Component {
                                             return (
                                                 <tr key={index1}>
                                                     <td className="text-center" rowSpan={length}>
-                                                        {level.RoleId == 3 ? `Master` : level.RoleId == 2 ? `Agent` : `Member`}
+                                                        {
+                                                            getUserLevelName(level, resources)
+                                                        }
                                                     </td>
                                                     <td className="text-center">
                                                         {username.Username}

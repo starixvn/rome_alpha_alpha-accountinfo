@@ -2,12 +2,12 @@
 import ReactDOM from 'react-dom';
 import { unsuspendAPI } from './unsuspend-api';
 import UnsuspendViewList from './unspend-view-list';
-import { UserLevel } from '../../../SearchAccount/Scripts/app/constants';
+import { getUserLevelName } from './unsuspend-helper';
 import { decodeResources } from '../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
 window.renderUnsuspendSingle = function (viewModel, resources) {
     ReactDOM.render(
-        <UnsuspendSingle  {...{ viewModel, resources: decodeResources(resources)}}/>,
+        <UnsuspendSingle {...{ viewModel, resources: decodeResources(resources)}}/>,
         document.getElementById('unsuspend-single')
     );
 };
@@ -45,6 +45,7 @@ export default class UnsuspendSingle extends React.Component {
             <UnsuspendViewList {...{
                 isAffected,
                 downlineRoleId,
+                resources,
                 searchAccountId: viewModel.SearchAccountId,
                 redirectMainPage: this.redirectMainPage
             }} /> :
@@ -192,27 +193,11 @@ export const BodyRowContent = ({ level, redirectViewListDetail, resources }) => 
             roleId: level.RoleId
         }];
 
-    const levelNames = [
-        {
-            LevelId: UserLevel.Master,
-            LevelName: resources.Master
-        },
-        {
-            LevelId: UserLevel.Agent,
-            LevelName: resources.Agent
-        },
-        {
-            LevelId: UserLevel.Member,
-            LevelName: resources.Member
-        }];
-
     return (
         <tr>
             <td className="text-center">
                 {
-                    levelNames.filter(function (item) {
-                        return (item.LevelId === level.RoleId);
-                    })[0].LevelName
+                    getUserLevelName(level, resources)
                 }
             </td>
             {

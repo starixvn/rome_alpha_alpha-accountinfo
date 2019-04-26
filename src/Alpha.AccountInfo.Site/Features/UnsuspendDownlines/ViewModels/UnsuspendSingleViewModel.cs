@@ -32,9 +32,8 @@
             int searchAccountId,
             IEnumerable<UnsuspendInfoModel> unsuspendByLevel)
         {
-
             SearchAccountId = searchAccountId;
-            UnsuspendByLevel = unsuspendByLevel;
+            UnsuspendByLevel = unsuspendByLevel.OrderByDescending(level => level.RoleId);
         }
 
         public int SearchAccountId { get; private set; }

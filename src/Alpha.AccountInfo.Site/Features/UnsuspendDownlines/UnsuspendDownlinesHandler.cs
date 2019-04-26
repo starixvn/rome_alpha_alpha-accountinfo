@@ -15,7 +15,7 @@
     public class UnsuspendDownlinesHandler :
         IAsyncRequestHandler<UnsuspendViewListRequest, UnsuspendListViewModel>,
         IAsyncRequestHandler<UnsuspendSingleRequest, UnsuspendSingleViewModel>,
-        IAsyncRequestHandler<UnsuspendMultipleRequest, IEnumerable<UnsuspendInfoMultipleViewModel>>,
+        IAsyncRequestHandler<UnsuspendMultipleRequest, UnsuspendMultipleViewModel>,
         IAsyncRequestHandler<UnsuspendSingleCommand, Result>,
         IAsyncRequestHandler<UnsuspendMultipleCommand, IEnumerable<Result>>
     {
@@ -48,14 +48,13 @@
                      message.PageSize,
                      message.PageIndex).ConfigureAwait(false));
 
-        public async Task<IEnumerable<UnsuspendInfoMultipleViewModel>> Handle(UnsuspendMultipleRequest message)
+        public async Task<UnsuspendMultipleViewModel> Handle(UnsuspendMultipleRequest message)
         {
-            var model = await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false);
-
-            return model.GroupBy(item => item.CustId).Select(group =>
+            var task = unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId);
+            var data = task.Result.GroupBy(item => item.CustId).Select(group =>
             {
                 var firstItem = group.FirstOrDefault();
-                return new UnsuspendInfoMultipleViewModel(
+                return new UnsuspendMultipleDataViewModel(
                      group.Key,
                      message.RoleId,
                      firstItem.Username,
@@ -63,6 +62,10 @@
                      message.RoleId,
                      group.OrderByDescending(level=> level.RoleId));
             }).OrderBy(group => group.Username);
+
+            task.Wait();
+
+            return new UnsuspendMultipleViewModel(message.Language, data);
         }
 
         public Task<Result> Handle(UnsuspendSingleCommand message)

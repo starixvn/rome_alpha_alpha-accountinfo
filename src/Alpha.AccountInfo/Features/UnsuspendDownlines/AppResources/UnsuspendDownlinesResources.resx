@@ -123,6 +123,9 @@
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
   </data>
@@ -135,16 +138,37 @@
   <data name="RemainUnchangedDownlines" xml:space="preserve">
     <value>Remain Unchanged Downlines</value>
   </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Suspend" xml:space="preserve">
+    <value>Suspend</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="SuspendStatus" xml:space="preserve">
+    <value>Suspend Status</value>
+  </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
   <data name="Unsuspend" xml:space="preserve">
     <value>Unsuspend</value>
   </data>
+  <data name="Unsuspended" xml:space="preserve">
+    <value>Unsuspended</value>
+  </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
     <value>List of downlines whose status are changed/unchanged after going to unsuspend 'selected customer'</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>
