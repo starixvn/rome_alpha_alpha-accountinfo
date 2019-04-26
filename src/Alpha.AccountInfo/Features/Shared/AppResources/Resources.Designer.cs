@@ -880,6 +880,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Unsuspend Status for.
+        /// </summary>
+        public static string UnuspendStatusPopupHeader {
+            get {
+                return ResourceManager.GetString("UnuspendStatusPopupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string Update {

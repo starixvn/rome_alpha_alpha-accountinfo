@@ -417,4 +417,7 @@
   <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
     <value>娛樂城同步校準</value>
   </data>
+  <data name="UnuspendStatusPopupHeader" xml:space="preserve">
+    <value>Update Unsuspend Status for </value>
+  </data>
 </root>

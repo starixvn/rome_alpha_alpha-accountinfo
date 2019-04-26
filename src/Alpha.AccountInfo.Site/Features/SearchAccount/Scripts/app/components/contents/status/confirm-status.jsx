@@ -34,7 +34,7 @@ export default class ConfirmStatus extends React.Component {
 	}
 
 	handleOpenPopup(e) {
-        let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
+        let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView, resources } = this.props;
 		
 		if (!status.Disabled) {
             if (status.IsPopup) {
@@ -52,7 +52,7 @@ export default class ConfirmStatus extends React.Component {
                     }
                 }
 
-                window.top.ageWnd.open(status.Url, `Update Unspend Status For AAAAA`);
+                window.top.ageWnd.open(status.Url, `${resources.UnuspendStatusPopupHeader} ${username}`);
                 if (mobileView) {
                     resizePopupOnMobile();
                 }
