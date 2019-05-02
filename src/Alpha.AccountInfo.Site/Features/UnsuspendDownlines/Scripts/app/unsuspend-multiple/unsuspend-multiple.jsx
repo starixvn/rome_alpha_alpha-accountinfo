@@ -25,7 +25,7 @@ export default class UnsuspendMultiple extends React.Component {
     handleSubmit(e) {
         $.blockUI();
         let self = this;
-        const { viewModel } = this.props;
+        const { viewModel, resources } = this.props;
         let unsuspendList = [];
 
         viewModel.map(function (item) {

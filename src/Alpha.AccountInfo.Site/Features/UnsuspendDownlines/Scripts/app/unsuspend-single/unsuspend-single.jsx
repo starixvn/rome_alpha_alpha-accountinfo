@@ -8,8 +8,7 @@ export default class UnsuspendSingle extends React.Component {
         this.state = {
             hideMessages: true,
             updateSuccess: false,
-            message: '',
-            searchAccountId: this.props.viewModel.SearchAccountId,
+            message: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,12 +23,12 @@ export default class UnsuspendSingle extends React.Component {
 
     handleSubmit(e) {
         $.blockUI();
-        const { resources } = this.props;
+        const { resources, viewModel } = this.props;
         let self = this;
 
         unsuspendAPI.updateSuspend(
             "UnsuspendDownlines/UnsuspendSingle",
-            { SearchAccountId: this.state.SearchAccountId })
+            { SearchAccountId: viewModel.SearchAccountId})
             .then((data) => {
                 self.setState({
                     hideMessages: false,
