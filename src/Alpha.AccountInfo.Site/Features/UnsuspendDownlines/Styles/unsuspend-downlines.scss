@@ -6,45 +6,117 @@
 	width: 100%;
 }
 
-.text-right{
+.tblRpt .tbl-footer a {
+    color: #70c1ff;
+
+    &:hover {
+        color: #32a6fe;
+    }
+}
+
+.text-right {
     text-align: right;
 }
 
-.suspend-button {
-    width: 110px;
-    text-align: left;
-    height: 20px;
+.list-button {
+    padding: 16px 0;
+
+    .btn-submit {
+        margin-right: 0;
+    }
+}
+
+%btn {
+    width: 100px;
+    height: 22px;
+    line-height: 22px;
     margin: auto;
-    background: url('./Images/suspened.png');
-    background-size: 120px;
+    text-align: center;
     font-size: 11px;
-    padding-left: 2px;
     color: #fff;
     cursor: pointer;
+}
+
+.suspend-button {
+    @extend %btn;
+    padding-right: 20px;
+    background: url('./Images/suspened.png');
 }
 
 
 .unsuspend-button {
-    width: 110px;
-    text-align: right;
-    height: 20px;
-    margin: auto;
+    @extend %btn;
+    padding-left: 20px;
     background: url('./Images/Unsuspend.png');
-    background-size: 120px;
+}
+
+%btn-all {
+    width: 80px;
+    height: 20px;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    margin: auto;
     font-size: 11px;
     color: #fff;
-    padding-left: 2px;
     cursor: pointer;
 }
 
-
-.suspend-all-button {
-    width: 60px;
-    text-align: center;
-    height: 20px;
-    margin: auto;
+.btn-suspend-all {
+    @extend %btn-all;
+    margin-right: 5px;
     background-color: #da5050;
-    font-size: inherit;
-    color: #fff;
-    cursor: pointer;
+}
+
+.btn-unsuspend-all {
+    @extend %btn-all;
+    margin-left: 5px;
+    background-color: #248ad8;
+}
+
+// Update multiple Unsuspend Status
+.unsuspend-container {
+    padding-top: 16px;
+}
+
+.btn-cancel {
+    display: inline-block;
+    line-height: 28px;
+    margin-bottom: 16px;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+.pagination {
+    margin: 16px;
+
+    li {
+        display: inline;
+        margin: 0 2px;
+    }
+
+    li.disabled a {
+        opacity: 0.35;
+        cursor: default;
+    }
+
+    a {
+        display: inline-block;
+        height: 20px;
+        line-height: 20px;
+        background: #979797;
+        cursor: pointer;
+        outline: none;
+        padding: 0 3px;
+        top: 10px;
+        width: 20px;
+        border-radius: 2px;
+        color: #fff;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }

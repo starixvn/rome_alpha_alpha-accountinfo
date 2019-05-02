@@ -59,9 +59,9 @@ export default class UnsuspendSingle extends React.Component {
                     <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
                 </div>
 
-                <div className="note">
+                <p className="note">
                     {resources.UnsuspendSingleNote}
-                </div>
+                </p>
 
                 < div className="col-xs-12 " >
                     <table className="tblRpt tblRpt-bordered width-100per">

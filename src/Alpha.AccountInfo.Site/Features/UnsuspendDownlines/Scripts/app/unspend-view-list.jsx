@@ -58,13 +58,13 @@ export default class UnsuspendViewList extends React.Component {
         return viewModel === null ? null : (
             < div className="" >
                 <div>
-                    <a href='#' onClick={() => this.props.redirectMainPage(false)}>
+                    <a className="btn-cancel" href='#' onClick={() => this.props.redirectMainPage(false)}>
                         Back
                     </a>
                 </div>
-                <div className="note">
+                <p className="note">
                     List of downlines whose status are changed/unchanged after going to unsuspend 'selected customer'
-            </div>
+                </p>
 
                 <table className="tblRpt tblRpt-bordered width-100per">
                     <thead>
@@ -82,12 +82,12 @@ export default class UnsuspendViewList extends React.Component {
                                         if (index1 === 0) {
                                             return (
                                                 <tr key={index1}>
-                                                    <td className="text-center" rowSpan={length}>
+                                                    <td rowSpan={length}>
                                                         {
                                                             getUserLevelName(level, resources)
                                                         }
                                                     </td>
-                                                    <td className="text-center">
+                                                    <td>
                                                         {username.Username}
                                                     </td>
                                                 </tr>
@@ -96,7 +96,7 @@ export default class UnsuspendViewList extends React.Component {
                                         else {
                                             return (
                                                 <tr key={index1}>
-                                                    <td className="text-center">
+                                                    <td>
                                                         {username.Username}
                                                     </td>
                                                 </tr>
@@ -109,15 +109,13 @@ export default class UnsuspendViewList extends React.Component {
                         }
                     </tbody>
                 </table>
-                <div className="text-center">
-                    <Pagination
-                        activePage={activePage}
-                        itemsCountPerPage={20}
-                        totalItemsCount={400}
-                        pageRangeDisplayed={5}
-                        onChange={this.fetchCustomerListFromServer}
-                    />
-                </div>
+                <Pagination
+                    activePage={activePage}
+                    itemsCountPerPage={20}
+                    totalItemsCount={400}
+                    pageRangeDisplayed={5}
+                    onChange={this.fetchCustomerListFromServer}
+                />
                
             </div >
         );

@@ -7,7 +7,7 @@ export const RowContent = ({ originalViewModel, item, downlineRoleId, index, han
 
     return (
         <tr key={index}>
-            <td className="text-center">
+            <td>
                 {item.Username}
             </td>
             <td className="text-center">

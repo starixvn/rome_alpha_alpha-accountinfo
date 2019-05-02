@@ -87,8 +87,8 @@ export default class UnsuspendMultiple extends React.Component {
                         </tr>
                         <tr>
                             <th>
-                                <button className="suspend-all-button" onClick={() => toggleSuspendAll(true)}>{resources.Suspend}</button>
-                                <button className="btn-default" onClick={() => toggleSuspendAll(false)}>{resources.Unsuspend}</button>
+                                <button className="btn-suspend-all" onClick={() => toggleSuspendAll(true)}>{resources.Suspend}</button>
+                                <button className="btn-unsuspend-all" onClick={() => toggleSuspendAll(false)}>{resources.Unsuspend}</button>
                             </th>
                         </tr>
                     </thead>

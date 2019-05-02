@@ -20,7 +20,7 @@ export const BodyRowContent = ({ level, redirectViewListDetail, resources }) => 
 
     return (
         <tr>
-            <td className="text-center">
+            <td>
                 {
                     getUserLevelName(level, resources)
                 }
@@ -57,19 +57,19 @@ export const FooterContent = ({ affectedDownlinesTotal, unchangedDownlinesTotal,
 
     return (
         <tfoot>
-            <tr>
-                <th className="text-center">{resources.Total}</th>
+            <tr className="tbl-footer">
+                <td>{resources.Total}</td>
                 {
                     columns.map((columns, index) => {
                         return (
-                            <th className="text-center" key={index}>
+                            <td className="text-center" key={index}>
                                 <ColumnContentByLevel
                                     downlines={columns.downlines}
                                     isAffected={columns.isAffected}
                                     downlineRoleId={0}
                                     redirectViewListDetail={redirectViewListDetail}
                                 />
-                            </th>
+                            </td>
                         );
                     })
 
