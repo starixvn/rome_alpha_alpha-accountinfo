@@ -1,9 +1,7 @@
 ﻿import * as React from 'react';
 import { unsuspendAPI } from './unsuspend-api';
 import { getUserLevelName } from './unsuspend-helper';
-import TablePagination from '../../../Shared/Scripts/react-paginations/TablePagination';
-//import 'trendmicro-ui/dist/css/trendmicro-ui.css';
-//import '@trendmicro/react-buttons/dist/react-buttons.css';
+import ReactPagination from '../../../Shared/Scripts/react-paginations/react-pagination';
 
 export default class UnsuspendViewList extends React.Component {
     constructor(props) {
@@ -13,7 +11,7 @@ export default class UnsuspendViewList extends React.Component {
             resources: this.props.resources,
             activePage: 1,
             pageLength: 10,
-            totalRecords: 1000 * 1000
+            totalRecords: 100 * 100
         };
 
         this.fetchCustomerListFromServer = this.fetchCustomerListFromServer.bind(this);
@@ -117,7 +115,7 @@ export default class UnsuspendViewList extends React.Component {
                         }
                     </tbody>
                 </table>
-                <TablePagination
+                <ReactPagination
                     type="full"
                     page={this.state.activePage}
                     pageLength={this.state.pageLength}

@@ -1,19 +1,13 @@
-/* eslimt react/no-set-state: 0 */
 import * as React from 'react';
-import Anchor from '@trendmicro/react-anchor';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import AutosizeInput from './AutosizeInput';
+import AutosizeInput from './autosize-input';
 
-// Normalize the value by bringing it within the range.
-// If value is greater than max, max will be returned.
-// If value is less than min, min will be returned.
-// Otherwise, value is returned unaltered. Both ends of this range are inclusive.
 const limit = (value, min, max) => {
     return Math.max(min, Math.min(max, value));
 };
 
-class TablePagination extends React.Component {
+class ReactPagination extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -76,8 +70,8 @@ class TablePagination extends React.Component {
                     {(type !== 'minor') &&
 
                         <div>
-                        <select onChange={(e) => {
-                            const pageSize =  parseFloat(e.currentTarget.value);
+                            <select onChange={(e) => {
+                                const pageSize = parseFloat(e.currentTarget.value);
                                 this.changePage({
                                     page: (pageSize !== pageLength) ? 1 : page,
                                     pageLength: pageSize
@@ -86,13 +80,12 @@ class TablePagination extends React.Component {
                                 {pageLengthMenu.map(val =>
                                     <option
                                         key={val}
-                                    value={val}
-
-                                    className={classNames('pagination-page-list',
-                                        { ['selected']: pageLength === val }
-                                    )}
+                                        value={val}
+                                        className={classNames('pagination-page-list',
+                                            { ['selected']: pageLength === val }
+                                        )}
                                     >
-                                    {val}
+                                        {val}
                                     </option>
                                 )}
                             </select>
@@ -105,7 +98,7 @@ class TablePagination extends React.Component {
                                     ['disabled']: prevPageDisabled
                                 })}
                             >
-                                <Anchor
+                                <div className='page-button'
                                     disabled={prevPageDisabled}
                                     onClick={(event) => {
                                         const prevPage = 1;
@@ -118,14 +111,14 @@ class TablePagination extends React.Component {
                                     }}
                                 >
                                     {firstPageRenderer()}
-                                </Anchor>
+                                </div>
                             </div>
                             <div
                                 className={classNames({
                                     ['disabled']: prevPageDisabled
                                 })}
                             >
-                                <Anchor
+                                <div className='page-button'
                                     disabled={prevPageDisabled}
                                     onClick={(event) => {
                                         const prevPage = page > 1 ? page - 1 : page;
@@ -138,7 +131,7 @@ class TablePagination extends React.Component {
                                     }}
                                 >
                                     {prevPageRenderer()}
-                                </Anchor>
+                                </div>
                             </div>
                             {(type !== 'reduced' && type !== 'minor') &&
                                 <div className='pagination-input'>
@@ -176,7 +169,8 @@ class TablePagination extends React.Component {
                                     ['disabled']: nextPageDisabled
                                 })}
                             >
-                                <Anchor
+                                <div
+                                    className='page-button'
                                     disabled={nextPageDisabled}
                                     onClick={(event) => {
                                         const nextPage = page < totalPages ? page + 1 : page;
@@ -189,14 +183,15 @@ class TablePagination extends React.Component {
                                     }}
                                 >
                                     {nextPageRenderer()}
-                                </Anchor>
+                                </div>
                             </div>
                             <div
                                 className={classNames({
                                     ['disabled']: nextPageDisabled
                                 })}
                             >
-                                <Anchor
+                                <div
+                                    className='page-button'
                                     disabled={nextPageDisabled}
                                     onClick={(event) => {
                                         const nextPage = totalPages;
@@ -209,7 +204,8 @@ class TablePagination extends React.Component {
                                     }}
                                 >
                                     {lastPageRenderer()}
-                                </Anchor>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -222,7 +218,7 @@ class TablePagination extends React.Component {
     }
 }
 
-TablePagination.propTypes = {
+ReactPagination.propTypes = {
     type: PropTypes.oneOf(['full', 'reduced', 'minor']),
     page: PropTypes.number,
     pageLength: PropTypes.number,
@@ -236,7 +232,7 @@ TablePagination.propTypes = {
     lastPageRenderer: PropTypes.func
 };
 
-TablePagination.defaultProps = {
+ReactPagination.defaultProps = {
     type: 'full',
     page: 1,
     pageLength: 10,
@@ -264,4 +260,4 @@ TablePagination.defaultProps = {
     }
 };
 
-export default TablePagination;
+export default ReactPagination;

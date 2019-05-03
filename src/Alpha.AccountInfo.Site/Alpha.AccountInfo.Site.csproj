@@ -418,9 +418,8 @@
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="Features\Shared\Scripts\api-client.jsx" />
-    <Content Include="Features\Shared\Scripts\react-paginations\AutosizeInput.jsx" />
-    <Content Include="Features\Shared\Scripts\react-paginations\icon-check.svg" />
-    <Content Include="Features\Shared\Scripts\react-paginations\TablePagination.jsx" />
+    <Content Include="Features\Shared\Scripts\react-paginations\autosize-input.jsx" />
+    <Content Include="Features\Shared\Scripts\react-paginations\react-pagination.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-helper.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-api.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unspend-view-list.jsx" />
@@ -442,8 +441,6 @@
     <Content Include="Features\UnsuspendDownlines\Views\web.config" />
     <Content Include="Features\UnsuspendDownlines\Views\EditMultiple.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines.scss" />
-    <None Include="Features\Shared\Scripts\react-paginations\index.scss" />
-    <None Include="Features\Shared\Scripts\react-paginations\pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />

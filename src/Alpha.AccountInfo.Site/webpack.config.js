@@ -25,12 +25,12 @@ module.exports = {
 		],
 		"./UnsuspendDownlines/Bundles/unsuspend-multiple": [
             "./Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
-            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
 		],
 		"./UnsuspendDownlines/Bundles/unspend-view-list": [
             "./Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx",
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
-            "./Features/Shared/Scripts/react-paginations/index.scss"
+            "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
 		]
     },
 
