@@ -29,7 +29,8 @@ module.exports = {
 		],
 		"./UnsuspendDownlines/Bundles/unspend-view-list": [
             "./Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx",
-            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
+            "./Features/Shared/Scripts/react-paginations/index.scss"
 		]
     },
 
@@ -63,8 +64,21 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jpg)$/,
-                loader: 'url-loader'
+                test: /\.(woff(2)?|ttf|eot|svg|png|jpg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: {
+                    loader: "url-loader",
+                    options: {
+                        // Limit at 50k. Above that it emits separate files
+                        limit: 50000,
+
+                        // url-loader sets mimetype if it's passed.
+                        // Without this it derives it from the file extension
+                        mimetype: "application/font-woff",
+
+                        // Output below fonts directory
+                        name: "./fonts/[name].[ext]",
+                    }
+                },
             }
         ]
     },

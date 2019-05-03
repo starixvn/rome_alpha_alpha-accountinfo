@@ -89,6 +89,15 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
         public static string Level {
@@ -220,6 +229,15 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of downlines whose status are changed/unchanged after going to unsuspend &apos;selected customer&apos;.
+        /// </summary>
+        public static string ViewListNote {
+            get {
+                return ResourceManager.GetString("ViewListNote", resourceCulture);
             }
         }
     }

@@ -1,28 +1,35 @@
 ﻿import * as React from 'react';
-import Pagination from "react-js-pagination";
 import { unsuspendAPI } from './unsuspend-api';
 import { getUserLevelName } from './unsuspend-helper';
+import TablePagination from '../../../Shared/Scripts/react-paginations/TablePagination';
+//import 'trendmicro-ui/dist/css/trendmicro-ui.css';
+//import '@trendmicro/react-buttons/dist/react-buttons.css';
 
 export default class UnsuspendViewList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             viewModel: null,
-            activePage: null,
-            resources: this.props.resources
+            resources: this.props.resources,
+            activePage: 1,
+            pageLength: 10,
+            totalRecords: 1000 * 1000
         };
 
         this.fetchCustomerListFromServer = this.fetchCustomerListFromServer.bind(this);
     }
 
     componentWillMount() {
-        this.fetchCustomerListFromServer(1);
+        this.fetchCustomerListFromServer({ page: 1, pageLength: 10 });
     }
 
-    fetchCustomerListFromServer(pageNumber) {
+    fetchCustomerListFromServer({ page, pageLength }) {
         $.blockUI();
         const { isAffected, downlineRoleId, searchAccountId } = this.props;
-        this.setState({ activePage: pageNumber });
+        this.setState({
+            activePage: page,
+            pageLength: pageLength
+        });
 
         //var params = {
         //    SearchAccountId: searchAccountId,
@@ -34,16 +41,17 @@ export default class UnsuspendViewList extends React.Component {
 
         var params = {
             SearchAccountId: 223322,
-            PageSize: 20,
-            PageIndex: pageNumber - 1,
+            PageSize: pageLength,
+            PageIndex: page - 1,
             IsAffected: true,
             DownlineRoleId: 2
         };
 
+        const that = this;
         unsuspendAPI.fetchCustomerList(params).then(
             (responeData) => {
-                this.setState({
-                    viewModel: responeData
+                that.setState({
+                    viewModel: responeData,
                 });
 
                 $.unblockUI();
@@ -53,17 +61,17 @@ export default class UnsuspendViewList extends React.Component {
 
     render() {
         const { viewModel, activePage, resources } = this.state;
-       
+        const back = <div>
+            <a className="btn-cancel" href='#' onClick={() => this.props.redirectMainPage(false)}>
+                {resources.Back}
+            </a>
+        </div>;
 
         return viewModel === null ? null : (
             < div className="" >
-                <div>
-                    <a className="btn-cancel" href='#' onClick={() => this.props.redirectMainPage(false)}>
-                        Back
-                    </a>
-                </div>
+                {back}
                 <p className="note">
-                    List of downlines whose status are changed/unchanged after going to unsuspend 'selected customer'
+                    {resources.ViewListNote}
                 </p>
 
                 <table className="tblRpt tblRpt-bordered width-100per">
@@ -109,14 +117,18 @@ export default class UnsuspendViewList extends React.Component {
                         }
                     </tbody>
                 </table>
-                <Pagination
-                    activePage={activePage}
-                    itemsCountPerPage={20}
-                    totalItemsCount={400}
-                    pageRangeDisplayed={5}
-                    onChange={this.fetchCustomerListFromServer}
+                <TablePagination
+                    type="full"
+                    page={this.state.activePage}
+                    pageLength={this.state.pageLength}
+                    totalRecords={this.state.totalRecords}
+                    onPageChange={this.fetchCustomerListFromServer}
+                    prevPageRenderer={() => <span className="icon-chevron-left" />}
+                    nextPageRenderer={() => <span className="icon-chevron-right" />}
+                    firstPageRenderer={() => <span className="icon-skip-previous" />}
+                    lastPageRenderer={() => <span className="icon-skip-next" />}
                 />
-               
+                {back}
             </div >
         );
     }

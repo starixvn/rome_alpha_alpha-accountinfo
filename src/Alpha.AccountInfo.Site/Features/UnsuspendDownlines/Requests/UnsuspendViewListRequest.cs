@@ -15,7 +15,7 @@
 
         public byte DownlineRoleId { get; set; }
 
-        public int PageSize { get; set; } = 50;
+        public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
 

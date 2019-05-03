@@ -171,4 +171,10 @@
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="ViewListNote" xml:space="preserve">
+    <value>List of downlines whose status are changed/unchanged after going to unsuspend 'selected customer'</value>
+  </data>
 </root>
