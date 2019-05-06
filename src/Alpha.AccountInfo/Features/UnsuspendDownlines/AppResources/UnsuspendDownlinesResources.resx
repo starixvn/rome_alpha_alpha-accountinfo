@@ -177,4 +177,16 @@
   <data name="ViewListNote" xml:space="preserve">
     <value>List of downlines whose status are changed/unchanged after going to unsuspend 'selected customer'</value>
   </data>
+  <data name="Displaying" xml:space="preserve">
+    <value>Displaying</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>to</value>
+  </data>
 </root>

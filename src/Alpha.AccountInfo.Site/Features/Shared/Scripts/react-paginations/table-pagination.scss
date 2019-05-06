@@ -68,7 +68,6 @@
         margin-left: 3px;
     }
 
-    > .active > a,
     > .active > span {
         cursor: default;
     }
@@ -79,10 +78,7 @@
         > div:focus,
         > span,
         > span:hover,
-        > span:focus,
-        > a,
-        > a:hover,
-        > a:focus {
+        > span:focus {
             color: $pagination-disabled-color;
             background-color: $pagination-disabled-bg;
             border-color: $pagination-disabled-border;

@@ -116,7 +116,8 @@ export default class UnsuspendViewList extends React.Component {
                     </tbody>
                 </table>
                 <ReactPagination
-                    type="full"
+                    pageResource={resources.Page}
+                    ofResource={resources.Of}
                     page={this.state.activePage}
                     pageLength={this.state.pageLength}
                     totalRecords={this.state.totalRecords}
@@ -125,6 +126,9 @@ export default class UnsuspendViewList extends React.Component {
                     nextPageRenderer={() => <span className="icon-chevron-right" />}
                     firstPageRenderer={() => <span className="icon-skip-previous" />}
                     lastPageRenderer={() => <span className="icon-skip-next" />}
+                    pageRecordsRenderer={({ totalRecords, from, to }) => {
+                        return `${resources.Displaying} ${from} ${resources.To} ${to} ${resources.Of} ${totalRecords}`;
+                    }}
                 />
                 {back}
             </div >
