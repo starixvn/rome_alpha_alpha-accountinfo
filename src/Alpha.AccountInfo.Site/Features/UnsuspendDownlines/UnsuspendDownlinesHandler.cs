@@ -4,10 +4,12 @@
     using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.UnsuspendDownlines;
+    using Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.AccountInfo.Site.Features.UnsuspendDownlines.Requests;
     using MediatR;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -81,22 +83,52 @@
                   message.ActorName,
                   false));
 
+        internal async Task<UnsuspendResult> UpdateSuspendAsync(UnsuspendMultipleCommand message, UnsuspendCustomerInfo customer)
+        {
+            return new UnsuspendResult(
+                customer.Username, 
+                customer.Suspended,
+                await accountInfoService.UpdateCustomerStatus(
+                      new UpdateCustomerStatusParam(
+                          customer.CustId,
+                          message.ActorId,
+                          message.SubAccountId,
+                          message.Language,
+                          message.IP,
+                          customer.Suspended,
+                          StatusNames.Suspended,
+                          message.ActorName,
+                          false)).ConfigureAwait(false));
+        }
+
         public async Task<IEnumerable<Result>> Handle(UnsuspendMultipleCommand message)
         {
-            var results = await Task.WhenAll(message.UnsuspendList.Select(
-                customer => accountInfoService.UpdateCustomerStatus(
-                     new UpdateCustomerStatusParam(
-                         customer.CustId,
-                         message.ActorId,
-                         message.SubAccountId,
-                         message.Language,
-                         message.IP,
-                         customer.Suspended,
-                         StatusNames.Suspended,
-                         message.ActorName,
-                         false)))).ConfigureAwait(false);
+            var tasks = new List<Task<UnsuspendResult>>();
+            foreach (var customer in message.UnsuspendList)
+            {
+                tasks.Add(UpdateSuspendAsync(message, customer));
+            }
 
-            return results.Where(result => !result.IsSuccess);
+            var resultTasks = await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            var unsuspendFailedUsernames = resultTasks.Where(r => !r.Result.IsSuccess && !r.Suspended);
+            var suspendFailedUsernames = resultTasks.Where(r => !r.Result.IsSuccess && r.Suspended);
+
+            var results = unsuspendFailedUsernames.Concat(suspendFailedUsernames).Select(r => r.Result).ToList();
+
+            var unsuspendSuccessresult = resultTasks.Where(r => r.Result.IsSuccess && !r.Suspended).Select(r => r.Username).ToList();
+            if (unsuspendSuccessresult.Count > 0)
+            {
+                results.Add(Result.CreateSuccessResult(String.Format(UnsuspendDownlinesResources.UnsuspendedSuccessfully, string.Join(", ", unsuspendSuccessresult))));
+            }
+
+            var suspendSuccessresult = resultTasks.Where(r => r.Result.IsSuccess && r.Suspended).Select(r => r.Username).ToList();
+            if (suspendSuccessresult.Count > 0)
+            {
+                results.Add(Result.CreateSuccessResult(String.Format(UnsuspendDownlinesResources.SuspendedSuccessfully, string.Join(", ", suspendSuccessresult))));
+            }
+
+            return results;
         }
     }
 }

@@ -29,17 +29,34 @@ export default class UnsuspendMultiple extends React.Component {
         let unsuspendList = [];
 
         viewModel.map(function (item) {
-            unsuspendList.push({ CustId: item.CustId, Suspended: item.Suspended });
+            unsuspendList.push({
+                CustId: item.CustId,
+                Username: item.Username,
+                Suspended: item.Suspended
+            });
         });
 
         unsuspendAPI.updateSuspend(
             "UnsuspendDownlines/UnsuspendMultiple",
             { UnsuspendList: unsuspendList })
             .then((data) => {
-                const isSuccess = data.length === 0;
+                let isSuccess = true;
+                let message = <div className='col-xs-12 msg-container'>
+                    {
+                        data.map((result, index) => {
+                            if (!result.IsSuccess && isSuccess) {
+                                isSuccess = false;
+                            }
+
+                            return <div key={index} className={result.IsSuccess ? 'msg msg-success' : 'msg msg-error'}>
+                                {result.Message}
+                            </div>;
+                        })}
+                </div>;
+
                 self.setState({
                     hideMessages: false,
-                    message: isSuccess ? resources.UpdateSuccessfully : this.buildErrorMessage(data),
+                    message: message,
                     updateSuccess: isSuccess
                 });
 
@@ -58,7 +75,16 @@ export default class UnsuspendMultiple extends React.Component {
     buildErrorMessage(errors) {
         return (
             <div>
-                {errors.map((eror, index) => <div key={index}>{eror.Message}</div>)}
+                {
+                    errors.map((eror, index) => {
+                    if (!eror.IsSuccess && this.state.updateSuccess) {
+                        this.setState({
+                            updateSuccess: false
+                        });
+                    }
+
+                    return <div key={index}>{eror.Message}</div>
+                })}
             </div>
         );
     }
@@ -71,10 +97,7 @@ export default class UnsuspendMultiple extends React.Component {
 
         return (
             <div className="">
-                <div className={hideMessages ? `hidden` : ``}>
-                    <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
-                </div>
-
+                {message}
                 <table className="tblRpt tblRpt-bordered width-100per">
                     <thead>
                         <tr>

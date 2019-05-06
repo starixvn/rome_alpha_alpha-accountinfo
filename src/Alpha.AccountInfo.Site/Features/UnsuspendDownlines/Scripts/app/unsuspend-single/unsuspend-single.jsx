@@ -53,9 +53,9 @@ export default class UnsuspendSingle extends React.Component {
         const { viewModel, resources, redirectViewListDetail } = this.props;
 
         return (
-            < div className="col-xs-12 " >
-                <div className={hideMessages ? `hidden` : ``}>
-                    <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>  {message} </span>
+            < div className=" " >
+                <div className={`col-xs-12 ${hideMessages ? 'hidden' : ''}`}>
+                    <div className={`msg ${updateSuccess ? ' msg-success' : 'msg msg-error'}`}>  {message} </div>
                 </div>
 
                 <p className="note">

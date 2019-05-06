@@ -186,7 +186,13 @@
   <data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>
+  <data name="SuspendedSuccessfully" xml:space="preserve">
+    <value>Status of {0} and all of their donwlines have been successfully updated to Suspended.</value>
+  </data>
   <data name="To" xml:space="preserve">
     <value>to</value>
+  </data>
+  <data name="UnsuspendedSuccessfully" xml:space="preserve">
+    <value>Status of {0}  and their affected donwlines have been successfully updated to Unsuspended.</value>
   </data>
 </root>

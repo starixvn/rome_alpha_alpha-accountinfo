@@ -9,6 +9,8 @@
     {
         public int CustId { get; set; }
 
+        public string Username { get; set; }
+
         public bool Suspended { get; set; }
     } 
 
