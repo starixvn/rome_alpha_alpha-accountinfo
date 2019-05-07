@@ -52,22 +52,22 @@
 
         public async Task<UnsuspendMultipleViewModel> Handle(UnsuspendMultipleRequest message)
         {
-            var task = unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId);
-            var data = task.Result.GroupBy(item => item.CustId).Select(group =>
-            {
-                var firstItem = group.FirstOrDefault();
-                return new UnsuspendMultipleDataViewModel(
-                     group.Key,
-                     message.RoleId,
-                     firstItem.Username,
-                     firstItem.Suspended,
-                     message.RoleId,
-                     group.OrderByDescending(level=> level.RoleId));
-            }).OrderBy(group => group.Username);
+            //var task = unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId);
+            //var data = task.Result.GroupBy(item => item.CustId).Select(group =>
+            //{
+            //    var firstItem = group.FirstOrDefault();
+            //    return new UnsuspendMultipleDataViewModel(
+            //         group.Key,
+            //         message.RoleId,
+            //         firstItem.Username,
+            //         firstItem.Suspended,
+            //         message.RoleId,
+            //         group.OrderByDescending(level=> level.RoleId));
+            //}).OrderBy(group => group.Username);
 
-            task.Wait();
+            //task.Wait();
 
-            return new UnsuspendMultipleViewModel(message.Language, data);
+            return new UnsuspendMultipleViewModel(message.Language, await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false));
         }
 
         public Task<Result> Handle(UnsuspendSingleCommand message)

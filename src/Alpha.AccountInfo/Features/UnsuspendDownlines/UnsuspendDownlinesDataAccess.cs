@@ -10,6 +10,8 @@
     public interface UnsuspendDownlinesDataAccess
     {
         Task<UnsuspendViewListModel> GetDownlinesInfoStatus(SelectSuspendInfoDetailCriteria criteria);
+
+        Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendMultipleModel(SelectSuspendInfoMultipleCriteria criteria);
     }
 
     public class UnsuspendDownlinesDataAccessImpl : UnsuspendDownlinesDataAccess
@@ -31,9 +33,30 @@
                         }
                     }
 
-                    return new UnsuspendViewListModel(dataFake.GroupBy(item => item.RoleId).Select(group => {
+                    return new UnsuspendViewListModel(dataFake.GroupBy(item => item.RoleId).Select(group =>
+                    {
                         return new UnsuspendDownlineByLevelModel(group.Key, group);
                     }), criteria.TotalRows);
+                }
+            }
+        }
+
+        public async Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendMultipleModel(SelectSuspendInfoMultipleCriteria criteria)
+        {
+            using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            {
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                {
+                    var searchAccounts = (await multiResultReader.ReadAsync<UnsuspendMultipleSearchAccount>().ConfigureAwait(false));
+                    var downlines = (await multiResultReader.ReadAsync<UnsuspendMultipleDownline>().ConfigureAwait(false));
+
+                    return searchAccounts.Select(searchAccount =>
+                            new UnsuspendMultipleModel(
+                                 searchAccount.CustId,
+                                 criteria.RoleId,
+                                 searchAccount.Username,
+                                 searchAccount.Suspended,
+                                 downlines.Where(downline => downline.CustId == searchAccount.CustId)));
                 }
             }
         }

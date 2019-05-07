@@ -7,7 +7,7 @@ import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/a
 window.renderUnsuspendSingle = function (viewModel, resources) {
     ReactDOM.render(
         <UnsuspendSingleContainer {...{ viewModel, resources: decodeResources(resources)}}/>,
-        document.getElementById('unsuspend-single')
+        document.getElementById('container')
     );
 };
 

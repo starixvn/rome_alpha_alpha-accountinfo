@@ -8,7 +8,7 @@ import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/a
 window.renderUnsuspendMultipe = function (viewModel, resources) {
     ReactDOM.render(
         <UnsuspendMultipleContainer {...{ viewModel, resources: decodeResources(resources)}}/>,
-        document.getElementById('unsuspend-multiple')
+        document.getElementById('container')
     );
 };
 

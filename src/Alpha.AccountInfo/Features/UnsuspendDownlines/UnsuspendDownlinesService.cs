@@ -17,7 +17,7 @@
             int pageSize,
             int pageIndex);
 
-        Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel(string custIds, byte roleId);
+        Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendMultipleModel(string custIds, byte roleId);
     }
 
     public class UnsuspendDownlinesServiceImpl : UnsuspendDownlinesService
@@ -50,7 +50,7 @@
                     pageSize,
                     pageIndex)).ConfigureAwait(false);
 
-        public Task<IEnumerable<UnsuspendMultipleByUserModel>> GetUnsuspendMultipleModel(string custIds, byte roleId)
-            => dynamicRepository.FetchAsync<UnsuspendMultipleByUserModel>(new SelectSuspendInfoMultipleCriteria(custIds, roleId));
+        public Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendMultipleModel(string custIds, byte roleId)
+            => unsuspendDownlinesDataAccess.GetUnsuspendMultipleModel(new SelectSuspendInfoMultipleCriteria(custIds, roleId));
     }
 }

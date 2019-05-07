@@ -51,18 +51,20 @@ export default class UnsuspendSingle extends React.Component {
     render() {
         const { updateSuccess, message, hideMessages } = this.state;
         const { viewModel, resources, redirectViewListDetail } = this.props;
+        const affectedDownlinesTotal = viewModel.AffectedDownlinesTotal,
+            unchangedDownlinesTotal = viewModel.UnchangedDownlinesTotal,
+            levels = viewModel.UnsuspendByLevel;
 
-        return (
-            < div className=" " >
-                <div className={`col-xs-12 ${hideMessages ? 'hidden' : ''}`}>
-                    <div className={`msg ${updateSuccess ? ' msg-success' : 'msg msg-error'}`}>  {message} </div>
+        return (<div>
+                <div className={`col-xs-12 msg-container ${hideMessages ? 'hidden' : ''}`}>
+                    <div className={`msg ${updateSuccess ? ' msg-success' : 'msg msg-error'}`}> {message} </div>
                 </div>
 
                 <p className="note">
                     {resources.UnsuspendSingleNote}
                 </p>
 
-                < div className="col-xs-12 " >
+                <div className="col-xs-12">
                     <table className="tblRpt tblRpt-bordered width-100per">
                         <thead>
                             <tr>
@@ -73,15 +75,14 @@ export default class UnsuspendSingle extends React.Component {
                         </thead>
                         <tbody>
                             {
-                                viewModel.UnsuspendByLevel.map((level, index) =>
-                                    <BodyRowContent {...{ level, redirectViewListDetail, resources, key: index }}/>)
+                                levels.map((level, index) => <BodyRowContent {...{ level, redirectViewListDetail, resources, key: index }}/>)
                             }
                         </tbody>
                         <FooterContent {...{
-                            affectedDownlinesTotal: viewModel.AffectedDownlinesTotal,
-                            unchangedDownlinesTotal: viewModel.UnchangedDownlinesTotal,
+                            affectedDownlinesTotal,
+                            unchangedDownlinesTotal,
                             redirectViewListDetail,
-                            resources
+                            totalText: resources.Total
                         }} />
                     </table>
                 </ div>

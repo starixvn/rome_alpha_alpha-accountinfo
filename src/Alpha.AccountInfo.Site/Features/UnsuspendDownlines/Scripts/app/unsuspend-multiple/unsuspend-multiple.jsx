@@ -25,7 +25,7 @@ export default class UnsuspendMultiple extends React.Component {
     handleSubmit(e) {
         $.blockUI();
         let self = this;
-        const { viewModel, resources } = this.props;
+        const { viewModel } = this.props;
         let unsuspendList = [];
 
         viewModel.map(function (item) {
@@ -36,9 +36,7 @@ export default class UnsuspendMultiple extends React.Component {
             });
         });
 
-        unsuspendAPI.updateSuspend(
-            "UnsuspendDownlines/UnsuspendMultiple",
-            { UnsuspendList: unsuspendList })
+        unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendMultiple", { UnsuspendList: unsuspendList })
             .then((data) => {
                 let isSuccess = true;
                 let message = <div className='col-xs-12 msg-container'>
@@ -65,7 +63,7 @@ export default class UnsuspendMultiple extends React.Component {
                         window.top.realoadLeftPanel = true;
                         window.top.closedPopup = true;
                         window.top.ageWnd.close();
-                    }, 1500);
+                    }, 3000);
                 }
 
                 $.unblockUI();
@@ -90,14 +88,15 @@ export default class UnsuspendMultiple extends React.Component {
     }
 
     render() {
-        const { updateSuccess, message, hideMessages } = this.state;
         const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props
-        const downlineRoleId = viewModel.length > 0 ? viewModel[0].RoleId : 1;
-        const headerLevel = downlineRoleId == 2 ? `${resources.Master}/${resources.Agent}/${resources.Member}` : `${resources.Agent}/${resources.Member}`
+        const searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1;
+        const headerLevel = searchAccountRoleId == 2 ?
+            `${resources.Master}/${resources.Agent}/${resources.Member}` :
+            `${resources.Agent}/${resources.Member}`
 
         return (
             <div className="">
-                {message}
+                {this.state.message}
                 <table className="tblRpt tblRpt-bordered width-100per">
                     <thead>
                         <tr>
@@ -105,8 +104,8 @@ export default class UnsuspendMultiple extends React.Component {
                             <th>
                                 {resources.SuspendStatus}
                             </th>
-                            {downlineRoleId > 1 && <th rowSpan='2'>{resources.AffectedDownlines} <br /> ({headerLevel})</th>}
-                            {downlineRoleId > 1 && <th rowSpan='2'>{resources.RemainUnchangedDownlines} <br /> ({headerLevel})</th>}
+                            {searchAccountRoleId > 1 && <th rowSpan='2'>{resources.AffectedDownlines} <br /> ({headerLevel})</th>}
+                            {searchAccountRoleId > 1 && <th rowSpan='2'>{resources.RemainUnchangedDownlines} <br /> ({headerLevel})</th>}
                         </tr>
                         <tr>
                             <th>
@@ -117,16 +116,17 @@ export default class UnsuspendMultiple extends React.Component {
                     </thead>
                     <tbody>
                         {
-                            viewModel.map((item, index) =>
-                                <RowContent
-                                    originalViewModel={originalViewModel}
-                                    item={item}
-                                    downlineRoleId={downlineRoleId}
-                                    key={index}
-                                    index={index}
-                                    handleChange={handleChange}
-                                    redirectViewListDetail={redirectViewListDetail}
-                                    resources={resources}
+                            viewModel.map((dataRow, index) =>
+                                <RowContent {...{
+                                    originaldataRow: originalViewModel[index],
+                                    dataRow,
+                                    searchAccountRoleId,
+                                    index,
+                                    handleChange,
+                                    redirectViewListDetail,
+                                    resources,
+                                    key: index
+                                    }}
                                 />)
                         }
                     </tbody>
