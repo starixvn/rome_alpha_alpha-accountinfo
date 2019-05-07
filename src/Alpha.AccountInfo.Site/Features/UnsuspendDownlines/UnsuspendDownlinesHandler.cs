@@ -19,7 +19,7 @@
         IAsyncRequestHandler<UnsuspendSingleRequest, UnsuspendSingleViewModel>,
         IAsyncRequestHandler<UnsuspendMultipleRequest, UnsuspendMultipleViewModel>,
         IAsyncRequestHandler<UnsuspendSingleCommand, Result>,
-        IAsyncRequestHandler<UnsuspendMultipleCommand, IEnumerable<Result>>
+        IAsyncRequestHandler<UnsuspendMultipleCommand, UnsuspendMultipleResultViewModel>
     {
         private readonly UnsuspendDownlinesService unsuspendDownlinesService;
         private readonly SearchAccountService accountInfoService;
@@ -37,12 +37,14 @@
                 message.Language,
                 new UnsuspendSingleDataViewModel (
                 message.SearchAccountId,
+                message.SearchAccountName,
                 await unsuspendDownlinesService.GetUnsuspendInfoModel(message.SearchAccountId)
                 .ConfigureAwait(false)));
 
         public async Task<UnsuspendListViewModel> Handle(UnsuspendViewListRequest message)
              => new UnsuspendListViewModel(
                  message.SearchAccountId,
+                 message.SearchAccountName,
                  await unsuspendDownlinesService.GetUnsuspendViewListModel(
                      message.SearchAccountId,
                      message.IsAffected,
@@ -51,24 +53,9 @@
                      message.PageIndex).ConfigureAwait(false));
 
         public async Task<UnsuspendMultipleViewModel> Handle(UnsuspendMultipleRequest message)
-        {
-            //var task = unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId);
-            //var data = task.Result.GroupBy(item => item.CustId).Select(group =>
-            //{
-            //    var firstItem = group.FirstOrDefault();
-            //    return new UnsuspendMultipleDataViewModel(
-            //         group.Key,
-            //         message.RoleId,
-            //         firstItem.Username,
-            //         firstItem.Suspended,
-            //         message.RoleId,
-            //         group.OrderByDescending(level=> level.RoleId));
-            //}).OrderBy(group => group.Username);
-
-            //task.Wait();
-
-            return new UnsuspendMultipleViewModel(message.Language, await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false));
-        }
+            => new UnsuspendMultipleViewModel(
+                message.Language,
+                await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false));
 
         public Task<Result> Handle(UnsuspendSingleCommand message)
           => accountInfoService.UpdateCustomerStatus(
@@ -83,10 +70,20 @@
                   message.ActorName,
                   false));
 
-        internal async Task<UnsuspendResult> UpdateSuspendAsync(UnsuspendMultipleCommand message, UnsuspendCustomerInfo customer)
+        public async Task<UnsuspendMultipleResultViewModel> Handle(UnsuspendMultipleCommand message)
         {
-            return new UnsuspendResult(
-                customer.Username, 
+            var tasks = new List<Task<UnsuspendResult>>();
+            foreach (var customer in message.UnsuspendList)
+            {
+                tasks.Add(UpdateSuspendAsync(message, customer));
+            }
+
+            return new UnsuspendMultipleResultViewModel(await Task.WhenAll(tasks).ConfigureAwait(false));
+        }
+
+        internal async Task<UnsuspendResult> UpdateSuspendAsync(UnsuspendMultipleCommand message, UnsuspendCustomerInfo customer)
+            => new UnsuspendResult(
+                customer.Username,
                 customer.Suspended,
                 await accountInfoService.UpdateCustomerStatus(
                       new UpdateCustomerStatusParam(
@@ -99,36 +96,5 @@
                           StatusNames.Suspended,
                           message.ActorName,
                           false)).ConfigureAwait(false));
-        }
-
-        public async Task<IEnumerable<Result>> Handle(UnsuspendMultipleCommand message)
-        {
-            var tasks = new List<Task<UnsuspendResult>>();
-            foreach (var customer in message.UnsuspendList)
-            {
-                tasks.Add(UpdateSuspendAsync(message, customer));
-            }
-
-            var resultTasks = await Task.WhenAll(tasks).ConfigureAwait(false);
-
-            var unsuspendFailedUsernames = resultTasks.Where(r => !r.Result.IsSuccess && !r.Suspended);
-            var suspendFailedUsernames = resultTasks.Where(r => !r.Result.IsSuccess && r.Suspended);
-
-            var results = unsuspendFailedUsernames.Concat(suspendFailedUsernames).Select(r => r.Result).ToList();
-
-            var unsuspendSuccessresult = resultTasks.Where(r => r.Result.IsSuccess && !r.Suspended).Select(r => r.Username).ToList();
-            if (unsuspendSuccessresult.Count > 0)
-            {
-                results.Add(Result.CreateSuccessResult(String.Format(UnsuspendDownlinesResources.UnsuspendedSuccessfully, string.Join(", ", unsuspendSuccessresult))));
-            }
-
-            var suspendSuccessresult = resultTasks.Where(r => r.Result.IsSuccess && r.Suspended).Select(r => r.Username).ToList();
-            if (suspendSuccessresult.Count > 0)
-            {
-                results.Add(Result.CreateSuccessResult(String.Format(UnsuspendDownlinesResources.SuspendedSuccessfully, string.Join(", ", suspendSuccessresult))));
-            }
-
-            return results;
-        }
     }
 }

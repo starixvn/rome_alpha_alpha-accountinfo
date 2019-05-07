@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import { unsuspendAPI } from '../unsuspend-api';
-import { BodyRowContent, FooterContent} from './unsuspend-single-components';
+import { BodyRowContent, FooterContent } from './unsuspend-single-components';
 
 export default class UnsuspendSingle extends React.Component {
     constructor(props) {
@@ -26,9 +26,7 @@ export default class UnsuspendSingle extends React.Component {
         const { resources, viewModel } = this.props;
         let self = this;
 
-        unsuspendAPI.updateSuspend(
-            "UnsuspendDownlines/UnsuspendSingle",
-            { SearchAccountId: viewModel.SearchAccountId})
+        unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendSingle",{ SearchAccountId: viewModel.SearchAccountId })
             .then((data) => {
                 self.setState({
                     hideMessages: false,
@@ -53,43 +51,44 @@ export default class UnsuspendSingle extends React.Component {
         const { viewModel, resources, redirectViewListDetail } = this.props;
         const affectedDownlinesTotal = viewModel.AffectedDownlinesTotal,
             unchangedDownlinesTotal = viewModel.UnchangedDownlinesTotal,
-            levels = viewModel.UnsuspendByLevel;
+            levels = viewModel.Levels;
 
         return (<div>
-                <div className={`col-xs-12 msg-container ${hideMessages ? 'hidden' : ''}`}>
-                    <div className={`msg ${updateSuccess ? ' msg-success' : 'msg msg-error'}`}> {message} </div>
-                </div>
+            <div className={`msg-container ${hideMessages ? 'hidden' : ''}`}>
+                <div className={`msg ${updateSuccess ? ' msg-success' : 'msg msg-error'}`}> {message} </div>
+            </div>
 
-                <p className="note">
-                    {resources.UnsuspendSingleNote}
-                </p>
+            <p className="note">
+                {`${resources.UnsuspendSingleNote} ${viewModel.SearchAccountName}`}
+            </p>
 
-                <div className="col-xs-12">
-                    <table className="tblRpt tblRpt-bordered width-100per">
-                        <thead>
-                            <tr>
-                                <th>{resources.Level}</th>
-                                <th>{resources.AffectedDownlines}</th>
-                                <th>{resources.RemainUnchangedDownlines}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            <div className="col-xs-12">
+                <table className="tblRpt tblRpt-bordered width-100per">
+                    <thead>
+                        <tr>
                             {
-                                levels.map((level, index) => <BodyRowContent {...{ level, redirectViewListDetail, resources, key: index }}/>)
+                                [resources.Level, resources.AffectedDownlines, resources.RemainUnchangedDownlines]
+                                    .map((text, index) => <th key={index}>{text} </th>)
                             }
-                        </tbody>
-                        <FooterContent {...{
-                            affectedDownlinesTotal,
-                            unchangedDownlinesTotal,
-                            redirectViewListDetail,
-                            totalText: resources.Total
-                        }} />
-                    </table>
-                </ div>
-                <div className="col-xs-12 row-info popup-bottom list-button text-right">
-                    <button className="btn-submit" onClick={this.handleSubmit}>{resources.Unsuspend}</button>
-                </div>
-            </div >
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            levels.map((level, index) => <BodyRowContent {...{ level, redirectViewListDetail, resources, key: index }} />)
+                        }
+                    </tbody>
+                    <FooterContent {...{
+                        affectedDownlinesTotal,
+                        unchangedDownlinesTotal,
+                        redirectViewListDetail,
+                        totalText: resources.Total
+                    }} />
+                </table>
+            </ div>
+            <div className="col-xs-12 row-info popup-bottom list-button text-right">
+                <button className="btn-submit" onClick={this.handleSubmit}>{resources.Unsuspend}</button>
+            </div>
+        </div >
         );
     }
 }

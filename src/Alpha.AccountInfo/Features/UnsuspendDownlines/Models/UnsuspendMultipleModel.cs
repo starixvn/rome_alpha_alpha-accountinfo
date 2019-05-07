@@ -9,13 +9,13 @@
             byte searchAccountRoleId,
             string username,
             bool suspended,
-            IEnumerable<UnsuspendMultipleDownline> unsuspendByLevel)
+            IEnumerable<UnsuspendDownlineModel> downlines)
         {
             CustId = custId;
             SearchAccountRoleId = searchAccountRoleId;
             Username = username;
             Suspended = suspended;
-            UnsuspendByLevel = unsuspendByLevel;
+            Downlines = downlines;
         }
 
         public int CustId { get; private set; }
@@ -26,14 +26,14 @@
 
         public bool Suspended { get; private set; }
 
-        public IEnumerable<UnsuspendMultipleDownline> UnsuspendByLevel { get; private set; }
+        public IEnumerable<UnsuspendDownlineModel> Downlines { get; private set; }
     }
 
-    public class UnsuspendMultipleSearchAccount
+    public class UnsuspendSearchAccountModel
     { 
-        public UnsuspendMultipleSearchAccount() { }
+        public UnsuspendSearchAccountModel() { }
 
-        public UnsuspendMultipleSearchAccount(
+        public UnsuspendSearchAccountModel(
             int custId,
             string username,
             bool suspended)
@@ -50,11 +50,11 @@
         public bool Suspended { get; private set; }
     }
 
-    public class UnsuspendMultipleDownline
+    public class UnsuspendDownlineModel
     {
-        public UnsuspendMultipleDownline() { }
+        public UnsuspendDownlineModel() { }
 
-        public UnsuspendMultipleDownline(
+        public UnsuspendDownlineModel(
             int custId,
             byte downlineRoleId,
             int affectedDownlines, 

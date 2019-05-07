@@ -11,6 +11,8 @@
         {
         }
 
+        public string SearchAccountName { get; set; }
+
         public bool IsAffected { get; set; }
 
         public byte DownlineRoleId { get; set; }

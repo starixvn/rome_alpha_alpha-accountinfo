@@ -20,24 +20,17 @@
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
+                IEnumerable<UnsuspendDownlineDto> downlines;
                 using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
                 {
-                    var downlines = await multiResultReader.ReadAsync<UnsuspendDownlineDto>().ConfigureAwait(false);
-
-                    var dataFake = new List<UnsuspendDownlineDto>();
-                    for (byte i = 1; i < 3; i++)
-                    {
-                        for (int j = criteria.PageSize * criteria.PageIndex; j < criteria.PageSize * (criteria.PageIndex + 1); j++)
-                        {
-                            dataFake.Add(new UnsuspendDownlineDto($"PageIndex:{criteria.PageIndex}-Affected:{criteria.IsAffected}-{i}-{j}", i));
-                        }
-                    }
-
-                    return new UnsuspendViewListModel(dataFake.GroupBy(item => item.RoleId).Select(group =>
-                    {
-                        return new UnsuspendDownlineByLevelModel(group.Key, group);
-                    }), criteria.TotalRows);
+                    downlines = await multiResultReader.ReadAsync<UnsuspendDownlineDto>().ConfigureAwait(false);
                 }
+
+                var outputParams = objectDb.GetOuputParams();
+                return new UnsuspendViewListModel(downlines.GroupBy(item => item.RoleId).Select(group =>
+                {
+                    return new UnsuspendDownlineByLevelModel(group.Key, group);
+                }), (int)outputParams["totalrows"]);
             }
         }
 
@@ -47,8 +40,8 @@
             {
                 using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
                 {
-                    var searchAccounts = (await multiResultReader.ReadAsync<UnsuspendMultipleSearchAccount>().ConfigureAwait(false));
-                    var downlines = (await multiResultReader.ReadAsync<UnsuspendMultipleDownline>().ConfigureAwait(false));
+                    var searchAccounts = (await multiResultReader.ReadAsync<UnsuspendSearchAccountModel>().ConfigureAwait(false));
+                    var downlines = (await multiResultReader.ReadAsync<UnsuspendDownlineModel>().ConfigureAwait(false));
 
                     return searchAccounts.Select(searchAccount =>
                             new UnsuspendMultipleModel(

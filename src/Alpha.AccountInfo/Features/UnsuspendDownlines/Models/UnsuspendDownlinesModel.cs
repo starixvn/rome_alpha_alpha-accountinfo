@@ -32,14 +32,14 @@
     public class UnsuspendViewListModel
     {
         public UnsuspendViewListModel(
-            IEnumerable<UnsuspendDownlineByLevelModel> unsuspendDownlinesByLevel, 
+            IEnumerable<UnsuspendDownlineByLevelModel> levels, 
             int totalRows)
         {
-            UnsuspendDownlinesByLevel = unsuspendDownlinesByLevel;
+            Levels = levels;
             TotalRows = totalRows;
         }
 
-        public IEnumerable<UnsuspendDownlineByLevelModel> UnsuspendDownlinesByLevel { get; private set; }
+        public IEnumerable<UnsuspendDownlineByLevelModel> Levels { get; private set; }
 
         public int TotalRows { get; private set; }
     }

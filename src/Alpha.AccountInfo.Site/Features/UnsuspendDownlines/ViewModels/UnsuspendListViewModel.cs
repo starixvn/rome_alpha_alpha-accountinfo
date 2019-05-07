@@ -6,14 +6,18 @@
     {
         public UnsuspendListViewModel(
             int searchAccountId,
-            UnsuspendViewListModel  unsuspendDownlinesViewList)
+            string searchAccountName,
+            UnsuspendViewListModel data)
         {
             SearchAccountId = searchAccountId;
-            UnsuspendDownlinesViewList = unsuspendDownlinesViewList;
+            SearchAccountName = searchAccountName;
+            Data = data;
         }
 
         public int SearchAccountId { get; private set; }
 
-        public UnsuspendViewListModel UnsuspendDownlinesViewList { get; private set; }
+        public string SearchAccountName { get; private set; }
+
+        public UnsuspendViewListModel Data { get; private set; }
     }
 }

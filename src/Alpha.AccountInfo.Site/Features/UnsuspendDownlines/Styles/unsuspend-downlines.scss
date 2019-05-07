@@ -2,8 +2,8 @@
 @import '../../Shared/Styles/mixins';
 
 .tblRpt {
-	/*table-layout: fixed;*/
-	width: 100%;
+    width: 100%;
+    margin-bottom: 16px;
 }
 
 .tblRpt .tbl-footer a {
@@ -99,6 +99,7 @@
         width: 20px;
         border-radius: 2px;
         box-sizing: border-box;
+        vertical-align: middle;
 
         &:before {
             font-family: Iconalpha;

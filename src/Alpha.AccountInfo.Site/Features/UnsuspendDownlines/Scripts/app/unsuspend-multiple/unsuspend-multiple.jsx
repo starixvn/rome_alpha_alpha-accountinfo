@@ -39,9 +39,9 @@ export default class UnsuspendMultiple extends React.Component {
         unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendMultiple", { UnsuspendList: unsuspendList })
             .then((data) => {
                 let isSuccess = true;
-                let message = <div className='col-xs-12 msg-container'>
+                let message = <div className='msg-container'>
                     {
-                        data.map((result, index) => {
+                        data.Results.map((result, index) => {
                             if (!result.IsSuccess && isSuccess) {
                                 isSuccess = false;
                             }
@@ -75,24 +75,25 @@ export default class UnsuspendMultiple extends React.Component {
             <div>
                 {
                     errors.map((eror, index) => {
-                    if (!eror.IsSuccess && this.state.updateSuccess) {
-                        this.setState({
-                            updateSuccess: false
-                        });
-                    }
+                        if (!eror.IsSuccess && this.state.updateSuccess) {
+                            this.setState({
+                                updateSuccess: false
+                            });
+                        }
 
-                    return <div key={index}>{eror.Message}</div>
-                })}
+                        return <div key={index}>{eror.Message}</div>
+                    })}
             </div>
         );
     }
 
     render() {
-        const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props
-        const searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1;
-        const headerLevel = searchAccountRoleId == 2 ?
-            `${resources.Master}/${resources.Agent}/${resources.Member}` :
-            `${resources.Agent}/${resources.Member}`
+        const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
+            searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1,
+            isNotMember = searchAccountRoleId > 1,
+            headerLevel = searchAccountRoleId == 2 ?
+                `${resources.Master}/${resources.Agent}/${resources.Member}` :
+                `${resources.Agent}/${resources.Member}`;
 
         return (
             <div className="">
@@ -104,13 +105,29 @@ export default class UnsuspendMultiple extends React.Component {
                             <th>
                                 {resources.SuspendStatus}
                             </th>
-                            {searchAccountRoleId > 1 && <th rowSpan='2'>{resources.AffectedDownlines} <br /> ({headerLevel})</th>}
-                            {searchAccountRoleId > 1 && <th rowSpan='2'>{resources.RemainUnchangedDownlines} <br /> ({headerLevel})</th>}
+                            {
+                                isNotMember && [resources.AffectedDownlines, resources.RemainUnchangedDownlines].map((text, index) =>
+                                    <th rowSpan='2' key={index}>{text} <br /> ({headerLevel})</th>)
+                            }
                         </tr>
                         <tr>
                             <th>
-                                <button className="btn-suspend-all" onClick={() => toggleSuspendAll(true)}>{resources.Suspend}</button>
-                                <button className="btn-unsuspend-all" onClick={() => toggleSuspendAll(false)}>{resources.Unsuspend}</button>
+                                {
+                                    [{
+                                        text: resources.Suspend,
+                                        class: `btn-suspend-all`,
+                                        suspended: true
+                                    },
+                                    {
+                                        text: resources.Unsuspend,
+                                        class: `btn-unsuspend-all`,
+                                        suspended: false
+                                    }].map((button, index) =>
+                                        <button className={button.class} key={index}
+                                            onClick={() => toggleSuspendAll(button.suspended)}>
+                                            {button.text}
+                                        </button>)
+                                }
                             </th>
                         </tr>
                     </thead>
@@ -126,14 +143,28 @@ export default class UnsuspendMultiple extends React.Component {
                                     redirectViewListDetail,
                                     resources,
                                     key: index
-                                    }}
-                                />)
+                                }} />)
                         }
                     </tbody>
                 </table>
                 <div className="col-xs-12 row-info popup-bottom list-button text-right">
-                    <button className="btn-reset" onClick={handleReset}>{resources.Reset}</button>
-                    <button className="btn-submit" onClick={this.handleSubmit}>{resources.Submit}</button>
+                    {
+                        [{
+                            text: resources.Reset,
+                            class: `btn-reset`,
+                            onclick: handleReset
+                        },
+                        {
+                            text: resources.Submit,
+                            class: `btn-submit`,
+                            onclick: this.handleSubmit
+                        }].map((button, index) =>
+                            <button className={button.class} key={index} onClick={button.onclick}>
+                                {button.text}
+                            </button>
+                        )
+                    }
+
                 </div>
             </div >
         );

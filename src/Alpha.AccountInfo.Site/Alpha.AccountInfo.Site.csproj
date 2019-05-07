@@ -568,7 +568,7 @@
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendViewListRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesController.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandler.cs" />
-    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendInfoMultipleViewModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendMultipleViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendResult.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendListViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendSingleViewModel.cs" />

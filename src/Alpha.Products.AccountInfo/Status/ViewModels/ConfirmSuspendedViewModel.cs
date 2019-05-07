@@ -32,7 +32,7 @@
         public override bool IsPopup => Checked;
 
         public override string Url => Checked ?
-            $"{AccountInfoUrl}UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}" :
+            $"{AccountInfoUrl}UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}" :
             base.Url;
     }
 }

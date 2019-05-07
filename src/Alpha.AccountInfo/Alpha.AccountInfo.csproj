@@ -216,7 +216,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UnsuspendDownlinesResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendInfoModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendSingleModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendMultipleModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendDownlinesModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoMultipleCriteria.cs" />

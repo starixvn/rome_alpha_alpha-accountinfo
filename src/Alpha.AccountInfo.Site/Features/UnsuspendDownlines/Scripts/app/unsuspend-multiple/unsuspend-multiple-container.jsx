@@ -20,6 +20,7 @@ export class UnsuspendMultipleContainer extends React.Component {
             showViewList: false,
             isAffected: false,
             searchAccountId: 0,
+            searchAccountName: '',
             downlineRoleId: 1,
             resources: resources,
             originalViewModel: _.cloneDeep(viewModel),
@@ -58,9 +59,10 @@ export class UnsuspendMultipleContainer extends React.Component {
         this.setState({ viewModel: viewModelCopy });
     }
 
-    redirectViewListDetail(searchAccountId, downlineRoleId, isAffected) {
+    redirectViewListDetail(searchAccountId, searchAccountName, downlineRoleId, isAffected) {
         this.setState({
             searchAccountId: searchAccountId,
+            searchAccountName: searchAccountName,
             showViewList: true,
             isAffected: isAffected,
             downlineRoleId: downlineRoleId
@@ -72,13 +74,14 @@ export class UnsuspendMultipleContainer extends React.Component {
     }
 
     render() {
-        const { searchAccountId, isAffected, downlineRoleId, originalViewModel, viewModel, resources} = this.state;
+        const { searchAccountId, searchAccountName, isAffected, downlineRoleId, originalViewModel, viewModel, resources} = this.state;
 
         return this.state.showViewList ?
             <UnsuspendViewList {...{
                 isAffected,
                 downlineRoleId,
                 searchAccountId,
+                searchAccountName,
                 resources,
                 redirectMainPage: this.redirectMainPage
             }} /> :

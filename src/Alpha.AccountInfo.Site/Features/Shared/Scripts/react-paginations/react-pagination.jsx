@@ -80,85 +80,82 @@ class ReactPagination extends React.Component {
             >
                 <div className='table-pagination-block'>
                     <div>
-                        <select onChange={(e) => {
-                            const pageSize = parseFloat(e.currentTarget.value);
-                            this.changePage({
-                                page: (pageSize !== pageLength) ? 1 : page,
-                                pageLength: pageSize
-                            });
-                        }}>
+                        <select className='pagination-page-list'
+                            onChange={(e) => {
+                                const pageSize = parseFloat(e.currentTarget.value);
+                                this.changePage({
+                                    page: (pageSize !== pageLength) ? 1 : page,
+                                    pageLength: pageSize
+                                });
+                            }}>
                             {pageLengthMenu.map(val =>
                                 <option
                                     key={val}
                                     value={val}
-                                    className={classNames('pagination-page-list',
-                                        { ['selected']: pageLength === val }
-                                    )}
+                                    className={classNames({ ['selected']: pageLength === val })}
                                 >
                                     {val}
                                 </option>
                             )}
                         </select>
                     </div>
-                    <div>
-                        <div className='pagination'>
-                            <PaginationButton
-                                disabled={prevPageDisabled}
-                                page={1}
-                                pageRender={firstPageRenderer}
-                                changePage={this.changePage}
-                                setCurrentPage={this.setCurrentPage}
-                            />
-                            <PaginationButton
-                                disabled={prevPageDisabled}
-                                page={page > 1 ? page - 1 : page}
-                                pageRender={prevPageRenderer}
-                                changePage={this.changePage}
-                                setCurrentPage={this.setCurrentPage}
-                            />
+                    <div className='pagination'>
+                        <PaginationButton
+                            disabled={prevPageDisabled}
+                            page={1}
+                            pageRender={firstPageRenderer}
+                            changePage={this.changePage}
+                            setCurrentPage={this.setCurrentPage}
+                        />
+                        <PaginationButton
+                            disabled={prevPageDisabled}
+                            page={page > 1 ? page - 1 : page}
+                            pageRender={prevPageRenderer}
+                            changePage={this.changePage}
+                            setCurrentPage={this.setCurrentPage}
+                        />
 
-                            <div className='pagination-input'>
-                                {`${pageResource} `}
-                                <AutosizeInput
-                                    value={this.state.page}
-                                    onChange={(event) => {
-                                        const page = Number(event.target.value);
-                                        if (isNaN(page)) {
-                                            return;
-                                        }
-                                        this.setState({ page: limit(page, 1, totalPages) });
-                                    }}
-                                    onKeyPress={(event) => {
-                                        if (event.key !== 'Enter') {
-                                            return;
-                                        }
+                        <div className='pagination-input'>
+                            {`${pageResource} `}
+                            <AutosizeInput
+                                value={this.state.page}
+                                onChange={(event) => {
+                                    const page = Number(event.target.value);
+                                    if (isNaN(page)) {
+                                        return;
+                                    }
+                                    this.setState({ page: limit(page, 1, totalPages) });
+                                }}
+                                onKeyPress={(event) => {
+                                    if (event.key !== 'Enter') {
+                                        return;
+                                    }
 
-                                        let { page } = this.state;
-                                        page = limit(page, 1, totalPages);
+                                    let { page } = this.state;
+                                    page = limit(page, 1, totalPages);
 
-                                        this.setCurrentPage(page);
-                                        this.changePage({ page: page });
-                                    }}
-                                />
-                                {` ${ofResource} `}
-                                {totalPages}
-                            </div>
-
-                            <PaginationButton
-                                disabled={nextPageDisabled}
-                                page={page < totalPages ? page + 1 : page}
-                                pageRender={nextPageRenderer}
-                                changePage={this.changePage}
-                                setCurrentPage={this.setCurrentPage}
+                                    this.setCurrentPage(page);
+                                    this.changePage({ page: page });
+                                }}
                             />
-                            <PaginationButton
-                                disabled={nextPageDisabled}
-                                page={totalPages}
-                                pageRender={lastPageRenderer}
-                                changePage={this.changePage}
-                                setCurrentPage={this.setCurrentPage}
-                            />
+                            {` ${ofResource} `}
+                            {totalPages}
                         </div>
+
+                        <PaginationButton
+                            disabled={nextPageDisabled}
+                            page={page < totalPages ? page + 1 : page}
+                            pageRender={nextPageRenderer}
+                            changePage={this.changePage}
+                            setCurrentPage={this.setCurrentPage}
+                        />
+                        <PaginationButton
+                            disabled={nextPageDisabled}
+                            page={totalPages}
+                            pageRender={lastPageRenderer}
+                            changePage={this.changePage}
+                            setCurrentPage={this.setCurrentPage}
+                        />
                     </div>
                     <div className='pagination-records'>
                         {pageRecordsRenderer({ totalRecords, from, to })}

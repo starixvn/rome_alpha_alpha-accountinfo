@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.UnsuspendDownlines.Requests
 {
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
     using System.Collections.Generic;
@@ -14,7 +15,7 @@
         public bool Suspended { get; set; }
     } 
 
-    public class UnsuspendMultipleCommand : BaseRequest, IRequest<IEnumerable<Result>>
+    public class UnsuspendMultipleCommand : BaseRequest, IRequest<UnsuspendMultipleResultViewModel>
     {
         private readonly IUser viewer;
 

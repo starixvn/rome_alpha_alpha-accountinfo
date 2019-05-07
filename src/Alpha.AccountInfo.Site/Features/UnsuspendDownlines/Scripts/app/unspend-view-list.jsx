@@ -10,66 +10,63 @@ export default class UnsuspendViewList extends React.Component {
             viewModel: null,
             resources: this.props.resources,
             activePage: 1,
-            pageLength: 10,
-            totalRecords: 100 * 100
+            pageLength: 50
         };
 
         this.fetchCustomerListFromServer = this.fetchCustomerListFromServer.bind(this);
     }
 
     componentWillMount() {
-        this.fetchCustomerListFromServer({ page: 1, pageLength: 10 });
+        const { activePage, pageLength } = this.state;
+        this.fetchCustomerListFromServer({ page: activePage, pageLength: pageLength });
     }
 
     fetchCustomerListFromServer({ page, pageLength }) {
         $.blockUI();
-        const { isAffected, downlineRoleId, searchAccountId } = this.props;
+        const { isAffected, downlineRoleId, searchAccountId, searchAccountName } = this.props;
         this.setState({
             activePage: page,
             pageLength: pageLength
         });
 
-        //var params = {
-        //    SearchAccountId: searchAccountId,
-        //    PageSize: 20,
-        //    PageIndex: pageNumber - 1,
-        //    IsAffected: isAffected,
-        //    DownlineRoleId: downlineRoleId
-        //};
-
         var params = {
-            SearchAccountId: 223322,
+            SearchAccountId: searchAccountId,
+            SearchAccountName: searchAccountName,
             PageSize: pageLength,
             PageIndex: page - 1,
-            IsAffected: true,
-            DownlineRoleId: 2
+            IsAffected: isAffected,
+            DownlineRoleId: downlineRoleId
         };
 
         const that = this;
         unsuspendAPI.fetchCustomerList(params).then(
             (responeData) => {
                 that.setState({
-                    viewModel: responeData,
+                    viewModel: responeData
                 });
 
                 $.unblockUI();
             });
-
     }
 
     render() {
-        const { viewModel, activePage, resources } = this.state;
+        const { viewModel, activePage, pageLength, resources } = this.state;
+        if (viewModel === null) {
+            return null;
+        }
+
+        const totalRecords = viewModel.Data.TotalRows, showPaging = totalRecords > pageLength;
         const back = <div>
             <a className="btn-cancel" href='#' onClick={() => this.props.redirectMainPage(false)}>
                 {resources.Back}
             </a>
         </div>;
 
-        return viewModel === null ? null : (
+        return (
             < div className="" >
-                {back}
+                {showPaging && back}
                 <p className="note">
-                    {resources.ViewListNote}
+                    {`${resources.ViewListNote} ${viewModel.SearchAccountName}`}
                 </p>
 
                 <table className="tblRpt tblRpt-bordered width-100per">
@@ -81,7 +78,7 @@ export default class UnsuspendViewList extends React.Component {
                     </thead>
                     <tbody>
                         {
-                            viewModel.UnsuspendDownlinesViewList.UnsuspendDownlinesByLevel.map((level, index) => {
+                            viewModel.Data.Levels.map((level, index) => {
                                 const length = level.UnsuspendDownlines.length;
                                 return (
                                     level.UnsuspendDownlines.map((username, index1, arr) => {
@@ -115,21 +112,23 @@ export default class UnsuspendViewList extends React.Component {
                         }
                     </tbody>
                 </table>
-                <ReactPagination
-                    pageResource={resources.Page}
-                    ofResource={resources.Of}
-                    page={this.state.activePage}
-                    pageLength={this.state.pageLength}
-                    totalRecords={this.state.totalRecords}
-                    onPageChange={this.fetchCustomerListFromServer}
-                    prevPageRenderer={() => <span className="icon-chevron-left" />}
-                    nextPageRenderer={() => <span className="icon-chevron-right" />}
-                    firstPageRenderer={() => <span className="icon-skip-previous" />}
-                    lastPageRenderer={() => <span className="icon-skip-next" />}
-                    pageRecordsRenderer={({ totalRecords, from, to }) => {
-                        return `${resources.Displaying} ${from} ${resources.To} ${to} ${resources.Of} ${totalRecords}`;
-                    }}
-                />
+                {
+                    showPaging && <ReactPagination
+                        pageResource={resources.Page}
+                        ofResource={resources.Of}
+                        page={activePage}
+                        pageLength={pageLength}
+                        totalRecords={totalRecords}
+                        onPageChange={this.fetchCustomerListFromServer}
+                        prevPageRenderer={() => <span className="icon-chevron-left" />}
+                        nextPageRenderer={() => <span className="icon-chevron-right" />}
+                        firstPageRenderer={() => <span className="icon-skip-previous" />}
+                        lastPageRenderer={() => <span className="icon-skip-next" />}
+                        pageRecordsRenderer={({ totalRecords, from, to }) => {
+                            return `${resources.Displaying} ${from} ${resources.To} ${to} ${resources.Of} ${totalRecords}`;
+                        }}
+                    />
+                }
                 {back}
             </div >
         );

@@ -53,8 +53,14 @@ export const FooterContent = ({
         <tr className="tbl-footer">
             <td>{totalText}</td>
             {
-                [{ downlines: affectedDownlinesTotal, isAffected: true },
-                { downlines: unchangedDownlinesTotal, isAffected: false }].map((column, index) => {
+                [{
+                    downlines: affectedDownlinesTotal,
+                    isAffected: true
+                },
+                {
+                    downlines: unchangedDownlinesTotal,
+                    isAffected: false
+                }].map((column, index) => {
                     const { downlines, isAffected } = column;
                     return (
                         <td className="text-center" key={index}>

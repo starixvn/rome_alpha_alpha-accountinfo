@@ -52,7 +52,7 @@ export default class ConfirmStatus extends React.Component {
                     }
                 }
 
-                window.top.ageWnd.open(status.Url, `${resources.UnuspendStatusPopupHeader} ${username}`);
+                window.top.ageWnd.open(status.Url, `${resources.UnuspendStatusPopupHeader} ${username}`, undefined, undefined, 600, 500);
                 if (mobileView) {
                     resizePopupOnMobile();
                 }

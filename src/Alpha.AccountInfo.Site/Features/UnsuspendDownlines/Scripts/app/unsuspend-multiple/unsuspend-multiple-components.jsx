@@ -9,60 +9,61 @@ export const RowContent = ({
     handleChange,
     redirectViewListDetail,
     resources }) => {
-    const levels = searchAccountRoleId - 1;
-    const isNotMember = searchAccountRoleId > 1;
-    const showValue = originaldataRow.Suspended !== dataRow.Suspended;
+    const levels = searchAccountRoleId - 1,
+        isNotMember = searchAccountRoleId > 1,
+        showValue = originaldataRow.Suspended !== dataRow.Suspended,
+        header = dataRow.Suspended ?
+            { text: resources.Suspended, buttonClass: 'suspend-button' } :
+            { text: resources.Unsuspended, buttonClass: 'unsuspend-button' };
 
     return (
         <tr>
             <td> {dataRow.Username} </td>
             <td className="text-center">
-                <div onClick={() => handleChange(index, !dataRow.Suspended)}
-                    className={dataRow.Suspended ? `suspend-button` : `unsuspend-button`}
-                >
-                    {dataRow.Suspended ? resources.Suspended : resources.Unsuspended}
+                <div onClick={() => handleChange(index, !dataRow.Suspended)} className={header.buttonClass}>
+                    {header.text}
                 </div>
             </td>
             {
-                isNotMember && [true, false].map((isAffected, index) => {
-                    return <td className="text-center" key={index}>
+                isNotMember && [true, false].map((isAffected, index) =>
+                    <td className="text-center" key={index}>
                         {
                             showValue && (originaldataRow.Suspended ?
-                                <ColumnContent {...{ dataRow, levels, redirectViewListDetail, isAffected}} /> :
+                                <ColumnContent {...{ dataRow, levels, redirectViewListDetail, isAffected }} /> :
                                 <span>{resources.All}</span>)
                         }
-                    </td>
-                })
+                    </td>)
             }
         </tr>);
 }
 
 export const ColumnContent = ({ dataRow, levels, isAffected, redirectViewListDetail }) => {
-    let count = dataRow.UnsuspendByLevel.length;
-    while (count < levels) {
-        dataRow.UnsuspendByLevel.push({
+    let currentLevels = dataRow.Downlines.length;
+    while (currentLevels < levels) {
+        dataRow.Downlines.push({
             CustId: 0,
             DownlineRoleId: 0,
             AffectedDownlines: 0,
             UnchangedDownlines: 0
         });
 
-        count++;
+        currentLevels++;
     }
 
     return (<div>
         {
-            dataRow.UnsuspendByLevel.map((level, index) => {
+            dataRow.Downlines.map((level, index) => {
                 const downlines = isAffected ? level.AffectedDownlines : level.UnchangedDownlines;
 
                 return <span key={index}>
                     {
                         downlines === 0 ? downlines :
                             <a key={index} href='#'
-                                onClick={() => redirectViewListDetail(dataRow.CustId, level.DownlineRoleId, isAffected)}>
-                                {downlines} </a>
+                                onClick={() => redirectViewListDetail(dataRow.CustId, dataRow.Username, level.DownlineRoleId, isAffected)}>
+                                {downlines}
+                            </a>
                     }
-                    {index < count - 1 ? ` / ` : ``}
+                    {index < currentLevels - 1 ? ` / ` : ``}
                 </span>;
             })
         }

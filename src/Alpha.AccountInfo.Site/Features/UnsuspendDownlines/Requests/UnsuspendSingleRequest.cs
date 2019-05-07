@@ -12,6 +12,8 @@
             Language = viewer.Language;
         }
 
+        public string SearchAccountName { get; set; }
+
         public string Language { get; private set; }
     }
 }

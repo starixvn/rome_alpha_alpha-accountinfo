@@ -260,7 +260,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are changed/unchanged after going to unsuspend &apos;selected customer&apos;.
+        ///   Looks up a localized string similar to List of downlines whose status are changed/unchanged after going to unsuspend.
         /// </summary>
         public static string UnsuspendSingleNote {
             get {
@@ -287,7 +287,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are changed/unchanged after going to unsuspend &apos;selected customer&apos;.
+        ///   Looks up a localized string similar to List of downlines whose status are changed/unchanged after going to unsuspend.
         /// </summary>
         public static string ViewListNote {
             get {

@@ -30,19 +30,23 @@
     {
         public UnsuspendSingleDataViewModel(
             int searchAccountId,
-            IEnumerable<UnsuspendInfoModel> unsuspendByLevel)
+            string searchAccountName,
+            IEnumerable<UnsuspendSingleModel> levels)
         {
             SearchAccountId = searchAccountId;
-            UnsuspendByLevel = unsuspendByLevel.OrderByDescending(level => level.RoleId);
+            SearchAccountName = searchAccountName;
+            Levels = levels.OrderByDescending(level => level.RoleId);
         }
 
         public int SearchAccountId { get; private set; }
 
-        public IEnumerable<UnsuspendInfoModel> UnsuspendByLevel { get; private set; }
+        public string SearchAccountName { get; private set; }
 
-        public int AffectedDownlinesTotal => UnsuspendByLevel.Sum(item => item.AffectedDownlines);
+        public IEnumerable<UnsuspendSingleModel> Levels { get; private set; }
 
-        public int UnchangedDownlinesTotal => UnsuspendByLevel.Sum(item => item.UnchangedDownlines);
+        public int AffectedDownlinesTotal => Levels.Sum(item => item.AffectedDownlines);
+
+        public int UnchangedDownlinesTotal => Levels.Sum(item => item.UnchangedDownlines);
 
     }
 }

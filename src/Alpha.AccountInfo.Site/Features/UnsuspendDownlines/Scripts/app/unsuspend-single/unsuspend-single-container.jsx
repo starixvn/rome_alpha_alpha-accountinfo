@@ -46,8 +46,13 @@ export class UnsuspendSingleContainer extends React.Component {
                 downlineRoleId,
                 resources,
                 searchAccountId: viewModel.SearchAccountId,
+                searchAccountName: viewModel.SearchAccountName,
                 redirectMainPage: this.redirectMainPage
             }} /> :
-            <UnsuspendSingle {...{ viewModel, resources, redirectViewListDetail: this.redirectViewListDetail }} />;
+            <UnsuspendSingle {...{
+                viewModel,
+                resources,
+                redirectViewListDetail: this.redirectViewListDetail
+            }} />;
     }
 }

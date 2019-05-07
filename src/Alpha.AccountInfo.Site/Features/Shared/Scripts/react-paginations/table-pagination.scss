@@ -9,10 +9,7 @@
 
         > div {
             margin-top: 8px;
-            margin-top: 8px;
             margin-bottom: 8px;
-            margin-left: 8px;
-            margin-right: 8px;
             float: left;
         }
 
@@ -21,21 +18,30 @@
         }
 
         .pagination-records {
-            color: #666666;
+            color: #333;
             margin-top: 14px;
             margin-bottom: 14px;
             float: right;
         }
 
+        .pagination-page-list {
+            border: 1px solid #cecece;
+            height: 24px;
+            box-shadow: none;
+            box-sizing: border-box;
+            margin: 0 6px;
+        }
+
         .pagination-input {
-            color: #666666;
-            width: 150px;
+            color: #333;
+            min-width: 130px;
 
             input {
                 vertical-align: baseline;
                 margin: 0;
                 min-width: 24px;
-                padding: 5px 4px;
+                height: 24px;
+                padding: 0 4px;
                 text-align: center;
                 border: 1px solid #ccc;
                 border-radius: 3px;

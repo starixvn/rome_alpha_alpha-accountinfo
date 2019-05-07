@@ -163,7 +163,7 @@
     <value>Unsuspended</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to unsuspend 'selected customer'</value>
+    <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
@@ -175,7 +175,7 @@
     <value>Back</value>
   </data>
   <data name="ViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to unsuspend 'selected customer'</value>
+    <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
   </data>
   <data name="Displaying" xml:space="preserve">
     <value>Displaying</value>
