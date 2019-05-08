@@ -176,8 +176,7 @@
                    message.IP,
                    message.StatusValue,
                    message.StatusName,
-                   message.ActorName,
-                   message.SyncedCasino3rd));
+                   message.ActorName));
 
         internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery message,

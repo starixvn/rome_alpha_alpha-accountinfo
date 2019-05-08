@@ -80,7 +80,6 @@
             var viewModel = new ConfirmAllowAutoMasterPTViewModel(request);
 
             Assert.Equal(expectedStatusValue, viewModel.StatusValue);
-            Assert.Equal(false, viewModel.SyncedCasino3rd);
         }
 
         [Fact]
@@ -92,7 +91,6 @@
             var viewModel = new ConfirmAllowAutoMasterPTViewModel(request);
 
             Assert.Equal("DisableAutoMPT", viewModel.StatusName);
-            Assert.Equal(false, viewModel.SyncedCasino3rd);
         }
     }
 }

@@ -106,7 +106,6 @@
             var viewModel = new ConfirmDoubleCommViewModel(request);
 
             Assert.Equal("DoubleCommLosing", viewModel.StatusName);
-            Assert.Equal(false, viewModel.SyncedCasino3rd);
         }
     }
 }

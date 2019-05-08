@@ -27,8 +27,6 @@
 
         internal override bool StatusValue => !Checked;
 
-        internal override bool SyncedCasino3rd => Request.SearchAccount.ProductStatusOf(ProductConstants.RNGCasino).Synced;
-
         public override bool IsPopup => Checked;
 
         public override string Url => Checked ?

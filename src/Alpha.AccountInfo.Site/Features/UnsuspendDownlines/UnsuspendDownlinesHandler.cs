@@ -64,8 +64,7 @@
                   message.IP,
                   false,
                   StatusNames.Suspended,
-                  message.ActorName,
-                  false));
+                  message.ActorName));
 
         public async Task<UnsuspendMultipleResultViewModel> Handle(UnsuspendMultipleCommand message)
         {
@@ -91,7 +90,6 @@
                           message.IP,
                           customer.Suspended,
                           StatusNames.Suspended,
-                          message.ActorName,
-                          false)).ConfigureAwait(false));
+                          message.ActorName)).ConfigureAwait(false));
     }
 }

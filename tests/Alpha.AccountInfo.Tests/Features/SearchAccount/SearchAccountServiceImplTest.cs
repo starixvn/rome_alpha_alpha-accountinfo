@@ -26,7 +26,6 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
         private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
-        private readonly RnGCasinoService rnGCasinoService;
         private readonly SearchAccountServiceImpl accountInfoService;
         private readonly CompareLogic compareLogic = new CompareLogic();
         private readonly Fixture fixture = new Fixture();
@@ -38,7 +37,6 @@
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
             accountInfoDataAccess = Substitute.For<SearchAccountDataAccess>();
-            rnGCasinoService = Substitute.For<RnGCasinoService>();
 
             memberBalanceInfoModel = fixture.Create<MemberBalanceInfoModel>();
             agentBalanceInfoModel = fixture.Create<AgentBalanceInfoModel>();
@@ -55,7 +53,6 @@
                 new SearchAccountServiceImpl(
                 dynamicRepository,
                 accountInfoDataAccess,
-                rnGCasinoService,
                 getBalanceInfoModelByLevel);
         }
 
@@ -236,67 +233,6 @@
                 .GetResult();
 
             Assert.True(compareLogic.Compare(actualResutl, result).AreEqual);
-        }
-
-        [Fact]
-        public void UpdateCustomerStatus_SuccessAndSyncedCasino_CallSyncedToRnGCasino3rdByStatus()
-        {
-            var result = Result.CreateSuccessResult();
-            var param = new UpdateCustomerStatusParam(
-                searchAccountId: 1,
-                actorId: 1,
-                subAccountId: 0,
-                language: "E",
-                ip: "192.168.1.1",
-                statusName: "ouright",
-                statusValue: true,
-                actorName: "Actor",
-                syncedCasino3rd: true);
-
-            accountInfoDataAccess
-                .UpdateCustomerStatus(Arg.Any<UpdateCustomerStatusCommand>())
-                .Returns(Task.FromResult(result));
-
-            accountInfoService
-                .UpdateCustomerStatus(param)
-                .GetAwaiter()
-                .GetResult();
-
-            rnGCasinoService.Received().SyncedToRnGCasino3rdByStatus(
-                Arg.Is<UpdateRnGCasino3rdParam>(rngParam =>
-                rngParam.SearchAccountId.Equals(1) &&
-                rngParam.StatusName.Equals("ouright") &&
-                rngParam.StatusValue.Equals(true) &&
-                rngParam.ActorId.Equals(1) &&
-                rngParam.ActorName.Equals("Actor") &&
-                rngParam.IP.Equals("192.168.1.1")));
-        }
-
-        [Fact]
-        public void UpdateCustomerStatus_SuccessAndSyncedCasino_DoesNotCallSyncedToRnGCasino3rdByStatus()
-        {
-            var result = Result.CreateErrorResult(10, string.Empty);
-            var param = new UpdateCustomerStatusParam(
-                searchAccountId: 1,
-                actorId: 1,
-                subAccountId: 0,
-                language: "E",
-                ip: "192.168.1.1",
-                statusName: "ouright",
-                statusValue: true,
-                actorName: "Actor",
-                syncedCasino3rd: true);
-
-            accountInfoDataAccess
-                .UpdateCustomerStatus(Arg.Any<UpdateCustomerStatusCommand>())
-                .Returns(Task.FromResult(result));
-
-            accountInfoService
-                .UpdateCustomerStatus(param)
-                .GetAwaiter()
-                .GetResult();
-
-            rnGCasinoService.DidNotReceive().SyncedToRnGCasino3rdByStatus(Arg.Any<UpdateRnGCasino3rdParam>());
         }
 
         [Fact]
