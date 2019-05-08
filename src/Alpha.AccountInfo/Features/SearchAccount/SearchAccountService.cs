@@ -13,12 +13,15 @@
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
+    using Criteria.ProductStatus;
 
     public interface SearchAccountService
     {
         Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
 
         Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId);
+
+        Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname);
 
         Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId);
 
@@ -76,6 +79,9 @@
 
         public Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId)
             => dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
+
+        public Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
+            => dynamicRepository.GetAsync<bool>(new UpdateUserSearchCriteria(userId, search, firstName, lastName, nickname));
 
         public Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId)
            => getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](new SelectBalanceInfoCriteria(custId, roleId));
