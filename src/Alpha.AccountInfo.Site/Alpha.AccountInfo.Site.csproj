@@ -420,6 +420,10 @@
     <Content Include="Features\Shared\Scripts\api-client.jsx" />
     <Content Include="Features\Shared\Scripts\react-paginations\autosize-input.jsx" />
     <Content Include="Features\Shared\Scripts\react-paginations\react-pagination.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.css" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.js" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single.min.css" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single.min.js" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-helper.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-api.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unspend-view-list.jsx" />
@@ -569,7 +573,7 @@
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesController.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandler.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendMultipleViewModel.cs" />
-    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendResult.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendMultipleResultViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendListViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendSingleViewModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -660,7 +664,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\UnsuspendDownlines\Bundles\" />
     <Folder Include="Features\UnsuspendDownlines\Scripts\tests\" />
   </ItemGroup>
   <ItemGroup>

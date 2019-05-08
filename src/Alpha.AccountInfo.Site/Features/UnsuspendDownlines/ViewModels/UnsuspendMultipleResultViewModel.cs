@@ -34,7 +34,7 @@
         public IEnumerable<Result> Results {
             get
             {
-                var results = new List<Result>();
+                var failedResults = new List<Result>();
                 var sussessfullySusependUsernames = new List<string>();
                 var sussessfullyUnSusependUsernames = new List<string>();
 
@@ -53,21 +53,22 @@
                     }
                     else
                     {
-                        results.Add(unsuspendResult.Result);
+                        failedResults.Add(unsuspendResult.Result);
                     }
                 });
 
+                var successfullyResults = new List<Result>();
                 if (sussessfullyUnSusependUsernames.Count > 0)
                 {
-                    results.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.UnsuspendedSuccessfully, sussessfullyUnSusependUsernames));
+                    successfullyResults.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.UnsuspendedSuccessfully, sussessfullyUnSusependUsernames));
                 }
 
                 if (sussessfullySusependUsernames.Count > 0)
                 {
-                    results.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.SuspendedSuccessfully, sussessfullySusependUsernames));
+                    successfullyResults.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.SuspendedSuccessfully, sussessfullySusependUsernames));
                 }
 
-                return results;
+                return successfullyResults.Concat(failedResults);
             }
         }
 

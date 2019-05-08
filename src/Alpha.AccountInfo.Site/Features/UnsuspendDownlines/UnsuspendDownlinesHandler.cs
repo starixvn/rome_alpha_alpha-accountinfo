@@ -4,14 +4,11 @@
     using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.UnsuspendDownlines;
-    using Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.AccountInfo.Site.Features.UnsuspendDownlines.Requests;
     using MediatR;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public class UnsuspendDownlinesHandler :

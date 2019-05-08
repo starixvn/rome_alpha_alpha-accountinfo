@@ -20,14 +20,13 @@ module.exports = {
             "./Features/SearchAccount/Styles/account-info-mobile-calculate-07.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unsuspend-single": [
-			"./Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-container.jsx",
-			"./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss"
+            "./Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-container.jsx",
+            "./Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
+            "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
 		],
 		"./UnsuspendDownlines/Bundles/unsuspend-multiple": [
             "./Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
-            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
-		],
-		"./UnsuspendDownlines/Bundles/unspend-view-list": [
             "./Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx",
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
