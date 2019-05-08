@@ -49,7 +49,9 @@
                                  criteria.RoleId,
                                  searchAccount.Username,
                                  searchAccount.Suspended,
-                                 downlines.Where(downline => downline.CustId == searchAccount.CustId)));
+                                 downlines
+                                 .Where(downline => downline.CustId == searchAccount.CustId)
+                                 .OrderByDescending(downline => downline.DownlineRoleId)));
                 }
             }
         }

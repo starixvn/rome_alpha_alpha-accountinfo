@@ -91,9 +91,7 @@ export default class UnsuspendMultiple extends React.Component {
         const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
             searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1,
             isNotMember = searchAccountRoleId > 1,
-            headerLevel = searchAccountRoleId == 2 ?
-                `${resources.Master}/${resources.Agent}/${resources.Member}` :
-                `${resources.Agent}/${resources.Member}`;
+            headerLevel = searchAccountRoleId == 3 ? `${resources.Agent}/${resources.Member}` : `${resources.Member}`;
 
         return (
             <div className="">
