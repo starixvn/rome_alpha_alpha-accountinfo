@@ -64,7 +64,7 @@
         {
             var model = new List<UsernameSuggestion>
             {
-                new UsernameSuggestion("UserName", "FirstName", "LastName")
+                new UsernameSuggestion("UserName", "FirstName", "LastName", "UserName2")
             };
 
             dynamicRepository
@@ -116,7 +116,7 @@
                 .Returns(Task.FromResult(model));
 
             var actualModel = accountInfoService
-                .GetCustomerInfo("test", 1)
+                .GetCustomerInfo("test", 1, 2)
                 .GetAwaiter()
                 .GetResult();
 

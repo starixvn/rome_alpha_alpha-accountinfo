@@ -170,6 +170,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criteria\ProductStatus\UpdateUserSearchCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

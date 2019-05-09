@@ -7,6 +7,9 @@
     using Alpha.AccountInfo.Site.Features.Shared;
     using Alpha.Web.Filters;
     using MediatR;
+    using AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using System.Collections.Generic;
+    using System.Linq;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class SearchAccountController : AccountInfoBaseController

@@ -78,8 +78,8 @@
 
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
         {
-            var customerInfo = await accountInfoService.GetCustomerInfo(message.SearchAccountName, message.ActorId).ConfigureAwait(false);
-
+            var customerInfo = await accountInfoService.GetCustomerInfo(message.SearchAccountName, message.ActorId, message.ActorRoleId).ConfigureAwait(false);
+            
             if (customerInfo != null)
             {
                 var searchAccountLevel = Enumeration.FromValue<UserLevel>(customerInfo.RoleId);
