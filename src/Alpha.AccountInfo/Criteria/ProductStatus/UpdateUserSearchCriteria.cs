@@ -23,7 +23,7 @@
         public string LastName { get; }
 
         [SpParam(SqlParamName = "username2")]
-        public string Nickname { get; }
+        public string Nickname { get; set; }
 
         public string System { get; } = "ACCOUNTING";
 

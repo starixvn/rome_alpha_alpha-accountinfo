@@ -76,22 +76,20 @@
         }
 
         public Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
+            => dynamicRepository.FetchAsync<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
+
+        public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId)
         { 
-            var result = dynamicRepository.FetchAsync<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
-
-            if (result.Result.Any())
+            var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId))
+                .ConfigureAwait(false);
+            if (customerInfo != null)
             {
-                foreach (var item in result.Result)
-                {
-                    UpdateUserSearch(actorId, item.UserName, item.FirstName, item.LastName, item.UserName2);
-                }                
+                await UpdateUserSearch(uplineId, customerInfo.UserName, customerInfo.FirstName, customerInfo.LastName, customerInfo.UserName2)
+                    .ConfigureAwait(false);
             }
-            
-            return result;
-        }
 
-        public Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId)
-            => dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
+            return customerInfo;
+        }
 
         public Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
             => dynamicRepository.GetAsync<bool>(new UpdateUserSearchCriteria(userId, search, firstName, lastName, nickname));
