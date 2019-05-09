@@ -61,15 +61,16 @@ export default class UnsuspendSingle extends React.Component {
 
     viewInfomation(e) {
         const { resources } = this.props;
+
         let messages = `<div>
             <div> ${resources.ViewInformation1}</div>
-            <div> ${resources.ViewInformation2}</div>
-            <div> ${resources.ViewInformation3}</div>
+            <div style='padding-left: 15px;'> ${resources.ViewInformation2}</div>
+            <div style='padding-left: 15px;'> ${resources.ViewInformation3}</div>
             <div> ${resources.ViewInformation4}</div>
             <div> ${resources.ViewInformation5}</div>
         </div>`;
 
-        window.top.bootboxAlert(messages);
+        window.top.bootboxAlert(messages, null, null, {width: 1000});
     }
 
     render() {

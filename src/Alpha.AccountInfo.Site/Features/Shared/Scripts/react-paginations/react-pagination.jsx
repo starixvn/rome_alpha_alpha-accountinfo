@@ -92,6 +92,7 @@ class ReactPagination extends React.Component {
                                 <option
                                     key={val}
                                     value={val}
+                                    selected={pageLength === val}
                                     className={classNames({ ['selected']: pageLength === val })}
                                 >
                                     {val}
