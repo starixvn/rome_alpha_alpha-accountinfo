@@ -26,17 +26,17 @@ export default class UnsuspendMultiple extends React.Component {
         $.blockUI();
         let self = this;
         const { viewModel } = this.props;
-        let unsuspendList = [];
+        let params = [];
 
         viewModel.map(function (item) {
-            unsuspendList.push({
+            params.push({
                 CustId: item.CustId,
                 Username: item.Username,
                 Suspended: item.Suspended
             });
         });
 
-        unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendMultiple", { UnsuspendList: unsuspendList })
+        unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendMultiple", { UnsuspendList: params })
             .then((data) => {
                 let isSuccess = true;
                 let message = <div className='msg-container'>
@@ -59,32 +59,14 @@ export default class UnsuspendMultiple extends React.Component {
                 });
 
                 if (isSuccess) {
+                    window.top.main.DelayReloadPage();
                     setTimeout(() => {
-                        window.top.realoadLeftPanel = true;
-                        window.top.closedPopup = true;
                         window.top.ageWnd.close();
                     }, 3000);
                 }
 
                 $.unblockUI();
             });
-    }
-
-    buildErrorMessage(errors) {
-        return (
-            <div>
-                {
-                    errors.map((eror, index) => {
-                        if (!eror.IsSuccess && this.state.updateSuccess) {
-                            this.setState({
-                                updateSuccess: false
-                            });
-                        }
-
-                        return <div key={index}>{eror.Message}</div>
-                    })}
-            </div>
-        );
     }
 
     render() {

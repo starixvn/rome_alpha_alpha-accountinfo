@@ -35,6 +35,7 @@ export default class UnsuspendSingle extends React.Component {
                 });
 
                 if (data.IsSuccess) {
+                    window.top.reloadCustomerList && window.top.main.DelayReloadPage();
                     setTimeout(() => {
                         window.top.realoadLeftPanel = true;
                         window.top.closedPopup = true;
