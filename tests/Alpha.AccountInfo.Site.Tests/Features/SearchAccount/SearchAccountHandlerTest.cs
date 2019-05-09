@@ -185,7 +185,7 @@
         {
             accountInfoHandler.Handle(customerInfoQuery).ConfigureAwait(false);
 
-            accountInfoService.Received().GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>());
+            accountInfoService.Received().GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>());
         }
 
         [Fact]
@@ -193,7 +193,7 @@
         {
             CustomerInfoModel nullCustomerInfo = null;
             accountInfoService
-                .GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>())
+                .GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>())
                 .Returns(Task.FromResult(nullCustomerInfo));
 
             var actualViewModel = accountInfoHandler
@@ -208,7 +208,7 @@
         public void HandleCustomerInfoQuery_CustomerInfoHasData_ReturnCorrectViewModel()
         {
             var memberBalanceInfoViewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo);
-            accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>()).Returns(customerInfo);
+            accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(customerInfo);
             accountInfoService.GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>()).Returns(AccountInfoHelper.MemberBalanceInfo);
             var expectedViewModel = new CustomerInfoViewModel(
                 customerInfoQuery,
@@ -223,7 +223,7 @@
         [Fact]
         public void HandleCustomerInfoQuery_CustomerInfoHasData_CallGetBalanceInfoModel()
         {
-            accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>()).Returns(customerInfo);
+            accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(customerInfo);
 
             accountInfoHandler.Handle(customerInfoQuery).ConfigureAwait(false);
 

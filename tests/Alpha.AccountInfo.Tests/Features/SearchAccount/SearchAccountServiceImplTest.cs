@@ -116,7 +116,7 @@
                 .Returns(Task.FromResult(model));
 
             var actualModel = accountInfoService
-                .GetCustomerInfo("test", 1)
+                .GetCustomerInfo("test", 1, 2)
                 .GetAwaiter()
                 .GetResult();
 

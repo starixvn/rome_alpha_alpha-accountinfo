@@ -20,7 +20,7 @@
     {
         Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
 
-        Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId);
+        Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId);
 
         Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname);
 
@@ -78,13 +78,14 @@
         public Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
             => dynamicRepository.FetchAsync<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
 
-        public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId)
+        public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId)
         { 
             var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId))
                 .ConfigureAwait(false);
             if (customerInfo != null)
             {
-                await UpdateUserSearch(uplineId, customerInfo.UserName, customerInfo.FirstName, customerInfo.LastName, customerInfo.UserName2)
+                var nickname = roleId - customerInfo.RoleId == 1 ? customerInfo.UserName2 : string.Empty;
+                await UpdateUserSearch(uplineId, customerInfo.UserName, customerInfo.FirstName, customerInfo.LastName, nickname)
                     .ConfigureAwait(false);
             }
 
