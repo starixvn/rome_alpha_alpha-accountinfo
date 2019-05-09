@@ -98,6 +98,15 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well..
+        /// </summary>
+        public static string ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage {
+            get {
+                return ResourceManager.GetString("ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Displaying.
         /// </summary>
         public static string Displaying {
@@ -283,6 +292,51 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - When a customer is suspended, all his downlines will be suspended as well.
+        /// </summary>
+        public static string ViewInformation1 {
+            get {
+                return ResourceManager.GetString("ViewInformation1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to + Only the downlines who were indirectly suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list.
+        /// </summary>
+        public static string ViewInformation2 {
+            get {
+                return ResourceManager.GetString("ViewInformation2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to + For the rest, their current status will not be changed. You can click on the number of remain unchanged downlines to view the list..
+        /// </summary>
+        public static string ViewInformation3 {
+            get {
+                return ResourceManager.GetString("ViewInformation3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Affected Downlines: list of users whose status will be changed after their upline is unsuspended..
+        /// </summary>
+        public static string ViewInformation4 {
+            get {
+                return ResourceManager.GetString("ViewInformation4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Remain Unchanged Downlines: list of users whose status will be kept after their upline is unsuspended ..
+        /// </summary>
+        public static string ViewInformation5 {
+            get {
+                return ResourceManager.GetString("ViewInformation5", resourceCulture);
             }
         }
         

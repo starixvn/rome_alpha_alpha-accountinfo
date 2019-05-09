@@ -27,7 +27,7 @@
 
         internal override bool StatusValue => !Checked;
 
-        public override bool IsPopup => Checked;
+        public override bool IsPopup => Checked && SearchAccount.IsNotMember;
 
         public override string Url => Checked ?
             $"{AccountInfoUrl}UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}" :

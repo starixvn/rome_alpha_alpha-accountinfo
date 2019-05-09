@@ -415,6 +415,6 @@
     <value>Đồng bộ hóa Casino</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>Update Unsuspend Status for </value>
+    <value>Huỷ đình chỉ</value>
   </data>
 </root>

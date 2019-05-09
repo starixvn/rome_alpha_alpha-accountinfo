@@ -61,7 +61,7 @@ class ReactPagination extends React.Component {
             ...props
         } = this.props;
 
-        const pageLength = this.props.pageLength || pageLengthMenu[0] || 10;
+        const pageLength = this.props.pageLength || pageLengthMenu[0] || 50;
         const totalPages = totalRecords > 0 ? Math.ceil(totalRecords / pageLength) : 1;
         const page = limit(this.props.page, 1, totalPages);
         const from = limit((page - 1) * pageLength + 1, 1, totalRecords);
@@ -204,7 +204,7 @@ ReactPagination.defaultProps = {
     pageResource: 'Page',
     ofResource: 'of',
     page: 1,
-    pageLength: 10,
+    pageLength: 50,
     pageLengthMenu: [10, 25, 50, 100],
     totalRecords: 0,
     onPageChange: () => { },
