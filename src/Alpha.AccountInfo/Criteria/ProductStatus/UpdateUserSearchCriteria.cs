@@ -25,7 +25,7 @@
         [SpParam(SqlParamName = "username2")]
         public string Nickname { get; }
 
-        public string System { get; } = "Alpha";
+        public string System { get; } = "ACCOUNTING";
 
         public override string GetSettingKey() => "Acc_CustomerUpdUserSearch";
 
