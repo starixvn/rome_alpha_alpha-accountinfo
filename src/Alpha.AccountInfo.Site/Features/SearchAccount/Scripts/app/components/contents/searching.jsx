@@ -7,7 +7,7 @@ export const getSuggestionValue = suggestion => suggestion.UserName;
 
 export const renderSuggestion = suggestion =>
     <div id={`${suggestion.UserName}-suggestion`}>
-        {suggestion.UserName}
+        {suggestion.UserName} {suggestion.UserName2 !== null && suggestion.UserName2 !== '' && `(${suggestion.UserName2})`}
         <div>{suggestion.FirstName} {suggestion.LastName}</div>
     </div>;
 

@@ -14,7 +14,7 @@
             UserName2 = username2;
         }
 
-        public string UserName { get; set; }
+        public string UserName { get; private set; }
 
         public string FirstName { get; private set; }
 

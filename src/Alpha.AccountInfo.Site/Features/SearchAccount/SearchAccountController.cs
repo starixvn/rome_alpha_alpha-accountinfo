@@ -26,24 +26,7 @@
           => await ViewAsync(message, SearchAccountViewPath).ConfigureAwait(false);
 
         public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
-        {
-            var results = mediator.Send(message);
-            var items = new List<UsernameSuggestion>();
-            if (results.Result.Any())
-            {
-                foreach (var item in results.Result)
-                {
-                    if (!string.IsNullOrWhiteSpace(item.UserName2))
-                    {
-                        item.UserName = string.Format("{0} ({1})", item.UserName, item.UserName2);
-                    }
-
-                    items.Add(item);
-                }
-            }
-
-            return Json(items, JsonRequestBehavior.AllowGet);
-        }
+           => JsonData(message);
 
         public ActionResult GetCustomerInfo(CustomerInfoQuery message)
             => JsonData(message);
