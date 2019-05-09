@@ -79,13 +79,9 @@
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
         {
             var customerInfo = await accountInfoService.GetCustomerInfo(message.SearchAccountName, message.ActorId).ConfigureAwait(false);
-
+            
             if (customerInfo != null)
             {
-                await accountInfoService
-                    .UpdateUserSearch(message.ActorId, customerInfo.UserName, customerInfo.FirstName, customerInfo.LastName, customerInfo.UserName2)
-                    .ConfigureAwait(false);
-
                 var searchAccountLevel = Enumeration.FromValue<UserLevel>(customerInfo.RoleId);
 
                 var balanceInfo = getBalanceInfoViewModelByLevel[searchAccountLevel](

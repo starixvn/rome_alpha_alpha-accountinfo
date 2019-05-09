@@ -64,7 +64,7 @@
         {
             var model = new List<UsernameSuggestion>
             {
-                new UsernameSuggestion("UserName", "FirstName", "LastName")
+                new UsernameSuggestion("UserName", "FirstName", "LastName", "UserName2")
             };
 
             dynamicRepository

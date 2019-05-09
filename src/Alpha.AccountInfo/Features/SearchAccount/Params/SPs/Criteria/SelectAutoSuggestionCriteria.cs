@@ -17,7 +17,7 @@
 
         [SpParam(SqlParamName = "username")]
         public string SuggestionQuery { get; }
-
+        
         [SpParam(SqlParamName = "isInternalAgent")]
         public bool IsInternal { get; }
 

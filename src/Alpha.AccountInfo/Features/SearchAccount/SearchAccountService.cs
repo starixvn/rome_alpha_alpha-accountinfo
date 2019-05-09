@@ -14,6 +14,7 @@
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
     using Criteria.ProductStatus;
+    using System.Linq;
 
     public interface SearchAccountService
     {
@@ -75,7 +76,19 @@
         }
 
         public Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
-            => dynamicRepository.FetchAsync<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
+        { 
+            var result = dynamicRepository.FetchAsync<UsernameSuggestion>(new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal));
+
+            if (result.Result.Any())
+            {
+                foreach (var item in result.Result)
+                {
+                    UpdateUserSearch(actorId, item.UserName, item.FirstName, item.LastName, item.UserName2);
+                }                
+            }
+            
+            return result;
+        }
 
         public Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId)
             => dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Criteria.ProductStatus
 {
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     public class UpdateUserSearchCriteria : CriteriaBase
@@ -21,6 +22,7 @@
 
         public string LastName { get; }
 
+        [SpParam(SqlParamName = "username2")]
         public string Nickname { get; }
 
         public string System { get; } = "Alpha";

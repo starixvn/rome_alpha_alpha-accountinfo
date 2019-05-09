@@ -10,7 +10,7 @@
   <Function Name="Account Info">
     <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch_xtest" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustomerSelTotalDownline" SpName="Acc_CustomerSelTotalDownline" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="Age_BalanceMasterSel" SpName="Age_BalanceMasterSel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping ObjectProperty="YesterdayMasterCash" DataField="yesterday_MasterCash" />
