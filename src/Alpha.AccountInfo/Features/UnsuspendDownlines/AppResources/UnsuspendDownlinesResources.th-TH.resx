@@ -181,7 +181,7 @@
     <value>รายการสถานะดาวน์ไลน์ &lt;username&gt; ถูกยกเลิกการระงับ</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>อัปเดตสำเร็จแล้ว!</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>ชื่อผู้ใช้ระบบ</value>
@@ -221,5 +221,15 @@
   </data>
   <data name="UnchangedViewListNote" xml:space="preserve">
     <value>รายการสถานะดาวน์ไลน์ไม่เปลี่ยนแปลง &lt;username&gt; หลังยกเลิกการระงับ</value>
+  </data>
+  <data name="SubmitMultipleConfirm1" xml:space="preserve">
+    <value>&lt;username&gt; จะถูกยกเลิกการระงับ</value>
+  </data>
+  <data name="SubmitMultipleConfirm2" xml:space="preserve">
+    <value>&lt;username&gt; จะถูกระงับ 
+ คำเตือน: พวกเขาจะไม่สามารถวางเดิมพัน"</value>
+  </data>
+  <data name="SubmitMultipleConfirm3" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการดำเนินการต่อ?</value>
   </data>
 </root>

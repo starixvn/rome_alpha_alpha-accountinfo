@@ -225,4 +225,13 @@
   <data name="ViewInformation2" xml:space="preserve">
     <value>- When a customer is unsuspended:</value>
   </data>
+  <data name="SubmitMultipleConfirm1" xml:space="preserve">
+    <value>&lt;username&gt; will be unsuspended.</value>
+  </data>
+  <data name="SubmitMultipleConfirm2" xml:space="preserve">
+    <value>&lt;username&gt; will be suspended. Warning: they will not be able to place bet.</value>
+  </data>
+  <data name="SubmitMultipleConfirm3" xml:space="preserve">
+    <value>Do you want to proceed?</value>
+  </data>
 </root>

@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
 import { Markup } from 'interweave';
+import { usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
 export default class UnsuspendMultiple extends React.Component {
     constructor(props) {
@@ -13,6 +14,8 @@ export default class UnsuspendMultiple extends React.Component {
             message: ''
         };
 
+        this.doUpdate = this.doUpdate.bind(this);
+        this.viewInfomation = this.viewInfomation.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
@@ -23,19 +26,20 @@ export default class UnsuspendMultiple extends React.Component {
         }
     }
 
-
-    handleSubmit(e) {
+    doUpdate(e) {
         $.blockUI();
         let self = this;
-        const { viewModel } = this.props;
+        const { viewModel, originalViewModel } = this.props;
         let params = [];
 
-        viewModel.map(function (item) {
-            params.push({
-                CustId: item.CustId,
-                Username: item.Username,
-                Suspended: item.Suspended
-            });
+        viewModel.map(function (item, index) {
+            if (item.Suspended !== originalViewModel[index].Suspended) {
+                params.push({
+                    CustId: item.CustId,
+                    Username: item.Username,
+                    Suspended: item.Suspended
+                });
+            }
         });
 
         unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendMultiple", { UnsuspendList: params })
@@ -69,6 +73,43 @@ export default class UnsuspendMultiple extends React.Component {
 
                 $.unblockUI();
             });
+    }
+
+    handleSubmit(e) {
+        const { viewModel, originalViewModel } = this.props;
+        let unsuspendedUsername = [];
+        let suspendedUsername = [];
+        viewModel.map(function (item, index) {
+            if (item.Suspended !== originalViewModel[index].Suspended) {
+                item.Suspended ? suspendedUsername.push(item.Username) : unsuspendedUsername.push(item.Username);
+            }
+        });
+
+        const { resources } = this.props;
+        let messages = `<div style='font-weight: bold;'>
+            ${
+                unsuspendedUsername.length > 0 ? 
+                `<div> ${usernameRegExp(resources.SubmitMultipleConfirm1, unsuspendedUsername)}</div>` : ''
+            }
+            ${
+                suspendedUsername.length > 0 ?
+                `<div> ${usernameRegExp(resources.SubmitMultipleConfirm2, suspendedUsername)}</div>` : ''
+            }
+            <div> ${resources.SubmitMultipleConfirm3}</div>
+        </div>`;
+
+        window.top.bootboxConfirm(
+            messages,
+            e.target,
+            this.doUpdate
+        );
+    }
+
+    viewInfomation(e) {
+        const { resources } = this.props;
+        let messages = `<div></div>`;
+
+        window.top.bootboxAlert(messages, null, null, { width: 1000 });
     }
 
     render() {

@@ -233,6 +233,33 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;username&gt; will be unsuspended..
+        /// </summary>
+        public static string SubmitMultipleConfirm1 {
+            get {
+                return ResourceManager.GetString("SubmitMultipleConfirm1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;username&gt; will be suspended. Warning: they will not be able to place bet..
+        /// </summary>
+        public static string SubmitMultipleConfirm2 {
+            get {
+                return ResourceManager.GetString("SubmitMultipleConfirm2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to proceed?.
+        /// </summary>
+        public static string SubmitMultipleConfirm3 {
+            get {
+                return ResourceManager.GetString("SubmitMultipleConfirm3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Suspended.
         /// </summary>
         public static string Suspended {

@@ -181,7 +181,7 @@
     <value>下线列表的状态在 &lt;username&gt; 取消暂停</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>更新成功！</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>用户名</value>
@@ -221,5 +221,15 @@
   </data>
   <data name="UnchangedViewListNote" xml:space="preserve">
     <value>&lt;username&gt; 取消暂停后，下线列表的状态沒有更改</value>
+  </data>
+  <data name="SubmitMultipleConfirm1" xml:space="preserve">
+    <value>&lt;username&gt; 已被取消暂停。</value>
+  </data>
+  <data name="SubmitMultipleConfirm2" xml:space="preserve">
+    <value>&lt;username&gt; 已被暂停。
+ 警告：他们将无法进行投注。</value>
+  </data>
+  <data name="SubmitMultipleConfirm3" xml:space="preserve">
+    <value>您确定要继续吗？</value>
   </data>
 </root>

@@ -181,7 +181,7 @@
     <value>Trạng thái của tài khoản cấp dưới sau khi &lt;username&gt; được huỷ đình chỉ</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>Đã cập nhật thành công!</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Tên đăng nhập</value>
@@ -221,5 +221,14 @@
   </data>
   <data name="UnchangedViewListNote" xml:space="preserve">
     <value>Danh sách tài khoản cấp dưới có trạng thái không thay đổi sau khi &lt;username&gt; được huỷ đình chỉ</value>
+  </data>
+  <data name="SubmitMultipleConfirm1" xml:space="preserve">
+    <value>&lt;username&gt; sẽ được huỷ đình chỉ.</value>
+  </data>
+  <data name="SubmitMultipleConfirm2" xml:space="preserve">
+    <value>&lt;username&gt; sẽ bị đình chỉ. Lưu ý: họ sẽ không thể đặt cược.</value>
+  </data>
+  <data name="SubmitMultipleConfirm3" xml:space="preserve">
+    <value>Bạn có chắc muốn tiến hành?</value>
   </data>
 </root>
