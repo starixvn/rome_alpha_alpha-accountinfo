@@ -263,7 +263,7 @@
     <None Include="app.config" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.ko-KR.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.th-TH.resx" />
-    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesvi-VN.resx" />
+    <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.vi-VN.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.zh-CN.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.zh-TW.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.ja-JP.resx" />

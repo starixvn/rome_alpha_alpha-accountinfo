@@ -144,9 +144,6 @@
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
-  <data name="Suspend" xml:space="preserve">
-    <value>Suspend</value>
-  </data>
   <data name="Suspended" xml:space="preserve">
     <value>Suspended</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
-  </data>
-  <data name="Unsuspend" xml:space="preserve">
-    <value>Unsuspend</value>
   </data>
   <data name="Unsuspended" xml:space="preserve">
     <value>Unsuspended</value>
@@ -174,8 +168,8 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="ViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
+  <data name="AffectedViewListNote" xml:space="preserve">
+    <value>List of downlines whose status are changed after &lt;username&gt; is unsuspended</value>
   </data>
   <data name="Displaying" xml:space="preserve">
     <value>Displaying</value>
@@ -214,10 +208,19 @@
     <value>- Remain Unchanged Downlines: list of users whose status will be kept after their upline is unsuspended .</value>
   </data>
   <data name="AffectedDownlinesAgentMember" xml:space="preserve">
-    <value>Affected Downlines (Agent/Member)</value>
+    <value>Affected Downlines &lt;br/&gt;  (Agent/Member)</value>
   </data>
   <data name="AffectedDownlinesMember" xml:space="preserve">
-    <value>Affected Downlines (Member)</value>
+    <value>Affected Downlines &lt;br/&gt; (Member)</value>
+  </data>
+  <data name="RemainUnchangedDownlinesAgentMember" xml:space="preserve">
+    <value>Remain Unchanged Downlines &lt;br/&gt; (Agent/Member)</value>
+  </data>
+  <data name="RemainUnchangedDownlinesMember" xml:space="preserve">
+    <value>Remain Unchanged Downlines &lt;br/&gt; (Member)</value>
+  </data>
+  <data name="UnchangedViewListNote" xml:space="preserve">
+    <value>List of downlines whose status are unchanged after &lt;username&gt; is unsuspended</value>
   </data>
   <data name="ViewInformation2" xml:space="preserve">
     <value>- When a customer is unsuspended:</value>

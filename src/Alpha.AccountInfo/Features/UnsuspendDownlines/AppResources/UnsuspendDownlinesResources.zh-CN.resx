@@ -121,46 +121,43 @@
     <value>受影响的下线</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>代理</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>全部</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>退回</value>
   </data>
   <data name="Displaying" xml:space="preserve">
     <value>Displaying</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>Level</value>
+    <value>阶层</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Master</value>
+    <value>总代理</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>Member</value>
+    <value>会员</value>
   </data>
   <data name="Of" xml:space="preserve">
-    <value>of</value>
+    <value>之第</value>
   </data>
   <data name="Page" xml:space="preserve">
-    <value>Page</value>
+    <value>页</value>
   </data>
   <data name="RemainUnchangedDownlines" xml:space="preserve">
-    <value>Remain Unchanged Downlines</value>
+    <value>下线列表保持不变</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>重填</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
-  </data>
-  <data name="Suspend" xml:space="preserve">
-    <value>Suspend</value>
+    <value>提交</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>Suspended</value>
+    <value>暫停</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
     <value>Status of {0} and all of their donwlines have been successfully updated to Suspended.</value>
@@ -169,16 +166,13 @@
     <value>Suspend Status</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>to</value>
+    <value>到</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Total</value>
-  </data>
-  <data name="Unsuspend" xml:space="preserve">
-    <value>Unsuspend</value>
+    <value>总和</value>
   </data>
   <data name="Unsuspended" xml:space="preserve">
-    <value>Unsuspended</value>
+    <value>取消暂停</value>
   </data>
   <data name="UnsuspendedSuccessfully" xml:space="preserve">
     <value>Status of {0}  and their affected donwlines have been successfully updated to Unsuspended.</value>
@@ -190,16 +184,16 @@
     <value>Successfully updated!</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>用户名</value>
   </data>
-  <data name="ViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
+  <data name="AffectedViewListNote" xml:space="preserve">
+    <value>&lt;username&gt; 取消暂停后，下线列表的状态有更改</value>
   </data>
   <data name="AffectedDownlinesAgentMember" xml:space="preserve">
-    <value>受影响的下线 (代理/会员)</value>
+    <value>受影响的下线 &lt;br/&gt;  (代理/会员)</value>
   </data>
   <data name="AffectedDownlinesMember" xml:space="preserve">
-    <value>受影响的下线 (会员)</value>
+    <value>受影响的下线 &lt;br/&gt;  (会员)</value>
   </data>
   <data name="ViewInformation1" xml:space="preserve">
     <value>- 当客户被暂停时，所有的下线也将会被暂停。</value>
@@ -218,5 +212,14 @@
   </data>
   <data name="ViewInformation6" xml:space="preserve">
     <value>- 保持不变的下线：上线被取消暂停后状态依然保持不变的用户列表。</value>
+  </data>
+  <data name="RemainUnchangedDownlinesAgentMember" xml:space="preserve">
+    <value>下线列表保持不变 &lt;br/&gt; (代理/会员)</value>
+  </data>
+  <data name="RemainUnchangedDownlinesMember" xml:space="preserve">
+    <value>下线列表保持不变 &lt;br/&gt;  (会员)</value>
+  </data>
+  <data name="UnchangedViewListNote" xml:space="preserve">
+    <value>&lt;username&gt; 取消暂停后，下线列表的状态沒有更改</value>
   </data>
 </root>

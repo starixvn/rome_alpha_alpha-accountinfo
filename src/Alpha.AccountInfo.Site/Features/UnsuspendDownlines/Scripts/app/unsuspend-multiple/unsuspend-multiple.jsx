@@ -2,6 +2,7 @@
 import * as _ from 'lodash';
 import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
+import { Markup } from 'interweave';
 
 export default class UnsuspendMultiple extends React.Component {
     constructor(props) {
@@ -21,6 +22,7 @@ export default class UnsuspendMultiple extends React.Component {
             this.handleSubmit(e);
         }
     }
+
 
     handleSubmit(e) {
         $.blockUI();
@@ -73,7 +75,7 @@ export default class UnsuspendMultiple extends React.Component {
         const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
             searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1,
             isNotMember = searchAccountRoleId > 1,
-            headerLevel = searchAccountRoleId == 3 ? resources.AffectedDownlinesAgentMember : resources.AffectedDownlinesMember;
+            isMaster = searchAccountRoleId == 3;
 
         return (
             <div className="">
@@ -86,20 +88,23 @@ export default class UnsuspendMultiple extends React.Component {
                                 {resources.SuspendStatus}
                             </th>
                             {
-                                isNotMember && [resources.AffectedDownlines, resources.RemainUnchangedDownlines].map((text, index) =>
-                                    <th rowSpan='2' key={index}>{text} <br /> {headerLevel}</th>)
+                                isNotMember && [
+                                    isMaster ? resources.AffectedDownlinesAgentMember : resources.AffectedDownlinesMember,
+                                    isMaster ? resources.RemainUnchangedDownlinesAgentMember : resources.RemainUnchangedDownlinesMember]
+                                    .map((text, index) =>
+                                    <th rowSpan='2' key={index}><Markup content={text} /> </th>)
                             }
                         </tr>
                         <tr>
                             <th>
                                 {
                                     [{
-                                        text: resources.Suspend,
+                                        text: resources.Suspended,
                                         class: `btn-suspend-all`,
                                         suspended: true
                                     },
                                     {
-                                        text: resources.Unsuspend,
+                                        text: resources.Unsuspended,
                                         class: `btn-unsuspend-all`,
                                         suspended: false
                                     }].map((button, index) =>

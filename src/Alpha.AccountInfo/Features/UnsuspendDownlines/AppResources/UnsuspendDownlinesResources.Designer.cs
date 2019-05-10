@@ -71,7 +71,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Affected Downlines (Agent/Member).
+        ///   Looks up a localized string similar to Affected Downlines &lt;br/&gt;  (Agent/Member).
         /// </summary>
         public static string AffectedDownlinesAgentMember {
             get {
@@ -80,11 +80,20 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Affected Downlines (Member).
+        ///   Looks up a localized string similar to Affected Downlines &lt;br/&gt; (Member).
         /// </summary>
         public static string AffectedDownlinesMember {
             get {
                 return ResourceManager.GetString("AffectedDownlinesMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of downlines whose status are changed after &lt;username&gt; is unsuspended.
+        /// </summary>
+        public static string AffectedViewListNote {
+            get {
+                return ResourceManager.GetString("AffectedViewListNote", resourceCulture);
             }
         }
         
@@ -188,6 +197,24 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remain Unchanged Downlines &lt;br/&gt; (Agent/Member).
+        /// </summary>
+        public static string RemainUnchangedDownlinesAgentMember {
+            get {
+                return ResourceManager.GetString("RemainUnchangedDownlinesAgentMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remain Unchanged Downlines &lt;br/&gt; (Member).
+        /// </summary>
+        public static string RemainUnchangedDownlinesMember {
+            get {
+                return ResourceManager.GetString("RemainUnchangedDownlinesMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         public static string Reset {
@@ -202,15 +229,6 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         public static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Suspend.
-        /// </summary>
-        public static string Suspend {
-            get {
-                return ResourceManager.GetString("Suspend", resourceCulture);
             }
         }
         
@@ -260,11 +278,11 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unsuspend.
+        ///   Looks up a localized string similar to List of downlines whose status are unchanged after &lt;username&gt; is unsuspended.
         /// </summary>
-        public static string Unsuspend {
+        public static string UnchangedViewListNote {
             get {
-                return ResourceManager.GetString("Unsuspend", resourceCulture);
+                return ResourceManager.GetString("UnchangedViewListNote", resourceCulture);
             }
         }
         
@@ -364,15 +382,6 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         public static string ViewInformation6 {
             get {
                 return ResourceManager.GetString("ViewInformation6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are changed/unchanged after going to unsuspend.
-        /// </summary>
-        public static string ViewListNote {
-            get {
-                return ResourceManager.GetString("ViewListNote", resourceCulture);
             }
         }
     }

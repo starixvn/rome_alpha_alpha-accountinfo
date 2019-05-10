@@ -115,7 +115,7 @@ export default class UnsuspendSingle extends React.Component {
                 </table>
             </ div>
             <div className="row-info popup-bottom text-right">
-                <button className="btn-submit" onClick={this.handleSubmit}>{resources.Unsuspend}</button>
+                <button className="btn-submit" onClick={this.handleSubmit}>{resources.Unsuspended}</button>
             </div>
         </div >
         );

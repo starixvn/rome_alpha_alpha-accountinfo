@@ -2,6 +2,7 @@
 import { unsuspendAPI } from './unsuspend-api';
 import { getUserLevelName } from './unsuspend-helper';
 import ReactPagination from '../../../Shared/Scripts/react-paginations/react-pagination';
+import { usernameRegExp } from '../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
 export default class UnsuspendViewList extends React.Component {
     constructor(props) {
@@ -66,7 +67,7 @@ export default class UnsuspendViewList extends React.Component {
             < div className="" >
                 {showPaging && back}
                 <p className="note">
-                    {`${resources.ViewListNote} ${viewModel.SearchAccountName}`}
+                    {usernameRegExp(viewModel.IsAffected ? resources.AffectedViewListNote : resources.UnchangedViewListNote, viewModel.SearchAccountName)}
                 </p>
 
                 <table className="tblRpt tblRpt-bordered width-100per">

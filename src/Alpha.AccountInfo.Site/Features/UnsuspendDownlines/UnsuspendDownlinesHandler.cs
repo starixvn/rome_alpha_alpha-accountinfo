@@ -42,6 +42,7 @@
              => new UnsuspendListViewModel(
                  message.SearchAccountId,
                  message.SearchAccountName,
+                 message.IsAffected,
                  await unsuspendDownlinesService.GetUnsuspendViewListModel(
                      message.SearchAccountId,
                      message.IsAffected,
