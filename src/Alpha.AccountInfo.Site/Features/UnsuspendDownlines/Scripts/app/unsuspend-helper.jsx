@@ -19,3 +19,17 @@ export const getUserLevelName = (level, resources) => {
         return (item.LevelId === level.RoleId);
     })[0].LevelName;
 }
+
+export const viewInfomation = (resources) => {
+    const style = `style='padding-left: 15px;'`;
+    let messages = `<div>
+            <div> ${resources.ViewInformation1}</div>
+            <div> ${resources.ViewInformation2}</div>
+            <div ${style}> ${resources.ViewInformation3}</div>
+            <div ${style}> ${resources.ViewInformation4}</div>
+            <div> ${resources.ViewInformation5}</div>
+            <div> ${resources.ViewInformation6}</div>
+        </div>`;
+
+    window.top.bootboxAlert(messages, null, null, { width: 1000 });
+}

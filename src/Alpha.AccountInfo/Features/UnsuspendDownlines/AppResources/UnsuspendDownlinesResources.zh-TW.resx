@@ -226,9 +226,7 @@
     <value>&lt;username&gt; 已被取消暫停。</value>
   </data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-    <value>&lt;username&gt; 已被暫停。
- 
- 警告：他們將無法進行投註。</value>
+    <value>&lt;username&gt; 已被暫停。警告：他們將無法進行投註。</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
     <value>您確定要繼續嗎？</value>

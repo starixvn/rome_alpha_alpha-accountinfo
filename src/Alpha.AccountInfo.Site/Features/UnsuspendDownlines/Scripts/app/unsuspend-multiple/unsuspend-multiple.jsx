@@ -4,6 +4,7 @@ import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
 import { Markup } from 'interweave';
 import { usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
+import { viewInfomation } from '../unsuspend-helper';
 
 export default class UnsuspendMultiple extends React.Component {
     constructor(props) {
@@ -15,7 +16,6 @@ export default class UnsuspendMultiple extends React.Component {
         };
 
         this.doUpdate = this.doUpdate.bind(this);
-        this.viewInfomation = this.viewInfomation.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
@@ -105,13 +105,6 @@ export default class UnsuspendMultiple extends React.Component {
         );
     }
 
-    viewInfomation(e) {
-        const { resources } = this.props;
-        let messages = `<div></div>`;
-
-        window.top.bootboxAlert(messages, null, null, { width: 1000 });
-    }
-
     render() {
         const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
             searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1,
@@ -119,8 +112,11 @@ export default class UnsuspendMultiple extends React.Component {
             isMaster = searchAccountRoleId == 3;
 
         return (
-            <div className="">
+            <div className="col-xs-12">
                 {this.state.message}
+                <p className="note">
+                    <span onClick={() => viewInfomation(resources)} className='icon-information-outline' />
+                </p>
                 <table className="tblRpt tblRpt-bordered width-100per">
                     <thead>
                         <tr>
@@ -173,7 +169,7 @@ export default class UnsuspendMultiple extends React.Component {
                         }
                     </tbody>
                 </table>
-                <div className="col-xs-12 row-info popup-bottom list-button text-right">
+                <div className="row-info popup-bottom list-button text-right">
                     {
                         [{
                             text: resources.Reset,

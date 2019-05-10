@@ -226,8 +226,7 @@
     <value>&lt;username&gt; จะถูกยกเลิกการระงับ</value>
   </data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-    <value>&lt;username&gt; จะถูกระงับ 
- คำเตือน: พวกเขาจะไม่สามารถวางเดิมพัน"</value>
+    <value>&lt;username&gt; จะถูกระงับ คำเตือน: พวกเขาจะไม่สามารถวางเดิมพัน</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
     <value>คุณแน่ใจหรือว่าต้องการดำเนินการต่อ?</value>

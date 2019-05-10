@@ -2,6 +2,7 @@
 import { unsuspendAPI } from '../unsuspend-api';
 import { BodyRowContent, FooterContent } from './unsuspend-single-components';
 import { formatMessage, usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
+import { viewInfomation } from '../unsuspend-helper';
 
 export default class UnsuspendSingle extends React.Component {
     constructor(props) {
@@ -13,7 +14,6 @@ export default class UnsuspendSingle extends React.Component {
         };
 
         this.doUpdate = this.doUpdate.bind(this);
-        this.viewInfomation = this.viewInfomation.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
@@ -59,21 +59,6 @@ export default class UnsuspendSingle extends React.Component {
         );
     }
 
-    viewInfomation(e) {
-        const { resources } = this.props;
-        const style = `style='padding-left: 15px;'`;
-        let messages = `<div>
-            <div> ${resources.ViewInformation1}</div>
-            <div> ${resources.ViewInformation2}</div>
-            <div ${style}> ${resources.ViewInformation3}</div>
-            <div ${style}> ${resources.ViewInformation4}</div>
-            <div> ${resources.ViewInformation5}</div>
-            <div> ${resources.ViewInformation6}</div>
-        </div>`;
-
-        window.top.bootboxAlert(messages, null, null, {width: 1000});
-    }
-
     render() {
         const { updateSuccess, message, hideMessages } = this.state;
         const { viewModel, resources, redirectViewListDetail } = this.props;
@@ -88,7 +73,7 @@ export default class UnsuspendSingle extends React.Component {
             
             <p className="note">
                 {usernameRegExp(resources.UnsuspendSingleNote, viewModel.SearchAccountName)}
-                <span onClick={this.viewInfomation} className='icon-information-outline' />
+                <span onClick={() => viewInfomation(resources)} className='icon-information-outline' />
             </p>
 
             <div>
