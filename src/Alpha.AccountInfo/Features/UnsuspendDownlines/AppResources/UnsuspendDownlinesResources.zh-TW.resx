@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AffectedDownlines" xml:space="preserve">
-    <value>Affected Downlines</value>
+    <value>受影響的下線</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
@@ -184,7 +184,7 @@
     <value>Status of {0}  and their affected donwlines have been successfully updated to Unsuspended.</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
+    <value>下線列表的狀態在 &lt;username&gt; 取消暫停後</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
@@ -194,5 +194,29 @@
   </data>
   <data name="ViewListNote" xml:space="preserve">
     <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
+  </data>
+  <data name="AffectedDownlinesAgentMember" xml:space="preserve">
+    <value>受影響的下線 (代理/會員)</value>
+  </data>
+  <data name="AffectedDownlinesMember" xml:space="preserve">
+    <value>受影響的下線 (會員)</value>
+  </data>
+  <data name="ViewInformation1" xml:space="preserve">
+    <value>-當客戶被暫停時，所有的下線也將會被暫停。</value>
+  </data>
+  <data name="ViewInformation2" xml:space="preserve">
+    <value>- 當客戶被取消暫停:</value>
+  </data>
+  <data name="ViewInformation3" xml:space="preserve">
+    <value>+ 只有那些下線間接地被上線導致暫停狀態,應被取消暫停。您可以點擊受影響下線數量去查看列表。</value>
+  </data>
+  <data name="ViewInformation4" xml:space="preserve">
+    <value>+ 其余賬號的現狀將不會有所改變。您可以點擊下線維持不變數量去查看列表。</value>
+  </data>
+  <data name="ViewInformation5" xml:space="preserve">
+    <value>- 受影響的下線：上線被取消暫停後狀態已更換的用戶列表。</value>
+  </data>
+  <data name="ViewInformation6" xml:space="preserve">
+    <value>- 保持不變的下線：上線被取消暫停後狀態依然保持不變的用戶列表。</value>
   </data>
 </root>

@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../../accountinfo-api';
-import { resizeBootboxOnMobile, resizePopupOnMobile, buildTooltipProps, formatMessage } from '../../../helpers/accountinfo-helper';
+import { resizeBootboxOnMobile, resizePopupOnMobile, buildTooltipProps, formatMessage, usernameRegExp } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
 export default class ConfirmStatus extends React.Component {
@@ -52,7 +52,8 @@ export default class ConfirmStatus extends React.Component {
                     }
                 }
 
-                window.top.ageWnd.open(status.Url, `${resources.UnuspendStatusPopupHeader} ${username}`, undefined, undefined, 700, 500);
+                const headerPopupText = usernameRegExp(resources.UnuspendStatusPopupHeader, username);
+                window.top.ageWnd.open(status.Url, headerPopupText, undefined, undefined, 700, 500);
                 if (mobileView) {
                     resizePopupOnMobile();
                 }

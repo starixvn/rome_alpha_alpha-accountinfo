@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AffectedDownlines" xml:space="preserve">
-    <value>Affected Downlines</value>
+    <value>Tài khoản bị ảnh hưởng</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
@@ -184,7 +184,7 @@
     <value>Status of {0}  and their affected donwlines have been successfully updated to Unsuspended.</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
+    <value>Trạng thái của tài khoản cấp dưới sau khi &lt;username&gt; được huỷ đình chỉ</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
@@ -194,5 +194,29 @@
   </data>
   <data name="ViewListNote" xml:space="preserve">
     <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
+  </data>
+  <data name="AffectedDownlinesAgentMember" xml:space="preserve">
+    <value>Tài khoản bị ảnh hưởng (Agent/Member)</value>
+  </data>
+  <data name="AffectedDownlinesMember" xml:space="preserve">
+    <value>Tài khoản bị ảnh hưởng (Member)</value>
+  </data>
+  <data name="ViewInformation1" xml:space="preserve">
+    <value>- Khi tài khoản bị đình chỉ, tất cả cấp dưới của họ cũng bị đình chỉ theo.</value>
+  </data>
+  <data name="ViewInformation2" xml:space="preserve">
+    <value>- Khi tài khoản được huỷ đình chỉ:</value>
+  </data>
+  <data name="ViewInformation3" xml:space="preserve">
+    <value>+ Chỉ những tài khoản cấp dưới gián tiếp bị ảnh hưởng bởi lệnh đình chỉ trước đó, mới được huỷ đình chỉ theo. Nhấn vào số lượng tài khoản bị ảnh hưởng để xem danh sách chi tiết.</value>
+  </data>
+  <data name="ViewInformation4" xml:space="preserve">
+    <value>+ Đối với những trường hợp còn lại, trạng thái của những tài khoản đó sẽ không được thay đổi. Nhấn vào số lượng tài khoản không bị ảnh hưởng để xem danh sách chi tiết.</value>
+  </data>
+  <data name="ViewInformation5" xml:space="preserve">
+    <value>- Tài khoản bị ảnh hưởng: danh sách những tài khoản có trạng thái bị thay đổi sau khi cấp trên của họ được huỷ đình chỉ.</value>
+  </data>
+  <data name="ViewInformation6" xml:space="preserve">
+    <value>- Tài khoản không bị ảnh hưởng: danh sách những tài khoản có trạng thái không bị thay đổi khi cấp trên của họ được huỷ đình chỉ.</value>
   </data>
 </root>

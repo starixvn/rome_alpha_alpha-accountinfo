@@ -73,7 +73,7 @@ export default class UnsuspendMultiple extends React.Component {
         const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
             searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1,
             isNotMember = searchAccountRoleId > 1,
-            headerLevel = searchAccountRoleId == 3 ? `${resources.Agent}/${resources.Member}` : `${resources.Member}`;
+            headerLevel = searchAccountRoleId == 3 ? resources.AffectedDownlinesAgentMember : resources.AffectedDownlinesMember;
 
         return (
             <div className="">
@@ -87,7 +87,7 @@ export default class UnsuspendMultiple extends React.Component {
                             </th>
                             {
                                 isNotMember && [resources.AffectedDownlines, resources.RemainUnchangedDownlines].map((text, index) =>
-                                    <th rowSpan='2' key={index}>{text} <br /> ({headerLevel})</th>)
+                                    <th rowSpan='2' key={index}>{text} <br /> {headerLevel}</th>)
                             }
                         </tr>
                         <tr>
@@ -132,14 +132,16 @@ export default class UnsuspendMultiple extends React.Component {
                         [{
                             text: resources.Reset,
                             class: `btn-reset`,
+                            disabled: false,
                             onclick: handleReset
                         },
                         {
                             text: resources.Submit,
                             class: `btn-submit`,
+                            disabled: _.isEqual(viewModel, originalViewModel),
                             onclick: this.handleSubmit
                         }].map((button, index) =>
-                            <button className={button.class} key={index} onClick={button.onclick}>
+                            <button className={button.class} key={index} disabled={button.disabled} onClick={button.onclick}>
                                 {button.text}
                             </button>
                         )

@@ -415,6 +415,6 @@
     <value>Đồng bộ hóa Casino</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>Huỷ đình chỉ</value>
+    <value>Huỷ đình chỉ &lt;username&gt;</value>
   </data>
 </root>

@@ -71,6 +71,24 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affected Downlines (Agent/Member).
+        /// </summary>
+        public static string AffectedDownlinesAgentMember {
+            get {
+                return ResourceManager.GetString("AffectedDownlinesAgentMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affected Downlines (Member).
+        /// </summary>
+        public static string AffectedDownlinesMember {
+            get {
+                return ResourceManager.GetString("AffectedDownlinesMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         public static string Agent {
@@ -269,7 +287,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are changed/unchanged after going to unsuspend.
+        ///   Looks up a localized string similar to List of downlines&apos; status after &lt;username&gt; is unsuspended.
         /// </summary>
         public static string UnsuspendSingleNote {
             get {
@@ -305,7 +323,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Only the downlines who were indirectly suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list.
+        ///   Looks up a localized string similar to - When a customer is unsuspended:.
         /// </summary>
         public static string ViewInformation2 {
             get {
@@ -314,7 +332,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + For the rest, their current status will not be changed. You can click on the number of remain unchanged downlines to view the list..
+        ///   Looks up a localized string similar to + Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list.
         /// </summary>
         public static string ViewInformation3 {
             get {
@@ -323,7 +341,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Affected Downlines: list of users whose status will be changed after their upline is unsuspended..
+        ///   Looks up a localized string similar to + For the rest, their current status will not be changed. You can click on the number of remain unchanged downlines to view the list..
         /// </summary>
         public static string ViewInformation4 {
             get {
@@ -332,11 +350,20 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Remain Unchanged Downlines: list of users whose status will be kept after their upline is unsuspended ..
+        ///   Looks up a localized string similar to - Affected Downlines: list of users whose status will be changed after their upline is unsuspended..
         /// </summary>
         public static string ViewInformation5 {
             get {
                 return ResourceManager.GetString("ViewInformation5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Remain Unchanged Downlines: list of users whose status will be kept after their upline is unsuspended ..
+        /// </summary>
+        public static string ViewInformation6 {
+            get {
+                return ResourceManager.GetString("ViewInformation6", resourceCulture);
             }
         }
         

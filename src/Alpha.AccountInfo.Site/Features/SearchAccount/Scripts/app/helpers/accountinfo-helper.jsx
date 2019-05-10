@@ -45,6 +45,9 @@ export const formatMessage = (message) => {
 	return message.replace(/\\n/g, '<br />');
 }
 
+export const usernameRegExp = (message, username) => {
+    return message.replace(/<username>/g, username);
+}
 
 export const zoomDisable = () => {
 	$('head meta[name=viewport]').remove();

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AffectedDownlines" xml:space="preserve">
-    <value>Affected Downlines</value>
+    <value>ดาวน์ไลน์ที่ได้รับผลกระทบ</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
@@ -184,7 +184,7 @@
     <value>Status of {0}  and their affected donwlines have been successfully updated to Unsuspended.</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
+    <value>รายการสถานะดาวน์ไลน์ &lt;username&gt; ถูกยกเลิกการระงับ</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
@@ -194,5 +194,29 @@
   </data>
   <data name="ViewListNote" xml:space="preserve">
     <value>List of downlines whose status are changed/unchanged after going to unsuspend</value>
+  </data>
+  <data name="AffectedDownlinesAgentMember" xml:space="preserve">
+    <value>ดาวน์ไลน์ที่ได้รับผลกระทบ (ตัวแทน/สมาชิก)</value>
+  </data>
+  <data name="AffectedDownlinesMember" xml:space="preserve">
+    <value>ดาวน์ไลน์ที่ได้รับผลกระทบ (สมาชิก)</value>
+  </data>
+  <data name="ViewInformation1" xml:space="preserve">
+    <value>- เมื่อลูกค้าถูกระงับดาวน์ไลน์ทั้งหมดของเขาจะถูกระงับเช่นกัน</value>
+  </data>
+  <data name="ViewInformation2" xml:space="preserve">
+    <value>เมื่อลูกค้าไม่ได้ถูกระงับ</value>
+  </data>
+  <data name="ViewInformation3" xml:space="preserve">
+    <value>+ ดาวน์ไลน์ที่ไม่ได้ระงับโดยตรงจากต้นสายเท่านั้น ที่จะถูกยกเลิกการระงับ คุณสามารถคลิกที่จำนวนดาวน์ไลน์เพื่อตรวจสอบดาวน์ไลน์ที่ได้รับผลกระทบ</value>
+  </data>
+  <data name="ViewInformation4" xml:space="preserve">
+    <value>+ ส่วนที่เหลือนั้น สถานะจะไม่มีการเปลี่ยนแปลงใดๆ คุณสามารถคลิกที่จำนวนดาวน์ไลน์ที่ไม่เปลี่ยนแปลงเพื่อตรวจสอบ</value>
+  </data>
+  <data name="ViewInformation5" xml:space="preserve">
+    <value>-ดาวน์ไลน์ที่ได้รับผลกระทบ: รายชื่อผู้ใช้เปลี่ยนสถานะหลังจากอัพไลน์ของพวกเขาถูกยกเลิกการระงับ</value>
+  </data>
+  <data name="ViewInformation6" xml:space="preserve">
+    <value>- ดาวน์ไลน์ที่ไม่เปลี่ยนแปลง: รายชื่อผู้ใช้ไม่มีการเปลี่ยนแปลง เมื่ออัพไลน์ของพวกเขาถูกยกเลิกการระงับ</value>
   </data>
 </root>

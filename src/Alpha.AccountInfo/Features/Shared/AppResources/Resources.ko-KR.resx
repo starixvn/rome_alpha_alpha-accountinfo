@@ -415,6 +415,6 @@
     <value>동기화된 카지노</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>Unsuspend</value>
+    <value>Unsuspend &lt;username&gt;</value>
   </data>
 </root>

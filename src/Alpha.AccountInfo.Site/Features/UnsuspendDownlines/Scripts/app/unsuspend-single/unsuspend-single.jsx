@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { unsuspendAPI } from '../unsuspend-api';
 import { BodyRowContent, FooterContent } from './unsuspend-single-components';
-import { formatMessage } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
+import { formatMessage, usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
 export default class UnsuspendSingle extends React.Component {
     constructor(props) {
@@ -61,13 +61,14 @@ export default class UnsuspendSingle extends React.Component {
 
     viewInfomation(e) {
         const { resources } = this.props;
-
+        const style = `style='padding-left: 15px;'`;
         let messages = `<div>
             <div> ${resources.ViewInformation1}</div>
-            <div style='padding-left: 15px;'> ${resources.ViewInformation2}</div>
-            <div style='padding-left: 15px;'> ${resources.ViewInformation3}</div>
-            <div> ${resources.ViewInformation4}</div>
+            <div> ${resources.ViewInformation2}</div>
+            <div ${style}> ${resources.ViewInformation3}</div>
+            <div ${style}> ${resources.ViewInformation4}</div>
             <div> ${resources.ViewInformation5}</div>
+            <div> ${resources.ViewInformation6}</div>
         </div>`;
 
         window.top.bootboxAlert(messages, null, null, {width: 1000});
@@ -86,7 +87,7 @@ export default class UnsuspendSingle extends React.Component {
             </div>
             
             <p className="note">
-                {`${resources.UnsuspendSingleNote} ${viewModel.SearchAccountName}`}
+                {usernameRegExp(resources.UnsuspendSingleNote, viewModel.SearchAccountName)}
                 <span onClick={this.viewInfomation} className='icon-information-outline' />
             </p>
 

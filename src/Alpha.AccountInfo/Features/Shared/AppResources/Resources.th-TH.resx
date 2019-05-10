@@ -415,6 +415,6 @@
     <value>คาสิโนตรงกัน</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>ยกเลิกการระงับ</value>
+    <value>ยกเลิกการระงับ &lt;username&gt;</value>
   </data>
 </root>

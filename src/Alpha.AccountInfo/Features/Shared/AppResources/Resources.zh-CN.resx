@@ -415,6 +415,6 @@
     <value>娱乐城同步校准</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>Update Unsuspend Status for </value>
+    <value>&lt;username&gt; 取消暂停</value>
   </data>
 </root>

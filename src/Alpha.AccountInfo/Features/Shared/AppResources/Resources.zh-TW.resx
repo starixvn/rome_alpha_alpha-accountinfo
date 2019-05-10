@@ -418,6 +418,6 @@
     <value>娛樂城同步校準</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
-    <value>Update Unsuspend Status for </value>
+    <value>&lt;username&gt; 取消暫停</value>
   </data>
 </root>
