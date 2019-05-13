@@ -237,4 +237,7 @@
   <data name="MultipleConfirm" xml:space="preserve">
     <value>Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.</value>
   </data>
+  <data name="NumberColumn" xml:space="preserve">
+    <value>No.</value>
+  </data>
 </root>

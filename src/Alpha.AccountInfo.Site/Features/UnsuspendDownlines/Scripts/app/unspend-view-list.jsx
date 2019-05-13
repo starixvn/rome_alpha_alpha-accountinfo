@@ -57,6 +57,9 @@ export default class UnsuspendViewList extends React.Component {
         }
 
         const totalRecords = viewModel.Data.TotalRows, showPaging = totalRecords > pageLength;
+        const viewListNote = viewModel.IsAffected ? resources.AffectedViewListNote : resources.UnchangedViewListNote;
+        let counter = pageLength * (activePage - 1);
+
         const back = <div>
             <a className="btn-cancel" href='#' onClick={() => this.props.redirectMainPage(false)}>
                 {resources.Back}
@@ -67,45 +70,40 @@ export default class UnsuspendViewList extends React.Component {
             < div className="" >
                 {showPaging && back}
                 <p className="note">
-                    {usernameRegExp(viewModel.IsAffected ? resources.AffectedViewListNote : resources.UnchangedViewListNote, viewModel.SearchAccountName)}
+                    {usernameRegExp(viewListNote, viewModel.SearchAccountName)}
                 </p>
 
                 <table className="tblRpt tblRpt-bordered width-100per">
                     <thead>
                         <tr>
+                            <th>{resources.NumberColumn}</th>
                             <th>{resources.Level}</th>
                             <th>{resources.Username}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            viewModel.Data.Levels.map((level, index) => {
+                            viewModel.Data.Levels.map((level) => {
                                 const length = level.UnsuspendDownlines.length;
                                 return (
-                                    level.UnsuspendDownlines.map((username, index1, arr) => {
-                                        if (index1 === 0) {
-                                            return (
-                                                <tr key={index1}>
-                                                    <td rowSpan={length}>
+                                    level.UnsuspendDownlines.map((username, index) => {
+                                        return (
+                                            <tr key={counter++}>
+                                                <td>
+                                                    {counter}
+                                                </td>
+                                                {
+                                                    index === 0 && <td rowSpan={length}>
                                                         {
                                                             getUserLevelName(level, resources)
                                                         }
                                                     </td>
-                                                    <td>
-                                                        {username.Username}
-                                                    </td>
-                                                </tr>
-                                            );
-                                        }
-                                        else {
-                                            return (
-                                                <tr key={index1}>
-                                                    <td>
-                                                        {username.Username}
-                                                    </td>
-                                                </tr>
-                                            );
-                                        }
+                                                }
+                                                <td>
+                                                    {username.Username}
+                                                </td>
+                                            </tr>
+                                        );
                                     })
                                 );
 
