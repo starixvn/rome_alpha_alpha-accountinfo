@@ -231,6 +231,9 @@
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
     <value>Bạn có chắc muốn tiến hành?</value>
   </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>Bạn có chắc muốn bỏ trạng thái "Đình Chỉ" cho thành viên này không? Khuyến cáo: tất cả cấp dưới trực thuộc thành viên này sẽ được bỏ trạng thái "Đình Chỉ".</value>
+  </data>
   <data name="MultipleConfirm" xml:space="preserve">
     <value>Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.</value>
   </data>

@@ -231,6 +231,9 @@
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
     <value>คุณแน่ใจหรือว่าต้องการดำเนินการต่อ?</value>
   </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?  คำเตือน : ดาวน์ไลน์ทั้งหมดไม่สามารถยกเลิกการระงับการใช้งานได้</value>
+  </data>
   <data name="MultipleConfirm" xml:space="preserve">
     <value>Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.</value>
   </data>

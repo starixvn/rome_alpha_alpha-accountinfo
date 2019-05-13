@@ -378,9 +378,6 @@
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>此賬號已經被暫停。</value>
   </data>
-  <data name="Phone1" xml:space="preserve">
-    <value>電話</value>
-  </data>
   <data name="And" xml:space="preserve">
     <value>和</value>
   </data>
