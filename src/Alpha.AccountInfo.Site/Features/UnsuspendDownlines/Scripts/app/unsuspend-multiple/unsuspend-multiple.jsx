@@ -3,7 +3,6 @@ import * as _ from 'lodash';
 import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
 import { Markup } from 'interweave';
-import { usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 import { viewInfomation } from '../unsuspend-helper';
 
 export default class UnsuspendMultiple extends React.Component {
@@ -76,31 +75,10 @@ export default class UnsuspendMultiple extends React.Component {
     }
 
     handleSubmit(e) {
-        const { viewModel, originalViewModel } = this.props;
-        let unsuspendedUsername = [];
-        let suspendedUsername = [];
-        viewModel.map(function (item, index) {
-            if (item.Suspended !== originalViewModel[index].Suspended) {
-                item.Suspended ? suspendedUsername.push(item.Username) : unsuspendedUsername.push(item.Username);
-            }
-        });
-
         const { resources } = this.props;
-        let messages = `<div style='font-weight: bold;'>
-            ${
-                unsuspendedUsername.length > 0 ? 
-                `<div> ${usernameRegExp(resources.SubmitMultipleConfirm1, unsuspendedUsername)}</div>` : ''
-            }
-            ${
-                suspendedUsername.length > 0 ?
-                `<div> ${usernameRegExp(resources.SubmitMultipleConfirm2, suspendedUsername)}</div>` : ''
-            }
-            <div> ${resources.SubmitMultipleConfirm3}</div>
-        </div>`;
-
         window.top.bootboxConfirm(
-            messages,
-            e.target,
+            resources.MultipleConfirm,
+            null,
             this.doUpdate
         );
     }
@@ -109,7 +87,9 @@ export default class UnsuspendMultiple extends React.Component {
         const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
             searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1,
             isNotMember = searchAccountRoleId > 1,
-            isMaster = searchAccountRoleId == 3;
+            headers = searchAccountRoleId == 3 ?
+                [resources.AffectedDownlinesAgentMember, resources.RemainUnchangedDownlinesAgentMember] :
+                [resources.AffectedDownlinesMember, resources.RemainUnchangedDownlinesMember];
 
         return (
             <div className="col-xs-12">
@@ -125,10 +105,7 @@ export default class UnsuspendMultiple extends React.Component {
                                 {resources.SuspendStatus}
                             </th>
                             {
-                                isNotMember && [
-                                    isMaster ? resources.AffectedDownlinesAgentMember : resources.AffectedDownlinesMember,
-                                    isMaster ? resources.RemainUnchangedDownlinesAgentMember : resources.RemainUnchangedDownlinesMember]
-                                    .map((text, index) =>
+                                isNotMember && headers.map((text, index) =>
                                     <th rowSpan='2' key={index}><Markup content={text} /> </th>)
                             }
                         </tr>

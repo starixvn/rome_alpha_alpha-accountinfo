@@ -170,6 +170,15 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well..
+        /// </summary>
+        public static string MultipleConfirm {
+            get {
+                return ResourceManager.GetString("MultipleConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to of.
         /// </summary>
         public static string Of {
