@@ -1,8 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.SearchAccount
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -12,20 +9,21 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Tests.Extensions;
     using Fanex.Data;
-    using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
     [Collection("ObjectDbCollection")]
-    public class SearchAccountDataAccessImplTest
+    public class SearchAccountDataAccessTest
     {
-        private readonly CompareLogic compareLogic;
         private readonly SearchAccountDataAccess accountInfoDataAccessImpl;
         private readonly IObjectDb objectDb;
         private readonly IMultiResultReader multiResultReader;
 
-        public SearchAccountDataAccessImplTest()
+        public SearchAccountDataAccessTest()
         {
             DbSettingProviderManager
                 .StartTestingSession()
@@ -34,7 +32,6 @@
             objectDb = Substitute.For<IObjectDb>();
             multiResultReader = Substitute.For<IMultiResultReader>();
 
-            compareLogic = new CompareLogic();
             accountInfoDataAccessImpl = new SearchAccountDataAccessImpl();
 
             ObjectDbFactory.Mock(
@@ -138,6 +135,7 @@
                              closed: true,
                              uplineClosed: true,
                              suspended: true,
+                             isDirectSuspend: true,
                              uplineSuspend: true,
                              transferOption: "00000000",
                              doubleCommLosing: true,

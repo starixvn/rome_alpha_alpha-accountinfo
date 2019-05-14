@@ -417,4 +417,7 @@
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>&lt;username&gt; 取消暫停</value>
   </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>此賬號被上線間接暫停</value>
+  </data>
 </root>

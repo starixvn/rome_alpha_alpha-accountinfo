@@ -414,4 +414,7 @@
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>Huỷ đình chỉ &lt;username&gt;</value>
   </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>Tài khoản này bị gián tiếp đình chỉ bởi cấp trên</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines.Models
 {
+    using System;
     using System.Collections.Generic;
 
     public class UnsuspendMultipleModel
@@ -27,6 +28,11 @@
         public bool Suspended { get; private set; }
 
         public IEnumerable<UnsuspendDownlineModel> Downlines { get; private set; }
+
+        internal UnsuspendMultipleModel ToList()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class UnsuspendSearchAccountModel

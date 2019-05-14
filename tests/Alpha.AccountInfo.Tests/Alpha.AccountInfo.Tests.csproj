@@ -179,8 +179,9 @@
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateKenoStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateNG2StatusCriteriaTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\SelectCustomerInformationCriteriaTests.cs" />
-    <Compile Include="Features\SearchAccount\SearchAccountDataAccessImplTest.cs" />
+    <Compile Include="Features\SearchAccount\SearchAccountDataAccessTest.cs" />
     <Compile Include="Enumerations\EnumerationTests.cs" />
+    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesDataAccessTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\SpParams\SelectSuspendInfoMultipleCriteriaTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\SpParams\SelectSuspendInfoDetailCriteriaTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\SpParams\SelectSuspendInfoCriteriaTest.cs" />
@@ -193,7 +194,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Features\Shared\CacheRefServiceImplTests.cs" />
     <Compile Include="Services\ProductProfileServiceTests.cs" />
-    <Compile Include="Features\SearchAccount\SearchAccountServiceImplTest.cs" />
+    <Compile Include="Features\SearchAccount\SearchAccountServiceTest.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusAuthorizationServiceTests.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusCriteriaFactoryImplTests.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusServiceImplTests.cs" />

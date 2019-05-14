@@ -52,7 +52,7 @@
                                  searchAccount.Suspended,
                                  downlines
                                  .Where(downline => downline.CustId == searchAccount.CustId)
-                                 .OrderByDescending(downline => downline.DownlineRoleId)));
+                                 .OrderByDescending(downline => downline.DownlineRoleId).ToList()));
                 }
             }
         }

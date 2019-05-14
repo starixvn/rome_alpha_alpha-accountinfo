@@ -21,7 +21,7 @@
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
-    public class SearchAccountServiceImplTest
+    public class SearchAccountServiceTest
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
@@ -33,7 +33,7 @@
         private readonly AgentBalanceInfoModel agentBalanceInfoModel;
         private readonly MasterBalanceInfoModel masterBalanceInfoModel;
 
-        public SearchAccountServiceImplTest()
+        public SearchAccountServiceTest()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
             accountInfoDataAccess = Substitute.For<SearchAccountDataAccess>();

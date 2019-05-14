@@ -5,6 +5,7 @@
         public static class SearchAccount
         {
             public const string IsSuspended = "SearchAccount.IsSuspended";
+            public const string IsDirectSuspend = "SearchAccount.Upline.IsDirectSuspend";
             public const string IsAllowedMasterAutoPT = "SearchAccount.IsAllowedMasterAutoPT";
             public const string IsAllowedOutright = "SearchAccount.IsAllowedOutright";
             public const string IsAllowedDoubleComm = "SearchAccount.IsAllowedDoubleComm";

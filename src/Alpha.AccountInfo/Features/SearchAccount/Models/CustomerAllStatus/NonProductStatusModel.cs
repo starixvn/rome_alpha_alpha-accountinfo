@@ -13,6 +13,7 @@
             bool uplineClosed,
             bool suspended,
             bool uplineSuspend,
+            bool isDirectSuspend,
             string transferOption,
             bool doubleCommLosing,
             bool uplineDoubleCommLosing,
@@ -26,6 +27,7 @@
             UplineClosed = uplineClosed;
 
             Suspended = suspended;
+            IsDirectSuspend = isDirectSuspend;
             UplineSuspend = uplineSuspend;
 
             TransferOption = transferOption;
@@ -44,6 +46,8 @@
         public bool UplineClosed { get; private set; }
 
         public bool Suspended { get; private set; }
+
+        public bool IsDirectSuspend { get; private set; }
 
         public bool UplineSuspend { get; private set; }
 

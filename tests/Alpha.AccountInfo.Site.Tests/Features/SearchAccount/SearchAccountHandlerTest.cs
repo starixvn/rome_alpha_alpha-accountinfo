@@ -480,6 +480,7 @@
                              closed: true,
                              uplineClosed: true,
                              suspended: true,
+                             isDirectSuspend: true,
                              uplineSuspend: true,
                              transferOption: "00000000",
                              doubleCommLosing: true,

@@ -414,4 +414,7 @@
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>&lt;username&gt; 取消暂停</value>
   </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>此账号被上线间接暂停</value>
+  </data>
 </root>

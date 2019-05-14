@@ -285,9 +285,9 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
                 return ResourceManager.GetString("Suspended", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Status of {0} and all of their donwlines have been successfully updated to Suspended..
+        ///   Looks up a localized string similar to Status of {0} and all of their downlines have been successfully updated to Suspended..
         /// </summary>
         public static string SuspendedSuccessfully {
             get {
@@ -339,9 +339,9 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
                 return ResourceManager.GetString("Unsuspended", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Status of {0}  and their affected donwlines have been successfully updated to Unsuspended..
+        ///   Looks up a localized string similar to Status of {0}  and their affected downlines have been successfully updated to Unsuspended..
         /// </summary>
         public static string UnsuspendedSuccessfully {
             get {

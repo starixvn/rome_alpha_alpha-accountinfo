@@ -160,7 +160,7 @@
     <value>Suspended</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0} and all of their donwlines have been successfully updated to Suspended.</value>
+    <value>Status of {0} and all of their downlines have been successfully updated to Suspended.</value>
   </data>
   <data name="SuspendStatus" xml:space="preserve">
     <value>Suspend Status</value>
@@ -175,7 +175,7 @@
     <value>Unsuspended</value>
   </data>
   <data name="UnsuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0}  and their affected donwlines have been successfully updated to Unsuspended.</value>
+    <value>Status of {0}  and their affected downlines have been successfully updated to Unsuspended.</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
     <value>List of downlines' status after &lt;username&gt; is unsuspended</value>

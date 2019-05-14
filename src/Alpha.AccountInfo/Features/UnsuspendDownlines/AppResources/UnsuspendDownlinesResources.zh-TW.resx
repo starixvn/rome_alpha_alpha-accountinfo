@@ -160,7 +160,7 @@
     <value>暂停</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0} and all of their donwlines have been successfully updated to Suspended.</value>
+    <value>Status of {0} and all of their downlines have been successfully updated to Suspended.</value>
   </data>
   <data name="SuspendStatus" xml:space="preserve">
     <value>Suspend Status</value>
@@ -175,7 +175,7 @@
     <value>取消暫停</value>
   </data>
   <data name="UnsuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0}  and their affected donwlines have been successfully updated to Unsuspended.</value>
+    <value>Status of {0}  and their affected downlines have been successfully updated to Unsuspended.</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
     <value>下線列表的狀態在 &lt;username&gt; 取消暫停後</value>

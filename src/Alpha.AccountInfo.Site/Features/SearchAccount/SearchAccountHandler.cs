@@ -296,7 +296,8 @@
                 .AddData(DataKey.SearchAccount.IsAllowedDoubleComm, model.NonProduct.DoubleCommLosing)
 
                 .AddData(DataKey.SearchAccount.Upline.IsSuspended, model.NonProduct.UplineSuspend)
-                .AddData(DataKey.SearchAccount.IsSuspended, model.NonProduct.Suspended);
+                .AddData(DataKey.SearchAccount.IsSuspended, model.NonProduct.Suspended)
+                .AddData(DataKey.SearchAccount.IsDirectSuspend, model.NonProduct.IsDirectSuspend);
 
             return statusViewModelFactory.GetViewModels(request).Where(status => status.Visible).OrderBy(status => status.DisplayOrder);
         }

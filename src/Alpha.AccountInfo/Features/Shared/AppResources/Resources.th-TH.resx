@@ -414,4 +414,7 @@
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>ยกเลิกการระงับ &lt;username&gt;</value>
   </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>บัญชีนี้ถูกระงับจากอัพไลน์โดยทางอ้อม</value>
+  </data>
 </root>
