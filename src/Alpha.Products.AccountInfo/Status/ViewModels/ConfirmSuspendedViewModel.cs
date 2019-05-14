@@ -1,7 +1,6 @@
 ﻿namespace Alpha.Products.AccountInfo.Status.ViewModels
 {
     using Alpha.Products.AccountInfo.Requests;
-    using Alpha.Products.Core.Shared;
 
     public class ConfirmSuspendedViewModel : ConfirmStatusItemViewModelBase
     {
@@ -10,14 +9,14 @@
         {
         }
 
-        private bool UplineSuspended => Request.GetData<bool>(DataKey.SearchAccount.Upline.IsSuspended);
+        private bool IsSuspendedUpline => Request.GetData<bool>(DataKey.SearchAccount.Upline.IsSuspended);
 
-        private bool SearchAccountSuspended => Request.GetData<bool>(DataKey.SearchAccount.IsSuspended);
+        private bool IsSuspendedSearchAccount => Request.GetData<bool>(DataKey.SearchAccount.IsSuspended);
 
-        public override bool Disabled => base.Disabled || UplineSuspended ||
+        public override bool Disabled => base.Disabled || IsSuspendedUpline ||
             Request.GetData<bool>(DataKey.SearchAccount.Upline.IsClosed);
 
-        public override bool Checked => SearchAccountSuspended;
+        public override bool Checked => IsSuspendedSearchAccount;
 
         public override bool ReloadCustomerInfo => true;
 
@@ -31,12 +30,12 @@
         internal override bool StatusValue => !Checked;
 
         public string Tooltip =>
-            UplineSuspended && !Request.GetData<bool>(DataKey.SearchAccount.IsDirectSuspend)
+            IsSuspendedUpline && !Request.GetData<bool>(DataKey.SearchAccount.IsDirectSuspend)
             ? Request.GetResource("SuspendedByUplineTooltip") : string.Empty;
 
-        public override bool IsPopup => Checked && SearchAccount.IsNotMember;
+        public override bool IsPopup => IsSuspendedSearchAccount && SearchAccount.IsNotMember;
 
-        public override string Url => Checked ?
+        public override string Url => IsSuspendedSearchAccount ?
             $"{AccountInfoUrl}UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}" :
             base.Url;
     }

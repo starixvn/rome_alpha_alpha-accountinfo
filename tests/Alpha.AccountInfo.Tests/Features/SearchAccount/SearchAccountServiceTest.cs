@@ -201,21 +201,20 @@
             Assert.True(compareLogic.Compare(actualModel, model).AreEqual);
         }
 
-        ////[Fact]
-        ////public void UpdateGivenCredit_Always_ReturnsCorrecResult()
-        ////{
-        ////    var result = Result.CreateSuccessResult();
-        ////    var param = fixture.Create<UpdateGivenCreditParam>();
+        [Fact]
+        public void UpdateGivenCredit_Always_ReturnsCorrecResult()
+        {
+            var result = Result.CreateSuccessResult();
+            var param = fixture.Create<UpdateGivenCreditParam>();
 
-        ////    //dynamicRepository
-        ////    //    .Execute(Arg.Any<UpdateGivenCreditCommand>())
-        ////    //    .Returns(result);
-        ////    dynamicRepository.When(repo => repo.Execute(Arg.))
+            dynamicRepository
+                .ExecuteAsync(Arg.Any<UpdateGivenCreditCommand>())
+                .Returns(Task.FromResult(result));
 
-        ////    var actualResutl = accountInfoService.UpdateGivenCredit(param);
+            var actualResutl = accountInfoService.UpdateGivenCredit(param);
 
-        ////    Assert.True(compareLogic.Compare(actualResutl, result).AreEqual);
-        ////}
+            Assert.True(compareLogic.Compare(actualResutl.Result, result).AreEqual);
+        }
 
         [Fact]
         public void UpdateCustomerStatus_Always_ReturnsCorrecResult()
