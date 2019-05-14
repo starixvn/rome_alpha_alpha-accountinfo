@@ -2,6 +2,7 @@
 {
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.UnsuspendDownlines.Models;
+    using Alpha.AccountInfo.Features.UnsuspendDownlines.Params.SPs.Criteria;
     using Fanex.Data;
     using System.Collections.Generic;
     using System.Linq;

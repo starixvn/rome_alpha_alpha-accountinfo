@@ -1,5 +1,7 @@
-﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria
+﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines.Params.SPs.Criteria
 {
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs;
+
     public class SelectSuspendInfoCriteria : AccountInfoCriteriaBase
     {
         public SelectSuspendInfoCriteria(int searchAccountId) 

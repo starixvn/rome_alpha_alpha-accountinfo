@@ -1,7 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines
 {
-    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.UnsuspendDownlines.Models;
+    using Alpha.AccountInfo.Features.UnsuspendDownlines.Params.SPs.Criteria;
     using Fanex.Data.Repository;
     using System.Collections.Generic;
     using System.Threading.Tasks;

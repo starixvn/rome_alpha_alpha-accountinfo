@@ -31,5 +31,5 @@ export const viewInfomation = (resources) => {
             <div> ${resources.ViewInformation6}</div>
         </div>`;
 
-    window.top.bootboxAlert(messages, null, null, { width: 1000 });
+    window.top.bootboxAlert(messages);
 }
