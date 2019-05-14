@@ -33,8 +33,10 @@
             this.unsuspendDownlinesDataAccess = unsuspendDownlinesDataAccess;
         }
 
-        public Task<IEnumerable<UnsuspendSingleModel>> GetUnsuspendInfoModel(int searchAccountId)
-            => dynamicRepository.FetchAsync<UnsuspendSingleModel>(new SelectSuspendInfoCriteria(searchAccountId));
+        public async Task<IEnumerable<UnsuspendSingleModel>> GetUnsuspendInfoModel(int searchAccountId)
+            => await dynamicRepository
+            .FetchAsync<UnsuspendSingleModel>(new SelectSuspendInfoCriteria(searchAccountId))
+            .ConfigureAwait(false);
 
         public async Task<UnsuspendViewListModel> GetUnsuspendViewListModel(
             int custId,
@@ -50,7 +52,9 @@
                     pageSize,
                     pageIndex)).ConfigureAwait(false);
 
-        public Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendMultipleModel(string custIds, byte roleId)
-            => unsuspendDownlinesDataAccess.GetUnsuspendMultipleModel(new SelectSuspendInfoMultipleCriteria(custIds, roleId));
+        public async Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendMultipleModel(string custIds, byte roleId)
+            => await unsuspendDownlinesDataAccess
+            .GetUnsuspendMultipleModel(new SelectSuspendInfoMultipleCriteria(custIds, roleId))
+            .ConfigureAwait(false);
     }
 }

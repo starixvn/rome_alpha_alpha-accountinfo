@@ -181,6 +181,7 @@
     <Compile Include="Features\SearchAccount\SpParams\SelectCustomerInformationCriteriaTests.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountDataAccessTest.cs" />
     <Compile Include="Enumerations\EnumerationTests.cs" />
+    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesServiceTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesDataAccessTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\SpParams\SelectSuspendInfoMultipleCriteriaTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\SpParams\SelectSuspendInfoDetailCriteriaTest.cs" />
