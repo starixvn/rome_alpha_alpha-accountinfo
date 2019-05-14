@@ -12,6 +12,8 @@
             IsInternal = isInternal;
         }
 
+        public int UserId => ActorId;
+
         [SpParam(SqlParamName = "CustId")]
         public int ActorId { get; }
 
