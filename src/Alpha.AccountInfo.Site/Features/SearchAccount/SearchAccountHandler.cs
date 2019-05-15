@@ -73,8 +73,8 @@
         public Task<AccountInfoViewModel> Handle(SearchAccountQuery message)
             => Task.FromResult(new AccountInfoViewModel(message));
 
-        public Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message)
-            => accountInfoService.GetUsernamesSuggestion(message.ActorId, message.SuggestionQuery, message.IsInternal);
+        public async Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message)
+            => await accountInfoService.GetUsernamesSuggestion(message.ActorId, message.SuggestionQuery, message.IsInternal).ConfigureAwait(false);
 
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
         {

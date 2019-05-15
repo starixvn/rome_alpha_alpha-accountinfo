@@ -55,8 +55,8 @@
                 message.Language,
                 await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false));
 
-        public Task<Result> Handle(UnsuspendSingleCommand message)
-          => accountInfoService.UpdateCustomerStatus(
+        public async Task<Result> Handle(UnsuspendSingleCommand message)
+          => await accountInfoService.UpdateCustomerStatus(
               new UpdateCustomerStatusParam(
                   message.SearchAccountId,
                   message.ActorId,
@@ -65,7 +65,7 @@
                   message.IP,
                   false,
                   StatusNames.Suspended,
-                  message.ActorName));
+                  message.ActorName)).ConfigureAwait(false);
 
         public async Task<UnsuspendMultipleResultViewModel> Handle(UnsuspendMultipleCommand message)
         {

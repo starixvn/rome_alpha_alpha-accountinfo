@@ -12,19 +12,13 @@ const handleErrors = (err) => {
 	throw err;
 };
 
-const responseData = (res) => typeof res.data.Result === 'undefined' ? res.data : res.data.Result;
-
 export const requests = {
-	get: (url, data) => {
-		let axiosPromise = axios.get(url, { params: data });
-		axiosPromise = axiosPromise.then(res => res.data.Result);
-		return (axiosPromise);
-	},
+    get: (url, data) => axios.get(url, { params: data }).then(res => res.data).catch(handleErrors),
 	post: (url, data) => axios.post(url, data,
 		{
 			headers:
 			{
 				__RequestVerificationToken: __RequestVerificationToken, 'X-Requested-With': 'XMLHttpRequest'
 			}
-		}).then(responseData).catch(handleErrors)
+        }).then(res => res.data).catch(handleErrors)
 };

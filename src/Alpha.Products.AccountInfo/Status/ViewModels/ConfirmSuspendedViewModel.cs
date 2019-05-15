@@ -35,7 +35,7 @@
 
         public override bool IsPopup => IsSuspendedSearchAccount && SearchAccount.IsNotMember;
 
-        public override string Url => IsSuspendedSearchAccount ?
+        public override string Url => IsPopup ?
             $"{AccountInfoUrl}UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}" :
             base.Url;
     }
