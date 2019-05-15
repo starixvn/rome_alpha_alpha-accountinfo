@@ -1,8 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.Controllers
 {
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
-    using System.Web.SessionState;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Features.Shared;
     using Alpha.Web.Filters;
@@ -10,6 +7,9 @@
     using AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using System.Web.SessionState;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class SearchAccountController : AccountInfoBaseController
@@ -25,30 +25,30 @@
         public async Task<ActionResult> Index(SearchAccountQuery message)
           => await ViewAsync(message, SearchAccountViewPath).ConfigureAwait(false);
 
-        public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
-           => JsonData(message);
+        public async Task<ActionResult> GetUsernamesSuggestion(UserNameSuggestionQuery message)
+           => await JsonDataAsync(message).ConfigureAwait(false);
 
-        public ActionResult GetCustomerInfo(CustomerInfoQuery message)
-            => JsonData(message);
+        public async Task<ActionResult> GetCustomerInfo(CustomerInfoQuery message)
+            => await JsonDataAsync(message).ConfigureAwait(false);
 
-        public ActionResult GetDownlineList(DownlineListQuery message)
-            => JsonData(message);
+        public async Task<ActionResult> GetDownlineList(DownlineListQuery message)
+            => await JsonDataAsync(message).ConfigureAwait(false);
 
-        public ActionResult GetCustomerAllStatus(CustomerStatusQuery message)
-            => JsonData(message);
+        public async Task<ActionResult> GetCustomerAllStatus(CustomerStatusQuery message)
+            => await JsonDataAsync(message).ConfigureAwait(false);
 
-        public ActionResult GetOnlineList(OnlineListQuery message)
-           => JsonData(message);
+        public async Task<ActionResult> GetOnlineList(OnlineListQuery message)
+           => await JsonDataAsync(message).ConfigureAwait(false);
 
         public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
            => await ViewAsync(message, GiventCreditViewPath).ConfigureAwait(false);
 
         [HttpPost, AntiXsrfFilter]
-        public ActionResult UpdateGivenCredit(GivenCreditCommand command)
-          => JsonData(command, JsonRequestBehavior.DenyGet);
+        public async Task<ActionResult> UpdateGivenCredit(GivenCreditCommand command)
+          => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
         [HttpPost, AntiXsrfFilter]
-        public ActionResult UpdateCustomerStatus(CustomerNonProductStatusCommand command)
-           => JsonData(command, JsonRequestBehavior.DenyGet);
+        public async Task<ActionResult> UpdateCustomerStatus(CustomerNonProductStatusCommand command)
+           => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
     }
 }

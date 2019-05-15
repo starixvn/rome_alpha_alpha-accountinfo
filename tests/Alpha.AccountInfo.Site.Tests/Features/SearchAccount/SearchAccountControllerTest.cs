@@ -41,7 +41,7 @@
                 SuggestionQuery = "test"
             };
 
-            accountInfoController.GetUsernamesSuggestion(message);
+            accountInfoController.GetUsernamesSuggestion(message).GetAwaiter().GetResult();
 
             mediator.Received().Send(message);
         }
@@ -56,7 +56,7 @@
                 SuggestionQuery = suggestionQuery
             };
 
-            var actualResult = accountInfoController.GetUsernamesSuggestion(message) as JsonResult;
+            var actualResult = accountInfoController.GetUsernamesSuggestion(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -70,7 +70,7 @@
                 SearchAccountName = "test"
             };
 
-            accountInfoController.GetCustomerInfo(message);
+            accountInfoController.GetCustomerInfo(message).GetAwaiter().GetResult();
 
             mediator.Received().Send(message);
         }
@@ -85,7 +85,7 @@
                 SearchAccountName = userName
             };
 
-            var actualResult = accountInfoController.GetCustomerInfo(message) as JsonResult;
+            var actualResult = accountInfoController.GetCustomerInfo(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -99,7 +99,7 @@
                 SearchAccountName = "ActorName"
             };
 
-            var actualResult = accountInfoController.GetCustomerInfo(message) as JsonResult;
+            var actualResult = accountInfoController.GetCustomerInfo(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -113,7 +113,7 @@
                 SearchAccountId = 2
             };
 
-            accountInfoController.GetDownlineList(message);
+            accountInfoController.GetDownlineList(message).GetAwaiter().GetResult();
 
             mediator.Received().Send(message);
         }
@@ -128,7 +128,7 @@
                 SearchAccountId = searchAccountId
             };
 
-            var actualResult = accountInfoController.GetDownlineList(message) as JsonResult;
+            var actualResult = accountInfoController.GetDownlineList(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -142,7 +142,7 @@
                 SearchAccountId = 2
             };
 
-            accountInfoController.GetOnlineList(message);
+            accountInfoController.GetOnlineList(message).GetAwaiter().GetResult();
 
             mediator.Received().Send(message);
         }
@@ -157,7 +157,7 @@
                 SearchAccountId = searchAccountId
             };
 
-            var actualResult = accountInfoController.GetOnlineList(message) as JsonResult;
+            var actualResult = accountInfoController.GetOnlineList(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -176,7 +176,7 @@
                 UplineRoleId = 4
             };
 
-            accountInfoController.GetCustomerAllStatus(message);
+            accountInfoController.GetCustomerAllStatus(message).GetAwaiter().GetResult();
 
             mediator.Received().Send(message);
         }
@@ -196,7 +196,7 @@
                 UplineRoleId = 4
             };
 
-            var actualResult = accountInfoController.GetCustomerAllStatus(message) as JsonResult;
+            var actualResult = accountInfoController.GetCustomerAllStatus(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -280,7 +280,7 @@
                 SearchAccountRoleId = 1
             };
 
-            accountInfoController.UpdateGivenCredit(message);
+            accountInfoController.UpdateGivenCredit(message).GetAwaiter().GetResult();
 
             mediator.Received().Send(message);
         }
@@ -297,7 +297,7 @@
                 SearchAccountRoleId = 1
             };
 
-            var actualResult = accountInfoController.UpdateGivenCredit(message) as JsonResult;
+            var actualResult = accountInfoController.UpdateGivenCredit(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -315,7 +315,7 @@
                 SearchAccountRoleId = SearchAccountRoleId
             };
 
-            var actualResult = accountInfoController.UpdateGivenCredit(message) as JsonResult;
+            var actualResult = accountInfoController.UpdateGivenCredit(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -332,7 +332,7 @@
                 StatusValue = true
             };
 
-            accountInfoController.UpdateCustomerStatus(message);
+            accountInfoController.UpdateCustomerStatus(message).GetAwaiter().GetResult();
 
             mediator.Received().Send(message);
         }
@@ -350,7 +350,7 @@
                 StatusValue = true
             };
 
-            var actualResult = accountInfoController.UpdateCustomerStatus(message) as JsonResult;
+            var actualResult = accountInfoController.UpdateCustomerStatus(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);
@@ -366,7 +366,7 @@
                 StatusValue = true
             };
 
-            var actualResult = accountInfoController.UpdateCustomerStatus(message) as JsonResult;
+            var actualResult = accountInfoController.UpdateCustomerStatus(message).GetAwaiter().GetResult() as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             Assert.True(!actualData.IsSuccess);

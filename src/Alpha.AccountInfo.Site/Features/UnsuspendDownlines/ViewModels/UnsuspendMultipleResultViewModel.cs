@@ -35,8 +35,8 @@
             get
             {
                 var failedResults = new List<Result>();
-                var sussessfullySusependUsernames = new List<string>();
-                var sussessfullyUnSusependUsernames = new List<string>();
+                var successfullySusependUsernames = new List<string>();
+                var successfullyUnSusependUsernames = new List<string>();
 
                 unsuspendResults.ToList().ForEach(unsuspendResult =>
                 {
@@ -44,11 +44,11 @@
                     {
                         if (unsuspendResult.Suspended)
                         {
-                            sussessfullySusependUsernames.Add(unsuspendResult.Username);
+                            successfullySusependUsernames.Add(unsuspendResult.Username);
                         }
                         else
                         {
-                            sussessfullyUnSusependUsernames.Add(unsuspendResult.Username);
+                            successfullyUnSusependUsernames.Add(unsuspendResult.Username);
                         }
                     }
                     else
@@ -58,14 +58,14 @@
                 });
 
                 var successfullyResults = new List<Result>();
-                if (sussessfullyUnSusependUsernames.Count > 0)
+                if (successfullyUnSusependUsernames.Count > 0)
                 {
-                    successfullyResults.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.UnsuspendedSuccessfully, sussessfullyUnSusependUsernames));
+                    successfullyResults.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.UnsuspendedSuccessfully, successfullyUnSusependUsernames));
                 }
 
-                if (sussessfullySusependUsernames.Count > 0)
+                if (successfullySusependUsernames.Count > 0)
                 {
-                    successfullyResults.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.SuspendedSuccessfully, sussessfullySusependUsernames));
+                    successfullyResults.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.SuspendedSuccessfully, successfullySusependUsernames));
                 }
 
                 return successfullyResults.Concat(failedResults);

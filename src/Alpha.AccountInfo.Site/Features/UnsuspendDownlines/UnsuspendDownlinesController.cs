@@ -22,12 +22,12 @@
         public async Task<ActionResult> EditMultiple(UnsuspendMultipleRequest message)
          => await ViewAsync(message, EditMultiplePath).ConfigureAwait(false);
 
-        public ActionResult FetchCustomerList(UnsuspendViewListRequest message)
-           => JsonData(message);
+        public async Task<ActionResult> FetchCustomerList(UnsuspendViewListRequest message)
+           => await JsonDataAsync(message).ConfigureAwait(false);
 
         [HttpPost, AntiXsrfFilter]
-        public ActionResult UnsuspendSingle(UnsuspendSingleCommand command)
-          => JsonData(command, JsonRequestBehavior.DenyGet);
+        public async Task<ActionResult> UnsuspendSingle(UnsuspendSingleCommand command)
+          => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UnsuspendMultiple(UnsuspendMultipleCommand command)
