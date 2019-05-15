@@ -71,7 +71,7 @@ export const AccountInfoProps = {
             path: "/setting",
             visible: true,
             children:
-                <Settings mobileView={true} settingData={[]} />
+                <Settings mobileView={true} settingData={[]} resources={Resources}/>
         },
         loginInfoProps: {
             iconClass: "icon-login",

@@ -49,6 +49,16 @@ export const Super = {
             "YesterdayBalanceTransferLink": "/ex-main/(S(1dph53i1kjbpe3rfkuu3v0o5))/_Transfer/Super/MasterTransfer.aspx?custid=1382145&status=1&CallBack=false&username=ACGUUS38&isyesterday=1&amt=3570652641.63",
             "AccountInfoUrl": "/site-accountinfo/(S(1dph53i1kjbpe3rfkuu3v0o5))/"
         },
+        "Buttons": [
+            {
+              "Text": "Agent List",
+              "Url": "/ex-main/(S(f4sb1t0w01ikduv3vjido1ri))/_MemberInfo/CustomerList/Super/AgentList.aspx?custid=36204224"
+            },
+            {
+              "Text": "Statement",
+              "Url": "/site-reports/(S(f4sb1t0w01ikduv3vjido1ri))/Statement/SMAStatement?CustID=36204224&CustName=DAVIDTEST13MAY00&CustLevelId=3"
+            }
+          ],
         "CustomerListOrBetListLink": {
             "Text": "Agent List",
             "Url": "/ex-main/(S(1dph53i1kjbpe3rfkuu3v0o5))/_MemberInfo/CustomerList/Super/AgentList.aspx?custid=1382145"
@@ -57,6 +67,7 @@ export const Super = {
             "Text": "Statement",
             "Url": "/site-reports/(S(1dph53i1kjbpe3rfkuu3v0o5))/Statement/SMAStatement?CustID=1382145&CustName=ACGUUS38&CustLevelId=3"
         },
+        "CanViewLog": true,
         "ViewLogLink": "/site-viewlogs/(S(1dph53i1kjbpe3rfkuu3v0o5))/setting/index?username=ACGUUS38",
         "ViewLoginIPLink": "/ex-main/(S(1dph53i1kjbpe3rfkuu3v0o5))/_IPInfo/IpInfo.aspx",
         "AccountInfoUrl": "/site-accountinfo/(S(1dph53i1kjbpe3rfkuu3v0o5))/"
@@ -114,6 +125,16 @@ export const Super = {
             "YesterdayBalanceTransferLink": "/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_Transfer/Super/AgentTransfer.aspx?custid=1382167&status=1&CallBack=false&username=ACGUUS3838&isyesterday=1&amt=3523959670.04",
             "AccountInfoUrl": "/site-accountinfo/(S(bziic25fy3e0mr3rhccrzvga))/"
         },
+        "Buttons": [
+            {
+              "Text": "Member List",
+              "Url": "/ex-main/(S(f4sb1t0w01ikduv3vjido1ri))/_MemberInfo/CustomerList/Super/MemberList.aspx?custid=36204326"
+            },
+            {
+              "Text": "Statement",
+              "Url": "/site-reports/(S(f4sb1t0w01ikduv3vjido1ri))/Statement/SMAStatement?CustID=36204326&CustName=DAVIDTEST13MAY0000&CustLevelId=2"
+            }
+          ],
         "CustomerListOrBetListLink": {
             "Text": "Member List",
             "Url": "/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167"
@@ -122,6 +143,7 @@ export const Super = {
             "Text": "Statement",
             "Url": "/site-reports/(S(bziic25fy3e0mr3rhccrzvga))/Statement/SMAStatement?CustID=1382167&CustName=ACGUUS3838&CustLevelId=2"
         },
+        "CanViewLog": true,
         "ViewLogLink": "/site-viewlogs/(S(bziic25fy3e0mr3rhccrzvga))/setting/index?username=ACGUUS3838",
         "ViewLoginIPLink": "/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_IPInfo/IpInfo.aspx",
         "AccountInfoUrl": "/site-accountinfo/(S(bziic25fy3e0mr3rhccrzvga))/"
@@ -182,6 +204,17 @@ export const Super = {
             "Text": "Statement",
             "Url": "/site-reports/(S(bziic25fy3e0mr3rhccrzvga))/Statement/MemberStatement?CustID=1382336&CustName=ACGUUS3838032&CustLevelId=1"
         },
+        "Buttons": [
+            {
+              "Text": "Bet List",
+              "Url": "/site-betlists/(S(amzip4235u1ad0krfpqe5lb3))/MemberBetList/Index?CustID=36204328&CustName=DAVIDTEST13MAY0000000"
+            },
+            {
+              "Text": "Statement",
+              "Url": "/site-reports/(S(amzip4235u1ad0krfpqe5lb3))/Statement/MemberStatement?CustID=36204328&CustName=DAVIDTEST13MAY0000000&CustLevelId=1"
+            }
+          ],
+        "CanViewLog": true,
         "ViewLogLink": "/site-viewlogs/(S(bziic25fy3e0mr3rhccrzvga))/setting/index?username=ACGUUS3838032",
         "ViewLoginIPLink": "/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_IPInfo/IpInfo.aspx",
         "AccountInfoUrl": "/site-accountinfo/(S(bziic25fy3e0mr3rhccrzvga))/"

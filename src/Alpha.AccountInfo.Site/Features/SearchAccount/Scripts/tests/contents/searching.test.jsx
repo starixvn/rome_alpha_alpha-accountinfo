@@ -4,7 +4,7 @@ import sinon from 'sinon';
 import Searching from 'Searching';
 import { getSuggestionValue, renderSuggestion } from 'Searching';
 import Autosuggest from 'react-autosuggest';
-import { accountInfoAPI } from 'APIClient';
+import { accountInfoAPI } from 'AccountInfoAPI';
 import mockAxios from 'jest-mock-axios';
 
 describe('Searching', () => {
@@ -49,8 +49,9 @@ describe('Searching', () => {
     describe("handleSearchClick()", () => {
         test('called when clicked', () => {
             const wrapper = shallow(<Searching  {...props} />);
+            const event = Object.assign(jest.fn(), {preventDefault: () => {}});
 
-            wrapper.find('.icon-search').simulate('click');
+            wrapper.find('.icon-search').simulate('click', event);
             expect(handleSearchClickSpy.calledOnce).toBeTruthy();
         });
 

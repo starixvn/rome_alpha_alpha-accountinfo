@@ -2,6 +2,7 @@
 import Autosuggest from 'react-autosuggest';
 import { accountInfoAPI } from '../../accountinfo-api';
 import { zoomEnable, zoomDisable } from '../../helpers/accountinfo-helper';
+import $ from 'jquery';
 
 export const getSuggestionValue = suggestion => suggestion.UserName;
 

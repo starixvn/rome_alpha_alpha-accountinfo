@@ -9,6 +9,7 @@ export const Resources =  {
     BalanceInfo: "Balance Info",
     BetCredit: "Bet Credit",
     BetList: "Bet List",
+    NoInfo: "No Info",
     BetSettingViewModelText: "Bet Setting",
     Cancel: "Cancel",
     ClosedByAdmin: "This account was closed by admin.",

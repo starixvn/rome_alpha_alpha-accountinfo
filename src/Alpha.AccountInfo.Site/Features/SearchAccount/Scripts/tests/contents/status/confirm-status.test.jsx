@@ -7,7 +7,7 @@ import ConfirmStatus from 'ConfirmStatus';
 import { Resources } from '../../helpers/resources-sample';
 import * as accountInfoHelper from 'AccountInfoHelper';
 import $ from 'jquery';
-import { accountInfoAPI } from 'APIClient';
+import { accountInfoAPI } from 'AccountInfoAPI';
 import mockAxios from 'jest-mock-axios';
 
 describe('ConfirmStatus', () => {
@@ -55,7 +55,7 @@ describe('ConfirmStatus', () => {
         const spy = sinon.spy(ConfirmStatus.prototype, 'handleOpenPopup');
         const wrapper = mount(<ConfirmStatus {...props} />)
 
-        wrapper.find('#confirm-Closed').simulate('click');
+        wrapper.find('#confirm-2').simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 
@@ -68,7 +68,7 @@ describe('ConfirmStatus', () => {
             accountInfoHelper.resizeBootboxOnMobile = jest.fn();
 
             const wrapper = mount(<ConfirmStatus {...props} />);
-            wrapper.find('#confirm-Closed').simulate('click');
+            wrapper.find('#confirm-2').simulate('click');
             expect(accountInfoHelper.resizeBootboxOnMobile).toBeCalledTimes(expectedCallTimes);
         } 
     );
@@ -79,7 +79,7 @@ describe('ConfirmStatus', () => {
             props.status.Disabled = disabled;
             global.top.bootboxConfirm = jest.fn();
             const wrapper = mount(<ConfirmStatus {...props} />);
-            wrapper.find('#confirm-Closed').simulate('click');
+            wrapper.find('#confirm-2').simulate('click');
             expect(global.top.bootboxConfirm).toBeCalledTimes(expectedCallTimes);
         }
     );
@@ -90,7 +90,7 @@ describe('ConfirmStatus', () => {
         global.top.bootboxConfirm = (message, target, spy ) => spy();
         const wrapper = mount(<ConfirmStatus {...props} />)
 
-        wrapper.find('#confirm-Closed').simulate('click');
+        wrapper.find('#confirm-2').simulate('click');
         expect(spy).toHaveBeenCalledTimes(1);
     });
 

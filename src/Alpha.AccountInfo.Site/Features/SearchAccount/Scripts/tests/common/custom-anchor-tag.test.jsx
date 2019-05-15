@@ -5,9 +5,35 @@ import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import CustomAnchorTag from 'CustomAnchorTag';
 import * as accountInfoHelper from 'AccountInfoHelper';
+import { JSDOM } from 'jsdom';
+import $ from 'jquery';
 
 describe('CustomAnchorTag', () => {
     let props;
+    global.$ = global.jQuery = $;
+    global.$.fn.block =jest.fn();
+    global.$.unblock =jest.fn();
+    global._AssetCommonCssLink = '';
+    global.top.alpha = {
+        core: {
+            isIe: jest.fn()
+        }
+    };
+
+
+
+//     const jsdom = new JSDOM('<!doctype html><html><body><iframe id="main"><html><head></head><body></body></html></iframe></div></body></html>', {
+//         url: "http://test.com"
+//       });
+//       const { window } = jsdom;
+
+//       global.document = window.document;
+// global.window = window;
+// global.navigator = {
+//   userAgent: 'node.js',
+// };
+
+global.HTMLElement = window.HTMLElement;
     beforeEach(() => {
         props = {
             title: undefined,
@@ -32,8 +58,8 @@ describe('CustomAnchorTag', () => {
         it('called when clicked', () => {
             const spy = sinon.spy(CustomAnchorTag.prototype, 'handleOnclick');
             const wrapper = shallow(<CustomAnchorTag />)
-    
-            wrapper.find('a').simulate('click')
+            const event = Object.assign(jest.fn(), {preventDefault: () => {}});
+            wrapper.find('a').simulate('click', event);
             expect(spy.calledOnce).toBeTruthy();
         })
 
@@ -45,7 +71,8 @@ describe('CustomAnchorTag', () => {
                 props.mobileView = mobileView;
 
                 const wrapper = shallow(<CustomAnchorTag {...props} />)
-                wrapper.find('a').simulate('click');
+                const event = Object.assign(jest.fn(), {preventDefault: () => {}});
+                wrapper.find('a').simulate('click', event);
                 expect(accountInfoHelper.closeLeftPanelOnMobile).toBeCalledTimes(expectedCallTimes);
             }
         );

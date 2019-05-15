@@ -51,8 +51,9 @@ describe('CustomerInfo', () => {
         Super.ViewMemberInfo,
         Master.ViewAgentInfo,
         Master.ViewMemberInfo,
-        Agent.ViewMemberInfo])(
-        "always renders a `SearchAccountInfo`",
+        Agent.ViewMemberInfo
+    ])(
+        "always renders a SearchAccountInfo",
         (customerInfo) => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(SearchAccountInfo).length).toBe(1);
