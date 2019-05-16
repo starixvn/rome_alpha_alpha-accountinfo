@@ -114,14 +114,14 @@
             var expectedData = new List<UnsuspendMultipleModel>
             {
                 new UnsuspendMultipleModel(
-                    100, 3, "test1", true,
+                    100, "test1", true,
                     new List<UnsuspendDownlineModel>
                     {
                         new UnsuspendDownlineModel(100, 2, 10, 10),
                         new UnsuspendDownlineModel(100, 1, 10, 10)
                     } as IEnumerable<UnsuspendDownlineModel>),
                 new UnsuspendMultipleModel(
-                    200, 3, "test2", true,
+                    200, "test2", true,
                     new List<UnsuspendDownlineModel>
                     {
                         new UnsuspendDownlineModel(200, 2, 10, 10),

@@ -7,7 +7,10 @@ import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/a
 
 window.renderUnsuspendMultipe = function (viewModel, resources) {
     ReactDOM.render(
-        <UnsuspendMultipleContainer {...{ viewModel, resources: decodeResources(resources)}}/>,
+        <UnsuspendMultipleContainer {...{ 
+            viewModel : viewModel.Data, 
+            searchAccountRoleId: viewModel.SearchAccountRoleId, 
+            resources: decodeResources(resources)}}/>,
         document.getElementById('container')
     );
 };
@@ -15,11 +18,12 @@ window.renderUnsuspendMultipe = function (viewModel, resources) {
 export class UnsuspendMultipleContainer extends React.Component {
     constructor(props) {
         super(props);
-        const { viewModel, resources } = this.props
+        const { viewModel, searchAccountRoleId, resources } = this.props
         this.state = {
             showViewList: false,
             isAffected: false,
             searchAccountId: 0,
+            searchAccountRoleId: searchAccountRoleId,
             searchAccountName: '',
             downlineRoleId: 1,
             resources: resources,
@@ -74,7 +78,7 @@ export class UnsuspendMultipleContainer extends React.Component {
     }
 
     render() {
-        const { searchAccountId, searchAccountName, isAffected, downlineRoleId, originalViewModel, viewModel, resources} = this.state;
+        const { searchAccountId, searchAccountRoleId, searchAccountName, isAffected, downlineRoleId, originalViewModel, viewModel, resources} = this.state;
 
         return this.state.showViewList ?
             <UnsuspendViewList {...{
@@ -89,6 +93,7 @@ export class UnsuspendMultipleContainer extends React.Component {
                 {...{
                     viewModel,
                     originalViewModel,
+                    searchAccountRoleId,
                     resources,
                     handleReset: this.handleReset,
                     toggleSuspendAll: this.toggleSuspendAll,

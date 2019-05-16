@@ -117,7 +117,7 @@
 
             var model = fixture.Create<IEnumerable<UnsuspendMultipleModel>>();
 
-            var expectedViewModel = new UnsuspendMultipleViewModel(message.Language, model);
+            var expectedViewModel = new UnsuspendMultipleViewModel(message.RoleId, message.Language, model);
 
             unsuspendDownlinesService
              .GetUnsuspendMultipleModel(Arg.Any<string>(), Arg.Any<byte>())

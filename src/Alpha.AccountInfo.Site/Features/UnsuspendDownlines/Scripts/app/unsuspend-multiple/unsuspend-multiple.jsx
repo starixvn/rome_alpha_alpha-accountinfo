@@ -34,7 +34,7 @@ export default class UnsuspendMultiple extends React.Component {
         viewModel.map(function (item, index) {
             if (item.Suspended !== originalViewModel[index].Suspended) {
                 params.push({
-                    CustId: item.CustId,
+                    SearchAccountId: item.SearchAccountId,
                     Username: item.Username,
                     Suspended: item.Suspended
                 });
@@ -84,8 +84,7 @@ export default class UnsuspendMultiple extends React.Component {
     }
 
     render() {
-        const { viewModel, originalViewModel, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
-            searchAccountRoleId = viewModel.length > 0 ? viewModel[0].SearchAccountRoleId : 1,
+        const { viewModel, originalViewModel, searchAccountRoleId, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
             isNotMember = searchAccountRoleId > 1,
             headers = searchAccountRoleId == 3 ?
                 [resources.AffectedDownlinesAgentMember, resources.RemainUnchangedDownlinesAgentMember] :

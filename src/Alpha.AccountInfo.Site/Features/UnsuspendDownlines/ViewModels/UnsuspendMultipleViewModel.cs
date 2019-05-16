@@ -10,15 +10,19 @@
     public class UnsuspendMultipleViewModel
     {
         public UnsuspendMultipleViewModel(
+            byte searchAccountRoleId,
             string language,
             IEnumerable<UnsuspendMultipleModel> data,
             Func<string, ResourceManager, string> convertResourcesJson = null)
         {
+            SearchAccountRoleId = searchAccountRoleId;
             Data = data;
 
             var ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
             Resources = ConvertResourcesJson(language, UnsuspendDownlinesResources.ResourceManager);
         }
+
+        public byte SearchAccountRoleId { get; private set; }
 
         public IEnumerable<UnsuspendMultipleModel> Data { get; private set; }
 

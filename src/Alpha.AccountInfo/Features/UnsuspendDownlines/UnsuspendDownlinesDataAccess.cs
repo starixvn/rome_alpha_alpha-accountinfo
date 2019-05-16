@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines
 {
-    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.UnsuspendDownlines.Models;
     using Alpha.AccountInfo.Features.UnsuspendDownlines.Params.SPs.Criteria;
     using Fanex.Data;
@@ -46,12 +45,11 @@
 
                     return searchAccounts.Select(searchAccount =>
                             new UnsuspendMultipleModel(
-                                 searchAccount.CustId,
-                                 criteria.RoleId,
+                                 searchAccount.SearchAccountId,
                                  searchAccount.Username,
                                  searchAccount.Suspended,
                                  downlines
-                                 .Where(downline => downline.CustId == searchAccount.CustId)
+                                 .Where(downline => downline.SearchAccountId == searchAccount.SearchAccountId)
                                  .OrderByDescending(downline => downline.DownlineRoleId).ToList()));
                 }
             }

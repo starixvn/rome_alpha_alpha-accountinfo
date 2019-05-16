@@ -52,6 +52,7 @@
 
         public async Task<UnsuspendMultipleViewModel> Handle(UnsuspendMultipleRequest message)
             => new UnsuspendMultipleViewModel(
+                message.RoleId,
                 message.Language,
                 await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false));
 
@@ -84,7 +85,7 @@
                 customer.Suspended,
                 await accountInfoService.UpdateCustomerStatus(
                       new UpdateCustomerStatusParam(
-                          customer.CustId,
+                          customer.SearchAccountId,
                           message.ActorId,
                           message.SubAccountId,
                           message.Language,

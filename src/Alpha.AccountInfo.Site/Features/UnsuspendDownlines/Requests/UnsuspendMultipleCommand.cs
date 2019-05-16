@@ -8,7 +8,7 @@
 
     public class UnsuspendCustomerInfo
     {
-        public int CustId { get; set; }
+        public int SearchAccountId { get; set; }
 
         public string Username { get; set; }
 

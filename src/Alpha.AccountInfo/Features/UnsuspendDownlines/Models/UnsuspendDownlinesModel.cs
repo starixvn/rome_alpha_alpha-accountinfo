@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines.Models
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class UnsuspendDownlineDto
     {
@@ -20,11 +21,11 @@
     {
         public UnsuspendDownlineByLevelModel(byte roleId, IEnumerable<UnsuspendDownlineDto> unsuspendDownlines)
         {
-            UnsuspendDownlines = unsuspendDownlines;
+            DownlineUsernames = unsuspendDownlines.Select(downline => downline.Username);
             RoleId = roleId;
         }
 
-        public IEnumerable<UnsuspendDownlineDto> UnsuspendDownlines { get; private set; }
+        public IEnumerable<string> DownlineUsernames { get; private set; }
 
         public byte RoleId { get; private set; }
     }

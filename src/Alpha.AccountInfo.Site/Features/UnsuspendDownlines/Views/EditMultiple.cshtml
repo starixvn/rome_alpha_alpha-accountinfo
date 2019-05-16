@@ -19,7 +19,7 @@
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
 
         renderUnsuspendMultipe(
-            @Html.Raw(JsonConvert.SerializeObject(Model.Data, Newtonsoft.Json.Formatting.Indented)),
+            @Html.Raw(JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.Indented)),
             @Html.Raw(Model.Resources));
     </script>
 }

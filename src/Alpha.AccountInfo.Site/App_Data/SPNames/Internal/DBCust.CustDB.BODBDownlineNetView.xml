@@ -36,6 +36,8 @@
     <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel_UAT1" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" >
       <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
       <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
+      <Mapping ObjectProperty="DownlineRoleId" DataField="roleid" />
+      <Mapping ObjectProperty="SearchAccountId" DataField="custid" />
     </Setting>
   </Function>
 </Functions>

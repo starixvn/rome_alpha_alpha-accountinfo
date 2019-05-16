@@ -84,9 +84,9 @@ export default class UnsuspendViewList extends React.Component {
                     <tbody>
                         {
                             viewModel.Data.Levels.map((level) => {
-                                const length = level.UnsuspendDownlines.length;
+                                const length = level.DownlineUsernames.length;
                                 return (
-                                    level.UnsuspendDownlines.map((username, index) => {
+                                    level.DownlineUsernames.map((username, index) => {
                                         return (
                                             <tr key={counter++}>
                                                 <td>
@@ -100,7 +100,7 @@ export default class UnsuspendViewList extends React.Component {
                                                     </td>
                                                 }
                                                 <td>
-                                                    {username.Username}
+                                                    {username}
                                                 </td>
                                             </tr>
                                         );
