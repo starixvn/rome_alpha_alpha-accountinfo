@@ -68,7 +68,8 @@
       "Settings": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/settings.jsx",
       "CustomizedAccordionItem": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/customized-accordion-item.jsx",
       "AccountInfoDesktop": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/account-info-desktop.jsx",
-      "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/app/components/mobile-version/content-mobile.jsx"
+      "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/app/components/mobile-version/content-mobile.jsx",
+      "UnsuspendViewList": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx"
     }
   },
   "jest-junit": {
