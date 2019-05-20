@@ -40,7 +40,7 @@
     "AffectedDownlinesMember": "Affected Downlines &lt;br/&gt; (Member)",
     "Back": "Back",
     "Page": "Page"
-};
+}
 
 export const responseViewListData = {
     "SearchAccountId": 36204210,
@@ -68,4 +68,24 @@ export const responseViewListData = {
         "TotalRows": 6
     },
     "AccountInfoUrl": "/site-accountinfo/"
-} 
+}
+
+export const responseUnsuspendSingleData = {
+    "SearchAccountId": 36204210,
+    "SearchAccountName": "davidtest13May01",
+    "Levels": [
+      {
+        "RoleId": 2,
+        "AffectedDownlines": 2,
+        "UnchangedDownlines": 1
+      },
+      {
+        "RoleId": 1,
+        "AffectedDownlines": 0,
+        "UnchangedDownlines": 3
+      }
+    ],
+    "AffectedDownlinesTotal": 2,
+    "UnchangedDownlinesTotal": 4,
+    "AccountInfoUrl": "/site-accountinfo/"
+  }

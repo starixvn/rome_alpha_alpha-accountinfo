@@ -1,15 +1,11 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../../../__mocks__/global.mock';
-import { mount, shallow } from 'enzyme';
-import sinon from 'sinon';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import UnsuspendViewList from 'UnsuspendViewList';
 import mockAxios from 'jest-mock-axios';
-import {requests} from 'APIClient';
-import {unsuspendAPI} from 'UnsuspendAPI';
 import  {resources, responseViewListData} from './unspend-downlines-resources.mock';
-import {usernameRegExp} from 'AccountInfoHelper';
 
 describe('UnsuspendViewList', () => {
     let props, wrapper;

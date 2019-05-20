@@ -81,6 +81,7 @@ class ReactPagination extends React.Component {
                 <div className='table-pagination-block'>
                     <div>
                         <select className='pagination-page-list'
+                            value={pageLength}
                             onChange={(e) => {
                                 const pageSize = parseFloat(e.currentTarget.value);
                                 this.changePage({
@@ -92,7 +93,6 @@ class ReactPagination extends React.Component {
                                 <option
                                     key={val}
                                     value={val}
-                                    selected={pageLength === val}
                                     className={classNames({ ['selected']: pageLength === val })}
                                 >
                                     {val}

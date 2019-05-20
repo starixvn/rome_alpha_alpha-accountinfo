@@ -4,14 +4,16 @@ import UnsuspendViewList from '../unspend-view-list';
 import UnsuspendSingle from './unsuspend-single';
 import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
-window.renderUnsuspendSingle = function (viewModel, resources) {
+export const renderUnsuspendSingle = (viewModel, resources) => {
     ReactDOM.render(
         <UnsuspendSingleContainer {...{ viewModel, resources: decodeResources(resources)}}/>,
         document.getElementById('container')
     );
 };
 
-export class UnsuspendSingleContainer extends React.Component {
+window.renderUnsuspendSingle = renderUnsuspendSingle;
+
+export default class UnsuspendSingleContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

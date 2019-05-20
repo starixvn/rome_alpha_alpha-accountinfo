@@ -44,6 +44,7 @@
     "AccountInfoDesktop": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/account-info-desktop.jsx",
     "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/app/components/mobile-version/content-mobile.jsx",
     "UnsuspendViewList": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx",
+    "UnsuspendSingleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-components.jsx",
     "UnsuspendAPI": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-api.jsx",
     "APIClient": "<rootDir>/Features/Shared/Scripts/api-client.jsx"
   }
