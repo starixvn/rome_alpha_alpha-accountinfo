@@ -1,47 +1,47 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from "enzyme";
+import '../../../../__mocks__/global.mock';
+import { mount, shallow } from 'enzyme';
+import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import UnsuspendViewList from 'UnsuspendViewList';
-import * as axios from "axios";
+import mockAxios from 'jest-mock-axios';
+import {requests} from 'APIClient';
+import {unsuspendAPI} from 'UnsuspendAPI';
+import  {resources, responseViewListData} from './unspend-downlines-resources.mock';
+import {usernameRegExp} from 'AccountInfoHelper';
 
 describe('UnsuspendViewList', () => {
-    jest.mock("axios");
-    let props;
-    axios.get.mockImplementation(() => Promise.resolve({
-        data: {
-            "SearchAccountId": 36204210,
-            "SearchAccountName": "davidtest13May01",
-            "IsAffected": true,
-            "Data": {
-                "Levels": [
-                    {
-                        "DownlineUsernames": [
-                            "davidtest13May0101",
-                            "davidtest13May0102",
-                            "davidtest13May0103"
-                        ],
-                        "RoleId": 2
-                    },
-                    {
-                        "DownlineUsernames": [
-                            "davidtest13May0101001",
-                            "davidtest13May0101002",
-                            "davidtest13May0101003"
-                        ],
-                        "RoleId": 1
-                    }
-                ],
-                "TotalRows": 6
-            },
-            "AccountInfoUrl": "/site-accountinfo/(S(dzdoumiv1x2xajfceulo1rgn))/"
-        }}));
+    let props, wrapper;
+
     beforeEach(() => {
         props = {
-            customerInfo: Super.ViewMasterInfo,
-            resources: Resources
+            isAffected: true,
+            downlineRoleId: 2,
+            resources,
+            searchAccountId: 36204210,
+            searchAccountName: 'davidtest13May01',
+            redirectMainPage: jest.fn()
         };
+
+        wrapper = undefined;
     });
+
+    afterEach(() => {
+        // cleaning up the mess left behind the previous test
+        mockAxios.reset();
+    });
+
+    const buildWrapper = (totalRows) => {
+        if (!wrapper) {
+            responseViewListData.Data.TotalRows = totalRows;
+            wrapper = mount(<UnsuspendViewList {...props} />);
+            wrapper.instance().componentWillMount();
+            mockAxios.mockResponse({ data:  responseViewListData});
+        }
+
+        return wrapper;
+    }
 
     test('renders without crashing', () => {
         const div = document.createElement('div');
@@ -52,4 +52,55 @@ describe('UnsuspendViewList', () => {
         const component = renderer.create(<UnsuspendViewList {...props} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
+
+    test('fetch viewlist data on #componentWillMount', () => {
+       buildWrapper();
+
+        expect(wrapper.state().activePage).toBe(1);
+        expect(wrapper.state().pageLength).toBe(50);
+
+        expect(mockAxios.get).toHaveBeenCalledWith(
+            '/site-accountinfo/UnsuspendDownlines/FetchCustomerList', 
+            { "params": {
+                "DownlineRoleId": 2, 
+                "IsAffected": true, 
+                "PageIndex": 0, 
+                "PageSize": 50, 
+                "SearchAccountId": 36204210, 
+                "SearchAccountName": "davidtest13May01"
+            }});
+                
+        expect(wrapper.state().viewModel).toBe(responseViewListData);
+      });
+
+      test.each([
+        [0, 1],
+        [49, 1],
+        [60, 2]])(
+        "always renders #BackButton callTimes",
+        (totalRows, expectedCallTimes) => {
+            buildWrapper(totalRows);
+            expect(wrapper.find('.btn-cancel').length).toBe(expectedCallTimes);
+        }
+    );
+
+      test('redirectMainPage called when clicked back button', () => {
+        buildWrapper(30);
+
+        const event = Object.assign(jest.fn(), {preventDefault: () => {}});
+        wrapper.find('.btn-cancel').simulate('click', event);
+        expect(props.redirectMainPage).toHaveBeenCalled();
+    });
+
+    test.each([
+        [false, 'List of downlines whose status are unchanged after davidtest13May01 is unsuspended'],
+        [true, 'List of downlines whose status are changed after davidtest13May01 is unsuspended']
+    ])(
+        "always renders correct view note",
+        (isAffected, expectedViewNote) => {
+            props.isAffected = isAffected;
+            buildWrapper(60);
+            expect(wrapper.find('.note').text()).toBe(expectedViewNote);
+        }
+    );
 });

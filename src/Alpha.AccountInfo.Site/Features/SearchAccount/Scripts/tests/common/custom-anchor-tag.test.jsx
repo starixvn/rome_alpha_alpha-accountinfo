@@ -20,8 +20,6 @@ describe('CustomAnchorTag', () => {
         }
     };
 
-
-
 //     const jsdom = new JSDOM('<!doctype html><html><body><iframe id="main"><html><head></head><body></body></html></iframe></div></body></html>', {
 //         url: "http://test.com"
 //       });

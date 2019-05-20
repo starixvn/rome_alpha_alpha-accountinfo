@@ -13,7 +13,12 @@ const handleErrors = (err) => {
 };
 
 export const requests = {
-    get: (url, data) => axios.get(url, { params: data }).then(res => res.data).catch(handleErrors),
+    get: (url, data) =>{
+        let axiosPromise = axios.get(url, { params: data });
+        axiosPromise = axiosPromise.then(serverData => serverData.data);
+
+        return (axiosPromise);
+    },
 	post: (url, data) => axios.post(url, data,
 		{
 			headers:

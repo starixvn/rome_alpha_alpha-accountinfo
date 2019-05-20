@@ -52,12 +52,13 @@ export default class UnsuspendViewList extends React.Component {
 
     render() {
         const { viewModel, activePage, pageLength, resources } = this.state;
+        const { isAffected } = this.props;
         if (viewModel === null) {
             return null;
         }
 
         const totalRecords = viewModel.Data.TotalRows, showPaging = totalRecords > pageLength;
-        const viewListNote = viewModel.IsAffected ? resources.AffectedViewListNote : resources.UnchangedViewListNote;
+        const viewListNote = isAffected ? resources.AffectedViewListNote : resources.UnchangedViewListNote;
         let counter = pageLength * (activePage - 1);
 
         const back = <div>

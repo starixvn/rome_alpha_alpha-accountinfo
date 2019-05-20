@@ -91,7 +91,6 @@
             var expectedViewModel = new UnsuspendListViewModel(
                 message.SearchAccountId,
                 message.SearchAccountName,
-                message.IsAffected,
                 model);
 
             unsuspendDownlinesService

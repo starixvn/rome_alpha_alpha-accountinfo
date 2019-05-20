@@ -59,7 +59,7 @@ export const ColumnContent = ({ dataRow, levels, isAffected, redirectViewListDet
                     {
                         downlines === 0 ? downlines :
                             <a key={index} href='#'
-                                onClick={() => redirectViewListDetail(dataRow.CustId, dataRow.Username, level.DownlineRoleId, isAffected)}>
+                                onClick={() => redirectViewListDetail(dataRow.SearchAccountId, dataRow.Username, level.DownlineRoleId, isAffected)}>
                                 {downlines}
                             </a>
                     }
