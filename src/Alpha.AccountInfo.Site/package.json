@@ -74,8 +74,8 @@
       "UnsuspendSingleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-container.jsx",
       "UnsuspendSingle": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single.jsx",
       "UnsuspendMultipleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-components.jsx",
-      "UnsuspendMultipleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple.jsx",
-      "UnsuspendMultiple": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
+      "UnsuspendMultipleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
+      "UnsuspendMultiple": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple.jsx",
       "UnsuspendAPI": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-api.jsx",
       "UnsuspendHelper": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-helper.jsx",
       "APIClient": "<rootDir>/Features/Shared/Scripts/api-client.jsx"

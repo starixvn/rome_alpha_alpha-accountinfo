@@ -5,7 +5,7 @@ import UnsuspendViewList from '../unspend-view-list';
 import UnsuspendMultiple from './unsuspend-multiple';
 import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
-window.renderUnsuspendMultipe = function (viewModel, resources) {
+export const renderUnsuspendMultipe = (viewModel, resources) => {
     ReactDOM.render(
         <UnsuspendMultipleContainer {...{ 
             viewModel : viewModel.Data, 
@@ -14,6 +14,8 @@ window.renderUnsuspendMultipe = function (viewModel, resources) {
         document.getElementById('container')
     );
 };
+
+window.renderUnsuspendMultipe = renderUnsuspendMultipe;
 
 export default class UnsuspendMultipleContainer extends React.Component {
     constructor(props) {

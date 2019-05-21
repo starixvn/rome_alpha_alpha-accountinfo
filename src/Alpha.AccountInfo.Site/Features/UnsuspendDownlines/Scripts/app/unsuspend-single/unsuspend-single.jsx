@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { unsuspendAPI } from '../unsuspend-api';
 import { BodyRowContent, FooterContent } from './unsuspend-single-components';
-import { formatMessage, usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
+import { usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 import { viewInfomation } from '../unsuspend-helper';
 
 export default class UnsuspendSingle extends React.Component {
@@ -86,6 +86,7 @@ export default class UnsuspendSingle extends React.Component {
                     </thead>
                     <tbody>
                         {
+                            affectedDownlinesTotal + unchangedDownlinesTotal > 0 &&
                             levels.map((level, index) => <BodyRowContent {...{ level, redirectViewListDetail, resources, key: index }} />)
                         }
                     </tbody>

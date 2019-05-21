@@ -436,6 +436,7 @@
     <Content Include="Features\UnsuspendDownlines\Scripts\tests\unspend-downlines-resources.mock.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-multiple\unsuspend-multiple-components.test.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-multiple\unsuspend-multiple-container.test.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-multiple\unsuspend-multiple.test.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-single\unsuspend-single-components.test.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-single\unsuspend-single-container.test.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-single\unsuspend-single.test.jsx" />
