@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { mock } from "jest";
 import '../../../../../__mocks__/global.mock';
 import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
@@ -64,13 +63,13 @@ describe('UnsuspendSingleContainer', () => {
         buildWrapper();
         wrapper.instance().redirectViewListDetail(true, 2);
         expect(wrapper.state().showViewList).toBeTruthy();
-        expect(wrapper.find(UnsuspendViewList).length).toBeGreaterThanOrEqual(1);
+        expect(wrapper.find(UnsuspendViewList).length).toBe(1);
     });
 
     test('Should render #UnsuspendSingle when call redirectMainPage', () => {
         buildWrapper();
         wrapper.instance().redirectMainPage();
         expect(wrapper.state().showViewList).toBeFalsy();
-        expect(wrapper.find(UnsuspendSingle).length).toBeGreaterThanOrEqual(1);
+        expect(wrapper.find(UnsuspendSingle).length).toBe(1);
     });
 });

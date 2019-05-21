@@ -15,13 +15,6 @@ export default class UnsuspendSingle extends React.Component {
 
         this.doUpdate = this.doUpdate.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-    }
-
-    handleKeyPress(e) {
-        if (e.key === 'Enter') {
-            this.handleSubmit(e);
-        }
     }
 
     doUpdate(e) {

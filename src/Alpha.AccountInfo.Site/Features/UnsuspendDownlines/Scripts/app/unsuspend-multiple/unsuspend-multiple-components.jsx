@@ -38,8 +38,8 @@ export const RowContent = ({
 }
 
 export const ColumnContent = ({ dataRow, levels, isAffected, redirectViewListDetail }) => {
-    let currentLevels = dataRow.Downlines.length;
-    while (currentLevels < levels) {
+    let currentLevel = dataRow.Downlines.length;
+    while (currentLevel < levels) {
         dataRow.Downlines.push({
             CustId: 0,
             DownlineRoleId: 0,
@@ -47,7 +47,7 @@ export const ColumnContent = ({ dataRow, levels, isAffected, redirectViewListDet
             UnchangedDownlines: 0
         });
 
-        currentLevels++;
+        currentLevel++;
     }
 
     return (<div>
@@ -63,7 +63,7 @@ export const ColumnContent = ({ dataRow, levels, isAffected, redirectViewListDet
                                 {downlines}
                             </a>
                     }
-                    {index < currentLevels - 1 ? ` / ` : ``}
+                    {index < currentLevel - 1 ? ` / ` : ``}
                 </span>;
             })
         }

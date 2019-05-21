@@ -12,3 +12,5 @@ window.top.alpha = {
         accountInfoRootPath: '/site-accountinfo/'
     }
 };
+
+window.top.bootboxConfirm = jest.fn();
