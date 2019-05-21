@@ -49,25 +49,30 @@ export const FooterContent = ({
     affectedDownlinesTotal,
     unchangedDownlinesTotal,
     redirectViewListDetail,
-    totalText = 'Total' }) => <tfoot>
-        <tr className="tbl-footer">
-            <td>{totalText}</td>
-            {
-                [{
-                    downlines: affectedDownlinesTotal,
-                    isAffected: true
-                },
-                {
-                    downlines: unchangedDownlinesTotal,
-                    isAffected: false
-                }].map((column, index) => {
-                    const { downlines, isAffected } = column;
-                    return (
-                        <td className="text-center" key={index}>
-                            <ColumnContentByLevel {...{ downlines, isAffected, redirectViewListDetail, downlineRoleId: 0 }} />
-                        </td>
-                    );
-                })
-            }
-        </tr>
+    totalText = 'Total',
+    noData = 'There is no data'}) => <tfoot>
+        {
+            affectedDownlinesTotal + unchangedDownlinesTotal == 0 ?
+                <tr><td colSpan="3" className="text-center">{noData}</td></tr> :
+                <tr className="tbl-footer">
+                    <td>{totalText}</td>
+                    {
+                        [{
+                            downlines: affectedDownlinesTotal,
+                            isAffected: true
+                        },
+                        {
+                            downlines: unchangedDownlinesTotal,
+                            isAffected: false
+                        }].map((column, index) => {
+                            const { downlines, isAffected } = column;
+                            return (
+                                <td className="text-center" key={index}>
+                                    <ColumnContentByLevel {...{ downlines, isAffected, redirectViewListDetail, downlineRoleId: 0 }} />
+                                </td>
+                            );
+                        })
+                    }
+                </tr>
+        }
     </tfoot>;

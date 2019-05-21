@@ -89,7 +89,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are changed after &lt;username&gt; is unsuspended.
+        ///   Looks up a localized string similar to List of downlines whose status are changed after &lt;username&gt; is unsuspended..
         /// </summary>
         public static string AffectedViewListNote {
             get {
@@ -121,15 +121,6 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         public static string Back {
             get {
                 return ResourceManager.GetString("Back", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well..
-        /// </summary>
-        public static string ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage {
-            get {
-                return ResourceManager.GetString("ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage", resourceCulture);
             }
         }
         
@@ -175,6 +166,15 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         public static string MultipleConfirm {
             get {
                 return ResourceManager.GetString("MultipleConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no data..
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
             }
         }
         
@@ -323,7 +323,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are unchanged after &lt;username&gt; is unsuspended.
+        ///   Looks up a localized string similar to List of downlines whose status are unchanged after &lt;username&gt; is unsuspended..
         /// </summary>
         public static string UnchangedViewListNote {
             get {
@@ -350,7 +350,16 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines&apos; status after &lt;username&gt; is unsuspended.
+        ///   Looks up a localized string similar to Are you sure you want to change Suspend status for this customer?.
+        /// </summary>
+        public static string UnsuspendedWithNoDownlinesMessages {
+            get {
+                return ResourceManager.GetString("UnsuspendedWithNoDownlinesMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of downlines&apos; status after &lt;username&gt; is unsuspended..
         /// </summary>
         public static string UnsuspendSingleNote {
             get {
@@ -377,7 +386,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - When a customer is suspended, all his downlines will be suspended as well.
+        ///   Looks up a localized string similar to - When a customer is suspended, all his downlines will be suspended as well..
         /// </summary>
         public static string ViewInformation1 {
             get {
@@ -395,7 +404,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list.
+        ///   Looks up a localized string similar to + Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list..
         /// </summary>
         public static string ViewInformation3 {
             get {

@@ -157,7 +157,7 @@
     <value>Unsuspended</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
-    <value>List of downlines' status after &lt;username&gt; is unsuspended</value>
+    <value>List of downlines' status after &lt;username&gt; is unsuspended.</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
@@ -169,7 +169,7 @@
     <value>Back</value>
   </data>
   <data name="AffectedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are changed after &lt;username&gt; is unsuspended</value>
+    <value>List of downlines whose status are changed after &lt;username&gt; is unsuspended.</value>
   </data>
   <data name="Displaying" xml:space="preserve">
     <value>Displaying</value>
@@ -189,14 +189,11 @@
   <data name="UnsuspendedSuccessfully" xml:space="preserve">
     <value>Status of {0} and their affected downlines have been successfully updated to Unsuspended.</value>
   </data>
-  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
-    <value>Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well.</value>
-  </data>
   <data name="ViewInformation1" xml:space="preserve">
-    <value>- When a customer is suspended, all his downlines will be suspended as well</value>
+    <value>- When a customer is suspended, all his downlines will be suspended as well.</value>
   </data>
   <data name="ViewInformation3" xml:space="preserve">
-    <value>+ Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list</value>
+    <value>+ Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list.</value>
   </data>
   <data name="ViewInformation4" xml:space="preserve">
     <value>+ For the rest, their current status will not be changed. You can click on the number of remain unchanged downlines to view the list.</value>
@@ -220,7 +217,7 @@
     <value>Remain Unchanged Downlines &lt;br/&gt; (Member)</value>
   </data>
   <data name="UnchangedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are unchanged after &lt;username&gt; is unsuspended</value>
+    <value>List of downlines whose status are unchanged after &lt;username&gt; is unsuspended.</value>
   </data>
   <data name="ViewInformation2" xml:space="preserve">
     <value>- When a customer is unsuspended:</value>
@@ -239,5 +236,11 @@
   </data>
   <data name="NumberColumn" xml:space="preserve">
     <value>No.</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>There is no data.</value>
+  </data>
+  <data name="UnsuspendedWithNoDownlinesMessages" xml:space="preserve">
+    <value>Are you sure you want to change Suspend status for this customer?</value>
   </data>
 </root>

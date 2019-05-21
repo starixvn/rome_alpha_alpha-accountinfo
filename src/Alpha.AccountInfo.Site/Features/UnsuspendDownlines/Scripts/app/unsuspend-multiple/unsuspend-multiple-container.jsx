@@ -15,7 +15,7 @@ window.renderUnsuspendMultipe = function (viewModel, resources) {
     );
 };
 
-export class UnsuspendMultipleContainer extends React.Component {
+export default class UnsuspendMultipleContainer extends React.Component {
     constructor(props) {
         super(props);
         const { viewModel, searchAccountRoleId, resources } = this.props

@@ -45,8 +45,13 @@ export default class UnsuspendSingle extends React.Component {
     }
    
     handleSubmit(e) {
+        const { resources, viewModel } = this.props;
+        const message = viewModel.AffectedDownlinesTotal + viewModel.UnchangedDownlinesTotal == 0 ?
+            resources.UnsuspendedWithNoDownlinesMessages :
+            resources.MultipleConfirm;
+
         window.top.bootboxConfirm(
-            formatMessage(this.props.resources.ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage),
+            message,
             e.target,
             this.doUpdate
         );
@@ -88,7 +93,8 @@ export default class UnsuspendSingle extends React.Component {
                         affectedDownlinesTotal,
                         unchangedDownlinesTotal,
                         redirectViewListDetail,
-                        totalText: resources.Total
+                        totalText: resources.Total,
+                        noData: resources.NoData
                     }} />
                 </table>
             </ div>

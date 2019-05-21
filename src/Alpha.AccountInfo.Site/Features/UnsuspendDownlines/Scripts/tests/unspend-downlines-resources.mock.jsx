@@ -74,18 +74,49 @@ export const responseUnsuspendSingleData = {
     "SearchAccountId": 36204210,
     "SearchAccountName": "davidtest13May01",
     "Levels": [
-      {
-        "RoleId": 2,
-        "AffectedDownlines": 2,
-        "UnchangedDownlines": 1
-      },
-      {
-        "RoleId": 1,
-        "AffectedDownlines": 0,
-        "UnchangedDownlines": 3
-      }
+        {
+            "RoleId": 2,
+            "AffectedDownlines": 2,
+            "UnchangedDownlines": 1
+        },
+        {
+            "RoleId": 1,
+            "AffectedDownlines": 0,
+            "UnchangedDownlines": 3
+        }
     ],
     "AffectedDownlinesTotal": 2,
     "UnchangedDownlinesTotal": 4,
     "AccountInfoUrl": "/site-accountinfo/"
-  }
+}
+
+export const responseUnsuspendMultipleData = {
+    "SearchAccountRoleId": 3,
+    "Data": [
+        {
+            "SearchAccountId": 36204210,
+            "Username": "davidtest13May01",
+            "Suspended": true,
+            "Downlines": [
+                {
+                    "SearchAccountId": 36204210,
+                    "DownlineRoleId": 2,
+                    "AffectedDownlines": 2,
+                    "UnchangedDownlines": 1
+                },
+                {
+                    "SearchAccountId": 36204210,
+                    "DownlineRoleId": 1,
+                    "AffectedDownlines": 0,
+                    "UnchangedDownlines": 3
+                }
+            ]
+        },
+        {
+            "SearchAccountId": 36204211,
+            "Username": "davidtest13May02",
+            "Suspended": false,
+            "Downlines": []
+        }
+    ]
+}
