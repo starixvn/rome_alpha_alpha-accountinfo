@@ -9,8 +9,7 @@ export const RowContent = ({
     handleChange,
     redirectViewListDetail,
     resources }) => {
-    const levels = searchAccountRoleId - 1,
-        isNotMember = searchAccountRoleId > 1,
+    const isNotMember = searchAccountRoleId > 1,
         showValue = originaldataRow.Suspended !== dataRow.Suspended,
         header = dataRow.Suspended ?
             { text: resources.Suspended, buttonClass: 'suspend-button' } :
@@ -29,7 +28,7 @@ export const RowContent = ({
                     <td className="text-center" key={index}>
                         {
                             showValue && (originaldataRow.Suspended ?
-                                <ColumnContent {...{ dataRow, levels, redirectViewListDetail, isAffected }} /> :
+                                <ColumnContent {...{ dataRow, redirectViewListDetail, isAffected }} /> :
                                 <span>{resources.All}</span>)
                         }
                     </td>)
@@ -37,19 +36,7 @@ export const RowContent = ({
         </tr>);
 }
 
-export const ColumnContent = ({ dataRow, levels, isAffected, redirectViewListDetail }) => {
-    let currentLevel = dataRow.Downlines.length;
-    while (currentLevel < levels) {
-        dataRow.Downlines.push({
-            CustId: 0,
-            DownlineRoleId: 0,
-            AffectedDownlines: 0,
-            UnchangedDownlines: 0
-        });
-
-        currentLevel++;
-    }
-
+export const ColumnContent = ({ dataRow, isAffected, redirectViewListDetail }) => {
     return (<div>
         {
             dataRow.Downlines.map((level, index) => {
@@ -63,7 +50,7 @@ export const ColumnContent = ({ dataRow, levels, isAffected, redirectViewListDet
                                 {downlines}
                             </a>
                     }
-                    {index < currentLevel - 1 ? ` / ` : ``}
+                    {index < dataRow.Downlines.length - 1 ? ` / ` : ``}
                 </span>;
             })
         }

@@ -10,7 +10,6 @@ export default class UnsuspendMultiple extends React.Component {
         super(props);
         this.state = {
             hideMessages: true,
-            updateSuccess: false,
             message: ''
         };
 
@@ -52,8 +51,7 @@ export default class UnsuspendMultiple extends React.Component {
 
                 self.setState({
                     hideMessages: false,
-                    message: message,
-                    updateSuccess: isSuccess
+                    message: message
                 });
 
                 if (isSuccess) {
@@ -98,7 +96,7 @@ export default class UnsuspendMultiple extends React.Component {
                             </th>
                             {
                                 isNotMember && headers.map((text, index) =>
-                                    <th rowSpan='2' key={index}><Markup content={text} /> </th>)
+                                    <th rowSpan='2' key={index}><Markup content={text} /></th>)
                             }
                         </tr>
                         <tr>
@@ -157,7 +155,6 @@ export default class UnsuspendMultiple extends React.Component {
                             </button>
                         )
                     }
-
                 </div>
             </div >
         );

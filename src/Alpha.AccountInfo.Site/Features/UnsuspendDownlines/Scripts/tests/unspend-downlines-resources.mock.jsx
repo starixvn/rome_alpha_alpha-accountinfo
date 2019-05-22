@@ -19,7 +19,7 @@
     "SubmitMultipleConfirm2": "&lt;username&gt; will be suspended. Warning: they will not be able to place bet.",
     "SubmitMultipleConfirm1": "&lt;username&gt; will be unsuspended.",
     "Suspended": "Suspended",
-    "AffectedDownlinesAgentMember": "Affected Downlines &lt;br/&gt;  (Agent/Member)",
+    "AffectedDownlinesAgentMember": "Affected Downlines &lt;br/&gt; (Agent/Member)",
     "Of": "of",
     "To": "to",
     "All": "All",
@@ -39,7 +39,9 @@
     "SuspendStatus": "Suspend Status",
     "AffectedDownlinesMember": "Affected Downlines &lt;br/&gt; (Member)",
     "Back": "Back",
-    "Page": "Page"
+    "Page": "Page",
+    "NoData": "There is no data.",
+    "UnsuspendedWithNoDownlinesMessages": "Are you sure you want to change Suspend status for this customer?",
 }
 
 export const responseViewListData = {

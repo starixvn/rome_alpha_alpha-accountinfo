@@ -54,7 +54,7 @@ describe('UnsuspendMultipleComponent', () => {
 
         beforeEach(() => {
             props = {
-                originaldataRow: Data.UnsuspendMultipleMaster,
+                originaldataRow: _.cloneDeep(Data.UnsuspendMultipleMaster),
                 dataRow: _.cloneDeep(Data.UnsuspendMultipleMaster),
                 searchAccountRoleId: 2,
                 index: 1,

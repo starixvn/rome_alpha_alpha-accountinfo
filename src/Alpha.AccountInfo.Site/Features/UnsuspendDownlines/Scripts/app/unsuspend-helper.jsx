@@ -1,6 +1,6 @@
 ﻿import { UserLevel } from '../../../SearchAccount/Scripts/app/constants';
 
-export const getUserLevelName = (level, resources) => {
+export const getUserLevelName = (levelRoleId, resources) => {
     const levelNames = [
         {
             LevelId: UserLevel.Master,
@@ -16,7 +16,7 @@ export const getUserLevelName = (level, resources) => {
         }];
 
     return levelNames.filter(function (item) {
-        return (item.LevelId === level.RoleId);
+        return (item.LevelId === levelRoleId);
     })[0].LevelName;
 }
 

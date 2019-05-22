@@ -96,7 +96,7 @@ export default class UnsuspendViewList extends React.Component {
                                                 {
                                                     index === 0 && <td rowSpan={length}>
                                                         {
-                                                            getUserLevelName(level, resources)
+                                                            getUserLevelName(level.RoleId, resources)
                                                         }
                                                     </td>
                                                 }

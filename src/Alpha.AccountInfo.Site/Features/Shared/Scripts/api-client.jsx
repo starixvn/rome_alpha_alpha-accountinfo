@@ -13,17 +13,23 @@ const handleErrors = (err) => {
 };
 
 export const requests = {
-    get: (url, data) =>{
+    get: (url, data) => {
         let axiosPromise = axios.get(url, { params: data });
         axiosPromise = axiosPromise.then(serverData => serverData.data);
 
         return (axiosPromise);
     },
-	post: (url, data) => axios.post(url, data,
-		{
-			headers:
-			{
-				__RequestVerificationToken: __RequestVerificationToken, 'X-Requested-With': 'XMLHttpRequest'
-			}
-        }).then(res => res.data).catch(handleErrors)
+    post: (url, data) => {
+        let axiosPromise = axios.post(url, data,
+            {
+                headers:
+                {
+                    __RequestVerificationToken: __RequestVerificationToken, 'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+
+        axiosPromise = axiosPromise.then(serverData => serverData.data);
+
+        return (axiosPromise);
+    }
 };

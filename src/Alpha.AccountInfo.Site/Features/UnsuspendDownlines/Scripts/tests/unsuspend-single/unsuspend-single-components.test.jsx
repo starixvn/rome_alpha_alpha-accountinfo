@@ -107,5 +107,21 @@ describe('UnsuspendSingleComponent', () => {
             const wrapper = shallow(<FooterContent {...props} />)
             expect(wrapper.find(ColumnContentByLevel).length).toBeGreaterThanOrEqual(1);
         });
+
+        test('Should render #BodyRowContent component', () => {
+            props.affectedDownlinesTotal = 2;
+            props.unchangedDownlinesTotal = 2;
+
+            const wrapper = shallow(<FooterContent {...props} />)
+            expect(wrapper.find(ColumnContentByLevel).length).toBeGreaterThanOrEqual(1);
+        });
+
+        test('Should render #NoData text when affectedDownlinesTotal == 0 and unchangedDownlinesTotal = 0', () => {
+            props.affectedDownlinesTotal = 0;
+            props.unchangedDownlinesTotal = 0;
+
+            const wrapper = shallow(<FooterContent {...props} />)
+            expect(wrapper.find('td').text()).toBe("There is no data.");
+        });
     });
 });

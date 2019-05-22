@@ -9,7 +9,6 @@ export default class UnsuspendSingle extends React.Component {
         super(props);
         this.state = {
             hideMessages: true,
-            updateSuccess: false,
             message: ''
         };
 
@@ -24,14 +23,22 @@ export default class UnsuspendSingle extends React.Component {
 
         unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendSingle", { SearchAccountId: viewModel.SearchAccountId })
             .then((data) => {
+                let message = <div className='msg-container'>
+                    <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
+                        {data.IsSuccess ? resources.UpdateSuccessfully : data.Message.trim()}
+                    </div>
+                </div>;
+
                 self.setState({
                     hideMessages: false,
-                    message: data.IsSuccess ? resources.UpdateSuccessfully : data.Message.trim(),
-                    updateSuccess: data.IsSuccess
+                    message: message
                 });
 
                 if (data.IsSuccess) {
-                    window.top.reloadCustomerList && window.top.main.DelayReloadPage();
+                    if (window.top.reloadCustomerList) {
+                        window.top.main.DelayReloadPage();
+                    }
+
                     setTimeout(() => {
                         window.top.realoadLeftPanel = true;
                         window.top.closedPopup = true;
@@ -41,9 +48,8 @@ export default class UnsuspendSingle extends React.Component {
 
                 $.unblockUI();
             });
-
     }
-   
+
     handleSubmit(e) {
         const { resources, viewModel } = this.props;
         const message = viewModel.AffectedDownlinesTotal + viewModel.UnchangedDownlinesTotal == 0 ?
@@ -58,17 +64,13 @@ export default class UnsuspendSingle extends React.Component {
     }
 
     render() {
-        const { updateSuccess, message, hideMessages } = this.state;
         const { viewModel, resources, redirectViewListDetail } = this.props;
         const affectedDownlinesTotal = viewModel.AffectedDownlinesTotal,
             unchangedDownlinesTotal = viewModel.UnchangedDownlinesTotal,
             levels = viewModel.Levels;
 
         return (<div className="col-xs-12">
-            <div className={`msg-container ${hideMessages ? 'hidden' : ''}`}>
-                <div className={`msg ${updateSuccess ? ' msg-success' : 'msg msg-error'}`}> {message} </div>
-            </div>
-            
+            {this.state.message}
             <p className="note">
                 {usernameRegExp(resources.UnsuspendSingleNote, viewModel.SearchAccountName)}
                 <span onClick={() => viewInfomation(resources)} className='icon-information-outline' />

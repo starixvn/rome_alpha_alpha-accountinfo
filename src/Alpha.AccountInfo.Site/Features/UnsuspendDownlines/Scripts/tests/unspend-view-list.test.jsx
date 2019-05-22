@@ -19,13 +19,11 @@ describe('UnsuspendViewList', () => {
             searchAccountName: 'davidtest13May01',
             redirectMainPage: jest.fn()
         };
-
-        wrapper = undefined;
     });
 
     afterEach(() => {
-        // cleaning up the mess left behind the previous test
         mockAxios.reset();
+        wrapper = undefined;
     });
 
     const buildWrapper = (totalRows) => {

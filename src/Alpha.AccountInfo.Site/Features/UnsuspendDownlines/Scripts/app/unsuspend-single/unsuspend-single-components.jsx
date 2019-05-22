@@ -21,7 +21,7 @@ export const BodyRowContent = ({
     resources }) => <tr>
         <td>
             {
-                getUserLevelName(level, resources)
+                getUserLevelName(level.RoleId, resources)
             }
         </td>
         {
@@ -50,7 +50,7 @@ export const FooterContent = ({
     unchangedDownlinesTotal,
     redirectViewListDetail,
     totalText = 'Total',
-    noData = 'There is no data'}) => <tfoot>
+    noData = 'There is no data.'}) => <tfoot>
         {
             affectedDownlinesTotal + unchangedDownlinesTotal == 0 ?
                 <tr><td colSpan="3" className="text-center">{noData}</td></tr> :

@@ -20,7 +20,9 @@ window.renderUnsuspendMultipe = renderUnsuspendMultipe;
 export default class UnsuspendMultipleContainer extends React.Component {
     constructor(props) {
         super(props);
-        const { viewModel, searchAccountRoleId, resources } = this.props
+        this.correctData();
+        const { viewModel, searchAccountRoleId, resources } = this.props;
+
         this.state = {
             showViewList: false,
             isAffected: false,
@@ -38,6 +40,23 @@ export default class UnsuspendMultipleContainer extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.redirectViewListDetail = this.redirectViewListDetail.bind(this);
         this.redirectMainPage = this.redirectMainPage.bind(this);
+    }
+
+    correctData() {
+        const { viewModel, searchAccountRoleId } = this.props;
+        _.forEach(viewModel, function (dataRow, index, arr) {
+            let currentLevel = dataRow.Downlines.length;
+            while (currentLevel < searchAccountRoleId - 1) {
+                dataRow.Downlines.push({
+                    CustId: 0,
+                    DownlineRoleId: 0,
+                    AffectedDownlines: 0,
+                    UnchangedDownlines: 0
+                });
+
+                currentLevel++;
+            }
+        });
     }
 
     handleReset() {
