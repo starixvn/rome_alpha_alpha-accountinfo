@@ -181,13 +181,13 @@
     <value>Page</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0} and all of their downlines have been successfully updated to Suspended.</value>
+    <value>{0} and their downlines have been suspended successfully.</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>to</value>
   </data>
   <data name="UnsuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0} and their affected downlines have been successfully updated to Unsuspended.</value>
+    <value>{0} and their affected downlines have been unsuspended successfully.</value>
   </data>
   <data name="ViewInformation1" xml:space="preserve">
     <value>- When a customer is suspended, all his downlines will be suspended as well.</value>
@@ -232,7 +232,7 @@
     <value>Do you want to proceed?</value>
   </data>
   <data name="MultipleConfirm" xml:space="preserve">
-    <value>Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.</value>
+    <value>Are you sure you want to suspend/unsuspend selected account(s)? All affected downlines will be suspended/unsuspended as well.</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
     <value>No.</value>

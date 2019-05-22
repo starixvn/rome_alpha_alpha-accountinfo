@@ -25,6 +25,9 @@ global.__RequestVerificationToken = '';
 window.top.alpha = {
     urls: {
         accountInfoRootPath: '/site-accountinfo/'
+    },
+    core:{
+        isIe: jest.fn()
     }
 };
 

@@ -130,7 +130,7 @@
     <value>退回</value>
   </data>
   <data name="Displaying" xml:space="preserve">
-    <value>Displaying</value>
+    <value>顯示</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>階層</value>
@@ -160,10 +160,10 @@
     <value>暂停</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0} and all of their downlines have been successfully updated to Suspended.</value>
+    <value>{0}及其下線已成功暫停。</value>
   </data>
   <data name="SuspendStatus" xml:space="preserve">
-    <value>Suspend Status</value>
+    <value>暫停狀態</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>到</value>
@@ -175,7 +175,7 @@
     <value>取消暫停</value>
   </data>
   <data name="UnsuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0}  and their affected downlines have been successfully updated to Unsuspended.</value>
+    <value>{0}及其受影響下線已成功取消暫停。</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
     <value>下線列表的狀態在 &lt;username&gt; 取消暫停後</value>
@@ -232,7 +232,7 @@
     <value>您確定要繼續嗎？</value>
   </data>
   <data name="MultipleConfirm" xml:space="preserve">
-    <value>Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.</value>
+    <value>您確定要暫停/取消暫停已選定的用戶嗎？所有受影響的下線也將被暫停/取消暫停。</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
     <value>No.</value>

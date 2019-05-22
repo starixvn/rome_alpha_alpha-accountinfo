@@ -130,7 +130,7 @@
     <value>กลับ</value>
   </data>
   <data name="Displaying" xml:space="preserve">
-    <value>Displaying</value>
+    <value>แสดง</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>ระดับ</value>
@@ -160,10 +160,10 @@
     <value>การแข่งขันถูกระงับ</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0} and all of their downlines have been successfully updated to Suspended.</value>
+    <value>{0} และดาวน์ไลน์ของพวกเขาถูกระงับสำเร็จแล้ว</value>
   </data>
   <data name="SuspendStatus" xml:space="preserve">
-    <value>Suspend Status</value>
+    <value>สถานะระงับ</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>ถึง</value>
@@ -175,7 +175,7 @@
     <value>ยกเลิกการระงับ</value>
   </data>
   <data name="UnsuspendedSuccessfully" xml:space="preserve">
-    <value>Status of {0} and their affected downlines have been successfully updated to Unsuspended.</value>
+    <value>{0} และดาวน์ไลน์ที่ได้รับผลกระทบถูกยกเลิกการระงับสำเร็จแล้ว</value>
   </data>
   <data name="UnsuspendSingleNote" xml:space="preserve">
     <value>รายการสถานะดาวน์ไลน์ &lt;username&gt; ถูกยกเลิกการระงับ</value>
@@ -232,7 +232,7 @@
     <value>คุณแน่ใจหรือว่าต้องการดำเนินการต่อ?</value>
   </data>
   <data name="MultipleConfirm" xml:space="preserve">
-    <value>Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.</value>
+    <value>คุณแน่ใจหรือว่าต้องการระงับ/ยกเลิกการระงับบัญชี่ที่เลือก? ดาวน์ไลน์ที่ได้รับผลกระทบทั้งหมดจะถูกระงับ/ยกเลิกการระงับเช่นกัน</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
     <value>No.</value>

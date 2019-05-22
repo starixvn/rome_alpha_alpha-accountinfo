@@ -161,7 +161,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well..
+        ///   Looks up a localized string similar to Are you sure you want to suspend/unsuspend selected account(s)? All affected downlines will be suspended/unsuspended as well..
         /// </summary>
         public static string MultipleConfirm {
             get {
@@ -287,7 +287,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status of {0} and all of their downlines have been successfully updated to Suspended..
+        ///   Looks up a localized string similar to {0} and their downlines have been suspended successfully..
         /// </summary>
         public static string SuspendedSuccessfully {
             get {
@@ -341,7 +341,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status of {0} and their affected downlines have been successfully updated to Unsuspended..
+        ///   Looks up a localized string similar to {0} and their affected downlines have been unsuspended successfully..
         /// </summary>
         public static string UnsuspendedSuccessfully {
             get {
