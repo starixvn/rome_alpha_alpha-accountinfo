@@ -160,7 +160,7 @@
     <value>Bị đình chỉ</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
-    <value>Đình chỉ thành công {0Đình chỉ thành công &lt;0&gt; và các cấp dưới.} và các cấp dưới.</value>
+    <value>Đình chỉ thành công {0} và các cấp dưới.</value>
   </data>
   <data name="SuspendStatus" xml:space="preserve">
     <value>Trạng thái bị đình chỉ</value>
