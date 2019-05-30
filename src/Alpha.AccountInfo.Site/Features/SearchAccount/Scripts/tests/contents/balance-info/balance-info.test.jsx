@@ -166,4 +166,9 @@ describe('BalanceInfo', () => {
             expect(balanceInfoShallow.find("#bet-credit").length).toBe(expectedCallTimes);
         }
     );
+
+    test('render #noinfo when customerInfo is null', () => {
+        buildBalaneInfo(null);
+        expect(balanceInfoShallow.find('.no-information').length).toBe(1);
+    });
 });

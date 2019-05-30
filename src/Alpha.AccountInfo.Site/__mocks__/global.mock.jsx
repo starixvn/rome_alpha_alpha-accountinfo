@@ -36,6 +36,7 @@ window.top.main = {
 };
 
 window.top.ageWnd = {
+    open: jest.fn(),
     close: jest.fn()
 };
 

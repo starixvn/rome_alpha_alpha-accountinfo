@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import sinon from 'sinon';
 import { mount, shallow } from "enzyme";
 import renderer from 'react-test-renderer';
+import '../../../../../__mocks__/global.mock';
 import ContentMobile from 'ContentMobile';
 import { CustomLink, ContentPage, FeatureListPage } from 'ContentMobile';
 import { AccountInfoProps } from '../helpers/account-info-props-sample';

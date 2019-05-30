@@ -7,15 +7,19 @@ import { Resources } from '../../helpers/resources-sample';
 import SearchAccountInfo from 'SearchAccountInfo';
 import CustomAnchorTag from 'CustomAnchorTag';
 import { Tooltip } from 'react-tippy';
+import * as _ from 'lodash';
+import * as accountInfoHelper from 'AccountInfoHelper';
 
 describe('SearchAccountInfo', () => {
     let props;
     beforeEach(() => {
         props = {
-            customerInfo: Master.ViewAgentInfo,
+            customerInfo: _.cloneDeep(Master.ViewAgentInfo),
             resources: Resources,
             mobileView: false
         };
+
+        accountInfoHelper.buildTooltipProps = jest.fn();
     });
 
     it('renders without crashing', () => {
@@ -51,11 +55,6 @@ describe('SearchAccountInfo', () => {
         }
     );
 
-    test("always render a `CustomAnchorTag` ", () => {
-        const component = shallow(<SearchAccountInfo {...props} />);
-        expect(component.find(CustomAnchorTag).length).toBe(1);
-    });
-
     test.each([
         [true, 0, true, true, 1],
         [true, 0, true, false, 1],
@@ -66,7 +65,7 @@ describe('SearchAccountInfo', () => {
         [false, 0, true, false, 1],
         [false, 0, false, false, 1],
         [false, 0, false, true, 1]])(
-        "return correct `Tooltip` call times",
+        "return correct #Tooltip call times",
         (closed, closedReason, suspended, enabled, expectedCallTimes) => {
             props.customerInfo.Closed = closed;
             props.customerInfo.ClosedReason = closedReason;
@@ -106,4 +105,14 @@ describe('SearchAccountInfo', () => {
             expect(component.state('Tootltip')).toEqual("This account was suspended.");
         });
     });
+
+    test.each([[true, 1], [false, 0]])(
+        "return correct #CustomAnchorTag  call times base on ViewLog Permission",
+        (canViewLog, expectedCallTimes) => {
+            props.customerInfo.CanViewLog = canViewLog;
+            const component = shallow(<SearchAccountInfo {...props} />);
+
+            expect(component.find(CustomAnchorTag).length).toBe(expectedCallTimes);
+        }
+    );
 });

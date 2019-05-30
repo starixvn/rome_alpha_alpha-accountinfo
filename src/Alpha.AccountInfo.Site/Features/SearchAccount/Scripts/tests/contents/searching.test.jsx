@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount, shallow } from "enzyme";
+import '../../../../../__mocks__/global.mock';
 import sinon from 'sinon';
 import Searching from 'Searching';
 import { getSuggestionValue, renderSuggestion } from 'Searching';
@@ -35,6 +36,7 @@ describe('Searching', () => {
 
     afterEach(() => {
         Searching.prototype.handleSearchClick.restore();
+        mockAxios.reset();
     });
 
     test('renders without crashing', () => {
@@ -115,47 +117,37 @@ describe('Searching', () => {
             expect(spy).toBeCalledTimes(1);
         });
 
-        // test('set suggestions states called when input change', () => {
-        //     const resp = {
-        //         "data": {
-        //             "Result": [
-        //                 {
-        //                     "UserName": "SUPERTEST120",
-        //                     "FirstName": "---",
-        //                     "LastName": "---"
-        //                 }
-        //             ]
-        //         }
-        //     };
+        test('Call server with specific url and params', () => {
+            buildSearching();
+            searchingMount.instance().onSuggestionsFetchRequested({value: 'test'})
     
-        //     buildSearching();
-        //     searchingMount.find('.txt-search').simulate('change', { target: { value: 'su' } });
-    
-        //     mockAxios.mockResponse(resp);
-        //     expect(searchingMount.state('suggestions')).toEqual(resp.data.Result);
-        // });
+            expect(mockAxios.get).toHaveBeenCalledWith(
+                '/site-accountinfo/SearchAccount/GetUsernamesSuggestion', 
+                {"params": { "SuggestionQuery":  'test'}});
+        });
+        
+        test('set suggestions states called when input change', () => {
+            buildSearching();
+            searchingMount.instance().onSuggestionsFetchRequested({value: 'test'})
+
+            const resp = { data: [
+                {
+                    "UserName": "SUPERTEST120",
+                    "FirstName": "---",
+                    "LastName": "---"
+                }
+            ]};
+
+            mockAxios.mockResponse(resp);
+            expect(searchingMount.state('suggestions')).toEqual(resp.data);
+        });
     });
 
-    // test('set suggestions states called when input change0000', () => {
-    //     const resp = {
-    //         "data": {
-    //             "Result": [
-    //                 {
-    //                     "UserName": "SUPERTEST120",
-    //                     "FirstName": "---",
-    //                     "LastName": "---"
-    //                 }
-    //             ]
-    //         }
-    //     };
+    test('#fetchCustomerInfoFromServer is called when onSuggestionSelected is called', () => {
+        buildSearching();
+        const event = Object.assign(jest.fn(), {preventDefault: () => {}});
+        searchingMount.instance().onSuggestionSelected(event, {suggestionValue: 'test'})
 
-    //     buildSearching();
-    //     searchingMount.find('.txt-search').simulate('change', { target: { value: 'su' } });
-
-    //     mockAxios.mockResponse(resp);
-    //     expect(searchingMount.state('suggestions')).toEqual(resp.data.Result);
-    //     expect(searchingMount.find('#SUPERTEST120-suggestion').length).toBe(0);
-    //   //  searchingMount.find('#SUPERTEST120-suggestion').simulate('click');
-    // });
-
+        expect(props.fetchCustomerInfoFromServer).toHaveBeenCalled();
+    });
 });

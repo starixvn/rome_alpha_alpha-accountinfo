@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { mount, shallow } from "enzyme";
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
+import '../../../../../__mocks__/global.mock';
 import AccountInfoDesktop from 'AccountInfoDesktop';
 import CustomizedAccordionItem from 'CustomizedAccordionItem';
 import { AccountInfoProps } from '../helpers/account-info-props-sample';

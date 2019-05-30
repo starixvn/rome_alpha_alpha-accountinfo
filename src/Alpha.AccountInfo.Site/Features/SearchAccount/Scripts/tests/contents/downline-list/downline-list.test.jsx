@@ -39,10 +39,34 @@ describe('DownlineList', () => {
     });
 
     test.each([[3, 1],  [2, 0]])(
-        "renders corret `TotalDownlines` callTimes",
+        "renders correct #TotalDownlines callTimes",
         (searchAccountRoleId, expectedCallTimes) => {
             buildDownlineList(searchAccountRoleId);
             expect(downlineListMount.find(TotalIndirectDownlines).length).toBe(expectedCallTimes);
         }
     );
+
+    test('content is null when device is desktop and downlineListData is null', () => {
+        props.mobileView = false;
+        props.downlineListData = null;
+        buildDownlineList(3);
+        expect(downlineListMount.html() === null).toBeTruthy();
+    });
+
+    test('content is noinfo when device is desktop and downlineListData is null', () => {
+        props.mobileView = true;
+        props.downlineListData = null;
+        buildDownlineList(3);
+        expect(downlineListMount.find('.no-information').length).toBe(1);
+    });
+
+    test('content is noinfo when TotalDownlines is 0', () => {
+        props.mobileView = true;
+        props.downlineListData = {
+            TotalDownlines: []
+        };
+        buildDownlineList(3);
+        expect(downlineListMount.find('.no-information').length).toBe(1);
+    });
+
 });

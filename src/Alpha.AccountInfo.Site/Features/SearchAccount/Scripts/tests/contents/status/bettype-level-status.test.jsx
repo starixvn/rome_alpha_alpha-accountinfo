@@ -73,7 +73,7 @@ describe('BettypeLevelStatus', () => {
         }
     );
 
-    test.each([[8, 530], [22, 200], [15, 200]])(
+    test.each([[8, 530], [22, 200], [21, 300], [33, 400], [15, 200]])(
         "correct popup height",
         (productId, expectedHeight) => {
             props.status.ProductId = productId;

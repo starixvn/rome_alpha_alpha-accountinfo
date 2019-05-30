@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from "enzyme";
 import renderer from 'react-test-renderer';
+import '../../../../../../__mocks__/global.mock';
 import BettypeLevelStatus from 'BettypeLevelStatus';
 import ConfirmStatus from 'ConfirmStatus';
 import ProductLevelStatus from 'ProductLevelStatus';
