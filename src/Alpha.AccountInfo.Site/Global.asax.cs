@@ -8,6 +8,7 @@
     using System.Web.Routing;
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Alpha.Auth.Filters;
+    using Alpha.Logging;
     using App_Start;
     using CasinoLibrary.Model.UserException;
     using Configurations;
@@ -34,7 +35,7 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            LoggingManager.Init();
+            LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
             DependencyConfig.Init();
 
             DbSettingProviderManager

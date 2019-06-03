@@ -1,5 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -8,12 +11,8 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
-    using Fanex.Data.Repository;
     using Criteria.ProductStatus;
-    using System.Linq;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using Fanex.Data.Repository;
 
     public interface SearchAccountService
     {
@@ -75,7 +74,7 @@
                 new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal)).ConfigureAwait(false);
 
         public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId)
-        { 
+        {
             var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId))
                 .ConfigureAwait(false);
             if (customerInfo != null)
