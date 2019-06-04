@@ -10,48 +10,47 @@ const BalanceInfo = ({
     mobileView,
     fetchCustomerInfoFromServer
 }) => {
-	if (customerInfo === null) {
-		return <div className="no-information">{resources.NoInfo}</div>
-	}
+    if (customerInfo === null) {
+        return <div className='no-information'>{resources.NoInfo}</div>;
+    }
 
-    let balanceInfo = customerInfo.BalanceInfo;
+    const balanceInfo = customerInfo.BalanceInfo;
 
-    let sharedContents = [
+    const sharedContents = [
         <BalanceInfoRow
-            id="total-balance"
+            id='total-balance'
             title={resources.TotalBalance}
             value={balanceInfo.TotalBalance}
             hrefLink={balanceInfo.ShowTotalBalanceTransferLink ? balanceInfo.TotalBalanceTransferLink : ``}
             mobileView={mobileView}
         />,
         <BalanceInfoRow
-            id="yesterday-balance"
+            id='yesterday-balance'
             title={resources.YesterdayBalance}
             value={balanceInfo.YesterdayBalance}
             hrefLink={balanceInfo.ShowYesterdayBalanceTransferLink ? balanceInfo.YesterdayBalanceTransferLink : ``}
             mobileView={mobileView}
         />,
         <BalanceInfoRow
-            id="report-link"
+            id='report-link'
             title={balanceInfo.ReportLink.Text}
             value={balanceInfo.Outstanding}
             hrefLink={balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : ``}
             mobileView={mobileView}
-        />,
-
+        />
     ];
 
-    let givenCreditContent = <GivenCreditRow {...{ customerInfo, mobileView, resources, fetchCustomerInfoFromServer }} />;
+    const givenCreditContent = <GivenCreditRow {...{ customerInfo, mobileView, resources, fetchCustomerInfoFromServer }} />;
 
-    let masterContents = [
-        <BalanceInfoRow id="total-cash" title={resources.TotalCash} value={balanceInfo.TotalCash} />,
-        <BalanceInfoRow id="yesterday-cash" title={resources.YesterdayCash} value={balanceInfo.YesterdayCash} />,
+    const masterContents = [
+        <BalanceInfoRow id='total-cash' title={resources.TotalCash} value={balanceInfo.TotalCash} />,
+        <BalanceInfoRow id='yesterday-cash' title={resources.YesterdayCash} value={balanceInfo.YesterdayCash} />,
         ...sharedContents,
-        <BalanceInfoRow id="used-credit" title={resources.UsedCredit} value={balanceInfo.UsedCredit} />,
+        <BalanceInfoRow id='used-credit' title={resources.UsedCredit} value={balanceInfo.UsedCredit} />,
         givenCreditContent
     ];
 
-    let balanceInfoByLevel = [
+    const balanceInfoByLevel = [
         {
             Id: UserLevel.Master,
             Contents: masterContents
@@ -60,7 +59,7 @@ const BalanceInfo = ({
             Id: UserLevel.Agent,
             Contents: [
                 ...masterContents,
-                <MemberCreditMaxRow {...{ resources, mobileView, balanceInfo}} />
+                <MemberCreditMaxRow {...{ resources, mobileView, balanceInfo }} />
             ]
         },
         {
@@ -68,24 +67,21 @@ const BalanceInfo = ({
             Contents: [
                 ...sharedContents,
                 givenCreditContent,
-                <BalanceInfoRow id="net-position" title={resources.NetPosition} value={balanceInfo.NetPosition} />,
-                <BalanceInfoRow id="bet-credit" title={resources.BetCredit} value={balanceInfo.BetCredit} />
+                <BalanceInfoRow id='net-position' title={resources.NetPosition} value={balanceInfo.NetPosition} />,
+                <BalanceInfoRow id='bet-credit' title={resources.BetCredit} value={balanceInfo.BetCredit} />
             ]
         }
     ];
 
-    let contents = balanceInfoByLevel.find(level => customerInfo.RoleId === level.Id).Contents;
+    const contents = balanceInfoByLevel.find(level => customerInfo.RoleId === level.Id).Contents;
 
-    return (
-        <div className="balance-info">
-            {
-                contents.map((content, index) => {
-                    return <div key={index}>{content} </div>;
-                })
-            }
-        </div>
-    );
+    return <div className='balance-info'>
+        {
+            contents.map((content, index) => {
+                return <div key={index}>{content} </div>;
+            })
+        }
+    </div>;
 }
-
 
 export default BalanceInfo;

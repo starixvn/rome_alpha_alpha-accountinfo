@@ -8,15 +8,15 @@ const BalanceInfoRow = ({
     mobileView = false,
     hrefLink = null
 }) =>
-    <div className="row-info">
-        <div className="col">{title}</div>
+    <div className='row-info'>
+        <div className='col'>{title}</div>
         <CellContainNumberFormat
             {...{
                 id,
                 value,
                 mobileView,
                 hrefLink,
-                classNames: "col col-right"
+                classNames: 'col col-right'
             }}
         />
     </div>;

@@ -5,6 +5,8 @@
 
     public abstract class NonQueryProductStatusCriteria : NonQueryCommand
     {
+        private const byte AlphaSystemId = 2;
+
         protected NonQueryProductStatusCriteria(
             int custId,
             int subAccId,
@@ -26,7 +28,7 @@
 
         public string IP { get; }
 
-        public byte SystemId { get; } = 2;
+        public byte SystemId { get; } = AlphaSystemId;
 
         public int ErrCode { get; set; }
 

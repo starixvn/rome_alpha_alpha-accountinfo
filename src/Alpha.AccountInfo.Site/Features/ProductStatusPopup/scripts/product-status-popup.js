@@ -13,6 +13,7 @@ var ProductStatusPopup = (function () {
             _this.custId = _this.$("#hiddenCustId").val();
             _this.custRoleId = _this.$("#hiddenCustRoleId").val();
             _this.token = _this.$("input[name=\"__RequestVerificationToken\"]", _this.$formProductStatus).val();
+            _this.timeout = 1500;
         };
         this.registerEvents = function () {
             _this.$formProductStatus.submit(_this.updateProductStatus);
@@ -66,8 +67,7 @@ var ProductStatusPopup = (function () {
             }
         };
         this.afterUpdateStatusSuccessfully = function (data) {
-            var code = _this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode;
-            var messsage = data.Message || data.ErrMsg;
+            var code = _this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode, messsage = data.Message || data.ErrMsg;
             if (code !== 0) {
                 _this.showError(messsage);
             }
@@ -76,7 +76,7 @@ var ProductStatusPopup = (function () {
                 setTimeout(function () {
                     _this.topWindow.realoadLeftPanel = true;
                     _this.topWindow.ageWnd.close();
-                }, 1500);
+                }, _this.timeout);
             }
         };
         this.showNoDataChange = function () {

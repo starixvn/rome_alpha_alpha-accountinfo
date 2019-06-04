@@ -32,6 +32,7 @@
     public class ProductStatusServiceImpl : ProductStatusService
     {
         private const int AllbetStartRange = 2401;
+        private const int DefaultErrorCode = 101;
 
         private readonly IDynamicRepository repository;
         private readonly CacheRefService cacheRefService;
@@ -159,7 +160,7 @@
 
             return errorMessages.Count == 0
                 ? Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language))
-                : Result.CreateErrorResult(101, string.Join("<br>", errorMessages));
+                : Result.CreateErrorResult(DefaultErrorCode, string.Join("<br>", errorMessages));
         }
 
         private async Task<Result> UpdateStatusAsync(ProductStatusCommandParam param)

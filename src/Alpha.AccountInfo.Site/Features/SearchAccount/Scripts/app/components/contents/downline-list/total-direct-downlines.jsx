@@ -47,29 +47,29 @@ export default class TotalDirectDownlines extends React.Component {
     }
 
     render() {
-		const { data, checkedStatusId } = this.state;
-		const { resources, searchAccountIsMaster } = this.props;
+        const { data, checkedStatusId } = this.state;
+        const { resources, searchAccountIsMaster } = this.props;
 
         return (
             <div>
-				<div className="row-info bold">{searchAccountIsMaster ? resources.Agents : resources.Members} (A/C/S)</div>
+                <div className="row-info bold">{searchAccountIsMaster ? resources.Agents : resources.Members} (A/C/S)</div>
                 <div className="totalstatus-list">
                     {
                         data.map((item, index) => {
-                            let { statusId, title, className, value } = item;
-							let id = `${title}-${statusId}`;
+                            const { statusId, title, className, value } = item;
+                            const id = `${title}-${statusId}`;
 
-							let inputProps = {
-								id,
-								checked: checkedStatusId === item.statusId,
-								type: "radio",
-								name: "totalStatus",
-								onChange: () => { this.handleOnChange(statusId); }
-							};
+                            const inputProps = {
+                                id,
+                                checked: checkedStatusId === item.statusId,
+                                type: "radio",
+                                name: "totalStatus",
+                                onChange: () => { this.handleOnChange(statusId); }
+                            };
 
-							return (
-								<div className="radio" key={index}>
-                                    <input {...inputProps}/>
+                            return (
+                                <div className="radio" key={index}>
+                                    <input {...inputProps} />
                                     <label className="label-text" htmlFor={id} >
                                         {title}
                                         <span className={className}>

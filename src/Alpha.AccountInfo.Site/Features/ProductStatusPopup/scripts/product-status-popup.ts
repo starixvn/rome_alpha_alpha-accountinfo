@@ -9,6 +9,7 @@ class ProductStatusPopup {
     custId: number;
     custRoleId: number;
     token: string;
+    timeout: number;
 
     constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
@@ -27,6 +28,7 @@ class ProductStatusPopup {
         this.custId = this.$("#hiddenCustId").val();
         this.custRoleId = this.$("#hiddenCustRoleId").val();
         this.token = this.$("input[name=\"__RequestVerificationToken\"]", this.$formProductStatus).val();
+        this.timeout = 1500;
     };
 
     registerEvents = (): void => {
@@ -46,7 +48,7 @@ class ProductStatusPopup {
         }
 
         this.hideMessage();
-        var requestVerificationToken = this.token;
+        const requestVerificationToken = this.token;
 
         this.$.ajax({
             type: "POST",
@@ -65,8 +67,8 @@ class ProductStatusPopup {
         let checkbox: JQuery,
             isDisabled: boolean,
             oldValue: boolean;
-        let self: any = this;
-        let betTypeStatus: any = [];
+        const self = this;
+        let betTypeStatus = [];
 
         this.$("input[type='checkbox']").each(function (): void {
             checkbox = self.$(this);
@@ -93,8 +95,8 @@ class ProductStatusPopup {
     };
 
     afterUpdateStatusSuccessfully = (data: any): void => {
-        var code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode;
-        var messsage = data.Message || data.ErrMsg;
+        const code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode,
+            messsage = data.Message || data.ErrMsg;
 
         if (code !== 0) {
             this.showError(messsage);
@@ -103,7 +105,7 @@ class ProductStatusPopup {
             setTimeout(() => {
                 this.topWindow.realoadLeftPanel = true;
                 this.topWindow.ageWnd.close();
-            }, 1500);
+            }, this.timeout);
         }
     };
 
@@ -135,6 +137,6 @@ class ProductStatusPopup {
 }
 
 $(() => {
-    let productStatusPopup: any = new ProductStatusPopup($, window.top);
+    const productStatusPopup = new ProductStatusPopup($, window.top);
     productStatusPopup.init();
 });

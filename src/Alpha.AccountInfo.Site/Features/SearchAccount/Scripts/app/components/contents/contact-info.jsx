@@ -3,28 +3,26 @@ import { Tooltip } from 'react-tippy';
 import { buildTooltipProps } from '../../helpers/accountinfo-helper';
 
 export const ContactInfoRow = ({ title, value }) => {
-	let maxLength = 15;
-	let isTruncated = value.length > maxLength;
-	let content = <div>{isTruncated ? `${value.substring(0, maxLength)}...` : value}</div>;
+    const maxLength = 15;
+    const isTruncated = value.length > maxLength;
+    const content = <div>{isTruncated ? `${value.substring(0, maxLength)}...` : value}</div>;
 
-	let contentWithTooltip = <Tooltip {...buildTooltipProps(value)}>{content}</Tooltip>;
+    const contentWithTooltip = <Tooltip {...buildTooltipProps(value)}>{content}</Tooltip>;
 
-    return (
-		<div className="col-xs-12 row-info">
-			<div className="col-xs-5">{title}</div>
-			<div className="col-xs-7 col-right">
-				{isTruncated ? contentWithTooltip : content}
-			</div>
+    return <div className='col-xs-12 row-info'>
+        <div className='col-xs-5'>{title}</div>
+        <div className='col-xs-7 col-right'>
+            {isTruncated ? contentWithTooltip : content}
         </div>
-    );
+    </div>;
 }
 
 const ContactInfo = ({ resources, customerInfo }) => {
-	if (customerInfo === null) {
-		return <div className="no-information">{resources.NoInfo}</div>
-	}
+    if (customerInfo === null) {
+        return <div className='no-information'>{resources.NoInfo}</div>;
+    }
 
-    let contactInfoPropsArray = [
+    const contactInfoPropsArray = [
         {
             title: resources.Nickname,
             value: customerInfo.NickName,
@@ -47,15 +45,13 @@ const ContactInfo = ({ resources, customerInfo }) => {
         }
     ];
 
-    return (
-        <div>
-            {
-                contactInfoPropsArray.map((contactInfoProps, index) => {
-                    return contactInfoProps.visible && <ContactInfoRow {...contactInfoProps} key={index} />;
-                })
-            }
-        </div>
-    );
+    return <div>
+        {
+            contactInfoPropsArray.map((contactInfoProps, index) => {
+                return contactInfoProps.visible && <ContactInfoRow {...contactInfoProps} key={index} />;
+            })
+        }
+    </div>;
 }
 
 export default ContactInfo;
