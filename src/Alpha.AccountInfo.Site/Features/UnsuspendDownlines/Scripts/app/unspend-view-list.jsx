@@ -11,6 +11,7 @@ export default class UnsuspendViewList extends React.Component {
             viewModel: null,
             resources: this.props.resources,
             activePage: 1,
+            defaultPageLength: 50,
             pageLength: 50
         };
 
@@ -51,13 +52,13 @@ export default class UnsuspendViewList extends React.Component {
     }
 
     render() {
-        const { viewModel, activePage, pageLength, resources } = this.state;
+        const { viewModel, activePage, defaultPageLength, pageLength, resources } = this.state;
         const { isAffected } = this.props;
         if (viewModel === null) {
             return null;
         }
 
-        const totalRecords = viewModel.Data.TotalRows, showPaging = totalRecords > pageLength;
+        const totalRecords = viewModel.Data.TotalRows, showPaging = totalRecords > defaultPageLength;
         const viewListNote = isAffected ? resources.AffectedViewListNote : resources.UnchangedViewListNote;
         let counter = pageLength * (activePage - 1);
 

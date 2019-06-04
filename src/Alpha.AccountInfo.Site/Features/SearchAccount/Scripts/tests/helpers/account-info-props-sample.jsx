@@ -12,6 +12,7 @@ import OnlineList from 'OnlineList';
 
 export const AccountInfoProps = {
     redirectToBalanceInfoPage: false,
+    fetchDataFromServer: jest.fn(),
     contentItems: {
         contactInfoProps: {
             iconClass: "icon-contact-info",

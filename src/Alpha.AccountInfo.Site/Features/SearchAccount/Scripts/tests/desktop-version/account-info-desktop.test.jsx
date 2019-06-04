@@ -20,6 +20,11 @@ describe('AccountInfoDesktop', () => {
         ReactDOM.render(<AccountInfoDesktop {...props} />, div);
     });
 
+    // test('snapshot', () => {
+    //     const component = renderer.create(<AccountInfoDesktop {...props} />);
+    //     expect(component.toJSON()).toMatchSnapshot();
+    // });
+
     test('renders at least 6 `CustomizedAccordionItem`', () => {
         const wrapper = shallow(<AccountInfoDesktop {...props} />)
         expect(wrapper.find(CustomizedAccordionItem).length).toBeGreaterThanOrEqual(6);
@@ -70,6 +75,12 @@ describe('AccountInfoDesktop', () => {
         expect(wrapper.state().expandedItems.settings).toBeFalsy();
         expect(wrapper.state().expandedItems.loginInfo).toBeFalsy();
         expect(wrapper.state().expandedItems.onlineList).toBeFalsy();
+    });
+
+    test('call #fetchDataFromServer if define', () => {
+        const wrapper = mount(<AccountInfoDesktop {...props} />)
+        wrapper.instance().handleCollapExpandBlock("aa", props.fetchDataFromServer);
+        expect(props.fetchDataFromServer).toHaveBeenCalled();
     });
 });
 

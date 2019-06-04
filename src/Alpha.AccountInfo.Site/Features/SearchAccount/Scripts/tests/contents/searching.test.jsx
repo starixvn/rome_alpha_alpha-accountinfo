@@ -150,4 +150,16 @@ describe('Searching', () => {
 
         expect(props.fetchCustomerInfoFromServer).toHaveBeenCalled();
     });
+
+    test('#renderSuggestion() render correct.', () => {
+        const suggestion = renderSuggestion({
+            "UserName": "SUPERTEST120",
+            "FirstName": "---",
+            "LastName": "---"
+        });
+
+        const newNode = shallow(suggestion);
+        
+        expect(suggestion.html().find('#SUPERTEST120-suggestion')).toBe(1);
+    });
 });
