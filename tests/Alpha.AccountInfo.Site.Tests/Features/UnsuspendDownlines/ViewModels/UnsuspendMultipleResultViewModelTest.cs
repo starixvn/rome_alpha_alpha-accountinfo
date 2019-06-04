@@ -11,8 +11,8 @@
     public class UnsuspendMultipleResultViewModelTest
     {
         [Theory]
-        [InlineData(false, "Status of test1, test2 and their affected downlines have been successfully updated to Unsuspended.")]
-        [InlineData(true, "Status of test1, test2 and all of their downlines have been successfully updated to Suspended.")]
+        [InlineData(false, "test1, test2 and their affected downlines have been unsuspended successfully.")]
+        [InlineData(true, "test1, test2 and their downlines have been suspended successfully.")]
         public void Results_SuccessfullySusependMultiple_ReturnSuccessfullyResult(bool suspended, string sucessfullyMessage)
         {
             var result = Result.CreateSuccessResult();

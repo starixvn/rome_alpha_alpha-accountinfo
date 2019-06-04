@@ -6,11 +6,12 @@ import $ from 'jquery';
 
 export const getSuggestionValue = suggestion => suggestion.UserName;
 
-export const renderSuggestion = suggestion =>
-    <div id={`${suggestion.UserName}-suggestion`}>
+export const renderSuggestion = suggestion => {
+    return (<div id={`${suggestion.UserName}-suggestion`}>
         {suggestion.UserName} {suggestion.UserName2 !== null && suggestion.UserName2 !== '' && `(${suggestion.UserName2})`}
         <div>{suggestion.FirstName} {suggestion.LastName}</div>
-    </div>;
+    </div>);
+}
 
 export default class Searching extends React.Component {
     constructor(props) {

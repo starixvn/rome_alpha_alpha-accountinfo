@@ -22,7 +22,8 @@
     "classnames": "^2.2.5",
     "lodash": "^4.17.11",
     "raven-js": "^3.27.0",
-    "react-autosuggest": "^9.3.4"
+    "react-autosuggest": "^9.3.4",
+    "tslint-eslint-rules": "^5.4.0"
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter",

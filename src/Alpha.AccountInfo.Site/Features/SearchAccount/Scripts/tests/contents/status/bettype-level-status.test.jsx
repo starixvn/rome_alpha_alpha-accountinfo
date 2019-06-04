@@ -3,16 +3,13 @@ import ReactDOM from 'react-dom';
 import { shallow } from "enzyme";
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
+import '../../../../../../__mocks__/global.mock';
 import BettypeLevelStatus from 'BettypeLevelStatus';
 import { Resources } from '../../helpers/resources-sample';
 import * as accountInfoHelper from 'AccountInfoHelper';
 
 describe('BettypeLevelStatus', () => {
     let props;
-    global.accountInfoSiteAppPath = "/accountInfo-site";
-    global.top.ageWnd = {
-        open: jest.fn()
-    };
 
     beforeEach(() => {
         props = {

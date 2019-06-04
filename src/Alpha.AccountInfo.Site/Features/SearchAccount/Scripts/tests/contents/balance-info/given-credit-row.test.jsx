@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { mount, shallow } from "enzyme";
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
+import '../../../../../../__mocks__/global.mock';
 import NumberFormat from 'react-number-format';
 import GivenCreditRow from 'GivenCreditRow';
 import {Resources} from '../../helpers/resources-sample';

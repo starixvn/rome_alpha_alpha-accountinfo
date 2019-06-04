@@ -11,7 +11,6 @@ import mockAxios from 'jest-mock-axios';
 describe('Searching', () => {
     let props;
     let searchingMount, handleSearchClickSpy;
-    global.accountInfoSiteAppPath = "/accountInfo-site";
 
     const buildSearching = () => {
         if (!searchingMount) {
@@ -151,15 +150,31 @@ describe('Searching', () => {
         expect(props.fetchCustomerInfoFromServer).toHaveBeenCalled();
     });
 
-    test('#renderSuggestion() render correct.', () => {
+    test('#renderSuggestion() render correct element Id.', () => {
         const suggestion = renderSuggestion({
             "UserName": "SUPERTEST120",
             "FirstName": "---",
-            "LastName": "---"
+            "LastName": "---",
+            "UserName2": null
         });
 
         const newNode = shallow(suggestion);
         
-        expect(suggestion.html().find('#SUPERTEST120-suggestion')).toBe(1);
+        expect(newNode.html()).toContain(`id=\"SUPERTEST120-suggestion\"`);
     });
+
+    test.each([['nickname', 'SUPERTEST120 (nickname)'], ['', 'SUPERTEST120'], [null, 'SUPERTEST120']])(
+        "#renderSuggestion() render correct element content.",
+        (username2, expectedValue) => {
+            const suggestion = renderSuggestion({
+                "UserName": "SUPERTEST120",
+                "FirstName": "---",
+                "LastName": "---",
+                "UserName2": username2
+            });
+    
+            const newNode = shallow(suggestion);
+            expect(newNode.html()).toContain(expectedValue);
+        }
+    );
 });

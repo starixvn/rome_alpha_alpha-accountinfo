@@ -11,10 +11,6 @@ import { Resources } from '../../helpers/resources-sample';
 
 describe('Status', () => {
     let props;
-    global.accountInfoSiteAppPath = "/accountInfo-site";
-    global.top.ageWnd = {
-        open: jest.fn()
-    };
 
     beforeEach(() => {
         props = {
