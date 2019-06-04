@@ -3,7 +3,7 @@ import { mount, shallow } from "enzyme";
 import '../../../../../__mocks__/global.mock';
 import sinon from 'sinon';
 import Searching from 'Searching';
-import { getSuggestionValue, renderSuggestion } from 'Searching';
+import { renderSuggestion } from 'Searching';
 import Autosuggest from 'react-autosuggest';
 import { accountInfoAPI } from 'AccountInfoAPI';
 import mockAxios from 'jest-mock-axios';

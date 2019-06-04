@@ -9,13 +9,13 @@ export default class GivenCreditRow extends React.Component {
         this.handleOpenGivenCreditPopup = this.handleOpenGivenCreditPopup.bind(this);
     }
 
-    handleOpenGivenCreditPopup(e) {
-        let self = this;
+    handleOpenGivenCreditPopup() {
+        const self = this;
         let { resources, mobileView, customerInfo } = this.props;
         let width = 470, height = 300;
         const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
 
-        let givenCreditUrl = `${accountinfoUrl}SearchAccount/GivenCredit` +
+        const givenCreditUrl = `${accountinfoUrl}SearchAccount/GivenCredit` +
             `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
             `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
             `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
@@ -33,7 +33,7 @@ export default class GivenCreditRow extends React.Component {
 
         window.top.closedPopup = false;
         window.top.realoadLeftPanel = false;
-        let timer = setInterval(reloadBalanceInfo, 1000);
+        const timer = setInterval(reloadBalanceInfo, 1000);
 
         function reloadBalanceInfo() {
             if (window.top.closedPopup) {
@@ -45,10 +45,10 @@ export default class GivenCreditRow extends React.Component {
 
     render() {
         let { resources, customerInfo } = this.props;
-        let balanceInfo = customerInfo.BalanceInfo;
+        const balanceInfo = customerInfo.BalanceInfo;
 
         const numberFormatProps = {
-            className: "number-link",
+            className: 'number-link',
             value: balanceInfo.GivenCredit,
             displayType: 'text',
             decimalScale: 2,
@@ -56,7 +56,7 @@ export default class GivenCreditRow extends React.Component {
             thousandSeparator: true
         }
 
-		let editableGivenCredit = <div className="row-info">
+		const editableGivenCredit = <div className="row-info">
 			<div className="col">{resources.GivenCredit}</div>
 			<div id="given-credit-popup" className="col col-right" onClick={this.handleOpenGivenCreditPopup} >
 				<div className="given-credit">
@@ -66,12 +66,12 @@ export default class GivenCreditRow extends React.Component {
 			</div>
 		</div>;
 
-		let nonEditableGivenCredit =
-			<BalanceInfoRow
-				id="non-editable-given-credit"
-				title={resources.GivenCredit}
-			    value={balanceInfo.GivenCredit}
-			/>
+        const nonEditableGivenCredit =
+            <BalanceInfoRow
+                id="non-editable-given-credit"
+                title={resources.GivenCredit}
+                value={balanceInfo.GivenCredit}
+            />;
 
 		return balanceInfo.CanUpdateAccount ? editableGivenCredit : nonEditableGivenCredit;
     }

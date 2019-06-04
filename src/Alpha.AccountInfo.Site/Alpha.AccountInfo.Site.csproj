@@ -412,7 +412,6 @@
     <Content Include="Features\SearchAccount\Scripts\app\given-credit.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\index.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\helpers\accountinfo-helper.jsx" />
-    <Content Include="Features\SearchAccount\Scripts\app\helpers\router-debugger.jsx" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
