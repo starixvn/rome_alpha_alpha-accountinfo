@@ -22,7 +22,7 @@ export const getUserLevelName = (levelRoleId, resources) => {
 
 export const viewInfomation = (resources) => {
     const style = `style='padding-left: 15px;'`;
-    let messages = `<div>
+    const messages = `<div>
             <div> ${resources.ViewInformation1}</div>
             <div> ${resources.ViewInformation2}</div>
             <div ${style}> ${resources.ViewInformation3}</div>

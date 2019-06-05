@@ -88,7 +88,7 @@ describe('Searching', () => {
     describe('state.username', () => {
         test('change when componentWillReceiveProps() receive new username props', () => {
             buildSearching();
-            let username = 'new username';
+            const username = 'new username';
             searchingMount.setProps({ username });
             expect(searchingMount.state('username')).toEqual('new username');
         });
@@ -96,7 +96,7 @@ describe('Searching', () => {
         test('unchange when componentWillReceiveProps() does not receive new username props', () => {
             const spy = sinon.spy(Searching.prototype, 'setState');
             buildSearching();
-            let username = 'AA';
+            const username = 'AA';
             searchingMount.setProps({ username });
             expect(spy.calledOnce).toBeFalsy();
         });
@@ -110,7 +110,7 @@ describe('Searching', () => {
 
     describe('onSuggestionsFetchRequested() ', () => {
         test('called when fectch requested', () => {
-            var spy = jest.spyOn(accountInfoAPI, 'getAutoUsernameSuggestion');
+            const spy = jest.spyOn(accountInfoAPI, 'getAutoUsernameSuggestion');
             buildSearching();
             searchingMount.find('.txt-search').simulate('change', { target: { value: 'acguus' } });
             expect(spy).toBeCalledTimes(1);

@@ -101,7 +101,7 @@ export default class DownlineListContent extends React.PureComponent {
         const { loadedRowsMap, list } = this.state;
         const { fetchCustomerInfoFromServer } = this.props;
 
-        let content = list[index].map((item, itemIndex) => {
+        const content = list[index].map((item, itemIndex) => {
             const { Username } = item, maxLength = 13, isTruncated = Username.length > maxLength;
 
 			const content = loadedRowsMap[index] === STATUS_LOADED ?

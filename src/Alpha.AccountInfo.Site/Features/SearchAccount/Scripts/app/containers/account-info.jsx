@@ -56,8 +56,8 @@ export default class AccountInfo extends React.Component {
 		$(window).on({
 			orientationchange: function (e) {
 				if (mobileView) {
-					let iframe = window.top.$('#accountinfo-content');
-					let src = $(iframe).attr('src');
+                    const iframe = window.top.$('#accountinfo-content');
+                    const src = $(iframe).attr('src');
 					$(iframe).attr('src', '').css("height", 0).attr('src', src);
 				}
 			}
@@ -65,7 +65,7 @@ export default class AccountInfo extends React.Component {
 	}
 
 	componentDidMount() {
-		let { username } = this.state;
+        const { username } = this.state;
 		if (username !== '') {
 			this.fetchCustomerInfoFromServer(username);
 		}
@@ -80,7 +80,7 @@ export default class AccountInfo extends React.Component {
 	fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
 		this.blockUIWrapper();
 
-		let self = this;
+        const self = this;
 		accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
 			(responeData) => {
 				if (typeof responeData !== "undefined" && responeData !== null) {
@@ -140,7 +140,7 @@ export default class AccountInfo extends React.Component {
 					break;
 			}
 
-			var params = {
+            const params = {
 				SearchAccountId: customerInfo.CustId,
 				SearchAccountName: customerInfo.UserName,
 				SearchAccountRoleId: customerInfo.RoleId,
@@ -166,7 +166,7 @@ export default class AccountInfo extends React.Component {
 		let { custId, downlineListData, customerInfo } = this.state;
 		if (custId > 0 && (downlineListData === null || pageIndex > 1 || reloadByStatus)) {
 			$.blockUI();
-			var params = {
+            const params = {
 				SearchAccountId: custId,
 				PageIndex: pageIndex,
 				StatusId: statusId,
@@ -213,7 +213,7 @@ export default class AccountInfo extends React.Component {
 	}
 
 	handleOpenIPInfo(e) {
-		let IPInfoPath = `${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`;
+        const IPInfoPath = `${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`;
 		window.top.ageWnd.open(IPInfoPath);
 
 		resizePopupOnMobile();
@@ -245,7 +245,7 @@ export default class AccountInfo extends React.Component {
 			username = customerInfo.UserName;
 		}
 
-		let contentItems = {
+        const contentItems = {
 			contactInfoProps: {
 				iconClass: "icon-contact-info",
 				featureText: resources.ShowContactInfo,

@@ -3,7 +3,7 @@
     let topWindow: any;
     let productStatus: ProductStatusPopup;
 
-    let template: any = {
+    const template: any = {
         normal: `<body>
                     <div id="msg-serverResult" class="hide"></div>
                     <div class="msg msg-warning">
@@ -131,10 +131,10 @@
 
         it("_Form Data Change -> Make a AJAX POST", () => {
             // arrange
-            let e: any = { preventDefault: function () { } };
-            let self: any = this;
+            const e = { preventDefault: function () { } };
+            const self = this;
             this.$("input[type='checkbox']").each(function (): void {
-                let checkbox = self.$(this);
+                const checkbox = self.$(this);
                 checkbox.prop("checked", !checkbox.is(":checked"));
             });
             spyOn(jQueryFake, "ajax").and.callThrough();
@@ -150,7 +150,7 @@
 
         it("_No Form Data Change -> Show Warning Message", () => {
             // arrange
-            let e: any = { preventDefault: function () { } };
+            const e = { preventDefault: function () { } };
             spyOn(jQueryFake, "ajax").and.callThrough();
 
             // act
@@ -172,7 +172,7 @@
 
         it("_No Data Change -> Returns Undefined", () => {
             // act
-            let formData: any = productStatus.getProductStatusData();
+            const formData = productStatus.getProductStatusData();
 
             // assert
             expect(formData).toBe(undefined);
@@ -182,12 +182,12 @@
             // arrange
             let self: any = this;
             this.$("input[type='checkbox']").each(function (): void {
-                let checkbox = self.$(this);
+                const checkbox = self.$(this);
                 checkbox.prop("checked", !checkbox.is(":checked"));
             });
 
             // act
-            let formData: any = productStatus.getProductStatusData();
+            const formData = productStatus.getProductStatusData();
 
             // assert
             expect(formData.ProductId).toBe(productStatus.productId);
@@ -204,7 +204,7 @@
             setFixtures(template.normal);
             productStatus.cacheDOMElements();
 
-            let data: any = { Code: 0, Message: "Status updated successfully." };
+            const data = { Code: 0, Message: "Status updated successfully." };
 
             // act
             productStatus.afterUpdateStatusSuccessfully(data);
@@ -222,7 +222,7 @@
             setFixtures(template.normal);
             productStatus.cacheDOMElements();
 
-            let data: any = { Code: 403, Message: "You are not authorized on this function." };
+            const data = { Code: 403, Message: "You are not authorized on this function." };
 
             // act
             productStatus.afterUpdateStatusSuccessfully(data);
@@ -238,7 +238,7 @@
             setFixtures(template.normal);
             productStatus.cacheDOMElements();
 
-            let data: any = { ErrCode: 1, ErrMsg: "Request Verification Token does not exist. Please refresh your page. Thanks." };
+            const data = { ErrCode: 1, ErrMsg: "Request Verification Token does not exist. Please refresh your page. Thanks." };
 
             // act
             productStatus.afterUpdateStatusSuccessfully(data);

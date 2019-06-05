@@ -39,7 +39,7 @@ class ProductStatusPopup {
         e.preventDefault();
 
         this.$.blockUI();
-        let formData: any = this.getProductStatusData();
+        const formData = this.getProductStatusData();
 
         if (!formData) {
             this.showNoDataChange();

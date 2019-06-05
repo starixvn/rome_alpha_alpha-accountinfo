@@ -31,7 +31,7 @@ export default class UnsuspendViewList extends React.Component {
             pageLength: pageLength
         });
 
-        var params = {
+        const params = {
             SearchAccountId: searchAccountId,
             SearchAccountName: searchAccountName,
             PageSize: pageLength,

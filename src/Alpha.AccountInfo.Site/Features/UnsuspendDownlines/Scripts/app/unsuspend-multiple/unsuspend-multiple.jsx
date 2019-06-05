@@ -19,7 +19,7 @@ export default class UnsuspendMultiple extends React.Component {
 
     doUpdate(e) {
         $.blockUI();
-        let self = this;
+        const self = this;
         const { viewModel, originalViewModel } = this.props;
         let params = [];
 
@@ -36,7 +36,7 @@ export default class UnsuspendMultiple extends React.Component {
         unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendMultiple", { UnsuspendList: params })
             .then((data) => {
                 let isSuccess = true;
-                let message = <div className='msg-container'>
+                const message = <div className='msg-container'>
                     {
                         data.Results.map((result, index) => {
                             if (!result.IsSuccess && isSuccess) {

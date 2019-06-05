@@ -66,7 +66,7 @@ export default class UnsuspendMultipleContainer extends React.Component {
     }
 
     toggleSuspendAll(suspendAll) {
-        let viewModelCopy = _.cloneDeep(this.state.viewModel);
+        const viewModelCopy = _.cloneDeep(this.state.viewModel);
 
         viewModelCopy.forEach(function (item) {
             item.Suspended = suspendAll;
@@ -77,7 +77,7 @@ export default class UnsuspendMultipleContainer extends React.Component {
 
     handleChange(index, value) {
         const { viewModel } = this.state;
-        let viewModelCopy = _.cloneDeep(viewModel);
+        const viewModelCopy = _.cloneDeep(viewModel);
 
         viewModelCopy[index].Suspended = value;
 

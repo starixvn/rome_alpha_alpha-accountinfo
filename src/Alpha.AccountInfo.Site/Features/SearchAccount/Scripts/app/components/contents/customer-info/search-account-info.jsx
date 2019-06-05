@@ -14,7 +14,7 @@ const ClosedReason = {
 export default class SearchAccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        let statusInfo = this.getStatusInfo(this.props.customerInfo);
+        const statusInfo = this.getStatusInfo(this.props.customerInfo);
         this.state = {
             Css: statusInfo.Css,
             Tootltip: statusInfo.Tootltip
@@ -22,9 +22,9 @@ export default class SearchAccountInfo extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { customerInfo } = this.props;
+        const { customerInfo } = this.props;
         if (nextProps.customerInfo !== customerInfo) {
-            let statusInfo = this.getStatusInfo(nextProps.customerInfo);
+            const statusInfo = this.getStatusInfo(nextProps.customerInfo);
             this.state = {
                 Css: statusInfo.Css,
                 Tootltip: statusInfo.Tootltip
@@ -33,7 +33,7 @@ export default class SearchAccountInfo extends React.Component {
     }
 
     getStatusInfo(customerInfo) {
-        let { resources } = this.props;
+        const { resources } = this.props;
         const statusInfo = {
             Closed: [
                 {
@@ -85,18 +85,18 @@ export default class SearchAccountInfo extends React.Component {
     };
 
     render() {
-        let { customerInfo, resources, mobileView } = this.props;
+        const { customerInfo, resources, mobileView } = this.props;
         let { Css, Tootltip } = this.state;
 
-        let username = customerInfo.UserName;
-        let maxLength = 15;
-        let isTruncate = username.length > maxLength;
+        const username = customerInfo.UserName;
+        const maxLength = 15;
+        const isTruncate = username.length > maxLength;
 
         if (Tootltip === '' && isTruncate) {
             Tootltip = username;
         }
 
-        let customAnchorTagProps = {
+        const customAnchorTagProps = {
             title: resources.Viewlog,
             classNames: 'pointer',
             href: customerInfo.ViewLogLink,
@@ -111,9 +111,9 @@ export default class SearchAccountInfo extends React.Component {
                 <span className='icon-viewlog' />
             </CustomAnchorTag>;
 
-        let content = customerInfo.CanViewLog ? spanContentViewLog : spanContent;
+        const content = customerInfo.CanViewLog ? spanContentViewLog : spanContent;
 
-        let contentWithTooltip =
+        const contentWithTooltip =
             <Tooltip {...buildTooltipProps(Tootltip)}>
                 {content}
             </Tooltip>;

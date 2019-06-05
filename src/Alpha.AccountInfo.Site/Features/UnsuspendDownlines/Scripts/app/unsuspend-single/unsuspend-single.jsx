@@ -19,11 +19,11 @@ export default class UnsuspendSingle extends React.Component {
     doUpdate(e) {
         $.blockUI();
         const { resources, viewModel } = this.props;
-        let self = this;
+        const self = this;
 
         unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendSingle", { SearchAccountId: viewModel.SearchAccountId })
             .then((data) => {
-                let message = <div className='msg-container'>
+                const message = <div className='msg-container'>
                     <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
                         {data.IsSuccess ? resources.UpdateSuccessfully : data.Message.trim()}
                     </div>

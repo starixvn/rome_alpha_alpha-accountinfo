@@ -21,21 +21,21 @@ export const buildTooltipProps = (tooltip) => {
 }
 
 export const resizePopupOnMobile = () => {
-    let modalElement = window.top.document.querySelector('[id^="page-popup-"]');
+    const modalElement = window.top.document.querySelector('[id^="page-popup-"]');
     if (modalElement) {
         modalElement.classList.add("modal-account-info");
     }
 }
 
 export const resizeBootboxOnMobile = () => {
-    let bootBoxElement = window.top.document.getElementsByClassName('bootbox-confirm')[0];
+    const bootBoxElement = window.top.document.getElementsByClassName('bootbox-confirm')[0];
     if (bootBoxElement) {
         bootBoxElement.classList.add("bootbox-account-info");
     }
 }
 
 export const closeLeftPanelOnMobile = () => {
-    let closeIconElement = window.parent.document.getElementById('closeIconOnMobile');
+    const closeIconElement = window.parent.document.getElementById('closeIconOnMobile');
     if (closeIconElement) {
         closeIconElement.click();
     }

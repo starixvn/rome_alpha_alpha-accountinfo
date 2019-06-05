@@ -23,7 +23,7 @@ const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
         return <div className='no-information'>{resources.NoInfo}</div>;
     }
 
-    let loginInfoPropsArray = [
+    const loginInfoPropsArray = [
         {
             title: resources.CreatedDate,
             value: loginInfo.CreatedDate

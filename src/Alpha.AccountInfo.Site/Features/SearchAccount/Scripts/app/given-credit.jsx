@@ -61,7 +61,7 @@ export default class GivenCredit extends React.Component {
 	}
 
 	handleSubmit(e) {
-		let self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
+        const self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
 			currentGivenCredit = parseFloat(this.props.currentGivenCredit),
 			givenCreditMin = parseFloat(this.props.givenCreditMin),
 			givenCreditMax = parseFloat(this.props.givenCreditMax),
@@ -79,7 +79,7 @@ export default class GivenCredit extends React.Component {
 
         $.blockUI();
 
-        var params = {
+        const params = {
             SearchAccountId: searchAccountId,
             SearchAccountRoleId: searchAccountRoleId,
             CreditAmount: newGivenCredit
@@ -126,14 +126,14 @@ export default class GivenCredit extends React.Component {
                 thousandSeparator={true}
             />;
 
-        let memberGivenCreditLimit = <div className="content"> {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)} </div>;
+        const memberGivenCreditLimit = <div className="content"> {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)} </div>;
 
-        let masterAgentGivenCreditLimit =
+        const masterAgentGivenCreditLimit =
             <div className="content">
                 {buildNumberFormat(givenCreditMin)} ≤  {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)}
             </div>;
 
-        let noted = parseInt(searchAccountRoleId) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;
+        const noted = parseInt(searchAccountRoleId) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;
 
         return (
             <div className="note">
