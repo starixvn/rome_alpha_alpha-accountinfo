@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from "enzyme";
+import { mount } from 'enzyme';
 import TotalIndirectDownlines from 'TotalIndirectDownlines';
 import { Resources } from '../../helpers/resources-sample';
 import { DownlineListData } from '../../helpers/down-line-list-sample';

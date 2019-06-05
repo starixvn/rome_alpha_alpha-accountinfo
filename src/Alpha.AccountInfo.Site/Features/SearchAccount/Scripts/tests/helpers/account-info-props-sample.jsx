@@ -15,9 +15,9 @@ export const AccountInfoProps = {
     fetchDataFromServer: jest.fn(),
     contentItems: {
         contactInfoProps: {
-            iconClass: "icon-contact-info",
+            iconClass: 'icon-contact-info',
             featureText: 'Contact Info',
-            path: "/contactInfo",
+            path: '/contactInfo',
             visible: true,
             children:
                 <ContactInfo
@@ -26,9 +26,9 @@ export const AccountInfoProps = {
                 />
         },
         balanceInfoProps: {
-            iconClass: "icon-balance",
+            iconClass: 'icon-balance',
             featureText: 'Balance Info',
-            path: "/balanceInfo",
+            path: '/balanceInfo',
             visible: true,
             children:
                 <BalanceInfo
@@ -39,9 +39,9 @@ export const AccountInfoProps = {
                 />
         },
         downlineListProps: {
-            iconClass: "icon-downline",
+            iconClass: 'icon-downline',
             featureText: 'Downline List',
-            path: "/downlineList",
+            path: '/downlineList',
             visible: true,
             children:
                 <DownlineList
@@ -53,9 +53,9 @@ export const AccountInfoProps = {
                 />
         },
         statusProps: {
-            iconClass: "icon-status",
+            iconClass: 'icon-status',
             featureText: 'Status',
-            path: "/status",
+            path: '/status',
             visible: true,
             children:
                 <Status
@@ -67,17 +67,17 @@ export const AccountInfoProps = {
                 />
         },
         settingProps: {
-            iconClass: "icon-settings",
+            iconClass: 'icon-settings',
             featureText: 'Settings ',
-            path: "/setting",
+            path: '/setting',
             visible: true,
             children:
                 <Settings mobileView={true} settingData={[]} resources={Resources}/>
         },
         loginInfoProps: {
-            iconClass: "icon-login",
+            iconClass: 'icon-login',
             featureText: 'Login Info',
-            path: "/loginInfo",
+            path: '/loginInfo',
             visible: true,
             children:
                 <LoginInfo
@@ -87,9 +87,9 @@ export const AccountInfoProps = {
                 />
         },
         onlineListProps: {
-            iconClass: "icon-onlinelist",
+            iconClass: 'icon-onlinelist',
             featureText: 'Online List',
-            path: "/onlineList",
+            path: '/onlineList',
             visible: true,
             children:
                 <OnlineList

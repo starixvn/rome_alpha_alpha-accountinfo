@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from "enzyme";
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import Settings from 'Settings';
 import CustomAnchorTag from 'CustomAnchorTag';
@@ -40,13 +40,13 @@ describe('Settings', () => {
     test.each([
         [[], 0],
         [[{
-            "Visible": true,
-            "Text": "Transfer",
-            "DisplayOrder": 2,
-            "Url": "/ex-main/_MemberInfo/TransferCondition/EditTransferCondition.aspx?custId=1382145&username=ACGUUS38"
+            'Visible': true,
+            'Text': 'Transfer',
+            'DisplayOrder': 2,
+            'Url': '/ex-main/_MemberInfo/TransferCondition/EditTransferCondition.aspx?custId=1382145&username=ACGUUS38'
           }], 1]
         ])(
-        "correct render `CustomAnchorTag`",
+        'correct render `CustomAnchorTag`',
         (settings, expectedCallTimes) => {
             buildsettingsShallow(settings);
             const wrapper = shallow(<Settings {...props} />);

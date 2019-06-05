@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from "enzyme";
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import LoginInfo from 'LoginInfo';
 import { LoginInfoRow, LoginInfoWithLinkRow } from 'LoginInfo';

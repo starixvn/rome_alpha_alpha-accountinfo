@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import CustomerInfo from 'CustomerInfo';
-import { mount, shallow } from "enzyme";
+import { mount, shallow } from 'enzyme';
 import { Super } from '../../helpers/actor-is-super-sample';
 import { Master } from '../../helpers/actor-is-master-sample';
 import { Agent } from '../../helpers/actor-is-agent-sample';
@@ -53,7 +53,7 @@ describe('CustomerInfo', () => {
         Master.ViewMemberInfo,
         Agent.ViewMemberInfo
     ])(
-        "always renders a SearchAccountInfo",
+        'always renders a SearchAccountInfo',
         (customerInfo) => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(SearchAccountInfo).length).toBe(1);
@@ -67,7 +67,7 @@ describe('CustomerInfo', () => {
         [Master.ViewAgentInfo, 0],
         [Master.ViewMemberInfo, 1],
         [Agent.ViewMemberInfo, 0]])(
-        "always renders `UplineInfo` callTimes",
+        'always renders `UplineInfo` callTimes',
         (customerInfo, expectedCallTimes) => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(UplineInfo).length).toBe(expectedCallTimes);
@@ -81,7 +81,7 @@ describe('CustomerInfo', () => {
         Master.ViewAgentInfo,
         Master.ViewMemberInfo,
         Agent.ViewMemberInfo])(
-        "always renders 3 `CustomAnchorTag`",
+        'always renders 3 `CustomAnchorTag`',
         (customerInfo) => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(CustomAnchorTag).length).toBe(3);

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from "enzyme";
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import '../../../../../../__mocks__/global.mock';
 import BettypeLevelStatus from 'BettypeLevelStatus';
@@ -34,25 +34,25 @@ describe('Status', () => {
     test.each([
         [{}, 0], 
         [{
-            "Disabled": false,
-            "Checked": false,
-            "Url": "/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus",
-            "JsonParams": "{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}",
-            "Text": "Closed",
-            "DisplayOrder": 2,
-            "Visible": true
+            'Disabled': false,
+            'Checked': false,
+            'Url': '/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus',
+            'JsonParams': '{\'SearchAccountId\':\'1382145\',\'SyncedCasino3rd\':\'True\',\'StatusName\':\'Closed\',\'StatusValue\':\'True\'}',
+            'Text': 'Closed',
+            'DisplayOrder': 2,
+            'Visible': true
           }, 0], 
         [{
-            "ConfirmMessage": "Are you sure you want to change Close status for this customer?",
-            "Disabled": false,
-            "Checked": false,
-            "Url": "/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus",
-            "JsonParams": "{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}",
-            "Text": "Closed",
-            "DisplayOrder": 2,
-            "Visible": true
+            'ConfirmMessage': 'Are you sure you want to change Close status for this customer?',
+            'Disabled': false,
+            'Checked': false,
+            'Url': '/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus',
+            'JsonParams': '{\'SearchAccountId\':\'1382145\',\'SyncedCasino3rd\':\'True\',\'StatusName\':\'Closed\',\'StatusValue\':\'True\'}',
+            'Text': 'Closed',
+            'DisplayOrder': 2,
+            'Visible': true
           }, 1]])(
-        "correct render ConfirmStatus",
+        'correct render ConfirmStatus',
         (status, expectedCallTimes) => {
             props.statusData.push(status);
             const wrapper = shallow(<Status {...props} />);
@@ -63,26 +63,26 @@ describe('Status', () => {
     test.each([
         [{}, 0], 
         [{
-            "Text": "Casino",
-            "DisplayOrder": 60,
-            "ProductId": 6,
-            "Url": "/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3",
-            "Disabled": false,
-            "Visible": true,
-            "IsEditOnProductLevel": false,
-            "Checked": true
+            'Text': 'Casino',
+            'DisplayOrder': 60,
+            'ProductId': 6,
+            'Url': '/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3',
+            'Disabled': false,
+            'Visible': true,
+            'IsEditOnProductLevel': false,
+            'Checked': true
         }, 0], 
         [{
-            "Text": "Casino",
-            "DisplayOrder": 60,
-            "ProductId": 6,
-            "Url": "/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3",
-            "Disabled": false,
-            "Visible": true,
-            "IsEditOnProductLevel": true,
-            "Checked": true
+            'Text': 'Casino',
+            'DisplayOrder': 60,
+            'ProductId': 6,
+            'Url': '/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3',
+            'Disabled': false,
+            'Visible': true,
+            'IsEditOnProductLevel': true,
+            'Checked': true
         }, 1]])(
-        "correct render ProductLevelStatus",
+        'correct render ProductLevelStatus',
         (status, expectedCallTimes) => {
             props.statusData.push(status);
             const wrapper = shallow(<Status {...props} />);
@@ -92,26 +92,26 @@ describe('Status', () => {
     
     test.each([
         [{
-            "Text": "Allbet",
-            "DisplayOrder": 210,
-            "ProductId": 21,
-            "Url": "/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3",
-            "Disabled": false,
-            "Visible": true,
-            "IsEditOnProductLevel": true,
-            "Checked": true
+            'Text': 'Allbet',
+            'DisplayOrder': 210,
+            'ProductId': 21,
+            'Url': '/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3',
+            'Disabled': false,
+            'Visible': true,
+            'IsEditOnProductLevel': true,
+            'Checked': true
         }, 0], 
         [{
-            "Text": "Allbet",
-            "DisplayOrder": 210,
-            "ProductId": 21,
-            "Url": "/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3",
-            "Disabled": false,
-            "Visible": true,
-            "IsEditOnProductLevel": false,
-            "Checked": true
+            'Text': 'Allbet',
+            'DisplayOrder': 210,
+            'ProductId': 21,
+            'Url': '/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3',
+            'Disabled': false,
+            'Visible': true,
+            'IsEditOnProductLevel': false,
+            'Checked': true
         }, 1]])(
-        "correct render BettypeLevelStatus",
+        'correct render BettypeLevelStatus',
         (status, expectedCallTimes) => {
             props.statusData.push(status);
             const wrapper = shallow(<Status {...props} />);

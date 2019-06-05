@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from "enzyme";
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import ContactInfo from 'ContactInfo';
 import {ContactInfoRow} from 'ContactInfo';
@@ -59,7 +59,7 @@ describe('ContactInfoRow ', () => {
     });
 
     test.each([['usertest', 0], ['usertestusertest01010101011000', 1]])(
-        "render correct #Tooltip",
+        'render correct #Tooltip',
         (value, expectedTooltip) => {
             props.value = value;
             const wrapper = shallow(<ContactInfoRow {...props} />)

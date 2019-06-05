@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount, shallow } from "enzyme";
+import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import '../../../../../__mocks__/global.mock';
@@ -79,7 +79,7 @@ describe('AccountInfoDesktop', () => {
 
     test('call #fetchDataFromServer if define', () => {
         const wrapper = mount(<AccountInfoDesktop {...props} />)
-        wrapper.instance().handleCollapExpandBlock("aa", props.fetchDataFromServer);
+        wrapper.instance().handleCollapExpandBlock('aa', props.fetchDataFromServer);
         expect(props.fetchDataFromServer).toHaveBeenCalled();
     });
 });

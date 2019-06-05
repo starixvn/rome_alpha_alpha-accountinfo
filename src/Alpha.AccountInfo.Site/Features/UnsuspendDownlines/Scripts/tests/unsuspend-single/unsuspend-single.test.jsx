@@ -58,7 +58,7 @@ describe('UnsuspendSingle', () => {
     });
 
     test.each([[1, 0, 1], [0, 1, 1], [0, 0, 0]])(
-        "Should render correct #BodyRowContent components",
+        'Should render correct #BodyRowContent components',
         (affectedDownlinesTotal, unchangedDownlinesTotal, expectedBodyRows) => {
             props.AffectedDownlinesTotal = affectedDownlinesTotal;
             props.UnchangedDownlinesTotal = unchangedDownlinesTotal;
@@ -90,10 +90,10 @@ describe('UnsuspendSingle', () => {
     });
 
     test.each([
-        [1, 0, "Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well."], 
-        [0, 1, "Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well."], 
-        [0, 0, "Are you sure you want to change Suspend status for this customer?"]])(
-        "Should render correct confirm message base on affected downlines",
+        [1, 0, 'Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.'], 
+        [0, 1, 'Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.'], 
+        [0, 0, 'Are you sure you want to change Suspend status for this customer?']])(
+        'Should render correct confirm message base on affected downlines',
         (affectedDownlinesTotal, unchangedDownlinesTotal, expectedMessage) => {
             props.viewModel.AffectedDownlinesTotal = affectedDownlinesTotal;
             props.viewModel.UnchangedDownlinesTotal = unchangedDownlinesTotal;
@@ -112,8 +112,8 @@ describe('UnsuspendSingle', () => {
 
         expect(mockAxios.post).toHaveBeenCalledWith(
             '/site-accountinfo/UnsuspendDownlines/UnsuspendSingle', 
-            { "SearchAccountId":  36204210},
-            {"headers": {"X-Requested-With": "XMLHttpRequest", "__RequestVerificationToken": ""}
+            { 'SearchAccountId':  36204210},
+            {'headers': {'X-Requested-With': 'XMLHttpRequest', '__RequestVerificationToken': ''}
         });
     });
 
@@ -121,15 +121,15 @@ describe('UnsuspendSingle', () => {
         buildWrapper();
         wrapper.instance().doUpdate();
         mockAxios.mockResponse({ data: {
-            "Code": 10,
-            "Message": "Update Failed.",
-            "IsSuccess": false
+            'Code': 10,
+            'Message': 'Update Failed.',
+            'IsSuccess': false
           }
         });
 
         expect(wrapper.instance().state.hideMessages).toBeFalsy();
         expect(wrapper.find('.msg-error').length).toBe(1);
-        expect(wrapper.find('.msg-error').text()).toBe("Update Failed.");
+        expect(wrapper.find('.msg-error').text()).toBe('Update Failed.');
         expect(window.top.main.DelayReloadPage).toHaveBeenCalledTimes(0);
 
         clock.tick(3000);
@@ -141,9 +141,9 @@ describe('UnsuspendSingle', () => {
         buildWrapper();
         wrapper.instance().doUpdate();
         mockAxios.mockResponse({ data: {
-            "Code": 0,
-            "Message": "",
-            "IsSuccess": true
+            'Code': 0,
+            'Message': '',
+            'IsSuccess': true
           }
         });
         expect(window.top.main.DelayReloadPage).toHaveBeenCalledTimes(0);
@@ -154,15 +154,15 @@ describe('UnsuspendSingle', () => {
         wrapper.instance().doUpdate();
         window.top.reloadCustomerList = true;
         mockAxios.mockResponse({ data: {
-            "Code": 0,
-            "Message": "",
-            "IsSuccess": true
+            'Code': 0,
+            'Message': '',
+            'IsSuccess': true
           }
         });
 
         expect(wrapper.instance().state.hideMessages).toBeFalsy();
         expect(wrapper.find('.msg-success').length).toBe(1);
-        expect(wrapper.find('.msg-success').text()).toBe("Successfully updated!");
+        expect(wrapper.find('.msg-success').text()).toBe('Successfully updated!');
         expect(window.top.main.DelayReloadPage).toHaveBeenCalled();
         
         clock.tick(3000);

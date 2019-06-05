@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from "enzyme";
+import { mount } from 'enzyme';
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import '../../../../../../__mocks__/global.mock';
@@ -15,16 +15,16 @@ describe('ConfirmStatus', () => {
     beforeEach(() => {
         props = {
             status: {
-                "ConfirmMessage": "Are you sure you want to change Close status for this customer?",
-                "Disabled": false,
-                "Checked": false,
-                "Url": "/site-accountinfo/SearchAccount/UpdateCustomerStatus",
-                "JsonParams": "{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}",
-                "Text": "Closed",
-                "DisplayOrder": 2,
-                "Visible": true,
-                "ReloadCustomerInfo": true,
-                "IsPopup": false
+                'ConfirmMessage': 'Are you sure you want to change Close status for this customer?',
+                'Disabled': false,
+                'Checked': false,
+                'Url': '/site-accountinfo/SearchAccount/UpdateCustomerStatus',
+                'JsonParams': "{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}",
+                'Text': 'Closed',
+                'DisplayOrder': 2,
+                'Visible': true,
+                'ReloadCustomerInfo': true,
+                'IsPopup': false
             },
             resources: Resources,
             mobileView: false,
@@ -94,7 +94,7 @@ describe('ConfirmStatus', () => {
     });
 
     test.each([[true, false, 0], [true, true, 0], [false, true, 1], [false, false, 0]])(
-        "correct call accountInfoHelper.resizeBootboxOnMobile()",
+        'correct call accountInfoHelper.resizeBootboxOnMobile()',
         (disabled, mobileView, expectedCallTimes) => {
             props.status.Disabled = disabled;
             props.mobileView = mobileView;
@@ -108,7 +108,7 @@ describe('ConfirmStatus', () => {
     );
 
     test.each([[false, 1], [true, 0]])(
-        "correct call bootboxConfirm",
+        'correct call bootboxConfirm',
         (disabled, expectedCallTimes) => {
             props.status.Disabled = disabled;
             global.top.bootboxConfirm = jest.fn();
@@ -135,9 +135,9 @@ describe('ConfirmStatus', () => {
 
         expect(mockAxios.post).toHaveBeenCalledWith(
             '/site-accountinfo/SearchAccount/UpdateCustomerStatus',
-            { "SearchAccountId": "1382145", "StatusName": "Closed", "StatusValue": "True", "SyncedCasino3rd": "True" },
+            { 'SearchAccountId': '1382145', 'StatusName': 'Closed', 'StatusValue': 'True', 'SyncedCasino3rd': 'True' },
             {
-                "headers": { "X-Requested-With": "XMLHttpRequest", "__RequestVerificationToken": "" }
+                'headers': { 'X-Requested-With': 'XMLHttpRequest', '__RequestVerificationToken': '' }
             });
     });
 
@@ -148,9 +148,9 @@ describe('ConfirmStatus', () => {
 
         mockAxios.mockResponse({
             data: {
-                "Code": 0,
-                "Message": "",
-                "IsSuccess": true
+                'Code': 0,
+                'Message': '',
+                'IsSuccess': true
             }
         });
 
@@ -159,7 +159,7 @@ describe('ConfirmStatus', () => {
     });
 
     test.each([[true, 1], [false, 0]])(
-        "call #fetchCustomerInfoFromServer base on status.ReloadCustomerInfo when update successfully",
+        'call #fetchCustomerInfoFromServer base on status.ReloadCustomerInfo when update successfully',
         (reloadCustomerInfo, expectedCallTimes) => {
             props.status.Disabled = false;
             props.status.ReloadCustomerInfo = reloadCustomerInfo;
@@ -168,9 +168,9 @@ describe('ConfirmStatus', () => {
 
             mockAxios.mockResponse({
                 data: {
-                    "Code": 0,
-                    "Message": "",
-                    "IsSuccess": true
+                    'Code': 0,
+                    'Message': '',
+                    'IsSuccess': true
                 }
             });
 
@@ -180,7 +180,7 @@ describe('ConfirmStatus', () => {
     );
 
     test.each([[true, null], [false, undefined]])(
-        "call #window.top.bootboxAlert with correct position param when update failed",
+        'call #window.top.bootboxAlert with correct position param when update failed',
         (mobileView, expectedPosition) => {
         props.status.Disabled = false;
         props.mobileView = mobileView;
@@ -190,9 +190,9 @@ describe('ConfirmStatus', () => {
 
         mockAxios.mockResponse({
             data: {
-                "Code": 10,
-                "Message": "",
-                "IsSuccess": false
+                'Code': 10,
+                'Message': '',
+                'IsSuccess': false
             }
         });
 
@@ -201,7 +201,7 @@ describe('ConfirmStatus', () => {
     });
 
     test.each([[true, 1], [false, 0]])(
-        "correct call accountInfoHelper.resizePopupOnMobile()",
+        'correct call accountInfoHelper.resizePopupOnMobile()',
         (mobileView, expectedCallTimes) => {
             props.mobileView = mobileView;
             global.top.bootboxConfirm = jest.fn();

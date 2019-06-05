@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from "enzyme";
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import CustomizedAccordionItem from 'CustomizedAccordionItem';
 import { Resources } from '../helpers/resources-sample';
@@ -11,12 +11,12 @@ describe('CustomizedAccordionItem', () => {
     let props;
     beforeEach(() => {
         props = {
-            title: "Login Info",
-            iconClassname: "icon-login",
-            accordionItemBodyClassName: "icon-login",
+            title: 'Login Info',
+            iconClassname: 'icon-login',
+            accordionItemBodyClassName: 'icon-login',
             expanded: true,
             handleClick: jest.fn(),
-            blockId: "status",
+            blockId: 'status',
             children: <LoginInfo
                 resources={Resources}
                 loginInfo={Super.ViewMasterInfo.LoginInfo}
@@ -36,7 +36,7 @@ describe('CustomizedAccordionItem', () => {
     });
 
     test.each([[true, 1],[false, 0]])(
-        "correct render `expanded` class",
+        'correct render `expanded` class',
         (expanded, expectedCallTimes) => {
             props.expanded = expanded;
             const wrapper = shallow(<CustomizedAccordionItem {...props} />);

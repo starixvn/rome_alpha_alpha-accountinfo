@@ -55,7 +55,7 @@ describe('UnsuspendMultiple', () => {
     });
 
     test.each([['.btn-suspend-all'], ['.btn-unsuspend-all']])(
-        "Change call #toggleSuspendAll when click toggle suspended/unsuspended all",
+        'Change call #toggleSuspendAll when click toggle suspended/unsuspended all',
         (buttonClass) => {
             buildWrapper();
             const event = Object.assign(jest.fn(), {preventDefault: () => {}});
@@ -78,7 +78,7 @@ describe('UnsuspendMultiple', () => {
     });
 
     test.each([[3, 4], [2, 4], [1, 2]])(
-        "Should render correct header columns",
+        'Should render correct header columns',
         (searchAccountRoleId, expectedColumns) => {
             props.searchAccountRoleId = searchAccountRoleId;
             buildWrapper();
@@ -87,9 +87,9 @@ describe('UnsuspendMultiple', () => {
     );
 
     test.each([
-        [3, "Affected Downlines <br/> (Agent/Member)", "Remain Unchanged Downlines <br/> (Agent/Member)"], 
-        [2, "Affected Downlines <br/> (Member)", "Remain Unchanged Downlines <br/> (Member)"]])(
-        "Should render correct header text base on level",
+        [3, 'Affected Downlines <br/> (Agent/Member)', 'Remain Unchanged Downlines <br/> (Agent/Member)'], 
+        [2, 'Affected Downlines <br/> (Member)', 'Remain Unchanged Downlines <br/> (Member)']])(
+        'Should render correct header text base on level',
         (searchAccountRoleId, expectedAffectedText, expectedRemainUnchangedText) => {
             props.searchAccountRoleId = searchAccountRoleId;
             buildWrapper();
@@ -148,12 +148,12 @@ describe('UnsuspendMultiple', () => {
 
         expect(mockAxios.post).toHaveBeenCalledWith(
             '/site-accountinfo/UnsuspendDownlines/UnsuspendMultiple', 
-            { "UnsuspendList":  [{
-                "SearchAccountId": 36204210,
-                "Username": "davidtest13May01",
-                "Suspended": false
+            { 'UnsuspendList':  [{
+                'SearchAccountId': 36204210,
+                'Username': 'davidtest13May01',
+                'Suspended': false
             }]},
-            {"headers": {"X-Requested-With": "XMLHttpRequest", "__RequestVerificationToken": ""}
+            {'headers': {'X-Requested-With': 'XMLHttpRequest', '__RequestVerificationToken': ''}
         });
     });
 
@@ -163,11 +163,11 @@ describe('UnsuspendMultiple', () => {
         props.viewModel[0].Suspended = !props.viewModel[0].Suspended;
         wrapper.instance().doUpdate();
         mockAxios.mockResponse({ data:  {
-            "Results": [
+            'Results': [
               {
-                "Code": 10,
-                "Message": "",
-                "IsSuccess": false
+                'Code': 10,
+                'Message': '',
+                'IsSuccess': false
               }
             ]
           }
@@ -186,11 +186,11 @@ describe('UnsuspendMultiple', () => {
         props.viewModel[0].Suspended = !props.viewModel[0].Suspended;
         wrapper.instance().doUpdate();
         mockAxios.mockResponse({ data:  {
-            "Results": [
+            'Results': [
               {
-                "Code": 0,
-                "Message": "",
-                "IsSuccess": true
+                'Code': 0,
+                'Message': '',
+                'IsSuccess': true
               }
             ]
           }

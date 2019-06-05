@@ -32,17 +32,9 @@ describe('CustomAnchorTag', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    describe("handleClick()", () => {
-        // test('called when clicked', () => {
-        //     const spy = sinon.spy(CustomAnchorTag.prototype, 'handleOnclick');
-        //     const wrapper = shallow(<CustomAnchorTag />)
-        //     const event = Object.assign(jest.fn(), { preventDefault: () => { } });
-        //     wrapper.find('a').simulate('click', event);
-        //     expect(spy.calledOnce).toBeTruthy();
-        // })
-
+    describe('handleClick()', () => {
         test.each([[true, 0], [false, 1]])(
-            "correct callblock main iframe by browser",
+            'correct callblock main iframe by browser',
             (isIE, expectedCallTimes) => {
                 accountInfoHelper.closeLeftPanelOnMobile = jest.fn();
                 window.top.alpha.core.isIe.mockReturnValueOnce(isIE);
@@ -54,7 +46,7 @@ describe('CustomAnchorTag', () => {
             })
 
         test.each([[true, 1], [false, 0]])(
-            "correct call accountInfoHelper.closeLeftPanelOnMobile()",
+            'correct call accountInfoHelper.closeLeftPanelOnMobile()',
             (mobileView, expectedCallTimes) => {
                 accountInfoHelper.closeLeftPanelOnMobile = jest.fn();
                 props.mobileView = mobileView;

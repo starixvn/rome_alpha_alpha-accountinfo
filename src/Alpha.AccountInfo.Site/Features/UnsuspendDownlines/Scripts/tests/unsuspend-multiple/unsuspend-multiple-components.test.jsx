@@ -9,47 +9,47 @@ import * as _ from 'lodash';
 
 const Data = {
     UnsuspendMultipleMaster: {
-        "SearchAccountId": 36204210,
-        "Username": "davidtest13May01",
-        "Suspended": true,
-        "Downlines": [
+        'SearchAccountId': 36204210,
+        'Username': 'davidtest13May01',
+        'Suspended': true,
+        'Downlines': [
             {
-                "SearchAccountId": 36204210,
-                "DownlineRoleId": 2,
-                "AffectedDownlines": 2,
-                "UnchangedDownlines": 1
+                'SearchAccountId': 36204210,
+                'DownlineRoleId': 2,
+                'AffectedDownlines': 2,
+                'UnchangedDownlines': 1
             },
             {
-                "SearchAccountId": 36204210,
-                "DownlineRoleId": 1,
-                "AffectedDownlines": 0,
-                "UnchangedDownlines": 3
+                'SearchAccountId': 36204210,
+                'DownlineRoleId': 1,
+                'AffectedDownlines': 0,
+                'UnchangedDownlines': 3
             }
         ]
     },
     UnsuspendMultipleAgent: {
-        "SearchAccountId": 36204213,
-        "Username": "davidtest13May0101",
-        "Suspended": true,
-        "Downlines": [
+        'SearchAccountId': 36204213,
+        'Username': 'davidtest13May0101',
+        'Suspended': true,
+        'Downlines': [
             {
-                "SearchAccountId": 36204213,
-                "DownlineRoleId": 1,
-                "AffectedDownlines": 0,
-                "UnchangedDownlines": 3
+                'SearchAccountId': 36204213,
+                'DownlineRoleId': 1,
+                'AffectedDownlines': 0,
+                'UnchangedDownlines': 3
             }
         ]
     },
     UnsuspendMultipleMember: {
-        "SearchAccountId": 36204216,
-        "Username": "davidtest13May0101001",
-        "Suspended": false,
-        "Downlines": []
+        'SearchAccountId': 36204216,
+        'Username': 'davidtest13May0101001',
+        'Suspended': false,
+        'Downlines': []
     }
 }
 
 describe('UnsuspendMultipleComponent', () => {
-    describe("RowContent", () => {
+    describe('RowContent', () => {
         let props;
 
         beforeEach(() => {
@@ -76,7 +76,7 @@ describe('UnsuspendMultipleComponent', () => {
         });
 
         test.each([[true, 'Suspended', '.suspend-button'], [false, 'Unsuspended', '.unsuspend-button']])(
-            "always renders correct text and button class and call #handleChange when click button",
+            'always renders correct text and button class and call #handleChange when click button',
             (currentSuspended, expectedText, expectedButtonClass) => {
                 props.dataRow.Suspended = currentSuspended;
                 const wrapper = shallow(<RowContent {...props} />);
@@ -93,7 +93,7 @@ describe('UnsuspendMultipleComponent', () => {
             [3, Data.UnsuspendMultipleMaster, 4],
             [2, Data.UnsuspendMultipleAgent, 4],
             [1, Data.UnsuspendMultipleMember, 2]])(
-                "always renders correct numerous of columns",
+                'always renders correct numerous of columns',
                 (searchAccountRoleId, data, expectedColumns) => {
                     props.searchAccountRoleId = searchAccountRoleId;
                     props.originaldataRow = props.dataRow = data;
@@ -116,7 +116,7 @@ describe('UnsuspendMultipleComponent', () => {
         });
     });
 
-    describe("ColumnContent", () => {
+    describe('ColumnContent', () => {
         let props;
 
         beforeEach(() => {
@@ -141,7 +141,7 @@ describe('UnsuspendMultipleComponent', () => {
         });
 
         test.each([[true, '2'], [false, '1']])(
-            "always renders correct affected/remainUnchanged downlines and call #redirectViewListDetail when click href",
+            'always renders correct affected/remainUnchanged downlines and call #redirectViewListDetail when click href',
             (isAffected, expectedValue) => {
                 props.isAffected = isAffected;
                 const wrapper = shallow(<ColumnContent {...props} />);

@@ -9,7 +9,7 @@ import UnsuspendViewList from 'UnsuspendViewList';
 import UnsuspendSingle from 'UnsuspendSingle';
 import { resources, responseUnsuspendSingleData } from '../unspend-downlines-resources.mock';
 
-describe("ReactDOM.render", () => {
+describe('ReactDOM.render', () => {
     const originalRender = ReactDOM.render;
     const originalGetElement = global.document.getElementById;
 
@@ -23,7 +23,7 @@ describe("ReactDOM.render", () => {
         ReactDOM.render = originalRender;
     });
 
-    it("should call ReactDOM.render", () => {
+    it('should call ReactDOM.render', () => {
         renderUnsuspendSingle(responseUnsuspendSingleData, resources);
         expect(ReactDOM.render).toHaveBeenCalled();
     });

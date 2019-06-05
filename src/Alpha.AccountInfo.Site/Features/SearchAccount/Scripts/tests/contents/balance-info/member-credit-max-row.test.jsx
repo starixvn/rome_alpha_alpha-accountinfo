@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from "enzyme";
+import { mount } from 'enzyme';
 import CellContainNumberFormat from 'CellContainNumberFormat';
 import MemberCreditMaxRow from 'MemberCreditMaxRow';
 import { Resources } from '../../helpers/resources-sample';
@@ -21,13 +21,13 @@ describe('MemberCreditMaxRow', () => {
         ReactDOM.render(<MemberCreditMaxRow {...props} />, div);
     });
 
-    it("renders a `CellContainNumberFormat`", () => {
+    it('renders a `CellContainNumberFormat`', () => {
         const memberCreditMaxRow = mount(<MemberCreditMaxRow {...props} />);
         expect(memberCreditMaxRow.find(CellContainNumberFormat).length).toBe(1);
     });
 
     test.each([[true, 1], [false, 0]])(
-        "correct call accountInfoHelper.mobileScale()",
+        'correct call accountInfoHelper.mobileScale()',
         (ShowMemberMaxCreditLimit, expectedCallTimes) => {
             props.balanceInfo.ShowMemberMaxCreditLimit = ShowMemberMaxCreditLimit;
             const memberCreditMaxRow = mount(<MemberCreditMaxRow {...props} />);

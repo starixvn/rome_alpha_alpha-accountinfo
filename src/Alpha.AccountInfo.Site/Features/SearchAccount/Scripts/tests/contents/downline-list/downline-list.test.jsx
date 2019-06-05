@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from "enzyme";
+import { mount } from 'enzyme';
 import DownlineList from 'DownlineList';
 import TotalIndirectDownlines from 'TotalIndirectDownlines';
 import { Resources } from '../../helpers/resources-sample';
@@ -39,7 +39,7 @@ describe('DownlineList', () => {
     });
 
     test.each([[3, 1],  [2, 0]])(
-        "renders correct #TotalDownlines callTimes",
+        'renders correct #TotalDownlines callTimes',
         (searchAccountRoleId, expectedCallTimes) => {
             buildDownlineList(searchAccountRoleId);
             expect(downlineListMount.find(TotalIndirectDownlines).length).toBe(expectedCallTimes);

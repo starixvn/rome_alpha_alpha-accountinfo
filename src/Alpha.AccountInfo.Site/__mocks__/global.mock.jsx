@@ -7,21 +7,6 @@ global.$.blockUI = jest.fn();
 global.$.unblockUI = jest.fn();
 global.__RequestVerificationToken = '';
 
-// window.top = {
-//     alpha: {
-//         urls: {
-//             accountInfoRootPath: '/site-accountinfo/'
-//         }
-//     },
-//     main: {
-//         DelayReloadPage: jest.fn()
-//     },
-//     ageWnd: {
-//         close: jest.fn()
-//     },
-//     bootboxConfirm: jest.fn()
-// };
-
 window.top.alpha = {
     urls: {
         accountInfoRootPath: '/site-accountinfo/'

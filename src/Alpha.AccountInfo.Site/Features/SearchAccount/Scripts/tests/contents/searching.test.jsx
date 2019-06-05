@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from "enzyme";
+import { mount, shallow } from 'enzyme';
 import '../../../../../__mocks__/global.mock';
 import sinon from 'sinon';
 import Searching from 'Searching';
@@ -21,7 +21,7 @@ describe('Searching', () => {
 
     beforeEach(() => {
         props = {
-            username: "AA",
+            username: 'AA',
             userNamePlaceHolder: '',
             fetchCustomerInfoFromServer: jest.fn()
         };
@@ -47,7 +47,7 @@ describe('Searching', () => {
         expect(wrapper.find(Autosuggest).length).toBe(1);
     });
 
-    describe("handleSearchClick()", () => {
+    describe('handleSearchClick()', () => {
         test('called when clicked', () => {
             const wrapper = shallow(<Searching  {...props} />);
             const event = Object.assign(jest.fn(), {preventDefault: () => {}});
@@ -57,7 +57,7 @@ describe('Searching', () => {
         });
 
         test.each([['Enter', 1], ['AFF', 0]])(
-            "correct called handleSearchClick() when key press",
+            'correct called handleSearchClick() when key press',
             (key, expectedCallTimes) => {
                 buildSearching();
                 searchingMount.find('.txt-search').simulate('keypress', { key: key });
@@ -67,7 +67,7 @@ describe('Searching', () => {
     });
 
     test.each([['acguus', 1], ['', 0]])(
-        "correct called fetchCustomerInfoFromServer() when click search",
+        'correct called fetchCustomerInfoFromServer() when click search',
         (value, expectedCallTimes) => {
             const wrapper = shallow(<Searching  {...props} />);
             wrapper.setState({ username: value });
@@ -85,18 +85,18 @@ describe('Searching', () => {
         expect(spy.calledOnce).toBeTruthy();
     });
 
-    describe("state.username", () => {
+    describe('state.username', () => {
         test('change when componentWillReceiveProps() receive new username props', () => {
             buildSearching();
-            let username = "new username";
+            let username = 'new username';
             searchingMount.setProps({ username });
-            expect(searchingMount.state('username')).toEqual("new username");
+            expect(searchingMount.state('username')).toEqual('new username');
         });
 
         test('unchange when componentWillReceiveProps() does not receive new username props', () => {
             const spy = sinon.spy(Searching.prototype, 'setState');
             buildSearching();
-            let username = "AA";
+            let username = 'AA';
             searchingMount.setProps({ username });
             expect(spy.calledOnce).toBeFalsy();
         });
@@ -104,11 +104,11 @@ describe('Searching', () => {
         test('change called when key press', () => {
             buildSearching();
             searchingMount.find('.txt-search').simulate('change', { target: { value: 'acguus' } });
-            expect(searchingMount.state('username')).toEqual("acguus");
+            expect(searchingMount.state('username')).toEqual('acguus');
         });
     });
 
-    describe("onSuggestionsFetchRequested() ", () => {
+    describe('onSuggestionsFetchRequested() ', () => {
         test('called when fectch requested', () => {
             var spy = jest.spyOn(accountInfoAPI, 'getAutoUsernameSuggestion');
             buildSearching();
@@ -122,7 +122,7 @@ describe('Searching', () => {
     
             expect(mockAxios.get).toHaveBeenCalledWith(
                 '/site-accountinfo/SearchAccount/GetUsernamesSuggestion', 
-                {"params": { "SuggestionQuery":  'test'}});
+                {'params': { 'SuggestionQuery':  'test'}});
         });
         
         test('set suggestions states called when input change', () => {
@@ -131,9 +131,9 @@ describe('Searching', () => {
 
             const resp = { data: [
                 {
-                    "UserName": "SUPERTEST120",
-                    "FirstName": "---",
-                    "LastName": "---"
+                    'UserName': 'SUPERTEST120',
+                    'FirstName': '---',
+                    'LastName': '---'
                 }
             ]};
 
@@ -152,10 +152,10 @@ describe('Searching', () => {
 
     test('#renderSuggestion() render correct element Id.', () => {
         const suggestion = renderSuggestion({
-            "UserName": "SUPERTEST120",
-            "FirstName": "---",
-            "LastName": "---",
-            "UserName2": null
+            'UserName': 'SUPERTEST120',
+            'FirstName': '---',
+            'LastName': '---',
+            'UserName2': null
         });
 
         const newNode = shallow(suggestion);
@@ -164,13 +164,13 @@ describe('Searching', () => {
     });
 
     test.each([['nickname', 'SUPERTEST120 (nickname)'], ['', 'SUPERTEST120'], [null, 'SUPERTEST120']])(
-        "#renderSuggestion() render correct element content.",
+        '#renderSuggestion() render correct element content.',
         (username2, expectedValue) => {
             const suggestion = renderSuggestion({
-                "UserName": "SUPERTEST120",
-                "FirstName": "---",
-                "LastName": "---",
-                "UserName2": username2
+                'UserName': 'SUPERTEST120',
+                'FirstName': '---',
+                'LastName': '---',
+                'UserName2': username2
             });
     
             const newNode = shallow(suggestion);

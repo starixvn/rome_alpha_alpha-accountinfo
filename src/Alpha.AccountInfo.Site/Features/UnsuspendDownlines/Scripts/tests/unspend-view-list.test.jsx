@@ -55,13 +55,13 @@ describe('UnsuspendViewList', () => {
 
         expect(mockAxios.get).toHaveBeenCalledWith(
             '/site-accountinfo/UnsuspendDownlines/FetchCustomerList', 
-            { "params": {
-                "DownlineRoleId": 2, 
-                "IsAffected": true, 
-                "PageIndex": 0, 
-                "PageSize": 50, 
-                "SearchAccountId": 36204210, 
-                "SearchAccountName": "davidtest13May01"
+            { 'params': {
+                'DownlineRoleId': 2, 
+                'IsAffected': true, 
+                'PageIndex': 0, 
+                'PageSize': 50, 
+                'SearchAccountId': 36204210, 
+                'SearchAccountName': 'davidtest13May01'
             }});
                 
         expect(wrapper.state().viewModel).toBe(responseViewListData);
@@ -71,7 +71,7 @@ describe('UnsuspendViewList', () => {
         [0, 1],
         [49, 1],
         [60, 2]])(
-        "always renders #BackButton callTimes",
+        'always renders #BackButton callTimes',
         (totalRows, expectedCallTimes) => {
             buildWrapper(totalRows);
             expect(wrapper.find('.btn-cancel').length).toBe(expectedCallTimes);
@@ -90,7 +90,7 @@ describe('UnsuspendViewList', () => {
         [false, 'List of downlines whose status are unchanged after davidtest13May01 is unsuspended'],
         [true, 'List of downlines whose status are changed after davidtest13May01 is unsuspended']
     ])(
-        "always renders correct view note",
+        'always renders correct view note',
         (isAffected, expectedViewNote) => {
             props.isAffected = isAffected;
             buildWrapper(60);

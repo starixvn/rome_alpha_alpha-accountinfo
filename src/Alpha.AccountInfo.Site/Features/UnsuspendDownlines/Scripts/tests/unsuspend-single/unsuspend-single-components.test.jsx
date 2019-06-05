@@ -7,7 +7,7 @@ import { ColumnContentByLevel, BodyRowContent, FooterContent } from 'UnsuspendSi
 import  {resources} from '../unspend-downlines-resources.mock';
 
 describe('UnsuspendSingleComponent', () => {
-    describe("ColumnContentByLevel", () => {
+    describe('ColumnContentByLevel', () => {
         let props;
 
         beforeEach(() => {
@@ -25,7 +25,7 @@ describe('UnsuspendSingleComponent', () => {
         });
 
         test.each([[0], [49]])(
-            "Snapshot", (downlines) => {
+            'Snapshot', (downlines) => {
                 props.downlines = downlines;
                 const component = renderer.create(<ColumnContentByLevel {...props} />);
                 expect(component.toJSON()).toMatchSnapshot();
@@ -33,7 +33,7 @@ describe('UnsuspendSingleComponent', () => {
         );
 
         test.each([[0, 0], [49, 1]])(
-            "always renders #a callTimes",
+            'always renders #a callTimes',
             (downlines, expectedCallTimes) => {
                 props.downlines = downlines;
                 const wrapper = shallow(<ColumnContentByLevel {...props} />);
@@ -50,15 +50,15 @@ describe('UnsuspendSingleComponent', () => {
         });
     });
 
-    describe("BodyRowContent", () => {
+    describe('BodyRowContent', () => {
         let props;
 
         beforeEach(() => {
             props = {
                 level:{
-                    "RoleId": 2,
-                    "AffectedDownlines": 2,
-                    "UnchangedDownlines": 1
+                    'RoleId': 2,
+                    'AffectedDownlines': 2,
+                    'UnchangedDownlines': 1
                   },
                 resources: resources,
                 redirectViewListDetail: jest.fn()
@@ -82,7 +82,7 @@ describe('UnsuspendSingleComponent', () => {
         });
     });
 
-    describe("FooterContent", () => {
+    describe('FooterContent', () => {
         let props;
 
         beforeEach(() => {
@@ -121,7 +121,7 @@ describe('UnsuspendSingleComponent', () => {
             props.unchangedDownlinesTotal = 0;
 
             const wrapper = shallow(<FooterContent {...props} />)
-            expect(wrapper.find('td').text()).toBe("There is no data.");
+            expect(wrapper.find('td').text()).toBe('There is no data.');
         });
     });
 });

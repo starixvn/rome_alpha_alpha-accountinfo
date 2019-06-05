@@ -22,23 +22,18 @@ export default class SearchAccountInfo extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { customerInfo } = this.props;
+        let { customerInfo } = this.props;
         if (nextProps.customerInfo !== customerInfo) {
-            const statusInfo = this.getStatusInfo(nextProps.customerInfo),
-                username = customerInfo.UserName,
-                maxLength = 15,
-                isTruncate = username.length > maxLength,
-                Tootltip = statusInfo.Tootltip;
-
+            let statusInfo = this.getStatusInfo(nextProps.customerInfo);
             this.state = {
                 Css: statusInfo.Css,
-                Tootltip: Tootltip === '' && isTruncate ? username : Tootltip
+                Tootltip: statusInfo.Tootltip
             };
         }
     }
 
     getStatusInfo(customerInfo) {
-        const { resources } = this.props;
+        let { resources } = this.props;
         const statusInfo = {
             Closed: [
                 {
@@ -90,10 +85,18 @@ export default class SearchAccountInfo extends React.Component {
     };
 
     render() {
-        const { customerInfo, resources, mobileView } = this.props;
-        const { Css, Tootltip } = this.state;
+        let { customerInfo, resources, mobileView } = this.props;
+        let { Css, Tootltip } = this.state;
 
-        const customAnchorTagProps = {
+        let username = customerInfo.UserName;
+        let maxLength = 15;
+        let isTruncate = username.length > maxLength;
+
+        if (Tootltip === '' && isTruncate) {
+            Tootltip = username;
+        }
+
+        let customAnchorTagProps = {
             title: resources.Viewlog,
             classNames: 'pointer',
             href: customerInfo.ViewLogLink,
@@ -108,9 +111,9 @@ export default class SearchAccountInfo extends React.Component {
                 <span className='icon-viewlog' />
             </CustomAnchorTag>;
 
-        const content = customerInfo.CanViewLog ? spanContentViewLog : spanContent;
+        let content = customerInfo.CanViewLog ? spanContentViewLog : spanContent;
 
-        const contentWithTooltip =
+        let contentWithTooltip =
             <Tooltip {...buildTooltipProps(Tootltip)}>
                 {content}
             </Tooltip>;

@@ -9,7 +9,7 @@ import UnsuspendViewList from 'UnsuspendViewList';
 import UnsuspendMultiple from 'UnsuspendMultiple';
 import { resources, responseUnsuspendMultipleData } from '../unspend-downlines-resources.mock';
 
-describe("ReactDOM.render", () => {
+describe('ReactDOM.render', () => {
     const originalRender = ReactDOM.render;
     const originalGetElement = global.document.getElementById;
 
@@ -23,7 +23,7 @@ describe("ReactDOM.render", () => {
         ReactDOM.render = originalRender;
     });
 
-    it("should call ReactDOM.render", () => {
+    it('should call ReactDOM.render', () => {
         renderUnsuspendMultipe(responseUnsuspendMultipleData, resources);
         expect(ReactDOM.render).toHaveBeenCalled();
     });
@@ -90,7 +90,7 @@ describe('UnsuspendSingleContainer', () => {
     });
 
     test.each([[true], [false]])(
-        "Change suspended status of all row when click toggle all",
+        'Change suspended status of all row when click toggle all',
         (suspended) => {
             buildWrapper();
             wrapper.instance().toggleSuspendAll(suspended);
