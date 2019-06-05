@@ -12,7 +12,7 @@ describe('AccountInfoDesktop', () => {
     let props;
 
     beforeEach(() => {
-        props = AccountInfoProps
+        props = AccountInfoProps;
     });
 
     test('renders without crashing', () => {
@@ -26,12 +26,12 @@ describe('AccountInfoDesktop', () => {
     // });
 
     test('renders at least 6 `CustomizedAccordionItem`', () => {
-        const wrapper = shallow(<AccountInfoDesktop {...props} />)
+        const wrapper = shallow(<AccountInfoDesktop {...props} />);
         expect(wrapper.find(CustomizedAccordionItem).length).toBeGreaterThanOrEqual(6);
     });
 
     test('always expanded balance info when init', () => {
-        const wrapper = shallow(<AccountInfoDesktop {...props} />)
+        const wrapper = shallow(<AccountInfoDesktop {...props} />);
         expect(wrapper.state().expandedItems.balanceInfo).toBeTruthy();
         expect(wrapper.state().expandedItems.contactInfo).toBeFalsy();
         expect(wrapper.state().expandedItems.downlineList).toBeFalsy();
@@ -43,14 +43,14 @@ describe('AccountInfoDesktop', () => {
 
     test('handleCollapExpandBlock() called when clicked on `CustomizedAccordionItem`', () => {
         const spy = sinon.spy(AccountInfoDesktop.prototype, 'handleCollapExpandBlock');
-        const wrapper = mount(<AccountInfoDesktop {...props} />)
+        const wrapper = mount(<AccountInfoDesktop {...props} />);
 
         wrapper.find('#contactInfo').simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 
     test('always expanded balance info when `redirectToBalanceInfoPage` props is true', () => {
-        const wrapper = mount(<AccountInfoDesktop {...props} />)
+        const wrapper = mount(<AccountInfoDesktop {...props} />);
         wrapper.find('#contactInfo').simulate('click');
         wrapper.setProps({redirectToBalanceInfoPage: true});
 
@@ -64,7 +64,7 @@ describe('AccountInfoDesktop', () => {
     });
 
     test('always keep current state when `redirectToBalanceInfoPage` props is false', () => {
-        const wrapper = mount(<AccountInfoDesktop {...props} />)
+        const wrapper = mount(<AccountInfoDesktop {...props} />);
         wrapper.find('#contactInfo').simulate('click');
         wrapper.setProps({redirectToBalanceInfoPage: false});
 
@@ -78,7 +78,7 @@ describe('AccountInfoDesktop', () => {
     });
 
     test('call #fetchDataFromServer if define', () => {
-        const wrapper = mount(<AccountInfoDesktop {...props} />)
+        const wrapper = mount(<AccountInfoDesktop {...props} />);
         wrapper.instance().handleCollapExpandBlock('aa', props.fetchDataFromServer);
         expect(props.fetchDataFromServer).toHaveBeenCalled();
     });

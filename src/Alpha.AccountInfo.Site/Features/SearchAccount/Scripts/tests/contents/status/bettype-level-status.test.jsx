@@ -40,7 +40,7 @@ describe('BettypeLevelStatus', () => {
 
     it('handleOpenPopup() called when clicked', () => {
         const spy = sinon.spy(BettypeLevelStatus.prototype, 'handleOpenPopup');
-        const wrapper = shallow(<BettypeLevelStatus {...props} />)
+        const wrapper = shallow(<BettypeLevelStatus {...props} />);
 
         wrapper.find('#product-Casino').simulate('click');
         expect(spy.calledOnce).toBeTruthy();

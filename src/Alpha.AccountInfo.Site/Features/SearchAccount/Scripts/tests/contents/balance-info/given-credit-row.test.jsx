@@ -53,7 +53,7 @@ describe('GivenCreditRow', () => {
 
         it('called when clicked', () => {
             const spy = sinon.spy(GivenCreditRow.prototype, 'handleOpenGivenCreditPopup');
-            const wrapper = shallow(<GivenCreditRow {...props} />)
+            const wrapper = shallow(<GivenCreditRow {...props} />);
             
             wrapper.find('#given-credit-popup').simulate('click');
             expect(spy.calledOnce).toBeTruthy();

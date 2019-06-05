@@ -40,7 +40,7 @@ describe('UnsuspendSingle', () => {
         }
 
         return wrapper;
-    }
+    };
 
     test('Renders without crashing', () => {
         const div = document.createElement('div');
@@ -99,7 +99,7 @@ describe('UnsuspendSingle', () => {
             props.viewModel.UnchangedDownlinesTotal = unchangedDownlinesTotal;
 
             buildWrapper();
-            const mockedEvent = { target: {} }
+            const mockedEvent = { target: {} };
             const spy = jest.spyOn(wrapper.instance(), 'doUpdate');
             wrapper.instance().handleSubmit(mockedEvent);
             expect(window.top.bootboxConfirm).toHaveBeenCalledWith(expectedMessage, mockedEvent.target, spy);

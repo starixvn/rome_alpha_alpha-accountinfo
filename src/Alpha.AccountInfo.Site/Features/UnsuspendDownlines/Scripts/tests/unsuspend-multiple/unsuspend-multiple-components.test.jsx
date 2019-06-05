@@ -46,7 +46,7 @@ const Data = {
         'Suspended': false,
         'Downlines': []
     }
-}
+};
 
 describe('UnsuspendMultipleComponent', () => {
     describe('RowContent', () => {

@@ -34,7 +34,7 @@ export const RowContent = ({
                     </td>)
             }
         </tr>);
-}
+};
 
 export const ColumnContent = ({ dataRow, isAffected, redirectViewListDetail }) => {
     return (<div>
@@ -55,4 +55,4 @@ export const ColumnContent = ({ dataRow, isAffected, redirectViewListDetail }) =
             })
         }
     </div>);
-}
+};

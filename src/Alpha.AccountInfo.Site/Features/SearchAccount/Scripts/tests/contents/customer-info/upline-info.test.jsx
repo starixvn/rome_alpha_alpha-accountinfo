@@ -27,5 +27,5 @@ describe('UplineInfo', () => {
         const component = shallow(<UplineInfo {...props} />);
         component.find('#upline-info').simulate('click');
         expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(1);
-    })
+    });
 });

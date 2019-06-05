@@ -90,7 +90,7 @@ export const ContentPage = ({
 
     return (
         <div className={`${animationClass} feature-detail`}>
-            <CustomLink {... { iconClass, featureText, pathname: "/featureList", backText }} />
+            <CustomLink {... { iconClass, featureText, pathname: '/featureList', backText }} />
             {children}
         </div>
     );

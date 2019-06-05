@@ -11,14 +11,14 @@ describe('DownlineList', () => {
     let downlineListMount;
 
     const buildDownlineList = (searchAccountRoleId = true) => {
-        props.searchAccountRoleId= searchAccountRoleId;
+        props.searchAccountRoleId = searchAccountRoleId;
         if (!downlineListMount) {
             downlineListMount = mount(
                 <DownlineList {...props} />
             );
         }
         return downlineListMount;
-    }
+    };
 
     beforeEach(() => {
         props = {

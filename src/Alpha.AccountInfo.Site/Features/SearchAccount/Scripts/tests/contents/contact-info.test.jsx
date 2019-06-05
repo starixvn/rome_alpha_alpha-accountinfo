@@ -28,13 +28,13 @@ describe('ContactInfo', () => {
     });
 
     test('render 3 #ContactInfoRow when customerInfo is not null', () => {
-        const wrapper = shallow(<ContactInfo {...props} />)
+        const wrapper = shallow(<ContactInfo {...props} />);
         expect(wrapper.find(ContactInfoRow).length).toBe(3);
     });
 
     test('render #noinfo when customerInfo is null', () => {
         props.customerInfo = null;
-        const wrapper = shallow(<ContactInfo {...props} />)
+        const wrapper = shallow(<ContactInfo {...props} />);
         expect(wrapper.find('.no-information').length).toBe(1);
     });
 });
@@ -62,10 +62,8 @@ describe('ContactInfoRow ', () => {
         'render correct #Tooltip',
         (value, expectedTooltip) => {
             props.value = value;
-            const wrapper = shallow(<ContactInfoRow {...props} />)
+            const wrapper = shallow(<ContactInfoRow {...props} />);
             expect(wrapper.find(Tooltip).length).toBe(expectedTooltip);
         }
     );
-
-
 });

@@ -28,14 +28,14 @@ describe('LoginInfo', () => {
     });
 
     test('render 3 #LoginInfoRow and 1 LoginInfoWithLinkRow when loginInfo  is not null', () => {
-        const wrapper = shallow(<LoginInfo {...props} />)
+        const wrapper = shallow(<LoginInfo {...props} />);
         expect(wrapper.find(LoginInfoRow).length).toBe(3);
         expect(wrapper.find(LoginInfoWithLinkRow).length).toBe(1);
     });
 
     test('render #noinfo when customerloginInfo Info is null', () => {
         props.loginInfo = null;
-        const wrapper = shallow(<LoginInfo {...props} />)
+        const wrapper = shallow(<LoginInfo {...props} />);
         expect(wrapper.find('.no-information').length).toBe(1);
     });
 });

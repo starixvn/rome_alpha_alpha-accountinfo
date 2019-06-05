@@ -48,7 +48,7 @@ describe('UnsuspendSingleContainer', () => {
         }
 
         return wrapper;
-    }
+    };
 
     test('Renders without crashing', () => {
         const div = document.createElement('div');

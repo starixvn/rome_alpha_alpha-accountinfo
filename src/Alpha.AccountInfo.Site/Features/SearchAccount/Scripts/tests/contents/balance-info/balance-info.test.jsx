@@ -14,7 +14,7 @@ describe('BalanceInfo', () => {
         props.customerInfo = cusomerinfo;
         balanceInfoMount = mount(<BalanceInfo {...props} />);
         balanceInfoShallow = shallow(<BalanceInfo {...props} />);
-    }
+    };
 
     beforeEach(() => {
         props = {

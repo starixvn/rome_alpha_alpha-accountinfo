@@ -38,12 +38,12 @@ describe('CustomAnchorTag', () => {
             (isIE, expectedCallTimes) => {
                 accountInfoHelper.closeLeftPanelOnMobile = jest.fn();
                 window.top.alpha.core.isIe.mockReturnValueOnce(isIE);
-                const wrapper = shallow(<CustomAnchorTag {...props} />)
+                const wrapper = shallow(<CustomAnchorTag {...props} />);
                 const event = Object.assign(jest.fn(), { preventDefault: () => { } });
                 wrapper.find('a').simulate('click', event);
 
                 expect(global.$.fn.block).toBeCalledTimes(expectedCallTimes);
-            })
+            });
 
         test.each([[true, 1], [false, 0]])(
             'correct call accountInfoHelper.closeLeftPanelOnMobile()',
@@ -51,7 +51,7 @@ describe('CustomAnchorTag', () => {
                 accountInfoHelper.closeLeftPanelOnMobile = jest.fn();
                 props.mobileView = mobileView;
 
-                const wrapper = shallow(<CustomAnchorTag {...props} />)
+                const wrapper = shallow(<CustomAnchorTag {...props} />);
                 const event = Object.assign(jest.fn(), { preventDefault: () => { } });
                 wrapper.find('a').simulate('click', event);
                 expect(accountInfoHelper.closeLeftPanelOnMobile).toBeCalledTimes(expectedCallTimes);

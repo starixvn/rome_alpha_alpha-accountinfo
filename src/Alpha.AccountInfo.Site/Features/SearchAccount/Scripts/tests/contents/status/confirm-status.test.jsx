@@ -19,7 +19,7 @@ describe('ConfirmStatus', () => {
                 'Disabled': false,
                 'Checked': false,
                 'Url': '/site-accountinfo/SearchAccount/UpdateCustomerStatus',
-                'JsonParams': "{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}",
+                'JsonParams': '{\"SearchAccountId\":\"1382145\",\"SyncedCasino3rd\":\"True\",\"StatusName\":\"Closed\",\"StatusValue\":\"True\"}',
                 'Text': 'Closed',
                 'DisplayOrder': 2,
                 'Visible': true,
@@ -56,7 +56,7 @@ describe('ConfirmStatus', () => {
         }
 
         return wrapper;
-    }
+    };
 
     test('renders without crashing', () => {
         const div = document.createElement('div');

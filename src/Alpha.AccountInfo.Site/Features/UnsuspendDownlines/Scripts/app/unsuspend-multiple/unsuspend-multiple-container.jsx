@@ -70,7 +70,7 @@ export default class UnsuspendMultipleContainer extends React.Component {
 
         viewModelCopy.forEach(function (item) {
             item.Suspended = suspendAll;
-        })
+        });
 
         this.setState({ viewModel: viewModelCopy });
     }

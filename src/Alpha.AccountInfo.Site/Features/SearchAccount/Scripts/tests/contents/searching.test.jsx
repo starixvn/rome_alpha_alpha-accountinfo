@@ -17,7 +17,7 @@ describe('Searching', () => {
             searchingMount = mount(<Searching {...props} />);
         }
         return searchingMount;
-    }
+    };
 
     beforeEach(() => {
         props = {
@@ -127,7 +127,7 @@ describe('Searching', () => {
 
         test('set suggestions states called when input change', () => {
             buildSearching();
-            searchingMount.instance().onSuggestionsFetchRequested({value: 'test'})
+            searchingMount.instance().onSuggestionsFetchRequested({ value: 'test' });
 
             const resp = { data: [
                 {
@@ -145,7 +145,7 @@ describe('Searching', () => {
     test('#fetchCustomerInfoFromServer is called when onSuggestionSelected is called', () => {
         buildSearching();
         const event = Object.assign(jest.fn(), {preventDefault: () => {}});
-        searchingMount.instance().onSuggestionSelected(event, {suggestionValue: 'test'})
+        searchingMount.instance().onSuggestionSelected(event, { suggestionValue: 'test' });
 
         expect(props.fetchCustomerInfoFromServer).toHaveBeenCalled();
     });

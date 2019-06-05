@@ -21,7 +21,7 @@ export default class UnsuspendSingle extends React.Component {
         const { resources, viewModel } = this.props;
         const self = this;
 
-        unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendSingle", { SearchAccountId: viewModel.SearchAccountId })
+        unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendSingle', { SearchAccountId: viewModel.SearchAccountId })
             .then((data) => {
                 const message = <div className='msg-container'>
                     <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>

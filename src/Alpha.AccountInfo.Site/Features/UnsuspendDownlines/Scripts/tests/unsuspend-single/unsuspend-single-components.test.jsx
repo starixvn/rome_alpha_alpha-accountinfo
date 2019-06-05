@@ -77,7 +77,7 @@ describe('UnsuspendSingleComponent', () => {
         });
 
         test('renders #ColumnContentByLevel component', () => {
-            const wrapper = shallow(<BodyRowContent {...props} />)
+            const wrapper = shallow(<BodyRowContent {...props} />);
             expect(wrapper.find(ColumnContentByLevel).length).toBeGreaterThanOrEqual(1);
         });
     });
@@ -104,7 +104,7 @@ describe('UnsuspendSingleComponent', () => {
         });
 
         test('renders #ColumnContentByLevel component', () => {
-            const wrapper = shallow(<FooterContent {...props} />)
+            const wrapper = shallow(<FooterContent {...props} />);
             expect(wrapper.find(ColumnContentByLevel).length).toBeGreaterThanOrEqual(1);
         });
 
@@ -112,7 +112,7 @@ describe('UnsuspendSingleComponent', () => {
             props.affectedDownlinesTotal = 2;
             props.unchangedDownlinesTotal = 2;
 
-            const wrapper = shallow(<FooterContent {...props} />)
+            const wrapper = shallow(<FooterContent {...props} />);
             expect(wrapper.find(ColumnContentByLevel).length).toBeGreaterThanOrEqual(1);
         });
 
@@ -120,7 +120,7 @@ describe('UnsuspendSingleComponent', () => {
             props.affectedDownlinesTotal = 0;
             props.unchangedDownlinesTotal = 0;
 
-            const wrapper = shallow(<FooterContent {...props} />)
+            const wrapper = shallow(<FooterContent {...props} />);
             expect(wrapper.find('td').text()).toBe('There is no data.');
         });
     });

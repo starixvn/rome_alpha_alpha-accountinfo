@@ -10,13 +10,13 @@ describe('Settings', () => {
     let settingsShallow;
 
     const buildsettingsShallow = (data = []) => {
-        props.settingData= data;
+        props.settingData = data;
         if (!settingsShallow) {
             settingsShallow = shallow(<Settings {...props} />);
         }
 
         return settingsShallow;
-    }
+    };
 
     beforeEach(() => {
         props = {

@@ -19,7 +19,7 @@ class AutosizeInput extends React.Component{
         super(props);
         this.state = {
             inputWidth: this.props.minWidth
-        }
+        };
 
         this.nodes = {
             input: null,

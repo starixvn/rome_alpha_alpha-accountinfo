@@ -17,7 +17,7 @@ describe('TotalDownlines', () => {
             );
         }
         return totalDownlinesMount;
-    }
+    };
 
     beforeEach(() => {
         props = {

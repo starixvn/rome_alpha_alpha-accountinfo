@@ -22,8 +22,8 @@ export default class AccountInfo extends React.Component {
         let { searchAccountName, actorRoleId, actorName, mobileView, showLoginInfo, resources } = this.props;
         let username = searchAccountName;
 
-        if (username === '' && localStorage.getItem("actorName") === actorName) {
-            username = localStorage.getItem("lastSearchUsername") !== null ? localStorage.getItem("lastSearchUsername") : '';
+        if (username === '' && localStorage.getItem('actorName') === actorName) {
+            username = localStorage.getItem('lastSearchUsername') !== null ? localStorage.getItem('lastSearchUsername') : '';
         }
         else {
             localStorage.setItem('actorName', actorName);
@@ -58,7 +58,7 @@ export default class AccountInfo extends React.Component {
                 if (mobileView) {
                     const iframe = window.top.$('#accountinfo-content');
                     const src = $(iframe).attr('src');
-                    $(iframe).attr('src', '').css("height", 0).attr('src', src);
+                    $(iframe).attr('src', '').css('height', 0).attr('src', src);
                 }
             }
         });
@@ -83,7 +83,7 @@ export default class AccountInfo extends React.Component {
         const self = this;
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
             responeData => {
-                if (typeof responeData !== "undefined" && responeData !== null) {
+                if (typeof responeData !== 'undefined' && responeData !== null) {
                     self.setState(prevState => ({
                         username: username,
                         custId: responeData !== null ? responeData.CustId : 0,
@@ -247,24 +247,24 @@ export default class AccountInfo extends React.Component {
 
         const contentItems = {
             contactInfoProps: {
-                iconClass: "icon-contact-info",
+                iconClass: 'icon-contact-info',
                 featureText: resources.ShowContactInfo,
                 backText: resources.Back,
-                pathname: "/contactInfo",
+                pathname: '/contactInfo',
                 visible: true,
                 children: <ContactInfo {...{ resources, customerInfo }} />
             },
             balanceInfoProps: {
-                iconClass: "icon-balance",
+                iconClass: 'icon-balance',
                 featureText: resources.BalanceInfo,
-                pathname: "/balanceInfo",
+                pathname: '/balanceInfo',
                 visible: true,
                 children: <BalanceInfo {...{ resources, mobileView, customerInfo, fetchCustomerInfoFromServer }} />
             },
             downlineListProps: {
-                iconClass: "icon-downline",
+                iconClass: 'icon-downline',
                 featureText: resources.DownlineList,
-                pathname: "/downlineList",
+                pathname: '/downlineList',
                 visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
                 fetchDataFromServer: fetchDownlineListFromServer,
                 children:
@@ -281,9 +281,9 @@ export default class AccountInfo extends React.Component {
                     />
             },
             statusProps: {
-                iconClass: "icon-status",
+                iconClass: 'icon-status',
                 featureText: resources.Status,
-                pathname: "/status",
+                pathname: '/status',
                 visible: true,
                 fetchDataFromServer: fetchCustomerAllStatusFromServer,
                 children:
@@ -300,24 +300,24 @@ export default class AccountInfo extends React.Component {
                     />
             },
             settingProps: {
-                iconClass: "icon-settings",
+                iconClass: 'icon-settings',
                 featureText: resources.Setting,
-                pathname: "/setting",
+                pathname: '/setting',
                 visible: true,
                 fetchDataFromServer: fetchCustomerAllStatusFromServer,
                 children: <Settings {...{ resources, mobileView, settingData }} />
             },
             loginInfoProps: {
-                iconClass: "icon-login",
+                iconClass: 'icon-login',
                 featureText: resources.LoginInfo,
-                pathname: "/loginInfo",
+                pathname: '/loginInfo',
                 visible: showLoginInfo,
                 children: <LoginInfo {...{ resources, loginInfo, handleOpenIPInfo }} />
             },
             onlineListProps: {
-                iconClass: "icon-onlinelist",
+                iconClass: 'icon-onlinelist',
                 featureText: resources.OnlineList,
-                pathname: "/onlineList",
+                pathname: '/onlineList',
                 visible: true,
                 fetchDataFromServer: fetchOnlineListFromServer,
                 children: <OnlineList {...{ resources, onlineListData, handleOpenIPInfo }} />

@@ -11,7 +11,7 @@ export const renderSuggestion = suggestion => {
         {suggestion.UserName} {suggestion.UserName2 !== null && suggestion.UserName2 !== '' && `(${suggestion.UserName2})`}
         <div>{suggestion.FirstName} {suggestion.LastName}</div>
     </div>);
-}
+};
 
 export default class Searching extends React.Component {
     constructor(props) {

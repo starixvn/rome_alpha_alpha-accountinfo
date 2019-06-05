@@ -22,6 +22,6 @@ const MemberCreditMaxRow = ({ resources, balanceInfo }) => {
             }
         </div>
     </div>;
-}
+};
 
 export default MemberCreditMaxRow;

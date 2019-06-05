@@ -42,7 +42,7 @@
     'Page': 'Page',
     'NoData': 'There is no data.',
     'UnsuspendedWithNoDownlinesMessages': 'Are you sure you want to change Suspend status for this customer?',
-}
+};
 
 export const responseViewListData = {
     'SearchAccountId': 36204210,
@@ -70,7 +70,7 @@ export const responseViewListData = {
         'TotalRows': 6
     },
     'AccountInfoUrl': '/site-accountinfo/'
-}
+};
 
 export const responseUnsuspendSingleData = {
     'SearchAccountId': 36204210,
@@ -90,7 +90,7 @@ export const responseUnsuspendSingleData = {
     'AffectedDownlinesTotal': 2,
     'UnchangedDownlinesTotal': 4,
     'AccountInfoUrl': '/site-accountinfo/'
-}
+};
 
 export const responseUnsuspendMultipleData = {
     'SearchAccountRoleId': 3,
@@ -121,4 +121,4 @@ export const responseUnsuspendMultipleData = {
             'Downlines': []
         }
     ]
-}
+};

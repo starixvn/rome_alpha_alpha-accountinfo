@@ -183,8 +183,8 @@ export const PaginationButton = ({ disabled, page, pageRender, changePage, setCu
         >
             {pageRender()}
         </div>
-    </div>
-}
+    </div>;
+};
 
 ReactPagination.propTypes = {
     pageResource: PropTypes.string,

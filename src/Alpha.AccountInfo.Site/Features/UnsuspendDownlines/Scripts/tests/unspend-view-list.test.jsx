@@ -31,11 +31,11 @@ describe('UnsuspendViewList', () => {
             responseViewListData.Data.TotalRows = totalRows;
             wrapper = mount(<UnsuspendViewList {...props} />);
             wrapper.instance().componentWillMount();
-            mockAxios.mockResponse({ data:  responseViewListData});
+            mockAxios.mockResponse({ data: responseViewListData });
         }
 
         return wrapper;
-    }
+    };
 
     test('renders without crashing', () => {
         const div = document.createElement('div');

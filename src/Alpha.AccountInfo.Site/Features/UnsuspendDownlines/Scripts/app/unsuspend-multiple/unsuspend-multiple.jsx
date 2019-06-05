@@ -33,7 +33,7 @@ export default class UnsuspendMultiple extends React.Component {
             }
         });
 
-        unsuspendAPI.updateSuspend("UnsuspendDownlines/UnsuspendMultiple", { UnsuspendList: params })
+        unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: params })
             .then((data) => {
                 let isSuccess = true;
                 const message = <div className='msg-container'>

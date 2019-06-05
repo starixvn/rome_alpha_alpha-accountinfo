@@ -18,7 +18,7 @@ export const getUserLevelName = (levelRoleId, resources) => {
     return levelNames.filter(function (item) {
         return (item.LevelId === levelRoleId);
     })[0].LevelName;
-}
+};
 
 export const viewInfomation = (resources) => {
     const style = `style='padding-left: 15px;'`;
@@ -32,4 +32,4 @@ export const viewInfomation = (resources) => {
         </div>`;
 
     window.top.bootboxAlert(messages);
-}
+};

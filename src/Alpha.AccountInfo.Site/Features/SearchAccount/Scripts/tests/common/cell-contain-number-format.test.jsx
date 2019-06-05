@@ -20,7 +20,7 @@ describe('CellContainNumberFormat', () => {
             );
         }
         return mountCellContainNumberFormat;
-    }
+    };
 
     beforeEach(() => {
         props = {

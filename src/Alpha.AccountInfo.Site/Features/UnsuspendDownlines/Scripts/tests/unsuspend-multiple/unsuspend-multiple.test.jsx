@@ -42,7 +42,7 @@ describe('UnsuspendMultiple', () => {
         }
 
         return wrapper;
-    }
+    };
 
     test('Renders without crashing', () => {
         const div = document.createElement('div');
@@ -128,10 +128,9 @@ describe('UnsuspendMultiple', () => {
 
     test('#doUpdate called when clicked ok button on bootbox confirm', () => {
         const spy = sinon.spy(UnsuspendMultiple.prototype, 'doUpdate');
-        window.top.bootboxConfirm = function(message, handleElement, acceptCallback, cancelCallback, popUpOptions)
-        {
+        window.top.bootboxConfirm = function (message, handleElement, acceptCallback, cancelCallback, popUpOptions) {
             acceptCallback();
-        }
+        };
 
         buildWrapper();
 
