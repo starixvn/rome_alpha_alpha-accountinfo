@@ -31,6 +31,6 @@ const CellContainNumberFormat = ({
             }
         />
     </div>;
-}
+};
 
 export default CellContainNumberFormat;

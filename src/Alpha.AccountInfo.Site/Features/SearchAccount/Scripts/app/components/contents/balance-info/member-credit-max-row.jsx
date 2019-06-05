@@ -8,7 +8,7 @@ const MemberCreditMaxRow = ({ resources, balanceInfo }) => {
         title: balanceInfo.MemberMaxCreditLimit,
         position: 'bottom',
         trigger: 'mouseenter',
-        arrow: 'true',
+        arrow: 'true'
     };
 
     const content = <CellContainNumberFormat value={balanceInfo.MemberMaxCredit} />;

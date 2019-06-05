@@ -18,7 +18,7 @@ export default class ConfirmStatus extends React.Component {
 
         accountInfoAPI
             .updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
-            .then((data) => {
+            .then(data => {
                 if (data.IsSuccess) {
                     setTimeout(() => {
                         if (status.ReloadCustomerInfo) {
@@ -43,7 +43,7 @@ export default class ConfirmStatus extends React.Component {
         }
     }
 
-    openPopup(e) {
+    openPopup() {
         const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView, resources } = this.props;
         window.top.closedPopup = false;
         window.top.realoadLeftPanel = false;

@@ -26,7 +26,7 @@ describe('CustomerInfo', () => {
         customerInfoMount = undefined;
     });
 
-    const buildCustomerInfo = (customerInfo) => {
+    const buildCustomerInfo = customerInfo => {
         props.customerInfo = customerInfo;
         if (!customerInfoMount) {
             customerInfoMount = mount(<CustomerInfo {...props} />);
@@ -54,7 +54,7 @@ describe('CustomerInfo', () => {
         Agent.ViewMemberInfo
     ])(
         'always renders a SearchAccountInfo',
-        (customerInfo) => {
+        customerInfo => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(SearchAccountInfo).length).toBe(1);
         }
@@ -82,7 +82,7 @@ describe('CustomerInfo', () => {
         Master.ViewMemberInfo,
         Agent.ViewMemberInfo])(
         'always renders 3 `CustomAnchorTag`',
-        (customerInfo) => {
+        customerInfo => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(CustomAnchorTag).length).toBe(3);
         }

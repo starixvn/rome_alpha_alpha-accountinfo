@@ -10,7 +10,7 @@ import BalanceInfo from 'BalanceInfo';
 
 describe('BalanceInfo', () => {
     let props, balanceInfoMount, balanceInfoShallow;
-    const buildBalaneInfo = (cusomerinfo) => {
+    const buildBalaneInfo = cusomerinfo => {
         props.customerInfo = cusomerinfo;
         balanceInfoMount = mount(<BalanceInfo {...props} />);
         balanceInfoShallow = shallow(<BalanceInfo {...props} />);
@@ -63,7 +63,7 @@ describe('BalanceInfo', () => {
         Master.ViewMemberInfo,
         Agent.ViewMemberInfo])(
         'always renders a Total Balance Row',
-        (customerInfo) => {
+        customerInfo => {
             buildBalaneInfo(customerInfo);
             expect(balanceInfoShallow.find('#total-balance').length).toBe(1);
         }
@@ -77,7 +77,7 @@ describe('BalanceInfo', () => {
         Master.ViewMemberInfo,
         Agent.ViewMemberInfo])(
         'always renders a Yesterday Balance Row',
-        (customerInfo) => {
+        customerInfo => {
             buildBalaneInfo(customerInfo);
             expect(balanceInfoShallow.find('#yesterday-balance').length).toBe(1);
         }
@@ -91,7 +91,7 @@ describe('BalanceInfo', () => {
         Master.ViewMemberInfo,
         Agent.ViewMemberInfo])(
         'always renders a Report Link Row',
-        (customerInfo) => {
+        customerInfo => {
             buildBalaneInfo(customerInfo);
             expect(balanceInfoShallow.find('#report-link').length).toBe(1);
         }
@@ -119,7 +119,7 @@ describe('BalanceInfo', () => {
         Master.ViewMemberInfo,
         Agent.ViewMemberInfo])(
         'always renders a `GivenCreditRow`',
-        (customerInfo) => {
+        customerInfo => {
             buildBalaneInfo(customerInfo);
             expect(balanceInfoMount.find(GivenCreditRow).length).toBe(1);
         }

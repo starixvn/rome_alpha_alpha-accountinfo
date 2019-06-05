@@ -54,7 +54,7 @@ export default class AccountInfo extends React.Component {
         this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
 
         $(window).on({
-            orientationchange: function (e) {
+            orientationchange: function () {
                 if (mobileView) {
                     const iframe = window.top.$('#accountinfo-content');
                     const src = $(iframe).attr('src');
@@ -82,9 +82,9 @@ export default class AccountInfo extends React.Component {
 
         const self = this;
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
-            (responeData) => {
+            responeData => {
                 if (typeof responeData !== "undefined" && responeData !== null) {
-                    self.setState((prevState) => ({
+                    self.setState(prevState => ({
                         username: username,
                         custId: responeData !== null ? responeData.CustId : 0,
                         customerInfo: responeData,
@@ -96,10 +96,10 @@ export default class AccountInfo extends React.Component {
                         settingData: responeData !== null && resetSetting ? null : prevState.settingData
                     }));
 
-                    localStorage.setItem('lastSearchUsername', username)
+                    localStorage.setItem('lastSearchUsername', username);
                 }
                 else {
-                    self.setState((prevState) => ({
+                    self.setState(prevState => ({
                         username: '',
                         custId: 0,
                         customerInfo: null,
@@ -150,7 +150,7 @@ export default class AccountInfo extends React.Component {
             };
 
             accountInfoAPI.getCustomerAllStatus(params).then(
-                (responeData) => {
+                responeData => {
                     this.setState({
                         settingData: responeData.Settings,
                         statusData: responeData.Status,
@@ -174,7 +174,7 @@ export default class AccountInfo extends React.Component {
                 TotalPages: totalPages
             };
 
-            accountInfoAPI.getDownlineList(params).then((responeData) => {
+            accountInfoAPI.getDownlineList(params).then(responeData => {
                     responeData.PageIndex = pageIndex;
                     responeData.StatusId = statusId;
 
@@ -201,7 +201,7 @@ export default class AccountInfo extends React.Component {
         if (custId > 0 && onlineListData === null) {
             $.blockUI();
             accountInfoAPI.getOnlineList({ SearchAccountId: custId }).then(
-                (responeData) => {
+                responeData => {
                     this.setState({
                         onlineListData: responeData,
                         redirectToBalanceInfoPage: false

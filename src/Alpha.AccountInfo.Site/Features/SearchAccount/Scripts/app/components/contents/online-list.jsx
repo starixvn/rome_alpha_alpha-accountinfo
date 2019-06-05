@@ -14,7 +14,7 @@ export const OnlineListRow = ({ onlineList, index, handleOpenIPInfo }) => {
             {onlineList.FormattedLoginTime}
         </td>
     </tr>;
-}
+};
 
 const OnlineList = ({ resources, onlineListData, handleOpenIPInfo }) => {
     if (onlineListData === null || onlineListData.length === 0) {
@@ -40,6 +40,6 @@ const OnlineList = ({ resources, onlineListData, handleOpenIPInfo }) => {
             </tbody>
         </table>
     </div>;
-}
+};
 
 export default OnlineList;

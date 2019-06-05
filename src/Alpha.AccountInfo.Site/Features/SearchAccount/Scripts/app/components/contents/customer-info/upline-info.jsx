@@ -9,14 +9,14 @@ const UplineInfo = ({ username, fetchCustomerInfoFromServer }) => {
     const content = <span
         id='upline-info'
         className='enabled'
-        onClick={() => { fetchCustomerInfoFromServer(username) }}
+        onClick={() => { fetchCustomerInfoFromServer(username); }}
     >
         {isTruncated ? `${username.substring(0, maxLength)}...` : username}
-    </span>
+    </span>;
 
     const contentWithTooltip = <Tooltip {...buildTooltipProps(username)}>{content}</Tooltip>;
 
     return isTruncated ? contentWithTooltip : content;
-}
+};
 
 export default UplineInfo;

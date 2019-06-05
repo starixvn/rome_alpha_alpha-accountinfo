@@ -6,13 +6,13 @@ export const StatusInfo = ({ classNames, value, slash }) => {
     return <span className={classNames}>
         {value}{slash}
     </span>;
-}
+};
 
 export const DownlineStatusTooltip = ({ title, classNames, value }) => {
     return <div className='nowrap bold'>
         {title}: <span className={classNames}>{value}</span>
     </div>;
-}
+};
 
 const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
     const activeClass = 'status-active', closedClass = 'status-closed', suspendedClass = 'status-suspended';
@@ -95,6 +95,6 @@ const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
         </div>
         <div className='col-xs-12'><hr /> </div>
     </div>;
-}
+};
 
 export default TotalIndirectDownlines;

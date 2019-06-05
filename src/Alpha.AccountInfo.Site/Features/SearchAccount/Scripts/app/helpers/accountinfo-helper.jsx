@@ -1,9 +1,9 @@
 const htmlDecode = require('js-htmlencode').htmlDecode;
 
 export const Scale = 0.7
-export const mobileScale = (value) => value / Scale;
+export const mobileScale = value => value / Scale;
 
-export const decodeResources =(resources) => {
+export const decodeResources = resources => {
     for (let key in resources) {
         resources[key] = htmlDecode(resources[key]);
     }
@@ -11,7 +11,7 @@ export const decodeResources =(resources) => {
     return resources;
 }
 
-export const buildTooltipProps = (tooltip) => {
+export const buildTooltipProps = tooltip => {
     return {
         title: tooltip,
         position: "bottom",
@@ -41,7 +41,7 @@ export const closeLeftPanelOnMobile = () => {
     }
 }
 
-export const formatMessage = (message) => {
+export const formatMessage = message => {
     return message.replace(/\\n/g, '<br />');
 }
 

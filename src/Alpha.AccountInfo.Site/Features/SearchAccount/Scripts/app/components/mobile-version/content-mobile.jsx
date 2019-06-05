@@ -94,7 +94,7 @@ export const ContentPage = ({
             {children}
         </div>
     );
-}
+};
 
 export const FeatureListPage = ({ contentItems, animationClass }) =>
     <div className={`${animationClass} feature-list`}>

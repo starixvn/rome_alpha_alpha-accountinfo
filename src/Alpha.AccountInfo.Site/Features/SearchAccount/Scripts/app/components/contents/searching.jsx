@@ -120,4 +120,4 @@ export default class Searching extends React.Component {
             </div>
         );
     }
-}
+};

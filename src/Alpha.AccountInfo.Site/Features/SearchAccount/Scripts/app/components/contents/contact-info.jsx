@@ -15,7 +15,7 @@ export const ContactInfoRow = ({ title, value }) => {
             {isTruncated ? contentWithTooltip : content}
         </div>
     </div>;
-}
+};
 
 const ContactInfo = ({ resources, customerInfo }) => {
     if (customerInfo === null) {
@@ -52,6 +52,6 @@ const ContactInfo = ({ resources, customerInfo }) => {
             })
         }
     </div>;
-}
+};
 
 export default ContactInfo;

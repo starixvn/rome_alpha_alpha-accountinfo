@@ -77,11 +77,9 @@ const BalanceInfo = ({
 
     return <div className='balance-info'>
         {
-            contents.map((content, index) => {
-                return <div key={index}>{content} </div>;
-            })
+            contents.map((content, index) => <div key={index}>{content} </div>)
         }
     </div>;
-}
+};
 
 export default BalanceInfo;

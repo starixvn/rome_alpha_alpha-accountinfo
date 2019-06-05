@@ -18,6 +18,6 @@ const Settings = ({ resources, settingData, mobileView }) => {
                 );
             })}
     </div>;
-}
+};
 
 export default Settings;

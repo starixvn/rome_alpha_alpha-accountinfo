@@ -47,20 +47,20 @@ export default class GivenCredit extends React.Component {
         }
     }
 
-    handleClose(e) {
+    handleClose() {
         window.top.closedPopup = true;
         window.top.ageWnd.close();
     }
 
     showErrorMessage(message) {
-        this.setState((prevState) => ({
+        this.setState(() => ({
             hideMessages: false,
             message: message,
             updateSuccess: false
         }));
     }
 
-    handleSubmit(e) {
+    handleSubmit() {
         const self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
             currentGivenCredit = parseFloat(this.props.currentGivenCredit),
             givenCreditMin = parseFloat(this.props.givenCreditMin),
@@ -85,7 +85,7 @@ export default class GivenCredit extends React.Component {
             CreditAmount: newGivenCredit
         };
 
-        accountInfoAPI.updateGivenCredit(params).then((data) => {
+        accountInfoAPI.updateGivenCredit(params).then(data => {
             self.setState({
                 hideMessages: false,
                 message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
@@ -116,7 +116,7 @@ export default class GivenCredit extends React.Component {
     buildGivenCreditLimitNote() {
         const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
         const { resources } = this.state;
-        const buildNumberFormat = (value) =>
+        const buildNumberFormat = value =>
             <NumberFormat
                 className="number"
                 value={value}
@@ -165,7 +165,7 @@ export default class GivenCredit extends React.Component {
                         thousandSeparator={true}
                         decimalScale={2}
                         onKeyPress={this.handleKeyPress}
-                        onValueChange={(values) => {
+                        onValueChange={values => {
                             const { formattedValue, value, floatValue } = values;
                             this.setState({ newGivenCredit: floatValue === undefined ? 0 : floatValue });
                         }}

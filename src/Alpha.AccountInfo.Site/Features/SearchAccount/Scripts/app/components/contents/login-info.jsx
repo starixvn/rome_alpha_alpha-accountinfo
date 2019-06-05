@@ -5,7 +5,7 @@ export const LoginInfoRow = ({ title, value }) => {
         <div className='row-info bold'>{title}:</div>
         <div className='row-info'>{value}</div>
     </div>;
-}
+};
 
 export const LoginInfoWithLinkRow = ({ title, value, handleOpenIPInfo }) => {
     return <div className='group'>
@@ -16,7 +16,7 @@ export const LoginInfoWithLinkRow = ({ title, value, handleOpenIPInfo }) => {
             </span>
         </div>
     </div>;
-}
+};
 
 const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
     if (loginInfo === null) {
@@ -35,7 +35,7 @@ const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
         {
             title: resources.LastTxn,
             value: loginInfo.LastTxn
-        },
+        }
     ];
 
     return <div className='login-info'>
@@ -52,6 +52,6 @@ const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
             }}
         />
     </div>;
-}
+};
 
 export default LoginInfo;
