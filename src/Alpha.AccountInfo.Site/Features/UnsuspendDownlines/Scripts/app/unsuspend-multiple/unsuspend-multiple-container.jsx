@@ -5,19 +5,7 @@ import UnsuspendViewList from '../unspend-view-list';
 import UnsuspendMultiple from './unsuspend-multiple';
 import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
-export const renderUnsuspendMultipe = (viewModel, resources) => {
-    ReactDOM.render(
-        <UnsuspendMultipleContainer {...{
-            viewModel : viewModel.Data,
-            searchAccountRoleId: viewModel.SearchAccountRoleId,
-            resources: decodeResources(resources)}}/>,
-        document.getElementById('container')
-    );
-};
-
-window.renderUnsuspendMultipe = renderUnsuspendMultipe;
-
-export default class UnsuspendMultipleContainer extends React.Component {
+class UnsuspendMultipleContainer extends React.Component {
     constructor(props) {
         super(props);
         this.correctData();
@@ -123,3 +111,18 @@ export default class UnsuspendMultipleContainer extends React.Component {
                 }}/>;
     }
 }
+
+export default UnsuspendMultipleContainer;
+
+export const renderUnsuspendMultipe = (viewModel, resources) => {
+    ReactDOM.render(
+        <UnsuspendMultipleContainer {...{
+            viewModel: viewModel.Data,
+            searchAccountRoleId: viewModel.SearchAccountRoleId,
+            resources: decodeResources(resources)
+        }} />,
+        document.getElementById('container')
+    );
+};
+
+window.renderUnsuspendMultipe = renderUnsuspendMultipe;

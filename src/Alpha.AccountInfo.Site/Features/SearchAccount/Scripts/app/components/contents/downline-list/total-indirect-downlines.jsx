@@ -16,16 +16,13 @@ export const DownlineStatusTooltip = ({ title, classNames, value }) => {
 
 const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
     const activeClass = 'status-active', closedClass = 'status-closed', suspendedClass = 'status-suspended';
+    let TotalActive = 0, TotalClosed = 0, TotalSuspended = 0;
 
-    if (typeof totalIndirectDownline === 'undefined' || totalIndirectDownline === null) {
-        totalIndirectDownline = {
-            TotalActive: 0,
-            TotalClosed: 0,
-            TotalSuspended: 0
-        };
+    if (typeof totalIndirectDownline !== 'undefined' && totalIndirectDownline !== null) {
+        TotalActive = totalIndirectDownline.TotalActive
+        TotalClosed = totalIndirectDownline.TotalClosed;
+        TotalSuspended = totalIndirectDownline.TotalSuspended;
     }
-
-    const { TotalActive, TotalClosed, TotalSuspended } = totalIndirectDownline;
 
     const statusTooltips = [
         {

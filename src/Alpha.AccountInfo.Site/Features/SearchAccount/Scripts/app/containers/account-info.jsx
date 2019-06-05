@@ -122,7 +122,7 @@ export default class AccountInfo extends React.Component {
         let uplineName = null;
         let { customerInfo, statusData } = this.state;
 
-        if ((customerInfo !== null && statusData === null) || reload) {
+        if (customerInfo !== null && (statusData === null || reload)) {
             this.blockUIWrapper();
 
             switch (customerInfo.RoleId) {
@@ -293,7 +293,6 @@ export default class AccountInfo extends React.Component {
                             mobileView,
                             username,
                             statusData,
-                            mobileView,
                             fetchCustomerAllStatusFromServer,
                             fetchCustomerInfoFromServer
                         }}

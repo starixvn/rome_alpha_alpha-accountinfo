@@ -13,7 +13,7 @@ export const renderUnsuspendSingle = (viewModel, resources) => {
 
 window.renderUnsuspendSingle = renderUnsuspendSingle;
 
-export default class UnsuspendSingleContainer extends React.Component {
+class UnsuspendSingleContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,3 +58,5 @@ export default class UnsuspendSingleContainer extends React.Component {
             }} />;
     }
 }
+
+export default UnsuspendSingleContainer;

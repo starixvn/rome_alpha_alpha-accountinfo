@@ -8,16 +8,15 @@
     @StaticResources.RenderStyles("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple")
 }
 
-<div id="container" class="unsuspend-container" />
-
 @Html.AntiForgeryToken()
+@Html.Hidden("NotAuthorized", Resources.NotAuthorized)
+
+<div id="container" class="unsuspend-container" />
 
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple")
 
     <script>
-        var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
-
         renderUnsuspendMultipe(
             @Html.Raw(JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.Indented)),
             @Html.Raw(Model.Resources));

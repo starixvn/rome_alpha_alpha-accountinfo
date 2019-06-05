@@ -5,7 +5,7 @@ const handleErrors = (err) => {
     if (err.response.status === 403) {
         return {
             IsSuccess: false,
-            Message: _NotAuthorized
+            Message: $("#NotAuthorized").val()
         };
     }
 
@@ -15,7 +15,7 @@ const handleErrors = (err) => {
 export const requests = {
     get: (url, data) => {
         let axiosPromise = axios.get(url, { params: data });
-        axiosPromise = axiosPromise.then(serverData => serverData.data);
+        axiosPromise = axiosPromise.then(serverData => serverData.data).catch(handleErrors);
 
         return (axiosPromise);
     },
@@ -24,11 +24,11 @@ export const requests = {
             {
                 headers:
                 {
-                    __RequestVerificationToken: __RequestVerificationToken, 'X-Requested-With': 'XMLHttpRequest'
+                    __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(), 'X-Requested-With': 'XMLHttpRequest'
                 }
             });
 
-        axiosPromise = axiosPromise.then(serverData => serverData.data);
+        axiosPromise = axiosPromise.then(serverData => serverData.data).catch(handleErrors);
 
         return (axiosPromise);
     }

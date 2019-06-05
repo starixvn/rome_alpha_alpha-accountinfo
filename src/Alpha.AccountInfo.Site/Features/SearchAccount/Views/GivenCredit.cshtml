@@ -8,16 +8,14 @@
     @StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/given-credit")
 }
 
-<div id="given-credit" class="given-credit" />
-
 @Html.AntiForgeryToken()
+@Html.Hidden("NotAuthorized", Resources.NotAuthorized)
+
+<div id="given-credit" class="given-credit" />
 
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/SearchAccount/Bundles/given-credit")
     <script>
-        var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
-        var _NotAuthorized = '@Resources.NotAuthorized';
-
         renderGivenCredit(
             "@Model.SearchAccountId",
             "@Model.SearchAccountRoleId",

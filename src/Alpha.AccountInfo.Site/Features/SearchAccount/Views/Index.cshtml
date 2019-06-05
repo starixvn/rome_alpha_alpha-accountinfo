@@ -1,6 +1,5 @@
 ﻿@{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
-    string pattern = @"([a-zA-Z]+) (\d+)";
 
 }
 @model AccountInfoViewModel
@@ -11,18 +10,16 @@
     @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
 }
 
-<div id="account-info" />
-
 @Html.AntiForgeryToken()
+@Html.Hidden("NotAuthorized", Resources.NotAuthorized)
+@Html.Hidden("AssetCommonCssLink", StaticResources.AssetStyles.RenderCommon("/bundles/common/common"))
+
+<div id="account-info" />
 
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/SearchAccount/Bundles/index")
 
     <script>
-        var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
-        var _AssetCommonCssLink = '@StaticResources.AssetStyles.RenderCommon("/bundles/common/common")'
-        var _NotAuthorized = '@Resources.NotAuthorized';
-
         renderAccountInfo(
             '@Model.SearchAccountName',
             '@Model.ActorRoleId',
