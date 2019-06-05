@@ -19,7 +19,7 @@ window.renderGivenCredit = function (
             currentGivenCredit={currentGivenCredit}
             givenCreditMin={givenCreditMin}
             givenCreditMax={givenCreditMax}
-			resources={decodeResources(resources)}
+            resources={decodeResources(resources)}
         />,
         document.getElementById('given-credit')
     );
@@ -37,45 +37,45 @@ export default class GivenCredit extends React.Component {
         };
 
         this.handleClose = this.handleClose.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-	handleKeyPress(e) {
-		if (e.key === 'Enter') {
-			this.handleSubmit(e);
-		}
-	}
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.handleSubmit(e);
+        }
+    }
 
     handleClose(e) {
         window.top.closedPopup = true;
         window.top.ageWnd.close();
     }
 
-	showErrorMessage(message) {
-		this.setState((prevState) => ({
-			hideMessages: false,
-			message: message,
-			updateSuccess: false
-		}));
-	}
+    showErrorMessage(message) {
+        this.setState((prevState) => ({
+            hideMessages: false,
+            message: message,
+            updateSuccess: false
+        }));
+    }
 
-	handleSubmit(e) {
+    handleSubmit(e) {
         const self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
-			currentGivenCredit = parseFloat(this.props.currentGivenCredit),
-			givenCreditMin = parseFloat(this.props.givenCreditMin),
-			givenCreditMax = parseFloat(this.props.givenCreditMax),
-			newGivenCredit = parseFloat(this.state.newGivenCredit);
+            currentGivenCredit = parseFloat(this.props.currentGivenCredit),
+            givenCreditMin = parseFloat(this.props.givenCreditMin),
+            givenCreditMax = parseFloat(this.props.givenCreditMax),
+            newGivenCredit = parseFloat(this.state.newGivenCredit);
 
-		if (newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
-			this.showErrorMessage(resources.InvalidValue);
-			return;
-		}
+        if (newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
+            this.showErrorMessage(resources.InvalidValue);
+            return;
+        }
 
-		if (newGivenCredit === currentGivenCredit) {
-			this.showErrorMessage(resources.ThereIsNoChange);
-			return;
-		}
+        if (newGivenCredit === currentGivenCredit) {
+            this.showErrorMessage(resources.ThereIsNoChange);
+            return;
+        }
 
         $.blockUI();
 
@@ -88,7 +88,7 @@ export default class GivenCredit extends React.Component {
         accountInfoAPI.updateGivenCredit(params).then((data) => {
             self.setState({
                 hideMessages: false,
-				message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
+                message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
                 updateSuccess: data.IsSuccess
             });
 
@@ -113,15 +113,15 @@ export default class GivenCredit extends React.Component {
         );
     }
 
-	buildGivenCreditLimitNote() {
-		const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
-		const { resources } = this.state;
-		const buildNumberFormat = (value) =>
-			<NumberFormat
-				className="number"
-				value={value}
-				displayType={'text'}
-				decimalScale={2}
+    buildGivenCreditLimitNote() {
+        const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
+        const { resources } = this.state;
+        const buildNumberFormat = (value) =>
+            <NumberFormat
+                className="number"
+                value={value}
+                displayType={'text'}
+                decimalScale={2}
                 fixedDecimalScale={true}
                 thousandSeparator={true}
             />;
@@ -138,11 +138,11 @@ export default class GivenCredit extends React.Component {
         return (
             <div className="note">
                 <span className="text-red">*</span>
-				<strong>{resources.Note}</strong>:
+                <strong>{resources.Note}</strong>:
                   {noted}
             </div>
         );
-	}
+    }
 
     render() {
         const rowClasses = "col-xs-12 form-group";
@@ -163,8 +163,8 @@ export default class GivenCredit extends React.Component {
                         value={newGivenCredit}
                         fixedDecimalScale={true}
                         thousandSeparator={true}
-						decimalScale={2}
-						onKeyPress={this.handleKeyPress}
+                        decimalScale={2}
+                        onKeyPress={this.handleKeyPress}
                         onValueChange={(values) => {
                             const { formattedValue, value, floatValue } = values;
                             this.setState({ newGivenCredit: floatValue === undefined ? 0 : floatValue });

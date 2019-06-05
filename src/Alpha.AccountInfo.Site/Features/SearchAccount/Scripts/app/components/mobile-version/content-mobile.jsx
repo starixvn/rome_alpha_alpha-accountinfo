@@ -39,8 +39,8 @@ export default class ContentMobile extends React.Component {
             fetchDataFromServer,
             contentItems = [],
             redirectToBalanceInfoPage = false,
-			redirectToFeatureList = false,
-			backText
+            redirectToFeatureList = false,
+            backText
         } = this.props;
 
         const { featureListPath, balanceInfoPath, animationClass } = this.state;
@@ -57,7 +57,7 @@ export default class ContentMobile extends React.Component {
         }
 
         return contentItems.length === 0 ?
-			<ContentPage {...{ iconClass, animationClass, featureText, children, fetchDataFromServer, backText }} /> :
+            <ContentPage {...{ iconClass, animationClass, featureText, children, fetchDataFromServer, backText }} /> :
             <FeatureListPage {...{ contentItems, animationClass }} />;
     }
 }
@@ -73,7 +73,7 @@ export const CustomLink = ({ pathname, iconClass, featureText, backText = '' }) 
     >
         <span className={iconClass} />
             {featureText}
-		<span className="feature-item-nav">{backText}</span>
+        <span className="feature-item-nav">{backText}</span>
     </Link>;
 
 export const ContentPage = ({
@@ -81,8 +81,8 @@ export const ContentPage = ({
     featureText,
     children,
     animationClass,
-	fetchDataFromServer,
-	backText
+    fetchDataFromServer,
+    backText
 }) => {
     if (fetchDataFromServer !== undefined) {
         fetchDataFromServer();
@@ -90,7 +90,7 @@ export const ContentPage = ({
 
     return (
         <div className={`${animationClass} feature-detail`}>
-			<CustomLink {... { iconClass, featureText, pathname: "/featureList", backText }} />
+            <CustomLink {... { iconClass, featureText, pathname: "/featureList", backText }} />
             {children}
         </div>
     );

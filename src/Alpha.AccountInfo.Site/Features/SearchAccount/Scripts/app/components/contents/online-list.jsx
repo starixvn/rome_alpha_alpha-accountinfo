@@ -17,9 +17,9 @@ export const OnlineListRow = ({ onlineList, index, handleOpenIPInfo }) => {
 }
 
 const OnlineList = ({ resources, onlineListData, handleOpenIPInfo }) => {
-	if (onlineListData === null || onlineListData.length === 0) {
+    if (onlineListData === null || onlineListData.length === 0) {
         return <div className='no-information'>{resources.ThisUserIsNotOnline}</div>;
-	}
+    }
 
     return <div className='online-list'>
         <table className='tblRpt tblRpt-bordered width-100per'>

@@ -17,22 +17,20 @@ const CellContainNumberFormat = ({
         formatClassNames = 'number-link';
     }
 
-    return (
-        <div className={`${classNames} ${formatClassNames}`}>
-            <NumberFormat
-                value={value}
-                displayType={'text'}
-                decimalScale={2}
-                fixedDecimalScale={true}
-                thousandSeparator={true}
-                renderText={
-                    value => hrefLink === null || hrefLink === '' ?
-                        <span>{value}</span> :
-                        <CustomAnchorTag {...{ mobileView, href: hrefLink}}>{value}</CustomAnchorTag>
-                }
-            />
-        </div>
-    );
+    return <div className={`${classNames} ${formatClassNames}`}>
+        <NumberFormat
+            value={value}
+            displayType={'text'}
+            decimalScale={2}
+            fixedDecimalScale={true}
+            thousandSeparator={true}
+            renderText={
+                value => hrefLink === null || hrefLink === '' ?
+                    <span>{value}</span> :
+                    <CustomAnchorTag {...{ mobileView, href: hrefLink }}>{value}</CustomAnchorTag>
+            }
+        />
+    </div>;
 }
 
 export default CellContainNumberFormat;

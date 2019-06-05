@@ -27,7 +27,7 @@ export default class Searching extends React.Component {
 
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-		this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+        this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -46,28 +46,28 @@ export default class Searching extends React.Component {
         if (e.key === 'Enter') {
             this.handleSearchClick(e);
         }
-	}
+    }
 
-	hideKeyboard() {
-		$('.txt-search').blur();
-	}
+    hideKeyboard() {
+        $('.txt-search').blur();
+    }
 
     handleSearchClick() {
         const { username } = this.state;
         if (username !== '') {
-			this.props.fetchCustomerInfoFromServer(username);
-			this.onSuggestionsClearRequested();
-			this.hideKeyboard();
+            this.props.fetchCustomerInfoFromServer(username);
+            this.onSuggestionsClearRequested();
+            this.hideKeyboard();
         }
     }
 
     onSuggestionsFetchRequested(input) {
-		accountInfoAPI
-			.getAutoUsernameSuggestion({ SuggestionQuery: input.value.trim() })
+        accountInfoAPI
+            .getAutoUsernameSuggestion({ SuggestionQuery: input.value.trim() })
             .then(data => {
                 this.setState({ suggestions: data });
             });
-	}
+    }
 
     onSuggestionsClearRequested() {
         this.setState({
@@ -86,13 +86,13 @@ export default class Searching extends React.Component {
     render() {
         const { username, suggestions } = this.state;
         const inputProps = {
-			type: 'search',
+            type: 'search',
             className: 'txt-search',
             onChange: this.onChangeSearchBox,
             onKeyPress: this.handleSearchKeyPress,
-			placeholder: this.props.userNamePlaceHolder,
-			onFocus: zoomDisable,
-			onBlur: zoomEnable,
+            placeholder: this.props.userNamePlaceHolder,
+            onFocus: zoomDisable,
+            onBlur: zoomEnable,
             value: username
         };
 
@@ -112,8 +112,8 @@ export default class Searching extends React.Component {
                         getSuggestionValue,
                         renderSuggestion,
                         shouldRenderSuggestions,
-						inputProps,
-						focusInputOnSuggestionClick: false
+                        inputProps,
+                        focusInputOnSuggestionClick: false
                     }}
                 />
                 <span className="icon-search" onClick={this.handleSearchClick} />

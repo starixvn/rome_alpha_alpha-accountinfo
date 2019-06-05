@@ -4,20 +4,20 @@ export const Scale = 0.7
 export const mobileScale = (value) => value / Scale;
 
 export const decodeResources =(resources) => {
-	for (let key in resources) {
-		resources[key] = htmlDecode(resources[key]);
-	}
+    for (let key in resources) {
+        resources[key] = htmlDecode(resources[key]);
+    }
 
-	return resources;
+    return resources;
 }
 
 export const buildTooltipProps = (tooltip) => {
-	return {
-		title: tooltip,
-		position: "bottom",
-		trigger: "mouseenter",
-		arrow: "true"
-	}
+    return {
+        title: tooltip,
+        position: "bottom",
+        trigger: "mouseenter",
+        arrow: "true"
+    }
 }
 
 export const resizePopupOnMobile = () => {
@@ -42,7 +42,7 @@ export const closeLeftPanelOnMobile = () => {
 }
 
 export const formatMessage = (message) => {
-	return message.replace(/\\n/g, '<br />');
+    return message.replace(/\\n/g, '<br />');
 }
 
 export const usernameRegExp = (message, username) => {
@@ -50,17 +50,17 @@ export const usernameRegExp = (message, username) => {
 }
 
 export const zoomDisable = () => {
-	$('head meta[name=viewport]').remove();
-	$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />');
+    $('head meta[name=viewport]').remove();
+    $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />');
 
-	window.top.$('head meta[name=viewport]').remove();
-	window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=no" />');
+    window.top.$('head meta[name=viewport]').remove();
+    window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=no" />');
 }
 
 export const zoomEnable = () => {
-	$('head meta[name=viewport]').remove();
-	$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
+    $('head meta[name=viewport]').remove();
+    $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
 
-	window.top.$('head meta[name=viewport]').remove();
-	window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
+    window.top.$('head meta[name=viewport]').remove();
+    window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
 }

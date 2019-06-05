@@ -8,21 +8,21 @@ export default class BettypeLevelStatus extends React.Component {
         this.state = {
             left: 200,
             top: 200,
-			width: 475,
-			height: this.getPopupHeightByProduct(this.props.status.ProductId)
+            width: 475,
+            height: this.getPopupHeightByProduct(this.props.status.ProductId)
         };
 
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
     }
 
-	getPopupHeightByProduct(productId) {
-		switch (productId) {
-			case ProductConstants.Keno: return 530;
-			case ProductConstants.AllBet: return 300;
-			case ProductConstants.PokerGames: return 400;
-			default: return 200;
-		}
-	}
+    getPopupHeightByProduct(productId) {
+        switch (productId) {
+            case ProductConstants.Keno: return 530;
+            case ProductConstants.AllBet: return 300;
+            case ProductConstants.PokerGames: return 400;
+            default: return 200;
+        }
+    }
 
     handleOpenPopup() {
         const { resources, mobileView, status } = this.props;

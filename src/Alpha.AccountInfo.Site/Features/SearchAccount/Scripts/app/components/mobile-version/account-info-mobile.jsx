@@ -35,7 +35,7 @@ export default class AccountInfoMobile extends React.Component {
 
     render() {
         const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
-		const { contentItems, customerInfo } = this.props;
+        const { contentItems, customerInfo } = this.props;
 
         const routePropsArray = [
             {
@@ -73,8 +73,8 @@ export default class AccountInfoMobile extends React.Component {
                                                     ...routeProps,
                                                     redirectToBalanceInfoPage,
                                                     redirectToFeatureList,
-													addAnimation: props.location.state !== undefined ? props.location.state.addAnimation : false,
-													backText: contentItems.contactInfoProps.backText
+                                                    addAnimation: props.location.state !== undefined ? props.location.state.addAnimation : false,
+                                                    backText: contentItems.contactInfoProps.backText
                                                 }}
                                             />
                                     }

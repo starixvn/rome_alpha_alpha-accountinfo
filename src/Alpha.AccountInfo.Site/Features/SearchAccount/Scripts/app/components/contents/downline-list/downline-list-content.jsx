@@ -104,18 +104,18 @@ export default class DownlineListContent extends React.PureComponent {
         const content = list[index].map((item, itemIndex) => {
             const { Username } = item, maxLength = 13, isTruncated = Username.length > maxLength;
 
-			const content = loadedRowsMap[index] === STATUS_LOADED ?
+            const content = loadedRowsMap[index] === STATUS_LOADED ?
                 <a href='#' onClick={() => { fetchCustomerInfoFromServer(Username); }}>
-					{isTruncated ? `${Username.substring(0, maxLength)}...` : Username }
-				</a> :
-				<div className='placeholder' style={{ width: Username.size }} />;
+                    {isTruncated ? `${Username.substring(0, maxLength)}...` : Username }
+                </a> :
+                <div className='placeholder' style={{ width: Username.size }} />;
 
             const contentWithTooltip = <Tooltip {...buildTooltipProps(Username)}>{content}</Tooltip>;
 
-			return (
-				<div className='col-xs-6' key={itemIndex}>
-					{isTruncated ? contentWithTooltip : content}
-				</div>
+            return (
+                <div className='col-xs-6' key={itemIndex}>
+                    {isTruncated ? contentWithTooltip : content}
+                </div>
             );
         });
 

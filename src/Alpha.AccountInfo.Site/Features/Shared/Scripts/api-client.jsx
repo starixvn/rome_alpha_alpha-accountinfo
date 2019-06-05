@@ -1,15 +1,15 @@
 ﻿import axios from 'axios';
 
 const handleErrors = (err) => {
-	$.unblockUI();
-	if (err.response.status === 403) {
-		return {
-			IsSuccess: false,
-			Message: _NotAuthorized
-		};
-	}
+    $.unblockUI();
+    if (err.response.status === 403) {
+        return {
+            IsSuccess: false,
+            Message: _NotAuthorized
+        };
+    }
 
-	throw err;
+    throw err;
 };
 
 export const requests = {

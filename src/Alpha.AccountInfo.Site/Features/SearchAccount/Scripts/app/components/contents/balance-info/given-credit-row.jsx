@@ -56,15 +56,15 @@ export default class GivenCreditRow extends React.Component {
             thousandSeparator: true
         };
 
-		const editableGivenCredit = <div className='row-info'>
-			<div className='col'>{resources.GivenCredit}</div>
-			<div id='given-credit-popup' className='col col-right' onClick={this.handleOpenGivenCreditPopup} >
-				<div className='given-credit'>
-					<span className='icon-border-color icon-edited' />
-					<NumberFormat {...numberFormatProps} />
-				</div>
-			</div>
-		</div>;
+        const editableGivenCredit = <div className='row-info'>
+            <div className='col'>{resources.GivenCredit}</div>
+            <div id='given-credit-popup' className='col col-right' onClick={this.handleOpenGivenCreditPopup} >
+                <div className='given-credit'>
+                    <span className='icon-border-color icon-edited' />
+                    <NumberFormat {...numberFormatProps} />
+                </div>
+            </div>
+        </div>;
 
         const nonEditableGivenCredit =
             <BalanceInfoRow
@@ -73,6 +73,6 @@ export default class GivenCreditRow extends React.Component {
                 value={balanceInfo.GivenCredit}
             />;
 
-		return balanceInfo.CanUpdateAccount ? editableGivenCredit : nonEditableGivenCredit;
+        return balanceInfo.CanUpdateAccount ? editableGivenCredit : nonEditableGivenCredit;
     }
 }
