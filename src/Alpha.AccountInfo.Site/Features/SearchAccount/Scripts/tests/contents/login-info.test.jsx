@@ -2,8 +2,7 @@
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import LoginInfo from 'LoginInfo';
-import { LoginInfoRow, LoginInfoWithLinkRow } from 'LoginInfo';
+import LoginInfo, { LoginInfoRow, LoginInfoWithLinkRow } from 'LoginInfo';
 import { Resources } from '../helpers/resources-sample';
 import { Super } from '../helpers/actor-is-super-sample';
 

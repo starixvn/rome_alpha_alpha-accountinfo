@@ -23,8 +23,8 @@ describe('BalanceInfo', () => {
             mobileView: false,
             fetchCustomerInfoFromServer: jest.fn()
         };
-        balanceInfoMount = undefined;
-        balanceInfoShallow = undefined;
+        balanceInfoMount = null;
+        balanceInfoShallow = null;
     });
 
     test.each([

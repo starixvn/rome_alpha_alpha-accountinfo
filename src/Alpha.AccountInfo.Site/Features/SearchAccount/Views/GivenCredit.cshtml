@@ -16,14 +16,14 @@
     @StaticResources.RenderScripts("~/Features/SearchAccount/Bundles/given-credit")
     <script>
         var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
-		var _NotAuthorized = '@Resources.NotAuthorized';
+        var _NotAuthorized = '@Resources.NotAuthorized';
 
         renderGivenCredit(
             "@Model.SearchAccountId",
             "@Model.SearchAccountRoleId",
             "@Model.CurrentGivenCredit",
             "@Model.GivenCreditMin",
-			"@Model.GivenCreditMax",
-			@Html.Raw(Model.GivenCreditResources));
+            "@Model.GivenCreditMax",
+            @Html.Raw(Model.GivenCreditResources));
     </script>
 }

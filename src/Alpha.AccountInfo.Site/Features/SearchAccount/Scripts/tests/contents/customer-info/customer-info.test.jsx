@@ -23,7 +23,7 @@ describe('CustomerInfo', () => {
             fetchCustomerInfoFromServer: jest.fn()
         };
 
-        customerInfoMount = undefined;
+        customerInfoMount = null;
     });
 
     const buildCustomerInfo = customerInfo => {

@@ -30,7 +30,7 @@ describe('DownlineList', () => {
             fetchCustomerInfoFromServer: jest.fn()
         };
 
-        downlineListMount = undefined;
+        downlineListMount = null;
     });
 
     test('renders without crashing', () => {

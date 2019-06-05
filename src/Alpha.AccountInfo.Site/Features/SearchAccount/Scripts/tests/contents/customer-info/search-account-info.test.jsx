@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import { Master } from '../../helpers/actor-is-master-sample';
 import { Resources } from '../../helpers/resources-sample';
@@ -32,10 +31,12 @@ describe('SearchAccountInfo', () => {
     ////     expect(component.toJSON()).toMatchSnapshot();
     //// });
 
+    const closedWrongPwdOthers = 'This account was closed by failed login or account expired.';
+
     test.each([
-        [true, 0, true, true, 'closed-wrongPwdOthers', 'This account was closed by failed login or account expired.'],
-        [true, 0, true, false, 'closed-wrongPwdOthers', 'This account was closed by failed login or account expired.'],
-        [true, 0, false, false, 'closed-wrongPwdOthers', 'This account was closed by failed login or account expired.'],
+        [true, 0, true, true, 'closed-wrongPwdOthers', closedWrongPwdOthers],
+        [true, 0, true, false, 'closed-wrongPwdOthers', closedWrongPwdOthers],
+        [true, 0, false, false, 'closed-wrongPwdOthers', closedWrongPwdOthers],
         [true, 1, false, false, 'closed-byAdmin', 'This account was closed by admin.'],
         [true, 2, false, false, 'closed-byUpline', 'This account was closed by upline.'],
         [true, 3, false, false, 'closed-wrongOTPSC', 'This account was closed due to failed OTP/Security Code attempts.'],
@@ -82,8 +83,8 @@ describe('SearchAccountInfo', () => {
         test('change Css and Tooltip when customerInfo change ', () => {
             props.customerInfo = Master.ViewAgentInfo;
             const component = shallow(<SearchAccountInfo {...props} />);
-            
-            let customerInfo = Master.ViewMemberInfo;
+
+            const customerInfo = Master.ViewMemberInfo;
             customerInfo.Closed = false;
             customerInfo.Suspended = true;
             component.setProps({ customerInfo });
@@ -93,7 +94,7 @@ describe('SearchAccountInfo', () => {
         });
 
         test('unchange Css and Tooltip when customerInfo unchange ', () => {
-            let customerInfo = Master.ViewMemberInfo;
+            const customerInfo = Master.ViewMemberInfo;
             customerInfo.Closed = false;
             customerInfo.Suspended = true;
 

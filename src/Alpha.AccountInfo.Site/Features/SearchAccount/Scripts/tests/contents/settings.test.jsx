@@ -24,7 +24,7 @@ describe('Settings', () => {
             mobileView: false
         };
 
-        settingsShallow = undefined;
+        settingsShallow = null;
     });
 
     test('renders without crashing', () => {

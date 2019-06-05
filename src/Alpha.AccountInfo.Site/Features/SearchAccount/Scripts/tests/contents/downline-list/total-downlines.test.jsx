@@ -25,7 +25,7 @@ describe('TotalDownlines', () => {
             totalIndirectDownline: DownlineListData.TotalDownlines[0]
         };
 
-        totalDownlinesMount = undefined;
+        totalDownlinesMount = null;
     });
 
     test('renders without crashing', () => {

@@ -2,8 +2,7 @@
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import OnlineList from 'OnlineList';
-import { OnlineListRow } from 'OnlineList';
+import OnlineList, { OnlineListRow } from 'OnlineList';
 import { Resources } from '../helpers/resources-sample';
 
 describe('OnlineList', () => {

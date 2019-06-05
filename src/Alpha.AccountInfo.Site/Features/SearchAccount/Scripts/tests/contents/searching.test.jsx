@@ -26,7 +26,7 @@ describe('Searching', () => {
             fetchCustomerInfoFromServer: jest.fn()
         };
 
-        searchingMount = undefined;
+        searchingMount = null;
         handleSearchClickSpy = sinon.spy(Searching.prototype, 'handleSearchClick');
 
         mockAxios.reset();

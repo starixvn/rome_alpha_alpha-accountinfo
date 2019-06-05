@@ -43,7 +43,7 @@ export default class GivenCredit extends React.Component {
 
     handleKeyPress(e) {
         if (e.key === 'Enter') {
-            this.handleSubmit(e);
+            this.handleSubmit();
         }
     }
 
@@ -133,7 +133,7 @@ export default class GivenCredit extends React.Component {
                 {buildNumberFormat(givenCreditMin)} ≤  {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)}
             </div>;
 
-        const noted = parseInt(searchAccountRoleId) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;
+        const noted = parseInt(searchAccountRoleId, 10) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;
 
         return (
             <div className="note">
