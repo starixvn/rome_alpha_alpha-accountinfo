@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { unsuspendAPI } from './unsuspend-api';
 import { getUserLevelName } from './unsuspend-helper';
 import ReactPagination from '../../../Shared/Scripts/react-paginations/react-pagination';

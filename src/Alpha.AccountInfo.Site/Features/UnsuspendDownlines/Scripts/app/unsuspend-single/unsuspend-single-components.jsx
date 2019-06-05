@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { getUserLevelName } from '../unsuspend-helper';
 
 export const ColumnContentByLevel = ({

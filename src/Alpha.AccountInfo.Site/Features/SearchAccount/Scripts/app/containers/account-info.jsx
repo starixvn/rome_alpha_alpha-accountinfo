@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { accountInfoAPI } from '../accountinfo-api';
 import { UserLevel } from '../constants';
 import Searching from '../components/contents/searching';

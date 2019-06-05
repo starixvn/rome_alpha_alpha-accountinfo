@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import { accountInfoAPI } from '../../accountinfo-api';
 import { zoomEnable, zoomDisable } from '../../helpers/accountinfo-helper';

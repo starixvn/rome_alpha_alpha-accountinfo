@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { unsuspendAPI } from '../unsuspend-api';
 import { BodyRowContent, FooterContent } from './unsuspend-single-components';
 import { usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';

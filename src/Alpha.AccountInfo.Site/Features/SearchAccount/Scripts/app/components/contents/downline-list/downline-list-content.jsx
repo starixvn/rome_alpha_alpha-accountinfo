@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { InfiniteLoader, AutoSizer, List, WindowScroller } from 'react-virtualized';
 import { Scale, buildTooltipProps } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';

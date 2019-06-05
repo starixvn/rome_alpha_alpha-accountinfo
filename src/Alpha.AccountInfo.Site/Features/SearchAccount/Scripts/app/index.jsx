@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import AccountInfo from './containers/account-info';
 import { decodeResources } from './helpers/accountinfo-helper';

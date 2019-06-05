@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import CellContainNumberFormat from '../../common/cell-contain-number-format';
 
 const BalanceInfoRow = ({

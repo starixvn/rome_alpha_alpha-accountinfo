@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import UplineInfo from './upline-info';
 import SearchAccountInfo from './search-account-info';
 import { UserLevel } from '../../../constants';

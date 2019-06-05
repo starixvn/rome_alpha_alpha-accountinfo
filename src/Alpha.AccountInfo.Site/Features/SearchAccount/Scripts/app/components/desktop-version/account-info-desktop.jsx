@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import CustomizedAccordionItem from './customized-accordion-item';
 
 export default class AccountInfoDesktop extends React.Component {

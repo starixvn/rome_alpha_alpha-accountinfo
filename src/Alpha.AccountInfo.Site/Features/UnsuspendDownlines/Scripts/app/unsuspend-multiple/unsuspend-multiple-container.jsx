@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import * as _ from 'lodash';
 import UnsuspendViewList from '../unspend-view-list';
