@@ -19,4 +19,4 @@ const UplineInfo = ({ username, fetchCustomerInfoFromServer }) => {
 	return isTruncated ? contentWithTooltip : content;
 }
 
-export default UplineInfo; 
+export default UplineInfo;

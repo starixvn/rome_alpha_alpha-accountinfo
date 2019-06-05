@@ -82,12 +82,12 @@ describe('SearchAccountInfo', () => {
         test('change Css and Tooltip when customerInfo change ', () => {
             props.customerInfo = Master.ViewAgentInfo;
             const component = shallow(<SearchAccountInfo {...props} />);
-    
+            
             let customerInfo = Master.ViewMemberInfo;
             customerInfo.Closed = false;
             customerInfo.Suspended = true;
             component.setProps({ customerInfo });
-    
+
             expect(component.state('Css')).toEqual('suspended');
             expect(component.state('Tootltip')).toEqual('This account was suspended.');
         });
@@ -100,7 +100,7 @@ describe('SearchAccountInfo', () => {
             props.customerInfo = customerInfo;
             const component = shallow(<SearchAccountInfo {...props} />);
             component.setProps({ customerInfo });
-    
+
             expect(component.state('Css')).toEqual('suspended');
             expect(component.state('Tootltip')).toEqual('This account was suspended.');
         });

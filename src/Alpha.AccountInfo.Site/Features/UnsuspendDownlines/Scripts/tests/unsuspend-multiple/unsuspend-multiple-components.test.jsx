@@ -146,7 +146,7 @@ describe('UnsuspendMultipleComponent', () => {
                 props.isAffected = isAffected;
                 const wrapper = shallow(<ColumnContent {...props} />);
                 expect(wrapper.find('a').at(0).text()).toBe(expectedValue);
-                
+
                 const event = Object.assign(jest.fn(), {preventDefault: () => {}});
                 wrapper.find('a').at(0).simulate('click', event);
                 expect(props.redirectViewListDetail).toBeCalledTimes(1);

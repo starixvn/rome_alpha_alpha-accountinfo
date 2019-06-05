@@ -32,7 +32,7 @@ describe('Status', () => {
     });
 
     test.each([
-        [{}, 0], 
+        [{}, 0],
         [{
             'Disabled': false,
             'Checked': false,
@@ -41,7 +41,7 @@ describe('Status', () => {
             'Text': 'Closed',
             'DisplayOrder': 2,
             'Visible': true
-          }, 0], 
+          }, 0],
         [{
             'ConfirmMessage': 'Are you sure you want to change Close status for this customer?',
             'Disabled': false,
@@ -61,7 +61,7 @@ describe('Status', () => {
     );
 
     test.each([
-        [{}, 0], 
+        [{}, 0],
         [{
             'Text': 'Casino',
             'DisplayOrder': 60,
@@ -71,7 +71,7 @@ describe('Status', () => {
             'Visible': true,
             'IsEditOnProductLevel': false,
             'Checked': true
-        }, 0], 
+        }, 0],
         [{
             'Text': 'Casino',
             'DisplayOrder': 60,
@@ -89,7 +89,7 @@ describe('Status', () => {
             expect(wrapper.find(ProductLevelStatus).length).toBe(expectedCallTimes);
         }
     );
-    
+
     test.each([
         [{
             'Text': 'Allbet',
@@ -100,7 +100,7 @@ describe('Status', () => {
             'Visible': true,
             'IsEditOnProductLevel': true,
             'Checked': true
-        }, 0], 
+        }, 0],
         [{
             'Text': 'Allbet',
             'DisplayOrder': 210,

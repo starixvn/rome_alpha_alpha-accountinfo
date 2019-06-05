@@ -28,7 +28,7 @@ describe('UnsuspendSingle', () => {
         mockAxios.reset();
         clock.restore();
         props = null;
-        wrapper = undefined;
+        wrapper = null;
         window.top.reloadCustomerList = null;
         window.top.realoadLeftPanel = null;
         window.top.closedPopup = null;
@@ -84,14 +84,14 @@ describe('UnsuspendSingle', () => {
     test('#handleSubmit called when clicked submit', () => {
         const spy = sinon.spy(UnsuspendSingle.prototype, 'handleSubmit');
         buildWrapper();
-        
+
         wrapper.find('.btn-submit').simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 
     test.each([
-        [1, 0, 'Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.'], 
-        [0, 1, 'Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.'], 
+        [1, 0, 'Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.'],
+        [0, 1, 'Are you sure you want to change Suspend status? All affected downlines will be changed Suspend status as well.'],
         [0, 0, 'Are you sure you want to change Suspend status for this customer?']])(
         'Should render correct confirm message base on affected downlines',
         (affectedDownlinesTotal, unchangedDownlinesTotal, expectedMessage) => {
@@ -111,7 +111,7 @@ describe('UnsuspendSingle', () => {
         wrapper.instance().doUpdate();
 
         expect(mockAxios.post).toHaveBeenCalledWith(
-            '/site-accountinfo/UnsuspendDownlines/UnsuspendSingle', 
+            '/site-accountinfo/UnsuspendDownlines/UnsuspendSingle',
             { 'SearchAccountId':  36204210},
             {'headers': {'X-Requested-With': 'XMLHttpRequest', '__RequestVerificationToken': ''}
         });
@@ -164,7 +164,7 @@ describe('UnsuspendSingle', () => {
         expect(wrapper.find('.msg-success').length).toBe(1);
         expect(wrapper.find('.msg-success').text()).toBe('Successfully updated!');
         expect(window.top.main.DelayReloadPage).toHaveBeenCalled();
-        
+
         clock.tick(3000);
         expect(window.top.ageWnd.close).toHaveBeenCalled();
         expect(window.top.realoadLeftPanel).toBe(true);

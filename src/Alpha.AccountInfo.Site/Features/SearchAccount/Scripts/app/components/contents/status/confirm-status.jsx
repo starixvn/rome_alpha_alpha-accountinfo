@@ -37,7 +37,7 @@ export default class ConfirmStatus extends React.Component {
 
 	handleOpenPopup(e) {
         const { status } = this.props;
-		
+
         if (!status.Disabled) {
             status.IsPopup ? this.openPopup(e) : this.openBootboxConfirm(e);
 		}

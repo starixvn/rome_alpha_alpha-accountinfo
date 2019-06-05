@@ -63,4 +63,4 @@ export const zoomEnable = () => {
 
 	window.top.$('head meta[name=viewport]').remove();
 	window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
-} 
+}

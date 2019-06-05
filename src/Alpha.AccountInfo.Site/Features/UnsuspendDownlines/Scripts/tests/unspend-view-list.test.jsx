@@ -54,16 +54,16 @@ describe('UnsuspendViewList', () => {
         expect(wrapper.state().pageLength).toBe(50);
 
         expect(mockAxios.get).toHaveBeenCalledWith(
-            '/site-accountinfo/UnsuspendDownlines/FetchCustomerList', 
+            '/site-accountinfo/UnsuspendDownlines/FetchCustomerList',
             { 'params': {
-                'DownlineRoleId': 2, 
-                'IsAffected': true, 
-                'PageIndex': 0, 
-                'PageSize': 50, 
-                'SearchAccountId': 36204210, 
+                'DownlineRoleId': 2,
+                'IsAffected': true,
+                'PageIndex': 0,
+                'PageSize': 50,
+                'SearchAccountId': 36204210,
                 'SearchAccountName': 'davidtest13May01'
             }});
-                
+
         expect(wrapper.state().viewModel).toBe(responseViewListData);
       });
 

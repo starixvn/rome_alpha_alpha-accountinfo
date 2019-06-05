@@ -18,7 +18,7 @@ export default class DownlineListContent extends React.PureComponent {
         this.assignState(dowlineList, pageIndex, statusId, totalPages);
 
         //// prevent call to get same pageIndex
-        this.currentPageIndex = 0; 
+        this.currentPageIndex = 0;
         this.timeoutIdMap = {};
 
         this.isRowLoaded = this.isRowLoaded.bind(this);
@@ -100,7 +100,7 @@ export default class DownlineListContent extends React.PureComponent {
     rowRenderer({ index, key, style }) {
         const { loadedRowsMap, list } = this.state;
         const { fetchCustomerInfoFromServer } = this.props;
-		
+
         let content = list[index].map((item, itemIndex) => {
             const { Username } = item, maxLength = 13, isTruncated = Username.length > maxLength;
 

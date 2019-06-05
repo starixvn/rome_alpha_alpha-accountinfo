@@ -71,7 +71,7 @@ describe('UnsuspendMultiple', () => {
         wrapper.find('.icon-information-outline').simulate('click');
         expect(unsuspendHelper.viewInfomation).toHaveBeenCalled();
     });
-    
+
     test('Header should render 2 rows', () => {
         buildWrapper();
         expect(wrapper.find('thead').find('tr').length).toBe(2);
@@ -87,7 +87,7 @@ describe('UnsuspendMultiple', () => {
     );
 
     test.each([
-        [3, 'Affected Downlines <br/> (Agent/Member)', 'Remain Unchanged Downlines <br/> (Agent/Member)'], 
+        [3, 'Affected Downlines <br/> (Agent/Member)', 'Remain Unchanged Downlines <br/> (Agent/Member)'],
         [2, 'Affected Downlines <br/> (Member)', 'Remain Unchanged Downlines <br/> (Member)']])(
         'Should render correct header text base on level',
         (searchAccountRoleId, expectedAffectedText, expectedRemainUnchangedText) => {
@@ -120,7 +120,7 @@ describe('UnsuspendMultiple', () => {
     test('#handleSubmit called when clicked submit', () => {
         const spy = sinon.spy(UnsuspendMultiple.prototype, 'handleSubmit');
         buildWrapper();
-        
+
         props.viewModel[0].Suspended = !props.viewModel[0].Suspended;
         wrapper.find('.btn-submit').simulate('click');
         expect(spy.calledOnce).toBeTruthy();
@@ -134,7 +134,7 @@ describe('UnsuspendMultiple', () => {
         }
 
         buildWrapper();
-        
+
         props.viewModel[0].Suspended = !props.viewModel[0].Suspended;
         wrapper.find('.btn-submit').simulate('click');
         expect(spy.calledOnce).toBeTruthy();
@@ -147,7 +147,7 @@ describe('UnsuspendMultiple', () => {
         wrapper.instance().doUpdate();
 
         expect(mockAxios.post).toHaveBeenCalledWith(
-            '/site-accountinfo/UnsuspendDownlines/UnsuspendMultiple', 
+            '/site-accountinfo/UnsuspendDownlines/UnsuspendMultiple',
             { 'UnsuspendList':  [{
                 'SearchAccountId': 36204210,
                 'Username': 'davidtest13May01',
@@ -200,7 +200,7 @@ describe('UnsuspendMultiple', () => {
         expect(wrapper.find('.msg-success').length).toBe(1);
 
         expect(window.top.main.DelayReloadPage).toHaveBeenCalled();
-        
+
         clock.tick(3000);
         expect(window.top.ageWnd.close).toHaveBeenCalled();
     });

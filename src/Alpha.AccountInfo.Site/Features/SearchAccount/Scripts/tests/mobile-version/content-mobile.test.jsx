@@ -174,27 +174,4 @@ describe('ContentMobile', () => {
             </HashRouter>);
          expect(wrapper.node.history.location.pathname).toBe("/featureList");
     });
-
-    ////test.each([
-      
-    ////    [true, true, '/', true],
-    ////])(
-    ////    "shouldComponentUpdate() return correct value",
-    ////    (redirectToBalanceInfoPage, redirectToFeatureList, path, expectedValue) => {
-    ////    const wrapper =  mount(
-    ////        <HashRouter>
-    ////            <ContentMobile {...props} />
-    ////        </HashRouter>);
-    ////   expect(shouldComponentUpdateSpy.callCount).toBe(0);
-
-    ////   wrapper.setProps({ 
-    ////       redirectToBalanceInfoPage: redirectToBalanceInfoPage,
-    ////       redirectToFeatureList: redirectToFeatureList,
-    ////       path: path
-    ////     });
-
-    ////     expect(shouldComponentUpdateSpy.callCount).toBe(1);
-    ////     expect(shouldComponentUpdateSpy.returned()).toBe(expectedValue);
-    ////    }
-    ////);
 });

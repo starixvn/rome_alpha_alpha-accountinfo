@@ -118,13 +118,13 @@ describe('Searching', () => {
 
         test('Call server with specific url and params', () => {
             buildSearching();
-            searchingMount.instance().onSuggestionsFetchRequested({value: 'test'})
-    
+            searchingMount.instance().onSuggestionsFetchRequested({ value: 'test' });
+            
             expect(mockAxios.get).toHaveBeenCalledWith(
-                '/site-accountinfo/SearchAccount/GetUsernamesSuggestion', 
+                '/site-accountinfo/SearchAccount/GetUsernamesSuggestion',
                 {'params': { 'SuggestionQuery':  'test'}});
         });
-        
+
         test('set suggestions states called when input change', () => {
             buildSearching();
             searchingMount.instance().onSuggestionsFetchRequested({value: 'test'})
@@ -159,7 +159,7 @@ describe('Searching', () => {
         });
 
         const newNode = shallow(suggestion);
-        
+
         expect(newNode.html()).toContain(`id=\"SUPERTEST120-suggestion\"`);
     });
 
@@ -172,7 +172,7 @@ describe('Searching', () => {
                 'LastName': '---',
                 'UserName2': username2
             });
-    
+
             const newNode = shallow(suggestion);
             expect(newNode.html()).toContain(expectedValue);
         }

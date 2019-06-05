@@ -97,4 +97,4 @@ const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
     </div>;
 }
 
-export default TotalIndirectDownlines; 
+export default TotalIndirectDownlines;

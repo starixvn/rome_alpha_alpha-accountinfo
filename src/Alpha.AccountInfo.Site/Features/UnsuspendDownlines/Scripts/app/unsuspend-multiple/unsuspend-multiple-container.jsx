@@ -7,9 +7,9 @@ import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/a
 
 export const renderUnsuspendMultipe = (viewModel, resources) => {
     ReactDOM.render(
-        <UnsuspendMultipleContainer {...{ 
-            viewModel : viewModel.Data, 
-            searchAccountRoleId: viewModel.SearchAccountRoleId, 
+        <UnsuspendMultipleContainer {...{
+            viewModel : viewModel.Data,
+            searchAccountRoleId: viewModel.SearchAccountRoleId,
             resources: decodeResources(resources)}}/>,
         document.getElementById('container')
     );
