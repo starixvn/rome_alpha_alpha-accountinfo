@@ -4,39 +4,37 @@ import BettypeLevelStatus from './bettype-level-status';
 import ProductLevelStatus from './product-level-status';
 
 const Status = ({
-	resources,
-	username,
-	statusData,
-	mobileView,
-	fetchCustomerInfoFromServer,
-	fetchCustomerAllStatusFromServer }) => {
-	if (statusData === null || statusData.length === 0) {
-		return mobileView ? <div className="no-information">{resources.NoInfo}</div> : null;
-	}
+    resources,
+    username,
+    statusData,
+    mobileView,
+    fetchCustomerInfoFromServer,
+    fetchCustomerAllStatusFromServer }) => {
+    if (statusData === null || statusData.length === 0) {
+        return mobileView ? <div className="no-information">{resources.NoInfo}</div> : null;
+    }
 
-	return (
-		<div className="status-setting">
-			{
-				statusData.map((status, index) => {
-					let props = {
-						status,
-						username,
-						mobileView,
-						resources,
-						fetchCustomerAllStatusFromServer,
-						fetchCustomerInfoFromServer,
-						key: index
-					};
+    return <div className="status-setting">
+        {
+            statusData.map((status, index) => {
+                const props = {
+                    status,
+                    username,
+                    mobileView,
+                    resources,
+                    fetchCustomerAllStatusFromServer,
+                    fetchCustomerInfoFromServer,
+                    key: index
+                };
 
-					return status.ConfirmMessage ?
-						<ConfirmStatus {...props} /> :
-						status.IsEditOnProductLevel ?
-							<ProductLevelStatus {...props} /> :
-							<BettypeLevelStatus {...props} />;
-				})
-			}
-		</div>
-	);
+                return status.ConfirmMessage ?
+                    <ConfirmStatus {...props} /> :
+                    status.IsEditOnProductLevel ?
+                        <ProductLevelStatus {...props} /> :
+                        <BettypeLevelStatus {...props} />;
+            })
+        }
+    </div>;
 }
 
 export default Status;

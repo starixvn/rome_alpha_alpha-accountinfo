@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 export default class ContentMobile extends React.Component {
     constructor(props) {
         super(props);
-        let { addAnimation = true } = this.props;
+        const { addAnimation = true } = this.props;
         this.state = {
             animationClass: addAnimation ? 'translate-from-left' : '',
             featureListPath: '/featureList',
@@ -13,7 +13,7 @@ export default class ContentMobile extends React.Component {
     }
 
     componentDidMount() {
-        let self = this;
+        const self = this;
         if (this.state.animationClass !== '') {
             setTimeout(() => {
                 self.setState({ animationClass: '' });
@@ -22,11 +22,11 @@ export default class ContentMobile extends React.Component {
     }
 
     shouldComponentUpdate(props, state) {
-        let { redirectToBalanceInfoPage, redirectToFeatureList, path } = props;
-        let { featureListPath, balanceInfoPath } = state;
+        const { redirectToBalanceInfoPage, redirectToFeatureList, path } = props;
+        const { featureListPath, balanceInfoPath } = state;
 
-        let balanceInfoRedirectBackToItself = path === balanceInfoPath && redirectToBalanceInfoPage;
-        let featureListRedirectBackToItself = path === featureListPath && redirectToFeatureList;
+        const balanceInfoRedirectBackToItself = path === balanceInfoPath && redirectToBalanceInfoPage;
+        const featureListRedirectBackToItself = path === featureListPath && redirectToFeatureList;
 
         return !balanceInfoRedirectBackToItself && !featureListRedirectBackToItself;
     }
@@ -72,7 +72,7 @@ export const CustomLink = ({ pathname, iconClass, featureText, backText = '' }) 
         className="feature-item"
     >
         <span className={iconClass} />
-        {featureText}
+            {featureText}
 		<span className="feature-item-nav">{backText}</span>
     </Link>;
 

@@ -17,7 +17,8 @@ export default class DownlineListContent extends React.PureComponent {
         const { dowlineList, totalPages, pageIndex, statusId } = this.props;
         this.assignState(dowlineList, pageIndex, statusId, totalPages);
 
-        this.currentPageIndex = 0; // prevent call to get same pageIndex
+        //// prevent call to get same pageIndex
+        this.currentPageIndex = 0; 
         this.timeoutIdMap = {};
 
         this.isRowLoaded = this.isRowLoaded.bind(this);
@@ -43,7 +44,7 @@ export default class DownlineListContent extends React.PureComponent {
     }
 
     chunkDownlineList(downlineList) {
-        var results = [];
+        let results = [];
         while (downlineList.length) {
             results.push(downlineList.splice(0, COLUMNS));
         }
@@ -91,7 +92,7 @@ export default class DownlineListContent extends React.PureComponent {
 
     setLoadedStatus(startIndex, stopIndex, loadedStatus) {
         const { loadedRowsMap } = this.state;
-        for (var i = startIndex; i <= stopIndex; i++) {
+        for (let i = startIndex; i <= stopIndex; i++) {
             loadedRowsMap[i] = loadedStatus;
         }
     }
@@ -101,16 +102,15 @@ export default class DownlineListContent extends React.PureComponent {
         const { fetchCustomerInfoFromServer } = this.props;
 		
         let content = list[index].map((item, itemIndex) => {
-			let { Username } = item;
-			let maxLength = 13;
-			let isTruncated = Username.length > maxLength;
-			let content = loadedRowsMap[index] === STATUS_LOADED ?
-				<a href="#" onClick={() => { fetchCustomerInfoFromServer(Username) }}>
+            const { Username } = item, maxLength = 13, isTruncated = Username.length > maxLength;
+
+			const content = loadedRowsMap[index] === STATUS_LOADED ?
+                <a href='#' onClick={() => { fetchCustomerInfoFromServer(Username); }}>
 					{isTruncated ? `${Username.substring(0, maxLength)}...` : Username }
 				</a> :
 				<div className='placeholder' style={{ width: Username.size }} />;
 
-			let contentWithTooltip = <Tooltip {...buildTooltipProps(Username)}>{content}</Tooltip>;
+            const contentWithTooltip = <Tooltip {...buildTooltipProps(Username)}>{content}</Tooltip>;
 
 			return (
 				<div className='col-xs-6' key={itemIndex}>
@@ -127,7 +127,7 @@ export default class DownlineListContent extends React.PureComponent {
     }
 
     buildInfiniteLoader(extraProps, mobileView = false) {
-        let length = this.state.list.length;
+        const length = this.state.list.length;
 
         return (
             <InfiniteLoader
@@ -158,13 +158,13 @@ export default class DownlineListContent extends React.PureComponent {
     render() {
         const { list, statusId } = this.state;
         const { mobileView, resources } = this.props;
-        let length = list.length;
+        const length = list.length;
 
         if (length === 0) {
-            return <div className="no-information">{resources.NoInfo}</div>;
+            return <div className='no-information'>{resources.NoInfo}</div>;
         }
 
-        let infiniteLoaderDesktop =
+        const infiniteLoaderDesktop =
             <div className='col-xs-12 customer-list' key={statusId}>
                 {
                     this.buildInfiniteLoader(
@@ -176,7 +176,7 @@ export default class DownlineListContent extends React.PureComponent {
                 }
             </div>;
 
-        let infiniteLoaderMobile =
+        const infiniteLoaderMobile =
             <WindowScroller key={statusId}>
                 {({ height, isScrolling, scrollTop }) => {
                     return this.buildInfiniteLoader(

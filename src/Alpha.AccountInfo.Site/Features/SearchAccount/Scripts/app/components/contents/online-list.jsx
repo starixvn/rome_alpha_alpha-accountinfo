@@ -2,7 +2,7 @@
 
 export const OnlineListRow = ({ onlineList, index, handleOpenIPInfo }) => {
     return <tr>
-        <td className="text-center">
+        <td className='text-center'>
             {index + 1}
         </td>
         <td>
@@ -10,7 +10,7 @@ export const OnlineListRow = ({ onlineList, index, handleOpenIPInfo }) => {
                 {onlineList.IP}
             </a>
         </td>
-        <td className="text-center">
+        <td className='text-center'>
             {onlineList.FormattedLoginTime}
         </td>
     </tr>;
@@ -18,11 +18,11 @@ export const OnlineListRow = ({ onlineList, index, handleOpenIPInfo }) => {
 
 const OnlineList = ({ resources, onlineListData, handleOpenIPInfo }) => {
 	if (onlineListData === null || onlineListData.length === 0) {
-        return <div className="no-information">{resources.ThisUserIsNotOnline}</div>;
+        return <div className='no-information'>{resources.ThisUserIsNotOnline}</div>;
 	}
 
-    return <div className="online-list">
-        <table className="tblRpt tblRpt-bordered width-100per">
+    return <div className='online-list'>
+        <table className='tblRpt tblRpt-bordered width-100per'>
             <thead>
                 <tr>
                     <th>{resources.NumberOrder}</th>

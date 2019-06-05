@@ -12,8 +12,8 @@ export default class AccountInfoMobile extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { customerInfo } = this.props;
-        let nextCustomerInfo = nextProps.customerInfo;
+        const { customerInfo } = this.props;
+        const nextCustomerInfo = nextProps.customerInfo;
 
         this.setState({
             redirectToFeatureList: nextCustomerInfo === null,
@@ -23,8 +23,8 @@ export default class AccountInfoMobile extends React.Component {
     }
 
     componentDidUpdate() {
-        let self = this;
-        let { redirectToFeatureList, redirectToBalanceInfoPage } = this.state;
+        const self = this;
+        const { redirectToFeatureList, redirectToBalanceInfoPage } = this.state;
         if (redirectToFeatureList || redirectToBalanceInfoPage) {
             self.setState({
                 redirectToFeatureList: false,
@@ -37,7 +37,7 @@ export default class AccountInfoMobile extends React.Component {
         const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
 		const { contentItems, customerInfo } = this.props;
 
-        let routePropsArray = [
+        const routePropsArray = [
             {
                 contentItems: contentItems,
                 pathname: '/featureList'
@@ -67,7 +67,7 @@ export default class AccountInfoMobile extends React.Component {
                                     key={index}
                                     exact path={routeProps.pathname}
                                     render={
-                                        (props) =>
+                                        props =>
                                             <ContentMobile
                                                 {...{
                                                     ...routeProps,

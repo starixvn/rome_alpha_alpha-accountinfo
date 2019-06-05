@@ -52,8 +52,8 @@ export default class Searching extends React.Component {
 		$('.txt-search').blur();
 	}
 
-    handleSearchClick(e) {
-        let { username } = this.state;
+    handleSearchClick() {
+        const { username } = this.state;
         if (username !== '') {
 			this.props.fetchCustomerInfoFromServer(username);
 			this.onSuggestionsClearRequested();
@@ -64,7 +64,7 @@ export default class Searching extends React.Component {
     onSuggestionsFetchRequested(input) {
 		accountInfoAPI
 			.getAutoUsernameSuggestion({ SuggestionQuery: input.value.trim() })
-            .then((data) => {
+            .then(data => {
                 this.setState({ suggestions: data });
             });
 	}

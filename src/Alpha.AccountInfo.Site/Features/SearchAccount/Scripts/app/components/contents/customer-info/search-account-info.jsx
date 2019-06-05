@@ -22,47 +22,52 @@ export default class SearchAccountInfo extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { customerInfo } = this.props;
+        const { customerInfo } = this.props;
         if (nextProps.customerInfo !== customerInfo) {
-            let statusInfo = this.getStatusInfo(nextProps.customerInfo);
+            const statusInfo = this.getStatusInfo(nextProps.customerInfo),
+                username = customerInfo.UserName,
+                maxLength = 15,
+                isTruncate = username.length > maxLength,
+                Tootltip = statusInfo.Tootltip;
+
             this.state = {
                 Css: statusInfo.Css,
-                Tootltip: statusInfo.Tootltip
+                Tootltip: Tootltip === '' && isTruncate ? username : Tootltip
             };
         }
     }
 
     getStatusInfo(customerInfo) {
-        let { resources } = this.props;
+        const { resources } = this.props;
         const statusInfo = {
             Closed: [
                 {
                     Id: ClosedReason.ByOtherReason,
-                    Css: "closed-wrongPwdOthers",
+                    Css: 'closed-wrongPwdOthers',
                     Tootltip: resources.ClosedByFailedLoginOrAccountExpired
                 },
                 {
                     Id: ClosedReason.ByAdmin,
-                    Css: "closed-byAdmin",
+                    Css: 'closed-byAdmin',
                     Tootltip: resources.ClosedByAdmin
                 },
                 {
                     Id: ClosedReason.ByUpline,
-                    Css: "closed-byUpline",
+                    Css: 'closed-byUpline',
                     Tootltip: resources.ClosedByUpline
                 },
                 {
                     Id: ClosedReason.ByWrongOTPSC,
-                    Css: "closed-wrongOTPSC",
+                    Css: 'closed-wrongOTPSC',
                     Tootltip: resources.ClosedByFailedOTPOrSC
                 }
             ],
             Suspended: {
-                Css: "suspended",
+                Css: 'suspended',
                 Tootltip: resources.ThisAccountWasSuspended
             },
             Disabled: {
-                Css: "disabled",
+                Css: 'disabled',
                 Tootltip: resources.ThisAccountWasDisabled
             },
             Enabled: {
@@ -85,37 +90,29 @@ export default class SearchAccountInfo extends React.Component {
     };
 
     render() {
-        let { customerInfo, resources, mobileView } = this.props;
-		let { Css, Tootltip } = this.state;
+        const { customerInfo, resources, mobileView } = this.props;
+        const { Css, Tootltip } = this.state;
 
-		let username = customerInfo.UserName;
-		let maxLength = 15;
-		let isTruncate = username.length > maxLength;
-
-		if (Tootltip === '' && isTruncate) {
-			Tootltip = username;
-		}
-		
-        let customAnchorTagProps = {
+        const customAnchorTagProps = {
             title: resources.Viewlog,
-            classNames: "pointer",
+            classNames: 'pointer',
             href: customerInfo.ViewLogLink,
             mobileView
         };
 
-		const spanContent = <span className={Css} data-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>;
+        const spanContent = <span className={Css} data-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>;
 
-		const spanContentViewLog =
-			<CustomAnchorTag {...customAnchorTagProps}>
-				{spanContent}
-                <span className="icon-viewlog" />
+        const spanContentViewLog =
+            <CustomAnchorTag {...customAnchorTagProps}>
+                {spanContent}
+                <span className='icon-viewlog' />
             </CustomAnchorTag>;
 
-		let content = customerInfo.CanViewLog ? spanContentViewLog : spanContent;
+        const content = customerInfo.CanViewLog ? spanContentViewLog : spanContent;
 
-		let contentWithTooltip =
-			<Tooltip {...buildTooltipProps(Tootltip)}>
-				{content}
+        const contentWithTooltip =
+            <Tooltip {...buildTooltipProps(Tootltip)}>
+                {content}
             </Tooltip>;
 
         return Tootltip === '' ? content : contentWithTooltip;

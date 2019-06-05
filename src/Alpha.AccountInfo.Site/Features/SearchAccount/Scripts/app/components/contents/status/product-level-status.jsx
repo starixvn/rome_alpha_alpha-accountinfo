@@ -19,7 +19,7 @@ export default class ProductLevelStatus extends React.Component {
             }
 
             window.top.realoadLeftPanel = false;
-            let timer = setInterval(reloadBalanceInfo, 1000);
+            const timer = setInterval(reloadBalanceInfo, 1000);
 
             function reloadBalanceInfo() {
                 if (window.top.realoadLeftPanel) {
@@ -34,7 +34,7 @@ export default class ProductLevelStatus extends React.Component {
         const { status } = this.props;
 
         const inputProps = {
-            type: "checkbox",
+            type: 'checkbox',
             checked: status.Checked,
             onChange: () => { }
         };
@@ -47,7 +47,7 @@ export default class ProductLevelStatus extends React.Component {
             >
                 <input {...inputProps} />
                 <label
-                    className="label-text"
+                    className='label-text'
                     htmlFor={status.displayOrder}
                 >
                     {status.Text}

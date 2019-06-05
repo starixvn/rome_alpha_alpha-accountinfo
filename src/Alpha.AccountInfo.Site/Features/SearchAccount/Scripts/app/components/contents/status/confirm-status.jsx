@@ -12,7 +12,7 @@ export default class ConfirmStatus extends React.Component {
 		this.updateCustomerStatus = this.updateCustomerStatus.bind(this);
 	}
 
-	updateCustomerStatus(e) {
+	updateCustomerStatus() {
 		$.blockUI();
 		let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
 
@@ -36,7 +36,7 @@ export default class ConfirmStatus extends React.Component {
 	}
 
 	handleOpenPopup(e) {
-        let { status } = this.props;
+        const { status } = this.props;
 		
         if (!status.Disabled) {
             status.IsPopup ? this.openPopup(e) : this.openBootboxConfirm(e);
@@ -44,10 +44,10 @@ export default class ConfirmStatus extends React.Component {
     }
 
     openPopup(e) {
-        let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView, resources } = this.props;
+        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView, resources } = this.props;
         window.top.closedPopup = false;
         window.top.realoadLeftPanel = false;
-        let timer = setInterval(reloadCustomerStatus, 1000);
+        const timer = setInterval(reloadCustomerStatus, 1000);
 
         function reloadCustomerStatus() {
             if (window.top.closedPopup) {
@@ -67,7 +67,7 @@ export default class ConfirmStatus extends React.Component {
     }
 
     openBootboxConfirm(e) {
-        let { status, mobileView } = this.props;
+        const { status, mobileView } = this.props;
         window.top.bootboxConfirm(
             formatMessage(status.ConfirmMessage),
             e.target,
@@ -83,14 +83,14 @@ export default class ConfirmStatus extends React.Component {
 		const { status } = this.props;
 
 		const inputProps = {
-			type: "checkbox",
+			type: 'checkbox',
 			checked: status.Checked,
 			onChange: () => { }
 		};
 
-        let content = <div>
+        const content = <div>
             <input {...inputProps} />
-			<label className="label-text" htmlFor={status.displayOrder}>
+			<label className='label-text' htmlFor={status.displayOrder}>
 				{status.Text}
 			</label>
 		</div>;
