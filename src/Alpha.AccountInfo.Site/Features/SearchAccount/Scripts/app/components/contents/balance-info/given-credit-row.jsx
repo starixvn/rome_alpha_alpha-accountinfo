@@ -7,11 +7,16 @@ export default class GivenCreditRow extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenGivenCreditPopup = this.handleOpenGivenCreditPopup.bind(this);
+        this.reloadBalanceInfo = this.reloadBalanceInfo.bind(this);
+        this.timer = undefined;
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
     handleOpenGivenCreditPopup() {
-        const self = this;
-        let { resources, mobileView, customerInfo } = this.props;
+        const { resources, mobileView, customerInfo } = this.props;
         let width = 470, height = 300;
         const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
 
@@ -33,18 +38,19 @@ export default class GivenCreditRow extends React.Component {
 
         window.top.closedPopup = false;
         window.top.realoadLeftPanel = false;
-        const timer = setInterval(reloadBalanceInfo, 1000);
+        this.timer = setInterval(this.reloadBalanceInfo, 1000);
+    }
 
-        function reloadBalanceInfo() {
-            if (window.top.closedPopup) {
-                clearInterval(timer);
-                window.top.realoadLeftPanel && self.props.fetchCustomerInfoFromServer(customerInfo.UserName);
-            }
+    reloadBalanceInfo() {
+        const { customerInfo, fetchCustomerInfoFromServer } = this.props;
+        if (window.top.closedPopup) {
+            clearInterval(this.timer);
+            window.top.realoadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName);
         }
     }
 
     render() {
-        let { resources, customerInfo } = this.props;
+        const { resources, customerInfo } = this.props;
         const balanceInfo = customerInfo.BalanceInfo;
 
         const numberFormatProps = {

@@ -66,12 +66,13 @@ export default class DownlineListContent extends React.PureComponent {
         let promiseResolver;
         this.fectchMoreData();
         this.setLoadedStatus(startIndex, stopIndex, STATUS_LOADING);
+        const timeOutDefault = 200;
 
         const timeoutId = setTimeout(() => {
             delete this.timeoutIdMap[timeoutId];
             this.setLoadedStatus(startIndex, stopIndex, STATUS_LOADED);
             promiseResolver();
-        }, 100 + Math.round(Math.random() * 50));
+        }, timeOutDefault);
 
         this.timeoutIdMap[timeoutId] = true;
 
