@@ -6,26 +6,7 @@ import { accountInfoAPI } from './accountinfo-api';
 import { UserLevel } from './constants';
 import { decodeResources } from './helpers/accountinfo-helper';
 
-window.renderGivenCredit = function (
-    searchAccountId,
-    searchAccountRoleId,
-    currentGivenCredit,
-    givenCreditMin,
-    givenCreditMax,
-    resources) {
-    ReactDOM.render(
-        <GivenCredit searchAccountId={searchAccountId}
-            searchAccountRoleId={searchAccountRoleId}
-            currentGivenCredit={currentGivenCredit}
-            givenCreditMin={givenCreditMin}
-            givenCreditMax={givenCreditMax}
-            resources={decodeResources(resources)}
-        />,
-        document.getElementById('given-credit')
-    );
-};
-
-export default class GivenCredit extends React.Component {
+class GivenCredit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -184,3 +165,26 @@ export default class GivenCredit extends React.Component {
         );
     }
 }
+
+export default GivenCredit;
+
+export const renderGivenCredit = (searchAccountId,
+    searchAccountRoleId,
+    currentGivenCredit,
+    givenCreditMin,
+    givenCreditMax,
+    resources
+) => {
+    ReactDOM.render(
+        <GivenCredit searchAccountId={searchAccountId}
+            searchAccountRoleId={searchAccountRoleId}
+            currentGivenCredit={currentGivenCredit}
+            givenCreditMin={givenCreditMin}
+            givenCreditMax={givenCreditMax}
+            resources={decodeResources(resources)}
+        />,
+        document.getElementById('given-credit')
+    );
+};
+
+window.renderGivenCredit = renderGivenCredit;

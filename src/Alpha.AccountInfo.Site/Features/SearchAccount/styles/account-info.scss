@@ -62,8 +62,8 @@ hr {
 }
 
 .no-information {
-	padding: 4px 10px 0;
-	color: $text-red-color;
+    padding: 4px 10px 0;
+    color: $text-red-color;
 }
 
 .row-info {
@@ -78,7 +78,7 @@ hr {
 }
 
 .highlight .col-right {
-    font-family: "Roboto Bold";
+    font-family: "Roboto Bold", sans-serif !important;
 }
 
 .accountinfo-container {
@@ -376,7 +376,7 @@ hr {
         position: absolute;
         top: 10px;
         right: 4px;
-        font-family: Iconalpha;
+        font-family: Iconalpha, sans-serif !important;
         font-size: 19px;
         font-weight: 400;
         content: "\E942";
@@ -602,9 +602,9 @@ hr {
 
 input[type="search"]:focus
 {
-	-webkit-text-size-adjust: 100% !important;
+    -webkit-text-size-adjust: 100% !important;
 }
 
 .blockMsg {
-	left: 25% !important;
+    left: 25% !important;
 }
