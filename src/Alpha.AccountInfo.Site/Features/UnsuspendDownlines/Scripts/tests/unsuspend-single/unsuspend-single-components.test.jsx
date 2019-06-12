@@ -25,7 +25,7 @@ describe('UnsuspendSingleComponent', () => {
         });
 
         test.each([[0], [49]])(
-            'Snapshot', (downlines) => {
+            'Snapshot', downlines => {
                 props.downlines = downlines;
                 const component = renderer.create(<ColumnContentByLevel {...props} />);
                 expect(component.toJSON()).toMatchSnapshot();

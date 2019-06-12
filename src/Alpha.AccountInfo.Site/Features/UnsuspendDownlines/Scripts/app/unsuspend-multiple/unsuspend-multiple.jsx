@@ -4,6 +4,7 @@ import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
 import { Markup } from 'interweave';
 import { viewInfomation } from '../unsuspend-helper';
+import { handleErrors } from '../../../../Shared/Scripts/api-client';
 
 export default class UnsuspendMultiple extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ export default class UnsuspendMultiple extends React.Component {
         });
 
         unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: params })
-            .then((data) => {
+            .then(data => {
                 let isSuccess = true;
                 const timeoutDefault = 3000;
                 const message = <div className='msg-container'>
@@ -63,7 +64,8 @@ export default class UnsuspendMultiple extends React.Component {
                 }
 
                 $.unblockUI();
-            });
+            })
+            .catch(err => handleErrors(err));
     }
 
     handleSubmit(e) {

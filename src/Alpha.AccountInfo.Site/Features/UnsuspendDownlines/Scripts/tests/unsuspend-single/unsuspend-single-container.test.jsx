@@ -37,7 +37,7 @@ describe('UnsuspendSingleContainer', () => {
             resources
         };
 
-        wrapper = undefined;
+        wrapper = null;
     });
 
     const buildWrapper = () => {

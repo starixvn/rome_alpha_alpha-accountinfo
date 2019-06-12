@@ -13,6 +13,7 @@ import mockAxios from 'jest-mock-axios';
 
 describe('UnsuspendMultiple', () => {
     let props, wrapper, clock;
+    const submitClass = '.btn-submit';
 
     beforeEach(() => {
         props = {
@@ -63,7 +64,7 @@ describe('UnsuspendMultiple', () => {
 
     test.each([['.btn-suspend-all'], ['.btn-unsuspend-all']])(
         'Change call #toggleSuspendAll when click toggle suspended/unsuspended all',
-        (buttonClass) => {
+        buttonClass => {
             buildWrapper();
             const event = Object.assign(jest.fn(), {preventDefault: () => {}});
             wrapper.find(buttonClass).simulate('click', event);
@@ -118,10 +119,10 @@ describe('UnsuspendMultiple', () => {
 
     test('Should render correct #Disabled submit button base on whether data change', () => {
         buildWrapper();
-        expect(wrapper.find('.btn-submit').prop('disabled')).toBeTruthy();
+        expect(wrapper.find(submitClass).prop('disabled')).toBeTruthy();
 
         props.viewModel[0].Suspended = !props.viewModel[0].Suspended;
-        expect(wrapper.find('.btn-submit').prop('disabled')).toBeTruthy();
+        expect(wrapper.find(submitClass).prop('disabled')).toBeTruthy();
     });
 
     test('#handleSubmit called when clicked submit', () => {
@@ -129,20 +130,22 @@ describe('UnsuspendMultiple', () => {
         buildWrapper();
 
         props.viewModel[0].Suspended = !props.viewModel[0].Suspended;
-        wrapper.find('.btn-submit').simulate('click');
+        wrapper.find(submitClass).simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 
     test('#doUpdate called when clicked ok button on bootbox confirm', () => {
         const spy = sinon.spy(UnsuspendMultiple.prototype, 'doUpdate');
-        window.top.bootboxConfirm = function (message, handleElement, acceptCallback, cancelCallback, popUpOptions) {
+        window.top.bootboxConfirm = function (message, handleElement, acceptCallback) {
+            console.log(message);
+            console.log(handleElement);
             acceptCallback();
         };
 
         buildWrapper();
 
         props.viewModel[0].Suspended = !props.viewModel[0].Suspended;
-        wrapper.find('.btn-submit').simulate('click');
+        wrapper.find(submitClass).simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 

@@ -43,22 +43,26 @@ export const closeLeftPanelOnMobile = () => {
 
 export const formatMessage = message => message.replace(/\\n/g, '<br />');
 
-export const usernameRegExp = (message, username) => message.replace(/<username>/g, username);
+export const usernameRegExp = (message, username) => message.replace('<username>', username);
 
 const viewportMetaData = 'head meta[name=viewport]';
 
+const buildViewportMetaContent = (initialScale, userScalable) => `<meta name='viewport' content='width=device-width, initial-scale=${initialScale}, user-scalable=${userScalable}' />`;
+
 export const zoomDisable = () => {
     $(viewportMetaData).remove();
-    $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />');
+    $('head').prepend(buildViewportMetaContent('1.0', 'no'));
 
     window.top.$(viewportMetaData).remove();
-    window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=no" />');
+    window.top.$('head').prepend(buildViewportMetaContent('0.7', 'no'));
 };
 
 export const zoomEnable = () => {
+    const metaDataContent = buildViewportMetaContent('0.7', 'yes');
+
     $(viewportMetaData).remove();
-    $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
+    $('head').prepend(metaDataContent);
 
     window.top.$(viewportMetaData).remove();
-    window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
+    window.top.$('head').prepend(metaDataContent);
 };

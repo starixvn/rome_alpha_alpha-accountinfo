@@ -3,6 +3,7 @@ import { unsuspendAPI } from '../unsuspend-api';
 import { BodyRowContent, FooterContent } from './unsuspend-single-components';
 import { usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 import { viewInfomation } from '../unsuspend-helper';
+import { handleErrors } from '../../../../Shared/Scripts/api-client';
 
 export default class UnsuspendSingle extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export default class UnsuspendSingle extends React.Component {
         const self = this;
 
         unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendSingle', { SearchAccountId: viewModel.SearchAccountId })
-            .then((data) => {
+            .then(data => {
                 const message = <div className='msg-container'>
                     <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
                         {data.IsSuccess ? resources.UpdateSuccessfully : data.Message.trim()}
@@ -47,7 +48,8 @@ export default class UnsuspendSingle extends React.Component {
                 }
 
                 $.unblockUI();
-            });
+            })
+            .catch(err => handleErrors(err));
     }
 
     handleSubmit(e) {

@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import '../../../../../__mocks__/global.mock';
 import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
-import UnsuspendMultipleContainer from 'UnsuspendMultipleContainer';
-import {renderUnsuspendMultipe} from 'UnsuspendMultipleContainer';
+import UnsuspendMultipleContainer, { renderUnsuspendMultipe } from 'UnsuspendMultipleContainer';
 import UnsuspendViewList from 'UnsuspendViewList';
 import UnsuspendMultiple from 'UnsuspendMultiple';
 import { resources, responseUnsuspendMultipleData } from '../unspend-downlines-resources.mock';
@@ -39,7 +38,7 @@ describe('UnsuspendSingleContainer', () => {
             resources
         };
 
-        wrapper = undefined;
+        wrapper = null;
     });
 
     const buildWrapper = () => {
@@ -91,7 +90,7 @@ describe('UnsuspendSingleContainer', () => {
 
     test.each([[true], [false]])(
         'Change suspended status of all row when click toggle all',
-        (suspended) => {
+        suspended => {
             buildWrapper();
             wrapper.instance().toggleSuspendAll(suspended);
             expect(wrapper.state().viewModel[0].Suspended).toBe(suspended);

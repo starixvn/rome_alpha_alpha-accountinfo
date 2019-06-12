@@ -5,6 +5,7 @@ import CellContainNumberFormat from './components/common/cell-contain-number-for
 import { accountInfoAPI } from './accountinfo-api';
 import { UserLevel } from './constants';
 import { decodeResources } from './helpers/accountinfo-helper';
+import { handleErrors } from '../../../Shared/Scripts/api-client';
 
 class GivenCredit extends React.Component {
     constructor(props) {
@@ -66,24 +67,26 @@ class GivenCredit extends React.Component {
             CreditAmount: newGivenCredit
         };
 
-        accountInfoAPI.updateGivenCredit(params).then(data => {
-            self.setState({
-                hideMessages: false,
-                message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
-                updateSuccess: data.IsSuccess
-            });
+        accountInfoAPI.updateGivenCredit(params)
+            .then(data => {
+                self.setState({
+                    hideMessages: false,
+                    message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
+                    updateSuccess: data.IsSuccess
+                });
 
-            const timeoutDefault = 1500;
-            if (data.IsSuccess) {
-                setTimeout(() => {
-                    window.top.realoadLeftPanel = true;
-                    window.top.closedPopup = true;
-                    window.top.ageWnd.close();
-                }, timeoutDefault);
-            }
+                const timeoutDefault = 1500;
+                if (data.IsSuccess) {
+                    setTimeout(() => {
+                        window.top.realoadLeftPanel = true;
+                        window.top.closedPopup = true;
+                        window.top.ageWnd.close();
+                    }, timeoutDefault);
+                }
 
-            $.unblockUI();
-        });
+                $.unblockUI();
+            })
+            .catch(err => handleErrors(err));
     }
 
     buildRow(title, value) {
