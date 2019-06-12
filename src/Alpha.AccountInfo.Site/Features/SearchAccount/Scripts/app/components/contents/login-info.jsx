@@ -40,9 +40,7 @@ const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
 
     return <div className='login-info'>
         {
-            loginInfoPropsArray.map((loginInfoProps, index) => {
-                return <LoginInfoRow {...loginInfoProps} key={index} />;
-            })
+            loginInfoPropsArray.map((loginInfoProps, index) => <LoginInfoRow {...loginInfoProps} key={index} />)
         }
         <LoginInfoWithLinkRow
             {...{

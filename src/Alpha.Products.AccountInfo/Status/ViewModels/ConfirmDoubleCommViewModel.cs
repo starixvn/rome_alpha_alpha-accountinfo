@@ -16,10 +16,18 @@
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsAllowedDoubleComm);
 
-        internal override string SuffixMessage => 
-            Request.SearchAccount.IsMember ?
-                    Checked ? "InCaseDisabledMemberMessage" : "InCaseEnabledMemberMessage" :
-                    Checked ? "InCaseDisabledMasterOrAgentMessage" : "InCaseEnableMasterOrAgentMessage";
+        internal override string SuffixMessage
+        {
+            get
+            {
+                if(Request.SearchAccount.IsMember)
+                {
+                    return Checked ? "InCaseDisabledMemberMessage" : "InCaseEnabledMemberMessage";
+                }
+
+                return Checked ? "InCaseDisabledMasterOrAgentMessage" : "InCaseEnableMasterOrAgentMessage";
+            }
+        }
 
         internal override string StatusName => DataKey.StatusMapping.DoubleComm;
 

@@ -73,12 +73,13 @@ class GivenCredit extends React.Component {
                 updateSuccess: data.IsSuccess
             });
 
+            const timeoutDefault = 1500;
             if (data.IsSuccess) {
                 setTimeout(() => {
                     window.top.realoadLeftPanel = true;
                     window.top.closedPopup = true;
                     window.top.ageWnd.close();
-                }, 1500);
+                }, timeoutDefault);
             }
 
             $.unblockUI();
@@ -126,7 +127,7 @@ class GivenCredit extends React.Component {
     }
 
     render() {
-        const rowClasses = "col-xs-12 form-group";
+        const rowClasses = 'col-xs-12 form-group';
         const { newGivenCredit, updateSuccess, message, hideMessages, resources } = this.state;
         const { currentGivenCredit } = this.props;
 
@@ -147,7 +148,7 @@ class GivenCredit extends React.Component {
                         decimalScale={2}
                         onKeyPress={this.handleKeyPress}
                         onValueChange={values => {
-                            const { formattedValue, value, floatValue } = values;
+                            const { floatValue } = values;
                             this.setState({ newGivenCredit: floatValue === undefined ? 0 : floatValue });
                         }}
                     />

@@ -4,7 +4,7 @@ export const Scale = 0.7;
 export const mobileScale = value => value / Scale;
 
 export const decodeResources = resources => {
-    for (let key in resources) {
+    for (const key in resources) {
         resources[key] = htmlDecode(resources[key]);
     }
 
@@ -41,26 +41,24 @@ export const closeLeftPanelOnMobile = () => {
     }
 };
 
-export const formatMessage = message => {
-    return message.replace(/\\n/g, '<br />');
-};
+export const formatMessage = message => message.replace(/\\n/g, '<br />');
 
-export const usernameRegExp = (message, username) => {
-    return message.replace(/<username>/g, username);
-};
+export const usernameRegExp = (message, username) => message.replace(/<username>/g, username);
+
+const viewportMetaData = 'head meta[name=viewport]';
 
 export const zoomDisable = () => {
-    $('head meta[name=viewport]').remove();
+    $(viewportMetaData).remove();
     $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />');
 
-    window.top.$('head meta[name=viewport]').remove();
+    window.top.$(viewportMetaData).remove();
     window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=no" />');
 };
 
 export const zoomEnable = () => {
-    $('head meta[name=viewport]').remove();
+    $(viewportMetaData).remove();
     $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
 
-    window.top.$('head meta[name=viewport]').remove();
+    window.top.$(viewportMetaData).remove();
     window.top.$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />');
 };

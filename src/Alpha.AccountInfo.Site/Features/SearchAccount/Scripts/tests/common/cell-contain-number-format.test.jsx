@@ -9,8 +9,9 @@ import CustomAnchorTag from 'CustomAnchorTag';
 describe('CellContainNumberFormat', () => {
     let props;
     let mountCellContainNumberFormat;
+    const ip = '192.168.1.1';
 
-    const cellContainNumberFormat = (value = 0, hrefLink = '192.168.1.1') => {
+    const cellContainNumberFormat = (value = 0, hrefLink = ip) => {
         props.value = value;
         props.hrefLink = hrefLink;
 
@@ -30,7 +31,7 @@ describe('CellContainNumberFormat', () => {
             hrefLink: undefined
         };
 
-        mountCellContainNumberFormat = undefined;
+        mountCellContainNumberFormat = null;
     });
 
     test('renders without crashing', () => {
@@ -53,13 +54,13 @@ describe('CellContainNumberFormat', () => {
     });
 
     test.each([
-        [-1, '192.168.1.1', 1],
+        [-1, ip, 1],
         [-1, '', 0],
         [-1, null, 0],
-        [0, '192.168.1.1', 1],
+        [0, ip, 1],
         [0, '', 0],
         [0, null, 0],
-        [1, '192.168.1.1', 1],
+        [1, ip, 1],
         [1, '', 0],
         [1, null, 0]])(
         'renders correct `CustomAnchorTag`',
@@ -70,13 +71,13 @@ describe('CellContainNumberFormat', () => {
     );
 
     test.each([
-        [-1, '192.168.1.1', 0],
+        [-1, ip, 0],
         [-1, '', 1],
         [-1, null, 1],
-        [0, '192.168.1.1', 0],
+        [0, ip, 0],
         [0, '', 1],
         [0, null, 1],
-        [1, '192.168.1.1', 0],
+            [1, ip, 0],
         [1, '', 1],
         [1, null, 1]])(
         'renders correct a span contain value',
@@ -87,13 +88,13 @@ describe('CellContainNumberFormat', () => {
     );
 
     test.each([
-        [-1, '192.168.1.1', 0],
+        [-1, ip, 0],
         [-1, '', 0],
         [-1, null, 0],
-        [0, '192.168.1.1', 1],
+        [0, ip, 1],
         [0, '', 1],
         [0, null, 1],
-        [1, '192.168.1.1', 0],
+        [1, ip, 0],
         [1, '', 1],
         [1, null, 1]])(
         'renders correct `.number` class',
@@ -105,13 +106,13 @@ describe('CellContainNumberFormat', () => {
 
 
     test.each([
-        [-1, '192.168.1.1', 0],
+        [-1, ip, 0],
         [-1, '', 0],
         [-1, null, 0],
-        [0, '192.168.1.1', 0],
+        [0, ip, 0],
         [0, '', 0],
         [0, null, 0],
-        [1, '192.168.1.1', 1],
+        [1, ip, 1],
         [1, '', 0],
         [1, null, 0]])(
         'renders correct `.number-link` class',
@@ -122,13 +123,13 @@ describe('CellContainNumberFormat', () => {
     );
 
     test.each([
-        [-1, '192.168.1.1', 1],
+        [-1, ip, 1],
         [-1, '', 1],
         [-1, null, 1],
-        [0, '192.168.1.1', 0],
+        [0, ip, 0],
         [0, '', 0],
         [0, null, 0],
-        [1, '192.168.1.1', 0],
+        [1, ip, 0],
         [1, '', 0],
         [1, null, 0]])(
         'renders correct `.number-red` class',

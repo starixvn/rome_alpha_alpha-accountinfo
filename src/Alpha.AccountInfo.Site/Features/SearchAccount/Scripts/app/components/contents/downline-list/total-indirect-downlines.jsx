@@ -19,7 +19,7 @@ const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
     let TotalActive = 0, TotalClosed = 0, TotalSuspended = 0;
 
     if (typeof totalIndirectDownline !== 'undefined' && totalIndirectDownline !== null) {
-        TotalActive = totalIndirectDownline.TotalActive
+        TotalActive = totalIndirectDownline.TotalActive;
         TotalClosed = totalIndirectDownline.TotalClosed;
         TotalSuspended = totalIndirectDownline.TotalSuspended;
     }
@@ -64,9 +64,7 @@ const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
         <div>
             {
                 statusTooltips.map(
-                    (tooltip, index) => {
-                        return <DownlineStatusTooltip {...tooltip} key={index} />;
-                    })
+                    (tooltip, index) => <DownlineStatusTooltip {...tooltip} key={index} />)
             }
         </div>;
 
@@ -76,9 +74,7 @@ const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
         arrow: 'true',
         theme: 'light',
         html: tooltipHtml,
-        children: statusContents.map((statusContent, index) => {
-            return <StatusInfo {...statusContent} key={index} />;
-        })
+        children: statusContents.map((statusContent, index) => <StatusInfo {...statusContent} key={index} />)
     };
 
     return <div className='col-xs-12 row-info'>

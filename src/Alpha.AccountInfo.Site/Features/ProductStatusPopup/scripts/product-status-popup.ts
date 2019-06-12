@@ -9,7 +9,6 @@ class ProductStatusPopup {
     custId: number;
     custRoleId: number;
     token: string;
-    timeout: number;
 
     constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
@@ -28,7 +27,6 @@ class ProductStatusPopup {
         this.custId = this.$("#hiddenCustId").val();
         this.custRoleId = this.$("#hiddenCustRoleId").val();
         this.token = this.$("input[name=\"__RequestVerificationToken\"]", this.$formProductStatus).val();
-        this.timeout = 1500;
     };
 
     registerEvents = (): void => {
@@ -68,7 +66,7 @@ class ProductStatusPopup {
             isDisabled: boolean,
             oldValue: boolean;
         const self = this;
-        let betTypeStatus = [];
+        const betTypeStatus = [];
 
         this.$("input[type='checkbox']").each(function (): void {
             checkbox = self.$(this);
@@ -96,7 +94,7 @@ class ProductStatusPopup {
 
     afterUpdateStatusSuccessfully = (data: any): void => {
         const code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode,
-            messsage = data.Message || data.ErrMsg;
+            messsage = data.Message || data.ErrMsg, timeoutDefault = 1500;
 
         if (code !== 0) {
             this.showError(messsage);
@@ -105,7 +103,7 @@ class ProductStatusPopup {
             setTimeout(() => {
                 this.topWindow.realoadLeftPanel = true;
                 this.topWindow.ageWnd.close();
-            }, this.timeout);
+            }, timeoutDefault);
         }
     };
 

@@ -35,8 +35,15 @@ describe('UnsuspendSingle', () => {
     });
 
     const buildWrapper = () => {
+        const div = document.createElement('div');
+        const input = document.createElement('input');
+        input.name = '__RequestVerificationToken';
+        input.value = '';
+
+        global.document.body.appendChild(div);
+        global.document.body.appendChild(input);
         if (!wrapper) {
-            wrapper = mount(<UnsuspendSingle {...props} />);
+            wrapper = mount(<UnsuspendSingle {...props} />, { hydrateIn: div });
         }
 
         return wrapper;

@@ -8,7 +8,7 @@ export default class GivenCreditRow extends React.Component {
         super(props);
         this.handleOpenGivenCreditPopup = this.handleOpenGivenCreditPopup.bind(this);
         this.reloadBalanceInfo = this.reloadBalanceInfo.bind(this);
-        this.timer = undefined;
+        this.timer = null;
     }
 
     componentWillUnmount() {

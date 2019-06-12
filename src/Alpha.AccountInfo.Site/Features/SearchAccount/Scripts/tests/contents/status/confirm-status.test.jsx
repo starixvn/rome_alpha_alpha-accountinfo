@@ -51,8 +51,15 @@ describe('ConfirmStatus', () => {
     });
 
     const buildWrapper = () => {
+        const div = document.createElement('div');
+        const input = document.createElement('input');
+        input.name = '__RequestVerificationToken';
+        input.value = '';
+
+        global.document.body.appendChild(div);
+        global.document.body.appendChild(input);
         if (!wrapper) {
-            wrapper = mount(<ConfirmStatus {...props} />);
+            wrapper = mount(<ConfirmStatus {...props} />, { hydrateIn: div });
         }
 
         return wrapper;

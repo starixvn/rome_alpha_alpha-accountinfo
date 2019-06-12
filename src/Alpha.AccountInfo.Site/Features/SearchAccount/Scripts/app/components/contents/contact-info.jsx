@@ -47,9 +47,8 @@ const ContactInfo = ({ resources, customerInfo }) => {
 
     return <div>
         {
-            contactInfoPropsArray.map((contactInfoProps, index) => {
-                return contactInfoProps.visible && <ContactInfoRow {...contactInfoProps} key={index} />;
-            })
+            contactInfoPropsArray.map((contactInfoProps, index) =>
+                contactInfoProps.visible && <ContactInfoRow {...contactInfoProps} key={index} />)
         }
     </div>;
 };

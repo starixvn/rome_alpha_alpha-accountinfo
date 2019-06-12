@@ -20,10 +20,18 @@
 
         public override bool ReloadCustomerInfo => true;
 
-        internal override string SuffixMessage =>
-            Request.SearchAccount.IsMember ?
-                    Checked ? "InCaseUnsuspendedMemberMessage" : "InCaseSuspendedMemberMessage" :
-                    Checked ? "InCaseUnsuspendedMasterOrAgentMessage" : "InCaseSuspendedMasterOrAgentMessage";
+        internal override string SuffixMessage
+        {
+            get
+            {
+                if (Request.SearchAccount.IsMember)
+                {
+                    return Checked ? "InCaseUnsuspendedMemberMessage" : "InCaseSuspendedMemberMessage";
+                }
+
+                return Checked ? "InCaseUnsuspendedMasterOrAgentMessage" : "InCaseSuspendedMasterOrAgentMessage";
+            }
+        }
 
         internal override string StatusName => DataKey.StatusMapping.Suspended;
 

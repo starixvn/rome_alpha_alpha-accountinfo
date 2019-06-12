@@ -6,7 +6,7 @@ export default class ProductLevelStatus extends React.Component {
         super(props);
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
         this.reloadCustomerStatus = this.reloadCustomerStatus.bind(this);
-        this.timer = undefined;
+        this.timer = null;
     }
 
     componentWillUnmount() {

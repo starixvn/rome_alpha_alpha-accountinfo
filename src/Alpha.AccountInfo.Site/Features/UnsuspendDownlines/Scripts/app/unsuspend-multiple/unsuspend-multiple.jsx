@@ -21,7 +21,7 @@ export default class UnsuspendMultiple extends React.Component {
         $.blockUI();
         const self = this;
         const { viewModel, originalViewModel } = this.props;
-        let params = [];
+        const params = [];
 
         viewModel.map(function (item, index) {
             if (item.Suspended !== originalViewModel[index].Suspended) {
@@ -36,6 +36,7 @@ export default class UnsuspendMultiple extends React.Component {
         unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: params })
             .then((data) => {
                 let isSuccess = true;
+                const timeoutDefault = 3000;
                 const message = <div className='msg-container'>
                     {
                         data.Results.map((result, index) => {
@@ -58,7 +59,7 @@ export default class UnsuspendMultiple extends React.Component {
                     window.top.main.DelayReloadPage();
                     setTimeout(() => {
                         window.top.ageWnd.close();
-                    }, 3000);
+                    }, timeoutDefault);
                 }
 
                 $.unblockUI();

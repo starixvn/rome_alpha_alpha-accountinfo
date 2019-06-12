@@ -33,12 +33,19 @@ describe('UnsuspendMultiple', () => {
         mockAxios.reset();
         clock.restore();
         props = null;
-        wrapper = undefined;
+        wrapper = null;
     });
 
     const buildWrapper = () => {
+        const div = document.createElement('div');
+        const input = document.createElement('input');
+        input.name = '__RequestVerificationToken';
+        input.value = '';
+
+        global.document.body.appendChild(div);
+        global.document.body.appendChild(input);
         if (!wrapper) {
-            wrapper = mount(<UnsuspendMultiple {...props} />);
+            wrapper = mount(<UnsuspendMultiple {...props} />, { hydrateIn: div });
         }
 
         return wrapper;
@@ -172,6 +179,7 @@ describe('UnsuspendMultiple', () => {
           }
         });
 
+       expect(wrapper.instance().state.hideMessages).toBeFalsy();
        expect(wrapper.find('.msg-error').length).toBe(1);
        expect(window.top.main.DelayReloadPage).toHaveBeenCalledTimes(0);
 
