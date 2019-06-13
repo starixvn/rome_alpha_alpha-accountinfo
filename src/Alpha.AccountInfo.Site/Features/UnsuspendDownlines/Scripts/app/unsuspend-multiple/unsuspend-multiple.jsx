@@ -18,7 +18,7 @@ export default class UnsuspendMultiple extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    doUpdate(e) {
+    doUpdate() {
         $.blockUI();
         const self = this;
         const { viewModel, originalViewModel } = this.props;
@@ -68,7 +68,7 @@ export default class UnsuspendMultiple extends React.Component {
             .catch(err => handleErrors(err));
     }
 
-    handleSubmit(e) {
+    handleSubmit() {
         const { resources } = this.props;
         window.top.bootboxConfirm(
             resources.MultipleConfirm,
@@ -80,7 +80,7 @@ export default class UnsuspendMultiple extends React.Component {
     render() {
         const { viewModel, originalViewModel, searchAccountRoleId, toggleSuspendAll, handleChange, redirectViewListDetail, handleReset, resources } = this.props,
             isNotMember = searchAccountRoleId > 1,
-            headers = searchAccountRoleId == 3 ?
+            headers = searchAccountRoleId === 3 ?
                 [resources.AffectedDownlinesAgentMember, resources.RemainUnchangedDownlinesAgentMember] :
                 [resources.AffectedDownlinesMember, resources.RemainUnchangedDownlinesMember];
 

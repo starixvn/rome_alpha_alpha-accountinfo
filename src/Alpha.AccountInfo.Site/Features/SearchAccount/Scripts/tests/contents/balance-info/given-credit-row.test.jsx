@@ -12,10 +12,7 @@ import * as accountInfoHelper from 'AccountInfoHelper';
 
 describe('GivenCreditRow', () => {
     let props;
-    global.accountInfoSiteAppPath= '/accountInfo-site';
-    global.top.ageWnd =  {
-        open: jest.fn()
-    };
+    const givenCreditId = '#given-credit-popup';
 
     beforeEach(() => {
         props = {
@@ -55,7 +52,7 @@ describe('GivenCreditRow', () => {
             const spy = sinon.spy(GivenCreditRow.prototype, 'handleOpenGivenCreditPopup');
             const wrapper = shallow(<GivenCreditRow {...props} />);
             
-            wrapper.find('#given-credit-popup').simulate('click');
+            wrapper.find(givenCreditId).simulate('click');
             expect(spy.calledOnce).toBeTruthy();
         });
 
@@ -66,7 +63,7 @@ describe('GivenCreditRow', () => {
                 accountInfoHelper.resizePopupOnMobile = jest.fn();
 
                 const wrapper = shallow(<GivenCreditRow {...props} />);
-                wrapper.find('#given-credit-popup').simulate('click');
+                wrapper.find(givenCreditId).simulate('click');
                 expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(expectedCallTimes);
                 }
         );
@@ -76,7 +73,7 @@ describe('GivenCreditRow', () => {
             (closedPopup, realoadLeftPanel, expectedCallTimes) => {
 
                 const wrapper = shallow(<GivenCreditRow {...props} />);
-                wrapper.find('#given-credit-popup').simulate('click');
+                wrapper.find(givenCreditId).simulate('click');
 
                 global.top.closedPopup = closedPopup;
                 global.top.realoadLeftPanel = realoadLeftPanel;

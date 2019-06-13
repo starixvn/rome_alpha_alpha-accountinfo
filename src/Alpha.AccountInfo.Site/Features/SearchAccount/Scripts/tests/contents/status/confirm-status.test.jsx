@@ -11,6 +11,7 @@ import mockAxios from 'jest-mock-axios';
 
 describe('ConfirmStatus', () => {
     let props, wrapper, event, clock;
+    const confirmClosed = '#confirm-2';
 
     beforeEach(() => {
         props = {
@@ -46,8 +47,8 @@ describe('ConfirmStatus', () => {
         mockAxios.reset();
         clock.restore();
         props = null;
-        wrapper = undefined;
-        event = undefined;
+        wrapper = null;
+        event = null;
     });
 
     const buildWrapper = () => {
@@ -80,7 +81,7 @@ describe('ConfirmStatus', () => {
         global.top.bootboxConfirm = jest.fn();
         const spy = sinon.spy(ConfirmStatus.prototype, 'handleOpenPopup');
         buildWrapper();
-        wrapper.find('#confirm-2').simulate('click');
+        wrapper.find(confirmClosed).simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 
@@ -109,7 +110,7 @@ describe('ConfirmStatus', () => {
             accountInfoHelper.resizeBootboxOnMobile = jest.fn();
 
             buildWrapper();
-            wrapper.find('#confirm-2').simulate('click');
+            wrapper.find(confirmClosed).simulate('click');
             expect(accountInfoHelper.resizeBootboxOnMobile).toBeCalledTimes(expectedCallTimes);
         }
     );
@@ -120,7 +121,7 @@ describe('ConfirmStatus', () => {
             props.status.Disabled = disabled;
             global.top.bootboxConfirm = jest.fn();
             buildWrapper();
-            wrapper.find('#confirm-2').simulate('click');
+            wrapper.find(confirmClosed).simulate('click');
             expect(global.top.bootboxConfirm).toBeCalledTimes(expectedCallTimes);
         }
     );
@@ -128,10 +129,13 @@ describe('ConfirmStatus', () => {
     test('updateCustomerStatus() called when clicked', () => {
         props.status.Disabled = false;
         const spy = jest.spyOn(ConfirmStatus.prototype, 'updateCustomerStatus');
-        global.top.bootboxConfirm = (message, target, spy) => spy();
+        window.top.bootboxConfirm = function (message, handleElement, acceptCallback) {
+            acceptCallback(message, handleElement);
+        };
+
         buildWrapper();
 
-        wrapper.find('#confirm-2').simulate('click');
+        wrapper.find(confirmClosed).simulate('click');
         expect(spy).toHaveBeenCalledTimes(1);
     });
 

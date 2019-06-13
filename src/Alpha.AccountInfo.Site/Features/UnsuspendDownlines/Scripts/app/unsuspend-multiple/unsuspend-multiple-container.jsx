@@ -32,7 +32,7 @@ class UnsuspendMultipleContainer extends React.Component {
 
     correctData() {
         const { viewModel, searchAccountRoleId } = this.props;
-        _.forEach(viewModel, function (dataRow, index, arr) {
+        _.forEach(viewModel, function (dataRow) {
             let currentLevel = dataRow.Downlines.length;
             while (currentLevel < searchAccountRoleId - 1) {
                 dataRow.Downlines.push({
@@ -48,8 +48,8 @@ class UnsuspendMultipleContainer extends React.Component {
     }
 
     handleReset() {
-        this.setState((prevState) => ({
-            viewModel: prevState.originalViewModel,
+        this.setState(prevState => ({
+            viewModel: prevState.originalViewModel
         }));
     }
 

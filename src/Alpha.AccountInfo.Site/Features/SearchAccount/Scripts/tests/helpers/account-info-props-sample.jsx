@@ -98,5 +98,5 @@ export const AccountInfoProps = {
                     handleOpenIPInfo={jest.fn()}
                 />
         }
-    },
+    }
 };

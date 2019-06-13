@@ -17,7 +17,7 @@ export default class UnsuspendSingle extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    doUpdate(e) {
+    doUpdate() {
         $.blockUI();
         const { resources, viewModel } = this.props;
         const self = this;
@@ -54,7 +54,7 @@ export default class UnsuspendSingle extends React.Component {
 
     handleSubmit(e) {
         const { resources, viewModel } = this.props;
-        const message = viewModel.AffectedDownlinesTotal + viewModel.UnchangedDownlinesTotal == 0 ?
+        const message = viewModel.AffectedDownlinesTotal + viewModel.UnchangedDownlinesTotal === 0 ?
             resources.UnsuspendedWithNoDownlinesMessages :
             resources.MultipleConfirm;
 

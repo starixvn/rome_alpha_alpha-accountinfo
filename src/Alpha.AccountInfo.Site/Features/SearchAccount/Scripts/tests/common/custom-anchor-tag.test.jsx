@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import CustomAnchorTag from 'CustomAnchorTag';
 import * as accountInfoHelper from 'AccountInfoHelper';

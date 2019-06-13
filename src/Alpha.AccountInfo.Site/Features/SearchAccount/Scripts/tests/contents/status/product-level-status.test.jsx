@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import '../../../../../../__mocks__/global.mock';
 import renderer from 'react-test-renderer';
@@ -32,7 +32,7 @@ describe('ProductLevelStatus', () => {
 
     afterEach(() => {
         props = null;
-        wrapper = undefined;
+        wrapper = null;
         clock.restore();
     });
 
@@ -42,7 +42,7 @@ describe('ProductLevelStatus', () => {
         }
 
         return wrapper;
-    }
+    };
 
     test('renders without crashing', () => {
         const div = document.createElement('div');

@@ -2,13 +2,15 @@
 import { HashRouter, Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import sinon from 'sinon';
-import { mount, shallow } from "enzyme";
+import { mount, shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import '../../../../../__mocks__/global.mock';
 import ContentMobile from 'ContentMobile';
 import { CustomLink, ContentPage, FeatureListPage } from 'ContentMobile';
 import { AccountInfoProps } from '../helpers/account-info-props-sample';
 import 'babel-polyfill';
+
+const renderWithoutCrashing = 'renders without crashing';
 
 describe('CustomLink', () => {
     let props;
@@ -37,7 +39,7 @@ describe('ContentPage', () => {
         };
     });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrashing, () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <HashRouter>
@@ -70,7 +72,7 @@ describe('FeatureListPage', () => {
         };
     });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrashing, () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <HashRouter>
@@ -124,7 +126,7 @@ describe('ContentMobile', () => {
         shouldComponentUpdateSpy.restore();
       });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrashing, () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <HashRouter>

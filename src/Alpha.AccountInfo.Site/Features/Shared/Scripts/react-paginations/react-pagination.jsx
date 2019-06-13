@@ -3,8 +3,25 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import AutosizeInput from './autosize-input';
 
-const limit = (value, min, max) => {
-    return Math.max(min, Math.min(max, value));
+const limit = (value, min, max) => Math.max(min, Math.min(max, value));
+
+export const PaginationButton = ({ disabled, page, pageRender, changePage, setCurrentPage }) => {
+    return <div
+        className={classNames({
+            ['disabled']: disabled
+        })}
+    >
+        <div
+            className='page-button'
+            disabled={disabled}
+            onClick={() => {
+                setCurrentPage(page);
+                changePage({ page: page });
+            }}
+        >
+            {pageRender()}
+        </div>
+    </div>;
 };
 
 class ReactPagination extends React.Component {
@@ -82,8 +99,8 @@ class ReactPagination extends React.Component {
                     <div>
                         <select className='pagination-page-list'
                             value={pageLength}
-                            onChange={(e) => {
-                                const pageSize = parseFloat(e.currentTarget.value);
+                            onChange={event => {
+                                const pageSize = parseFloat(event.currentTarget.value);
                                 this.changePage({
                                     page: (pageSize !== pageLength) ? 1 : page,
                                     pageLength: pageSize
@@ -120,23 +137,21 @@ class ReactPagination extends React.Component {
                             {`${pageResource} `}
                             <AutosizeInput
                                 value={this.state.page}
-                                onChange={(event) => {
-                                    const page = Number(event.target.value);
-                                    if (isNaN(page)) {
+                                onChange={event => {
+                                    const nextPage = Number(event.target.value);
+                                    if (isNaN(nextPage)) {
                                         return;
                                     }
-                                    this.setState({ page: limit(page, 1, totalPages) });
+                                    this.setState({ page: limit(nextPage, 1, totalPages) });
                                 }}
-                                onKeyPress={(event) => {
+                                onKeyPress={event => {
                                     if (event.key !== 'Enter') {
                                         return;
                                     }
 
-                                    let { page } = this.state;
-                                    page = limit(page, 1, totalPages);
-
-                                    this.setCurrentPage(page);
-                                    this.changePage({ page: page });
+                                    const nextPage = limit(this.state.page, 1, totalPages);
+                                    this.setCurrentPage(nextPage);
+                                    this.changePage({ page: nextPage });
                                 }}
                             />
                             {` ${ofResource} `}
@@ -167,25 +182,6 @@ class ReactPagination extends React.Component {
     }
 }
 
-export const PaginationButton = ({ disabled, page, pageRender, changePage, setCurrentPage }) => {
-    return <div
-        className={classNames({
-            ['disabled']: disabled
-        })}
-    >
-        <div
-            className='page-button'
-            disabled={disabled}
-            onClick={(event) => {
-                setCurrentPage(page);
-                changePage({ page: page });
-            }}
-        >
-            {pageRender()}
-        </div>
-    </div>;
-};
-
 ReactPagination.propTypes = {
     pageResource: PropTypes.string,
     ofResource: PropTypes.string,
@@ -209,21 +205,11 @@ ReactPagination.defaultProps = {
     pageLengthMenu: [50, 100, 200, 500],
     totalRecords: 0,
     onPageChange: () => { },
-    prevPageRenderer: () => {
-        return '‹';
-    },
-    nextPageRenderer: () => {
-        return '›';
-    },
-    firstPageRenderer: () => {
-        return '‹‹';
-    },
-    lastPageRenderer: () => {
-        return '››';
-    },
-    pageRecordsRenderer: ({ totalRecords, from, to }) => {
-        return `Displaying ${from} to ${to} of ${totalRecords}`;
-    }
+    prevPageRenderer: () => '‹',
+    nextPageRenderer: () => '›',
+    firstPageRenderer: () => '‹‹',
+    lastPageRenderer: () => '››',
+    pageRecordsRenderer: ({ totalRecords, from, to }) => `Displaying ${from} to ${to} of ${totalRecords}`
 };
 
 export default ReactPagination;

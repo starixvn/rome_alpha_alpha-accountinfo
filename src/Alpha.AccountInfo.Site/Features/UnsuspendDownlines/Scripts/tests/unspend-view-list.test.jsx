@@ -23,10 +23,10 @@ describe('UnsuspendViewList', () => {
 
     afterEach(() => {
         mockAxios.reset();
-        wrapper = undefined;
+        wrapper = null;
     });
 
-    const buildWrapper = (totalRows) => {
+    const buildWrapper = totalRows => {
         if (!wrapper) {
             responseViewListData.Data.TotalRows = totalRows;
             wrapper = mount(<UnsuspendViewList {...props} />);

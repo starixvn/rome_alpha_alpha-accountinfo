@@ -20,7 +20,7 @@ export const getUserLevelName = (levelRoleId, resources) => {
     })[0].LevelName;
 };
 
-export const viewInfomation = (resources) => {
+export const viewInfomation = resources => {
     const style = `style='padding-left: 15px;'`;
     const messages = `<div>
             <div> ${resources.ViewInformation1}</div>

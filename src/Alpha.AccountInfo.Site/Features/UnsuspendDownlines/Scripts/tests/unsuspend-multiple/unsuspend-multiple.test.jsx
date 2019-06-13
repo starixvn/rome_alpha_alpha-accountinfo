@@ -137,9 +137,7 @@ describe('UnsuspendMultiple', () => {
     test('#doUpdate called when clicked ok button on bootbox confirm', () => {
         const spy = sinon.spy(UnsuspendMultiple.prototype, 'doUpdate');
         window.top.bootboxConfirm = function (message, handleElement, acceptCallback) {
-            console.log(message);
-            console.log(handleElement);
-            acceptCallback();
+            acceptCallback(message, handleElement);
         };
 
         buildWrapper();

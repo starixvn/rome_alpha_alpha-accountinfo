@@ -33,7 +33,7 @@ describe('CustomerInfo', () => {
         }
 
         return customerInfoMount;
-    }
+    };
 
     test('renders without crashing', () => {
         const div = document.createElement('div');
@@ -91,7 +91,7 @@ describe('CustomerInfo', () => {
     test('searchCounter equal zero and desktop view always return null', () => {
         props.searchCounter = 0;
         props.mobileView = false;
-        let component = buildCustomerInfo(Super.ViewMasterInfo);
+        const component = buildCustomerInfo(Super.ViewMasterInfo);
 
         expect(component.html()).toBeNull();
     });
@@ -99,7 +99,7 @@ describe('CustomerInfo', () => {
     test('searchCounter equal zero and mobile view and customerinfo is null always return null', () => {
         props.searchCounter = 0;
         props.mobileView = false;
-        let component = buildCustomerInfo(null);
+        const component = buildCustomerInfo(null);
 
         expect(component.html()).toBeNull();
     });

@@ -25,12 +25,14 @@ export const Resources =  {
     ConfirmClosedViewModelInCaseChangeClosedStatusMessage: 'Are you sure you want to change Close status for this customer?',
     ConfirmClosedViewModelInCaseClosedDownlinesMessage: 'Are you sure you want to change Close status for this customer? Warning, all downlines will be closed as well!',
     ConfirmClosedViewModelText: 'Closed',
-    ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage: 'Are you sure you want to disallow Double Commission feature for Sportsbook&#39;s Losing tickets on this customer? Warning, all members under this agent will be disallowed as well!',
+    ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage:
+        'Are you sure you want to disallow Double Commission feature for Sportsbook&#39;s Losing tickets on this customer? Warning, all members under this agent will be disallowed as well!',
     ConfirmDoubleCommViewModelInCaseDisabledMemberMessage: 'Are you sure you want to turn OFF Double Commission feature for Sportsbook&#39;s Losing tickets on this customer?',
     ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage: 'Are you sure you want to allow Double Commission feature for Sportsbook&#39;s Losing tickets on this customer?',
     ConfirmDoubleCommViewModelInCaseEnabledMemberMessage: 'Are you sure you want to turn ON Double Commission feature for Sportsbook&#39;s Losing tickets on this customer?',
     ConfirmDoubleCommViewModelText: 'Double Comm',
-    ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage: 'Are you sure you want to change Suspend status for this customer? Warning, all members under this agent can&#39;t place bet!',
+    ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage:
+        'Are you sure you want to change Suspend status for this customer? Warning, all members under this agent can&#39;t place bet!',
     ConfirmSuspendedViewModelInCaseSuspendedMemberMessage: 'Are you sure you want to change Suspend status for this customer? Warning, this member can&#39;t place bet!',
     ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage: 'Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well.',
     ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage: 'Are you sure you want to change Suspend status for this customer?',
@@ -89,5 +91,5 @@ export const Resources =  {
     UserNamePlaceHolder: 'Username or First/Last Name',
     Viewlog: 'Viewlog',
     YesterdayBalance: 'Yesterday Balance',
-    YesterdayCash: 'Yesterday Cash',
+    YesterdayCash: 'Yesterday Cash'
 };

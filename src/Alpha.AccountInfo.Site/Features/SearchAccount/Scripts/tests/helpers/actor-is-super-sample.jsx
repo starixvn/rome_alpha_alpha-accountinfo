@@ -41,22 +41,22 @@ export const Super = {
             'ShowOutstandingLink': true,
             'ReportLink': {
                 'Text': 'Master Outstanding',
-                'Url': '/site-reports/(S(1dph53i1kjbpe3rfkuu3v0o5))/outstanding/Master?CustId=1382145&CustName=ACGUUS38&CustLevelId=3&BreadcrumbLevelJson=[{"CustId":615976,"CustName":"ACGUUS","CustLevelId":4}]'
+                'Url': '/site-reports/outstanding/Master?CustId=1382145&CustName=ACGUUS38&CustLevelId=3&BreadcrumbLevelJson=[{"CustId":615976,"CustName":"ACGUUS","CustLevelId":4}]'
             },
             'ShowTotalBalanceTransferLink': true,
-            'TotalBalanceTransferLink': '/ex-main/(S(1dph53i1kjbpe3rfkuu3v0o5))/_Transfer/Super/MasterTransfer.aspx?custid=1382145&status=1&CallBack=false&username=ACGUUS38&isyesterday=1&amt=3570652641.63',
+            'TotalBalanceTransferLink': '/ex-main/_Transfer/Super/MasterTransfer.aspx?custid=1382145&status=1&CallBack=false&username=ACGUUS38&isyesterday=1&amt=3570652641.63',
             'ShowYesterdayBalanceTransferLink': false,
-            'YesterdayBalanceTransferLink': '/ex-main/(S(1dph53i1kjbpe3rfkuu3v0o5))/_Transfer/Super/MasterTransfer.aspx?custid=1382145&status=1&CallBack=false&username=ACGUUS38&isyesterday=1&amt=3570652641.63',
-            'AccountInfoUrl': '/site-accountinfo/(S(1dph53i1kjbpe3rfkuu3v0o5))/'
+            'YesterdayBalanceTransferLink': '/ex-main/_Transfer/Super/MasterTransfer.aspx?custid=1382145&status=1&CallBack=false&username=ACGUUS38&isyesterday=1&amt=3570652641.63',
+            'AccountInfoUrl': '/site-accountinfo/'
         },
         'Buttons': [
             {
               'Text': 'Agent List',
-              'Url': '/ex-main/(S(f4sb1t0w01ikduv3vjido1ri))/_MemberInfo/CustomerList/Super/AgentList.aspx?custid=36204224'
+              'Url': '/ex-main/_MemberInfo/CustomerList/Super/AgentList.aspx?custid=36204224'
             },
             {
               'Text': 'Statement',
-              'Url': '/site-reports/(S(f4sb1t0w01ikduv3vjido1ri))/Statement/SMAStatement?CustID=36204224&CustName=DAVIDTEST13MAY00&CustLevelId=3'
+              'Url': '/site-reports/Statement/SMAStatement?CustID=36204224&CustName=DAVIDTEST13MAY00&CustLevelId=3'
             }
           ],
         'CustomerListOrBetListLink': {
@@ -117,36 +117,36 @@ export const Super = {
             'ShowOutstandingLink': true,
             'ReportLink': {
                 'Text': 'Agent Outstanding',
-                'Url': '/site-reports/(S(bziic25fy3e0mr3rhccrzvga))/outstanding/Master?CustId=1382167&CustName=ACGUUS3838&CustLevelId=2&BreadcrumbLevelJson=[{"CustId":615976,"CustName":"ACGUUS","CustLevelId":4},{"CustId":1382145,"CustName":"ACGUUS38","CustLevelId":3}]'
+                'Url': '/site-reports/outstanding/Master?CustId=1382167&CustName=ACGUUS3838&CustLevelId=2&BreadcrumbLevelJson=[{"CustId":615976,"CustName":"ACGUUS","CustLevelId":4},{"CustId":1382145,"CustName":"ACGUUS38","CustLevelId":3}]'
             },
             'ShowTotalBalanceTransferLink': false,
-            'TotalBalanceTransferLink': '/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_Transfer/Super/AgentTransfer.aspx?custid=1382167&status=1&CallBack=false&username=ACGUUS3838&isyesterday=1&amt=3523959670.04',
+            'TotalBalanceTransferLink': '/ex-main/_Transfer/Super/AgentTransfer.aspx?custid=1382167&status=1&CallBack=false&username=ACGUUS3838&isyesterday=1&amt=3523959670.04',
             'ShowYesterdayBalanceTransferLink': false,
-            'YesterdayBalanceTransferLink': '/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_Transfer/Super/AgentTransfer.aspx?custid=1382167&status=1&CallBack=false&username=ACGUUS3838&isyesterday=1&amt=3523959670.04',
-            'AccountInfoUrl': '/site-accountinfo/(S(bziic25fy3e0mr3rhccrzvga))/'
+            'YesterdayBalanceTransferLink': '/ex-main/_Transfer/Super/AgentTransfer.aspx?custid=1382167&status=1&CallBack=false&username=ACGUUS3838&isyesterday=1&amt=3523959670.04',
+            'AccountInfoUrl': '/site-accountinfo/'
         },
         'Buttons': [
             {
               'Text': 'Member List',
-              'Url': '/ex-main/(S(f4sb1t0w01ikduv3vjido1ri))/_MemberInfo/CustomerList/Super/MemberList.aspx?custid=36204326'
+              'Url': '/ex-main/_MemberInfo/CustomerList/Super/MemberList.aspx?custid=36204326'
             },
             {
               'Text': 'Statement',
-              'Url': '/site-reports/(S(f4sb1t0w01ikduv3vjido1ri))/Statement/SMAStatement?CustID=36204326&CustName=DAVIDTEST13MAY0000&CustLevelId=2'
+              'Url': '/site-reports/Statement/SMAStatement?CustID=36204326&CustName=DAVIDTEST13MAY0000&CustLevelId=2'
             }
           ],
         'CustomerListOrBetListLink': {
             'Text': 'Member List',
-            'Url': '/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167'
+            'Url': '/ex-main/_MemberInfo/CustomerList/Super/MemberList.aspx?custid=1382167'
         },
         'StatemenLink': {
             'Text': 'Statement',
-            'Url': '/site-reports/(S(bziic25fy3e0mr3rhccrzvga))/Statement/SMAStatement?CustID=1382167&CustName=ACGUUS3838&CustLevelId=2'
+            'Url': '/site-reports/Statement/SMAStatement?CustID=1382167&CustName=ACGUUS3838&CustLevelId=2'
         },
         'CanViewLog': true,
-        'ViewLogLink': '/site-viewlogs/(S(bziic25fy3e0mr3rhccrzvga))/setting/index?username=ACGUUS3838',
-        'ViewLoginIPLink': '/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_IPInfo/IpInfo.aspx',
-        'AccountInfoUrl': '/site-accountinfo/(S(bziic25fy3e0mr3rhccrzvga))/'
+        'ViewLogLink': '/site-viewlogs/setting/index?username=ACGUUS3838',
+        'ViewLoginIPLink': '/ex-main/_IPInfo/IpInfo.aspx',
+        'AccountInfoUrl': '/site-accountinfo/'
     },
     ViewMemberInfo:  {
         'CustId': 1382336,
@@ -188,21 +188,21 @@ export const Super = {
             'ShowOutstandingLink': false,
             'ReportLink': {
                 'Text': 'Outstanding',
-                'Url': '/site-betlists/(S(bziic25fy3e0mr3rhccrzvga))/RunningBetList/Index?CustID=1382336&amp;CustName=ACGUUS3838033&amp;GetAll=True'
+                'Url': '/site-betlists/RunningBetList/Index?CustID=1382336&amp;CustName=ACGUUS3838033&amp;GetAll=True'
             },
             'ShowTotalBalanceTransferLink': false,
-            'TotalBalanceTransferLink': '/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_Transfer/Agent/MemberTransfer.aspx?custid=1382336&CallBack=false',
+            'TotalBalanceTransferLink': '/ex-main/_Transfer/Agent/MemberTransfer.aspx?custid=1382336&CallBack=false',
             'ShowYesterdayBalanceTransferLink': false,
-            'YesterdayBalanceTransferLink': '/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_Transfer/Agent/MemberTransfer.aspx?custid=1382336&CallBack=false',
-            'AccountInfoUrl': '/site-accountinfo/(S(bziic25fy3e0mr3rhccrzvga))/'
+            'YesterdayBalanceTransferLink': '/ex-main/_Transfer/Agent/MemberTransfer.aspx?custid=1382336&CallBack=false',
+            'AccountInfoUrl': '/site-accountinfo/'
         },
         'CustomerListOrBetListLink': {
             'Text': 'Bet List',
-            'Url': '/site-betlists/(S(bziic25fy3e0mr3rhccrzvga))/MemberBetList/Index?CustID=1382336&CustName=ACGUUS3838032'
+            'Url': '/site-betlists/MemberBetList/Index?CustID=1382336&CustName=ACGUUS3838032'
         },
         'StatemenLink': {
             'Text': 'Statement',
-            'Url': '/site-reports/(S(bziic25fy3e0mr3rhccrzvga))/Statement/MemberStatement?CustID=1382336&CustName=ACGUUS3838032&CustLevelId=1'
+            'Url': '/site-reports/Statement/MemberStatement?CustID=1382336&CustName=ACGUUS3838032&CustLevelId=1'
         },
         'Buttons': [
             {
@@ -215,8 +215,8 @@ export const Super = {
             }
           ],
         'CanViewLog': true,
-        'ViewLogLink': '/site-viewlogs/(S(bziic25fy3e0mr3rhccrzvga))/setting/index?username=ACGUUS3838032',
-        'ViewLoginIPLink': '/ex-main/(S(bziic25fy3e0mr3rhccrzvga))/_IPInfo/IpInfo.aspx',
-        'AccountInfoUrl': '/site-accountinfo/(S(bziic25fy3e0mr3rhccrzvga))/'
+        'ViewLogLink': '/site-viewlogs/setting/index?username=ACGUUS3838032',
+        'ViewLoginIPLink': '/ex-main/_IPInfo/IpInfo.aspx',
+        'AccountInfoUrl': '/site-accountinfo/'
     }
 };

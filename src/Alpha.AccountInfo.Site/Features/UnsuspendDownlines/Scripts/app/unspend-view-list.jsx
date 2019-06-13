@@ -42,7 +42,7 @@ export default class UnsuspendViewList extends React.Component {
 
         const that = this;
         unsuspendAPI.fetchCustomerList(params).then(
-            (responeData) => {
+            responeData => {
                 that.setState({
                     viewModel: responeData
                 });
@@ -85,12 +85,13 @@ export default class UnsuspendViewList extends React.Component {
                     </thead>
                     <tbody>
                         {
-                            viewModel.Data.Levels.map((level) => {
+                            viewModel.Data.Levels.map(level => {
                                 const length = level.DownlineUsernames.length;
                                 return (
                                     level.DownlineUsernames.map((username, index) => {
+                                        counter++;
                                         return (
-                                            <tr key={counter++}>
+                                            <tr key={counter}>
                                                 <td>
                                                     {counter}
                                                 </td>
@@ -125,9 +126,8 @@ export default class UnsuspendViewList extends React.Component {
                         nextPageRenderer={() => <span className="icon-chevron-right" />}
                         firstPageRenderer={() => <span className="icon-skip-previous" />}
                         lastPageRenderer={() => <span className="icon-skip-next" />}
-                        pageRecordsRenderer={({ totalRecords, from, to }) => {
-                            return `${resources.Displaying} ${from} ${resources.To} ${to} ${resources.Of} ${totalRecords}`;
-                        }}
+                        pageRecordsRenderer={({ totalRecords, from, to }) =>
+                            `${resources.Displaying} ${from} ${resources.To} ${to} ${resources.Of} ${totalRecords}`}
                     />
                 }
                 {back}

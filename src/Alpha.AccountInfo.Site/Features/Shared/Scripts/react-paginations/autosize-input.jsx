@@ -41,10 +41,8 @@ class AutosizeInput extends React.Component{
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.inputWidth !== this.state.inputWidth) {
-            if (typeof this.props.onAutosize === 'function') {
-                this.props.onAutosize(this.state.inputWidth);
-            }
+        if (prevState.inputWidth !== this.state.inputWidth && typeof this.props.onAutosize === 'function') {
+            this.props.onAutosize(this.state.inputWidth);
         }
         this.updateInputWidth();
     }

@@ -6,6 +6,8 @@ import LoginInfo, { LoginInfoRow, LoginInfoWithLinkRow } from 'LoginInfo';
 import { Resources } from '../helpers/resources-sample';
 import { Super } from '../helpers/actor-is-super-sample';
 
+const renderWithoutCrash = 'renders without crashing';
+
 describe('LoginInfo', () => {
     let props;
     beforeEach(() => {
@@ -16,7 +18,7 @@ describe('LoginInfo', () => {
         };
     });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrash, () => {
         const div = document.createElement('div');
         ReactDOM.render(<LoginInfo {...props} />, div);
     });
@@ -48,7 +50,7 @@ describe('LoginInfoRow', () => {
         };
     });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrash, () => {
         const div = document.createElement('div');
         ReactDOM.render(<LoginInfoRow {...props} />, div);
     });
@@ -69,7 +71,7 @@ describe('LoginInfoWithLinkRow ', () => {
         };
     });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrash, () => {
         const div = document.createElement('div');
         ReactDOM.render(<LoginInfoWithLinkRow {...props} />, div);
     });

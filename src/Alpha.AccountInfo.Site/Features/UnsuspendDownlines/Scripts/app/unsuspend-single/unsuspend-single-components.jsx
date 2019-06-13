@@ -52,7 +52,7 @@ export const FooterContent = ({
     totalText = 'Total',
     noData = 'There is no data.'}) => <tfoot>
         {
-            affectedDownlinesTotal + unchangedDownlinesTotal == 0 ?
+            affectedDownlinesTotal + unchangedDownlinesTotal === 0 ?
                 <tr><td colSpan="3" className="text-center">{noData}</td></tr> :
                 <tr className="tbl-footer">
                     <td>{totalText}</td>

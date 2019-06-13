@@ -31,7 +31,7 @@ describe('OnlineList', () => {
             FormattedLoginTime: '31 Oct 2018 12:28 PM'
         }];
 
-        const wrapper = shallow(<OnlineList {...props} />)
+        const wrapper = shallow(<OnlineList {...props} />);
         expect(wrapper.find(OnlineListRow).length).toBe(1);
         expect(wrapper.find('.no-information').length).toBe(0);
     });
@@ -39,7 +39,7 @@ describe('OnlineList', () => {
     test('renders `OnlineListNoInfoRow` if it has no data', () => {
         props.onlineListData=[];
 
-        const wrapper = shallow(<OnlineList {...props} />)
+        const wrapper = shallow(<OnlineList {...props} />);
         expect(wrapper.find(OnlineListRow).length).toBe(0);
         expect(wrapper.find('.no-information').length).toBe(1);
     });

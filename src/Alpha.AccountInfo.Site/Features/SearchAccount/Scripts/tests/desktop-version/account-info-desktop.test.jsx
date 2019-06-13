@@ -2,7 +2,6 @@
 import ReactDOM from 'react-dom';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
-import renderer from 'react-test-renderer';
 import '../../../../../__mocks__/global.mock';
 import AccountInfoDesktop from 'AccountInfoDesktop';
 import CustomizedAccordionItem from 'CustomizedAccordionItem';
@@ -10,6 +9,7 @@ import { AccountInfoProps } from '../helpers/account-info-props-sample';
 
 describe('AccountInfoDesktop', () => {
     let props;
+    const contactInfoId = '#contactInfo';
 
     beforeEach(() => {
         props = AccountInfoProps;
@@ -19,11 +19,6 @@ describe('AccountInfoDesktop', () => {
         const div = document.createElement('div');
         ReactDOM.render(<AccountInfoDesktop {...props} />, div);
     });
-
-    // test('snapshot', () => {
-    //     const component = renderer.create(<AccountInfoDesktop {...props} />);
-    //     expect(component.toJSON()).toMatchSnapshot();
-    // });
 
     test('renders at least 6 `CustomizedAccordionItem`', () => {
         const wrapper = shallow(<AccountInfoDesktop {...props} />);
@@ -45,13 +40,13 @@ describe('AccountInfoDesktop', () => {
         const spy = sinon.spy(AccountInfoDesktop.prototype, 'handleCollapExpandBlock');
         const wrapper = mount(<AccountInfoDesktop {...props} />);
 
-        wrapper.find('#contactInfo').simulate('click');
+        wrapper.find(contactInfoId).simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 
     test('always expanded balance info when `redirectToBalanceInfoPage` props is true', () => {
         const wrapper = mount(<AccountInfoDesktop {...props} />);
-        wrapper.find('#contactInfo').simulate('click');
+        wrapper.find(contactInfoId).simulate('click');
         wrapper.setProps({redirectToBalanceInfoPage: true});
 
         expect(wrapper.state().expandedItems.balanceInfo).toBeTruthy();
@@ -65,7 +60,7 @@ describe('AccountInfoDesktop', () => {
 
     test('always keep current state when `redirectToBalanceInfoPage` props is false', () => {
         const wrapper = mount(<AccountInfoDesktop {...props} />);
-        wrapper.find('#contactInfo').simulate('click');
+        wrapper.find(contactInfoId).simulate('click');
         wrapper.setProps({redirectToBalanceInfoPage: false});
 
         expect(wrapper.state().expandedItems.balanceInfo).toBeFalsy();

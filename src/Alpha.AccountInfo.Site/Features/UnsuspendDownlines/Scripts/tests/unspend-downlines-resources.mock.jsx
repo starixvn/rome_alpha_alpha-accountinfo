@@ -12,7 +12,8 @@
     'ViewInformation6': '- Remain Unchanged Downlines: list of users whose status will be kept after their upline is unsuspended .',
     'ViewInformation1': '- When a customer is suspended, all his downlines will be suspended as well',
     'ViewInformation2': '- When a customer is unsuspended:',
-    'ViewInformation3': '+ Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list',
+    'ViewInformation3':
+        '+ Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; suspended by upline will be unsuspended. You can click on the number of affected downlines to view the list',
     'Submit': 'Submit',
     'AffectedDownlines': 'Affected Downlines',
     'SubmitMultipleConfirm3': 'Do you want to proceed?',
@@ -30,7 +31,8 @@
     'Username': 'Username',
     'UnsuspendSingleNote': 'List of downlines&#39; status after &lt;username&gt; is unsuspended',
     'UnsuspendedSuccessfully': 'Status of {0} and their affected downlines have been successfully updated to Unsuspended.',
-    'ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage': 'Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well.',
+    'ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage':
+        'Are you sure you want to change Suspend status for this customer? All downlines will be un-suspended as well.',
     'UpdateSuccessfully': 'Successfully updated!',
     'Unsuspended': 'Unsuspended',
     'RemainUnchangedDownlinesAgentMember': 'Remain Unchanged Downlines &lt;br/&gt; (Agent/Member)',
@@ -41,7 +43,7 @@
     'Back': 'Back',
     'Page': 'Page',
     'NoData': 'There is no data.',
-    'UnsuspendedWithNoDownlinesMessages': 'Are you sure you want to change Suspend status for this customer?',
+    'UnsuspendedWithNoDownlinesMessages': 'Are you sure you want to change Suspend status for this customer?'
 };
 
 export const responseViewListData = {

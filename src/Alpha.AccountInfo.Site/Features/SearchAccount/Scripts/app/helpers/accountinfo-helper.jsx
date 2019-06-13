@@ -47,7 +47,8 @@ export const usernameRegExp = (message, username) => message.replace('<username>
 
 const viewportMetaData = 'head meta[name=viewport]';
 
-const buildViewportMetaContent = (initialScale, userScalable) => `<meta name='viewport' content='width=device-width, initial-scale=${initialScale}, user-scalable=${userScalable}' />`;
+const buildViewportMetaContent = (initialScale, userScalable) =>
+    `<meta name='viewport' content='width=device-width, initial-scale=${initialScale}, user-scalable=${userScalable}' />`;
 
 export const zoomDisable = () => {
     $(viewportMetaData).remove();

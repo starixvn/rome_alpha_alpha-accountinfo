@@ -6,6 +6,8 @@ import renderer from 'react-test-renderer';
 import { ColumnContentByLevel, BodyRowContent, FooterContent } from 'UnsuspendSingleComponent';
 import  {resources} from '../unspend-downlines-resources.mock';
 
+const renderWithoutCrashing = 'renders without crashing';
+
 describe('UnsuspendSingleComponent', () => {
     describe('ColumnContentByLevel', () => {
         let props;
@@ -19,7 +21,7 @@ describe('UnsuspendSingleComponent', () => {
             };
         });
 
-        test('renders without crashing', () => {
+        test(renderWithoutCrashing, () => {
             const div = document.createElement('div');
             ReactDOM.render(<ColumnContentByLevel {...props} />, div);
         });
@@ -65,7 +67,7 @@ describe('UnsuspendSingleComponent', () => {
             };
         });
 
-        test('renders without crashing', () => {
+        test(renderWithoutCrashing, () => {
             const table = document.createElement('table');
             const body = table.createTBody();
             ReactDOM.render(<BodyRowContent {...props} />, body);
@@ -93,7 +95,7 @@ describe('UnsuspendSingleComponent', () => {
             };
         });
 
-        test('renders without crashing', () => {
+        test(renderWithoutCrashing, () => {
             const table = document.createElement('table');
             ReactDOM.render(<FooterContent {...props} />, table);
         });

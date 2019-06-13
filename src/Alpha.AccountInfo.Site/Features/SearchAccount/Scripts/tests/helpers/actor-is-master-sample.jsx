@@ -45,29 +45,29 @@
           'ShowOutstandingLink': false,
           'ReportLink': {
             'Text': 'Agent Outstanding',
-            'Url': '/site-reports/(S(r1qm50avstk01hcqe1jiodxl))/outstanding/Agent?CustId=36204213&CustName=davidtest13May0101&CustLevelId=2&BreadcrumbLevelJson=[{"CustId":36204210,"CustName":"davidtest13May01","CustLevelId":3}]'
+            'Url': '/site-reports/outstanding/Agent?CustId=36204213&CustName=davidtest13May0101&CustLevelId=2&BreadcrumbLevelJson=[{"CustId":36204210,"CustName":"davidtest13May01","CustLevelId":3}]'
           },
           'ShowTotalBalanceTransferLink': false,
-          'TotalBalanceTransferLink': '/ex-main/(S(r1qm50avstk01hcqe1jiodxl))/_Transfer/Master/AgentTransfer.aspx?custid=36204213&status=1&CallBack=false&username=davidtest13May0101&isyesterday=1&amt=0.00',
+          'TotalBalanceTransferLink': '/ex-main/_Transfer/Master/AgentTransfer.aspx?custid=36204213&status=1&CallBack=false&username=davidtest13May0101&isyesterday=1&amt=0.00',
           'ShowYesterdayBalanceTransferLink': false,
-          'YesterdayBalanceTransferLink': '/ex-main/(S(r1qm50avstk01hcqe1jiodxl))/_Transfer/Master/AgentTransfer.aspx?custid=36204213&status=1&CallBack=false&username=davidtest13May0101&isyesterday=1&amt=0.00',
+          'YesterdayBalanceTransferLink': '/ex-main/_Transfer/Master/AgentTransfer.aspx?custid=36204213&status=1&CallBack=false&username=davidtest13May0101&isyesterday=1&amt=0.00',
           'CanUpdateAccount': true,
-          'AccountInfoUrl': '/site-accountinfo/(S(r1qm50avstk01hcqe1jiodxl))/'
+          'AccountInfoUrl': '/site-accountinfo/'
         },
         'Buttons': [
           {
             'Text': 'Member List',
-            'Url': '/ex-main/(S(r1qm50avstk01hcqe1jiodxl))/_MemberInfo/CustomerList/Master/MemberList.aspx?custid=36204213'
+            'Url': '/ex-main/_MemberInfo/CustomerList/Master/MemberList.aspx?custid=36204213'
           },
           {
             'Text': 'Statement',
-            'Url': '/site-reports/(S(r1qm50avstk01hcqe1jiodxl))/Statement/SMAStatement?CustID=36204213&CustName=davidtest13May0101&CustLevelId=2'
+            'Url': '/site-reports/Statement/SMAStatement?CustID=36204213&CustName=davidtest13May0101&CustLevelId=2'
           }
         ],
         'CanViewLog': true,
-        'ViewLogLink': '/site-viewlogs/(S(r1qm50avstk01hcqe1jiodxl))/setting/index?username=davidtest13May0101',
-        'ViewLoginIPLink': '/ex-main/(S(r1qm50avstk01hcqe1jiodxl))/_IPInfo/IpInfo.aspx',
-        'AccountInfoUrl': '/site-accountinfo/(S(r1qm50avstk01hcqe1jiodxl))/'
+        'ViewLogLink': '/site-viewlogs/setting/index?username=davidtest13May0101',
+        'ViewLoginIPLink': '/ex-main/_IPInfo/IpInfo.aspx',
+        'AccountInfoUrl': '/site-accountinfo/'
       },
     ViewMemberInfo:  {
         'CustId': 36204216,
@@ -110,28 +110,28 @@
           'ShowOutstandingLink': false,
           'ReportLink': {
             'Text': 'Outstanding',
-            'Url': '/site-betlists/(S(r1qm50avstk01hcqe1jiodxl))/RunningBetList/Index?CustID=36204216&amp;CustName=ACGUUS3838033&amp;GetAll=True'
+            'Url': '/site-betlists/RunningBetList/Index?CustID=36204216&amp;CustName=ACGUUS3838033&amp;GetAll=True'
           },
           'ShowTotalBalanceTransferLink': false,
-          'TotalBalanceTransferLink': '/ex-main/(S(r1qm50avstk01hcqe1jiodxl))/_Transfer/Agent/MemberTransfer.aspx?custid=36204216&CallBack=false',
+          'TotalBalanceTransferLink': '/ex-main/_Transfer/Agent/MemberTransfer.aspx?custid=36204216&CallBack=false',
           'ShowYesterdayBalanceTransferLink': false,
-          'YesterdayBalanceTransferLink': '/ex-main/(S(r1qm50avstk01hcqe1jiodxl))/_Transfer/Agent/MemberTransfer.aspx?custid=36204216&CallBack=false',
+          'YesterdayBalanceTransferLink': '/ex-main/_Transfer/Agent/MemberTransfer.aspx?custid=36204216&CallBack=false',
           'CanUpdateAccount': true,
-          'AccountInfoUrl': '/site-accountinfo/(S(r1qm50avstk01hcqe1jiodxl))/'
+          'AccountInfoUrl': '/site-accountinfo/'
         },
         'Buttons': [
           {
             'Text': 'Bet List',
-            'Url': '/site-betlists/(S(r1qm50avstk01hcqe1jiodxl))/MemberBetList/Index?CustID=36204216&CustName=davidtest13May0101001'
+            'Url': '/site-betlists/MemberBetList/Index?CustID=36204216&CustName=davidtest13May0101001'
           },
           {
             'Text': 'Statement',
-            'Url': '/site-reports/(S(r1qm50avstk01hcqe1jiodxl))/Statement/MemberStatement?CustID=36204216&CustName=davidtest13May0101001&CustLevelId=1'
+            'Url': '/site-reports/Statement/MemberStatement?CustID=36204216&CustName=davidtest13May0101001&CustLevelId=1'
           }
         ],
         'CanViewLog': true,
-        'ViewLogLink': '/site-viewlogs/(S(r1qm50avstk01hcqe1jiodxl))/setting/index?username=davidtest13May0101001',
-        'ViewLoginIPLink': '/ex-main/(S(r1qm50avstk01hcqe1jiodxl))/_IPInfo/IpInfo.aspx',
-        'AccountInfoUrl': '/site-accountinfo/(S(r1qm50avstk01hcqe1jiodxl))/'
+        'ViewLogLink': '/site-viewlogs/setting/index?username=davidtest13May0101001',
+        'ViewLoginIPLink': '/ex-main/_IPInfo/IpInfo.aspx',
+        'AccountInfoUrl': '/site-accountinfo/'
       }
 };

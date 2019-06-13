@@ -2,8 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import '../../../../../__mocks__/global.mock';
 import sinon from 'sinon';
-import Searching from 'Searching';
-import { renderSuggestion } from 'Searching';
+import Searching, { renderSuggestion } from 'Searching';
 import Autosuggest from 'react-autosuggest';
 import { accountInfoAPI } from 'AccountInfoAPI';
 import mockAxios from 'jest-mock-axios';
@@ -11,6 +10,8 @@ import mockAxios from 'jest-mock-axios';
 describe('Searching', () => {
     let props;
     let searchingMount, handleSearchClickSpy;
+    const iconSearch = '.icon-search';
+    const textSearch = '.txt-search';
 
     const buildSearching = () => {
         if (!searchingMount) {
@@ -39,7 +40,7 @@ describe('Searching', () => {
     });
 
     test('renders without crashing', () => {
-        expect(shallow(<Searching  {...props} />).find('.icon-search').exists()).toBe(true);
+        expect(shallow(<Searching  {...props} />).find(iconSearch).exists()).toBe(true);
     });
 
     test('always render a `Autosuggest`', () => {
@@ -52,7 +53,7 @@ describe('Searching', () => {
             const wrapper = shallow(<Searching  {...props} />);
             const event = Object.assign(jest.fn(), {preventDefault: () => {}});
 
-            wrapper.find('.icon-search').simulate('click', event);
+            wrapper.find(iconSearch).simulate('click', event);
             expect(handleSearchClickSpy.calledOnce).toBeTruthy();
         });
 
@@ -60,7 +61,7 @@ describe('Searching', () => {
             'correct called handleSearchClick() when key press',
             (key, expectedCallTimes) => {
                 buildSearching();
-                searchingMount.find('.txt-search').simulate('keypress', { key: key });
+                searchingMount.find(textSearch).simulate('keypress', { key: key });
                 expect(handleSearchClickSpy.callCount).toBe(expectedCallTimes);
             }
         );
@@ -72,7 +73,7 @@ describe('Searching', () => {
             const wrapper = shallow(<Searching  {...props} />);
             wrapper.setState({ username: value });
 
-            wrapper.find('.icon-search').simulate('click');
+            wrapper.find(iconSearch).simulate('click');
             expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(expectedCallTimes);
         }
     );
@@ -81,7 +82,7 @@ describe('Searching', () => {
         const spy = sinon.spy(Searching.prototype, 'handleSearchKeyPress');
 
         buildSearching();
-        searchingMount.find('.txt-search').simulate('keypress', { key: 'Enter' });
+        searchingMount.find(textSearch).simulate('keypress', { key: 'Enter' });
         expect(spy.calledOnce).toBeTruthy();
     });
 
@@ -103,7 +104,7 @@ describe('Searching', () => {
 
         test('change called when key press', () => {
             buildSearching();
-            searchingMount.find('.txt-search').simulate('change', { target: { value: 'acguus' } });
+            searchingMount.find(textSearch).simulate('change', { target: { value: 'acguus' } });
             expect(searchingMount.state('username')).toEqual('acguus');
         });
     });
@@ -112,14 +113,13 @@ describe('Searching', () => {
         test('called when fectch requested', () => {
             const spy = jest.spyOn(accountInfoAPI, 'getAutoUsernameSuggestion');
             buildSearching();
-            searchingMount.find('.txt-search').simulate('change', { target: { value: 'acguus' } });
+            searchingMount.find(textSearch).simulate('change', { target: { value: 'acguus' } });
             expect(spy).toBeCalledTimes(1);
         });
 
         test('Call server with specific url and params', () => {
             buildSearching();
             searchingMount.instance().onSuggestionsFetchRequested({ value: 'test' });
-            
             expect(mockAxios.get).toHaveBeenCalledWith(
                 '/site-accountinfo/SearchAccount/GetUsernamesSuggestion',
                 {'params': { 'SuggestionQuery':  'test'}});

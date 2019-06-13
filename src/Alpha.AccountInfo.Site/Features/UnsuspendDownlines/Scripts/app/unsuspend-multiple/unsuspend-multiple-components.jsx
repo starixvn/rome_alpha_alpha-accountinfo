@@ -1,6 +1,27 @@
 ﻿import React from 'react';
 import * as _ from 'lodash';
 
+export const ColumnContent = ({ dataRow, isAffected, redirectViewListDetail }) => {
+    return (<div>
+        {
+            dataRow.Downlines.map((level, index) => {
+                const downlines = isAffected ? level.AffectedDownlines : level.UnchangedDownlines;
+
+                return <span key={index}>
+                    {
+                        downlines === 0 ? downlines :
+                            <a key={index} href='#'
+                                onClick={() => redirectViewListDetail(dataRow.SearchAccountId, dataRow.Username, level.DownlineRoleId, isAffected)}>
+                                {downlines}
+                            </a>
+                    }
+                    {index < dataRow.Downlines.length - 1 ? ` / ` : ``}
+                </span>;
+            })
+        }
+    </div>);
+};
+
 export const RowContent = ({
     originaldataRow,
     dataRow,
@@ -24,8 +45,8 @@ export const RowContent = ({
                 </div>
             </td>
             {
-                isNotMember && [true, false].map((isAffected, index) =>
-                    <td className="text-center" key={index}>
+                isNotMember && [true, false].map((isAffected, key) =>
+                    <td className="text-center" key={key}>
                         {
                             showValue && (originaldataRow.Suspended ?
                                 <ColumnContent {...{ dataRow, redirectViewListDetail, isAffected }} /> :
@@ -34,25 +55,4 @@ export const RowContent = ({
                     </td>)
             }
         </tr>);
-};
-
-export const ColumnContent = ({ dataRow, isAffected, redirectViewListDetail }) => {
-    return (<div>
-        {
-            dataRow.Downlines.map((level, index) => {
-                const downlines = isAffected ? level.AffectedDownlines : level.UnchangedDownlines;
-
-                return <span key={index}>
-                    {
-                        downlines === 0 ? downlines :
-                            <a key={index} href='#'
-                                onClick={() => redirectViewListDetail(dataRow.SearchAccountId, dataRow.Username, level.DownlineRoleId, isAffected)}>
-                                {downlines}
-                            </a>
-                    }
-                    {index < dataRow.Downlines.length - 1 ? ` / ` : ``}
-                </span>;
-            })
-        }
-    </div>);
 };

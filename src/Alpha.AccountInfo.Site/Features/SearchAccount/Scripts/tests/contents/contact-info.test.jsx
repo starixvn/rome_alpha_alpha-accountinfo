@@ -2,8 +2,7 @@
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import ContactInfo from 'ContactInfo';
-import {ContactInfoRow} from 'ContactInfo';
+import ContactInfo, { ContactInfoRow } from 'ContactInfo';
 import { Resources } from '../helpers/resources-sample';
 import { Super } from '../helpers/actor-is-super-sample';
 import { Tooltip } from 'react-tippy';
