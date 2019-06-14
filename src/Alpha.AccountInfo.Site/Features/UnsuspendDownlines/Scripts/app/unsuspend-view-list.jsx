@@ -126,8 +126,8 @@ export default class UnsuspendViewList extends React.Component {
                         nextPageRenderer={() => <span className="icon-chevron-right" />}
                         firstPageRenderer={() => <span className="icon-skip-previous" />}
                         lastPageRenderer={() => <span className="icon-skip-next" />}
-                        pageRecordsRenderer={({ totalRecords, from, to }) =>
-                            `${resources.Displaying} ${from} ${resources.To} ${to} ${resources.Of} ${totalRecords}`}
+                        pageRecordsRenderer={({ totalItems, from, to }) =>
+                            `${resources.Displaying} ${from} ${resources.To} ${to} ${resources.Of} ${totalItems}`}
                     />
                 }
                 {back}

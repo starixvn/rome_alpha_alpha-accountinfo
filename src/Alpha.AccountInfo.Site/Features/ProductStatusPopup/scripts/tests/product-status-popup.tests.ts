@@ -193,7 +193,7 @@
             expect(formData.ProductId).toBe(productStatus.productId);
             expect(formData.CustId).toBe(productStatus.custId);
             expect(formData.CustRoleId).toBe(productStatus.custRoleId);
-            expect(formData.ProductStatus).not.toBe("");
+            expect(formData.BetTypeStatus).not.toBe("");
         });
     });
 

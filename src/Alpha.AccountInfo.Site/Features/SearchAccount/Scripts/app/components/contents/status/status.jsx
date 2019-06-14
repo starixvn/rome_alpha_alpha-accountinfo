@@ -27,11 +27,13 @@ const Status = ({
                     key: index
                 };
 
-                return status.ConfirmMessage ?
-                    <ConfirmStatus {...props} /> :
-                    status.IsEditOnProductLevel ?
-                        <ProductLevelStatus {...props} /> :
-                        <BettypeLevelStatus {...props} />;
+                if (status.ConfirmMessage) {
+                    return <ConfirmStatus {...props} />;
+                }
+
+                return status.IsEditOnProductLevel ?
+                    <ProductLevelStatus {...props} /> :
+                    <BettypeLevelStatus {...props} />;
             })
         }
     </div>;

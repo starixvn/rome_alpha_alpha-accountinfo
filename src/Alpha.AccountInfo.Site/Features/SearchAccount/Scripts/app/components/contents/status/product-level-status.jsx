@@ -44,7 +44,9 @@ export default class ProductLevelStatus extends React.Component {
         const inputProps = {
             type: 'checkbox',
             checked: status.Checked,
-            onChange: () => { }
+            onChange: () => {
+                 // onChange on parent elememt
+            }
         };
 
         return (

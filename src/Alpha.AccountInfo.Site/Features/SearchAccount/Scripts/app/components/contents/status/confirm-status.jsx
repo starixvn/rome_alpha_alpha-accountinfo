@@ -87,7 +87,9 @@ export default class ConfirmStatus extends React.Component {
         const inputProps = {
             type: 'checkbox',
             checked: status.Checked,
-            onChange: () => { }
+            onChange: () => {
+                // onChange on parent elememt
+            }
         };
 
         const content = <div>

@@ -103,12 +103,13 @@ export default class DownlineListContent extends React.PureComponent {
         const { fetchCustomerInfoFromServer } = this.props;
 
         const content = list[index].map((item, itemIndex) => {
-            const { Username } = item, maxLength = 13, isTruncated = Username.length > maxLength;
+            const { Username } = item,
+                maxLength = 13,
+                isTruncated = Username.length > maxLength,
+                displayedUsername = isTruncated ? `${Username.substring(0, maxLength)}...` : Username;
 
             const rowContent = loadedRowsMap[index] === STATUS_LOADED ?
-                <a href='#' onClick={() => { fetchCustomerInfoFromServer(Username); }}>
-                    {isTruncated ? `${Username.substring(0, maxLength)}...` : Username }
-                </a> :
+                <a href='#' onClick={() => { fetchCustomerInfoFromServer(Username); }}>{displayedUsername} </a> :
                 <div className='placeholder' style={{ width: Username.size }} />;
 
             const rowContentWithTooltip = <Tooltip {...buildTooltipProps(Username)}>{rowContent}</Tooltip>;

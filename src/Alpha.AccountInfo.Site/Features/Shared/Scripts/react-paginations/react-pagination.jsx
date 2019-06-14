@@ -204,7 +204,9 @@ ReactPagination.defaultProps = {
     pageLength: 50,
     pageLengthMenu: [50, 100, 200, 500],
     totalRecords: 0,
-    onPageChange: () => { },
+    onPageChange: () => {
+        // default onChange
+    },
     prevPageRenderer: () => '‹',
     nextPageRenderer: () => '›',
     firstPageRenderer: () => '‹‹',

@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { cloneDeep, forEach } from 'lodash';
-import UnsuspendViewList from '../unspend-view-list';
+import UnsuspendViewList from '../unsuspend-view-list';
 import UnsuspendMultiple from './unsuspend-multiple';
 import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
@@ -32,8 +32,8 @@ class UnsuspendMultipleContainer extends React.Component {
 
     correctData() {
         const { viewModel, searchAccountRoleId } = this.props;
-        
-        forEach(viewModel, function (dataRow) {
+
+        forEach(viewModel, dataRow => {
             let currentLevel = dataRow.Downlines.length;
             while (currentLevel < searchAccountRoleId - 1) {
                 dataRow.Downlines.push({
@@ -57,9 +57,7 @@ class UnsuspendMultipleContainer extends React.Component {
     toggleSuspendAll(suspendAll) {
         const viewModelCopy = cloneDeep(this.state.viewModel);
 
-        viewModelCopy.forEach(function (item) {
-            item.Suspended = suspendAll;
-        });
+        viewModelCopy.forEach(item => { item.Suspended = suspendAll; });
 
         this.setState({ viewModel: viewModelCopy });
     }
@@ -88,7 +86,7 @@ class UnsuspendMultipleContainer extends React.Component {
     }
 
     render() {
-        const { searchAccountId, searchAccountRoleId, searchAccountName, isAffected, downlineRoleId, originalViewModel, viewModel, resources} = this.state;
+        const { searchAccountId, searchAccountRoleId, searchAccountName, isAffected, downlineRoleId, originalViewModel, viewModel, resources } = this.state;
 
         return this.state.showViewList ?
             <UnsuspendViewList {...{
@@ -109,7 +107,7 @@ class UnsuspendMultipleContainer extends React.Component {
                     toggleSuspendAll: this.toggleSuspendAll,
                     handleChange: this.handleChange,
                     redirectViewListDetail: this.redirectViewListDetail
-                }}/>;
+                }} />;
     }
 }
 

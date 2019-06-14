@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import UnsuspendViewList from '../unspend-view-list';
+import UnsuspendViewList from '../unsuspend-view-list';
 import UnsuspendSingle from './unsuspend-single';
 import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 

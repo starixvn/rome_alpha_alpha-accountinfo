@@ -6,6 +6,19 @@ interface Window {
     }
 }
 
+interface BettypeStatus {
+    SportType: number,
+    BetType: number,
+    IsDisabled: boolean
+}
+
+interface ProductStatus {
+    ProductId: number,
+    CustId: number,
+    CustRoleId: number,
+    BetTypeStatus: Array<BettypeStatus>
+}
+
 class ProductStatusPopup {
     $: JQueryStatic;
     topWindow: Window;
@@ -66,15 +79,14 @@ class ProductStatusPopup {
             .always(this.$.unblockUI);
     };
 
-    getProductStatusData = (): any => {
+    getProductStatusData = (): ProductStatus => {
         let checkbox: JQuery,
             isDisabled: boolean,
             oldValue: boolean;
-        const self = this;
         const betTypeStatus = [];
 
-        this.$("input[type='checkbox']").each(function (): void {
-            checkbox = self.$(this);
+        this.$("input[type='checkbox']").each((_index, element) => {
+            checkbox = this.$(element);
             isDisabled = !checkbox.prop("checked");
             oldValue = checkbox.data("oldvalue");
 
@@ -87,29 +99,20 @@ class ProductStatusPopup {
             }
         });
 
-        if (betTypeStatus.length !== 0) {
-            return {
+        return betTypeStatus.length !== 0 ?
+            {
                 ProductId: this.productId,
                 CustId: this.custId,
                 CustRoleId: this.custRoleId,
                 BetTypeStatus: betTypeStatus
-            };
-        }
+            } : null;
     };
 
     afterUpdateStatusSuccessfully = data => {
         const code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode,
-            messsage = data.Message || data.ErrMsg, timeoutDefault = 1500;
+            messsage = data.Message || data.ErrMsg;
 
-        if (code !== 0) {
-            this.showError(messsage);
-        } else {
-            this.showSuccess(messsage);
-            setTimeout(() => {
-                this.topWindow.realoadLeftPanel = true;
-                this.topWindow.ageWnd.close();
-            }, timeoutDefault);
-        }
+        code === 0 ? this.showSuccess(messsage) : this.showError(messsage);
     };
 
     showNoDataChange = () => {
@@ -117,7 +120,13 @@ class ProductStatusPopup {
     };
 
     showSuccess = (message: string) => {
+        const timeoutDefault = 1500;
         this.showMessage("msg msg-success", message);
+
+        setTimeout(() => {
+            this.topWindow.realoadLeftPanel = true;
+            this.topWindow.ageWnd.close();
+        }, timeoutDefault);
     };
 
     showError = (message: string) => {

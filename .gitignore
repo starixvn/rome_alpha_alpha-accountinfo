@@ -42,6 +42,7 @@ _CodeCoverageReport
 .vs/
 
 *.min.js
+*.js
 bundles
 *.css
 *.js.map

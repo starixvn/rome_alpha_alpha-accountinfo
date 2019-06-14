@@ -14,7 +14,7 @@ import OnlineList from '../components/contents/online-list';
 import AccountInfoMobile from '../components/mobile-version/account-info-mobile';
 import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
 import { resizePopupOnMobile } from '../helpers/accountinfo-helper';
-import * as Raven from 'raven-js';
+import Raven from 'raven-js';
 
 export default class AccountInfo extends React.Component {
     constructor(props) {
@@ -232,11 +232,13 @@ export default class AccountInfo extends React.Component {
             settingData
         } = this.state;
 
-        const handleOpenIPInfo = this.handleOpenIPInfo,
-            fetchCustomerAllStatusFromServer = this.fetchCustomerAllStatusFromServer,
-            fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer,
-            fetchDownlineListFromServer = this.fetchDownlineListFromServer,
-            fetchOnlineListFromServer = this.fetchOnlineListFromServer;
+        const {
+            handleOpenIPInfo,
+            fetchCustomerAllStatusFromServer,
+            fetchCustomerInfoFromServer,
+            fetchDownlineListFromServer,
+            fetchOnlineListFromServer
+        } = this;
 
         let loginInfo = null, searchAccountRoleId = actorRoleId - 1, username = '';
         if (customerInfo !== null) {

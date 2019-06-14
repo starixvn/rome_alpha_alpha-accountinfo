@@ -25,9 +25,9 @@ const CellContainNumberFormat = ({
             fixedDecimalScale={true}
             thousandSeparator={true}
             renderText={
-                value => hrefLink === null || hrefLink === '' ?
-                    <span>{value}</span> :
-                    <CustomAnchorTag {...{ mobileView, href: hrefLink }}>{value}</CustomAnchorTag>
+                displayedValue => hrefLink === null || hrefLink === '' ?
+                    <span>{displayedValue}</span> :
+                    <CustomAnchorTag {...{ mobileView, href: hrefLink }}>{displayedValue}</CustomAnchorTag>
             }
         />
     </div>;

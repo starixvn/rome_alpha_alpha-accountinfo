@@ -425,7 +425,7 @@
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single.min.js" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-helper.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-api.jsx" />
-    <Content Include="Features\UnsuspendDownlines\Scripts\app\unspend-view-list.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-view-list.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple\unsuspend-multiple-components.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple\unsuspend-multiple-container.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple\unsuspend-multiple.jsx" />

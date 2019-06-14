@@ -70,7 +70,7 @@
       "CustomizedAccordionItem": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/customized-accordion-item.jsx",
       "AccountInfoDesktop": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/account-info-desktop.jsx",
       "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/app/components/mobile-version/content-mobile.jsx",
-      "UnsuspendViewList": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unspend-view-list.jsx",
+      "UnsuspendViewList": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-view-list.jsx",
       "UnsuspendSingleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-components.jsx",
       "UnsuspendSingleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-container.jsx",
       "UnsuspendSingle": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single.jsx",
