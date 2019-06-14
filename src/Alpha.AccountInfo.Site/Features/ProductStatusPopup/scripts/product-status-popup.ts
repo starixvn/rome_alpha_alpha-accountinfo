@@ -1,7 +1,14 @@
 ﻿"use strict";
+interface Window {
+    realoadLeftPanel: boolean,
+    ageWnd: {
+        close: Function
+    }
+}
+
 class ProductStatusPopup {
     $: JQueryStatic;
-    topWindow: any;
+    topWindow: Window;
 
     $msgServerResult: JQuery;
     $formProductStatus: JQuery;
@@ -10,17 +17,17 @@ class ProductStatusPopup {
     custRoleId: number;
     token: string;
 
-    constructor($: JQueryStatic, topWindow: any) {
+    constructor($: JQueryStatic, topWindow: Window) {
         this.$ = $;
         this.topWindow = topWindow;
     }
 
-    init = (): void => {
+    init = () => {
         this.cacheDOMElements();
         this.registerEvents();
     };
 
-    cacheDOMElements = (): void => {
+    cacheDOMElements = () => {
         this.$msgServerResult = this.$("#msg-serverResult");
         this.$formProductStatus = this.$("#formProductStatus");
         this.productId = this.$("#hiddenProductId").val();
@@ -29,12 +36,12 @@ class ProductStatusPopup {
         this.token = this.$("input[name=\"__RequestVerificationToken\"]", this.$formProductStatus).val();
     };
 
-    registerEvents = (): void => {
+    registerEvents = () => {
         this.$formProductStatus.submit(this.updateProductStatus);
     };
 
-    updateProductStatus = (e: any): void => {
-        e.preventDefault();
+    updateProductStatus = event => {
+        event.preventDefault();
 
         this.$.blockUI();
         const formData = this.getProductStatusData();
@@ -53,9 +60,7 @@ class ProductStatusPopup {
             url: this.$formProductStatus.attr("action"),
             data: { message: formData },
             dataType: "json",
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("__RequestVerificationToken", requestVerificationToken);
-            }
+            beforeSend: xhr => xhr.setRequestHeader("__RequestVerificationToken", requestVerificationToken)
         })
             .done(this.afterUpdateStatusSuccessfully)
             .always(this.$.unblockUI);
@@ -92,7 +97,7 @@ class ProductStatusPopup {
         }
     };
 
-    afterUpdateStatusSuccessfully = (data: any): void => {
+    afterUpdateStatusSuccessfully = data => {
         const code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode,
             messsage = data.Message || data.ErrMsg, timeoutDefault = 1500;
 
@@ -107,26 +112,26 @@ class ProductStatusPopup {
         }
     };
 
-    showNoDataChange = (): void => {
+    showNoDataChange = () => {
         this.showMessage("msg msg-warning", this.$("#hiddenNoDataChange").val());
     };
 
-    showSuccess = (message: string): void => {
+    showSuccess = (message: string) => {
         this.showMessage("msg msg-success", message);
     };
 
-    showError = (message: string): void => {
+    showError = (message: string) => {
         this.showMessage("msg msg-error", message);
     };
 
-    showMessage = (className: string, message: string): void => {
+    showMessage = (className: string, message: string) => {
         this.$msgServerResult
             .removeClass()
             .addClass(className)
             .html(message);
     };
 
-    hideMessage = (): void => {
+    hideMessage = () => {
         this.$msgServerResult
             .removeClass()
             .addClass("hide")

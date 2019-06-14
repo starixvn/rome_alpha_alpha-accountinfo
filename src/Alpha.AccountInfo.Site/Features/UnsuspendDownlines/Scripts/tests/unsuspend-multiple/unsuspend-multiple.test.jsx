@@ -8,7 +8,7 @@ import UnsuspendMultiple from 'UnsuspendMultiple';
 import { RowContent } from 'UnsuspendMultipleComponent';
 import * as unsuspendHelper from 'UnsuspendHelper';
 import { resources, responseUnsuspendMultipleData } from '../unspend-downlines-resources.mock';
-import * as _ from 'lodash';
+import { cloneDeep } from 'lodash';
 import mockAxios from 'jest-mock-axios';
 
 describe('UnsuspendMultiple', () => {
@@ -17,8 +17,8 @@ describe('UnsuspendMultiple', () => {
 
     beforeEach(() => {
         props = {
-            viewModel: _.cloneDeep(responseUnsuspendMultipleData.Data),
-            originalViewModel: _.cloneDeep(responseUnsuspendMultipleData.Data),
+            viewModel: cloneDeep(responseUnsuspendMultipleData.Data),
+            originalViewModel: cloneDeep(responseUnsuspendMultipleData.Data),
             searchAccountRoleId: responseUnsuspendMultipleData.SearchAccountRoleId,
             resources,
             handleReset: jest.fn(),

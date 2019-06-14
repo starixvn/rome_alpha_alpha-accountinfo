@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import * as _ from 'lodash';
+import { isEqual } from 'lodash';
 import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
 import { Markup } from 'interweave';
@@ -150,7 +150,7 @@ export default class UnsuspendMultiple extends React.Component {
                         {
                             text: resources.Submit,
                             class: `btn-submit`,
-                            disabled: _.isEqual(viewModel, originalViewModel),
+                            disabled: isEqual(viewModel, originalViewModel),
                             onclick: this.handleSubmit
                         }].map((button, index) =>
                             <button className={button.class} key={index} disabled={button.disabled} onClick={button.onclick}>

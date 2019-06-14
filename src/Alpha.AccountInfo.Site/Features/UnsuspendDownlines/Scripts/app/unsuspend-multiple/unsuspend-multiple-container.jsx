@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import * as _ from 'lodash';
+import { cloneDeep, forEach } from 'lodash';
 import UnsuspendViewList from '../unspend-view-list';
 import UnsuspendMultiple from './unsuspend-multiple';
 import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
@@ -19,7 +19,7 @@ class UnsuspendMultipleContainer extends React.Component {
             searchAccountName: '',
             downlineRoleId: 1,
             resources: resources,
-            originalViewModel: _.cloneDeep(viewModel),
+            originalViewModel: cloneDeep(viewModel),
             viewModel: viewModel
         };
 
@@ -32,7 +32,8 @@ class UnsuspendMultipleContainer extends React.Component {
 
     correctData() {
         const { viewModel, searchAccountRoleId } = this.props;
-        _.forEach(viewModel, function (dataRow) {
+        
+        forEach(viewModel, function (dataRow) {
             let currentLevel = dataRow.Downlines.length;
             while (currentLevel < searchAccountRoleId - 1) {
                 dataRow.Downlines.push({
@@ -54,7 +55,7 @@ class UnsuspendMultipleContainer extends React.Component {
     }
 
     toggleSuspendAll(suspendAll) {
-        const viewModelCopy = _.cloneDeep(this.state.viewModel);
+        const viewModelCopy = cloneDeep(this.state.viewModel);
 
         viewModelCopy.forEach(function (item) {
             item.Suspended = suspendAll;
@@ -65,7 +66,7 @@ class UnsuspendMultipleContainer extends React.Component {
 
     handleChange(index, value) {
         const { viewModel } = this.state;
-        const viewModelCopy = _.cloneDeep(viewModel);
+        const viewModelCopy = cloneDeep(viewModel);
 
         viewModelCopy[index].Suspended = value;
 

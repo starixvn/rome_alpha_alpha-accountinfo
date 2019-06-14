@@ -8,7 +8,7 @@ import UnsuspendSingle from 'UnsuspendSingle';
 import * as unsuspendHelper from 'UnsuspendHelper';
 import { BodyRowContent, FooterContent } from 'UnsuspendSingleComponent';
 import { resources, responseUnsuspendSingleData } from '../unspend-downlines-resources.mock';
-import * as _ from 'lodash';
+import { cloneDeep } from 'lodash';
 import mockAxios from 'jest-mock-axios';
 
 describe('UnsuspendSingle', () => {
@@ -16,7 +16,7 @@ describe('UnsuspendSingle', () => {
 
     beforeEach(() => {
         props = {
-            viewModel: _.cloneDeep(responseUnsuspendSingleData),
+            viewModel: cloneDeep(responseUnsuspendSingleData),
             resources,
             redirectViewListDetail: jest.fn()
         };
