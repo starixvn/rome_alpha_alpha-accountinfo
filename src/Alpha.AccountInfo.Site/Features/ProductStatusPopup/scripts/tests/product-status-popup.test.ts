@@ -170,12 +170,12 @@
             productStatus.cacheDOMElements();
         });
 
-        it("_No Data Change -> Returns Undefined", () => {
+        it("_No Data Change -> Returns null", () => {
             // act
             const formData = productStatus.getProductStatusData();
 
             // assert
-            expect(formData).toBe(undefined);
+            expect(formData).toBe(null);
         });
 
         it("_Data Change -> Returns Object", () => {

@@ -86,14 +86,14 @@ export default class AccountInfo extends React.Component {
                 if (typeof responeData !== 'undefined' && responeData !== null) {
                     self.setState(prevState => ({
                         username: username,
-                        custId: responeData !== null ? responeData.CustId : 0,
+                        custId: responeData.CustId,
                         customerInfo: responeData,
                         searchCounter: prevState.searchCounter + 1,
                         redirectToBalanceInfoPage: redirectToBalanceInfoPage,
-                        onlineListData: responeData !== null ? null : prevState.onlineListData,
-                        downlineListData: responeData !== null ? null : prevState.downlineListData,
-                        statusData: responeData !== null && resetSetting ? null : prevState.statusData,
-                        settingData: responeData !== null && resetSetting ? null : prevState.settingData
+                        onlineListData: prevState.onlineListData,
+                        downlineListData: prevState.downlineListData,
+                        statusData: resetSetting ? null : prevState.statusData,
+                        settingData: resetSetting ? null : prevState.settingData
                     }));
 
                     localStorage.setItem('lastSearchUsername', username);
