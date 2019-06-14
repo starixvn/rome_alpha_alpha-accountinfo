@@ -690,7 +690,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\product-status-popup.ts" />
-    <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\tests\productstatus-tests.ts" />
+    <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\tests\product-status-popup.tests.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery.blockui\index.d.ts" />
