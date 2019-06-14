@@ -195,6 +195,11 @@ hr {
     }
 }
 
+.customer-list a,
+.setting-block a {
+    line-height: calculateScale(28px);
+}
+
 .feature-detail {
     .balance-info {
         padding-left: calculateScale(10px);
@@ -280,15 +285,10 @@ hr {
     }
 }
 
-.customer-list a,
-.setting-block a {
-    line-height: calculateScale(28px);
-}
-
 .modal {
     z-index: 9999999 !important;
 }
 
 .blockMsg {
-	left: 35% !important;
+    left: 35% !important;
 }

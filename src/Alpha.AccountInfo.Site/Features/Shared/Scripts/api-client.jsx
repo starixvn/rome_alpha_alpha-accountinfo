@@ -2,7 +2,7 @@
 
 export const handleErrors = err => {
     $.unblockUI();
-    if (err.response.status === 403) {
+    if (err.status === 403) {
         return {
             IsSuccess: false,
             Message: $('#NotAuthorized').val()

@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../accountinfo-api';
+import { handleErrors } from '../../../../Shared/Scripts/api-client';
 import { UserLevel } from '../constants';
 import Searching from '../components/contents/searching';
 import CustomerInfo from '../components/contents/customer-info/customer-info';
@@ -83,15 +84,15 @@ export default class AccountInfo extends React.Component {
         const self = this;
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
             responeData => {
-                if (typeof responeData !== 'undefined' && responeData !== null) {
+                if (typeof responeData !== 'undefined' && responeData !== '' && responeData !== null) {
                     self.setState(prevState => ({
                         username: username,
                         custId: responeData.CustId,
                         customerInfo: responeData,
                         searchCounter: prevState.searchCounter + 1,
                         redirectToBalanceInfoPage: redirectToBalanceInfoPage,
-                        onlineListData: prevState.onlineListData,
-                        downlineListData: prevState.downlineListData,
+                        onlineListData: null,
+                        downlineListData: null,
                         statusData: resetSetting ? null : prevState.statusData,
                         settingData: resetSetting ? null : prevState.settingData
                     }));
@@ -114,7 +115,7 @@ export default class AccountInfo extends React.Component {
                 }
 
                 $.unblockUI();
-            });
+            }).catch(err => handleErrors(err));
     }
 
     fetchCustomerAllStatusFromServer(reload = false) {

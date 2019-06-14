@@ -81,6 +81,11 @@ hr {
     font-family: "Roboto Bold", sans-serif !important;
 }
 
+.customer-list a,
+.setting-block a {
+    line-height: 28px;
+}
+
 .accountinfo-container {
     position: relative;
     height: 100%;
@@ -204,6 +209,12 @@ hr {
     padding-bottom: 8px;
     text-align: center;
 
+    &.one-button [class^="btn"] {
+        display: inline-block;
+        width: 100%;
+        margin-right: 0;
+    }
+
     &.two-button [class^="btn"] {
         display: inline-block;
         width: 48%;
@@ -214,12 +225,6 @@ hr {
         &:last-child {
             margin-left: 4%;
         }
-    }
-
-    &.one-button [class^="btn"] {
-        display: inline-block;
-        width: 100%;
-        margin-right: 0;
     }
 }
 
@@ -333,27 +338,6 @@ hr {
 
     &.translate-from-right {
         animation: TranslateFromRight 0.3s;
-    }
-}
-
-.accordion-item {
-    transition: all 0.3s;
-    max-height: 46px;
-    overflow: hidden;
-    transform-origin: top center;
-
-    &.expanded {
-        transition: all 0.4s;
-        max-height: 500px;
-
-        .feature-item {
-            background-color: #ddd;
-            color: $text-color;
-        }
-
-        .feature-item:after {
-            transform: rotate(90deg);
-        }
     }
 }
 
@@ -564,9 +548,25 @@ hr {
     }
 }
 
-.customer-list a,
-.setting-block a {
-    line-height: 28px;
+.accordion-item {
+    transition: all 0.3s;
+    max-height: 46px;
+    overflow: hidden;
+    transform-origin: top center;
+
+    &.expanded {
+        transition: all 0.4s;
+        max-height: 500px;
+
+        .feature-item {
+            background-color: #ddd;
+            color: $text-color;
+        }
+
+        .feature-item:after {
+            transform: rotate(90deg);
+        }
+    }
 }
 
 @keyframes TranslateFromLeft {

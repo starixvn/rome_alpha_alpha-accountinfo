@@ -8,18 +8,48 @@
         @include clearfix;
 
         > div {
-            margin-top: 8px;
-            margin-bottom: 8px;
             float: left;
         }
 
         .pagination {
+            display: inline-block;
+            border-radius: $border-radius-base;
+            margin-left: 10px;
             vertical-align: top;
+
+            > div {
+                display: inline-block;
+                width: 20px;
+                text-align: center;
+            }
+
+            .page-button {
+                background: #979797;
+                margin-left: 3px;
+            }
+
+            > .active > span {
+                cursor: default;
+            }
+
+            > .disabled {
+                > div,
+                > div:hover,
+                > div:focus,
+                > span,
+                > span:hover,
+                > span:focus {
+                    color: $pagination-disabled-color;
+                    background-color: $pagination-disabled-bg;
+                    border-color: $pagination-disabled-border;
+                    cursor: $cursor-disabled;
+                    opacity: .4;
+                }
+            }
         }
 
         .pagination-records {
             color: #333;
-            margin-top: 14px;
             margin-bottom: 14px;
             float: right;
         }
@@ -29,7 +59,6 @@
             height: 24px;
             box-shadow: none;
             box-sizing: border-box;
-            margin: 0 6px;
         }
 
         .pagination-input {
@@ -53,43 +82,6 @@
                     outline: none;
                 }
             }
-        }
-    }
-}
-
-.pagination {
-    display: inline-block;
-    padding-left: 0;
-    border-radius: $border-radius-base;
-    margin: 0;
-
-    > div {
-        display: inline-block;
-        width: 20px;
-        text-align: center;
-    }
-
-    .page-button {
-        background: #979797;
-        margin-left: 3px;
-    }
-
-    > .active > span {
-        cursor: default;
-    }
-
-    > .disabled {
-        > div,
-        > div:hover,
-        > div:focus,
-        > span,
-        > span:hover,
-        > span:focus {
-            color: $pagination-disabled-color;
-            background-color: $pagination-disabled-bg;
-            border-color: $pagination-disabled-border;
-            cursor: $cursor-disabled;
-            opacity: .4;
         }
     }
 }

@@ -14,6 +14,9 @@
     "js",
     "jsx"
   ],
+  "modulePathIgnorePatterns": [
+    "<rootDir>/Features/ProductStatusPopup"
+  ],
   "moduleNameMapper": {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
@@ -45,7 +48,13 @@
     "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/app/components/mobile-version/content-mobile.jsx",
     "UnsuspendViewList": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-view-list.jsx",
     "UnsuspendSingleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-components.jsx",
+    "UnsuspendSingleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-container.jsx",
+    "UnsuspendSingle": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single.jsx",
+    "UnsuspendMultipleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-components.jsx",
+    "UnsuspendMultipleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
+    "UnsuspendMultiple": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple.jsx",
     "UnsuspendAPI": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-api.jsx",
+    "UnsuspendHelper": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-helper.jsx",
     "APIClient": "<rootDir>/Features/Shared/Scripts/api-client.jsx"
   }
 }
