@@ -195,7 +195,6 @@
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateCasinoStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateColossusBetStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateDCSProductStatusCriteria.cs" />
-    <Compile Include="Criteria\ProductStatus\SelectProductProfileCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateNG2StatusCriteria.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
@@ -239,7 +238,6 @@
     <Compile Include="Features\SearchAccount\Models\DownlineListModel.cs" />
     <Compile Include="Features\ProductStatusPopup\Models\CustomerInformation.cs" />
     <Compile Include="Features\Shared\Models\IUser.cs" />
-    <Compile Include="Models\ProductStatus\ProductProfile.cs" />
     <Compile Include="Features\ProductStatusPopup\Models\ProductStatusModel.cs" />
     <Compile Include="Features\Shared\Models\Result.cs" />
     <Compile Include="Features\Shared\Models\UserLevel.cs" />

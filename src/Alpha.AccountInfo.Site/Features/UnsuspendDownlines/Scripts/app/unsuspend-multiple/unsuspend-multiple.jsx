@@ -4,7 +4,6 @@ import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
 import { Markup } from 'interweave';
 import { viewInfomation } from '../unsuspend-helper';
-import { handleErrors } from '../../../../Shared/Scripts/api-client';
 
 export default class UnsuspendMultiple extends React.Component {
     constructor(props) {
@@ -64,8 +63,7 @@ export default class UnsuspendMultiple extends React.Component {
                 }
 
                 $.unblockUI();
-            })
-            .catch(err => handleErrors(err));
+            });
     }
 
     handleSubmit() {

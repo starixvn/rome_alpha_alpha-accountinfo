@@ -5,7 +5,6 @@ import CellContainNumberFormat from './components/common/cell-contain-number-for
 import { accountInfoAPI } from './accountinfo-api';
 import { UserLevel } from './constants';
 import { decodeResources } from './helpers/accountinfo-helper';
-import { handleErrors } from '../../../Shared/Scripts/api-client';
 
 class GivenCredit extends React.Component {
     constructor(props) {
@@ -85,8 +84,7 @@ class GivenCredit extends React.Component {
                 }
 
                 $.unblockUI();
-            })
-            .catch(err => handleErrors(err));
+            });
     }
 
     buildRow(title, value) {

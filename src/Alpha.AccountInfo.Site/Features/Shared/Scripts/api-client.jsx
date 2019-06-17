@@ -1,6 +1,6 @@
 ﻿import axios from 'axios';
 
-export const handleErrors = err => {
+const handleError = err => {
     $.unblockUI();
     if (err.status === 403) {
         return {
@@ -14,22 +14,33 @@ export const handleErrors = err => {
 
 export const requests = {
     get: (url, data) => {
-        let axiosPromise = axios.get(url, { params: data });
-        axiosPromise = axiosPromise.then(serverData => serverData.data);
+        try {
+            let axiosPromise = axios.get(url, { params: data });
+            axiosPromise = axiosPromise.then(serverData => serverData.data);
 
-        return axiosPromise;
+            return axiosPromise;
+        }
+        catch (error) {
+            handleError(error);
+        }
     },
     post: (url, data) => {
-        let axiosPromise = axios.post(url, data,
-            {
-                headers:
+        try {
+            let axiosPromise = axios.post(url, data,
                 {
-                    __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(), 'X-Requested-With': 'XMLHttpRequest'
-                }
-            });
+                    headers:
+                    {
+                        __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
 
-        axiosPromise = axiosPromise.then(serverData => serverData.data);
+            axiosPromise = axiosPromise.then(serverData => serverData.data);
 
-        return axiosPromise;
+            return axiosPromise;
+        }
+        catch (error) {
+            handleError(error);
+        }
     }
 };

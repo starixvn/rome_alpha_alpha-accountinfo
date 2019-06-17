@@ -3,7 +3,6 @@ import { unsuspendAPI } from '../unsuspend-api';
 import { BodyRowContent, FooterContent } from './unsuspend-single-components';
 import { usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 import { viewInfomation } from '../unsuspend-helper';
-import { handleErrors } from '../../../../Shared/Scripts/api-client';
 
 export default class UnsuspendSingle extends React.Component {
     constructor(props) {
@@ -48,8 +47,7 @@ export default class UnsuspendSingle extends React.Component {
                 }
 
                 $.unblockUI();
-            })
-            .catch(err => handleErrors(err));
+            });
     }
 
     handleSubmit(e) {

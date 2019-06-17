@@ -2,7 +2,6 @@
 import { accountInfoAPI } from '../../../accountinfo-api';
 import { resizeBootboxOnMobile, resizePopupOnMobile, buildTooltipProps, formatMessage, usernameRegExp } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
-import { handleErrors } from '../../../../../../Shared/Scripts/api-client';
 
 export default class ConfirmStatus extends React.Component {
     constructor(props) {
@@ -33,8 +32,7 @@ export default class ConfirmStatus extends React.Component {
                     window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
                     $.unblockUI();
                 }
-            })
-            .catch(err => handleErrors(err));
+            });
     }
 
     handleOpenPopup(e) {

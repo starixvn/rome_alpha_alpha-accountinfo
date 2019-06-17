@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../accountinfo-api';
-import { handleErrors } from '../../../../Shared/Scripts/api-client';
 import { UserLevel } from '../constants';
 import Searching from '../components/contents/searching';
 import CustomerInfo from '../components/contents/customer-info/customer-info';
@@ -115,7 +114,7 @@ export default class AccountInfo extends React.Component {
                 }
 
                 $.unblockUI();
-            }).catch(err => handleErrors(err));
+            });
     }
 
     fetchCustomerAllStatusFromServer(reload = false) {
