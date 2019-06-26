@@ -28,12 +28,12 @@
   </Function>
 
   <Function Name="Unsuspend Downlines">
-    <Setting Key="Acc_Customer_SuspendInfoSel" SpName="Acc_Customer_SuspendInfoSel_UAT1" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_Customer_SuspendInfoSel" SpName="Acc_Customer_SuspendInfoSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
       <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
       <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
     </Setting>
-    <Setting Key="Acc_Customer_SuspendInfoDetailSel" SpName="Acc_Customer_SuspendInfoDetailSel_UAT1" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel_UAT1" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" >
+    <Setting Key="Acc_Customer_SuspendInfoDetailSel" SpName="Acc_Customer_SuspendInfoDetailSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" >
       <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
       <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
       <Mapping ObjectProperty="DownlineRoleId" DataField="roleid" />
