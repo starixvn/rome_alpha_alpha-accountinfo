@@ -35,7 +35,7 @@ export default class UnsuspendSingle extends React.Component {
                 });
 
                 if (data.IsSuccess) {
-                    if (window.top.reloadCustomerList) {
+                    if (window.top.reloadCustomerList && window.top.main.DelayReloadPage && typeof (window.top.main.DelayReloadPage) == "function") {
                         window.top.main.DelayReloadPage();
                     }
 
