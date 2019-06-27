@@ -13,6 +13,9 @@
     public class SettingViewModelFactory : GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>
     {
         private const int LastProductSettingItemIndex = 10000;
+        private const int ResetPasswordDisplayAfterLastProduct = 1;
+        private const int ResetSecurityDisplayAfterLastProduct = 2;
+        private const int RemoveOTPDisplayAfterLastProduct = 3;
 
         public SettingViewModelFactory(ConfigurationService configurationService = null)
             : base(configurationService)
@@ -26,9 +29,9 @@
             yield return new BetSettingViewModel(request);
             yield return new CommissionViewModel(request);
             yield return new SportsbookMinPTViewModel(request);
-            yield return new ResetPasswordViewModel(request, displayOrder: LastProductSettingItemIndex + 1);
-            yield return new ResetSecurityCodeViewModel(request, displayOrder: LastProductSettingItemIndex + 2);
-            yield return new RemoveOtpViewModel(request, displayOrder: LastProductSettingItemIndex + 3);
+            yield return new ResetPasswordViewModel(request, displayOrder: LastProductSettingItemIndex + ResetPasswordDisplayAfterLastProduct);
+            yield return new ResetSecurityCodeViewModel(request, displayOrder: LastProductSettingItemIndex + ResetSecurityDisplayAfterLastProduct);
+            yield return new RemoveOtpViewModel(request, displayOrder: LastProductSettingItemIndex + RemoveOTPDisplayAfterLastProduct);
         }
 
         protected override ISettingItemViewModel GetProductViewModel(IConfigurationItem productItem, ISearchAccountInfoRequest request)

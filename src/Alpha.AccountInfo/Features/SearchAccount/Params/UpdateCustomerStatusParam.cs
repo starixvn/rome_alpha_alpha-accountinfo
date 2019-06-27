@@ -10,8 +10,7 @@
             string ip,
             bool statusValue,
             string statusName,
-            string actorName,
-            bool syncedCasino3rd)
+            string actorName)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
@@ -21,7 +20,6 @@
             StatusValue = statusValue;
             StatusName = statusName;
             ActorName = actorName;
-            SyncedCasino3rd = syncedCasino3rd;
         }
 
         public int SearchAccountId { get; }
@@ -39,7 +37,5 @@
         public string StatusName { get; }
 
         public string ActorName { get; }
-
-        public bool SyncedCasino3rd { get; }
     }
 }

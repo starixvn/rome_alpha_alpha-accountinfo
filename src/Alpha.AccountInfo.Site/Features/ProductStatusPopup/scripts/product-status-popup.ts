@@ -1,7 +1,27 @@
 ﻿"use strict";
+interface Window {
+    realoadLeftPanel: boolean,
+    ageWnd: {
+        close: Function
+    }
+}
+
+interface BettypeStatus {
+    SportType: number,
+    BetType: number,
+    IsDisabled: boolean
+}
+
+interface ProductStatus {
+    ProductId: number,
+    CustId: number,
+    CustRoleId: number,
+    BetTypeStatus: Array<BettypeStatus>
+}
+
 class ProductStatusPopup {
     $: JQueryStatic;
-    topWindow: any;
+    topWindow: Window;
 
     $msgServerResult: JQuery;
     $formProductStatus: JQuery;
@@ -10,17 +30,17 @@ class ProductStatusPopup {
     custRoleId: number;
     token: string;
 
-    constructor($: JQueryStatic, topWindow: any) {
+    constructor($: JQueryStatic, topWindow: Window) {
         this.$ = $;
         this.topWindow = topWindow;
     }
 
-    init = (): void => {
+    init = () => {
         this.cacheDOMElements();
         this.registerEvents();
     };
 
-    cacheDOMElements = (): void => {
+    cacheDOMElements = () => {
         this.$msgServerResult = this.$("#msg-serverResult");
         this.$formProductStatus = this.$("#formProductStatus");
         this.productId = this.$("#hiddenProductId").val();
@@ -29,15 +49,15 @@ class ProductStatusPopup {
         this.token = this.$("input[name=\"__RequestVerificationToken\"]", this.$formProductStatus).val();
     };
 
-    registerEvents = (): void => {
+    registerEvents = () => {
         this.$formProductStatus.submit(this.updateProductStatus);
     };
 
-    updateProductStatus = (e: any): void => {
-        e.preventDefault();
+    updateProductStatus = event => {
+        event.preventDefault();
 
         this.$.blockUI();
-        let formData: any = this.getProductStatusData();
+        const formData = this.getProductStatusData();
 
         if (!formData) {
             this.showNoDataChange();
@@ -46,30 +66,27 @@ class ProductStatusPopup {
         }
 
         this.hideMessage();
-        var requestVerificationToken = this.token;
+        const requestVerificationToken = this.token;
 
         this.$.ajax({
             type: "POST",
             url: this.$formProductStatus.attr("action"),
             data: { message: formData },
             dataType: "json",
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("__RequestVerificationToken", requestVerificationToken);
-            }
+            beforeSend: xhr => xhr.setRequestHeader("__RequestVerificationToken", requestVerificationToken)
         })
             .done(this.afterUpdateStatusSuccessfully)
             .always(this.$.unblockUI);
     };
 
-    getProductStatusData = (): any => {
+    getProductStatusData = (): ProductStatus => {
         let checkbox: JQuery,
             isDisabled: boolean,
             oldValue: boolean;
-        let self: any = this;
-        let betTypeStatus: any = [];
+        const betTypeStatus = [];
 
-        this.$("input[type='checkbox']").each(function (): void {
-            checkbox = self.$(this);
+        this.$("input[type='checkbox']").each((_index, element) => {
+            checkbox = this.$(element);
             isDisabled = !checkbox.prop("checked");
             oldValue = checkbox.data("oldvalue");
 
@@ -82,51 +99,48 @@ class ProductStatusPopup {
             }
         });
 
-        if (betTypeStatus.length !== 0) {
-            return {
+        return betTypeStatus.length !== 0 ?
+            {
                 ProductId: this.productId,
                 CustId: this.custId,
                 CustRoleId: this.custRoleId,
                 BetTypeStatus: betTypeStatus
-            };
-        }
+            } : null;
     };
 
-    afterUpdateStatusSuccessfully = (data: any): void => {
-        var code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode;
-        var messsage = data.Message || data.ErrMsg;
+    afterUpdateStatusSuccessfully = data => {
+        const code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode,
+            messsage = data.Message || data.ErrMsg;
 
-        if (code !== 0) {
-            this.showError(messsage);
-        } else {
-            this.showSuccess(messsage);
-            setTimeout(() => {
-                this.topWindow.realoadLeftPanel = true;
-                this.topWindow.ageWnd.close();
-            }, 1500);
-        }
+        code === 0 ? this.showSuccess(messsage) : this.showError(messsage);
     };
 
-    showNoDataChange = (): void => {
+    showNoDataChange = () => {
         this.showMessage("msg msg-warning", this.$("#hiddenNoDataChange").val());
     };
 
-    showSuccess = (message: string): void => {
+    showSuccess = (message: string) => {
+        const timeoutDefault = 1500;
         this.showMessage("msg msg-success", message);
+
+        setTimeout(() => {
+            this.topWindow.realoadLeftPanel = true;
+            this.topWindow.ageWnd.close();
+        }, timeoutDefault);
     };
 
-    showError = (message: string): void => {
+    showError = (message: string) => {
         this.showMessage("msg msg-error", message);
     };
 
-    showMessage = (className: string, message: string): void => {
+    showMessage = (className: string, message: string) => {
         this.$msgServerResult
             .removeClass()
             .addClass(className)
             .html(message);
     };
 
-    hideMessage = (): void => {
+    hideMessage = () => {
         this.$msgServerResult
             .removeClass()
             .addClass("hide")
@@ -135,6 +149,6 @@ class ProductStatusPopup {
 }
 
 $(() => {
-    let productStatusPopup: any = new ProductStatusPopup($, window.top);
+    const productStatusPopup = new ProductStatusPopup($, window.top);
     productStatusPopup.init();
 });

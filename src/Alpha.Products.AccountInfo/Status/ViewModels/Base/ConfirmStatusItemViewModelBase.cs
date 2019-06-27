@@ -21,20 +21,19 @@
 
         public virtual bool ReloadCustomerInfo => false;
 
+        public virtual bool IsPopup => false;
+
         internal virtual string SuffixMessage { get; }
 
         internal virtual string StatusName { get; }
 
         internal virtual bool StatusValue { get; }
 
-        internal virtual bool SyncedCasino3rd { get; }
-
         private IDictionary<string, object> Params =>
             new Dictionary<string, object>
                     {
                         {"SearchAccountId", SearchAccount.Id.ToString()},
                         {"SearchAccountRoleId", SearchAccount.CusomerLevelValue.ToString()},
-                        {"SyncedCasino3rd", SyncedCasino3rd},
                         {"StatusName", StatusName},
                         {"StatusValue", StatusValue}
                     };

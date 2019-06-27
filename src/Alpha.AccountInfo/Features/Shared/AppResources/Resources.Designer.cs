@@ -799,6 +799,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This account was indirectly suspended by upline.
+        /// </summary>
+        public static string SuspendedByUplineTooltip {
+            get {
+                return ResourceManager.GetString("SuspendedByUplineTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sync Casino.
         /// </summary>
         public static string SyncRNGCasinoViewModelText {
@@ -876,6 +885,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         public static string TransferViewModelText {
             get {
                 return ResourceManager.GetString("TransferViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsuspend &lt;username&gt;.
+        /// </summary>
+        public static string UnuspendStatusPopupHeader {
+            get {
+                return ResourceManager.GetString("UnuspendStatusPopupHeader", resourceCulture);
             }
         }
         

@@ -375,9 +375,6 @@
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>此账号已经被暂停。</value>
   </data>
-  <data name="Phone1" xml:space="preserve">
-    <value>电话</value>
-  </data>
   <data name="And" xml:space="preserve">
     <value>和</value>
   </data>
@@ -413,5 +410,11 @@
   </data>
   <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
     <value>娱乐城同步校准</value>
+  </data>
+  <data name="UnuspendStatusPopupHeader" xml:space="preserve">
+    <value>&lt;username&gt; 取消暂停</value>
+  </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>此账号被上线间接暂停</value>
   </data>
 </root>

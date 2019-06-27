@@ -62,8 +62,8 @@ hr {
 }
 
 .no-information {
-	padding: 4px 10px 0;
-	color: $text-red-color;
+    padding: 4px 10px 0;
+    color: $text-red-color;
 }
 
 .row-info {
@@ -78,7 +78,12 @@ hr {
 }
 
 .highlight .col-right {
-    font-family: "Roboto Bold";
+    font-family: "Roboto Bold", sans-serif !important;
+}
+
+.customer-list a,
+.setting-block a {
+    line-height: 28px;
 }
 
 .accountinfo-container {
@@ -204,6 +209,12 @@ hr {
     padding-bottom: 8px;
     text-align: center;
 
+    &.one-button [class^="btn"] {
+        display: inline-block;
+        width: 100%;
+        margin-right: 0;
+    }
+
     &.two-button [class^="btn"] {
         display: inline-block;
         width: 48%;
@@ -214,12 +225,6 @@ hr {
         &:last-child {
             margin-left: 4%;
         }
-    }
-
-    &.one-button [class^="btn"] {
-        display: inline-block;
-        width: 100%;
-        margin-right: 0;
     }
 }
 
@@ -336,27 +341,6 @@ hr {
     }
 }
 
-.accordion-item {
-    transition: all 0.3s;
-    max-height: 46px;
-    overflow: hidden;
-    transform-origin: top center;
-
-    &.expanded {
-        transition: all 0.4s;
-        max-height: 500px;
-
-        .feature-item {
-            background-color: #ddd;
-            color: $text-color;
-        }
-
-        .feature-item:after {
-            transform: rotate(90deg);
-        }
-    }
-}
-
 .feature-item {
     position: relative;
     width: 100%;
@@ -376,7 +360,7 @@ hr {
         position: absolute;
         top: 10px;
         right: 4px;
-        font-family: Iconalpha;
+        font-family: Iconalpha, sans-serif !important;
         font-size: 19px;
         font-weight: 400;
         content: "\E942";
@@ -564,9 +548,25 @@ hr {
     }
 }
 
-.customer-list a,
-.setting-block a {
-    line-height: 28px;
+.accordion-item {
+    transition: all 0.3s;
+    max-height: 46px;
+    overflow: hidden;
+    transform-origin: top center;
+
+    &.expanded {
+        transition: all 0.4s;
+        max-height: 500px;
+
+        .feature-item {
+            background-color: #ddd;
+            color: $text-color;
+        }
+
+        .feature-item:after {
+            transform: rotate(90deg);
+        }
+    }
 }
 
 @keyframes TranslateFromLeft {
@@ -602,9 +602,9 @@ hr {
 
 input[type="search"]:focus
 {
-	-webkit-text-size-adjust: 100% !important;
+    -webkit-text-size-adjust: 100% !important;
 }
 
 .blockMsg {
-	left: 25% !important;
+    left: 25% !important;
 }

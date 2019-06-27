@@ -4,6 +4,7 @@
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
+    using Alpha.AccountInfo.Features.UnsuspendDownlines;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
@@ -116,6 +117,8 @@
             container.Register<RnGCasinoService, RnGCasinoServiceImpl>(Lifestyle.Scoped);
             container.Register<SearchAccountService, SearchAccountServiceImpl>(Lifestyle.Scoped);
             container.Register<SearchAccountDataAccess, SearchAccountDataAccessImpl>(Lifestyle.Scoped);
+            container.Register<UnsuspendDownlinesService, UnsuspendDownlinesServiceImpl>(Lifestyle.Scoped);
+            container.Register<UnsuspendDownlinesDataAccess, UnsuspendDownlinesDataAccessImpl>(Lifestyle.Scoped);
         }
 
         private static void StartConfiguration(Container container)

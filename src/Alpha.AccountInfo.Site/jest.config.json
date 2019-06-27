@@ -1,0 +1,60 @@
+{
+  "testResultsProcessor": "jest-sonar-reporter",
+  "reporters": [
+    "jest-junit",
+    "default"
+  ],
+  "coverageReporters": [
+    "cobertura",
+    "html",
+    "text"
+  ],
+  "testEnvironment": "jest-environment-jsdom-global",
+  "moduleFileExtensions": [
+    "js",
+    "jsx"
+  ],
+  "modulePathIgnorePatterns": [
+    "<rootDir>/Features/ProductStatusPopup"
+  ],
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    "CellContainNumberFormat": "<rootDir>/Features/SearchAccount/Scripts/app/components/common/cell-contain-number-format.jsx",
+    "CustomAnchorTag": "<rootDir>/Features/SearchAccount/Scripts/app/components/common/custom-anchor-tag.jsx",
+    "AccountInfoHelper": "<rootDir>/Features/SearchAccount/Scripts/app/helpers/accountinfo-helper.jsx",
+    "BalanceInfoRow": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/balance-info/balance-info-row.jsx",
+    "GivenCreditRow": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/balance-info/given-credit-row.jsx",
+    "MemberCreditMaxRow": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/balance-info/member-credit-max-row.jsx",
+    "BalanceInfo": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/balance-info/balance-info.jsx",
+    "UplineInfo": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/customer-info/upline-info.jsx",
+    "SearchAccountInfo": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/customer-info/search-account-info.jsx",
+    "CustomerInfo": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/customer-info/customer-info.jsx",
+    "TotalIndirectDownlines": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/downline-list/total-indirect-downlines.jsx",
+    "DownlineList": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/downline-list/downline-list.jsx",
+    "Searching": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/searching.jsx",
+    "AutoSuggestion": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/searching/auto-suggestion.jsx",
+    "AccountInfoAPI": "<rootDir>/Features/SearchAccount/Scripts/app/accountinfo-api.jsx",
+    "BettypeLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/bettype-level-status.jsx",
+    "ConfirmStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/confirm-status.jsx",
+    "ProductLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/product-level-status.jsx",
+    "Status": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/status.jsx",
+    "ContactInfo": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/contact-info.jsx",
+    "LoginInfo": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/login-info.jsx",
+    "OnlineList": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/online-list.jsx",
+    "Settings": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/settings.jsx",
+    "CustomizedAccordionItem": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/customized-accordion-item.jsx",
+    "AccountInfoDesktop": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/account-info-desktop.jsx",
+    "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/app/components/mobile-version/content-mobile.jsx",
+    "UnsuspendViewList": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-view-list.jsx",
+    "UnsuspendSingleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-components.jsx",
+    "UnsuspendSingleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-container.jsx",
+    "UnsuspendSingle": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single.jsx",
+    "UnsuspendMultipleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-components.jsx",
+    "UnsuspendMultipleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
+    "UnsuspendMultiple": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple.jsx",
+    "UnsuspendAPI": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-api.jsx",
+    "UnsuspendHelper": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-helper.jsx",
+    "APIClient": "<rootDir>/Features/Shared/Scripts/api-client.jsx"
+  }
+}

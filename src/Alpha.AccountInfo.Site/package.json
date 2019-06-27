@@ -20,8 +20,10 @@
   "dependencies": {
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
+    "lodash": "^4.17.11",
     "raven-js": "^3.27.0",
-    "react-autosuggest": "^9.3.4"
+    "react-autosuggest": "^9.3.4",
+    "tslint-eslint-rules": "^5.4.0"
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter",
@@ -34,10 +36,14 @@
       "html",
       "text"
     ],
-    "testEnvironment": "jsdom",
+    "testEnvironment": "jest-environment-jsdom-global",
     "moduleFileExtensions": [
       "js",
       "jsx"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/Features/ProductStatusPopup",
+      "<rootDir>/Features/SearchAccount/Scripts/tests/helpers"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
@@ -56,7 +62,7 @@
       "DownlineList": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/downline-list/downline-list.jsx",
       "Searching": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/searching.jsx",
       "AutoSuggestion": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/searching/auto-suggestion.jsx",
-      "APIClient": "<rootDir>/Features/SearchAccount/Scripts/app/api-client.jsx",
+      "AccountInfoAPI": "<rootDir>/Features/SearchAccount/Scripts/app/accountinfo-api.jsx",
       "BettypeLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/bettype-level-status.jsx",
       "ConfirmStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/confirm-status.jsx",
       "ProductLevelStatus": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/status/product-level-status.jsx",
@@ -67,7 +73,17 @@
       "Settings": "<rootDir>/Features/SearchAccount/Scripts/app/components/contents/settings.jsx",
       "CustomizedAccordionItem": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/customized-accordion-item.jsx",
       "AccountInfoDesktop": "<rootDir>/Features/SearchAccount/Scripts/app/components/desktop-version/account-info-desktop.jsx",
-      "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/app/components/mobile-version/content-mobile.jsx"
+      "ContentMobile": "<rootDir>/Features/SearchAccount/Scripts/app/components/mobile-version/content-mobile.jsx",
+      "UnsuspendViewList": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-view-list.jsx",
+      "UnsuspendSingleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-components.jsx",
+      "UnsuspendSingleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single-container.jsx",
+      "UnsuspendSingle": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-single/unsuspend-single.jsx",
+      "UnsuspendMultipleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-components.jsx",
+      "UnsuspendMultipleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
+      "UnsuspendMultiple": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple.jsx",
+      "UnsuspendAPI": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-api.jsx",
+      "UnsuspendHelper": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-helper.jsx",
+      "APIClient": "<rootDir>/Features/Shared/Scripts/api-client.jsx"
     }
   },
   "jest-junit": {
@@ -76,7 +92,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@types/core-js": "^0.9.42",
     "@types/node": "^8.0.5",
     "@types/webpack-env": "^1.13.0",
     "awesome-typescript-loader": "^3.5.0",
@@ -96,20 +111,24 @@
     "enzyme-adapter-react-15": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^5.7.0",
+    "i": "^0.3.6",
     "identity-obj-proxy": "^3.0.0",
     "immutable": "^3.7.5",
     "install": "^0.12.1",
+    "interweave": "^11.1.0",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
+    "jest-environment-jsdom-global": "^1.2.0",
     "jest-html-reporter": "^2.4.2",
     "jest-junit": "^5.2.0",
-    "jest-mock-axios": "^2.1.11",
+    "jest-mock-axios": "^2.4.0",
     "jest-sonar-reporter": "^2.0.0",
     "jquery": "^3.3.1",
     "js-htmlencode": "^0.3.0",
+    "jsdom": "^15.1.0",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.3",
-    "npm": "^6.4.1",
+    "npm": "^6.9.0",
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "react": "^15.4.0",
     "react-addons-test-utils": "^15.4.1",
@@ -125,6 +144,7 @@
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "typescript": "^2.1.6",
+    "url-loader": "^1.1.2",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.3",

@@ -1,9 +1,8 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from "enzyme";
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import OnlineList from 'OnlineList';
-import { OnlineListRow } from 'OnlineList';
+import OnlineList, { OnlineListRow } from 'OnlineList';
 import { Resources } from '../helpers/resources-sample';
 
 describe('OnlineList', () => {
@@ -32,7 +31,7 @@ describe('OnlineList', () => {
             FormattedLoginTime: '31 Oct 2018 12:28 PM'
         }];
 
-        const wrapper = shallow(<OnlineList {...props} />)
+        const wrapper = shallow(<OnlineList {...props} />);
         expect(wrapper.find(OnlineListRow).length).toBe(1);
         expect(wrapper.find('.no-information').length).toBe(0);
     });
@@ -40,7 +39,7 @@ describe('OnlineList', () => {
     test('renders `OnlineListNoInfoRow` if it has no data', () => {
         props.onlineListData=[];
 
-        const wrapper = shallow(<OnlineList {...props} />)
+        const wrapper = shallow(<OnlineList {...props} />);
         expect(wrapper.find(OnlineListRow).length).toBe(0);
         expect(wrapper.find('.no-information').length).toBe(1);
     });

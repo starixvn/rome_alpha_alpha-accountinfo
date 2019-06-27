@@ -375,9 +375,6 @@
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>Tài khoản này đã bị đình chỉ.</value>
   </data>
-  <data name="Phone1" xml:space="preserve">
-    <value>Điện thoại</value>
-  </data>
   <data name="And" xml:space="preserve">
     <value>và</value>
   </data>
@@ -413,5 +410,11 @@
   </data>
   <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
     <value>Đồng bộ hóa Casino</value>
+  </data>
+  <data name="UnuspendStatusPopupHeader" xml:space="preserve">
+    <value>Huỷ đình chỉ &lt;username&gt;</value>
+  </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>Tài khoản này bị gián tiếp đình chỉ bởi cấp trên</value>
   </data>
 </root>

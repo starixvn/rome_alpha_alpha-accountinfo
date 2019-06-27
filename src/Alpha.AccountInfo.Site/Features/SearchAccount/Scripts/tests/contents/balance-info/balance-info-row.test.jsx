@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from "enzyme";
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import CellContainNumberFormat from 'CellContainNumberFormat';
 import BalanceInfoRow from 'BalanceInfoRow';
@@ -26,7 +26,7 @@ describe('BalanceInfoRow', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    test("always render a `CellContainNumberFormat`", () => {
+    test('always render a `CellContainNumberFormat`', () => {
         const balanceInfoRow = mount(<BalanceInfoRow {...props} />);
         expect(balanceInfoRow.find(CellContainNumberFormat).length).toBe(1);
     });

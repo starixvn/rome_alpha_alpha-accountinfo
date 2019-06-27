@@ -1,30 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from "enzyme";
+import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
+import '../../../../../../__mocks__/global.mock';
 import BettypeLevelStatus from 'BettypeLevelStatus';
 import { Resources } from '../../helpers/resources-sample';
 import * as accountInfoHelper from 'AccountInfoHelper';
 
 describe('BettypeLevelStatus', () => {
     let props;
-    global.accountInfoSiteAppPath = "/accountInfo-site";
-    global.top.ageWnd = {
-        open: jest.fn()
-    };
 
     beforeEach(() => {
         props = {
             status: {
-                "Text": "Casino",
-                "DisplayOrder": 60,
-                "ProductId": 6,
-                "Url": "/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3",
-                "Disabled": false,
-                "Visible": true,
-                "IsEditOnProductLevel": true,
-                "Checked": true
+                'Text': 'Casino',
+                'DisplayOrder': 60,
+                'ProductId': 6,
+                'Url': '/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3',
+                'Disabled': false,
+                'Visible': true,
+                'IsEditOnProductLevel': true,
+                'Checked': true
             },
             resources: Resources,
             mobileView: false
@@ -43,14 +40,14 @@ describe('BettypeLevelStatus', () => {
 
     it('handleOpenPopup() called when clicked', () => {
         const spy = sinon.spy(BettypeLevelStatus.prototype, 'handleOpenPopup');
-        const wrapper = shallow(<BettypeLevelStatus {...props} />)
+        const wrapper = shallow(<BettypeLevelStatus {...props} />);
 
         wrapper.find('#product-Casino').simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 
     test.each([[true, 1], [false, 0]])(
-        "correct call accountInfoHelper.resizePopupOnMobile()",
+        'correct call accountInfoHelper.resizePopupOnMobile()',
         (mobileView, expectedCallTimes) => {
             props.mobileView = mobileView;
             accountInfoHelper.resizePopupOnMobile = jest.fn();
@@ -62,7 +59,7 @@ describe('BettypeLevelStatus', () => {
     );
 
     test.each([[true, 1], [false, 0]])(
-        "correct call accountInfoHelper.mobileScale()",
+        'correct call accountInfoHelper.mobileScale()',
         (mobileView, expectedCallTimes) => {
             props.mobileView = mobileView;
             accountInfoHelper.mobileScale = jest.fn();
@@ -73,8 +70,8 @@ describe('BettypeLevelStatus', () => {
         }
     );
 
-    test.each([[8, 530], [22, 300], [15, 200]])(
-        "correct popup height",
+    test.each([[8, 530], [22, 200], [21, 300], [33, 400], [15, 200]])(
+        'correct popup height',
         (productId, expectedHeight) => {
             props.status.ProductId = productId;
             const wrapper = shallow(<BettypeLevelStatus {...props} />);

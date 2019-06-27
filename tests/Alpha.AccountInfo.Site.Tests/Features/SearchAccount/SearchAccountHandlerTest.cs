@@ -1,10 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.SearchAccount
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Resources;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
@@ -12,12 +7,9 @@
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
-    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Alpha.AccountInfo.Site.Handlers;
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers;
-    using Alpha.AccountInfo.Tests.Utility;
-    using Alpha.Products.AccountInfo;
     using Alpha.Products.AccountInfo.Requests;
     using Alpha.Products.AccountInfo.Setting;
     using Alpha.Products.AccountInfo.Setting.ViewModels;
@@ -36,6 +28,11 @@
     using AutoFixture;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Resources;
+    using System.Threading.Tasks;
     using Xunit;
     using static Alpha.AccountInfo.Tests.Utility.AppProductConfigurationHelper;
 
@@ -299,30 +296,33 @@
             AssertExtension.Equal(actualViewModel, model);
         }
 
-        ////[Fact]
-        ////public void HandleCustomerAllStatusQuery_Always_ReturnsCorrectViewModel()
-        ////{
-        ////    var message = new CustomerStatusQuery(viewer)
-        ////    {
-        ////        SearchAccountId = 1,
-        ////        SearchAccountName = "SearchAccountName",
-        ////        SearchAccountRoleId = 3,
-        ////        UplineId = 2,
-        ////        UplineName = "UplineName",
-        ////        UplineRoleId = 4
-        ////    };
+        [Fact]
+        public void HandleCustomerAllStatusQuery_Always_ReturnsCorrectViewModel()
+        {
+            var message = new CustomerStatusQuery(viewer)
+            {
+                SearchAccountId = 1,
+                SearchAccountName = "username1",
+                SearchAccountRoleId = 3,
+                UplineId = 2,
+                UplineName = "username2",
+                UplineRoleId = 4
+            };
 
-        ////    var model = fixture.Create<CustomerStatusModel>();
-        ////    accountInfoService.GetCustomerStatus(Arg.Any<int>()).Returns(Task.FromResult(model));
-        ////    var expectedViewModel = new CustomerStatusViewModel(message, model);
+            var expectedSetting = StubSettingViewModel();
+            var expectedStatus = StubStatusViewModel();
 
-        ////    var actualViewModel = accountInfoHandler
-        ////        .Handle(message)
-        ////        .GetAwaiter()
-        ////        .GetResult();
+            var model = fixture.Create<CustomerStatusModel>();
+            accountInfoService.GetCustomerStatus(Arg.Any<int>()).Returns(Task.FromResult(model));
+            var expectedViewModel = new CustomerStatusViewModel(expectedStatus, expectedSetting);
 
-        ////    Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);
-        ////}
+            var actualViewModel = accountInfoHandler
+                .Handle(message)
+                .GetAwaiter()
+                .GetResult();
+
+            Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);
+        }
 
         [Fact]
         public void BuildCustomerProductSettings_Always_ReturnsCorrectSettingViewModel()
@@ -337,20 +337,7 @@
                 UplineRoleId = 4
             };
 
-            var expectedSetting = new List<ISettingItemViewModel>
-            {
-                new BetSettingViewModel(request),
-                new CommissionViewModel(request),
-                new EditInfoViewModel(request),
-                new RemoveOtpViewModel(request),
-                new ResetPasswordViewModel(request),
-                new ResetSecurityCodeViewModel(request),
-                new SportsbookMinPTViewModel(request),
-                new TransferViewModel(request),
-                new SportsbookViewModel(request)
-            }
-            .Where(setting => setting.Visible)
-            .OrderBy(setting => setting.DisplayOrder);
+            var expectedSetting = StubSettingViewModel();
 
             var actualSettings = accountInfoHandler.BuildCustomerProductSettings(actor, searchAccount, message, CreateCustomerStatusModelStub());
             Assert.True(compareLogic.Compare(actualSettings, expectedSetting).AreEqual);
@@ -369,20 +356,7 @@
                 UplineRoleId = 4
             };
 
-            var configItem = Substitute.For<IConfigurationItem>();
-            configItem.ProductId.Returns(1);
-
-            var expectedStatus = new List<IStatusItemViewModel>
-            {
-                new ConfirmAllowAutoMasterPTViewModel(request),
-                new ConfirmAllowOutrightViewModel(request),
-                new ConfirmClosedViewModel(request),
-                new ConfirmDoubleCommViewModel(request),
-                new ConfirmSuspendedViewModel(request),
-                new  ProductStatusItemViewModel(request, configItem)
-            }
-            .Where(status => status.Visible)
-            .OrderBy(status => status.DisplayOrder);
+            var expectedStatus = StubStatusViewModel();
 
             var actualStatus = accountInfoHandler.BuildCustomerProductStatus(actor, searchAccount, message, CreateCustomerStatusModelStub());
             Assert.True(compareLogic.Compare(actualStatus, expectedStatus).AreEqual);
@@ -452,6 +426,40 @@
             Assert.True(compareLogic.Compare(actualUplineProductStatus, customerProductStatus).AreEqual);
         }
 
+        private IEnumerable<IStatusItemViewModel> StubStatusViewModel()
+        {
+            var configItem = Substitute.For<IConfigurationItem>();
+            configItem.ProductId.Returns(1);
+
+           return new List<IStatusItemViewModel>
+            {
+                new ConfirmAllowAutoMasterPTViewModel(request),
+                new ConfirmAllowOutrightViewModel(request),
+                new ConfirmClosedViewModel(request),
+                new ConfirmDoubleCommViewModel(request),
+                new ConfirmSuspendedViewModel(request),
+                new  ProductStatusItemViewModel(request, configItem)
+            }
+            .Where(status => status.Visible)
+            .OrderBy(status => status.DisplayOrder);
+        }
+
+        private IEnumerable<ISettingItemViewModel> StubSettingViewModel()
+            => new List<ISettingItemViewModel>
+                {
+                    new BetSettingViewModel(request),
+                    new CommissionViewModel(request),
+                    new EditInfoViewModel(request),
+                    new RemoveOtpViewModel(request),
+                    new ResetPasswordViewModel(request),
+                    new ResetSecurityCodeViewModel(request),
+                    new SportsbookMinPTViewModel(request),
+                    new TransferViewModel(request),
+                    new SportsbookViewModel(request)
+                }
+                .Where(setting => setting.Visible)
+                .OrderBy(setting => setting.DisplayOrder);
+
         private static CustomerStatusModel CreateCustomerStatusModelStub()
             => new CustomerStatusModel(StubNonProductStatus(), StubNonDCSProduct(), StubDcsProducts());
 
@@ -480,6 +488,7 @@
                              closed: true,
                              uplineClosed: true,
                              suspended: true,
+                             isDirectSuspend: true,
                              uplineSuspend: true,
                              transferOption: "00000000",
                              doubleCommLosing: true,

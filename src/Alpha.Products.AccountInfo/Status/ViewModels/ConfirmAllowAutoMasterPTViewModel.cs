@@ -18,7 +18,5 @@
         internal override string StatusName => DataKey.StatusMapping.DisableAutoMasterPT;
 
         internal override bool StatusValue => Checked;
-
-        internal override bool SyncedCasino3rd => false;
     }
 }

@@ -2,6 +2,8 @@
 {
     public class NonProductStatusModel
     {
+        private readonly byte TransferDailyOption = 7;
+
         public NonProductStatusModel()
         {
         }
@@ -13,6 +15,7 @@
             bool uplineClosed,
             bool suspended,
             bool uplineSuspend,
+            bool isDirectSuspend,
             string transferOption,
             bool doubleCommLosing,
             bool uplineDoubleCommLosing,
@@ -26,6 +29,7 @@
             UplineClosed = uplineClosed;
 
             Suspended = suspended;
+            IsDirectSuspend = isDirectSuspend;
             UplineSuspend = uplineSuspend;
 
             TransferOption = transferOption;
@@ -45,11 +49,15 @@
 
         public bool Suspended { get; private set; }
 
+        public bool IsDirectSuspend { get; private set; }
+
         public bool UplineSuspend { get; private set; }
 
         public string TransferOption { get; private set; }
 
-        public bool TransferDaily => !string.IsNullOrWhiteSpace(TransferOption) && TransferOption[7].Equals('0');
+        public bool TransferDaily => 
+            !string.IsNullOrWhiteSpace(TransferOption) && 
+            TransferOption[TransferDailyOption].Equals('0');
 
         public bool DoubleCommLosing { get; private set; }
 

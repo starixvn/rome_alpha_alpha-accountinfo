@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount, shallow } from "enzyme";
+import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 import renderer from 'react-test-renderer';
+import '../../../../../../__mocks__/global.mock';
 import NumberFormat from 'react-number-format';
 import GivenCreditRow from 'GivenCreditRow';
 import {Resources} from '../../helpers/resources-sample';
@@ -11,10 +12,7 @@ import * as accountInfoHelper from 'AccountInfoHelper';
 
 describe('GivenCreditRow', () => {
     let props;
-    global.accountInfoSiteAppPath= "/accountInfo-site";
-    global.top.ageWnd =  {
-        open: jest.fn()
-    };
+    const givenCreditId = '#given-credit-popup';
 
     beforeEach(() => {
         props = {
@@ -35,12 +33,12 @@ describe('GivenCreditRow', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    it("renders a `NumberFormat`", () => {
+    it('renders a `NumberFormat`', () => {
         const givenCreditRow = mount(<GivenCreditRow {...props} />);
         expect(givenCreditRow.find(NumberFormat).length).toBe(1);
     });
 
-    describe("handleOpenGivenCreditPopup()", () => {
+    describe('handleOpenGivenCreditPopup()', () => {
         let clock;
         beforeEach(function () {
             clock = sinon.useFakeTimers();
@@ -52,30 +50,30 @@ describe('GivenCreditRow', () => {
 
         it('called when clicked', () => {
             const spy = sinon.spy(GivenCreditRow.prototype, 'handleOpenGivenCreditPopup');
-            const wrapper = shallow(<GivenCreditRow {...props}/>)
-    
-            wrapper.find('#given-credit-popup').simulate('click');
+            const wrapper = shallow(<GivenCreditRow {...props} />);
+            
+            wrapper.find(givenCreditId).simulate('click');
             expect(spy.calledOnce).toBeTruthy();
         });
 
         test.each([[true, 1], [false, 0]])(
-                "correct call accountInfoHelper.resizePopupOnMobile()",
+                'correct call accountInfoHelper.resizePopupOnMobile()',
             (mobileView, expectedCallTimes) => {
                 props.mobileView = mobileView;
                 accountInfoHelper.resizePopupOnMobile = jest.fn();
 
                 const wrapper = shallow(<GivenCreditRow {...props} />);
-                wrapper.find('#given-credit-popup').simulate('click');
+                wrapper.find(givenCreditId).simulate('click');
                 expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(expectedCallTimes);
                 }
         );
 
         test.each([[true, true, 1], [true, false, 0], [false, false, 0]])(
-            "correct call fetchCustomerInfoFromServer()",
+            'correct call fetchCustomerInfoFromServer()',
             (closedPopup, realoadLeftPanel, expectedCallTimes) => {
 
                 const wrapper = shallow(<GivenCreditRow {...props} />);
-                wrapper.find('#given-credit-popup').simulate('click');
+                wrapper.find(givenCreditId).simulate('click');
 
                 global.top.closedPopup = closedPopup;
                 global.top.realoadLeftPanel = realoadLeftPanel;

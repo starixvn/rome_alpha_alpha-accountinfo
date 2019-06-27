@@ -23,7 +23,5 @@
         internal override string StatusName => DataKey.StatusMapping.Closed;
 
         internal override bool StatusValue => !Checked;
-
-        internal override bool SyncedCasino3rd => Request.SearchAccount.ProductStatusOf(ProductConstants.RNGCasino).Synced;
     }
 }

@@ -24,6 +24,6 @@ export const ProductConstants = {
     VirtualSports: 5,
     NumberGame: 3,
     CockFighting: 19,
-	BullFighting: 30,
-	PokerGames: 33
+    BullFighting: 30,
+    PokerGames: 33
 };

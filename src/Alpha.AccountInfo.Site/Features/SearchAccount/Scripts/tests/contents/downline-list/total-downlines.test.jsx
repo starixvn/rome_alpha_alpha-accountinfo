@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from "enzyme";
+import { mount } from 'enzyme';
 import TotalIndirectDownlines from 'TotalIndirectDownlines';
 import { Resources } from '../../helpers/resources-sample';
 import { DownlineListData } from '../../helpers/down-line-list-sample';
@@ -17,7 +17,7 @@ describe('TotalDownlines', () => {
             );
         }
         return totalDownlinesMount;
-    }
+    };
 
     beforeEach(() => {
         props = {
@@ -25,7 +25,7 @@ describe('TotalDownlines', () => {
             totalIndirectDownline: DownlineListData.TotalDownlines[0]
         };
 
-        totalDownlinesMount = undefined;
+        totalDownlinesMount = null;
     });
 
     test('renders without crashing', () => {

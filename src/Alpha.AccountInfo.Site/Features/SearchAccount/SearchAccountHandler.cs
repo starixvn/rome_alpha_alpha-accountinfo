@@ -73,8 +73,8 @@
         public Task<AccountInfoViewModel> Handle(SearchAccountQuery message)
             => Task.FromResult(new AccountInfoViewModel(message));
 
-        public Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message)
-            => accountInfoService.GetUsernamesSuggestion(message.ActorId, message.SuggestionQuery, message.IsInternal);
+        public async Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message)
+            => await accountInfoService.GetUsernamesSuggestion(message.ActorId, message.SuggestionQuery, message.IsInternal).ConfigureAwait(false);
 
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
         {
@@ -176,8 +176,7 @@
                    message.IP,
                    message.StatusValue,
                    message.StatusName,
-                   message.ActorName,
-                   message.SyncedCasino3rd));
+                   message.ActorName));
 
         internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery message,
@@ -297,7 +296,8 @@
                 .AddData(DataKey.SearchAccount.IsAllowedDoubleComm, model.NonProduct.DoubleCommLosing)
 
                 .AddData(DataKey.SearchAccount.Upline.IsSuspended, model.NonProduct.UplineSuspend)
-                .AddData(DataKey.SearchAccount.IsSuspended, model.NonProduct.Suspended);
+                .AddData(DataKey.SearchAccount.IsSuspended, model.NonProduct.Suspended)
+                .AddData(DataKey.SearchAccount.IsDirectSuspend, model.NonProduct.IsDirectSuspend);
 
             return statusViewModelFactory.GetViewModels(request).Where(status => status.Visible).OrderBy(status => status.DisplayOrder);
         }

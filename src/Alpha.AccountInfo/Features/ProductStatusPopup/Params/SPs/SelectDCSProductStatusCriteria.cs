@@ -4,6 +4,8 @@
 
     public class SelectDCSProductStatusCriteria : SelectProductStatusCriteria
     {
+        private const int NotNG2SettingType = 13;
+
         public SelectDCSProductStatusCriteria(int productId, int custId, byte roleId)
             : base(productId, custId)
         {
@@ -12,7 +14,7 @@
 
         public byte RoleId { get; }
 
-        public int SettingType { get; } = 13;
+        public int SettingType { get; } = NotNG2SettingType;
 
         public override string GetSettingKey() => "Acc_CustSetting_StatusSettingSelect";
 

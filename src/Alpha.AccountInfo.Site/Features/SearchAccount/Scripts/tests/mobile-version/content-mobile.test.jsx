@@ -1,22 +1,24 @@
 ﻿import React from 'react';
-import { HashRouter, Link, Redirect } from 'react-router-dom';
+import { HashRouter, Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import sinon from 'sinon';
-import { mount, shallow } from "enzyme";
+import { mount, shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
+import '../../../../../__mocks__/global.mock';
 import ContentMobile from 'ContentMobile';
 import { CustomLink, ContentPage, FeatureListPage } from 'ContentMobile';
 import { AccountInfoProps } from '../helpers/account-info-props-sample';
-import BalanceInfo from 'BalanceInfo';
 import 'babel-polyfill';
+
+const renderWithoutCrashing = 'renders without crashing';
 
 describe('CustomLink', () => {
     let props;
     beforeEach(() => {
         props = {
-            path: "/featureList",
-            iconClass: "icon-login",
-            featureText: "Feature List"
+            path: '/featureList',
+            iconClass: 'icon-login',
+            featureText: 'Feature List'
         };
     });
 
@@ -30,14 +32,14 @@ describe('ContentPage', () => {
     let props;
     beforeEach(() => {
         props = {
-            iconClass: "icon-login",
-            featureText: "Feature List",
+            iconClass: 'icon-login',
+            featureText: 'Feature List',
             children: null,
             animationClass: 'animationClass'
         };
     });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrashing, () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <HashRouter>
@@ -70,7 +72,7 @@ describe('FeatureListPage', () => {
         };
     });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrashing, () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <HashRouter>
@@ -94,7 +96,7 @@ describe('FeatureListPage', () => {
     });
 
     test.each([[true, 1], [false, 0]])(
-        "correct render `CustomLink` by visible property",
+        'correct render `CustomLink` by visible property',
         (visible, expectedCallTimes) => {
             props.contentItems.downlineListProps.visible = visible;
             const wrapper = mount(
@@ -124,7 +126,7 @@ describe('ContentMobile', () => {
         shouldComponentUpdateSpy.restore();
       });
 
-    test('renders without crashing', () => {
+    test(renderWithoutCrashing, () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <HashRouter>
@@ -161,7 +163,7 @@ describe('ContentMobile', () => {
             <HashRouter>
                 <ContentMobile {...props} />
             </HashRouter>);
-         expect(wrapper.node.history.location.pathname).toBe("/balanceInfo");
+         expect(wrapper.node.history.location.pathname).toBe('/balanceInfo');
     });
 
     test('redirect to `Feature List` content when  redirectToFeatureList is  true', () => {
@@ -171,29 +173,6 @@ describe('ContentMobile', () => {
             <HashRouter>
                 <ContentMobile {...props} />
             </HashRouter>);
-         expect(wrapper.node.history.location.pathname).toBe("/featureList");
+         expect(wrapper.node.history.location.pathname).toBe('/featureList');
     });
-
-    ////test.each([
-      
-    ////    [true, true, '/', true],
-    ////])(
-    ////    "shouldComponentUpdate() return correct value",
-    ////    (redirectToBalanceInfoPage, redirectToFeatureList, path, expectedValue) => {
-    ////    const wrapper =  mount(
-    ////        <HashRouter>
-    ////            <ContentMobile {...props} />
-    ////        </HashRouter>);
-    ////   expect(shouldComponentUpdateSpy.callCount).toBe(0);
-
-    ////   wrapper.setProps({ 
-    ////       redirectToBalanceInfoPage: redirectToBalanceInfoPage,
-    ////       redirectToFeatureList: redirectToFeatureList,
-    ////       path: path
-    ////     });
-
-    ////     expect(shouldComponentUpdateSpy.callCount).toBe(1);
-    ////     expect(shouldComponentUpdateSpy.returned()).toBe(expectedValue);
-    ////    }
-    ////);
 });

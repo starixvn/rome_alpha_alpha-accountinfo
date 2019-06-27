@@ -9,6 +9,7 @@
     public class ProductStatusItemViewModel : StatusItemViewModel
     {
         private readonly IConfigurationItem productItem;
+        private const int DisplayOrderStep = 10;
 
         private readonly static List<int> productsAllowedSuperViewAgent = new List<int>
         {
@@ -25,7 +26,7 @@
 
         public override string Text => Request.GetProductName(productItem.ProductId);
 
-        public override int DisplayOrder => ProductId * 10;
+        public override int DisplayOrder => ProductId * DisplayOrderStep;
 
         public int ProductId => productItem.ProductId;
 

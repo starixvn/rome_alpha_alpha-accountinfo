@@ -20,8 +20,6 @@
 
         internal override string StatusName => DataKey.StatusMapping.DisableOutright;
 
-        internal override bool StatusValue => Checked;
-
-        internal override bool SyncedCasino3rd => false;  
+        internal override bool StatusValue => Checked; 
     }
 }

@@ -125,9 +125,8 @@
       <HintPath>..\..\packages\Fanex.Logging.Extensions.Database.1.0.3\lib\net40\Fanex.Logging.Extensions.Database.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.5\lib\net40\Fanex.Logging.Extensions.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.8-beta1\lib\net461\Fanex.Logging.Extensions.Web.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging.RabbitMQ, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.RabbitMQ.1.0.1\lib\net461\Fanex.Logging.RabbitMQ.dll</HintPath>
@@ -381,7 +380,7 @@
     <Content Include="Features\SearchAccount\Scripts\tests\helpers\actor-is-super-sample.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\helpers\resources-sample.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\mobile-version\content-mobile.test.jsx" />
-    <Content Include="Features\SearchAccount\Scripts\app\api-client.jsx" />
+    <Content Include="Features\SearchAccount\Scripts\app\accountinfo-api.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\components\common\custom-anchor-tag.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\member-credit-max-row.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\given-credit-row.jsx" />
@@ -413,17 +412,52 @@
     <Content Include="Features\SearchAccount\Scripts\app\given-credit.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\index.jsx" />
     <Content Include="Features\SearchAccount\Scripts\app\helpers\accountinfo-helper.jsx" />
-    <Content Include="Features\SearchAccount\Scripts\app\helpers\router-debugger.jsx" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jasmine.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
+    <Content Include="Features\Shared\Scripts\api-client.jsx" />
+    <Content Include="Features\Shared\Scripts\react-paginations\autosize-input.jsx" />
+    <Content Include="Features\Shared\Scripts\react-paginations\react-pagination.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.css" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.js" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single.min.css" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single.min.js" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-helper.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-api.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-view-list.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple\unsuspend-multiple-components.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple\unsuspend-multiple-container.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple\unsuspend-multiple.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-single\unsuspend-single-components.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-single\unsuspend-single.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-single\unsuspend-single-container.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unspend-downlines-resources.mock.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-helper.test.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-multiple\unsuspend-multiple-components.test.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-multiple\unsuspend-multiple-container.test.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-multiple\unsuspend-multiple.test.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-single\unsuspend-single-components.test.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-single\unsuspend-single-container.test.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unsuspend-single\unsuspend-single.test.jsx" />
+    <Content Include="__mocks__\global.mock.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\tests\unspend-view-list.test.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Styles\Images\suspened.png" />
+    <Content Include="Features\UnsuspendDownlines\Styles\Images\Unsuspend.png" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
     <Content Include="App_Data\securitycode.json" />
     <Content Include="Features\ProductStatusPopup\Views\Index.cshtml" />
     <Content Include="Features\ProductStatusPopup\Styles\product-status-popup.scss" />
     <Content Include=".babelrc" />
+    <Content Include="Features\UnsuspendDownlines\Views\EditSingle.cshtml" />
+    <Content Include="Features\UnsuspendDownlines\Views\web.config" />
+    <Content Include="Features\UnsuspendDownlines\Views\EditMultiple.cshtml" />
+    <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines.scss" />
+    <Content Include="__mocks__\axios.js" />
+    <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
+    <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
+    <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
     <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
@@ -541,6 +575,17 @@
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
     <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleCommand.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendSingleCommand.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleRequest.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendSingleRequest.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendViewListRequest.cs" />
+    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesController.cs" />
+    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandler.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendMultipleViewModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendMultipleResultViewModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendListViewModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendSingleViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -628,7 +673,11 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alpha.AccountInfo\Alpha.AccountInfo.csproj">
       <Project>{19fff821-8518-4c8f-b23b-db8d91c1552a}</Project>
@@ -641,7 +690,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\product-status-popup.ts" />
-    <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\tests\productstatus-tests.ts" />
+    <TypeScriptCompile Include="Features\ProductStatusPopup\Scripts\tests\product-status-popup.test.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery.blockui\index.d.ts" />
@@ -651,11 +700,6 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\SearchAccount\Styles\given-credit.scss" />

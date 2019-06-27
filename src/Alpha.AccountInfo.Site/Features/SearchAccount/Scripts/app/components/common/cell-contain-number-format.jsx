@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import NumberFormat from 'react-number-format';
 import CustomAnchorTag from './custom-anchor-tag';
 
@@ -17,22 +17,20 @@ const CellContainNumberFormat = ({
         formatClassNames = 'number-link';
     }
 
-    return (
-        <div className={`${classNames} ${formatClassNames}`}>
-            <NumberFormat
-                value={value}
-                displayType={'text'}
-                decimalScale={2}
-                fixedDecimalScale={true}
-                thousandSeparator={true}
-                renderText={
-                    value => hrefLink === null || hrefLink === '' ?
-                        <span>{value}</span> :
-                        <CustomAnchorTag {...{ mobileView, href: hrefLink}}>{value}</CustomAnchorTag>
-                }
-            />
-        </div>
-    );
-}
+    return <div className={`${classNames} ${formatClassNames}`}>
+        <NumberFormat
+            value={value}
+            displayType={'text'}
+            decimalScale={2}
+            fixedDecimalScale={true}
+            thousandSeparator={true}
+            renderText={
+                displayedValue => hrefLink === null || hrefLink === '' ?
+                    <span>{displayedValue}</span> :
+                    <CustomAnchorTag {...{ mobileView, href: hrefLink }}>{displayedValue}</CustomAnchorTag>
+            }
+        />
+    </div>;
+};
 
 export default CellContainNumberFormat;

@@ -1,15 +1,17 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import Autosuggest from 'react-autosuggest';
-import { accountInfoAPI } from '../../api-client';
+import { accountInfoAPI } from '../../accountinfo-api';
 import { zoomEnable, zoomDisable } from '../../helpers/accountinfo-helper';
+import $ from 'jquery';
 
 export const getSuggestionValue = suggestion => suggestion.UserName;
 
-export const renderSuggestion = suggestion =>
-    <div id={`${suggestion.UserName}-suggestion`}>
+export const renderSuggestion = suggestion => {
+    return (<div id={`${suggestion.UserName}-suggestion`}>
         {suggestion.UserName} {suggestion.UserName2 !== null && suggestion.UserName2 !== '' && `(${suggestion.UserName2})`}
         <div>{suggestion.FirstName} {suggestion.LastName}</div>
-    </div>;
+    </div>);
+};
 
 export default class Searching extends React.Component {
     constructor(props) {
@@ -25,7 +27,7 @@ export default class Searching extends React.Component {
 
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-		this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+        this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -44,28 +46,28 @@ export default class Searching extends React.Component {
         if (e.key === 'Enter') {
             this.handleSearchClick(e);
         }
-	}
+    }
 
-	hideKeyboard() {
-		$('.txt-search').blur();
-	}
+    hideKeyboard() {
+        $('.txt-search').blur();
+    }
 
-    handleSearchClick(e) {
-        let { username } = this.state;
+    handleSearchClick() {
+        const { username } = this.state;
         if (username !== '') {
-			this.props.fetchCustomerInfoFromServer(username);
-			this.onSuggestionsClearRequested();
-			this.hideKeyboard();
+            this.props.fetchCustomerInfoFromServer(username);
+            this.onSuggestionsClearRequested();
+            this.hideKeyboard();
         }
     }
 
     onSuggestionsFetchRequested(input) {
-		accountInfoAPI
-			.getAutoUsernameSuggestion({ SuggestionQuery: input.value.trim() })
-            .then((data) => {
+        accountInfoAPI
+            .getAutoUsernameSuggestion({ SuggestionQuery: input.value.trim() })
+            .then(data => {
                 this.setState({ suggestions: data });
             });
-	}
+    }
 
     onSuggestionsClearRequested() {
         this.setState({
@@ -84,38 +86,31 @@ export default class Searching extends React.Component {
     render() {
         const { username, suggestions } = this.state;
         const inputProps = {
-			type: 'search',
+            type: 'search',
             className: 'txt-search',
             onChange: this.onChangeSearchBox,
             onKeyPress: this.handleSearchKeyPress,
-			placeholder: this.props.userNamePlaceHolder,
-			onFocus: zoomDisable,
-			onBlur: zoomEnable,
+            placeholder: this.props.userNamePlaceHolder,
+            onFocus: zoomDisable,
+            onBlur: zoomEnable,
             value: username
         };
 
-        const onSuggestionsFetchRequested = this.onSuggestionsFetchRequested,
-            onSuggestionsClearRequested = this.onSuggestionsClearRequested,
-            onSuggestionSelected = this.onSuggestionSelected,
-            shouldRenderSuggestions = this.shouldRenderSuggestions;
-
-        return (
-            <div id="search-box" className="search-box">
-                <Autosuggest
-                    {...{
-                        suggestions,
-                        onSuggestionsFetchRequested,
-                        onSuggestionsClearRequested,
-                        onSuggestionSelected,
-                        getSuggestionValue,
-                        renderSuggestion,
-                        shouldRenderSuggestions,
-						inputProps,
-						focusInputOnSuggestionClick: false
-                    }}
-                />
-                <span className="icon-search" onClick={this.handleSearchClick} />
-            </div>
-        );
+        return <div id="search-box" className="search-box">
+            <Autosuggest
+                {...{
+                    suggestions,
+                    onSuggestionsFetchRequested: this.onSuggestionsFetchRequested,
+                    onSuggestionsClearRequested: this.onSuggestionsClearRequested,
+                    onSuggestionSelected: this.onSuggestionSelected,
+                    getSuggestionValue,
+                    renderSuggestion,
+                    shouldRenderSuggestions: this.shouldRenderSuggestions,
+                    inputProps,
+                    focusInputOnSuggestionClick: false
+                }}
+            />
+            <span className="icon-search" onClick={this.handleSearchClick} />
+        </div>;
     }
 }

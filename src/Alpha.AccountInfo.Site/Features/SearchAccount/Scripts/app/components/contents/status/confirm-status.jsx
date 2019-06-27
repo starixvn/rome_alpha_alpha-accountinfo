@@ -1,81 +1,110 @@
 ﻿import React from 'react';
-import { accountInfoAPI } from '../../../api-client';
-import { resizeBootboxOnMobile, buildTooltipProps, formatMessage } from '../../../helpers/accountinfo-helper';
+import { accountInfoAPI } from '../../../accountinfo-api';
+import { resizeBootboxOnMobile, resizePopupOnMobile, buildTooltipProps, formatMessage, usernameRegExp } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
 export default class ConfirmStatus extends React.Component {
-	constructor(props) {
-		super(props);
-		this.handleOpenPopup = this.handleOpenPopup.bind(this);
-		this.updateCustomerStatus = this.updateCustomerStatus.bind(this);
-	}
+    constructor(props) {
+        super(props);
+        this.handleOpenPopup = this.handleOpenPopup.bind(this);
+        this.openBootboxConfirm = this.openBootboxConfirm.bind(this);
+        this.openPopup = this.openPopup.bind(this);
+        this.updateCustomerStatus = this.updateCustomerStatus.bind(this);
+    }
 
-	updateCustomerStatus(e) {
-		$.blockUI();
-		let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
+    updateCustomerStatus() {
+        $.blockUI();
+        let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
 
-		accountInfoAPI
-			.updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
-			.then((data) => {
-				if (data.IsSuccess) {
-					setTimeout(() => {
-						if (status.ReloadCustomerInfo) {
-							fetchCustomerInfoFromServer(username, false, false);
-						}
+        accountInfoAPI
+            .updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
+            .then(data => {
+                if (data.IsSuccess) {
+                    setTimeout(() => {
+                        if (status.ReloadCustomerInfo) {
+                            fetchCustomerInfoFromServer(username, false, false);
+                        }
 
-						fetchCustomerAllStatusFromServer(true);
-					}, 1500);
-				}
-				else {
-					window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
-					$.unblockUI();
-				}
-			});
-	}
+                        fetchCustomerAllStatusFromServer(true);
+                    }, 1500);
+                }
+                else {
+                    window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
+                    $.unblockUI();
+                }
+            });
+    }
 
-	handleOpenPopup(e) {
-		let { mobileView, status } = this.props;
+    handleOpenPopup(e) {
+        const { status } = this.props;
 
-		if (!status.Disabled) {
-			window.top.bootboxConfirm(
-				formatMessage(status.ConfirmMessage),
-				e.target,
-				this.updateCustomerStatus
-			);
+        if (!status.Disabled) {
+            status.IsPopup ? this.openPopup(e) : this.openBootboxConfirm(e);
+        }
+    }
 
-			if (mobileView) {
-				resizeBootboxOnMobile();
-			}
-		}
-	}
+    openPopup() {
+        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView, resources } = this.props;
+        window.top.closedPopup = false;
+        window.top.realoadLeftPanel = false;
+        const timer = setInterval(reloadCustomerStatus, 1000);
 
-	render() {
-		const { status } = this.props;
+        function reloadCustomerStatus() {
+            if (window.top.closedPopup) {
+                clearInterval(timer);
+                if (window.top.realoadLeftPanel) {
+                    fetchCustomerInfoFromServer(username, false, false);
+                    fetchCustomerAllStatusFromServer(true);
+                }
+            }
+        }
 
-		const inputProps = {
-			type: "checkbox",
-			checked: status.Checked,
-			onChange: () => { }
-		};
+        const headerPopupText = usernameRegExp(resources.UnuspendStatusPopupHeader, username);
+        window.top.ageWnd.open(status.Url, headerPopupText, undefined, undefined, 700, 500);
+        if (mobileView) {
+            resizePopupOnMobile();
+        }
+    }
 
-		let content = <div><input {...inputProps} />
-			<label
-				className="label-text"
-				htmlFor={status.displayOrder}
-			>
-				{status.Text}
-			</label>
-		</div>;
+    openBootboxConfirm(e) {
+        const { status, mobileView } = this.props;
+        window.top.bootboxConfirm(
+            formatMessage(status.ConfirmMessage),
+            e.target,
+            this.updateCustomerStatus
+        );
 
+        if (mobileView) {
+            resizeBootboxOnMobile();
+        }
+    }
 
-		return (<div
-			id={`confirm-${status.DisplayOrder}`}
-			className={`col-xs-6 checkbox ${status.Disabled ? 'disabled' : ''}`}
-			onClick={this.handleOpenPopup}
-		>
-			{(typeof status.Tooltip === 'undefined') || status.Tooltip === '' ?
-				content : <Tooltip {...buildTooltipProps(status.Tooltip)}>{content}</Tooltip>}
+    render() {
+        const { status } = this.props;
 
-		</div>);
-	}
+        const inputProps = {
+            type: 'checkbox',
+            checked: status.Checked,
+            onChange: () => {
+                // onChange on parent elememt
+            }
+        };
+
+        const content = <div>
+            <input {...inputProps} />
+            <label className='label-text' htmlFor={status.displayOrder}>
+                {status.Text}
+            </label>
+        </div>;
+
+        return (<div
+            id={`confirm-${status.DisplayOrder}`}
+            className={`col-xs-6 checkbox ${status.Disabled ? 'disabled' : ''}`}
+            onClick={this.handleOpenPopup}
+        >
+            {(typeof status.Tooltip === 'undefined') || status.Tooltip === '' ?
+                content : <Tooltip {...buildTooltipProps(status.Tooltip)}>{content}</Tooltip>}
+
+        </div>);
+    }
 }

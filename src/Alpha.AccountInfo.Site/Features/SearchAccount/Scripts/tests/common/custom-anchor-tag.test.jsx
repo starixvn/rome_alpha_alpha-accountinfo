@@ -1,13 +1,16 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 import renderer from 'react-test-renderer';
 import CustomAnchorTag from 'CustomAnchorTag';
 import * as accountInfoHelper from 'AccountInfoHelper';
+import '../../../../../__mocks__/global.mock';
 
 describe('CustomAnchorTag', () => {
     let props;
+    global._AssetCommonCssLink = '';
+
+    global.HTMLElement = window.HTMLElement;
     beforeEach(() => {
         props = {
             title: undefined,
@@ -28,24 +31,28 @@ describe('CustomAnchorTag', () => {
         expect(component.toJSON()).toMatchSnapshot();
     });
 
-    describe("handleClick()" , () => {
-        it('called when clicked', () => {
-            const spy = sinon.spy(CustomAnchorTag.prototype, 'handleOnclick');
-            const wrapper = shallow(<CustomAnchorTag />)
-    
-            wrapper.find('a').simulate('click')
-            expect(spy.calledOnce).toBeTruthy();
-        })
+    describe('handleClick()', () => {
+        test.each([[true, 0], [false, 1]])(
+            'correct callblock main iframe by browser',
+            (isIE, expectedCallTimes) => {
+                accountInfoHelper.closeLeftPanelOnMobile = jest.fn();
+                window.top.alpha.core.isIe.mockReturnValueOnce(isIE);
+                const wrapper = shallow(<CustomAnchorTag {...props} />);
+                const event = Object.assign(jest.fn(), { preventDefault: () => { } });
+                wrapper.find('a').simulate('click', event);
 
+                expect(global.$.fn.block).toBeCalledTimes(expectedCallTimes);
+            });
 
         test.each([[true, 1], [false, 0]])(
-            "correct call accountInfoHelper.closeLeftPanelOnMobile()",
+            'correct call accountInfoHelper.closeLeftPanelOnMobile()',
             (mobileView, expectedCallTimes) => {
                 accountInfoHelper.closeLeftPanelOnMobile = jest.fn();
                 props.mobileView = mobileView;
 
-                const wrapper = shallow(<CustomAnchorTag {...props} />)
-                wrapper.find('a').simulate('click');
+                const wrapper = shallow(<CustomAnchorTag {...props} />);
+                const event = Object.assign(jest.fn(), { preventDefault: () => { } });
+                wrapper.find('a').simulate('click', event);
                 expect(accountInfoHelper.closeLeftPanelOnMobile).toBeCalledTimes(expectedCallTimes);
             }
         );

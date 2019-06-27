@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import CustomerInfo from 'CustomerInfo';
-import { mount, shallow } from "enzyme";
+import { mount, shallow } from 'enzyme';
 import { Super } from '../../helpers/actor-is-super-sample';
 import { Master } from '../../helpers/actor-is-master-sample';
 import { Agent } from '../../helpers/actor-is-agent-sample';
@@ -23,17 +23,17 @@ describe('CustomerInfo', () => {
             fetchCustomerInfoFromServer: jest.fn()
         };
 
-        customerInfoMount = undefined;
+        customerInfoMount = null;
     });
 
-    const buildCustomerInfo = (customerInfo) => {
+    const buildCustomerInfo = customerInfo => {
         props.customerInfo = customerInfo;
         if (!customerInfoMount) {
             customerInfoMount = mount(<CustomerInfo {...props} />);
         }
 
         return customerInfoMount;
-    }
+    };
 
     test('renders without crashing', () => {
         const div = document.createElement('div');
@@ -51,9 +51,10 @@ describe('CustomerInfo', () => {
         Super.ViewMemberInfo,
         Master.ViewAgentInfo,
         Master.ViewMemberInfo,
-        Agent.ViewMemberInfo])(
-        "always renders a `SearchAccountInfo`",
-        (customerInfo) => {
+        Agent.ViewMemberInfo
+    ])(
+        'always renders a SearchAccountInfo',
+        customerInfo => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(SearchAccountInfo).length).toBe(1);
         }
@@ -66,7 +67,7 @@ describe('CustomerInfo', () => {
         [Master.ViewAgentInfo, 0],
         [Master.ViewMemberInfo, 1],
         [Agent.ViewMemberInfo, 0]])(
-        "always renders `UplineInfo` callTimes",
+        'always renders `UplineInfo` callTimes',
         (customerInfo, expectedCallTimes) => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(UplineInfo).length).toBe(expectedCallTimes);
@@ -80,8 +81,8 @@ describe('CustomerInfo', () => {
         Master.ViewAgentInfo,
         Master.ViewMemberInfo,
         Agent.ViewMemberInfo])(
-        "always renders 3 `CustomAnchorTag`",
-        (customerInfo) => {
+        'always renders 3 `CustomAnchorTag`',
+        customerInfo => {
             buildCustomerInfo(customerInfo);
             expect(customerInfoMount.find(CustomAnchorTag).length).toBe(3);
         }
@@ -90,7 +91,7 @@ describe('CustomerInfo', () => {
     test('searchCounter equal zero and desktop view always return null', () => {
         props.searchCounter = 0;
         props.mobileView = false;
-        let component = buildCustomerInfo(Super.ViewMasterInfo);
+        const component = buildCustomerInfo(Super.ViewMasterInfo);
 
         expect(component.html()).toBeNull();
     });
@@ -98,7 +99,7 @@ describe('CustomerInfo', () => {
     test('searchCounter equal zero and mobile view and customerinfo is null always return null', () => {
         props.searchCounter = 0;
         props.mobileView = false;
-        let component = buildCustomerInfo(null);
+        const component = buildCustomerInfo(null);
 
         expect(component.html()).toBeNull();
     });

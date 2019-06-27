@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import CustomizedAccordionItem from './customized-accordion-item';
 
 export default class AccountInfoDesktop extends React.Component {
@@ -48,40 +48,40 @@ export default class AccountInfoDesktop extends React.Component {
         const { expandedItems } = this.state;
         const { contentItems } = this.props;
 
-        let accordionItems = [
+        const accordionItems = [
             {
                 ...contentItems.contactInfoProps,
-                blockId: "contactInfo",
+                blockId: 'contactInfo',
                 expanded: expandedItems.contactInfo
             },
             {
                 ...contentItems.balanceInfoProps,
-                blockId: "balanceInfo",
+                blockId: 'balanceInfo',
                 expanded: expandedItems.balanceInfo
             },
             {
                 ...contentItems.downlineListProps,
-                blockId: "downlineList",
+                blockId: 'downlineList',
                 expanded: expandedItems.downlineList
             },
             {
                 ...contentItems.statusProps,
-                blockId: "status",
+                blockId: 'status',
                 expanded: expandedItems.status
             },
             {
                 ...contentItems.settingProps,
-                blockId: "settings",
+                blockId: 'settings',
                 expanded: expandedItems.settings
             },
             {
                 ...contentItems.loginInfoProps,
-                blockId: "loginInfo",
+                blockId: 'loginInfo',
                 expanded: expandedItems.loginInfo
             },
             {
                 ...contentItems.onlineListProps,
-                blockId: "onlineList",
+                blockId: 'onlineList',
                 expanded: expandedItems.onlineList
             }
         ];

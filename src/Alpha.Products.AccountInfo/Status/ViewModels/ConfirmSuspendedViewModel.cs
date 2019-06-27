@@ -1,7 +1,6 @@
 ﻿namespace Alpha.Products.AccountInfo.Status.ViewModels
 {
     using Alpha.Products.AccountInfo.Requests;
-    using Alpha.Products.Core.Shared;
 
     public class ConfirmSuspendedViewModel : ConfirmStatusItemViewModelBase
     {
@@ -10,23 +9,42 @@
         {
         }
 
-        public override bool Disabled => base.Disabled || 
-            Request.GetData<bool>(DataKey.SearchAccount.Upline.IsClosed) ||
-            Request.GetData<bool>(DataKey.SearchAccount.Upline.IsSuspended);
+        private bool IsSuspendedUpline => Request.GetData<bool>(DataKey.SearchAccount.Upline.IsSuspended);
 
-        public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsSuspended);
+        private bool IsSuspendedSearchAccount => Request.GetData<bool>(DataKey.SearchAccount.IsSuspended);
+
+        public override bool Disabled => base.Disabled || IsSuspendedUpline ||
+            Request.GetData<bool>(DataKey.SearchAccount.Upline.IsClosed);
+
+        public override bool Checked => IsSuspendedSearchAccount;
 
         public override bool ReloadCustomerInfo => true;
 
-        internal override string SuffixMessage =>
-            Request.SearchAccount.IsMember ?
-                    Checked ? "InCaseUnsuspendedMemberMessage" : "InCaseSuspendedMemberMessage" :
-                    Checked ? "InCaseUnsuspendedMasterOrAgentMessage" : "InCaseSuspendedMasterOrAgentMessage";
+        internal override string SuffixMessage
+        {
+            get
+            {
+                if (Request.SearchAccount.IsMember)
+                {
+                    return Checked ? "InCaseUnsuspendedMemberMessage" : "InCaseSuspendedMemberMessage";
+                }
+
+                return Checked ? "InCaseUnsuspendedMasterOrAgentMessage" : "InCaseSuspendedMasterOrAgentMessage";
+            }
+        }
 
         internal override string StatusName => DataKey.StatusMapping.Suspended;
 
         internal override bool StatusValue => !Checked;
 
-        internal override bool SyncedCasino3rd => Request.SearchAccount.ProductStatusOf(ProductConstants.RNGCasino).Synced;
+        public string Tooltip =>
+            IsSuspendedUpline && !Request.GetData<bool>(DataKey.SearchAccount.IsDirectSuspend)
+            ? Request.GetResource("SuspendedByUplineTooltip") : string.Empty;
+
+        public override bool IsPopup => IsSuspendedSearchAccount && SearchAccount.IsNotMember;
+
+        public override string Url => IsPopup ?
+            $"{AccountInfoUrl}UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}" :
+            base.Url;
     }
 }

@@ -1,14 +1,15 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using Alpha.AccountInfo.Features.Shared;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using System.Collections;
+    using System.Collections.Generic;
 
     public class UpdateCustomerStatusCommand : NonQueryCommand
     {
+        private const byte AlphaSystemId = 2;
+
         private static readonly IDictionary<string, string> CustomerStatusSettingKeys =
          new Dictionary<string, string>
          {
@@ -71,7 +72,7 @@
 
             if(StatusName.Equals(StatusNames.Closed))
             {
-                spParams.Add("SystemID", 2);
+                spParams.Add("SystemID", AlphaSystemId);
             }
 
             return spParams;

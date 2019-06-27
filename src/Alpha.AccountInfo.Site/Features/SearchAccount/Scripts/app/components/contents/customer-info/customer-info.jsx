@@ -1,5 +1,5 @@
-﻿import * as React from 'react';
-import UplineInfo from './upline-info'
+﻿import React from 'react';
+import UplineInfo from './upline-info';
 import SearchAccountInfo from './search-account-info';
 import { UserLevel } from '../../../constants';
 import CustomAnchorTag from '../../common/custom-anchor-tag';
@@ -11,12 +11,12 @@ const CustomerInfo = ({
     searchCounter,
     mobileView
 }) => {
-    if (searchCounter == 0 && (!mobileView || mobileView && customerInfo === null)) {
+    if (searchCounter === 0 && ((mobileView && customerInfo === null) || !mobileView)) {
         return null;
     }
 
     if (searchCounter > 0 && customerInfo === null) {
-        return <div className="no-information">{resources.AccountNotFound}</div>;
+        return <div className='no-information'>{resources.AccountNotFound}</div>;
     }
 
     const userLevelInfoArray = [
@@ -41,26 +41,26 @@ const CustomerInfo = ({
     ];
 
     return (
-        <div id="customer-info" className="block-info">
+        <div id='customer-info' className='block-info'>
             {
                 userLevelInfoArray.map((userLevelInfo, index) => {
-                    let uplineInfoProps = {
+                    const uplineInfoProps = {
                         username: userLevelInfo.Name,
                         fetchCustomerInfoFromServer
                     };
 
-                    let searchAccountInfoProps = {
+                    const searchAccountInfoProps = {
                         customerInfo,
                         resources,
                         mobileView
                     };
 
                     return userLevelInfo.Visible &&
-                        <div className="col-xs-12 row-info" key={index}>
-                            <div className="col-xs-5">
+                        <div className='col-xs-12 row-info' key={index}>
+                            <div className='col-xs-5'>
                                 {userLevelInfo.LevelName}
                             </div>
-                            <div className="col-xs-7 col-right">
+                            <div className='col-xs-7 col-right'>
                                 {
                                     customerInfo.RoleId === userLevelInfo.LevelId ?
                                         <SearchAccountInfo {...searchAccountInfoProps} /> :
@@ -71,15 +71,15 @@ const CustomerInfo = ({
                 })
             }
 
-            <div className={`col-xs-12 row-info text-center list-button ${customerInfo.Buttons.length === 2 ? "two-button" : "one-button"}`}>
+            <div className={`col-xs-12 row-info text-center list-button ${customerInfo.Buttons.length === 2 ? 'two-button' : 'one-button'}`}>
                 {
-					customerInfo.Buttons.map((buton, index) => {
-                        let customAnchorTagProps = {
+                    customerInfo.Buttons.map((buton, index) => {
+                        const customAnchorTagProps = {
                             mobileView,
-                            classNames: "btn-default with-level",
+                            classNames: 'btn-default with-level',
                             href: buton.Url,
                             key: index
-                        }
+                        };
 
                         return (
                             <CustomAnchorTag {...customAnchorTagProps}>

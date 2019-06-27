@@ -411,4 +411,10 @@
   <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
     <value>Sync Casino</value>
   </data>
+  <data name="UnuspendStatusPopupHeader" xml:space="preserve">
+    <value>Unsuspend &lt;username&gt;</value>
+  </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>This account was indirectly suspended by upline</value>
+  </data>
 </root>

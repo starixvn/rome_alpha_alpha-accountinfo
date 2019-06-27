@@ -1,31 +1,12 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
-import { accountInfoAPI } from './api-client';
+import { accountInfoAPI } from './accountinfo-api';
 import { UserLevel } from './constants';
 import { decodeResources } from './helpers/accountinfo-helper';
 
-window.renderGivenCredit = function (
-    searchAccountId,
-    searchAccountRoleId,
-    currentGivenCredit,
-    givenCreditMin,
-    givenCreditMax,
-    resources) {
-    ReactDOM.render(
-        <GivenCredit searchAccountId={searchAccountId}
-            searchAccountRoleId={searchAccountRoleId}
-            currentGivenCredit={currentGivenCredit}
-            givenCreditMin={givenCreditMin}
-            givenCreditMax={givenCreditMax}
-			resources={decodeResources(resources)}
-        />,
-        document.getElementById('given-credit')
-    );
-};
-
-export default class GivenCredit extends React.Component {
+class GivenCredit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,71 +18,73 @@ export default class GivenCredit extends React.Component {
         };
 
         this.handleClose = this.handleClose.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-	handleKeyPress(e) {
-		if (e.key === 'Enter') {
-			this.handleSubmit(e);
-		}
-	}
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.handleSubmit();
+        }
+    }
 
-    handleClose(e) {
+    handleClose() {
         window.top.closedPopup = true;
         window.top.ageWnd.close();
     }
 
-	showErrorMessage(message) {
-		this.setState((prevState) => ({
-			hideMessages: false,
-			message: message,
-			updateSuccess: false
-		}));
-	}
+    showErrorMessage(message) {
+        this.setState(() => ({
+            hideMessages: false,
+            message: message,
+            updateSuccess: false
+        }));
+    }
 
-	handleSubmit(e) {
-		let self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
-			currentGivenCredit = parseFloat(this.props.currentGivenCredit),
-			givenCreditMin = parseFloat(this.props.givenCreditMin),
-			givenCreditMax = parseFloat(this.props.givenCreditMax),
-			newGivenCredit = parseFloat(this.state.newGivenCredit);
+    handleSubmit() {
+        const self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
+            currentGivenCredit = parseFloat(this.props.currentGivenCredit),
+            givenCreditMin = parseFloat(this.props.givenCreditMin),
+            givenCreditMax = parseFloat(this.props.givenCreditMax),
+            newGivenCredit = parseFloat(this.state.newGivenCredit);
 
-		if (newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
-			this.showErrorMessage(resources.InvalidValue);
-			return;
-		}
+        if (newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
+            this.showErrorMessage(resources.InvalidValue);
+            return;
+        }
 
-		if (newGivenCredit === currentGivenCredit) {
-			this.showErrorMessage(resources.ThereIsNoChange);
-			return;
-		}
+        if (newGivenCredit === currentGivenCredit) {
+            this.showErrorMessage(resources.ThereIsNoChange);
+            return;
+        }
 
-		$.blockUI();
-	
-        var params = {
+        $.blockUI();
+
+        const params = {
             SearchAccountId: searchAccountId,
             SearchAccountRoleId: searchAccountRoleId,
             CreditAmount: newGivenCredit
         };
 
-        accountInfoAPI.updateGivenCredit(params).then((data) => {
-            self.setState({
-                hideMessages: false,
-				message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
-                updateSuccess: data.IsSuccess
+        accountInfoAPI.updateGivenCredit(params)
+            .then(data => {
+                self.setState({
+                    hideMessages: false,
+                    message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
+                    updateSuccess: data.IsSuccess
+                });
+
+                const timeoutDefault = 1500;
+                if (data.IsSuccess) {
+                    setTimeout(() => {
+                        window.top.realoadLeftPanel = true;
+                        window.top.closedPopup = true;
+                        window.top.ageWnd.close();
+                    }, timeoutDefault);
+                }
+
+                $.unblockUI();
             });
-
-            if (data.IsSuccess) {
-                setTimeout(() => {
-                    window.top.realoadLeftPanel = true;
-                    window.top.closedPopup = true;
-                    window.top.ageWnd.close();
-                }, 1500);
-            }
-
-            $.unblockUI();
-        });
     }
 
     buildRow(title, value) {
@@ -113,39 +96,39 @@ export default class GivenCredit extends React.Component {
         );
     }
 
-	buildGivenCreditLimitNote() {
-		const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
-		const { resources } = this.state;
-		const buildNumberFormat = (value) =>
-			<NumberFormat
-				className="number"
-				value={value}
-				displayType={'text'}
-				decimalScale={2}
+    buildGivenCreditLimitNote() {
+        const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
+        const { resources } = this.state;
+        const buildNumberFormat = value =>
+            <NumberFormat
+                className="number"
+                value={value}
+                displayType={'text'}
+                decimalScale={2}
                 fixedDecimalScale={true}
                 thousandSeparator={true}
             />;
 
-        let memberGivenCreditLimit = <div className="content"> {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)} </div>;
+        const memberGivenCreditLimit = <div className="content"> {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)} </div>;
 
-        let masterAgentGivenCreditLimit =
+        const masterAgentGivenCreditLimit =
             <div className="content">
                 {buildNumberFormat(givenCreditMin)} ≤  {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)}
             </div>;
 
-        let noted = parseInt(searchAccountRoleId) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;
+        const noted = parseInt(searchAccountRoleId, 10) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;
 
         return (
             <div className="note">
                 <span className="text-red">*</span>
-				<strong>{resources.Note}</strong>:
+                <strong>{resources.Note}</strong>:
                   {noted}
             </div>
         );
-	}
+    }
 
     render() {
-        const rowClasses = "col-xs-12 form-group";
+        const rowClasses = 'col-xs-12 form-group';
         const { newGivenCredit, updateSuccess, message, hideMessages, resources } = this.state;
         const { currentGivenCredit } = this.props;
 
@@ -163,10 +146,10 @@ export default class GivenCredit extends React.Component {
                         value={newGivenCredit}
                         fixedDecimalScale={true}
                         thousandSeparator={true}
-						decimalScale={2}
-						onKeyPress={this.handleKeyPress}
-                        onValueChange={(values) => {
-                            const { formattedValue, value, floatValue } = values;
+                        decimalScale={2}
+                        onKeyPress={this.handleKeyPress}
+                        onValueChange={values => {
+                            const { floatValue } = values;
                             this.setState({ newGivenCredit: floatValue === undefined ? 0 : floatValue });
                         }}
                     />
@@ -184,3 +167,26 @@ export default class GivenCredit extends React.Component {
         );
     }
 }
+
+export default GivenCredit;
+
+export const renderGivenCredit = (searchAccountId,
+    searchAccountRoleId,
+    currentGivenCredit,
+    givenCreditMin,
+    givenCreditMax,
+    resources
+) => {
+    ReactDOM.render(
+        <GivenCredit searchAccountId={searchAccountId}
+            searchAccountRoleId={searchAccountRoleId}
+            currentGivenCredit={currentGivenCredit}
+            givenCreditMin={givenCreditMin}
+            givenCreditMax={givenCreditMax}
+            resources={decodeResources(resources)}
+        />,
+        document.getElementById('given-credit')
+    );
+};
+
+window.renderGivenCredit = renderGivenCredit;

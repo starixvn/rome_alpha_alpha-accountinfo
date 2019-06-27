@@ -84,7 +84,6 @@
             var viewModel = new ConfirmAllowOutrightViewModel(request);
 
             Assert.Equal("DisableOutright", viewModel.StatusName);
-            Assert.Equal(false, viewModel.SyncedCasino3rd);
         }
     }
 }

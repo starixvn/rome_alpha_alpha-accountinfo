@@ -1,10 +1,53 @@
 ﻿import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
+export const CustomLink = ({ pathname, iconClass, featureText, backText = '' }) =>
+    <Link
+        id={`nav-${iconClass}`}
+        to={{
+            pathname,
+            state: { addAnimation: true }
+        }}
+        className="feature-item"
+    >
+        <span className={iconClass} />
+        {featureText}
+        <span className="feature-item-nav">{backText}</span>
+    </Link>;
+
+export const ContentPage = ({
+    iconClass,
+    featureText,
+    children,
+    animationClass,
+    fetchDataFromServer,
+    backText
+}) => {
+    if (fetchDataFromServer !== undefined) {
+        fetchDataFromServer();
+    }
+
+    return (
+        <div className={`${animationClass} feature-detail`}>
+            <CustomLink {... { iconClass, featureText, pathname: '/featureList', backText }} />
+            {children}
+        </div>
+    );
+};
+
+export const FeatureListPage = ({ contentItems, animationClass }) =>
+    <div className={`${animationClass} feature-list`}>
+        <nav>
+            {
+                Object.values(contentItems).map((content, index) => content.visible && <CustomLink {...content} key={index} />)
+            }
+        </nav>
+    </div>;
+
 export default class ContentMobile extends React.Component {
     constructor(props) {
         super(props);
-        let { addAnimation = true } = this.props;
+        const { addAnimation = true } = this.props;
         this.state = {
             animationClass: addAnimation ? 'translate-from-left' : '',
             featureListPath: '/featureList',
@@ -13,7 +56,7 @@ export default class ContentMobile extends React.Component {
     }
 
     componentDidMount() {
-        let self = this;
+        const self = this;
         if (this.state.animationClass !== '') {
             setTimeout(() => {
                 self.setState({ animationClass: '' });
@@ -22,11 +65,11 @@ export default class ContentMobile extends React.Component {
     }
 
     shouldComponentUpdate(props, state) {
-        let { redirectToBalanceInfoPage, redirectToFeatureList, path } = props;
-        let { featureListPath, balanceInfoPath } = state;
+        const { redirectToBalanceInfoPage, redirectToFeatureList, path } = props;
+        const { featureListPath, balanceInfoPath } = state;
 
-        let balanceInfoRedirectBackToItself = path === balanceInfoPath && redirectToBalanceInfoPage;
-        let featureListRedirectBackToItself = path === featureListPath && redirectToFeatureList;
+        const balanceInfoRedirectBackToItself = path === balanceInfoPath && redirectToBalanceInfoPage;
+        const featureListRedirectBackToItself = path === featureListPath && redirectToFeatureList;
 
         return !balanceInfoRedirectBackToItself && !featureListRedirectBackToItself;
     }
@@ -39,8 +82,8 @@ export default class ContentMobile extends React.Component {
             fetchDataFromServer,
             contentItems = [],
             redirectToBalanceInfoPage = false,
-			redirectToFeatureList = false,
-			backText
+            redirectToFeatureList = false,
+            backText
         } = this.props;
 
         const { featureListPath, balanceInfoPath, animationClass } = this.state;
@@ -57,52 +100,7 @@ export default class ContentMobile extends React.Component {
         }
 
         return contentItems.length === 0 ?
-			<ContentPage {...{ iconClass, animationClass, featureText, children, fetchDataFromServer, backText }} /> :
+            <ContentPage {...{ iconClass, animationClass, featureText, children, fetchDataFromServer, backText }} /> :
             <FeatureListPage {...{ contentItems, animationClass }} />;
     }
 }
-
-export const CustomLink = ({ pathname, iconClass, featureText, backText = '' }) =>
-    <Link
-        id={`nav-${iconClass}`}
-        to={{
-            pathname,
-            state: { addAnimation: true }
-        }}
-        className="feature-item"
-    >
-        <span className={iconClass} />
-        {featureText}
-		<span className="feature-item-nav">{backText}</span>
-    </Link>;
-
-export const ContentPage = ({
-    iconClass,
-    featureText,
-    children,
-    animationClass,
-	fetchDataFromServer,
-	backText
-}) => {
-    if (fetchDataFromServer !== undefined) {
-        fetchDataFromServer();
-    }
-
-    return (
-        <div className={`${animationClass} feature-detail`}>
-			<CustomLink {... { iconClass, featureText, pathname: "/featureList", backText }} />
-            {children}
-        </div>
-    );
-}
-
-export const FeatureListPage = ({ contentItems, animationClass }) =>
-    <div className={`${animationClass} feature-list`}>
-        <nav>
-            {
-                Object.values(contentItems).map((content, index) => {
-                    return content.visible && <CustomLink {...content} key={index} />;
-                })
-            }
-        </nav>
-    </div>;

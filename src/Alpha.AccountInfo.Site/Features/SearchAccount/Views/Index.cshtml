@@ -1,6 +1,5 @@
 ﻿@{
-	Layout = "~/Features/Shared/Views/_Layout.cshtml";
-	string pattern = @"([a-zA-Z]+) (\d+)";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
 
 }
 @model AccountInfoViewModel
@@ -11,26 +10,23 @@
     @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
 }
 
-<div id="account-info" />
-
 @Html.AntiForgeryToken()
+@Html.Hidden("NotAuthorized", Resources.NotAuthorized)
+@Html.Hidden("AssetCommonCssLink", StaticResources.AssetStyles.RenderCommon("/bundles/common/common"))
+
+<div id="account-info" />
 
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/SearchAccount/Bundles/index")
 
     <script>
-        var accountInfoSiteAppPath = '@Model.AccountInfoUrl';
-        var __RequestVerificationToken = $("input[name=\"__RequestVerificationToken\"]").val();
-		var _AssetCommonCssLink = '@StaticResources.AssetStyles.RenderCommon("/bundles/common/common")'
-		var _NotAuthorized = '@Resources.NotAuthorized';
-
         renderAccountInfo(
             '@Model.SearchAccountName',
             '@Model.ActorRoleId',
             '@Model.ActoreName',
             JSON.parse('@Model.MobileView'.toLowerCase()),
-			JSON.parse('@Model.ShowLoginInfo'.toLowerCase()),
-			@Html.Raw(Model.AccountInfoResources)
+            JSON.parse('@Model.ShowLoginInfo'.toLowerCase()),
+            @Html.Raw(Model.AccountInfoResources)
         );
     </script>
 }

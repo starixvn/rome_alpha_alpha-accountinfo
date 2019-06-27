@@ -13,7 +13,7 @@ const CustomizedAccordionItem = ({
         <div
             id={blockId}
             className="feature-item"
-            onClick={() => { handleClick(blockId, fetchDataFromServer)}}
+            onClick={() => { handleClick(blockId, fetchDataFromServer); }}
         >
             <span className={iconClass} /> {featureText}
         </div>
