@@ -71,16 +71,16 @@ export default class SearchAccountInfo extends React.Component {
             }
         };
 
-        if (customerInfo.Closed) {
+        if (!customerInfo.Enabled) {
+            return statusInfo.Disabled;
+        }
+        else if (customerInfo.Closed) {
             return statusInfo.Closed.find(closedReason => customerInfo.ClosedReason === closedReason.Id);
         }
         else if (customerInfo.Suspended) {
             return statusInfo.Suspended;
         }
-        else if (!customerInfo.Enabled) {
-            return statusInfo.Disabled;
-        }
-
+        
         return statusInfo.Enabled;
     };
 
