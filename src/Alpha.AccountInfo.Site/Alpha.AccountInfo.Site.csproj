@@ -53,7 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Logging.1.0.0-LogIntegrate-08\lib\net461\Alpha.Logging.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Logging.1.0.0-LogIntegrate-09\lib\net461\Alpha.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
@@ -128,7 +128,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.8-beta1\lib\net461\Fanex.Logging.Extensions.Web.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.8\lib\net461\Fanex.Logging.Extensions.Web.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging.RabbitMQ, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.RabbitMQ.1.0.1\lib\net461\Fanex.Logging.RabbitMQ.dll</HintPath>
