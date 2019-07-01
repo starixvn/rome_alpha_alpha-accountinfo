@@ -78,9 +78,10 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
+        window.top.realoadLeftPanel = false;
         this.blockUIWrapper();
-
         const self = this;
+
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
             responeData => {
                 if (typeof responeData !== 'undefined' && responeData !== '' && responeData !== null) {
