@@ -78,7 +78,10 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
+        //window.top.ageWnd.close();
+        window.top.closedPopup = true;
         window.top.realoadLeftPanel = false;
+        
         this.blockUIWrapper();
         const self = this;
 
@@ -119,6 +122,8 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerAllStatusFromServer(reload = false) {
+        window.top.closedPopup = true;
+        window.top.realoadLeftPanel = false;
         let uplineId = null;
         let uplineName = null;
         let { customerInfo, statusData } = this.state;

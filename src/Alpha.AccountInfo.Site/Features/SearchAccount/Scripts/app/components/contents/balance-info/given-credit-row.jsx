@@ -7,7 +7,6 @@ export default class GivenCreditRow extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenGivenCreditPopup = this.handleOpenGivenCreditPopup.bind(this);
-        this.reloadBalanceInfo = this.reloadBalanceInfo.bind(this);
     }
 
     handleOpenGivenCreditPopup() {
@@ -40,14 +39,6 @@ export default class GivenCreditRow extends React.Component {
                 clearInterval(reloadBalanceInfoTimer);
                 window.top.realoadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName);
             }
-        }
-    }
-
-    reloadBalanceInfo() {
-        const { customerInfo, fetchCustomerInfoFromServer } = this.props;
-        if (window.top.closedPopup) {
-            clearInterval(this.timer);
-            window.top.realoadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName);
         }
     }
 
