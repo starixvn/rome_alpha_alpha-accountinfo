@@ -45,14 +45,14 @@ export default class ConfirmStatus extends React.Component {
 
     openPopup() {
         const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView, resources } = this.props;
-        window.top.closedPopup = false;
-        window.top.realoadLeftPanel = false;
+        window.top.isClearInterval = false;
+        window.top.reloadConfirmStatus = false;
         const timer = setInterval(reloadCustomerStatus, 1000);
 
         function reloadCustomerStatus() {
-            if (window.top.closedPopup) {
+            if (window.top.isClearInterval) {
                 clearInterval(timer);
-                if (window.top.realoadLeftPanel) {
+                if (window.top.reloadConfirmStatus) {
                     fetchCustomerInfoFromServer(username, false, false);
                     fetchCustomerAllStatusFromServer(true);
                 }

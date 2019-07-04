@@ -1,4 +1,9 @@
 ﻿import axios from 'axios';
+import axiosCancel from 'axios-cancel';
+
+axiosCancel(axios, {
+    debug: false // default
+});
 
 const handleError = err => {
     $.unblockUI();
@@ -13,10 +18,17 @@ const handleError = err => {
 };
 
 export const requests = {
-    get: (url, data) => {
+    get: (url, data, requestId) => {
         try {
-            let axiosPromise = axios.get(url, { params: data });
-            axiosPromise = axiosPromise.then(serverData => serverData.data);
+            console.log(`requestId" ${requestId}`);
+            let axiosPromise = axios.get(url, { params: data, requestId: requestId });
+            axiosPromise = axiosPromise.then(serverData => serverData.data).catch((thrown) => {
+                if (axios.isCancel(thrown)) {
+                    console.log('request cancelled');
+                } else {
+                    console.log('some other reason');
+                }
+            });
 
             return axiosPromise;
         }

@@ -30,8 +30,8 @@ describe('UnsuspendSingle', () => {
         props = null;
         wrapper = null;
         window.top.reloadCustomerList = null;
-        window.top.realoadLeftPanel = null;
-        window.top.closedPopup = null;
+        window.top.reloadConfirmStatus = null;
+        window.top.isClearInterval = null;
     });
 
     const buildWrapper = () => {
@@ -174,7 +174,7 @@ describe('UnsuspendSingle', () => {
 
         clock.tick(3000);
         expect(window.top.ageWnd.close).toHaveBeenCalled();
-        expect(window.top.realoadLeftPanel).toBe(true);
-        expect(window.top.closedPopup).toBe(true);
+        expect(window.top.reloadConfirmStatus).toBe(true);
+        expect(window.top.isClearInterval).toBe(true);
     });
 });

@@ -5,17 +5,10 @@ export default class ProductLevelStatus extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
-        this.reloadCustomerStatus = this.reloadCustomerStatus.bind(this);
-        this.timer = null;
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timer);
-        window.top.realoadLeftPanel = false;
     }
 
     handleOpenPopup() {
-        const { mobileView, resources, status } = this.props;
+        const { mobileView, resources, status, fetchCustomerAllStatusFromServer } = this.props;
         const url = status.Url;
         const productName = status.Text;
 
@@ -25,16 +18,16 @@ export default class ProductLevelStatus extends React.Component {
                 resizePopupOnMobile();
             }
 
-            window.top.realoadLeftPanel = false;
-            this.timer = setInterval(this.reloadCustomerStatus, 1000);
-        }
-    }
+            window.top.isClearInterval = false;
+            window.top.reloadStatusTab = false;
+            const reloadCustomerStatusTimer = setInterval(reloadCustomerStatus, 1000);
 
-    reloadCustomerStatus() {
-        const { fetchCustomerAllStatusFromServer } = this.props;
-        if (window.top.realoadLeftPanel) {
-            clearInterval(this.timer);
-            fetchCustomerAllStatusFromServer(true);
+            function reloadCustomerStatus() {
+                if (window.top.isClearInterval) {
+                    clearInterval(reloadCustomerStatusTimer);
+                    window.top.reloadStatusTab && fetchCustomerAllStatusFromServer(true);
+                }
+            }
         }
     }
 

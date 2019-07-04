@@ -29,7 +29,7 @@ class GivenCredit extends React.Component {
     }
 
     handleClose() {
-        window.top.closedPopup = true;
+        window.top.isClearInterval = true;
         window.top.ageWnd.close();
     }
 
@@ -42,7 +42,7 @@ class GivenCredit extends React.Component {
     }
 
     handleSubmit() {
-        const self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
+        const { resources, searchAccountId, searchAccountRoleId } = this.props,
             currentGivenCredit = parseFloat(this.props.currentGivenCredit),
             givenCreditMin = parseFloat(this.props.givenCreditMin),
             givenCreditMax = parseFloat(this.props.givenCreditMax),
@@ -68,7 +68,7 @@ class GivenCredit extends React.Component {
 
         accountInfoAPI.updateGivenCredit(params)
             .then(data => {
-                self.setState({
+                this.setState({
                     hideMessages: false,
                     message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
                     updateSuccess: data.IsSuccess
@@ -77,9 +77,8 @@ class GivenCredit extends React.Component {
                 const timeoutDefault = 1500;
                 if (data.IsSuccess) {
                     setTimeout(() => {
-                        window.top.realoadLeftPanel = true;
-                        window.top.closedPopup = true;
-                        window.top.ageWnd.close();
+                        window.top.reloadBalanceInfoTab = true;
+                        this.handleClose();
                     }, timeoutDefault);
                 }
 

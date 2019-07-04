@@ -77,18 +77,18 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
-        //window.top.ageWnd.close();
-        window.top.closedPopup = true;
-        window.top.realoadLeftPanel = false;
-        
-        this.blockUIWrapper();
-        const self = this;
+    fetchCustomerInfoFromServer(username, requestId = '', redirectToBalanceInfoPage = true, resetSetting = true) {
+        window.top.isClearInterval = true;
+        window.top.reloadBalanceInfoTab = false;
+        window.top.reloadConfirmStatus = false;
 
-        accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
+        this.blockUIWrapper();
+
+        accountInfoAPI.getCustomerInfo({ searchAccountName: username }, requestId).then(
             responeData => {
+                console.log(username);
                 if (typeof responeData !== 'undefined' && responeData !== '' && responeData !== null) {
-                    self.setState(prevState => ({
+                    this.setState(prevState => ({
                         username: username,
                         custId: responeData.CustId,
                         customerInfo: responeData,
@@ -103,7 +103,7 @@ export default class AccountInfo extends React.Component {
                     localStorage.setItem('lastSearchUsername', username);
                 }
                 else {
-                    self.setState(prevState => ({
+                    this.setState(prevState => ({
                         username: '',
                         custId: 0,
                         customerInfo: null,
@@ -122,8 +122,9 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerAllStatusFromServer(reload = false) {
-        window.top.closedPopup = true;
-        window.top.realoadLeftPanel = false;
+        window.top.isClearInterval = true;
+        window.top.reloadConfirmStatus = false;
+        window.top.reloadStatusTab = false;
         let uplineId = null;
         let uplineName = null;
         let { customerInfo, statusData } = this.state;
@@ -284,8 +285,7 @@ export default class AccountInfo extends React.Component {
                             searchAccountRoleId,
                             fetchDownlineListFromServer,
                             fetchCustomerInfoFromServer
-                        }
-                        }
+                        }}
                     />
             },
             statusProps: {

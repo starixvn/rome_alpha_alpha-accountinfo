@@ -42,8 +42,8 @@ export default class UnsuspendSingle extends React.Component {
                     }
 
                     setTimeout(() => {
-                        window.top.realoadLeftPanel = true;
-                        window.top.closedPopup = true;
+                        window.top.reloadConfirmStatus = true;
+                        window.top.isClearInterval = true;
                         window.top.ageWnd.close();
                     }, 1500);
                 }
