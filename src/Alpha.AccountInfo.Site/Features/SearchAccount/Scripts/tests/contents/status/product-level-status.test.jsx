@@ -100,14 +100,14 @@ describe('ProductLevelStatus', () => {
     );
 
     test.each([[true, 1], [false, 0]])(
-        'call correct #fetchCustomerAllStatusFromServer base on window.top.reloadStatusTab',
-        (reloadStatusTab, expectedCallTimes) => {
+        'call correct #fetchCustomerAllStatusFromServer base on window.top.reloadLeftPanel',
+        (reloadLeftPanel, expectedCallTimes) => {
             window.top.ageWnd.open = jest.fn();
             props.status.Disabled = false;
             buildWrapper();
 
             wrapper.instance().handleOpenPopup();
-            window.top.reloadStatusTab = reloadStatusTab;
+            window.top.reloadLeftPanel = reloadLeftPanel;
             clock.tick(1000);
             expect(props.fetchCustomerAllStatusFromServer).toHaveBeenCalledTimes(expectedCallTimes);
         });

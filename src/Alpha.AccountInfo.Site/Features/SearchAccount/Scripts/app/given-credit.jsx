@@ -77,7 +77,7 @@ class GivenCredit extends React.Component {
                 const timeoutDefault = 1500;
                 if (data.IsSuccess) {
                     setTimeout(() => {
-                        window.top.reloadBalanceInfoTab = true;
+                        window.top.reloadLeftPanel = true;
                         this.handleClose();
                     }, timeoutDefault);
                 }

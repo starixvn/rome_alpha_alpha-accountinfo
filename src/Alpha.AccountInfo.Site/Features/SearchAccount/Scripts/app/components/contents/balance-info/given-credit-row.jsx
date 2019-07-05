@@ -31,13 +31,13 @@ export default class GivenCreditRow extends React.Component {
         }
 
         window.top.isClearInterval = false;
-        window.top.reloadBalanceInfoTab = false;
+        window.top.reloadLeftPanel = false;
         const reloadBalanceInfoTimer = setInterval(reloadBalanceInfo, 1000);
 
         function reloadBalanceInfo() {
             if (window.top.isClearInterval) {
                 clearInterval(reloadBalanceInfoTimer);
-                window.top.reloadBalanceInfoTab && fetchCustomerInfoFromServer(customerInfo.UserName);
+                window.top.reloadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName);
             }
         }
     }

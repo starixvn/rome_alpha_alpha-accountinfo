@@ -79,8 +79,7 @@ export default class AccountInfo extends React.Component {
 
     fetchCustomerInfoFromServer(username, requestId = '', redirectToBalanceInfoPage = true, resetSetting = true) {
         window.top.isClearInterval = true;
-        window.top.reloadBalanceInfoTab = false;
-        window.top.reloadConfirmStatus = false;
+        window.top.reloadLeftPanel = false;
 
         this.blockUIWrapper();
 
@@ -103,6 +102,7 @@ export default class AccountInfo extends React.Component {
                     localStorage.setItem('lastSearchUsername', username);
                 }
                 else {
+                    console.log('clear');
                     this.setState(prevState => ({
                         username: '',
                         custId: 0,
@@ -123,8 +123,7 @@ export default class AccountInfo extends React.Component {
 
     fetchCustomerAllStatusFromServer(reload = false) {
         window.top.isClearInterval = true;
-        window.top.reloadConfirmStatus = false;
-        window.top.reloadStatusTab = false;
+        window.top.reloadLeftPanel = false;
         let uplineId = null;
         let uplineName = null;
         let { customerInfo, statusData } = this.state;
@@ -158,6 +157,7 @@ export default class AccountInfo extends React.Component {
 
             accountInfoAPI.getCustomerAllStatus(params).then(
                 responeData => {
+                    console.log('status');
                     this.setState({
                         settingData: responeData.Settings,
                         statusData: responeData.Status,

@@ -30,7 +30,7 @@ describe('UnsuspendSingle', () => {
         props = null;
         wrapper = null;
         window.top.reloadCustomerList = null;
-        window.top.reloadConfirmStatus = null;
+        window.top.reloadLeftPanel = null;
         window.top.isClearInterval = null;
     });
 
@@ -174,7 +174,7 @@ describe('UnsuspendSingle', () => {
 
         clock.tick(3000);
         expect(window.top.ageWnd.close).toHaveBeenCalled();
-        expect(window.top.reloadConfirmStatus).toBe(true);
+        expect(window.top.reloadLeftPanel).toBe(true);
         expect(window.top.isClearInterval).toBe(true);
     });
 });

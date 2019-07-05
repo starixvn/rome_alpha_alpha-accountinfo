@@ -19,13 +19,13 @@ export default class ProductLevelStatus extends React.Component {
             }
 
             window.top.isClearInterval = false;
-            window.top.reloadStatusTab = false;
+            window.top.reloadLeftPanel = false;
             const reloadCustomerStatusTimer = setInterval(reloadCustomerStatus, 1000);
 
             function reloadCustomerStatus() {
                 if (window.top.isClearInterval) {
                     clearInterval(reloadCustomerStatusTimer);
-                    window.top.reloadStatusTab && fetchCustomerAllStatusFromServer(true);
+                    window.top.reloadLeftPanel && fetchCustomerAllStatusFromServer(true);
                 }
             }
         }
