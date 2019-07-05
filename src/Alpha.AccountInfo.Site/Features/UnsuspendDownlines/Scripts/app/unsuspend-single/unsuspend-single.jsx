@@ -19,7 +19,6 @@ export default class UnsuspendSingle extends React.Component {
     doUpdate() {
         $.blockUI();
         const { resources, viewModel } = this.props;
-        const self = this;
 
         unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendSingle', { SearchAccountId: viewModel.SearchAccountId })
             .then(data => {
@@ -29,7 +28,7 @@ export default class UnsuspendSingle extends React.Component {
                     </div>
                 </div>;
 
-                self.setState({
+                this.setState({
                     hideMessages: false,
                     message: message
                 });
@@ -42,8 +41,8 @@ export default class UnsuspendSingle extends React.Component {
                     }
 
                     setTimeout(() => {
-                        window.top.reloadLeftPanel = true;
                         window.top.isClearInterval = true;
+                        window.top.reloadLeftPanel = true;
                         window.top.ageWnd.close();
                     }, 1500);
                 }

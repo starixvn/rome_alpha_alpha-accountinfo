@@ -56,7 +56,8 @@ export default class Searching extends React.Component {
     handleSearchClick() {
         const { username } = this.state;
         if (username !== '') {
-            axios.cancel('reload');
+            axios.cancel('reload_by_given_credit');
+            axios.cancel('reload_by_status');
             this.props.fetchCustomerInfoFromServer(username, 'click_search');
             this.onSuggestionsClearRequested();
             this.hideKeyboard();

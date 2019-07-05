@@ -37,7 +37,7 @@ export default class GivenCreditRow extends React.Component {
         function reloadBalanceInfo() {
             if (window.top.isClearInterval) {
                 clearInterval(reloadBalanceInfoTimer);
-                window.top.reloadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName);
+                window.top.reloadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName, 'reload_by_given_credit',);
             }
         }
     }
