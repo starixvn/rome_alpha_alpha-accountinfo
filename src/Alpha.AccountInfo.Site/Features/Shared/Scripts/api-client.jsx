@@ -20,7 +20,6 @@ const handleError = err => {
 export const requests = {
     get: (url, data, requestId) => {
         try {
-            console.log(`requestId" ${requestId}`);
             let axiosPromise = axios.get(url, { params: data, requestId: requestId });
             axiosPromise = axiosPromise.then(serverData => serverData.data).catch((thrown) => {
                 if (axios.isCancel(thrown)) {
@@ -28,6 +27,7 @@ export const requests = {
                 } else {
                     console.log('some other reason');
                 }
+                return undefined;
             });
 
             return axiosPromise;

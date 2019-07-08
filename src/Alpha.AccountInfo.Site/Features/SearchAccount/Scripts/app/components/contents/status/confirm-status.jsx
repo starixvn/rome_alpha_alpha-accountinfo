@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../../accountinfo-api';
+import { LoadCustomerInfo } from '../../../constants';
 import { resizeBootboxOnMobile, resizePopupOnMobile, buildTooltipProps, formatMessage, usernameRegExp } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
@@ -10,11 +11,22 @@ export default class ConfirmStatus extends React.Component {
         this.openBootboxConfirm = this.openBootboxConfirm.bind(this);
         this.openPopup = this.openPopup.bind(this);
         this.updateCustomerStatus = this.updateCustomerStatus.bind(this);
+        this.reloadCustomerConfirmStatus = this.reloadCustomerConfirmStatus.bind(this);
+
+        this.reloadCustomerConfirmStatusTimer = null;
+    }
+
+    componentDidUpdate() {
+        clearInterval(this.reloadCustomerConfirmStatusTimer);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.reloadCustomerConfirmStatusTimer);
     }
 
     updateCustomerStatus() {
         $.blockUI();
-        let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
+        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
 
         accountInfoAPI
             .updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
@@ -22,7 +34,7 @@ export default class ConfirmStatus extends React.Component {
                 if (data.IsSuccess) {
                     setTimeout(() => {
                         if (status.ReloadCustomerInfo) {
-                            fetchCustomerInfoFromServer(username, 'reload_by_status', false, false);
+                            fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus, false, false);
                         }
 
                         fetchCustomerAllStatusFromServer(true);
@@ -43,21 +55,22 @@ export default class ConfirmStatus extends React.Component {
         }
     }
 
-    openPopup() {
-        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView, resources } = this.props;
-        window.top.isClearInterval = false;
-        window.top.reloadLeftPanel = false;
-        const reloadCustomerConfirmStatusTimer = setInterval(reloadCustomerStatus, 1000);
-
-        function reloadCustomerStatus() {
-            if (window.top.isClearInterval) {
-                clearInterval(reloadCustomerConfirmStatusTimer);
-                if (window.top.reloadLeftPanel) {
-                    fetchCustomerInfoFromServer(username, 'reload_by_status', false, false);
-                    fetchCustomerAllStatusFromServer(true);
-                }
+    reloadCustomerConfirmStatus() {
+        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username } = this.props;
+        if (window.top.isClearInterval) {
+            clearInterval(this.reloadCustomerConfirmStatusTimer);
+            if (window.top.reloadLeftPanel) {
+                fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus, false, false);
+                fetchCustomerAllStatusFromServer(true);
             }
         }
+    }
+
+    openPopup() {
+        const { username, status, mobileView, resources } = this.props;
+        window.top.isClearInterval = false;
+        window.top.reloadLeftPanel = false;
+        this.reloadCustomerConfirmStatusTimer = setInterval(this.reloadCustomerConfirmStatus, 1000);
 
         const headerPopupText = usernameRegExp(resources.UnuspendStatusPopupHeader, username);
         window.top.ageWnd.open(status.Url, headerPopupText, undefined, undefined, 700, 500);

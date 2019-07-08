@@ -1,6 +1,7 @@
 ﻿import React from 'react';
+import axios from 'axios';
 import { accountInfoAPI } from '../accountinfo-api';
-import { UserLevel } from '../constants';
+import { UserLevel, LoadCustomerInfo } from '../constants';
 import Searching from '../components/contents/searching';
 import CustomerInfo from '../components/contents/customer-info/customer-info';
 import ContactInfo from '../components/contents/contact-info';
@@ -77,44 +78,49 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchCustomerInfoFromServer(username, requestId = '', redirectToBalanceInfoPage = true, resetSetting = true) {
+    fetchCustomerInfoFromServer(username, requestId = LoadCustomerInfo.ByClick, redirectToBalanceInfoPage = true, resetSetting = true) {
         window.top.isClearInterval = true;
         window.top.reloadLeftPanel = false;
 
         this.blockUIWrapper();
-
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }, requestId).then(
             responeData => {
-                console.log(username);
-                if (typeof responeData !== 'undefined' && responeData !== '' && responeData !== null) {
-                    this.setState(prevState => ({
-                        username: username,
-                        custId: responeData.CustId,
-                        customerInfo: responeData,
-                        searchCounter: prevState.searchCounter + 1,
-                        redirectToBalanceInfoPage: redirectToBalanceInfoPage,
-                        onlineListData: null,
-                        downlineListData: null,
-                        statusData: resetSetting ? null : prevState.statusData,
-                        settingData: resetSetting ? null : prevState.settingData
-                    }));
-
-                    localStorage.setItem('lastSearchUsername', username);
+                if (requestId === LoadCustomerInfo.ByClick) {
+                    axios.cancel(LoadCustomerInfo.ByUpdateGivenCredit);
+                    axios.cancel(LoadCustomerInfo.ByUpdateStatus);
                 }
-                else {
-                    console.log('clear');
-                    this.setState(prevState => ({
-                        username: '',
-                        custId: 0,
-                        customerInfo: null,
-                        searchCounter: prevState.searchCounter + 1,
-                        onlineListData: null,
-                        downlineListData: null,
-                        statusData: null,
-                        settingData: null
-                    }));
+                console.log(username);
+                console.log(requestId);
+                if (typeof responeData !== 'undefined') {
+                    if (responeData !== '' && responeData !== null) {
+                        this.setState(prevState => ({
+                            username: username,
+                            custId: responeData.CustId,
+                            customerInfo: responeData,
+                            searchCounter: prevState.searchCounter + 1,
+                            redirectToBalanceInfoPage: redirectToBalanceInfoPage,
+                            onlineListData: null,
+                            downlineListData: null,
+                            statusData: resetSetting ? null : prevState.statusData,
+                            settingData: resetSetting ? null : prevState.settingData
+                        }));
 
-                    localStorage.removeItem('lastSearchUsername');
+                        localStorage.setItem('lastSearchUsername', username);
+                    }
+                    else {
+                        this.setState(prevState => ({
+                            username: '',
+                            custId: 0,
+                            customerInfo: null,
+                            searchCounter: prevState.searchCounter + 1,
+                            onlineListData: null,
+                            downlineListData: null,
+                            statusData: null,
+                            settingData: null
+                        }));
+
+                        localStorage.removeItem('lastSearchUsername');
+                    }
                 }
 
                 $.unblockUI();
@@ -157,7 +163,6 @@ export default class AccountInfo extends React.Component {
 
             accountInfoAPI.getCustomerAllStatus(params).then(
                 responeData => {
-                    console.log('status');
                     this.setState({
                         settingData: responeData.Settings,
                         statusData: responeData.Status,

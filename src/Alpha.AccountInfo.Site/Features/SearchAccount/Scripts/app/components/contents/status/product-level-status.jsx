@@ -5,10 +5,28 @@ export default class ProductLevelStatus extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
+        this.reloadCustomerPoductLevelStatus = this.reloadCustomerPoductLevelStatus.bind(this);
+
+        this.reloadCustomerPoductLevelStatusTimer = null;
+    }
+
+    componentDidUpdate() {
+        clearInterval(this.reloadCustomerPoductLevelStatusTimer);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.reloadCustomerPoductLevelStatusTimer);
+    }
+
+    reloadCustomerPoductLevelStatus() {
+        if (window.top.isClearInterval) {
+            clearInterval(this.reloadCustomerPoductLevelStatusTimer);
+            window.top.reloadLeftPanel && this.props.fetchCustomerAllStatusFromServer(true);
+        }
     }
 
     handleOpenPopup() {
-        const { mobileView, resources, status, fetchCustomerAllStatusFromServer } = this.props;
+        const { mobileView, resources, status } = this.props;
         const url = status.Url;
         const productName = status.Text;
 
@@ -20,14 +38,7 @@ export default class ProductLevelStatus extends React.Component {
 
             window.top.isClearInterval = false;
             window.top.reloadLeftPanel = false;
-            const reloadCustomerStatusTimer = setInterval(reloadCustomerStatus, 1000);
-
-            function reloadCustomerStatus() {
-                if (window.top.isClearInterval) {
-                    clearInterval(reloadCustomerStatusTimer);
-                    window.top.reloadLeftPanel && fetchCustomerAllStatusFromServer(true);
-                }
-            }
+            this.reloadCustomerPoductLevelStatusTimer = setInterval(this.reloadCustomerPoductLevelStatus, 1000);
         }
     }
 
@@ -38,7 +49,7 @@ export default class ProductLevelStatus extends React.Component {
             type: 'checkbox',
             checked: status.Checked,
             onChange: () => {
-                 // onChange on parent elememt
+                // onChange on parent elememt
             }
         };
 

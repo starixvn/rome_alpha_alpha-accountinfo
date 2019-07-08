@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import axios from 'axios';
 import Autosuggest from 'react-autosuggest';
 import { accountInfoAPI } from '../../accountinfo-api';
 import { zoomEnable, zoomDisable } from '../../helpers/accountinfo-helper';
@@ -56,9 +55,7 @@ export default class Searching extends React.Component {
     handleSearchClick() {
         const { username } = this.state;
         if (username !== '') {
-            axios.cancel('reload_by_given_credit');
-            axios.cancel('reload_by_status');
-            this.props.fetchCustomerInfoFromServer(username, 'click_search');
+            this.props.fetchCustomerInfoFromServer(username);
             this.onSuggestionsClearRequested();
             this.hideKeyboard();
         }

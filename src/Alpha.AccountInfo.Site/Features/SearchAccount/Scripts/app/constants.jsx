@@ -27,3 +27,9 @@ export const ProductConstants = {
     BullFighting: 30,
     PokerGames: 33
 };
+
+export const LoadCustomerInfo = {
+    ByUpdateStatus: 'reload_customer_info_by_status',
+    ByUpdateGivenCredit: 'reload_customer_info_by_given_credit',
+    ByClick: 'load_customer_info_by_click'
+}

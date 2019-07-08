@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import NumberFormat from 'react-number-format';
+import { LoadCustomerInfo } from '../../../constants';
 import { mobileScale, resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
 import BalanceInfoRow from './balance-info-row';
 
@@ -7,10 +8,28 @@ export default class GivenCreditRow extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenGivenCreditPopup = this.handleOpenGivenCreditPopup.bind(this);
+        this.reloadBalanceInfo = this.reloadBalanceInfo.bind(this);
+        this.reloadBalanceInfoTimer = null;
+    }
+
+    componentDidUpdate() {
+        clearInterval(this.reloadBalanceInfoTimer);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.reloadBalanceInfoTimer);
+    }
+
+    reloadBalanceInfo() {
+        const { customerInfo, fetchCustomerInfoFromServer } = this.props;
+        if (window.top.isClearInterval) {
+            clearInterval(this.reloadBalanceInfoTimer);
+            window.top.reloadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName, LoadCustomerInfo.ByUpdateGivenCredit);
+        }
     }
 
     handleOpenGivenCreditPopup() {
-        const { resources, mobileView, customerInfo, fetchCustomerInfoFromServer } = this.props;
+        const { resources, mobileView, customerInfo } = this.props;
         let width = 470, height = 300;
         const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
 
@@ -32,14 +51,7 @@ export default class GivenCreditRow extends React.Component {
 
         window.top.isClearInterval = false;
         window.top.reloadLeftPanel = false;
-        const reloadBalanceInfoTimer = setInterval(reloadBalanceInfo, 1000);
-
-        function reloadBalanceInfo() {
-            if (window.top.isClearInterval) {
-                clearInterval(reloadBalanceInfoTimer);
-                window.top.reloadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName, 'reload_by_given_credit',);
-            }
-        }
+        this.reloadBalanceInfoTimer = setInterval(this.reloadBalanceInfo, 1000);
     }
 
     render() {
