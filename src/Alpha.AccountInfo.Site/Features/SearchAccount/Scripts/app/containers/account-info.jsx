@@ -82,7 +82,7 @@ export default class AccountInfo extends React.Component {
         window.top.isClearInterval = true;
         window.top.reloadLeftPanel = false;
 
-        this.blockUIWrapper();
+        $.blockUI();
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }, requestId).then(
             responeData => {
                 if (requestId === LoadCustomerInfo.ByClick) {
@@ -91,8 +91,7 @@ export default class AccountInfo extends React.Component {
                     axios.cancel(LoadCustomerAllStatus.ByClick);
                     axios.cancel(LoadCustomerAllStatus.ByUpdateStatus);
                 }
-                console.log(username);
-                console.log(requestId);
+
                 if (typeof responeData !== 'undefined') {
                     if (responeData !== '' && responeData !== null) {
                         this.setState(prevState => ({

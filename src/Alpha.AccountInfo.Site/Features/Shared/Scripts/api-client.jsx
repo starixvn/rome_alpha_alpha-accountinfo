@@ -5,8 +5,12 @@ axiosCancel(axios, {
     debug: false // default
 });
 
-const handleError = err => {
+export const handleError = err => {
     $.unblockUI();
+    if (axios.isCancel(err)) {
+        return undefined;
+    }
+
     if (err.status === 403) {
         return {
             IsSuccess: false,
@@ -19,40 +23,23 @@ const handleError = err => {
 
 export const requests = {
     get: (url, data, requestId) => {
-        try {
-            let axiosPromise = axios.get(url, { params: data, requestId: requestId });
-            axiosPromise = axiosPromise.then(serverData => serverData.data).catch((thrown) => {
-                if (axios.isCancel(thrown)) {
-                    console.log('request cancelled');
-                } else {
-                    console.log('some other reason');
-                }
-                return undefined;
-            });
+        let axiosPromise = axios.get(url, { params: data, requestId: requestId });
+        axiosPromise = axiosPromise.then(serverData => serverData.data);
 
-            return axiosPromise;
-        }
-        catch (error) {
-            handleError(error);
-        }
+        return axiosPromise;
     },
     post: (url, data) => {
-        try {
-            let axiosPromise = axios.post(url, data,
+        let axiosPromise = axios.post(url, data,
+            {
+                headers:
                 {
-                    headers:
-                    {
-                        __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                });
+                    __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
 
-            axiosPromise = axiosPromise.then(serverData => serverData.data);
+        axiosPromise = axiosPromise.then(serverData => serverData.data);
 
-            return axiosPromise;
-        }
-        catch (error) {
-            handleError(error);
-        }
+        return axiosPromise;
     }
 };
