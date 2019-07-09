@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import axios from 'axios';
+import { handleError } from '../../../../Shared/Scripts/api-client';
 import { accountInfoAPI } from '../accountinfo-api';
 import { UserLevel, LoadCustomerInfo, LoadCustomerAllStatus } from '../constants';
 import Searching from '../components/contents/searching';
@@ -125,7 +126,7 @@ export default class AccountInfo extends React.Component {
                 }
 
                 $.unblockUI();
-            });
+            }).catch(handleError);
     }
 
     fetchCustomerAllStatusFromServer(requestId = LoadCustomerAllStatus.ByClick) {
@@ -168,9 +169,6 @@ export default class AccountInfo extends React.Component {
                     if (requestId === LoadCustomerAllStatus.ByClick) {
                         axios.cancel(LoadCustomerAllStatus.ByUpdateStatus);
                     }
-
-                    console.log(requestId);
-
                     this.setState({
                         settingData: responeData.Settings,
                         statusData: responeData.Status,
@@ -178,7 +176,7 @@ export default class AccountInfo extends React.Component {
                     });
 
                     $.unblockUI();
-                });
+                }).catch(handleError);
         }
     }
 
@@ -212,7 +210,7 @@ export default class AccountInfo extends React.Component {
                     });
 
                     $.unblockUI();
-                });
+            }).catch(handleError);
         }
     }
 
@@ -228,7 +226,7 @@ export default class AccountInfo extends React.Component {
                     });
 
                     $.unblockUI();
-                });
+                }).catch(handleError);
         }
     }
 

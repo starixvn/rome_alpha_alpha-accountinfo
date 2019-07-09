@@ -32,9 +32,9 @@ export const LoadCustomerInfo = {
     ByUpdateStatus: 'reload_customer_info_by_status',
     ByUpdateGivenCredit: 'reload_customer_info_by_given_credit',
     ByClick: 'load_customer_info_by_click'
-}
+};
 
 export const LoadCustomerAllStatus = {
     ByUpdateStatus: 'reload_customer_all_status_by_update_status',
     ByClick: 'load_all_status_by_click'
-}
+};

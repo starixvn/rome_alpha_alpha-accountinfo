@@ -27,12 +27,12 @@ export default class ProductLevelStatus extends React.Component {
     }
 
     handleOpenPopup() {
-        const { mobileView, resources, status } = this.props;
+        const { mobileView, resources, status, username } = this.props;
         const url = status.Url;
         const productName = status.Text;
 
         if (!status.Disabled) {
-            window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`);
+            window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status} - ${username}`);
             if (mobileView) {
                 resizePopupOnMobile();
             }

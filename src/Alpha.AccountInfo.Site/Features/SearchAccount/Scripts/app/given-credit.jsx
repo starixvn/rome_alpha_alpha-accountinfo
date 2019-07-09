@@ -2,6 +2,7 @@
 import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
+import { handleError } from '../../../Shared/Scripts/api-client';
 import { accountInfoAPI } from './accountinfo-api';
 import { UserLevel } from './constants';
 import { decodeResources } from './helpers/accountinfo-helper';
@@ -30,6 +31,7 @@ class GivenCredit extends React.Component {
 
     handleClose() {
         window.top.isClearInterval = true;
+        window.top.reloadLeftPanel = this.state.updateSuccess;
         window.top.ageWnd.close();
     }
 
@@ -77,13 +79,12 @@ class GivenCredit extends React.Component {
                 const timeoutDefault = 1500;
                 if (data.IsSuccess) {
                     setTimeout(() => {
-                        window.top.reloadLeftPanel = true;
                         this.handleClose();
                     }, timeoutDefault);
                 }
 
                 $.unblockUI();
-            });
+            }).catch(handleError);
     }
 
     buildRow(title, value) {

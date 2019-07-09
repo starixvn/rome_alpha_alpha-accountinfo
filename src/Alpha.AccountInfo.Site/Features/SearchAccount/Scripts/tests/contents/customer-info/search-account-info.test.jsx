@@ -35,12 +35,12 @@ describe('SearchAccountInfo', () => {
 
     test.each([
         [true, 0, true, true, 'closed-wrongPwdOthers', closedWrongPwdOthers],
-        [true, 0, true, false, 'closed-wrongPwdOthers', closedWrongPwdOthers],
-        [true, 0, false, false, 'closed-wrongPwdOthers', closedWrongPwdOthers],
-        [true, 1, false, false, 'closed-byAdmin', 'This account was closed by admin.'],
-        [true, 2, false, false, 'closed-byUpline', 'This account was closed by upline.'],
-        [true, 3, false, false, 'closed-wrongOTPSC', 'This account was closed due to failed OTP/Security Code attempts.'],
-        [false, 0, true, false, 'suspended', 'This account was suspended.'],
+        [true, 0, true, true, 'closed-wrongPwdOthers', closedWrongPwdOthers],
+        [true, 0, false, true, 'closed-wrongPwdOthers', closedWrongPwdOthers],
+        [true, 1, false, true, 'closed-byAdmin', 'This account was closed by admin.'],
+        [true, 2, false, true, 'closed-byUpline', 'This account was closed by upline.'],
+        [true, 3, false, true, 'closed-wrongOTPSC', 'This account was closed due to failed OTP/Security Code attempts.'],
+        [false, 0, true, true, 'suspended', 'This account was suspended.'],
         [false, 0, false, false, 'disabled', 'This account was disabled.'],
         [false, 0, false, true, 'enabled', '']])(
         'return correct status css and tooltip',

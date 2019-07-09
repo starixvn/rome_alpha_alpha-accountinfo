@@ -25,11 +25,11 @@ export default class BettypeLevelStatus extends React.Component {
     }
 
     handleOpenPopup() {
-        const { resources, mobileView, status } = this.props;
+        const { resources, mobileView, status, username } = this.props;
         const { left, top, width, height } = this.state;
 
         const productName = status.Text;
-        const popupTitle = `${resources.Update} ${productName} ${resources.Status}`;
+        const popupTitle = `${resources.Update} ${productName} ${resources.Status} - ${username}`;
 
         window.top.ageWnd.open(status.Url, popupTitle, left, top, width, mobileView ? mobileScale(height) : height);
 

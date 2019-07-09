@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { handleError } from '../../../../Shared/Scripts/api-client';
 import { unsuspendAPI } from '../unsuspend-api';
 import { BodyRowContent, FooterContent } from './unsuspend-single-components';
 import { usernameRegExp } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
@@ -48,7 +49,7 @@ export default class UnsuspendSingle extends React.Component {
                 }
 
                 $.unblockUI();
-            });
+            }).catch(handleError);
     }
 
     handleSubmit(e) {

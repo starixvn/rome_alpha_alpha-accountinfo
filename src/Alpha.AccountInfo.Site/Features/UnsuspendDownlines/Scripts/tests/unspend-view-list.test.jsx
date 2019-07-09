@@ -4,6 +4,8 @@ import '../../../../__mocks__/global.mock';
 import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import UnsuspendViewList from 'UnsuspendViewList';
+import { unsuspendAPI } from 'UnsuspendAPI';
+import * as apiClient from 'APIClient';
 import mockAxios from 'jest-mock-axios';
 import  {resources, responseViewListData} from './unspend-downlines-resources.mock';
 
@@ -19,6 +21,8 @@ describe('UnsuspendViewList', () => {
             searchAccountName: 'davidtest13May01',
             redirectMainPage: jest.fn()
         };
+
+        apiClient.handleError = jest.fn();
     });
 
     afterEach(() => {
