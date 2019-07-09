@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { accountInfoAPI } from '../../../accountinfo-api';
-import { LoadCustomerInfo } from '../../../constants';
+import { LoadCustomerInfo, LoadCustomerAllStatus } from '../../../constants';
 import { resizeBootboxOnMobile, resizePopupOnMobile, buildTooltipProps, formatMessage, usernameRegExp } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
@@ -37,7 +37,7 @@ export default class ConfirmStatus extends React.Component {
                             fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus, false, false);
                         }
 
-                        fetchCustomerAllStatusFromServer(true);
+                        fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
                     }, 1500);
                 }
                 else {
@@ -61,7 +61,7 @@ export default class ConfirmStatus extends React.Component {
             clearInterval(this.reloadCustomerConfirmStatusTimer);
             if (window.top.reloadLeftPanel) {
                 fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus, false, false);
-                fetchCustomerAllStatusFromServer(true);
+                fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import axios from 'axios';
 import { accountInfoAPI } from '../accountinfo-api';
-import { UserLevel, LoadCustomerInfo } from '../constants';
+import { UserLevel, LoadCustomerInfo, LoadCustomerAllStatus } from '../constants';
 import Searching from '../components/contents/searching';
 import CustomerInfo from '../components/contents/customer-info/customer-info';
 import ContactInfo from '../components/contents/contact-info';
@@ -88,6 +88,8 @@ export default class AccountInfo extends React.Component {
                 if (requestId === LoadCustomerInfo.ByClick) {
                     axios.cancel(LoadCustomerInfo.ByUpdateGivenCredit);
                     axios.cancel(LoadCustomerInfo.ByUpdateStatus);
+                    axios.cancel(LoadCustomerAllStatus.ByClick);
+                    axios.cancel(LoadCustomerAllStatus.ByUpdateStatus);
                 }
                 console.log(username);
                 console.log(requestId);
@@ -127,14 +129,15 @@ export default class AccountInfo extends React.Component {
             });
     }
 
-    fetchCustomerAllStatusFromServer(reload = false) {
+    fetchCustomerAllStatusFromServer(requestId = LoadCustomerAllStatus.ByClick) {
         window.top.isClearInterval = true;
         window.top.reloadLeftPanel = false;
+
         let uplineId = null;
         let uplineName = null;
-        let { customerInfo, statusData } = this.state;
+        const { customerInfo, statusData } = this.state;
 
-        if (customerInfo !== null && (statusData === null || reload)) {
+        if (customerInfo !== null && (statusData === null || requestId === LoadCustomerAllStatus.ByUpdateStatus)) {
             this.blockUIWrapper();
 
             switch (customerInfo.RoleId) {
@@ -163,6 +166,12 @@ export default class AccountInfo extends React.Component {
 
             accountInfoAPI.getCustomerAllStatus(params).then(
                 responeData => {
+                    if (requestId === LoadCustomerAllStatus.ByClick) {
+                        axios.cancel(LoadCustomerAllStatus.ByUpdateStatus);
+                    }
+
+                    console.log(requestId);
+
                     this.setState({
                         settingData: responeData.Settings,
                         statusData: responeData.Status,

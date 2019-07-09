@@ -29,21 +29,19 @@ export default class GivenCreditRow extends React.Component {
     }
 
     handleOpenGivenCreditPopup() {
-        const { resources, mobileView, customerInfo } = this.props;
-        let width = 470, height = 300;
-        const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
-
-        const givenCreditUrl = `${accountinfoUrl}SearchAccount/GivenCredit` +
+        const { resources, mobileView, customerInfo } = this.props,
+            givenCreditUrl = `${top.alpha.urls.accountInfoRootPath}SearchAccount/GivenCredit` +
             `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
             `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
             `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
+        let width = 470, height = 300;
 
         if (mobileView) {
             width = mobileScale(width);
             height = mobileScale(height);
         }
 
-        window.top.ageWnd.open(givenCreditUrl, resources.GivenCreditPopupTitle, undefined, undefined, width, height);
+        window.top.ageWnd.open(givenCreditUrl, `${resources.GivenCreditPopupTitle} - ${customerInfo.UserName}`, undefined, undefined, width, height);
 
         if (mobileView) {
             resizePopupOnMobile();

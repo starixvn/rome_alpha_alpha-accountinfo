@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { LoadCustomerAllStatus } from '../../../constants';
 import { resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
 
 export default class ProductLevelStatus extends React.Component {
@@ -21,7 +22,7 @@ export default class ProductLevelStatus extends React.Component {
     reloadCustomerPoductLevelStatus() {
         if (window.top.isClearInterval) {
             clearInterval(this.reloadCustomerPoductLevelStatusTimer);
-            window.top.reloadLeftPanel && this.props.fetchCustomerAllStatusFromServer(true);
+            window.top.reloadLeftPanel && this.props.fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
         }
     }
 
