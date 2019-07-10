@@ -79,14 +79,16 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchCustomerInfoFromServer(username, requestId = LoadCustomerInfo.ByClick, redirectToBalanceInfoPage = true, resetSetting = true) {
+    fetchCustomerInfoFromServer(username, requestId = LoadCustomerInfo.ByClick) {
         window.top.isClearInterval = true;
         window.top.reloadLeftPanel = false;
+        const loadCustomerInfoByClick = requestId === LoadCustomerInfo.ByClick;
+        const resetSetting = requestId !== LoadCustomerInfo.ByUpdateStatus;
 
         $.blockUI();
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }, requestId).then(
             responeData => {
-                if (requestId === LoadCustomerInfo.ByClick) {
+                if (loadCustomerInfoByClick) {
                     axios.cancel(LoadCustomerInfo.ByUpdateGivenCredit);
                     axios.cancel(LoadCustomerInfo.ByUpdateStatus);
                     axios.cancel(LoadCustomerAllStatus.ByClick);
@@ -100,7 +102,7 @@ export default class AccountInfo extends React.Component {
                             custId: responeData.CustId,
                             customerInfo: responeData,
                             searchCounter: prevState.searchCounter + 1,
-                            redirectToBalanceInfoPage: redirectToBalanceInfoPage,
+                            redirectToBalanceInfoPage: loadCustomerInfoByClick,
                             onlineListData: null,
                             downlineListData: null,
                             statusData: resetSetting ? null : prevState.statusData,

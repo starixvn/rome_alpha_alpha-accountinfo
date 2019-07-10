@@ -35,7 +35,7 @@ export default class ConfirmStatus extends React.Component {
                 if (data.IsSuccess) {
                     setTimeout(() => {
                         if (status.ReloadCustomerInfo) {
-                            fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus, false, false);
+                            fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
                         }
 
                         fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
@@ -61,7 +61,7 @@ export default class ConfirmStatus extends React.Component {
         if (window.top.isClearInterval) {
             clearInterval(this.reloadCustomerConfirmStatusTimer);
             if (window.top.reloadLeftPanel) {
-                fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus, false, false);
+                fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
                 fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
             }
         }
