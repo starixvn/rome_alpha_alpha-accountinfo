@@ -156,13 +156,16 @@
 
 
         [Fact]
-        public void HandleUnsuspendMultipleCommand_Always_ReturnsCorrectViewModel()
+        public void HandleUnsuspendMultipleCommand_IsValidMultipleBelonging_ReturnsCorrectViewModel()
         {
             var unsuspendCustomerInfoList = fixture.Create<IEnumerable<UnsuspendCustomerInfo>>();
             var message = new UnsuspendMultipleCommand(viewer)
             {
                 UnsuspendList = unsuspendCustomerInfoList
             };
+
+            unsuspendDownlinesService.CheckMultipleCustomesBelonging(
+                Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>(), Arg.Any<bool>()).Returns(true);
 
             var result = Result.CreateSuccessResult();
             accountInfoService

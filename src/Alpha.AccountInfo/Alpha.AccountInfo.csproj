@@ -218,6 +218,7 @@
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendSingleModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendMultipleModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\Models\UnsuspendDownlinesModel.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Params\SPs\CheckMultipleCustomesBelongingCriteria.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoMultipleCriteria.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoDetailCriteria.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoCriteria.cs" />
