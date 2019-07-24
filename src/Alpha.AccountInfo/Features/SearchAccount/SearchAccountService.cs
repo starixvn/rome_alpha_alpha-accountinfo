@@ -7,6 +7,7 @@
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -146,7 +147,25 @@
           => await dynamicRepository.GetAsync<AgentBalanceInfoModel>(criteria).ConfigureAwait(false);
 
         internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria)
-          => await dynamicRepository.GetAsync<MemberBalanceInfoModel>(criteria).ConfigureAwait(false);
+        {
+            var tasks = new List<Task>();
+
+            var memberOutstandingCriteria = new SelectMemberOutstandingCriteria(((AccountInfoCriteriaBase)criteria).SearchAccountId);
+            var memberBalanceCriteria = new SelectMemberBalanceCriteria(((AccountInfoCriteriaBase)criteria).SearchAccountId);
+            var memberBalanceInfoDTOTask = dynamicRepository.GetAsync<MemberBalanceInfoDTO>(criteria);
+
+            tasks.Add(dynamicRepository.ExecuteAsync(memberOutstandingCriteria));
+            tasks.Add(dynamicRepository.ExecuteAsync(memberBalanceCriteria));
+            tasks.Add(memberBalanceInfoDTOTask);
+
+            await Task.WhenAll(tasks);
+
+            return new MemberBalanceInfoModel(
+                await memberBalanceInfoDTOTask,
+                memberBalanceCriteria.Balance,
+                memberOutstandingCriteria.Outstanding,
+                memberBalanceCriteria.NetPosition);
+        }
 
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
         {

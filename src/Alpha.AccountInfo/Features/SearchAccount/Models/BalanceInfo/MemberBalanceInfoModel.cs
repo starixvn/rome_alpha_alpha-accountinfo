@@ -2,33 +2,30 @@
 {
     public class MemberBalanceInfoModel : IBalanceInfoModel
     {
-        public MemberBalanceInfoModel()
-        {
-        }
-
         public MemberBalanceInfoModel(
-             int custId,
-             decimal credit,
-             decimal customerCash,
-             decimal yesterdayCustomerCash,
+             MemberBalanceInfoDTO memberBalanceInfoDTO,
+             decimal balance,
              decimal customerOutstanding,
-             decimal netPosition,
-             decimal memMaxCreditMax)
+             decimal netPosition)
         {
-            CustId = custId;
-            Credit = credit;
+            CustId = memberBalanceInfoDTO.CustId;
+            Credit = memberBalanceInfoDTO.Credit;
 
-            CustomerCash = customerCash;
-            YesterdayCustomerCash = yesterdayCustomerCash;
+            CustomerCash = balance + customerOutstanding;
+            YesterdayCustomerCash = memberBalanceInfoDTO.YesterdayCustomerCash;
 
             CustomerOutstanding = customerOutstanding;
             NetPosition = netPosition;
-            MemMaxCreditMax = memMaxCreditMax;
+            MemMaxCreditMax = memberBalanceInfoDTO.MemMaxCreditMax;
+
+            BetCredit = Credit + balance + netPosition;
         }
 
         public int CustId { get; private set; }
 
         public decimal Credit { get; private set; }
+
+        public decimal BetCredit { get; private set; }
 
         public decimal NetPosition { get; private set; }
 
@@ -39,5 +36,32 @@
         public decimal YesterdayCustomerCash { get; private set; }
 
         public decimal CustomerOutstanding { get; private set; }
+    }
+
+    public class MemberBalanceInfoDTO
+    {
+        public MemberBalanceInfoDTO()
+        {
+        }
+
+        public MemberBalanceInfoDTO(
+             int custId,
+             decimal credit,
+             decimal yesterdayCustomerCash,
+             decimal memMaxCreditMax)
+        {
+            CustId = custId;
+            Credit = credit;
+            YesterdayCustomerCash = yesterdayCustomerCash;
+            MemMaxCreditMax = memMaxCreditMax;
+        }
+
+        public int CustId { get; private set; }
+
+        public decimal Credit { get; private set; }
+
+        public decimal MemMaxCreditMax { get; private set; }
+
+        public decimal YesterdayCustomerCash { get; private set; }
     }
 }
