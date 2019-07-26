@@ -57,21 +57,15 @@
         }
 
         [Theory]
-        [InlineData(10, true)]
-        [InlineData(0, false)]
-        [InlineData(-10, true)]
+        [InlineData(20, true)]
+        [InlineData(-16, false)]
+        [InlineData(-20, true)]
         public void ShowTotalBalanceTransferLink_TotalBalance_ReturnCorrectValue(
-         decimal totalBalance,
+         decimal balance,
          bool expectedValue)
         {
-            var balanceInfo = new MemberBalanceInfoModel(
-             custId: 1,
-             credit: 12,
-             customerCash: totalBalance,
-             yesterdayCustomerCash: 15,
-             customerOutstanding: 16,
-             netPosition: 19,
-             memMaxCreditMax: 20);
+            var memberBalanceInfoDTO = new MemberBalanceInfoDTO(1, 12, 15, 20);
+            var balanceInfo = new MemberBalanceInfoModel(memberBalanceInfoDTO, balance, 16, 19); 
 
             var messages = new CustomerInfoQuery(viewer);
 
@@ -108,14 +102,8 @@
             viewer.AllowedTotalBalanceTransfer.Returns(false);
             var messages = new CustomerInfoQuery(viewer);
 
-            var balanceInfo = new MemberBalanceInfoModel(
-                     custId: 1,
-                     credit: 12,
-                     customerCash: 14,
-                     yesterdayCustomerCash: yesterday_CustomerCash,
-                     customerOutstanding: 16,
-                     netPosition: 19,
-                     memMaxCreditMax: 20);
+            var memberBalanceInfoDTO = new MemberBalanceInfoDTO(1, 12, yesterday_CustomerCash, 20);
+            var balanceInfo = new MemberBalanceInfoModel(memberBalanceInfoDTO, 20, 16, 19);
 
             var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, balanceInfo);
 

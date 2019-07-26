@@ -34,12 +34,12 @@
             var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo);
 
             Assert.True(
-                viewModel.TotalBalance.Equals(14) &&
+                viewModel.TotalBalance.Equals(36) &&
                 viewModel.YesterdayBalance.Equals(15) &&
                 viewModel.Outstanding.Equals(16) &&
                 viewModel.NetPosition.Equals(19) &&
                 viewModel.GivenCredit.Equals(12) &&
-                viewModel.BetCredit.Equals(29));
+                viewModel.BetCredit.Equals(51));
         }
     }
 }

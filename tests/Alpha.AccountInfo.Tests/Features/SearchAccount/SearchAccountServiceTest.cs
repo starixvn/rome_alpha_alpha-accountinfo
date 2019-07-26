@@ -1,9 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.SearchAccount
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -11,13 +7,16 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Tests.Extensions;
     using AutoFixture;
     using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
@@ -271,18 +270,21 @@
         [Fact]
         public void GetMemberBalanceInfoModel_Always_ReturnsCorrectModel()
         {
-            var criteria = new SelectBalanceInfoCriteria(1, 1);
-
+            var memberBalanceInfoDTO = new MemberBalanceInfoDTO(1, 12, 15, 20);
+            var selectBalanceInfoCriteria = new SelectBalanceInfoCriteria(1, 1);
             dynamicRepository
-                .GetAsync<MemberBalanceInfoModel>(Arg.Any<SelectBalanceInfoCriteria>())
-                .Returns(Task.FromResult(memberBalanceInfoModel));
-
-            var actualModel = accountInfoService
-                .GetMemberBalanceInfoModel(criteria)
+                .GetAsync<MemberBalanceInfoDTO>(Arg.Any<SelectBalanceInfoCriteria>())
+                .Returns(Task.FromResult(memberBalanceInfoDTO));
+           
+            accountInfoService
+                .GetMemberBalanceInfoModel(selectBalanceInfoCriteria)
                 .GetAwaiter()
                 .GetResult();
 
-            Assert.True(compareLogic.Compare(actualModel, memberBalanceInfoModel).AreEqual);
+            dynamicRepository.Received().ExecuteAsync(Arg.Is<SelectMemberOutstandingCriteria>(criteria => criteria.SearchAccountId == 1));
+            dynamicRepository.Received().ExecuteAsync(Arg.Is<SelectMemberBalanceCriteria>(criteria => criteria.SearchAccountId == 1));
+            dynamicRepository.Received().GetAsync<MemberBalanceInfoDTO>(Arg.Is<SelectBalanceInfoCriteria>(
+                criteria => criteria.SearchAccountId == 1 && criteria.SearchAccountRoleId == 1));
         }
 
         private Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria)
