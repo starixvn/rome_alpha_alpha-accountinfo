@@ -332,6 +332,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SPNames\Internal\BTXN.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DB042.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
@@ -344,6 +346,8 @@
     </Content>
     <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\BTXN.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DB042.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
