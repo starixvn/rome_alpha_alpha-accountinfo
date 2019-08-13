@@ -349,7 +349,7 @@
     <value>อัปเดตสำเร็จแล้ว!</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>อัปเดตเครดิตใหม่</value>
+    <value>อัพเดท เครดิตใหม่</value>
   </data>
   <data name="LoginInfo" xml:space="preserve">
     <value>ข้อมูลการเข้าสู่ระบบ</value>

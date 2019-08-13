@@ -53,7 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Logging.1.0.0-LogIntegrate-09\lib\net461\Alpha.Logging.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Logging.1.0.1\lib\net461\Alpha.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
