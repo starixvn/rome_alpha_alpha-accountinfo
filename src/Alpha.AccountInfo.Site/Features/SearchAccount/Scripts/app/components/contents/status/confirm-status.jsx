@@ -1,5 +1,7 @@
 ﻿import React from 'react';
+import { handleError } from '../../../../../../Shared/Scripts/api-client';
 import { accountInfoAPI } from '../../../accountinfo-api';
+import { LoadCustomerInfo, LoadCustomerAllStatus } from '../../../constants';
 import { resizeBootboxOnMobile, resizePopupOnMobile, buildTooltipProps, formatMessage, usernameRegExp } from '../../../helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
 
@@ -10,11 +12,22 @@ export default class ConfirmStatus extends React.Component {
         this.openBootboxConfirm = this.openBootboxConfirm.bind(this);
         this.openPopup = this.openPopup.bind(this);
         this.updateCustomerStatus = this.updateCustomerStatus.bind(this);
+        this.reloadCustomerConfirmStatus = this.reloadCustomerConfirmStatus.bind(this);
+
+        this.reloadCustomerConfirmStatusTimer = null;
+    }
+
+    componentDidUpdate() {
+        clearInterval(this.reloadCustomerConfirmStatusTimer);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.reloadCustomerConfirmStatusTimer);
     }
 
     updateCustomerStatus() {
         $.blockUI();
-        let { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
+        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
 
         accountInfoAPI
             .updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
@@ -22,17 +35,17 @@ export default class ConfirmStatus extends React.Component {
                 if (data.IsSuccess) {
                     setTimeout(() => {
                         if (status.ReloadCustomerInfo) {
-                            fetchCustomerInfoFromServer(username, false, false);
+                            fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
                         }
 
-                        fetchCustomerAllStatusFromServer(true);
+                        fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
                     }, 1500);
                 }
                 else {
                     window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
                     $.unblockUI();
                 }
-            });
+            }).catch(handleError);
     }
 
     handleOpenPopup(e) {
@@ -43,21 +56,22 @@ export default class ConfirmStatus extends React.Component {
         }
     }
 
-    openPopup() {
-        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView, resources } = this.props;
-        window.top.closedPopup = false;
-        window.top.realoadLeftPanel = false;
-        const timer = setInterval(reloadCustomerStatus, 1000);
-
-        function reloadCustomerStatus() {
-            if (window.top.closedPopup) {
-                clearInterval(timer);
-                if (window.top.realoadLeftPanel) {
-                    fetchCustomerInfoFromServer(username, false, false);
-                    fetchCustomerAllStatusFromServer(true);
-                }
+    reloadCustomerConfirmStatus() {
+        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username } = this.props;
+        if (window.top.isClearInterval) {
+            clearInterval(this.reloadCustomerConfirmStatusTimer);
+            if (window.top.reloadLeftPanel) {
+                fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
+                fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
             }
         }
+    }
+
+    openPopup() {
+        const { username, status, mobileView, resources } = this.props;
+        window.top.isClearInterval = false;
+        window.top.reloadLeftPanel = false;
+        this.reloadCustomerConfirmStatusTimer = setInterval(this.reloadCustomerConfirmStatus, 1000);
 
         const headerPopupText = usernameRegExp(resources.UnuspendStatusPopupHeader, username);
         window.top.ageWnd.open(status.Url, headerPopupText, undefined, undefined, 700, 500);

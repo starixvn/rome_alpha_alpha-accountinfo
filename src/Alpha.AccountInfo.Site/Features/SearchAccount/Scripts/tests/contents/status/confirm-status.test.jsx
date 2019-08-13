@@ -6,6 +6,7 @@ import renderer from 'react-test-renderer';
 import '../../../../../../__mocks__/global.mock';
 import ConfirmStatus from 'ConfirmStatus';
 import { Resources } from '../../helpers/resources-sample';
+import * as apiClient from 'APIClient';
 import * as accountInfoHelper from 'AccountInfoHelper';
 import mockAxios from 'jest-mock-axios';
 
@@ -40,6 +41,7 @@ describe('ConfirmStatus', () => {
         accountInfoHelper.buildTooltipProps = jest.fn();
         accountInfoHelper.resizePopupOnMobile = jest.fn();
         accountInfoHelper.resizeBootboxOnMobile = jest.fn();
+        apiClient.handleError = jest.fn();
         event = Object.assign(jest.fn(), { preventDefault: () => { } });
     });
 
@@ -86,7 +88,7 @@ describe('ConfirmStatus', () => {
     });
 
     test('#openPopup() is called when #handleOpenPopup() is called and status.IsPopup is true', () => {
-        props.status.IsPopup =true;
+        props.status.IsPopup = true;
         const spy = sinon.spy(ConfirmStatus.prototype, 'openPopup');
         buildWrapper();
         wrapper.instance().handleOpenPopup(event);
@@ -185,7 +187,7 @@ describe('ConfirmStatus', () => {
                 }
             });
 
-            clock.tick(3000);
+            clock.tick(1500);
             expect(props.fetchCustomerInfoFromServer).toHaveBeenCalledTimes(expectedCallTimes);
         }
     );
@@ -193,23 +195,23 @@ describe('ConfirmStatus', () => {
     test.each([[true, null], [false, undefined]])(
         'call #window.top.bootboxAlert with correct position param when update failed',
         (mobileView, expectedPosition) => {
-        props.status.Disabled = false;
-        props.mobileView = mobileView;
+            props.status.Disabled = false;
+            props.mobileView = mobileView;
 
-        buildWrapper();
-        wrapper.instance().updateCustomerStatus(event);
+            buildWrapper();
+            wrapper.instance().updateCustomerStatus(event);
 
-        mockAxios.mockResponse({
-            data: {
-                'Code': 10,
-                'Message': '',
-                'IsSuccess': false
-            }
+            mockAxios.mockResponse({
+                data: {
+                    'Code': 10,
+                    'Message': '',
+                    'IsSuccess': false
+                }
+            });
+
+            clock.tick(1500);
+            expect(window.top.bootboxAlert).toHaveBeenCalledWith('', expectedPosition);
         });
-
-        clock.tick(3000);
-        expect(window.top.bootboxAlert).toHaveBeenCalledWith('', expectedPosition);
-    });
 
     test.each([[true, 1], [false, 0]])(
         'correct call accountInfoHelper.resizePopupOnMobile()',
@@ -225,15 +227,15 @@ describe('ConfirmStatus', () => {
     );
 
     test.each([[false, true, 0], [false, false, 0], [true, false, 0], [true, true, 1]])(
-        'call correct #fetchCustomerInfoFromServer and #fetchCustomerAllStatusFromServer base on window.top.realoadLeftPanel && window.top.closedPopup',
-        (closedPopup, realoadLeftPanel, expectedCallTimes) => {
+        'call correct #fetchCustomerInfoFromServer and #fetchCustomerAllStatusFromServer base on window.top.reloadLeftPanel && window.top.isClearInterval',
+        (isClearInterval, reloadLeftPanel, expectedCallTimes) => {
             window.top.ageWnd.open = jest.fn();
             props.status.Disabled = false;
             buildWrapper();
 
             wrapper.instance().openPopup(event);
-            window.top.realoadLeftPanel = realoadLeftPanel;
-            window.top.closedPopup = closedPopup;
+            window.top.reloadLeftPanel = reloadLeftPanel;
+            window.top.isClearInterval = isClearInterval;
             clock.tick(1000);
             expect(props.fetchCustomerInfoFromServer).toHaveBeenCalledTimes(expectedCallTimes);
             expect(props.fetchCustomerAllStatusFromServer).toHaveBeenCalledTimes(expectedCallTimes);

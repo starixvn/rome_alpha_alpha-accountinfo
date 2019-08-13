@@ -70,13 +70,13 @@ describe('GivenCreditRow', () => {
 
         test.each([[true, true, 1], [true, false, 0], [false, false, 0]])(
             'correct call fetchCustomerInfoFromServer()',
-            (closedPopup, realoadLeftPanel, expectedCallTimes) => {
+            (isClearInterval, reloadLeftPanel, expectedCallTimes) => {
 
                 const wrapper = shallow(<GivenCreditRow {...props} />);
                 wrapper.find(givenCreditId).simulate('click');
 
-                global.top.closedPopup = closedPopup;
-                global.top.realoadLeftPanel = realoadLeftPanel;
+                global.top.isClearInterval = isClearInterval;
+                global.top.reloadLeftPanel = reloadLeftPanel;
                 clock.tick(1000);
 
                 expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(expectedCallTimes);

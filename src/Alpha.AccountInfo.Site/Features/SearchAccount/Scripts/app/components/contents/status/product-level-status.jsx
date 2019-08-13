@@ -1,40 +1,45 @@
 ﻿import React from 'react';
+import { LoadCustomerAllStatus } from '../../../constants';
 import { resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
 
 export default class ProductLevelStatus extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
-        this.reloadCustomerStatus = this.reloadCustomerStatus.bind(this);
-        this.timer = null;
+        this.reloadCustomerPoductLevelStatus = this.reloadCustomerPoductLevelStatus.bind(this);
+
+        this.reloadCustomerPoductLevelStatusTimer = null;
+    }
+
+    componentDidUpdate() {
+        clearInterval(this.reloadCustomerPoductLevelStatusTimer);
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
-        window.top.realoadLeftPanel = false;
+        clearInterval(this.reloadCustomerPoductLevelStatusTimer);
+    }
+
+    reloadCustomerPoductLevelStatus() {
+        if (window.top.isClearInterval) {
+            clearInterval(this.reloadCustomerPoductLevelStatusTimer);
+            window.top.reloadLeftPanel && this.props.fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
+        }
     }
 
     handleOpenPopup() {
-        const { mobileView, resources, status } = this.props;
+        const { mobileView, resources, status, username } = this.props;
         const url = status.Url;
         const productName = status.Text;
 
         if (!status.Disabled) {
-            window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status}`);
+            window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status} - ${username}`);
             if (mobileView) {
                 resizePopupOnMobile();
             }
 
-            window.top.realoadLeftPanel = false;
-            this.timer = setInterval(this.reloadCustomerStatus, 1000);
-        }
-    }
-
-    reloadCustomerStatus() {
-        const { fetchCustomerAllStatusFromServer } = this.props;
-        if (window.top.realoadLeftPanel) {
-            clearInterval(this.timer);
-            fetchCustomerAllStatusFromServer(true);
+            window.top.isClearInterval = false;
+            window.top.reloadLeftPanel = false;
+            this.reloadCustomerPoductLevelStatusTimer = setInterval(this.reloadCustomerPoductLevelStatus, 1000);
         }
     }
 
@@ -45,7 +50,7 @@ export default class ProductLevelStatus extends React.Component {
             type: 'checkbox',
             checked: status.Checked,
             onChange: () => {
-                 // onChange on parent elememt
+                // onChange on parent elememt
             }
         };
 

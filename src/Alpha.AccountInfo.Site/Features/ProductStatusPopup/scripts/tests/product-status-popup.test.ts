@@ -211,7 +211,7 @@
             jasmine.clock().tick(3001);
 
             // assert
-            expect(productStatus.topWindow.realoadLeftPanel).toBeTruthy();
+            expect(productStatus.topWindow.reloadLeftPanel).toBeTruthy();
             expect(productStatus.$msgServerResult.html()).toBe("Status updated successfully.");
             expect(productStatus.topWindow.ageWnd.close).toHaveBeenCalled();
             jasmine.clock().uninstall();

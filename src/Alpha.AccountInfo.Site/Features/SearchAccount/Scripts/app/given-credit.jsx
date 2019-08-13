@@ -2,6 +2,7 @@
 import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
 import CellContainNumberFormat from './components/common/cell-contain-number-format';
+import { handleError } from '../../../Shared/Scripts/api-client';
 import { accountInfoAPI } from './accountinfo-api';
 import { UserLevel } from './constants';
 import { decodeResources } from './helpers/accountinfo-helper';
@@ -29,7 +30,8 @@ class GivenCredit extends React.Component {
     }
 
     handleClose() {
-        window.top.closedPopup = true;
+        window.top.isClearInterval = true;
+        window.top.reloadLeftPanel = this.state.updateSuccess;
         window.top.ageWnd.close();
     }
 
@@ -42,7 +44,7 @@ class GivenCredit extends React.Component {
     }
 
     handleSubmit() {
-        const self = this, { resources, searchAccountId, searchAccountRoleId } = this.props,
+        const { resources, searchAccountId, searchAccountRoleId } = this.props,
             currentGivenCredit = parseFloat(this.props.currentGivenCredit),
             givenCreditMin = parseFloat(this.props.givenCreditMin),
             givenCreditMax = parseFloat(this.props.givenCreditMax),
@@ -68,7 +70,7 @@ class GivenCredit extends React.Component {
 
         accountInfoAPI.updateGivenCredit(params)
             .then(data => {
-                self.setState({
+                this.setState({
                     hideMessages: false,
                     message: data.IsSuccess ? resources.UpdateGivenCreditSuccessfully : data.Message.trim(),
                     updateSuccess: data.IsSuccess
@@ -77,14 +79,12 @@ class GivenCredit extends React.Component {
                 const timeoutDefault = 1500;
                 if (data.IsSuccess) {
                     setTimeout(() => {
-                        window.top.realoadLeftPanel = true;
-                        window.top.closedPopup = true;
-                        window.top.ageWnd.close();
+                        this.handleClose();
                     }, timeoutDefault);
                 }
 
                 $.unblockUI();
-            });
+            }).catch(handleError);
     }
 
     buildRow(title, value) {

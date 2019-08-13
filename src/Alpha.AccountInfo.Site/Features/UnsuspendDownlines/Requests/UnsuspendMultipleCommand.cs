@@ -17,25 +17,33 @@
 
     public class UnsuspendMultipleCommand : BaseRequest, IRequest<UnsuspendMultipleResultViewModel>
     {
-        private readonly IUser viewer;
-
         public UnsuspendMultipleCommand(IUser viewer) : base(viewer)
         {
-            this.viewer = viewer;
+            ActorName = viewer.Name;
+            ActorId = viewer.Id;
+            SubAccountId = viewer.SubAccId;
+            Language = viewer.LangKey;
+            IP = viewer.IP;
+            IsInternal = viewer.IsInternal;
+            CanUpdateAccount = viewer.CanUpdateAccount;
         }
 
         public IEnumerable<UnsuspendCustomerInfo> UnsuspendList { get; set; }
 
-        public string ActorName => viewer.Name;
+        public string ActorName { get; }
 
-        public int ActorId => viewer.Id;
+        public int ActorId { get; }
 
-        public int SubAccountId => viewer.SubAccId;
+        public int SubAccountId { get; }
 
-        public string Language => viewer.LangKey;
+        public string Language { get; }
 
-        public string IP => viewer.IP;
+        public string IP { get; }
 
-        public override bool IsValid() => viewer.CanUpdateAccount && !viewer.IsInternal;
+        public bool IsInternal { get; }
+
+        private bool CanUpdateAccount { get; }
+
+        public override bool IsValid() => CanUpdateAccount && !IsInternal;
     }
 }

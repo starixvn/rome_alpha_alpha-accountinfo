@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import NumberFormat from 'react-number-format';
+import { LoadCustomerInfo } from '../../../constants';
 import { mobileScale, resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
 import BalanceInfoRow from './balance-info-row';
 
@@ -7,39 +8,48 @@ export default class GivenCreditRow extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenGivenCreditPopup = this.handleOpenGivenCreditPopup.bind(this);
+        this.reloadBalanceInfo = this.reloadBalanceInfo.bind(this);
+        this.reloadBalanceInfoTimer = null;
+    }
+
+    componentDidUpdate() {
+        clearInterval(this.reloadBalanceInfoTimer);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.reloadBalanceInfoTimer);
+    }
+
+    reloadBalanceInfo() {
+        const { customerInfo, fetchCustomerInfoFromServer } = this.props;
+        if (window.top.isClearInterval) {
+            clearInterval(this.reloadBalanceInfoTimer);
+            window.top.reloadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName, LoadCustomerInfo.ByUpdateGivenCredit);
+        }
     }
 
     handleOpenGivenCreditPopup() {
-        const { resources, mobileView, customerInfo, fetchCustomerInfoFromServer } = this.props;
-        let width = 470, height = 300;
-        const accountinfoUrl = top.alpha.urls.accountInfoRootPath;
-
-        const givenCreditUrl = `${accountinfoUrl}SearchAccount/GivenCredit` +
+        const { resources, mobileView, customerInfo } = this.props,
+            givenCreditUrl = `${top.alpha.urls.accountInfoRootPath}SearchAccount/GivenCredit` +
             `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
             `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
             `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
+        let width = 470, height = 300;
 
         if (mobileView) {
             width = mobileScale(width);
             height = mobileScale(height);
         }
 
-        window.top.ageWnd.open(givenCreditUrl, resources.GivenCreditPopupTitle, undefined, undefined, width, height);
+        window.top.ageWnd.open(givenCreditUrl, `${resources.GivenCreditPopupTitle} - ${customerInfo.UserName}`, undefined, undefined, width, height);
 
         if (mobileView) {
             resizePopupOnMobile();
         }
 
-        window.top.closedPopup = false;
-        window.top.realoadLeftPanel = false;
-        const reloadBalanceInfoTimer = setInterval(reloadBalanceInfo, 1000);
-
-        function reloadBalanceInfo() {
-            if (window.top.closedPopup) {
-                clearInterval(reloadBalanceInfoTimer);
-                window.top.realoadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName);
-            }
-        }
+        window.top.isClearInterval = false;
+        window.top.reloadLeftPanel = false;
+        this.reloadBalanceInfoTimer = setInterval(this.reloadBalanceInfo, 1000);
     }
 
     render() {

@@ -80,7 +80,6 @@ export default class SearchAccountInfo extends React.Component {
         else if (customerInfo.Suspended) {
             return statusInfo.Suspended;
         }
-        
         return statusInfo.Enabled;
     };
 

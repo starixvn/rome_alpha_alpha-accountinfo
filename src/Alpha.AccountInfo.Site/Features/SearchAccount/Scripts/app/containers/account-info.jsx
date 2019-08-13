@@ -1,6 +1,8 @@
 ﻿import React from 'react';
+import axios from 'axios';
+import { handleError } from '../../../../Shared/Scripts/api-client';
 import { accountInfoAPI } from '../accountinfo-api';
-import { UserLevel } from '../constants';
+import { UserLevel, LoadCustomerInfo, LoadCustomerAllStatus } from '../constants';
 import Searching from '../components/contents/searching';
 import CustomerInfo from '../components/contents/customer-info/customer-info';
 import ContactInfo from '../components/contents/contact-info';
@@ -77,58 +79,67 @@ export default class AccountInfo extends React.Component {
         }
     }
 
-    fetchCustomerInfoFromServer(username, redirectToBalanceInfoPage = true, resetSetting = true) {
-        //window.top.ageWnd.close();
-        window.top.closedPopup = true;
-        window.top.realoadLeftPanel = false;
-        
-        this.blockUIWrapper();
-        const self = this;
+    fetchCustomerInfoFromServer(username, requestId = LoadCustomerInfo.ByClick) {
+        window.top.isClearInterval = true;
+        window.top.reloadLeftPanel = false;
+        const loadCustomerInfoByClick = requestId === LoadCustomerInfo.ByClick;
+        const resetSetting = requestId !== LoadCustomerInfo.ByUpdateStatus;
 
-        accountInfoAPI.getCustomerInfo({ searchAccountName: username }).then(
+        $.blockUI();
+        accountInfoAPI.getCustomerInfo({ searchAccountName: username }, requestId).then(
             responeData => {
-                if (typeof responeData !== 'undefined' && responeData !== '' && responeData !== null) {
-                    self.setState(prevState => ({
-                        username: username,
-                        custId: responeData.CustId,
-                        customerInfo: responeData,
-                        searchCounter: prevState.searchCounter + 1,
-                        redirectToBalanceInfoPage: redirectToBalanceInfoPage,
-                        onlineListData: null,
-                        downlineListData: null,
-                        statusData: resetSetting ? null : prevState.statusData,
-                        settingData: resetSetting ? null : prevState.settingData
-                    }));
-
-                    localStorage.setItem('lastSearchUsername', username);
+                if (loadCustomerInfoByClick) {
+                    axios.cancel(LoadCustomerInfo.ByUpdateGivenCredit);
+                    axios.cancel(LoadCustomerInfo.ByUpdateStatus);
+                    axios.cancel(LoadCustomerAllStatus.ByClick);
+                    axios.cancel(LoadCustomerAllStatus.ByUpdateStatus);
                 }
-                else {
-                    self.setState(prevState => ({
-                        username: '',
-                        custId: 0,
-                        customerInfo: null,
-                        searchCounter: prevState.searchCounter + 1,
-                        onlineListData: null,
-                        downlineListData: null,
-                        statusData: null,
-                        settingData: null
-                    }));
 
-                    localStorage.removeItem('lastSearchUsername');
+                if (typeof responeData !== 'undefined') {
+                    if (responeData !== '' && responeData !== null) {
+                        this.setState(prevState => ({
+                            username: username,
+                            custId: responeData.CustId,
+                            customerInfo: responeData,
+                            searchCounter: prevState.searchCounter + 1,
+                            redirectToBalanceInfoPage: loadCustomerInfoByClick,
+                            onlineListData: null,
+                            downlineListData: null,
+                            statusData: resetSetting ? null : prevState.statusData,
+                            settingData: resetSetting ? null : prevState.settingData
+                        }));
+
+                        localStorage.setItem('lastSearchUsername', username);
+                    }
+                    else {
+                        this.setState(prevState => ({
+                            username: '',
+                            custId: 0,
+                            customerInfo: null,
+                            searchCounter: prevState.searchCounter + 1,
+                            onlineListData: null,
+                            downlineListData: null,
+                            statusData: null,
+                            settingData: null
+                        }));
+
+                        localStorage.removeItem('lastSearchUsername');
+                    }
                 }
 
                 $.unblockUI();
-            });
+            }).catch(handleError);
     }
 
-    fetchCustomerAllStatusFromServer(reload = false) {
-        window.top.closedPopup = true;
-        window.top.realoadLeftPanel = false;
+    fetchCustomerAllStatusFromServer(requestId = LoadCustomerAllStatus.ByClick) {
+        window.top.isClearInterval = true;
+        window.top.reloadLeftPanel = false;
+
         let uplineId = null;
         let uplineName = null;
-        let { customerInfo, statusData } = this.state;
+        const { customerInfo, statusData } = this.state;
 
-        if (customerInfo !== null && (statusData === null || reload)) {
+        if (customerInfo !== null && (statusData === null || requestId === LoadCustomerAllStatus.ByUpdateStatus)) {
             this.blockUIWrapper();
 
             switch (customerInfo.RoleId) {
@@ -157,6 +168,9 @@ export default class AccountInfo extends React.Component {
 
             accountInfoAPI.getCustomerAllStatus(params).then(
                 responeData => {
+                    if (requestId === LoadCustomerAllStatus.ByClick) {
+                        axios.cancel(LoadCustomerAllStatus.ByUpdateStatus);
+                    }
                     this.setState({
                         settingData: responeData.Settings,
                         statusData: responeData.Status,
@@ -164,7 +178,7 @@ export default class AccountInfo extends React.Component {
                     });
 
                     $.unblockUI();
-                });
+                }).catch(handleError);
         }
     }
 
@@ -198,7 +212,7 @@ export default class AccountInfo extends React.Component {
                     });
 
                     $.unblockUI();
-                });
+            }).catch(handleError);
         }
     }
 
@@ -214,7 +228,7 @@ export default class AccountInfo extends React.Component {
                     });
 
                     $.unblockUI();
-                });
+                }).catch(handleError);
         }
     }
 
@@ -284,8 +298,7 @@ export default class AccountInfo extends React.Component {
                             searchAccountRoleId,
                             fetchDownlineListFromServer,
                             fetchCustomerInfoFromServer
-                        }
-                        }
+                        }}
                     />
             },
             statusProps: {

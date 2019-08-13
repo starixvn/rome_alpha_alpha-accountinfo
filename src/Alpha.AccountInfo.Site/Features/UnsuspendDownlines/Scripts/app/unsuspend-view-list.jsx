@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { handleError } from '../../../Shared/Scripts/api-client';
 import { unsuspendAPI } from './unsuspend-api';
 import { getUserLevelName } from './unsuspend-helper';
 import ReactPagination from '../../../Shared/Scripts/react-paginations/react-pagination';
@@ -48,7 +49,7 @@ export default class UnsuspendViewList extends React.Component {
                 });
 
                 $.unblockUI();
-            });
+            }).catch(handleError);
     }
 
     render() {
@@ -69,7 +70,7 @@ export default class UnsuspendViewList extends React.Component {
         </div>;
 
         return (
-            < div className="" >
+            <div>
                 {showPaging && back}
                 <p className="note">
                     {usernameRegExp(viewListNote, viewModel.SearchAccountName)}

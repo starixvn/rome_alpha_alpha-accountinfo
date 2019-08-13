@@ -99,16 +99,21 @@ describe('ProductLevelStatus', () => {
         }
     );
 
-    test.each([[true, 1], [false, 0]])(
-        'call correct #fetchCustomerAllStatusFromServer base on window.top.realoadLeftPanel',
-        (realoadLeftPanel, expectedCallTimes) => {
+    test.each([
+        [true, true, 1],
+        [false, true, 0],
+        [true, false, 0],
+        [false, false, 0]])(
+        'call correct #fetchCustomerAllStatusFromServer base on window.top.reloadLeftPanel',
+        (isClearInterval, reloadLeftPanel, expectedCallTimes) => {
             window.top.ageWnd.open = jest.fn();
             props.status.Disabled = false;
             buildWrapper();
 
             wrapper.instance().handleOpenPopup();
-            window.top.realoadLeftPanel = realoadLeftPanel;
-            clock.tick(1000);
+            window.top.reloadLeftPanel = reloadLeftPanel;
+            window.top.isClearInterval = isClearInterval;
+            clock.tick(1500);
             expect(props.fetchCustomerAllStatusFromServer).toHaveBeenCalledTimes(expectedCallTimes);
         });
 });

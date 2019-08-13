@@ -1,6 +1,7 @@
 ﻿"use strict";
 interface Window {
-    realoadLeftPanel: boolean,
+    isClearInterval: boolean,
+    reloadLeftPanel: boolean,
     ageWnd: {
         close: Function
     }
@@ -124,7 +125,8 @@ class ProductStatusPopup {
         this.showMessage("msg msg-success", message);
 
         setTimeout(() => {
-            this.topWindow.realoadLeftPanel = true;
+            this.topWindow.isClearInterval = true;
+            this.topWindow.reloadLeftPanel = true;
             this.topWindow.ageWnd.close();
         }, timeoutDefault);
     };

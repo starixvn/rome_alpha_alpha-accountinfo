@@ -9,6 +9,7 @@
     using Alpha.AccountInfo.Site.Features.UnsuspendDownlines.Requests;
     using MediatR;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class UnsuspendDownlinesHandler :
@@ -32,7 +33,7 @@
         public async Task<UnsuspendSingleViewModel> Handle(UnsuspendSingleRequest message)
             => new UnsuspendSingleViewModel(
                 message.Language,
-                new UnsuspendSingleDataViewModel (
+                new UnsuspendSingleDataViewModel(
                 message.SearchAccountId,
                 message.SearchAccountName,
                 await unsuspendDownlinesService.GetUnsuspendInfoModel(message.SearchAccountId)
@@ -69,28 +70,41 @@
 
         public async Task<UnsuspendMultipleResultViewModel> Handle(UnsuspendMultipleCommand message)
         {
-            var tasks = new List<Task<UnsuspendResult>>();
-            foreach (var customer in message.UnsuspendList)
+            var custIds = string.Join("^", message.UnsuspendList.Select(unspended => unspended.SearchAccountId));
+
+            var isValidCheckMultipleCustomesBelonging = await unsuspendDownlinesService.CheckMultipleCustomesBelonging(
+                message.ActorId, message.SubAccountId, custIds, message.IsInternal);
+
+            if (isValidCheckMultipleCustomesBelonging)
             {
-                tasks.Add(UpdateSuspendAsync(message, customer));
+                var tasks = new List<Task<UnsuspendResult>>();
+                foreach (var customer in message.UnsuspendList)
+                {
+                    tasks.Add(UpdateSuspendAsync(message, customer));
+                }
+
+                return new UnsuspendMultipleResultViewModel(await Task.WhenAll(tasks).ConfigureAwait(false));
             }
 
-            return new UnsuspendMultipleResultViewModel(await Task.WhenAll(tasks).ConfigureAwait(false));
+            return new UnsuspendMultipleResultViewModel(
+                new List<UnsuspendResult> {
+                    new UnsuspendResult("", true, Result.CreateForbiddenResult())
+                });
         }
 
         internal async Task<UnsuspendResult> UpdateSuspendAsync(UnsuspendMultipleCommand message, UnsuspendCustomerInfo customer)
-            => new UnsuspendResult(
-                customer.Username,
-                customer.Suspended,
-                await accountInfoService.UpdateCustomerStatus(
-                      new UpdateCustomerStatusParam(
-                          customer.SearchAccountId,
-                          message.ActorId,
-                          message.SubAccountId,
-                          message.Language,
-                          message.IP,
-                          customer.Suspended,
-                          StatusNames.Suspended,
-                          message.ActorName)).ConfigureAwait(false));
+        => new UnsuspendResult(
+           customer.Username,
+           customer.Suspended,
+           await accountInfoService.UpdateCustomerStatus(
+                  new UpdateCustomerStatusParam(
+                      customer.SearchAccountId,
+                      message.ActorId,
+                      message.SubAccountId,
+                      message.Language,
+                      message.IP,
+                      customer.Suspended,
+                      StatusNames.Suspended,
+                      message.ActorName)).ConfigureAwait(false));
     }
 }
