@@ -181,6 +181,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberBalanceCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberOutstandingCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectAutoSuggestionCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateCustomerStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditCommand.cs" />

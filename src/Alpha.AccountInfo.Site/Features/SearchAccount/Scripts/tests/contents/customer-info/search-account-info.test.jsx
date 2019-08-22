@@ -43,18 +43,18 @@ describe('SearchAccountInfo', () => {
         [false, 0, true, true, 'suspended', 'This account was suspended.'],
         [false, 0, false, false, 'disabled', 'This account was disabled.'],
         [false, 0, false, true, 'enabled', '']])(
-        'return correct status css and tooltip',
-        (closed, closedReason, suspended, enabled, expectedCss, expectedTooltip) => {
-            props.customerInfo.Closed = closed;
-            props.customerInfo.ClosedReason = closedReason;
-            props.customerInfo.Suspended = suspended;
-            props.customerInfo.Enabled = enabled;
+            'return correct status css and tooltip',
+            (closed, closedReason, suspended, enabled, expectedCss, expectedTooltip) => {
+                props.customerInfo.Closed = closed;
+                props.customerInfo.ClosedReason = closedReason;
+                props.customerInfo.Suspended = suspended;
+                props.customerInfo.Enabled = enabled;
 
-            const component = shallow(<SearchAccountInfo {...props} />);
-            expect(component.state('Css')).toEqual(expectedCss);
-            expect(component.state('Tootltip')).toEqual(expectedTooltip);
-        }
-    );
+                const component = shallow(<SearchAccountInfo {...props} />);
+                expect(component.state('Css')).toEqual(expectedCss);
+                expect(component.state('Tootltip')).toEqual(expectedTooltip);
+            }
+        );
 
     test.each([
         [true, 0, true, true, 1],
@@ -66,18 +66,18 @@ describe('SearchAccountInfo', () => {
         [false, 0, true, false, 1],
         [false, 0, false, false, 1],
         [false, 0, false, true, 1]])(
-        'return correct #Tooltip call times',
-        (closed, closedReason, suspended, enabled, expectedCallTimes) => {
-            props.customerInfo.Closed = closed;
-            props.customerInfo.ClosedReason = closedReason;
-            props.customerInfo.Suspended = suspended;
-            props.customerInfo.Enabled = enabled;
+            'return correct #Tooltip call times',
+            (closed, closedReason, suspended, enabled, expectedCallTimes) => {
+                props.customerInfo.Closed = closed;
+                props.customerInfo.ClosedReason = closedReason;
+                props.customerInfo.Suspended = suspended;
+                props.customerInfo.Enabled = enabled;
 
-            const component = shallow(<SearchAccountInfo {...props} />);
+                const component = shallow(<SearchAccountInfo {...props} />);
 
-            expect(component.find(Tooltip).length).toBe(expectedCallTimes);
-        }
-    );
+                expect(component.find(Tooltip).length).toBe(expectedCallTimes);
+            }
+        );
 
     describe('componentWillReceiveProps()', () => {
         test('change Css and Tooltip when customerInfo change ', () => {

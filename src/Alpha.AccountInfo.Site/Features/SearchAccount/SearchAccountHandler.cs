@@ -1,5 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
@@ -17,10 +21,6 @@
     using Alpha.SecurityCode.Services;
     using MediatR;
     using Services.AccountInfo;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class SearchAccountHandler :
         IAsyncRequestHandler<SearchAccountQuery, AccountInfoViewModel>,
@@ -31,7 +31,7 @@
         IAsyncRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>,
-        IAsyncRequestHandler<GivenCreditCommand, Result>   
+        IAsyncRequestHandler<GivenCreditCommand, Result>
     {
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
@@ -79,7 +79,7 @@
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
         {
             var customerInfo = await accountInfoService.GetCustomerInfo(message.SearchAccountName, message.ActorId, message.ActorRoleId).ConfigureAwait(false);
-            
+
             if (customerInfo != null)
             {
                 var searchAccountLevel = Enumeration.FromValue<UserLevel>(customerInfo.RoleId);

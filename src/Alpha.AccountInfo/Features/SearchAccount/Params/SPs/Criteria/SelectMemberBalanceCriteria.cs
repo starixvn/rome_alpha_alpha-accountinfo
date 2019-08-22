@@ -1,0 +1,24 @@
+﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria
+{
+    using Fanex.Data;
+    using Fanex.Data.Repository;
+
+    public class SelectMemberBalanceCriteria : NonQueryCommand
+    {
+        public SelectMemberBalanceCriteria(int searchAccountId)
+        {
+            SearchAccountId = searchAccountId;
+        }
+
+        [SpParam(SqlParamName = "CustId")]
+        public int SearchAccountId { get; }
+
+        public decimal Balance { get; set; }
+
+        public decimal NetPosition { get; set; }
+
+        public override string GetSettingKey() => "Acc_BalanceMemberSel";
+
+        public override bool IsValid() => SearchAccountId > 0;
+    }
+}

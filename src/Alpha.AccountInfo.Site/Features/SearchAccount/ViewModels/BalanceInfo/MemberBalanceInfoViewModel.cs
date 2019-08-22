@@ -28,12 +28,7 @@
 
         public decimal GivenCredit => RoundUpNumber(balanceInfoModel.Credit);
 
-        public decimal BetCredit =>
-            RoundDownNumber(
-                balanceInfoModel.Credit + 
-                balanceInfoModel.CustomerCash - 
-                balanceInfoModel.CustomerOutstanding + 
-                balanceInfoModel.NetPosition);
+        public decimal BetCredit => RoundDownNumber(balanceInfoModel.BetCredit);
 
         public decimal GivenCreditMax => balanceInfoModel.MemMaxCreditMax;
 

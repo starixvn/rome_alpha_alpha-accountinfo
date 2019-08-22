@@ -122,14 +122,7 @@
         public static string GetMicroSiteUrl(string microSiteName, string virtualPath) => "MicroSiteUrl/";
 
         public static MemberBalanceInfoModel MemberBalanceInfo
-          => new MemberBalanceInfoModel(
-                  custId: 1,
-                  credit: 12,
-                  customerCash: 14,
-                  yesterdayCustomerCash: 15,
-                  customerOutstanding: 16,
-                  netPosition: 19,
-                  memMaxCreditMax: 20);
+          => new MemberBalanceInfoModel(new MemberBalanceInfoDTO(1, 12, 15, 20), 20, 16, 19);
 
         public static AgentBalanceInfoModel AgentBalanceInfo
             => new AgentBalanceInfoModel(
