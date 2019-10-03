@@ -34,8 +34,9 @@
     <CodeAnalysisRuleSet>Alpha.Products.AccountInfo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
+    <Reference Include="Alpha.Products.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0.1-removeInactiveProducts01\lib\net461\Alpha.Products.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="System" />

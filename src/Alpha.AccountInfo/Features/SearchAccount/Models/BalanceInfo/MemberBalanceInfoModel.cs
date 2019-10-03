@@ -21,6 +21,7 @@
         
         public decimal Credit { get; private set; }
 
+        public decimal BetCredit { get; private set; }
 
         public decimal MemMaxCreditMax { get; private set; }
 
