@@ -13,18 +13,13 @@ export const ProductConstants = {
     VoidBridge: 22,
     AllBet: 21,
     ProgressiveBonus: 10,
-    Lucky3: 26,
-    Cricket: 20,
     RNGCasino: 6,
     Sportsbook2: 16,
     GoldDeluxe: 12,
     ESport: 11,
     Keno: 8,
     VirtualSports: 5,
-    NumberGame: 3,
-    CockFighting: 19,
-    BullFighting: 30,
-    PokerGames: 33
+    NumberGame: 3
 };
 
 export const LoadCustomerInfo = {

@@ -19,7 +19,6 @@ export default class BettypeLevelStatus extends React.Component {
         switch (productId) {
             case ProductConstants.Keno: return 530;
             case ProductConstants.AllBet: return 300;
-            case ProductConstants.PokerGames: return 400;
             default: return 200;
         }
     }
