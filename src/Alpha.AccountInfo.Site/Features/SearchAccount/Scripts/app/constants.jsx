@@ -12,7 +12,6 @@ export const ProductConstants = {
     NG2: 23,
     VoidBridge: 22,
     AllBet: 21,
-    ColossusBets: 15,
     ProgressiveBonus: 10,
     Lucky3: 26,
     Cricket: 20,

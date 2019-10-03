@@ -58,7 +58,6 @@
     <Compile Include="Setting\SettingViewModelFactory.cs" />
     <Compile Include="Setting\ViewModels\Base\ISettingItemViewModel.cs" />
     <Compile Include="Setting\ViewModels\BetSettingViewModel.cs" />
-    <Compile Include="Setting\ViewModels\Products\ColossusBetsViewModel.cs" />
     <Compile Include="Setting\ViewModels\Products\GoldDeluxeViewModel.cs" />
     <Compile Include="Setting\ViewModels\Base\ProductSettingItemViewModel.cs" />
     <Compile Include="Setting\ViewModels\Products\KenoViewModel.cs" />

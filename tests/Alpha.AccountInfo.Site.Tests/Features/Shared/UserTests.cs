@@ -34,8 +34,6 @@
             userSession.IsHideKeno.Returns(true);
             userSession.IsCasinoSync.Returns(true);
             userSession.IsCasinoDisabled.Returns(true);
-            userSession.IsHideColossusBets.Returns(true);
-            userSession.DisableColossusBets.Returns(true);
             userSession.IsDisabledESports.Returns(true);
             userSession.IsNumberGameDisabled.Returns(true);
 
@@ -64,8 +62,6 @@
                 user.IsHideKeno &&
                 user.IsCasinoSync &&
                 user.IsCasinoDisabled &&
-                user.IsHideColossusBets &&
-                user.DisableColossusBets &&
                 user.IsDisabledESports &&
                 user.IsNumberGameDisabled);
         }

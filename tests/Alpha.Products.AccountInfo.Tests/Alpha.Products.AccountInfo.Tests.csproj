@@ -78,7 +78,6 @@
     <Compile Include="Setting\ViewModels\BetSettingViewModelTests.cs" />
     <Compile Include="Setting\ViewModels\CommissionViewModelTests.cs" />
     <Compile Include="Setting\ViewModels\EditInfoViewModelTests.cs" />
-    <Compile Include="Setting\ViewModels\Products\ColossusBetsViewModelTests.cs" />
     <Compile Include="Setting\ViewModels\Products\DynamicProductViewModelTests.cs" />
     <Compile Include="Setting\ViewModels\Products\GoldDeluxeViewModelTests.cs" />
     <Compile Include="Setting\ViewModels\Products\KenoViewModelTests.cs" />

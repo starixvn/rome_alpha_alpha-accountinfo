@@ -26,7 +26,6 @@
             {
                 case ProductConstants.RNGCasino:
                 case ProductConstants.Keno:
-                case ProductConstants.ColossusBets:
                     return new SelectProductStatusCriteria(productId, customerId);
 
                 case ProductConstants.NG2:
@@ -43,9 +42,6 @@
             {
                 case ProductConstants.RNGCasino:
                     return CreateUpdateCasinoStatusCriteria(param);
-
-                case ProductConstants.ColossusBets:
-                    return CreateUpdateColossusBetStatusCriteria(param);
 
                 case ProductConstants.NG2:
                     return CreateUpdateNG2StatusCriteria(param);
@@ -76,19 +72,6 @@
             var disable = param.ProductStatusParams.First().IsDisabled;
 
             return new UpdateCasinoStatusCriteria(
-                param.CustId,
-                param.SubAccId,
-                param.ActorId,
-                param.IP,
-                param.LangKey,
-                disable);
-        }
-
-        private static NonQueryProductStatusCriteria CreateUpdateColossusBetStatusCriteria(ProductStatusCommandParam param)
-        {
-            var disable = param.ProductStatusParams.First().IsDisabled;
-
-            return new UpdateColossusBetStatusCriteria(
                 param.CustId,
                 param.SubAccId,
                 param.ActorId,

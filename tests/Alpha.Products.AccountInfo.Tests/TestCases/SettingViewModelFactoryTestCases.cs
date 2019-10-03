@@ -59,15 +59,12 @@
                 new object[] { request, 6, new RNGCasinoViewModel(request) },
                 new object[] { request, 8, new KenoViewModel(request) },
                 new object[] { request, 12, new GoldDeluxeViewModel(request) },
-                new object[] { request, 15, new ColossusBetsViewModel(request) },
                 new object[] { request, 16, new DynamicProductViewModel(request, 16) },
                 new object[] { request, 21, new DynamicProductViewModel(request, 21) },
                 new object[] { request, 22, new DynamicProductViewModel(request, 22) },
                 new object[] { request, 23, new DynamicProductViewModel(request, 23) },
                 new object[] { request, 24, new DynamicProductViewModel(request, 24) },
-                new object[] { request, 26, new DynamicProductViewModel(request, 26) },
                 new object[] { request, 28, new DynamicProductViewModel(request, 28) },
-                new object[] { request, 30, new DynamicProductViewModel(request, 30) },
                 new object[] { request, 31, new DynamicProductViewModel(request, 31) },
                 new object[] { request, 32, new DynamicProductViewModel(request, 32) }
             };

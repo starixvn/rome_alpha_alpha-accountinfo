@@ -65,10 +65,6 @@
 
         public bool IsCasinoDisabled => userSession.IsCasinoDisabled;
 
-        public bool IsHideColossusBets => userSession.IsHideColossusBets;
-
-        public bool DisableColossusBets => userSession.DisableColossusBets;
-
         public bool IsDisabledESports => userSession.IsDisabledESports;
 
         public bool IsNumberGameDisabled => userSession.IsNumberGameDisabled;

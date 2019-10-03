@@ -42,8 +42,6 @@
                 messages.IsHideKeno == true &&
                 messages.IsCasinoSync == true &&
                 messages.IsCasinoDisabled == true &&
-                messages.IsHideColossusBets == true &&
-                messages.DisableColossusBets == true &&
                 messages.IsDisabledESports == true &&
                 messages.IsNumberGameDisabled == true);
         }

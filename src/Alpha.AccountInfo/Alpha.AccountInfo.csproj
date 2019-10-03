@@ -198,7 +198,6 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerInfoCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\NonQueryProductStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateCasinoStatusCriteria.cs" />
-    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateColossusBetStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateDCSProductStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateNG2StatusCriteria.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>

@@ -32,7 +32,6 @@
         [Theory]
         [InlineData(ProductConstants.RNGCasino)]
         [InlineData(ProductConstants.Keno)]
-        [InlineData(ProductConstants.ColossusBets)]
         public void CreateSelectCriteria_ValidProductId_ReturnsSelectProductStatusCriteria(int productId)
         {
             // Arrange
@@ -101,33 +100,6 @@
             var productStatus = new[] { new BetTypeStatusParam(208, 2101, false) };
             var param = new ProductStatusCommandParam(
                 ProductConstants.RNGCasino,
-                CustIdTest,
-                CustRoleTest,
-                UplineIdTest,
-                UplineLevelTest,
-                UserIdTest,
-                UserNameTest,
-                SubAccIdTest,
-                LanguageTest,
-                IPTest,
-                productStatus,
-                "en-US");
-
-            // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);
-
-            // Assert
-            Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
-        }
-
-        [Fact]
-        public void CreateUpdateCriteria_ColossusBets_ReturnsUpdateColossusBetStatusCriteria()
-        {
-            // Arrange
-            var expectedCriteria = new UpdateColossusBetStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
-            var productStatus = new[] { new BetTypeStatusParam(204, 18000, false) };
-            var param = new ProductStatusCommandParam(
-                ProductConstants.ColossusBets,
                 CustIdTest,
                 CustRoleTest,
                 UplineIdTest,

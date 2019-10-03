@@ -74,8 +74,6 @@
             viewer.CanUpdateAccount.Returns(true);
             viewer.IsCasinoSync.Returns(true);
             viewer.IsCasinoDisabled.Returns(true);
-            viewer.IsHideColossusBets.Returns(true);
-            viewer.DisableColossusBets.Returns(true);
             viewer.DisableGoldDeluxe.Returns(true);
             viewer.IsHideGoldDeluxe.Returns(true);
             viewer.IsDisabledESports.Returns(true);
