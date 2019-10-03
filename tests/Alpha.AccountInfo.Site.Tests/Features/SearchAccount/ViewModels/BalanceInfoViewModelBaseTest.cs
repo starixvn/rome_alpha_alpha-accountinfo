@@ -62,7 +62,7 @@
          bool expectedValue)
         {
             var memberBalanceInfoDTO = new MemberBalanceInfoDTO(1, 12, 15, 20);
-            var balanceInfo = new MemberBalanceInfoModel(memberBalanceInfoDTO, balance, 16, 19);
+            var balanceInfo = new MemberBalanceInfoModel(memberBalanceInfoDTO, balance, 16); 
 
             var messages = new CustomerInfoQuery(viewer);
 
@@ -98,7 +98,7 @@
             var messages = new CustomerInfoQuery(viewer);
 
             var memberBalanceInfoDTO = new MemberBalanceInfoDTO(1, 12, yesterday_CustomerCash, 20);
-            var balanceInfo = new MemberBalanceInfoModel(memberBalanceInfoDTO, 20, 16, 19);
+            var balanceInfo = new MemberBalanceInfoModel(memberBalanceInfoDTO, 20, 16);
 
             var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, creditInfo, balanceInfo);
 

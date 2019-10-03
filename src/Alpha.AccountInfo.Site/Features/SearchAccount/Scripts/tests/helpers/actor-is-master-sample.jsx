@@ -108,7 +108,6 @@ export const Master = {
             'TotalBalance': 0,
             'YesterdayBalance': 0,
             'Outstanding': 0,
-            'NetPosition': 0,
             'GivenCredit': 0,
             'BetCredit': 0,
             'GivenCreditMax': 0,

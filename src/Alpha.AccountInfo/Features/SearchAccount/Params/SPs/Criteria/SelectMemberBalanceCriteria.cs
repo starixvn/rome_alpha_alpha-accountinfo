@@ -15,8 +15,6 @@
 
         public decimal Balance { get; set; }
 
-        public decimal NetPosition { get; set; }
-
         public override string GetSettingKey() => "Acc_BalanceMemberSel";
 
         public override bool IsValid() => SearchAccountId > 0;

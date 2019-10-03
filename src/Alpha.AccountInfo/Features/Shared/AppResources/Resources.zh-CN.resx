@@ -240,9 +240,6 @@
   <data name="Name" xml:space="preserve">
     <value>名</value>
   </data>
-  <data name="NetPosition" xml:space="preserve">
-    <value>最低净赢</value>
-  </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>没有任何的变化更新</value>
   </data>

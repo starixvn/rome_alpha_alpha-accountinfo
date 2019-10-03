@@ -177,8 +177,7 @@
             return new MemberBalanceInfoModel(
                 await memberBalanceInfoDTOTask,
                 memberBalanceCriteria.Balance,
-                memberOutstandingCriteria.Outstanding,
-                memberBalanceCriteria.NetPosition);
+                memberOutstandingCriteria.Outstanding);
         }
 
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)

@@ -57,7 +57,6 @@ export const Resources =  {
     MemberMaxCredit: 'Member Max Credit',
     Members: 'Members',
     Name: 'Name',
-    NetPosition: 'Net Position',
     NoDataChange: 'There is no change to update.',
     NoInfo: 'No information is available',
     NoInformationIsAvailable: 'No information is available',

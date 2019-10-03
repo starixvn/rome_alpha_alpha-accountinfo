@@ -39,7 +39,6 @@
                 viewModel.TotalBalance.Equals(36) &&
                 viewModel.YesterdayBalance.Equals(15) &&
                 viewModel.Outstanding.Equals(16) &&
-                viewModel.NetPosition.Equals(19) &&
                 viewModel.GivenCredit.Equals(1) &&
                 viewModel.BetCredit.Equals(40));
         }

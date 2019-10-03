@@ -189,7 +189,6 @@ export const Super = {
             'TotalBalance': 0,
             'YesterdayBalance': 0,
             'Outstanding': 0,
-            'NetPosition': 0,
             'GivenCredit': 20000,
             'BetCredit': 20000,
             'GivenCreditMax': 350200,
