@@ -49,7 +49,7 @@ export default class GivenCreditRow extends React.Component {
 
         window.top.isClearInterval = false;
         window.top.reloadLeftPanel = false;
-        this.reloadBalanceInfoTimer = setInterval(this.reloadBalanceInfo, 1000);
+        this.reloadBalanceInfoTimer = setInterval(this.reloadBalanceInfo, 4000);
     }
 
     render() {
