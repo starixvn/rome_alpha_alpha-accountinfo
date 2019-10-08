@@ -127,7 +127,7 @@
             => new CustomerInfoViewModel(
                 messages,
                 AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId),
-                AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, AccountInfoHelper.BuildCustomerInfo()),
+                AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, AccountInfoHelper.BuildCustomerInfo(), AccountInfoHelper.CreditInfo),
                 AccountInfoHelper.GetMicroSiteUrl);
     }
 }

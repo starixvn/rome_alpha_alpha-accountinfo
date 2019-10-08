@@ -14,7 +14,7 @@
             var viewer = AccountInfoHelper.ViewerFixture(UserLevel.Super.Value);
             var messages = new CustomerInfoQuery(viewer);
             var customerInfo = AccountInfoHelper.BuildCustomerInfo(UserLevel.Master.Value);
-            var viewModel = AccountInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo, AccountInfoHelper.CreditInfo);
 
             Assert.True(
                 viewModel.TotalCash.Equals(13) &&
@@ -22,8 +22,8 @@
                 viewModel.TotalBalance.Equals(47) &&
                 viewModel.YesterdayBalance.Equals(50) &&
                 viewModel.Outstanding.Equals(15) &&
-                viewModel.UsedCredit.Equals(23) &&
-                viewModel.GivenCredit.Equals(12));
+                viewModel.UsedCredit.Equals(4) &&
+                viewModel.GivenCredit.Equals(1));
         }
     }
 }

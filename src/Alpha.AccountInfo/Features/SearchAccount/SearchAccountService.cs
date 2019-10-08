@@ -6,6 +6,7 @@
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
@@ -36,6 +37,8 @@
         Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param);
 
         Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param);
+
+        Task<CreditInfo> GetCreditInfo(int custId);
     }
 
     public class SearchAccountServiceImpl : SearchAccountService
@@ -175,5 +178,8 @@
                 ? Result.CreateSuccessResult()
                 : result;
         }
+
+        public async Task<CreditInfo> GetCreditInfo(int custId)
+            => await dynamicRepository.GetAsync<CreditInfo>(new SelectCreditInfoCriteria(custId));
     }
 }

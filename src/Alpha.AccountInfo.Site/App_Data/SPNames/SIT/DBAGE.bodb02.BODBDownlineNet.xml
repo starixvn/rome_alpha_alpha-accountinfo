@@ -16,19 +16,13 @@
       <Mapping ObjectProperty="YesterdayMasterCash" DataField="yesterday_MasterCash" />
       <Mapping ObjectProperty="YesterdayAgentCash" DataField="yesterday_AgentCash" />
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_CustomerCash" />
-      <Mapping ObjectProperty="MasterCreditMin" DataField="masterCredit_Min" />
-      <Mapping ObjectProperty="MasterCreditMax" DataField="masterCredit_Max" />
     </Setting>
     <Setting Key="Age_BalanceAgentSel" SpName="Age_BalanceAgentSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping ObjectProperty="YesterdayAgentCash" DataField="yesterday_AgentCash" />
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_CustomerCash" />
-      <Mapping ObjectProperty="AgentCreditMin" DataField="agentCredit_Min" />
-      <Mapping ObjectProperty="AgentCreditMax" DataField="agentCredit_Max" />
-      <Mapping ObjectProperty="MemMaxCreditMin" DataField="memMaxCredit_Min" />
     </Setting>
     <Setting Key="Age_BalanceMemberSel" SpName="Age_BalanceMemberSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_Cash" />
-      <Mapping ObjectProperty="MemMaxCreditMax" DataField="memMaxCredit_Max" />
       <Mapping ObjectProperty="CustomerCash" DataField="Cash" />
       <Mapping ObjectProperty="CustomerOutstanding" DataField="outstanding" />
     </Setting>

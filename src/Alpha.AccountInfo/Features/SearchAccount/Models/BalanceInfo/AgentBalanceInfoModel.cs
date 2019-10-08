@@ -8,22 +8,14 @@
 
         public AgentBalanceInfoModel(
              int custId,
-             decimal credit,
              decimal agentCash,
              decimal yesterdayAgentCash,
              decimal customerCash,
              decimal yesterdayCustomerCash,
              decimal customerOutstanding,
-             decimal agentPositionTaking,
-             decimal masterUsedCredit,
-             decimal agentUsedCredit,
-             decimal agentCreditMin,
-             decimal agentCreditMax,
-             decimal memMaxCreditMin,
-             decimal memberMaxCredit)
+             decimal agentPositionTaking)
         {
             CustId = custId;
-            Credit = credit;
 
             AgentCash = agentCash;
             YesterdayAgentCash = yesterdayAgentCash;
@@ -33,25 +25,9 @@
             CustomerOutstanding = customerOutstanding;
 
             AgentPositionTaking = agentPositionTaking;
-            MasterUsedCredit = masterUsedCredit;
-            AgentUsedCredit = agentUsedCredit;
-
-            AgentCreditMin = agentCreditMin;
-            AgentCreditMax = agentCreditMax;
-
-            MemMaxCreditMin = memMaxCreditMin;
-            MemberMaxCredit = memberMaxCredit;
         }
 
         public int CustId { get; private set; }
-
-        public decimal Credit { get; private set; }
-
-        public decimal AgentCreditMin { get; private set; }
-
-        public decimal AgentCreditMax { get; private set; }
-
-        public decimal MemMaxCreditMin { get; private set; }
 
         public decimal AgentCash { get; private set; }
 
@@ -64,11 +40,5 @@
         public decimal AgentPositionTaking { get; private set; }
 
         public decimal CustomerOutstanding { get; private set; }
-
-        public decimal AgentUsedCredit { get; private set; }
-
-        public decimal MemberMaxCredit { get; private set; }
-
-        public decimal MasterUsedCredit { get; private set; }
     }
 }
