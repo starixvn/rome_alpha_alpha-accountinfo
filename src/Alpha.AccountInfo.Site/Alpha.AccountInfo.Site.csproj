@@ -723,6 +723,15 @@
     <Content Include="Alpha.AccountInfo.Site.Release.ruleset" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\ProfilePicture\Bundles\" />
+    <Folder Include="Features\ProfilePicture\Requests\" />
+    <Folder Include="Features\ProfilePicture\Scripts\app\" />
+    <Folder Include="Features\ProfilePicture\Scripts\tests\" />
+    <Folder Include="Features\ProfilePicture\Styles\" />
+    <Folder Include="Features\ProfilePicture\ViewModels\" />
+    <Folder Include="Features\ProfilePicture\Views\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
