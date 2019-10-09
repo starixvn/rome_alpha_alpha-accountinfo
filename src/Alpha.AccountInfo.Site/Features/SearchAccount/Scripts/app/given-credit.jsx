@@ -76,7 +76,7 @@ class GivenCredit extends React.Component {
                     updateSuccess: data.IsSuccess
                 });
 
-                const timeoutDefault = 1500;
+                const timeoutDefault = 4000;
                 if (data.IsSuccess) {
                     setTimeout(() => {
                         this.handleClose();
