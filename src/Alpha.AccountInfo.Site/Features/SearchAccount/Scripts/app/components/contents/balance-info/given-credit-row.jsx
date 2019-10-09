@@ -9,32 +9,39 @@ export default class GivenCreditRow extends React.Component {
         super(props);
         this.handleOpenGivenCreditPopup = this.handleOpenGivenCreditPopup.bind(this);
         this.givenPopupOnclosing = this.givenPopupOnclosing.bind(this);
+        this.reloadLeftPanel = this.reloadLeftPanel.bind(this);
     }
 
     givenPopupOnclosing(updateSuccessfully = false) {
         if (updateSuccessfully === true) {
-            const timeoutDefault = 5000;
-            $.blockUI();
+            this.reloadLeftPanel();
+            const autoCloseGivenPopupTimeOut = 4000;
+
             setTimeout(() => {
                 window.top.updateGivenCreditPopup.close();
-               
-                const { customerInfo, fetchCustomerInfoFromServer } = this.props;
-                fetchCustomerInfoFromServer(customerInfo.UserName, LoadCustomerInfo.ByUpdateGivenCredit);
-            }, timeoutDefault);
+            }, autoCloseGivenPopupTimeOut);
         }
         else {
-            if (window.top.updateGivenCreditPopup !== null && window.top.updateGivenCreditPopup !== undefined) {
-                window.top.updateGivenCreditPopup.close();
-            }
+            window.top.updateGivenCreditPopup.close();
         }
+    }
+
+    reloadLeftPanel() {
+        $.blockUI();
+
+        const reloadLeftPanelTimeOut = 300;
+        setTimeout(() => {
+            const { customerInfo, fetchCustomerInfoFromServer } = this.props;
+            fetchCustomerInfoFromServer(customerInfo.UserName, LoadCustomerInfo.ByUpdateGivenCredit);
+        }, reloadLeftPanelTimeOut);
     }
 
     handleOpenGivenCreditPopup() {
         const { resources, mobileView, customerInfo } = this.props,
             givenCreditUrl = `${top.alpha.urls.accountInfoRootPath}SearchAccount/GivenCredit` +
-            `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
-            `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
-            `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
+                `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
+                `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
+                `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
         let width = 470, height = 300;
 
         if (mobileView) {
