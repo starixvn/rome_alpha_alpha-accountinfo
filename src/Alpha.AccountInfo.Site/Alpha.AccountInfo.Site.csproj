@@ -352,6 +352,9 @@
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.css" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
+    <Content Include="Features\ProfilePicture\Bundles\react-crop-images.css" />
+    <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js" />
+    <Content Include="Features\ProfilePicture\Scripts\app\react-crop-images.jsx" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
     <Content Include="Features\SearchAccount\Bundles\given-credit.min.css" />
@@ -462,6 +465,10 @@
     <Content Include="Features\UnsuspendDownlines\Views\EditMultiple.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines.scss" />
     <Content Include="__mocks__\axios.js" />
+    <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
+    <Content Include="Features\ProfilePicture\Views\web.config" />
+    <Content Include="Features\ProfilePicture\Bundles\react-crop-images.css.map" />
+    <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js.map" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
@@ -577,6 +584,9 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
+    <Compile Include="Features\ProfilePicture\Requests\ProfilePictureQuery.cs" />
+    <Compile Include="Features\ProfilePicture\ProfilePictureHandler.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountController.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
@@ -724,13 +734,9 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\ProfilePicture\Bundles\" />
-    <Folder Include="Features\ProfilePicture\Requests\" />
-    <Folder Include="Features\ProfilePicture\Scripts\app\" />
     <Folder Include="Features\ProfilePicture\Scripts\tests\" />
     <Folder Include="Features\ProfilePicture\Styles\" />
     <Folder Include="Features\ProfilePicture\ViewModels\" />
-    <Folder Include="Features\ProfilePicture\Views\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

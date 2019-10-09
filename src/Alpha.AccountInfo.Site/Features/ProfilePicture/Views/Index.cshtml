@@ -1,0 +1,21 @@
+﻿
+@{
+    /**/
+
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/react-crop-images")
+
+}
+
+ test test
+<div id="root"></div>
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/react-crop-images")
+
+    <script>
+        renderApp();
+    </script>
+}

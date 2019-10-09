@@ -30,7 +30,7 @@ class GivenCredit extends React.Component {
     }
 
     handleClose(updateSuccessfully = false) {
-        window.top.updateGivenCreditPopup.onClosing(this.props.searchAccountName, updateSuccessfully);
+        window.top.updateGivenCreditPopup.onClosing(updateSuccessfully);
     }
 
     showErrorMessage(message) {
@@ -166,7 +166,6 @@ class GivenCredit extends React.Component {
 export default GivenCredit;
 
 export const renderGivenCredit = (searchAccountId,
-    searchAccountName,
     searchAccountRoleId,
     currentGivenCredit,
     givenCreditMin,
@@ -175,7 +174,6 @@ export const renderGivenCredit = (searchAccountId,
 ) => {
     ReactDOM.render(
         <GivenCredit searchAccountId={searchAccountId}
-            searchAccountName={searchAccountName}
             searchAccountRoleId={searchAccountRoleId}
             currentGivenCredit={currentGivenCredit}
             givenCreditMin={givenCreditMin}
