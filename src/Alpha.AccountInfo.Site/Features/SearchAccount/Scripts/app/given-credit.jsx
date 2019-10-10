@@ -29,10 +29,8 @@ class GivenCredit extends React.Component {
         }
     }
 
-    handleClose() {
-        window.top.isClearInterval = true;
-        window.top.reloadLeftPanel = this.state.updateSuccess;
-        window.top.ageWnd.close();
+    handleClose(updateSuccessfully = false) {
+        window.top.updateGivenCreditPopup.onClosing(updateSuccessfully);
     }
 
     showErrorMessage(message) {
@@ -76,11 +74,8 @@ class GivenCredit extends React.Component {
                     updateSuccess: data.IsSuccess
                 });
 
-                const timeoutDefault = 1500;
                 if (data.IsSuccess) {
-                    setTimeout(() => {
-                        this.handleClose();
-                    }, timeoutDefault);
+                    this.handleClose(data.IsSuccess);
                 }
 
                 $.unblockUI();
