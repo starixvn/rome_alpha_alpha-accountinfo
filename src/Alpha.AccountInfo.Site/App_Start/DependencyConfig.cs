@@ -136,7 +136,7 @@
             var productConfigFile = HttpContext.Current.Server.MapPath("../ProductConfigs/ProductConfiguration.json");
 
             SimpleServiceLocator
-              .Instance .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer)
+              .Instance
               .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), productConfigFile))
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())

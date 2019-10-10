@@ -134,8 +134,11 @@
             }
             else
             {
-                var replicateServerCommand = new UpdateGivenCreditReplicateServerCommand(param.SearchAccountId, param.CreditAmount);
-                await dynamicRepository.ExecuteAsync(replicateServerCommand).ConfigureAwait(false);
+                if (param.UpdateCreditReplicateServer)
+                {
+                    var replicateServerCommand = new UpdateGivenCreditReplicateServerCommand(param.SearchAccountId, param.CreditAmount);
+                    await dynamicRepository.ExecuteAsync(replicateServerCommand).ConfigureAwait(false);
+                }
 
                 return Result.CreateSuccessResult();
             }

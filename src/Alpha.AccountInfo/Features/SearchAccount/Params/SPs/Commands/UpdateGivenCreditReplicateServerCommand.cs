@@ -19,6 +19,6 @@
 
         public override string GetSettingKey() => "Acc_CustomerUpdCreditOnReplicateServer";
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => SearchAccountId > 0 && CreditAmount > 0;
     }
 }
