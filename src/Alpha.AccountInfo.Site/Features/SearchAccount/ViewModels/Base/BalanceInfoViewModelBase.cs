@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
@@ -14,14 +15,17 @@
     {
         protected readonly CustomerInfoQuery message;
         protected readonly CustomerInfoModel customerInfo;
+        protected readonly CreditInfo creditInfo;
 
         protected BalanceInfoViewModelBase(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
+            CreditInfo creditInfo,
             Func<string, string, string> getMicroSiteUrl = null) : base(getMicroSiteUrl)
         {
             this.message = message;
             this.customerInfo = customerInfo;
+            this.creditInfo = creditInfo;
         }
 
         public abstract decimal TotalBalance { get; }

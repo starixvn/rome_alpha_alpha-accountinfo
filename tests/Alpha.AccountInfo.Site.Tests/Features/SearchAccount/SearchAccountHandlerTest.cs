@@ -1,7 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.SearchAccount
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Resources;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Services.AccountInfo;
@@ -28,11 +34,6 @@
     using AutoFixture;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Resources;
-    using System.Threading.Tasks;
     using Xunit;
     using static Alpha.AccountInfo.Tests.Utility.AppProductConfigurationHelper;
 
@@ -41,12 +42,13 @@
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
         private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo();
+        private readonly CreditInfo creditInfo = AccountInfoHelper.CreditInfo;
         private readonly SearchAccountService accountInfoService;
         private readonly SecurityCodeChecker securityCodeChecker;
         private readonly SearchAccountHandler accountInfoHandler;
         private readonly Fixture fixture = new Fixture();
         private readonly CustomerInfoQuery customerInfoQuery;
-        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
+        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly CompareLogic compareLogic = new CompareLogic();
         private readonly Customer actor = new Customer(1, 0, "username1", 4, CustomerHelper.CreateCustomerProductStatus());
         private readonly Customer searchAccount = new Customer(2, 0, "username2", 3, CustomerHelper.CreateCustomerProductStatus());
@@ -69,7 +71,7 @@
              .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/");
 
             getBalanceInfoViewModelByLevel =
-               new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>>
+               new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>>
                {
                     {UserLevel.Master, BuildMemberBalanceInfoViewModel},
                     {UserLevel.Agent, BuildMemberBalanceInfoViewModel},
@@ -204,9 +206,10 @@
         [Fact]
         public void HandleCustomerInfoQuery_CustomerInfoHasData_ReturnCorrectViewModel()
         {
-            var memberBalanceInfoViewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo);
+            var memberBalanceInfoViewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo, creditInfo);
             accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(customerInfo);
             accountInfoService.GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>()).Returns(AccountInfoHelper.MemberBalanceInfo);
+            accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(creditInfo);
             var expectedViewModel = new CustomerInfoViewModel(
                 customerInfoQuery,
                 customerInfo,
@@ -221,6 +224,7 @@
         public void HandleCustomerInfoQuery_CustomerInfoHasData_CallGetBalanceInfoModel()
         {
             accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(customerInfo);
+            accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(creditInfo);
 
             accountInfoHandler.Handle(customerInfoQuery).ConfigureAwait(false);
 
@@ -431,7 +435,7 @@
             var configItem = Substitute.For<IConfigurationItem>();
             configItem.ProductId.Returns(1);
 
-           return new List<IStatusItemViewModel>
+            return new List<IStatusItemViewModel>
             {
                 new ConfirmAllowAutoMasterPTViewModel(request),
                 new ConfirmAllowOutrightViewModel(request),
@@ -440,8 +444,8 @@
                 new ConfirmSuspendedViewModel(request),
                 new  ProductStatusItemViewModel(request, configItem)
             }
-            .Where(status => status.Visible)
-            .OrderBy(status => status.DisplayOrder);
+             .Where(status => status.Visible)
+             .OrderBy(status => status.DisplayOrder);
         }
 
         private IEnumerable<ISettingItemViewModel> StubSettingViewModel()
@@ -526,9 +530,11 @@
         private IBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
            CustomerInfoQuery message,
            CustomerInfoModel customerInfo,
+           CreditInfo creditInfo,
            IBalanceInfoModel balanceInfoModel)
             => AccountInfoHelper.BuildMemberBalanceInfoViewModel(
                customerInfoQuery,
-               customerInfo);
+               customerInfo,
+               creditInfo);
     }
 }

@@ -2,7 +2,7 @@
   <Function Name="Customer Information">
     <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
   </Function>
-  
+
   <Function Name="Product Status">
     <Setting Key="Acc_AdminSelStatusByProductId" SpName="Acc_AdminSelStatusByProductId" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
@@ -25,6 +25,14 @@
     <Setting Key="Acc_CustomerUpdDisableOutright" SpName="Acc_CustomerUpdDisableOutright" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustomerUpdDoubleCommLosing" SpName="Acc_CustomerUpdDoubleCommLosing" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_Customer_CreditInfo_Sel" SpName="Age_Customer_CreditInfo_Sel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping ObjectProperty="MasterCreditMin" DataField="masterCredit_Min" />
+      <Mapping ObjectProperty="MasterCreditMax" DataField="masterCredit_Max" />
+      <Mapping ObjectProperty="AgentCreditMin" DataField="agentCredit_Min" />
+      <Mapping ObjectProperty="AgentCreditMax" DataField="agentCredit_Max" />
+      <Mapping ObjectProperty="MemMaxCreditMin" DataField="memMaxCredit_Min" />
+      <Mapping ObjectProperty="MemMaxCreditMax" DataField="memMaxCredit_Max" />
+    </Setting>
   </Function>
 
   <Function Name="Unsuspend Downlines">
@@ -33,7 +41,7 @@
       <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
     </Setting>
     <Setting Key="Acc_Customer_SuspendInfoDetailSel" SpName="Acc_Customer_SuspendInfoDetailSel" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" >
+    <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0">
       <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
       <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
       <Mapping ObjectProperty="DownlineRoleId" DataField="roleid" />

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
@@ -10,8 +11,8 @@
 
     public static class AccountInfoHelper
     {
-        public static Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, BalanceInfoViewModelBase>> BalanceInfoViewModels
-            => new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, BalanceInfoViewModelBase>>
+        public static Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, BalanceInfoViewModelBase>> BalanceInfoViewModels
+            => new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, BalanceInfoViewModelBase>>
             {
                 { UserLevel.Master, BuildMasterBalanceInfoViewModel},
                 { UserLevel.Agent, BuildAgentBalanceInfoViewModel},
@@ -85,38 +86,46 @@
 
         public static MemberBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
             CustomerInfoQuery messages,
-            CustomerInfoModel customerInfo)
+            CustomerInfoModel customerInfo,
+            CreditInfo creditInfo)
             => new MemberBalanceInfoViewModel(
                   AssignMessagesUsername(messages),
-                  MemberBalanceInfo,
                   BuildCustomerInfo(),
+                  creditInfo,
+                  MemberBalanceInfo,
                   GetMicroSiteUrl);
 
         public static MemberBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
             CustomerInfoQuery messages,
+            CreditInfo creditInfo,
             IBalanceInfoModel balanceInfo)
             => new MemberBalanceInfoViewModel(
                    AssignMessagesUsername(messages),
-                   balanceInfo,
                    BuildCustomerInfo(),
+                   creditInfo,
+                   balanceInfo,
                    GetMicroSiteUrl);
 
         public static AgentBalanceInfoViewModel BuildAgentBalanceInfoViewModel(
             CustomerInfoQuery messages,
-            CustomerInfoModel customerInfo)
+            CustomerInfoModel customerInfo,
+            CreditInfo creditInfo)
             => new AgentBalanceInfoViewModel(
                    AssignMessagesUsername(messages),
-                   AgentBalanceInfo,
                    customerInfo,
+                   creditInfo,
+                   AgentBalanceInfo,
                    GetMicroSiteUrl);
 
         public static MasterBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery messages,
-            CustomerInfoModel customerInfo)
+            CustomerInfoModel customerInfo,
+            CreditInfo creditInfo)
             => new MasterBalanceInfoViewModel(
                      AssignMessagesUsername(messages),
-                     MasterBalanceInfo,
                      customerInfo,
+                     creditInfo,
+                     MasterBalanceInfo,
                      GetMicroSiteUrl);
 
         public static string GetMicroSiteUrl(string microSiteName, string virtualPath) => "MicroSiteUrl/";
@@ -127,24 +136,16 @@
         public static AgentBalanceInfoModel AgentBalanceInfo
             => new AgentBalanceInfoModel(
                       custId: 1,
-                      credit: 120,
                       agentCash: 13,
                       yesterdayAgentCash: 14,
                       customerCash: 15,
                       yesterdayCustomerCash: 16,
                       customerOutstanding: 17,
-                      agentPositionTaking: 19,
-                      masterUsedCredit: 21,
-                      agentUsedCredit: 22,
-                      agentCreditMin: 23,
-                      agentCreditMax: 85,
-                      memMaxCreditMin: 25,
-                      memberMaxCredit: 26);
+                      agentPositionTaking: 19);
 
         public static MasterBalanceInfoModel MasterBalanceInfo
             => new MasterBalanceInfoModel(
                     custId: 1,
-                    credit: 12,
                     masterCash: 13,
                     yesterdayMasterCash: 14,
                     masterPositionTaking: 15,
@@ -152,10 +153,10 @@
                     yesterdayAgentCash: 17,
                     customerCash: 18,
                     yesterdayCustomerCash: 19,
-                    customerOutstanding: 20,
-                    masterUsedCredit: 23,
-                    masterCreditMin: 24,
-                    masterCreditMax: 85);
+                    customerOutstanding: 20);
+
+        public static CreditInfo CreditInfo
+            => new CreditInfo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
         private static CustomerInfoQuery AssignMessagesUsername(CustomerInfoQuery messages)
         {

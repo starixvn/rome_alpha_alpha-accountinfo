@@ -2,6 +2,7 @@
 {
     using System;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
 
     public class MasterBalanceInfoViewModel : BalanceInfoViewModelBase
@@ -10,10 +11,11 @@
 
         public MasterBalanceInfoViewModel(
             CustomerInfoQuery message,
-            IBalanceInfoModel balanceInfoModel,
             CustomerInfoModel customerInfoModel,
+            CreditInfo creditInfo,
+            IBalanceInfoModel balanceInfoModel,
             Func<string, string, string> getMicroSiteUrl = null)
-            : base(message, customerInfoModel, getMicroSiteUrl)
+            : base(message, customerInfoModel, creditInfo, getMicroSiteUrl)
         {
             this.balanceInfoModel = (MasterBalanceInfoModel)balanceInfoModel;
         }
@@ -24,24 +26,24 @@
 
         public override decimal TotalBalance
             => RoundUpNumber(
-                balanceInfoModel.MasterCash + 
-                balanceInfoModel.AgentCash + 
+                balanceInfoModel.MasterCash +
+                balanceInfoModel.AgentCash +
                 balanceInfoModel.CustomerCash);
 
         public override decimal YesterdayBalance
             => RoundUpNumber(
-                balanceInfoModel.YesterdayMasterCash + 
-                balanceInfoModel.YesterdayAgentCash + 
+                balanceInfoModel.YesterdayMasterCash +
+                balanceInfoModel.YesterdayAgentCash +
                 balanceInfoModel.YesterdayCustomerCash);
 
         public override decimal Outstanding => RoundUpNumber(balanceInfoModel.MasterPositionTaking);
 
-        public decimal UsedCredit => RoundUpNumber(balanceInfoModel.MasterUsedCredit);
+        public decimal UsedCredit => RoundUpNumber(creditInfo.MasterUsedCredit);
 
-        public decimal GivenCredit => RoundUpNumber(balanceInfoModel.Credit);
+        public decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
 
-        public decimal GivenCreditMin => balanceInfoModel.MasterCreditMin;
+        public decimal GivenCreditMin => creditInfo.MasterCreditMin;
 
-        public decimal GivenCreditMax => balanceInfoModel.MasterCreditMax;
+        public decimal GivenCreditMax => creditInfo.MasterCreditMax;
     }
 }

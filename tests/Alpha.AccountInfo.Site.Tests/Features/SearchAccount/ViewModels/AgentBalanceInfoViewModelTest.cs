@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.SearchAccount.ViewModels
 {
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers;
@@ -12,12 +13,13 @@
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Master.Value);
         private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo(UserLevel.Agent.Value);
+        private readonly CreditInfo creditInfo = AccountInfoHelper.CreditInfo;
 
         [Fact]
         public void MasterBalanceInfoViewModel_Always_ReturnCorrectValue()
         {
             var messages = new CustomerInfoQuery(viewer);
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo, creditInfo);
 
             Assert.True(
                 viewModel.TotalCash.Equals(13) &&
@@ -25,10 +27,10 @@
                 viewModel.TotalBalance.Equals(28) &&
                 viewModel.YesterdayBalance.Equals(30) &&
                 viewModel.Outstanding.Equals(19) &&
-                viewModel.MemberMaxCredit.Equals(26) &&
-                viewModel.UsedCredit.Equals(22) &&
-                viewModel.GivenCredit.Equals(120) &&
-                viewModel.MemberMaxCreditLimit.Equals(">=25 and <=120"));
+                viewModel.MemberMaxCredit.Equals(8) &&
+                viewModel.UsedCredit.Equals(7) &&
+                viewModel.GivenCredit.Equals(1) &&
+                viewModel.MemberMaxCreditLimit.Equals(">=9 and <=1"));
         }
 
         [Theory]
@@ -39,7 +41,7 @@
             viewer.LevelId.Returns(actorLevel);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo, creditInfo);
 
             Assert.Equal(viewModel.ShowMemberMaxCreditLimit, expectedValue);
         }
@@ -52,7 +54,7 @@
             viewer.LevelId.Returns(actorLevel);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo);
+            var viewModel = AccountInfoHelper.BuildAgentBalanceInfoViewModel(messages, customerInfo, creditInfo);
 
             Assert.Equal(viewModel.ShowTransferLink, expectedShowTransferLink);
         }

@@ -8,7 +8,6 @@
 
         public MasterBalanceInfoModel(
              int custId,
-             decimal credit,
              decimal masterCash,
              decimal yesterdayMasterCash,
              decimal masterPositionTaking,
@@ -16,13 +15,10 @@
              decimal yesterdayAgentCash,
              decimal customerCash,
              decimal yesterdayCustomerCash,
-             decimal customerOutstanding,
-             decimal masterUsedCredit,
-             decimal masterCreditMin,
-             decimal masterCreditMax)
+             decimal customerOutstanding)
+
         {
             CustId = custId;
-            Credit = credit;
 
             MasterCash = masterCash;
             YesterdayMasterCash = yesterdayMasterCash;
@@ -34,23 +30,13 @@
             CustomerCash = customerCash;
             YesterdayCustomerCash = yesterdayCustomerCash;
             CustomerOutstanding = customerOutstanding;
-
-            MasterUsedCredit = masterUsedCredit;
-            MasterCreditMin = masterCreditMin;
-            MasterCreditMax = masterCreditMax;
         }
 
         public int CustId { get; private set; }
 
-        public decimal Credit { get; private set; }
-
         public decimal MasterCash { get; private set; }
 
         public decimal YesterdayMasterCash { get; private set; }
-
-        public decimal MasterCreditMax { get; private set; }
-
-        public decimal MasterCreditMin { get; private set; }
 
         public decimal MasterPositionTaking { get; private set; }
 
@@ -63,7 +49,5 @@
         public decimal YesterdayCustomerCash { get; private set; }
 
         public decimal CustomerOutstanding { get; private set; }
-
-        public decimal MasterUsedCredit { get; private set; }
     }
 }

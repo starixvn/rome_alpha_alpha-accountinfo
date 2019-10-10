@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
@@ -34,7 +35,7 @@
         IAsyncRequestHandler<GivenCreditCommand, Result>
     {
         private readonly SearchAccountService accountInfoService;
-        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
+        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory;
         private readonly SecurityCodeChecker securityCodeChecker;
@@ -46,7 +47,7 @@
 
         internal SearchAccountHandler(
             SearchAccountService accountInfoService,
-            IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
+            IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
             GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory,
             GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory,
             SecurityCodeChecker securityCodeChecker)
@@ -54,7 +55,7 @@
             this.accountInfoService = accountInfoService;
 
             this.getBalanceInfoViewModelByLevel = getBalanceInfoViewModelByLevel ??
-                new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, IBalanceInfoModel, IBalanceInfoViewModel>>
+                new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>>
                 {
                     {UserLevel.Master, BuildMasterBalanceInfoViewModel},
                     {UserLevel.Agent, BuildAgentBalanceInfoViewModel},
@@ -87,6 +88,7 @@
                 var balanceInfo = getBalanceInfoViewModelByLevel[searchAccountLevel](
                     message,
                     customerInfo,
+                    await accountInfoService.GetCreditInfo(customerInfo.CustId).ConfigureAwait(false),
                     await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false));
 
                 return new CustomerInfoViewModel(message, customerInfo, balanceInfo);
@@ -181,20 +183,23 @@
         internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
+            CreditInfo creditInfo,
             IBalanceInfoModel balanceInfoModel)
-            => new MasterBalanceInfoViewModel(message, balanceInfoModel, customerInfo);
+            => new MasterBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel);
 
         internal static IBalanceInfoViewModel BuildAgentBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
+            CreditInfo creditInfo,
             IBalanceInfoModel balanceInfoModel)
-            => new AgentBalanceInfoViewModel(message, balanceInfoModel, customerInfo);
+            => new AgentBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel);
 
         internal static IBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
+            CreditInfo creditInfo,
             IBalanceInfoModel balanceInfoModel)
-            => new MemberBalanceInfoViewModel(message, balanceInfoModel, customerInfo);
+            => new MemberBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel);
 
         internal IEnumerable<CustomerProductStatus> BuildSearchAccountProductStatus(
             NonDCSProductStatusModel nonDCSProduct,

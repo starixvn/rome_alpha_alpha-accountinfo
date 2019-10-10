@@ -2,6 +2,7 @@
 {
     using System;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
 
@@ -11,10 +12,11 @@
 
         public AgentBalanceInfoViewModel(
             CustomerInfoQuery message,
-            IBalanceInfoModel balanceInfoModel,
             CustomerInfoModel customerInfoModel,
+            CreditInfo creditInfo,
+            IBalanceInfoModel balanceInfoModel,
             Func<string, string, string> getMicroSiteUrl = null)
-            : base(message, customerInfoModel, getMicroSiteUrl)
+            : base(message, customerInfoModel, creditInfo, getMicroSiteUrl)
         {
             this.balanceInfoModel = (AgentBalanceInfoModel)balanceInfoModel;
         }
@@ -29,22 +31,22 @@
 
         public override decimal Outstanding => RoundUpNumber(balanceInfoModel.AgentPositionTaking);
 
-        public decimal MemberMaxCredit => RoundUpNumber(balanceInfoModel.MemberMaxCredit);
+        public decimal MemberMaxCredit => RoundUpNumber(creditInfo.MemberMaxCredit);
 
-        public decimal UsedCredit => RoundUpNumber(balanceInfoModel.AgentUsedCredit);
+        public decimal UsedCredit => RoundUpNumber(creditInfo.AgentUsedCredit);
 
-        public decimal GivenCredit => RoundUpNumber(balanceInfoModel.Credit);
+        public decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
 
         public bool ShowMemberMaxCreditLimit => ActorLevel.IsMasterLevel();
 
         public string MemberMaxCreditLimit => $">={MemMaxCreditMin} {Resources.And} <={GivenCredit}";
 
-        public decimal GivenCreditMin => balanceInfoModel.AgentCreditMin;
+        public decimal GivenCreditMin => creditInfo.AgentCreditMin;
 
-        public decimal GivenCreditMax => balanceInfoModel.AgentCreditMax;
+        public decimal GivenCreditMax => creditInfo.AgentCreditMax;
 
         internal override bool ShowTransferLink => ActorLevel.IsMasterLevel() && base.ShowTransferLink;
 
-        private decimal MemMaxCreditMin => balanceInfoModel.MemMaxCreditMin;  
+        private decimal MemMaxCreditMin => creditInfo.MemMaxCreditMin;
     }
 }
