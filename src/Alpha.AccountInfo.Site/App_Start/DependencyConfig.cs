@@ -136,10 +136,11 @@
             var productConfigFile = HttpContext.Current.Server.MapPath("../ProductConfigs/ProductConfiguration.json");
 
             SimpleServiceLocator
-              .Instance
+              .Instance .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer)
               .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), productConfigFile))
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
-              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory());
+              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
+              .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer);
         }
     }
 }
