@@ -12,9 +12,9 @@ export default class GivenCreditRow extends React.Component {
         this.reloadLeftPanel = this.reloadLeftPanel.bind(this);
     }
 
-    givenPopupOnclosing(updateSuccessfully = false) {
+    givenPopupOnclosing(username = null, updateSuccessfully = false) {
         if (updateSuccessfully === true) {
-            this.reloadLeftPanel();
+            this.reloadLeftPanel(username);
             const autoCloseGivenPopupTimeOut = 3000;
 
             setTimeout(() => {
@@ -26,13 +26,13 @@ export default class GivenCreditRow extends React.Component {
         }
     }
 
-    reloadLeftPanel() {
+    reloadLeftPanel(username) {
         $.blockUI();
 
         const reloadLeftPanelTimeOut = 300;
         setTimeout(() => {
             const { customerInfo, fetchCustomerInfoFromServer } = this.props;
-            fetchCustomerInfoFromServer(customerInfo.UserName, LoadCustomerInfo.ByUpdateGivenCredit);
+            fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateGivenCredit);
         }, reloadLeftPanelTimeOut);
     }
 
