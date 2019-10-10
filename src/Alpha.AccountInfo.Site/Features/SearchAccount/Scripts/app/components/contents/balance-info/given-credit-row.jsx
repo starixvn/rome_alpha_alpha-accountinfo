@@ -15,7 +15,7 @@ export default class GivenCreditRow extends React.Component {
     givenPopupOnclosing(updateSuccessfully = false) {
         if (updateSuccessfully === true) {
             this.reloadLeftPanel();
-            const autoCloseGivenPopupTimeOut = 4000;
+            const autoCloseGivenPopupTimeOut = 3000;
 
             setTimeout(() => {
                 window.top.updateGivenCreditPopup.close();
