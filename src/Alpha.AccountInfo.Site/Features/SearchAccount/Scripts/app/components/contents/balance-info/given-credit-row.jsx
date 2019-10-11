@@ -31,9 +31,9 @@ export default class GivenCreditRow extends React.Component {
     handleOpenGivenCreditPopup() {
         const { resources, mobileView, customerInfo } = this.props,
             givenCreditUrl = `${top.alpha.urls.accountInfoRootPath}SearchAccount/GivenCredit` +
-            `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
-            `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
-            `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
+                `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
+                `&SearchAccountRoleId=${customerInfo.RoleId}&CurrentGivenCredit=${customerInfo.BalanceInfo.GivenCredit}` +
+                `&GivenCreditMin=${customerInfo.BalanceInfo.GivenCreditMin}&GivenCreditMax=${customerInfo.BalanceInfo.GivenCreditMax}`;
         let width = 470, height = 300;
 
         if (mobileView) {
@@ -49,7 +49,7 @@ export default class GivenCreditRow extends React.Component {
 
         window.top.isClearInterval = false;
         window.top.reloadLeftPanel = false;
-        this.reloadBalanceInfoTimer = setInterval(this.reloadBalanceInfo, 1000);
+        this.reloadBalanceInfoTimer = setInterval(this.reloadBalanceInfo, 500);
     }
 
     render() {
