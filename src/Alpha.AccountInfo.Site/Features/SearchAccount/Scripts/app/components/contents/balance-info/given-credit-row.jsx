@@ -8,32 +8,24 @@ export default class GivenCreditRow extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenGivenCreditPopup = this.handleOpenGivenCreditPopup.bind(this);
-        this.givenPopupOnclosing = this.givenPopupOnclosing.bind(this);
-        this.reloadLeftPanel = this.reloadLeftPanel.bind(this);
+        this.reloadBalanceInfo = this.reloadBalanceInfo.bind(this);
+        this.reloadBalanceInfoTimer = null;
     }
 
-    givenPopupOnclosing(username = null, updateSuccessfully = false) {
-        if (updateSuccessfully === true) {
-            this.reloadLeftPanel(username);
-            const autoCloseGivenPopupTimeOut = 1500;
-
-            setTimeout(() => {
-                window.top.updateGivenCreditPopup.close();
-            }, autoCloseGivenPopupTimeOut);
-        }
-        else {
-            window.top.updateGivenCreditPopup.close();
-        }
+    componentDidUpdate() {
+        clearInterval(this.reloadBalanceInfoTimer);
     }
 
-    reloadLeftPanel(username) {
-        $.blockUI();
+    componentWillUnmount() {
+        clearInterval(this.reloadBalanceInfoTimer);
+    }
 
-        const reloadLeftPanelTimeOut = 300;
-        setTimeout(() => {
-            const { customerInfo, fetchCustomerInfoFromServer } = this.props;
-            fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateGivenCredit);
-        }, reloadLeftPanelTimeOut);
+    reloadBalanceInfo() {
+        const { customerInfo, fetchCustomerInfoFromServer } = this.props;
+        if (window.top.isClearInterval) {
+            clearInterval(this.reloadBalanceInfoTimer);
+            window.top.reloadLeftPanel && fetchCustomerInfoFromServer(customerInfo.UserName, LoadCustomerInfo.ByUpdateGivenCredit);
+        }
     }
 
     handleOpenGivenCreditPopup() {
@@ -49,16 +41,15 @@ export default class GivenCreditRow extends React.Component {
             height = mobileScale(height);
         }
 
-        if (window.top.updateGivenCreditPopup === null || window.top.updateGivenCreditPopup === undefined) {
-            window.top.updateGivenCreditPopup = window.top.ageWnd.createInstance();
-            window.top.updateGivenCreditPopup.onClosing = this.givenPopupOnclosing;
-        }
-
-        window.top.popupManager.openWithHanlder(top.updateGivenCreditPopup, givenCreditUrl, `${resources.GivenCreditPopupTitle} - ${customerInfo.UserName}`, width, height);
+        window.top.ageWnd.open(givenCreditUrl, `${resources.GivenCreditPopupTitle} - ${customerInfo.UserName}`, undefined, undefined, width, height);
 
         if (mobileView) {
             resizePopupOnMobile();
         }
+
+        window.top.isClearInterval = false;
+        window.top.reloadLeftPanel = false;
+        this.reloadBalanceInfoTimer = setInterval(this.reloadBalanceInfo, 500);
     }
 
     render() {

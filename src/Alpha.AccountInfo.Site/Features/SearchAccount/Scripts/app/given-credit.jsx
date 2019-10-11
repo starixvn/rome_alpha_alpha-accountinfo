@@ -29,8 +29,10 @@ class GivenCredit extends React.Component {
         }
     }
 
-    handleClose(updateSuccessfully = false) {
-        window.top.updateGivenCreditPopup.onClosing(this.props.searchAccountName, updateSuccessfully);
+    handleClose() {
+        window.top.isClearInterval = true;
+        window.top.reloadLeftPanel = this.state.updateSuccess;
+        window.top.ageWnd.close();
     }
 
     showErrorMessage(message) {
@@ -74,8 +76,11 @@ class GivenCredit extends React.Component {
                     updateSuccess: data.IsSuccess
                 });
 
+                const timeoutDefault = 1000;
                 if (data.IsSuccess) {
-                    this.handleClose(data.IsSuccess);
+                    setTimeout(() => {
+                        this.handleClose();
+                    }, timeoutDefault);
                 }
 
                 $.unblockUI();
