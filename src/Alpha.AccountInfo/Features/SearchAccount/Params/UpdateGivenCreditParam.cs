@@ -6,7 +6,6 @@
             int searchAccountId,
             byte roleId,
             decimal creditAmount,
-            bool updateCreditReplicateServer,
             int actorId,
             int subAccountId,
             string language,
@@ -19,7 +18,6 @@
             IP = ip;
             RoleId = roleId;
             CreditAmount = creditAmount;
-            UpdateCreditReplicateServer = updateCreditReplicateServer;
         }
 
         public int SearchAccountId { get; }
@@ -35,7 +33,5 @@
         public byte RoleId { get; }
 
         public decimal CreditAmount { get; }
-
-        public bool UpdateCreditReplicateServer { get; }
     }
 }

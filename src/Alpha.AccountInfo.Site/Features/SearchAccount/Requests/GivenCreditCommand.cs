@@ -7,8 +7,7 @@
     {
         private readonly IUser viewer;
 
-        public GivenCreditCommand(IUser viewer) 
-            : base(viewer)
+        public GivenCreditCommand(IUser viewer) : base(viewer)
         {
             this.viewer = viewer;
         }

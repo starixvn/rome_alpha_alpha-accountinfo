@@ -127,21 +127,10 @@
                     param.IP);
 
             await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
-            
-            if(command.CreditProblem)
-            {
-                return Result.CreateErrorResult(failErrorCode, command.ErrMsg);
-            }
-            else
-            {
-                if (param.UpdateCreditReplicateServer)
-                {
-                    var replicateServerCommand = new UpdateGivenCreditReplicateServerCommand(param.SearchAccountId, param.CreditAmount);
-                    await dynamicRepository.ExecuteAsync(replicateServerCommand).ConfigureAwait(false);
-                }
 
-                return Result.CreateSuccessResult();
-            }
+            return command.CreditProblem
+                ? Result.CreateErrorResult(failErrorCode, command.ErrMsg)
+                : Result.CreateSuccessResult();
         }
 
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param)

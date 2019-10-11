@@ -68,7 +68,6 @@
              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
              .Register<Func<int, string>>((productId) => $"Product Name of {productId}")
              .Register<Func<string, string>>(key => $"value of {key}")
-             .Register<Func<bool>>(() => false)
              .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/");
 
             getBalanceInfoViewModelByLevel =
@@ -82,7 +81,7 @@
             accountInfoService = Substitute.For<SearchAccountService>();
             securityCodeChecker = Substitute.For<SecurityCodeChecker>();
             securityCodeChecker.IsEnableSecurityCode().Returns(true);
-            accountInfoHandler = new SearchAccountHandler(accountInfoService, getBalanceInfoViewModelByLevel, null, null, securityCodeChecker, null);
+            accountInfoHandler = new SearchAccountHandler(accountInfoService, getBalanceInfoViewModelByLevel, null, null, securityCodeChecker);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {

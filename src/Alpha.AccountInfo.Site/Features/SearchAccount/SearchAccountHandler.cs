@@ -39,10 +39,9 @@
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory;
         private readonly SecurityCodeChecker securityCodeChecker;
-        private readonly Func<bool> getUpdateCreditReplicateServer;
 
-        public SearchAccountHandler(SearchAccountService accountInfoService, SecurityCodeChecker securityCodeChecker) 
-            : this(accountInfoService, null, null, null, securityCodeChecker, null)
+        public SearchAccountHandler(SearchAccountService accountInfoService, SecurityCodeChecker securityCodeChecker) :
+            this(accountInfoService, null, null, null, securityCodeChecker)
         {
         }
 
@@ -51,8 +50,7 @@
             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
             GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory,
             GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory,
-            SecurityCodeChecker securityCodeChecker,
-            Func<bool> getUpdateCreditReplicateServer)
+            SecurityCodeChecker securityCodeChecker)
         {
             this.accountInfoService = accountInfoService;
 
@@ -71,9 +69,6 @@
                  SimpleServiceLocator.GetService<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>();
 
             this.securityCodeChecker = securityCodeChecker;
-
-            this.getUpdateCreditReplicateServer = getUpdateCreditReplicateServer ?? 
-                SimpleServiceLocator.GetService<Func<bool>>();
         }
 
         public Task<AccountInfoViewModel> Handle(SearchAccountQuery message)
@@ -168,7 +163,6 @@
                     message.SearchAccountId,
                     message.SearchAccountRoleId,
                     message.CreditAmount,
-                    getUpdateCreditReplicateServer(),
                     message.ActorId,
                     message.SubAccountId,
                     message.LangKey,
