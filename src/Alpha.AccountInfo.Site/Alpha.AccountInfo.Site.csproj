@@ -354,7 +354,7 @@
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.css" />
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js" />
-    <Content Include="Features\ProfilePicture\Scripts\app\index.js" />
+    <Content Include="Features\ProfilePicture\Scripts\app\index.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\react-crop-images.jsx" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
