@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BetType_2401" xml:space="preserve">
-    <value>百家乐，轮盘，骰宝，龙虎, 炸金花</value>
+    <value>百家乐，轮盘，骰宝，龙虎, 炸金花, 牛牛</value>
   </data>
   <data name="Msg60033" xml:space="preserve">
     <value>由于账号的此产品已关闭导致无法更改下线产品状态。</value>

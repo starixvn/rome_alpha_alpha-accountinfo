@@ -61,7 +61,7 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Baccarat, Roulette, Sic Bo, Dragon Tiger, Win 3 Cards.
+        ///   Looks up a localized string similar to Baccarat, Roulette, Sic Bo, Dragon Tiger, Win 3 Cards, Bull Bull.
         /// </summary>
         public static string BetType_2401 {
             get {
