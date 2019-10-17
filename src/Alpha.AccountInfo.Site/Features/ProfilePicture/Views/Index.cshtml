@@ -1,21 +1,14 @@
-﻿
+﻿@model ProfielPictureViewModel
+
 @{
     /**/
 
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
-@section Styles {
-    @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/react-crop-images")
 
-}
-
- test test
-<div id="root"></div>
-
+<div style="display:block; margin: 20px;"> <button id="create-avatar-button">Create Profile Picture</button></div>
+<div style="display:block"><img width="240px" height="240px" id="image-profile" alt="Crop" style={style} src={croppedImageUrl} /></div>
+@Html.Hidden("createAvartaUrl", $"{Model.AccountInfoUrl}/ProfilePicture/CreateProfilePicture")
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/react-crop-images")
-
-    <script>
-        renderApp();
-    </script>
+    @StaticResources.RenderScripts("~/Features/ProfilePicture/Scripts/app/index")
 }

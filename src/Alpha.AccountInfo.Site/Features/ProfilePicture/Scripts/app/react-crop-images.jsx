@@ -15,8 +15,7 @@ class App extends PureComponent {
                 aspect: 1,
                 width: 200,
                 maxWidth :200,
-                height: 200,
-                locked: true
+                height: 200
             }
         };
 
@@ -24,6 +23,8 @@ class App extends PureComponent {
         this.onImageLoaded = this.onImageLoaded.bind(this);
         this.onCropComplete = this.onCropComplete.bind(this);
         this.onCropChange = this.onCropChange.bind(this);
+
+        this.handleOnClosing = this.handleOnClosing.bind(this);
     }
 
     onSelectFile(e) {
@@ -35,6 +36,10 @@ class App extends PureComponent {
             reader.readAsDataURL(e.target.files[0]);
         }
     };
+
+    handleOnClosing() {
+        window.top.createProfilePicturePopup.onClosing(this.state.croppedImageUrl);
+    }
 
     // If you setState the crop in here you should return false.
     onImageLoaded(image) {
@@ -101,18 +106,14 @@ class App extends PureComponent {
     render() {
         const { crop, croppedImageUrl, src } = this.state;
         const style = {
-            width: "20%",
-            height: "20%",
+            marginBottom: '20px'
         };
 
         return (
             <div className="App">
                 <div>
-                    <input type="file" onChange={this.onSelectFile} />
+                    <input type="file" onChange={this.onSelectFile} style={style} />
                 </div>
-                {croppedImageUrl && (
-                    <img alt="Crop" style={style} src={croppedImageUrl} />
-                )}
                 {src && (
                     <ReactCrop
                         src={src}
@@ -122,7 +123,7 @@ class App extends PureComponent {
                         onChange={this.onCropChange}
                     />
                 )}
-                
+                <button onClick={this.handleOnClosing}>OK</button>
             </div>
         );
     }

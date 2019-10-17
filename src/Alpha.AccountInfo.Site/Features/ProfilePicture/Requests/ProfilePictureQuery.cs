@@ -1,10 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProfilePicture.Requests
 {
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
 
-    public class ProfilePictureQuery : BaseRequest, IRequest<string>
+    public class ProfilePictureQuery : BaseRequest, IRequest<ProfielPictureViewModel>
     {
         private readonly IUser viewer ;
 
