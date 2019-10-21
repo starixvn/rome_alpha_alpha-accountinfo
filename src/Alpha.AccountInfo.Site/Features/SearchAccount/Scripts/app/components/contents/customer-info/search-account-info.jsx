@@ -102,7 +102,7 @@ export default class SearchAccountInfo extends React.Component {
             mobileView
         };
 
-        const spanContent = <span className={Css} data-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>;
+        const spanContent = <span className={Css} id="search-account-id" data-search-account-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>;
 
         const spanContentViewLog =
             <CustomAnchorTag {...customAnchorTagProps}>

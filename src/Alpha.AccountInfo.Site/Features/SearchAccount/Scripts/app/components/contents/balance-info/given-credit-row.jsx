@@ -29,7 +29,8 @@ export default class GivenCreditRow extends React.Component {
     reloadLeftPanel(username) {
         const reloadLeftPanelTimeOut = 1500;
         setTimeout(() => {
-            if (username === this.props.customerInfo.UserName) {
+            const searchAccountNameText = $('#search-account-id').attr('data-search-account-username');
+            if (username === searchAccountNameText) {
                 this.props.fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateGivenCredit);
             }
         }, reloadLeftPanelTimeOut);
