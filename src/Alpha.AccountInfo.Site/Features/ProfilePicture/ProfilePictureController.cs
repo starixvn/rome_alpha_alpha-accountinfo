@@ -8,8 +8,9 @@
 
     public class ProfilePictureController : AccountInfoBaseController
     {
-        private const string ProfilePictureViewPath = "~/Features/ProfilePicture/Views/CreateProfilePicture.cshtml";
         private const string IndexViewPath = "~/Features/ProfilePicture/Views/Index.cshtml";
+        private const string ProfilePictureViewPath = "~/Features/ProfilePicture/Views/CreateProfilePicture.cshtml";
+        private const string PictureLibraryViewPath = "~/Features/ProfilePicture/Views/PictureLibrary.cshtml";
 
         public ProfilePictureController(IMediator mediator)
          : base(mediator)
@@ -17,9 +18,12 @@
         }
 
         public async Task<ActionResult> Index(ProfilePictureQuery message)
-        => await ViewAsync(message, IndexViewPath).ConfigureAwait(false);
+            => await ViewAsync(message, IndexViewPath).ConfigureAwait(false);
 
         public async Task<ActionResult> CreateProfilePicture(ProfilePictureQuery message)
-         => await ViewAsync(message, ProfilePictureViewPath).ConfigureAwait(false);
+            => await ViewAsync(message, ProfilePictureViewPath).ConfigureAwait(false);
+
+        public async Task<ActionResult> ViewPictureLibrary(ProfilePictureQuery message)
+            => await ViewAsync(message, PictureLibraryViewPath).ConfigureAwait(false);
     }
 }

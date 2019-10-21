@@ -1,0 +1,20 @@
+﻿
+@{
+    /**/
+
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/picture-library")
+
+}
+
+<div id="root"></div>
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/picture-library")
+
+    <script>
+        renderApp();
+    </script>
+}

@@ -37,6 +37,9 @@ module.exports = {
         ],
         "./ProfilePicture/Bundles/index": [
             "./Features/ProfilePicture/Scripts/app/index.jsx",
+        ],
+        "./ProfilePicture/Bundles/picture-library": [
+            "./Features/ProfilePicture/Scripts/app/picture-library.jsx",
         ]
     },
 
