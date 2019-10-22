@@ -22,7 +22,16 @@ window.top.main = {
 
 window.top.ageWnd = {
     open: jest.fn(),
-    close: jest.fn()
+    close: jest.fn(),
+    createInstance: jest.fn() 
+};
+
+window.top.updateGivenCreditPopup = {
+    onClosing: jest.fn()
+};
+
+window.top.popupManager = {
+    openWithHanlder: jest.fn()
 };
 
 window.top.bootboxConfirm = jest.fn();

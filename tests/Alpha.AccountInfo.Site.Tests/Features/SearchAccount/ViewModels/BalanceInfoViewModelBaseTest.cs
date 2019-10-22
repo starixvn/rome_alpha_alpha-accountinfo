@@ -108,10 +108,10 @@
         [Theory]
         [InlineData(4, 3, "Master Outstanding", "MicroSiteUrl/outstanding/Master?CustId=1&CustName=UserTest&CustLevelId=3&BreadcrumbLevelJson=[{'CustId':14,'CustName':'SuperTest','CustLevelId':4}]")]
         [InlineData(4, 2, "Agent Outstanding", "MicroSiteUrl/outstanding/Master?CustId=1&CustName=UserTest&CustLevelId=2&BreadcrumbLevelJson=[{'CustId':14,'CustName':'SuperTest','CustLevelId':4},{'CustId':13,'CustName':'MasterTest','CustLevelId':3}]")]
-        [InlineData(4, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=ACGUUS3838033&amp;GetAll=True")]
+        [InlineData(4, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
         [InlineData(3, 2, "Agent Outstanding", "MicroSiteUrl/outstanding/Agent?CustId=1&CustName=UserTest&CustLevelId=2&BreadcrumbLevelJson=[{'CustId':13,'CustName':'MasterTest','CustLevelId':3}]")]
-        [InlineData(3, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=ACGUUS3838033&amp;GetAll=True")]
-        [InlineData(2, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=ACGUUS3838033&amp;GetAll=True")]
+        [InlineData(3, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
+        [InlineData(2, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
         public void ReportLink_Always_ReturnsCorrectLink(
             byte actorRoleId,
             byte searchAccountRoleId,

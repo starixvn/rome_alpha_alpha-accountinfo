@@ -80,8 +80,6 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerInfoFromServer(username, requestId = LoadCustomerInfo.ByClick) {
-        window.top.isClearInterval = true;
-        window.top.reloadLeftPanel = false;
         const loadCustomerInfoByClick = requestId === LoadCustomerInfo.ByClick;
         const resetSetting = requestId !== LoadCustomerInfo.ByUpdateStatus;
 

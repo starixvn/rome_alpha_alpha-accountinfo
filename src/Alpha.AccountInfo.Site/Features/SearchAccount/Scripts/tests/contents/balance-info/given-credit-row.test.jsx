@@ -67,20 +67,5 @@ describe('GivenCreditRow', () => {
                 expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(expectedCallTimes);
                 }
         );
-
-        test.each([[true, true, 1], [true, false, 0], [false, false, 0]])(
-            'correct call fetchCustomerInfoFromServer()',
-            (isClearInterval, reloadLeftPanel, expectedCallTimes) => {
-
-                const wrapper = shallow(<GivenCreditRow {...props} />);
-                wrapper.find(givenCreditId).simulate('click');
-
-                global.top.isClearInterval = isClearInterval;
-                global.top.reloadLeftPanel = reloadLeftPanel;
-                clock.tick(1000);
-
-                expect(props.fetchCustomerInfoFromServer).toBeCalledTimes(expectedCallTimes);
-            }
-        );
     });
 });

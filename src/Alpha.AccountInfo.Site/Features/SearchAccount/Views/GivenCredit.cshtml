@@ -17,8 +17,9 @@
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/SearchAccount/Bundles/given-credit")
     <script>
-        renderGivenCredit(
+   renderGivenCredit(
             "@Model.SearchAccountId",
+            "@Model.SearchAccountName",
             "@Model.SearchAccountRoleId",
             "@Model.CurrentGivenCredit",
             "@Model.GivenCreditMin",
