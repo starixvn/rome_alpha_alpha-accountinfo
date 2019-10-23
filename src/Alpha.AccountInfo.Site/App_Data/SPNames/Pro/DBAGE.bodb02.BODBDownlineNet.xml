@@ -32,7 +32,7 @@
   </Function>
 
   <Function Name="Profile Picture">
-    <Setting Key="Age_CustomerProfilePictureLibrarySel" SpName="Age_CustomerProfilePictureLibrarySel_xtest" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerProfilePictureLibrarySel" SpName="Age_CustomerProfilePictureLibrarySel_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
 
 </Functions>

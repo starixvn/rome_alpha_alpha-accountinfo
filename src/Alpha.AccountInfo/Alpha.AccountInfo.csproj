@@ -176,6 +176,7 @@
       <DependentUpon>ProductStatus.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Features\ProfilePicture\Models\DefaultProfilePicture.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\Criteria\SelectProfilePictureLibraryCriteria.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\UpdateManualProfilePictureCommand.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureServices.cs" />
@@ -322,9 +323,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\ProfilePicture\Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

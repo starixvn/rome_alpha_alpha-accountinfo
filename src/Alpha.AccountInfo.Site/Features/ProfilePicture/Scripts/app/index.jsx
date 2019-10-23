@@ -15,7 +15,9 @@ class App extends PureComponent {
 
     profilePictureClosing(src) {
         window.top.createProfilePicturePopup.close();
-        this.setState({ croppedImageUrl: src })
+        if (src !== undefined) {
+            this.setState({ croppedImageUrl: src });
+        }
     }
 
     handleOpenPopup(createAvatar = true) {
@@ -26,11 +28,10 @@ class App extends PureComponent {
         var url = `${window.top.alpha.urls.accountInfoRootPath}/ProfilePicture/${createAvatar ? 'CreateProfilePicture' : 'ViewPictureLibrary'}`;
 
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
-        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Create avatar', 800, 800);
+        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 800, 800);
     }
 
     render() {
-        const { crop, croppedImageUrl, src } = this.state;
         const style1  = {
             display: 'block',
             margin: '20px'

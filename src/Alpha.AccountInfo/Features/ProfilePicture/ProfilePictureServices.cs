@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
+    using Alpha.AccountInfo.Features.ProfilePicture.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -12,7 +13,7 @@
     {
         Result UpdateManualProfilePictureCommand(byte[] image, string filename);
 
-        Task<IEnumerable<byte[]>> GetProfilePictureLibrary();
+        Task<IEnumerable<DefaultProfilePicture>> GetProfilePictureLibrary();
     }
 
     public class ProfilePictureServicesImpl : ProfilePictureServices
@@ -40,7 +41,7 @@
             }
         }
 
-        public async Task<IEnumerable<byte[]>> GetProfilePictureLibrary()
-          => await dynamicRepository.FetchAsync<byte[]>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);
+        public async Task<IEnumerable<DefaultProfilePicture>> GetProfilePictureLibrary()
+          => await dynamicRepository.FetchAsync<DefaultProfilePicture>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);
     }
 }
