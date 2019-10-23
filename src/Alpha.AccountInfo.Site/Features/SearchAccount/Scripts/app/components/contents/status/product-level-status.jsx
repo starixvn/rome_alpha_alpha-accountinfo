@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { LoadCustomerAllStatus } from '../../../constants';
-import { resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
+import { mobileScale, resizePopupOnMobile } from '../../../helpers/accountinfo-helper';
 
 export default class ProductLevelStatus extends React.Component {
     constructor(props) {
@@ -43,8 +43,9 @@ export default class ProductLevelStatus extends React.Component {
             }
 
             const popupTitle = `${resources.Update} ${status.Text} ${resources.Status} - ${username}`;
+            const width = 475, height = 400;
             window.top.updateProductStatusPopup.onClosing = this.productStatusOnclosing;
-            window.top.popupManager.openWithHanlder(top.updateProductStatusPopup, status.Url, popupTitle);
+            window.top.popupManager.openWithHanlder(top.updateProductStatusPopup, status.Url, popupTitle, width, mobileView ? mobileScale(height) : height);
 
             if (mobileView) {
                 resizePopupOnMobile();
