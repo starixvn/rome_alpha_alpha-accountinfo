@@ -1,8 +1,7 @@
 ﻿namespace uploadAvarta.Controllers
 {
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Services.AccountInfo;
-    using Newtonsoft.Json;
+    using Alpha.AccountInfo.ProfilePicture.Services;
     using System;
     using System.Collections.Generic;
     using System.Drawing;

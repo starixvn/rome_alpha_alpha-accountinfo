@@ -25,5 +25,10 @@
 
         public async Task<ActionResult> ViewPictureLibrary(ProfilePictureLibaryQuery message)
             => await ViewAsync(message, PictureLibraryViewPath).ConfigureAwait(false);
+
+        //, AntiXsrfFilter
+        [HttpPost]
+        public async Task<ActionResult> UpdateActorProfilePicture(UpdateActorProfilePictureQuery query)
+        => await JsonDataAsync(query, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
     }
 }

@@ -10,8 +10,8 @@
         private readonly Func<string, string, string> GetMicroSiteUrl;
 
         public ProfielPictureViewModel(
-            IEnumerable<string> images,
-            string actorAvatar,
+            IEnumerable<DefaultProfielPictureViewModel> images,
+            DefaultProfielPictureViewModel actorAvatar,
             Func<string, string, string> getMicroSiteUrl = null)
         {
             ActorAvatar = actorAvatar;
@@ -19,9 +19,9 @@
             GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
-        public string ActorAvatar { get; private set; }
+        public DefaultProfielPictureViewModel ActorAvatar { get; private set; }
 
-        public IEnumerable<string> Images { get; private set; }
+        public IEnumerable<DefaultProfielPictureViewModel> Images { get; private set; }
 
         public string AccountInfoUrl => GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
     }

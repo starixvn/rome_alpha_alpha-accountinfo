@@ -5,7 +5,7 @@ class App extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            croppedImageUrl: this.props.avatar
+            croppedImageUrl: this.props.avatar.Image
         };
 
         this.profilePictureClosing = this.profilePictureClosing.bind(this);
@@ -14,7 +14,11 @@ class App extends PureComponent {
     }
 
     handleOnClick(src) {
-        this.setState({ croppedImageUrl: src })
+        this.setState({ croppedImageUrl: src });
+    }
+
+    handleOnReset() {
+        this.setState({ croppedImageUrl: this.props.avatar.Image });
     }
 
     profilePictureClosing(src) {
@@ -66,12 +70,15 @@ class App extends PureComponent {
                 <div style={style2}>
                     <span>Choose your picture</span>
                     <div>
-                        <img style={style4} alt="Crop" onClick={() => this.handleOnClick(avatar)} src={avatar} />
+                        <img style={style4} alt="Crop" onClick={() => this.handleOnClick(avatar.Image)} src={avatar.Image} />
                         {
 
                             imagesList.map(
-                                (image, index) =>
-                                    <img style={style4} alt="Crop" onClick={() => this.handleOnClick(image)} src={image} key={index} />
+                                (profilePicture, index) =>
+                                    <img style={style4} alt="Crop"
+                                        onClick={() => this.handleOnClick(profilePicture.Image)}
+                                        src={profilePicture.Image}
+                                        key={index} />
                             )
                         }
 

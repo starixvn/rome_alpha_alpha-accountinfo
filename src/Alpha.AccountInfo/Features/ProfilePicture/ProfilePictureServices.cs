@@ -1,6 +1,8 @@
-﻿namespace Alpha.AccountInfo.Services.AccountInfo
+﻿namespace Alpha.AccountInfo.ProfilePicture.Services
 {
     using Alpha.AccountInfo.Features.ProfilePicture.Models;
+    using Alpha.AccountInfo.Features.ProfilePicture.SPs.Commands;
+    using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -16,6 +18,8 @@
         Task<ActorProfilePicture> GetActorProfilePicture(int custId);
 
         Task<IEnumerable<DefaultProfilePicture>> GetProfilePictureLibrary();
+
+        Task<Result> UpdateActorProfilePicture(UpdateActorProfilePictureParam param);
     }
 
     public class ProfilePictureServicesImpl : ProfilePictureServices
@@ -48,5 +52,21 @@
 
         public async Task<IEnumerable<DefaultProfilePicture>> GetProfilePictureLibrary()
           => await dynamicRepository.FetchAsync<DefaultProfilePicture>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);
+
+        public async Task<Result> UpdateActorProfilePicture(UpdateActorProfilePictureParam param)
+        {
+            var command = new UpdateActorProfilePictureCommand(
+                    param.ActorId,
+                    param.ImageId,
+                    param.Image,
+                    param.IsDefault,
+                    param.IP);
+
+            await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
+
+            return command.ErrCode.Equals(0) ?
+                Result.CreateSuccessResult() :
+                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+        }
     }
 }

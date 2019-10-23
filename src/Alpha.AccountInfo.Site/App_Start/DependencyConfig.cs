@@ -5,6 +5,7 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Features.UnsuspendDownlines;
+    using Alpha.AccountInfo.ProfilePicture.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;

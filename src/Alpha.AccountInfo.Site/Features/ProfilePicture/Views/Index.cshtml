@@ -4,6 +4,7 @@
 
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
     var imagesLibrary = JsonConvert.SerializeObject(Model.Images);
+    var actorAvatar = JsonConvert.SerializeObject(Model.ActorAvatar);
 }
 @section Styles {
 
@@ -15,6 +16,6 @@
     @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/index")
 
     <script>
-        renderApp("@Model.ActorAvatar", @Html.Raw(imagesLibrary));
+        renderApp(@Html.Raw(actorAvatar), @Html.Raw(imagesLibrary));
     </script>
 }

@@ -45,8 +45,8 @@ class App extends PureComponent {
                         {
 
                             imagesList.map(
-                                (image, index) =>
-                                    <img style={style4} alt="Crop" onClick={() => this.handleOnClick(image)} src={image} key={index}/>
+                                (profilePicture, index) =>
+                                    <img style={style4} alt="Crop" onClick={() => this.handleOnClick(profilePicture.Image)} src={profilePicture.Image} key={index}/>
                             )
                         }
                     </div>
