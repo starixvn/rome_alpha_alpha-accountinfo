@@ -130,9 +130,6 @@ export default class AccountInfo extends React.Component {
     }
 
     fetchCustomerAllStatusFromServer(requestId = LoadCustomerAllStatus.ByClick) {
-        window.top.isClearInterval = true;
-        window.top.reloadLeftPanel = false;
-
         let uplineId = null;
         let uplineName = null;
         const { customerInfo, statusData } = this.state;

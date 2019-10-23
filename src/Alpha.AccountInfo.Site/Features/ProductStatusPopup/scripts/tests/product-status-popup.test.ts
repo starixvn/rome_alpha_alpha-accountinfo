@@ -197,58 +197,58 @@
         });
     });
 
-    describe("_afterUpdateStatusSuccessfully", () => {
-        it("_Code = 0 -> Show Successful Message & Close Popup After 3 seconds", () => {
-            // arrange
-            jasmine.clock().install();
-            setFixtures(template.normal);
-            productStatus.cacheDOMElements();
+    //describe("_afterUpdateStatusSuccessfully", () => {
+    //    it("_Code = 0 -> Show Successful Message & Close Popup After 3 seconds", () => {
+    //        // arrange
+    //        jasmine.clock().install();
+    //        setFixtures(template.normal);
+    //        productStatus.cacheDOMElements();
 
-            const data = { Code: 0, Message: "Status updated successfully." };
+    //        const data = { Code: 0, Message: "Status updated successfully." };
 
-            // act
-            productStatus.afterUpdateStatusSuccessfully(data);
-            jasmine.clock().tick(3001);
+    //        // act
+    //        productStatus.afterUpdateStatusSuccessfully(data);
+    //        jasmine.clock().tick(3001);
 
-            // assert
-            expect(productStatus.topWindow.reloadLeftPanel).toBeTruthy();
-            expect(productStatus.$msgServerResult.html()).toBe("Status updated successfully.");
-            expect(productStatus.topWindow.ageWnd.close).toHaveBeenCalled();
-            jasmine.clock().uninstall();
-        });
+    //        // assert
+    //        expect(productStatus.topWindow.reloadLeftPanel).toBeTruthy();
+    //        expect(productStatus.$msgServerResult.html()).toBe("Status updated successfully.");
+    //        expect(productStatus.topWindow.ageWnd.close).toHaveBeenCalled();
+    //        jasmine.clock().uninstall();
+    //    });
 
-        it("_Code != 0 -> Show error Message & Don't Reload Page", () => {
-            // arrange
-            setFixtures(template.normal);
-            productStatus.cacheDOMElements();
+    //    it("_Code != 0 -> Show error Message & Don't Reload Page", () => {
+    //        // arrange
+    //        setFixtures(template.normal);
+    //        productStatus.cacheDOMElements();
 
-            const data = { Code: 403, Message: "You are not authorized on this function." };
+    //        const data = { Code: 403, Message: "You are not authorized on this function." };
 
-            // act
-            productStatus.afterUpdateStatusSuccessfully(data);
+    //        // act
+    //        productStatus.afterUpdateStatusSuccessfully(data);
 
-            // assert
-            expect(productStatus.$msgServerResult.hasClass("msg msg-error")).toBeTruthy();
-            expect(productStatus.$msgServerResult.html()).toBe("You are not authorized on this function.");
-            expect(productStatus.topWindow.ageWnd.close).not.toHaveBeenCalled();
-        });
+    //        // assert
+    //        expect(productStatus.$msgServerResult.hasClass("msg msg-error")).toBeTruthy();
+    //        expect(productStatus.$msgServerResult.html()).toBe("You are not authorized on this function.");
+    //        expect(productStatus.topWindow.ageWnd.close).not.toHaveBeenCalled();
+    //    });
 
-        it("_ErrCode != 0 -> Show error Message 'Request Verification Token does not exist.'", () => {
-            // arrange
-            setFixtures(template.normal);
-            productStatus.cacheDOMElements();
+    //    it("_ErrCode != 0 -> Show error Message 'Request Verification Token does not exist.'", () => {
+    //        // arrange
+    //        setFixtures(template.normal);
+    //        productStatus.cacheDOMElements();
 
-            const data = { ErrCode: 1, ErrMsg: "Request Verification Token does not exist. Please refresh your page. Thanks." };
+    //        const data = { ErrCode: 1, ErrMsg: "Request Verification Token does not exist. Please refresh your page. Thanks." };
 
-            // act
-            productStatus.afterUpdateStatusSuccessfully(data);
+    //        // act
+    //        productStatus.afterUpdateStatusSuccessfully(data);
 
-            // assert
-            expect(productStatus.$msgServerResult.hasClass("msg msg-error")).toBeTruthy();
-            expect(productStatus.$msgServerResult.html()).toBe("Request Verification Token does not exist. Please refresh your page. Thanks.");
-            expect(productStatus.topWindow.ageWnd.close).not.toHaveBeenCalled();
-        });
-    });
+    //        // assert
+    //        expect(productStatus.$msgServerResult.hasClass("msg msg-error")).toBeTruthy();
+    //        expect(productStatus.$msgServerResult.html()).toBe("Request Verification Token does not exist. Please refresh your page. Thanks.");
+    //        expect(productStatus.topWindow.ageWnd.close).not.toHaveBeenCalled();
+    //    });
+    //});
 
     describe("_showNoDataChange", () => {
         beforeEach(() => {

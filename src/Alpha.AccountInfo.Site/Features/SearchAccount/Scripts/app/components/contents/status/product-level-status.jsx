@@ -6,40 +6,49 @@ export default class ProductLevelStatus extends React.Component {
     constructor(props) {
         super(props);
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
-        this.reloadCustomerPoductLevelStatus = this.reloadCustomerPoductLevelStatus.bind(this);
-
-        this.reloadCustomerPoductLevelStatusTimer = null;
+        this.productStatusOnclosing = this.productStatusOnclosing.bind(this);
+        this.reloadLeftPanel = this.reloadLeftPanel.bind(this);
     }
 
-    componentDidUpdate() {
-        clearInterval(this.reloadCustomerPoductLevelStatusTimer);
-    }
+    productStatusOnclosing(username = null, updateSuccessfully = false) {
+        if (updateSuccessfully === true) {
+            const autoPopupTimeOut = 1000;
+            this.reloadLeftPanel(username);
 
-    componentWillUnmount() {
-        clearInterval(this.reloadCustomerPoductLevelStatusTimer);
-    }
-
-    reloadCustomerPoductLevelStatus() {
-        if (window.top.isClearInterval) {
-            clearInterval(this.reloadCustomerPoductLevelStatusTimer);
-            window.top.reloadLeftPanel && this.props.fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
+            setTimeout(() => {
+                window.top.updateProductStatusPopup.close();
+            }, autoPopupTimeOut);
         }
+        else {
+            window.top.updateProductStatusPopup.close();
+        }
+    }
+
+    reloadLeftPanel(username) {
+        const reloadLeftPanelTimeOut = 1500;
+        setTimeout(() => {
+            const searchAccountNameText = $('#search-account-id').attr('data-search-account-username');
+            if (username === searchAccountNameText) {
+                this.props.fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
+            }
+        }, reloadLeftPanelTimeOut);
     }
 
     handleOpenPopup() {
         const { mobileView, resources, status, username } = this.props;
-        const url = status.Url;
-        const productName = status.Text;
 
         if (!status.Disabled) {
-            window.top.ageWnd.open(url, `${resources.Update} ${productName} ${resources.Status} - ${username}`);
+            if (window.top.updateProductStatusPopup === null || window.top.updateProductStatusPopup === undefined) {
+                window.top.updateProductStatusPopup = window.top.ageWnd.createInstance();
+            }
+
+            const popupTitle = `${resources.Update} ${status.Text} ${resources.Status} - ${username}`;
+            window.top.updateProductStatusPopup.onClosing = this.productStatusOnclosing;
+            window.top.popupManager.openWithHanlder(top.updateProductStatusPopup, status.Url, popupTitle);
+
             if (mobileView) {
                 resizePopupOnMobile();
             }
-
-            window.top.isClearInterval = false;
-            window.top.reloadLeftPanel = false;
-            this.reloadCustomerPoductLevelStatusTimer = setInterval(this.reloadCustomerPoductLevelStatus, 1000);
         }
     }
 
