@@ -56,7 +56,7 @@ export default class UnsuspendSingle extends React.Component {
 
         window.top.bootboxConfirm(
             message,
-            e.target,
+           undefined,
             this.doUpdate
         );
     }
