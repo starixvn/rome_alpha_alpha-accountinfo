@@ -31,8 +31,9 @@ class App extends PureComponent {
             padding: '4px'
         };
 
-        for (let i = 0; i < 100; i++) {
-            const src = i % 2 == 0 ? this.state.defaultImage : this.state.defaultImage1;
+        const { imagesList } = this.props;
+        for (let i = 0; length; i++) {
+            const src = imagesList[i];
             images.push(<img style={style4} alt="Crop" onClick={() => this.handleOnClick(src)} src={src} />)
         }
 
@@ -69,9 +70,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = () => {
+export const renderApp = (imagesList) => {
     ReactDOM.render(
-        <App />,
+        <App imagesList={imagesList}/>,
         document.getElementById('root')
     );
 };

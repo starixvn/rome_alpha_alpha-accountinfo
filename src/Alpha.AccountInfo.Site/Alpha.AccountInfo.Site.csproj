@@ -592,6 +592,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Features\ProfilePicture\DemoController.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
+    <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibaryQuery.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureQuery.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureHandler.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureViewModel.cs" />

@@ -1,8 +1,9 @@
-﻿
+﻿@model IEnumerable<byte[]>
 @{
     /**/
 
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    var imagesLibrary = JsonConvert.SerializeObject(Model);
 }
 @section Styles {
     @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/picture-library")
@@ -15,6 +16,6 @@
     @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/picture-library")
 
     <script>
-        renderApp();
+        renderApp(@Html.Raw(imagesLibrary));
     </script>
 }

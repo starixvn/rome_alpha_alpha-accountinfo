@@ -23,7 +23,7 @@
         public async Task<ActionResult> CreateProfilePicture(ProfilePictureQuery message)
             => await ViewAsync(message, ProfilePictureViewPath).ConfigureAwait(false);
 
-        public async Task<ActionResult> ViewPictureLibrary(ProfilePictureQuery message)
+        public async Task<ActionResult> ViewPictureLibrary(ProfilePictureLibaryQuery message)
             => await ViewAsync(message, PictureLibraryViewPath).ConfigureAwait(false);
     }
 }

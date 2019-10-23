@@ -176,6 +176,7 @@
       <DependentUpon>ProductStatus.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Features\ProfilePicture\Params\SPs\Criteria\SelectProfilePictureLibraryCriteria.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\UpdateManualProfilePictureCommand.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureServices.cs" />
     <Compile Include="Features\SearchAccount\AppResources\GivenCredit.Designer.cs">

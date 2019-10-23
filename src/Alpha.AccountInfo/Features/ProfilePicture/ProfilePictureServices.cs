@@ -1,14 +1,18 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Fanex.Data.Repository;
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface ProfilePictureServices
     {
         Result UpdateManualProfilePictureCommand(byte[] image, string filename);
+
+        Task<IEnumerable<byte[]>> GetProfilePictureLibrary();
     }
 
     public class ProfilePictureServicesImpl : ProfilePictureServices
@@ -35,5 +39,8 @@
                 return Result.CreateErrorResult(100, filename);
             }
         }
+
+        public async Task<IEnumerable<byte[]>> GetProfilePictureLibrary()
+          => await dynamicRepository.FetchAsync<byte[]>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);
     }
 }
