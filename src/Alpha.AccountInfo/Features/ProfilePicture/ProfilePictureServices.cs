@@ -13,6 +13,8 @@
     {
         Result UpdateManualProfilePictureCommand(byte[] image, string filename);
 
+        Task<ActorProfilePicture> GetActorProfilePicture(int custId);
+
         Task<IEnumerable<DefaultProfilePicture>> GetProfilePictureLibrary();
     }
 
@@ -40,6 +42,9 @@
                 return Result.CreateErrorResult(100, filename);
             }
         }
+
+        public async Task<ActorProfilePicture> GetActorProfilePicture(int custId)
+        => await dynamicRepository.GetAsync<ActorProfilePicture>(new SelectActorProfilePictureCriteria(custId)).ConfigureAwait(false);
 
         public async Task<IEnumerable<DefaultProfilePicture>> GetProfilePictureLibrary()
           => await dynamicRepository.FetchAsync<DefaultProfilePicture>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);

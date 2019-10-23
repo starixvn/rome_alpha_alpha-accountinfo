@@ -7,12 +7,12 @@
 
     public class ProfilePictureQuery : BaseRequest, IRequest<ProfielPictureViewModel>
     {
-        private readonly IUser viewer ;
-
         public ProfilePictureQuery(IUser viewer) : base(viewer)
         {
-            this.viewer = viewer;
+            this.ActorId = viewer.Id;
         }
+
+        public int ActorId { get;}
 
         public override bool IsValid() => true;
     }
