@@ -1,0 +1,44 @@
+﻿
+@{
+    /**/
+
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+<div style="padding-top: 30px;">
+    Folder Url: <input type="text" id="folderUrl"><br>
+    <input type="submit" value="Submit" id="submit">
+
+    <div id="server-results"></div>
+</div>
+
+@section Scripts {
+    <script src=@Url.Content("~/Features/ProfilePicture/Bundles/jquery-3.3.1.js")></script>
+
+    <script>
+        $(function () {
+            $("#submit").click(function (event) {
+                event.preventDefault(); //prevent default action
+
+                $.ajax({
+                    url: 'DoConvertImageToBinary',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 'url': $('#folderUrl').val() }
+                }).done(function (response) {
+                    var html = '';
+                    for (var i = 0; i < response.length; i++) {
+                        html += `<div>${response[i].Message}</div><br>`;
+                    }
+
+                    $("#server-results").html(html).show();
+
+                    if (response.length == 0) {
+                        setTimeout(() => {
+                            $("#server-results").hide();
+                        }, 2000);
+                    }
+                });
+            });
+        });
+    </script>
+}

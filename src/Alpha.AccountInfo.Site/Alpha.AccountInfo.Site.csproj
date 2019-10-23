@@ -352,6 +352,7 @@
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.css" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
+    <Content Include="Features\ProfilePicture\Bundles\jquery-3.3.1.js" />
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.css" />
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js" />
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library.jsx" />
@@ -473,6 +474,7 @@
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js.map" />
     <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
     <Content Include="Features\ProfilePicture\Views\PictureLibrary.cshtml" />
+    <Content Include="Features\ProfilePicture\Views\ConvertImageToBinary.cshtml" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
@@ -588,6 +590,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Features\ProfilePicture\DemoController.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureQuery.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureHandler.cs" />

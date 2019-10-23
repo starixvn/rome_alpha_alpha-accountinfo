@@ -119,6 +119,8 @@
             container.Register<SearchAccountDataAccess, SearchAccountDataAccessImpl>(Lifestyle.Scoped);
             container.Register<UnsuspendDownlinesService, UnsuspendDownlinesServiceImpl>(Lifestyle.Scoped);
             container.Register<UnsuspendDownlinesDataAccess, UnsuspendDownlinesDataAccessImpl>(Lifestyle.Scoped);
+
+            container.Register<ProfilePictureServices, ProfilePictureServicesImpl>(Lifestyle.Scoped);
         }
 
         private static void StartConfiguration(Container container)
