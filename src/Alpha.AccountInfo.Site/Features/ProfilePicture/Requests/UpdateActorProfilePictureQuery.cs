@@ -10,6 +10,7 @@
         {
             ActorId = viewer.Id;
             IP = viewer.IP;
+            IsDefault = false;
         }
 
         public int ActorId { get;}

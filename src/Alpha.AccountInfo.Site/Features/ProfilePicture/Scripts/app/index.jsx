@@ -11,6 +11,7 @@ class App extends PureComponent {
         this.profilePictureClosing = this.profilePictureClosing.bind(this);
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
+        this.handleOnReset = this.handleOnReset.bind(this);
     }
 
     handleOnClick(src) {
@@ -100,7 +101,7 @@ class App extends PureComponent {
 
                 <div>
                     <button>Submit</button>
-                    <button>Reset</button>
+                    <button onClick={this.handleOnReset}>Reset</button>
                 </div>
             </div>
         );
