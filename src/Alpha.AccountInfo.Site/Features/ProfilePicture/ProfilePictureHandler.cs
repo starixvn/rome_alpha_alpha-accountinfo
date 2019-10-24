@@ -51,7 +51,7 @@
               new UpdateActorProfilePictureParam(
                   message.ActorId,
                   message.ImageId,
-                  message.Image,
+                  message.ImageBinary,
                   message.IsDefault,
                   message.IP));
 

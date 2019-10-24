@@ -3,6 +3,7 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
+    using System;
 
     public class UpdateActorProfilePictureQuery : BaseRequest, IRequest<Result>
     {
@@ -17,12 +18,14 @@
 
         public int ImageId { get; set; }
 
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
+
+        public byte[] ImageBinary => Convert.FromBase64String(Image);
 
         public bool IsDefault { get; }
 
         public string IP { get; }
 
-        public override bool IsValid() => ActorId > 0 && Image != null;
+        public override bool IsValid() => ActorId > 0 && ImageBinary != null;
     }
 }

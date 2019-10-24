@@ -4,8 +4,10 @@ import React, { PureComponent } from "react";
 class App extends PureComponent {
     constructor(props) {
         super(props);
+
+        const { imagesList } = this.props;
         this.state = {
-            croppedImage: undefined
+            croppedImage: imagesList.length > 0 ? imagesList[0] : undefined
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -22,38 +24,21 @@ class App extends PureComponent {
     }
 
     render() {
-        const style2 = {
-            display: 'block'
-        };
-
-        const style3 = {
-            height: '700px',
-            overflow: 'auto',
-            marginBottom: '10px'
-        };
-
-        const style4 = {
-            width: '120px',
-            height: '120px',
-            padding: '4px'
-        };
-        const { imagesList } = this.props;
+        const { imagesList } = this.props, { croppedImage } = this.state;
         return (
-            <div className="App">
-                <div style={style2}>
-                    <div style={style3}>
-                        {
-
-                            imagesList.map(
-                                (profilePicture, index) =>
-                                    <img style={style4} alt="Crop" onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image} key={index}/>
-                            )
-                        }
-                    </div>
+            <div className="picture-library">
+                <div className="library">
+                    {
+                        imagesList.map((profilePicture, index) =>
+                            <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
+                                alt="Crop"
+                                onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}
+                                key={index} />)
+                    }
                 </div>
 
                 <div>
-                    <button onClick={this.hanldeOnSelect}>Select</button>
+                    <button className='selected-button' onClick={this.hanldeOnSelect}>Select</button>
                 </div>
             </div>
         );

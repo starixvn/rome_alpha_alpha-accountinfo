@@ -1,0 +1,52 @@
+﻿.profile-picture {
+    padding-left: 10px;
+    width: 610px;
+
+    .create-profile-picture {
+        display: block;
+        padding: 20px 0 20px 0;
+    }
+
+    .choose-picture {
+        font-weight: bold;
+        padding: 20px 0 5px 0;
+
+        .cropped-image {
+            height: 240px;
+            width: 240px;
+        }
+
+        .image-item {
+            height: 120px;
+            width: 120px;
+            padding: 4px
+        }
+
+        .selected-image {
+            background-color: red;
+        }
+    }
+
+    .display-block {
+        display: block;
+    }
+
+    .view-all {
+        float: right;
+        cursor: pointer;
+    }
+
+    .noted {
+        display: block;
+        font-style: italic;
+        padding-bottom: 20px;
+
+        span {
+            display: block;
+        }
+    }
+
+    .submit-button {
+        margin-right: 5px;
+    }
+}

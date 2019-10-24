@@ -36,9 +36,11 @@ module.exports = {
             "./node_modules/react-image-crop/dist/ReactCrop.css"
         ],
         "./ProfilePicture/Bundles/index": [
+            "./Features/ProfilePicture/Styles/profile-picture.scss",
             "./Features/ProfilePicture/Scripts/app/index.jsx",
         ],
         "./ProfilePicture/Bundles/picture-library": [
+            "./Features/ProfilePicture/Styles/picture-library.scss",
             "./Features/ProfilePicture/Scripts/app/picture-library.jsx",
         ]
     },

@@ -1,0 +1,26 @@
+﻿.picture-library {
+    .library {
+        height: 700px;
+        overflow: auto;
+        margin-bottom: 10px;
+    }
+
+    .display-block {
+        display: block;
+    }
+
+    .image-item {
+        height: 120px;
+        width: 120px;
+        padding: 4px
+    }
+
+    .selected-image {
+        background-color: red;
+    }
+
+    .selected-button {
+        float: right;
+        margin-right: 20px;
+    }
+}

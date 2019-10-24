@@ -6,7 +6,9 @@ class App extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            croppedImage: this.props.avatar
+            croppedImage: this.props.avatar,
+            hideMessages: true,
+            message: ''
         };
 
         this.profilePictureClosing = this.profilePictureClosing.bind(this);
@@ -21,7 +23,28 @@ class App extends PureComponent {
     }
 
     handleOnSubmit() {
-     
+        $.blockUI();
+        const { croppedImage } = this.state;
+        const data = {
+            Image: croppedImage.Image.split(';base64,')[1],
+            ImageId: croppedImage.ImageId
+        };
+
+        profilePictureAPI.updateActorProfilePicture(data)
+            .then(data => {
+                const message = <div className='msg-container'>
+                    <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
+                        {data.IsSuccess ? 'Update successfully' : data.Message.trim()}
+                    </div>
+                </div>;
+
+                this.setState({
+                    hideMessages: false,
+                    message: message
+                });
+
+                $.unblockUI();
+            });
     }
 
     handleOnReset() {
@@ -43,71 +66,54 @@ class App extends PureComponent {
         var url = `${window.top.alpha.urls.accountInfoRootPath}/ProfilePicture/${createAvatar ? 'CreateProfilePicture' : 'ViewPictureLibrary'}`;
 
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
-        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 800, 800);
+        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 750, 750);
     }
 
     render() {
-        const style1  = {
-            display: 'block',
-            margin: '20px'
-        };
-
-        const style2 = {
-            display: 'block'
-        };
-
-        const style3 = {
-            width: '240px',
-            height: '240px'
-        };
-
-        const style4 = {
-            width: '120px',
-            height: '120px',
-            padding: '4px'
-        };
-        const { avatar, imagesList } = this.props;
+        const { avatar, imagesList } = this.props, { croppedImage } = this.state;
 
         return (
-            <div className="App">
-                <div style={style2}>
-                    <img style={style3} alt="Crop" src={this.state.croppedImage.Image} />
+            <div className="profile-picture">
+                <div className="display-block">
+                    <img className='cropped-image' alt="Crop" src={croppedImage.Image} />
                 </div>
 
-                <div style={style2}>
+                <div className="choose-picture">
                     <span>Choose your picture</span>
                     <div>
-                        <img style={style4} alt="Crop" onClick={() => this.handleOnClick(avatar)} src={avatar.Image} />
+                        <img className={`image-item ${croppedImage.ImageId === avatar.ImageId ? 'selected-image' : ''}`}
+                            alt="Crop"
+                            onClick={() => this.handleOnClick(avatar)} src={avatar.Image} />
+                        
                         {
-
                             imagesList.map(
                                 (profilePicture, index) =>
-                                    <img style={style4} alt="Crop"
-                                        onClick={() => this.handleOnClick(profilePicture)}
-                                        src={profilePicture.Image}
-                                        key={index} />
+                                    <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
+                                        alt="Crop"
+                                        onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}
+                                        key={index}/>
                             )
                         }
 
                     </div>
                     <div>
-                        <a onClick={() => { this.handleOpenPopup(false); }} >View All</a>
+                        <a className='view-all' onClick={() => { this.handleOpenPopup(false); }} >View All</a>
                     </div>
                 </div>
 
-                <div style={style1}>
+                <div className='create-profile-picture'>
                     <button onClick={this.handleOpenPopup}>Create Profile Picture</button>
                 </div>
 
-                <div style={style2}>
-                    <div style={style2}>- You can Upload JPG, GIF or PNG files.</div>
-                    <div style={style2}>- Maximum file size 1024KB.</div>
-                    <div style={style2}>- Your picture should be square.</div>
+                <div className="noted">
+                    <span>- You can Upload JPG, GIF or PNG files.</span>
+                    <span>- Maximum file size 1024KB.</span>
+                    <span>- Your picture should be square.</span>
                 </div>
-
+                {this.state.message}
                 <div>
-                    <button onClick={this.handleOnSubmit}>Submit</button>
-                    <button onClick={this.handleOnReset}>Reset</button>
+                    <button className="btn-submit" onClick={this.handleOnSubmit}>Submit</button>
+                    <button className="btn-reset" onClick={this.handleOnReset}>Reset</button>
                 </div>
             </div>
         );

@@ -10,6 +10,8 @@
 
         public override string GetSettingKey() => "Age_CustomerProfilePictureLibrarySel";
 
+        public byte Mode => 1;
+
         public override bool IsValid() => true;
     }
 }
