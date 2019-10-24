@@ -358,6 +358,7 @@
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\index.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\react-crop-images.jsx" />
+    <Content Include="Features\ProfilePicture\Scripts\app\profile-picture-api.jsx" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
     <Content Include="Features\SearchAccount\Bundles\given-credit.min.css" />

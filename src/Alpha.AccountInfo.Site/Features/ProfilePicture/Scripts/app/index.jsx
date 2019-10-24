@@ -1,31 +1,37 @@
 ﻿import ReactDOM from "react-dom";
 import React, { PureComponent } from "react";
+import { profilePictureAPI } from './profile-picture-api';
 
 class App extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            croppedImageUrl: this.props.avatar.Image
+            croppedImage: this.props.avatar
         };
 
         this.profilePictureClosing = this.profilePictureClosing.bind(this);
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnReset = this.handleOnReset.bind(this);
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
     }
 
-    handleOnClick(src) {
-        this.setState({ croppedImageUrl: src });
+    handleOnClick(image) {
+        this.setState({ croppedImage: image });
+    }
+
+    handleOnSubmit() {
+     
     }
 
     handleOnReset() {
-        this.setState({ croppedImageUrl: this.props.avatar.Image });
+        this.setState({ croppedImage: this.props.avatar });
     }
 
     profilePictureClosing(src) {
         window.top.createProfilePicturePopup.close();
         if (src !== undefined) {
-            this.setState({ croppedImageUrl: src });
+            this.setState({ croppedImage: src });
         }
     }
 
@@ -65,19 +71,19 @@ class App extends PureComponent {
         return (
             <div className="App">
                 <div style={style2}>
-                    <img style={style3} alt="Crop" src={this.state.croppedImageUrl} />
+                    <img style={style3} alt="Crop" src={this.state.croppedImage.Image} />
                 </div>
 
                 <div style={style2}>
                     <span>Choose your picture</span>
                     <div>
-                        <img style={style4} alt="Crop" onClick={() => this.handleOnClick(avatar.Image)} src={avatar.Image} />
+                        <img style={style4} alt="Crop" onClick={() => this.handleOnClick(avatar)} src={avatar.Image} />
                         {
 
                             imagesList.map(
                                 (profilePicture, index) =>
                                     <img style={style4} alt="Crop"
-                                        onClick={() => this.handleOnClick(profilePicture.Image)}
+                                        onClick={() => this.handleOnClick(profilePicture)}
                                         src={profilePicture.Image}
                                         key={index} />
                             )
@@ -100,7 +106,7 @@ class App extends PureComponent {
                 </div>
 
                 <div>
-                    <button>Submit</button>
+                    <button onClick={this.handleOnSubmit}>Submit</button>
                     <button onClick={this.handleOnReset}>Reset</button>
                 </div>
             </div>

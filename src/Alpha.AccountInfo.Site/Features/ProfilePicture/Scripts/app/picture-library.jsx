@@ -5,20 +5,20 @@ class App extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            croppedImageUrl: null
+            croppedImage: undefined
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
         this.hanldeOnSelect = this.hanldeOnSelect.bind(this);
     }
 
-    handleOnClick(src) {
-        this.setState({ croppedImageUrl: src })
+    handleOnClick(image) {
+        this.setState({ croppedImage: image })
     }
 
     hanldeOnSelect() {
-        const { croppedImageUrl } = this.state;
-        window.top.createProfilePicturePopup.onClosing(croppedImageUrl);
+        const { croppedImage } = this.state;
+        window.top.createProfilePicturePopup.onClosing(croppedImage);
     }
 
     render() {
@@ -46,7 +46,7 @@ class App extends PureComponent {
 
                             imagesList.map(
                                 (profilePicture, index) =>
-                                    <img style={style4} alt="Crop" onClick={() => this.handleOnClick(profilePicture.Image)} src={profilePicture.Image} key={index}/>
+                                    <img style={style4} alt="Crop" onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image} key={index}/>
                             )
                         }
                     </div>
