@@ -13,8 +13,17 @@
             string ip)
         {
             ActorId = actorId;
-            ImageId = imageId;
-            Image = image;
+            if(imageId < 0)
+            {
+                ImageId = null;
+                Image = image;
+            }
+            else
+            {
+                ImageId = imageId;
+                Image = null;
+            }
+          
             IsDefault = isDefault;
             IP = ip;
         }
@@ -22,11 +31,13 @@
         [SpParam(SqlParamName = "CustId")]
         public int ActorId { get; }
 
-        public int ImageId { get;}
+        public int? ImageId { get;}
 
         public byte[] Image { get; }
 
         public bool IsDefault { get; }
+
+        public byte Mode => 1;
 
         public string IP { get; }
 
@@ -36,6 +47,6 @@
 
         public override string GetSettingKey() => "Age_CustomerUpdProfilePicture";
 
-        public override bool IsValid() => ActorId > 0 && Image != null;
+        public override bool IsValid() => ActorId > 0 && (ImageId != null || Image != null);
     }
 }

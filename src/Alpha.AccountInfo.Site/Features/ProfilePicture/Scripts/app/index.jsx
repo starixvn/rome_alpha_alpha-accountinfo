@@ -1,10 +1,12 @@
 ﻿import ReactDOM from "react-dom";
 import React, { PureComponent } from "react";
 import { profilePictureAPI } from './profile-picture-api';
+import { setTimeout } from "core-js";
 
 class App extends PureComponent {
     constructor(props) {
         super(props);
+
         this.state = {
             croppedImage: this.props.avatar,
             hideMessages: true,
@@ -26,8 +28,8 @@ class App extends PureComponent {
         $.blockUI();
         const { croppedImage } = this.state;
         const data = {
-            Image: croppedImage.Image.split(';base64,')[1],
-            ImageId: croppedImage.ImageId
+            ImageId: croppedImage.ImageId,
+            Image: croppedImage.ImageId < 0 ? croppedImage.Image.split(';base64,')[1] : null
         };
 
         profilePictureAPI.updateActorProfilePicture(data)
@@ -42,6 +44,12 @@ class App extends PureComponent {
                     hideMessages: false,
                     message: message
                 });
+
+                if (data.IsSuccess) {
+                    setTimeout(function() {
+                        window.top.location.reload(true);
+                    }, 1500);
+                }
 
                 $.unblockUI();
             });
@@ -74,8 +82,8 @@ class App extends PureComponent {
 
         return (
             <div className="profile-picture">
-                <div className="display-block">
-                    <img className='cropped-image' alt="Crop" src={croppedImage.Image} />
+                <div className='cropped-image'>
+                    <img alt="Crop" src={croppedImage.Image} />
                 </div>
 
                 <div className="choose-picture">

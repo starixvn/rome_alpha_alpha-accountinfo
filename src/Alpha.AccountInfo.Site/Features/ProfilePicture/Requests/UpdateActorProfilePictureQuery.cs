@@ -20,12 +20,13 @@
 
         public string Image { get; set; }
 
-        public byte[] ImageBinary => Convert.FromBase64String(Image);
+        public byte[] ImageBinary => 
+            string.IsNullOrEmpty(Image) ? null : Convert.FromBase64String(Image);
 
         public bool IsDefault { get; }
 
         public string IP { get; }
 
-        public override bool IsValid() => ActorId > 0 && ImageBinary != null;
+        public override bool IsValid() => ActorId > 0 && (ImageId > 0 || (ImageId < 0 && ImageBinary != null));
     }
 }

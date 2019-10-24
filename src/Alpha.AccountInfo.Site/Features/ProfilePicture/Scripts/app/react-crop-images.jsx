@@ -1,7 +1,6 @@
 ﻿import ReactDOM from "react-dom";
 import React, { PureComponent } from "react";
 import ReactCrop from "react-image-crop";
-//import "react-image-crop/dist/ReactCrop.css";
 
 class App extends PureComponent {
     constructor(props) {
@@ -9,13 +8,12 @@ class App extends PureComponent {
         this.state = {
             src: null,
             crop: {
-                unit: 'px', // default, can be 'px' or '%'
+                unit: 'px',
                 x: 130,
                 y: 50,
                 aspect: 1,
-                width: 200,
-                maxWidth :200,
-                height: 200
+                width: 240,
+                height: 240
             }
         };
 
@@ -38,10 +36,14 @@ class App extends PureComponent {
     };
 
     handleOnClosing() {
-        window.top.createProfilePicturePopup.onClosing(this.state.croppedImageUrl);
+        window.top.createProfilePicturePopup.onClosing(
+            {
+                Image: this.state.croppedImageUrl,
+                ImageId: -1
+            }
+        );
     }
 
-    // If you setState the crop in here you should return false.
     onImageLoaded(image) {
         this.imageRef = image;
     };
@@ -51,8 +53,6 @@ class App extends PureComponent {
     };
 
     onCropChange (crop, percentCrop) {
-        // You could also use percentCrop:
-        // this.setState({ crop: percentCrop });
         this.setState({ crop });
     };
 
@@ -88,33 +88,18 @@ class App extends PureComponent {
         );
 
         return canvas.toDataURL();
-        //return new Promise((resolve, reject) => {
-        //    canvas.toBlob(blob => {
-        //        if (!blob) {
-        //            //reject(new Error('Canvas is empty'));
-        //            console.error("Canvas is empty");
-        //            return;
-        //        }
-        //        blob.name = fileName;
-        //        window.URL.revokeObjectURL(this.fileUrl);
-        //        this.fileUrl = window.URL.createObjectURL(blob);
-        //        resolve(this.fileUrl);
-        //    }, "image/jpeg");
-        //});
     }
 
     render() {
-        const { crop, croppedImageUrl, src } = this.state;
-        const style = {
-            marginBottom: '20px'
-        };
+        const { crop, src } = this.state;
 
         return (
-            <div className="App">
-                <div>
-                    <input type="file" onChange={this.onSelectFile} style={style} />
+            <div className="crop-image">
+                <div className='select-image'>
+                    <input type="file" onChange={this.onSelectFile} />
                 </div>
                 {src && (
+                    <div>
                     <ReactCrop
                         src={src}
                         crop={crop}
@@ -122,8 +107,10 @@ class App extends PureComponent {
                         onComplete={this.onCropComplete}
                         onChange={this.onCropChange}
                     />
+                        <button className="btn-submit" onClick={this.handleOnClosing}>Select</button>
+                    </div>
                 )}
-                <button onClick={this.handleOnClosing}>OK</button>
+
             </div>
         );
     }

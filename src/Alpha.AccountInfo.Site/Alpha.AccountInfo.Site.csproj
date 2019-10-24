@@ -478,6 +478,7 @@
     <Content Include="Features\ProfilePicture\Views\ConvertImageToBinary.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\profile-picture.scss" />
     <Content Include="Features\ProfilePicture\Styles\picture-library.scss" />
+    <Content Include="Features\ProfilePicture\Styles\crop-image.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
