@@ -48,7 +48,7 @@ class App extends PureComponent {
                 if (data.IsSuccess) {
                     setTimeout(function() {
                         window.top.location.reload(true);
-                    }, 1500);
+                    }, 3000);
                 }
 
                 $.unblockUI();

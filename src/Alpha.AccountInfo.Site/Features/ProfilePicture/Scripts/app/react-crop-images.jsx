@@ -25,6 +25,16 @@ class App extends PureComponent {
         this.handleOnClosing = this.handleOnClosing.bind(this);
     }
 
+    componentDidMount() {
+        //setTimeout(function () {
+        //    //$("input").trigger("click");
+        //    $('#select-file').click();
+        //}, 1000);
+
+        //$('#select-file').click();
+        //$('#select-file').hide();
+    }
+
     onSelectFile(e) {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
@@ -61,8 +71,15 @@ class App extends PureComponent {
             const croppedImageUrl = this.getCroppedImg(
                 this.imageRef,
                 crop,
-                "newFile.jpeg"
+                "newFile.Jpeg"
             );
+
+            var stringLength = croppedImageUrl.length - 'data:image/png;base64,'.length;
+
+            var sizeInBytes = 4 * Math.ceil((stringLength / 3)) * 0.5624896334383812;
+            var sizeInKb = sizeInBytes / 1000;
+            console.log(sizeInKb);
+
             this.setState({ croppedImageUrl });
         }
     }
@@ -96,7 +113,7 @@ class App extends PureComponent {
         return (
             <div className="crop-image">
                 <div className='select-image'>
-                    <input type="file" onChange={this.onSelectFile} />
+                    <input id='select-file' type='file' onChange={this.onSelectFile} />
                 </div>
                 {src && (
                     <div>

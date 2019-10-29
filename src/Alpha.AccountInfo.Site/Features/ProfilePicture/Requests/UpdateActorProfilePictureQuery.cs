@@ -2,8 +2,8 @@
 {
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.Shared;
+    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using MediatR;
-    using System;
 
     public class UpdateActorProfilePictureQuery : BaseRequest, IRequest<Result>
     {
@@ -20,8 +20,8 @@
 
         public string Image { get; set; }
 
-        public byte[] ImageBinary => 
-            string.IsNullOrEmpty(Image) ? null : Convert.FromBase64String(Image);
+        public byte[] ImageBinary 
+            => string.IsNullOrEmpty(Image) ? null : ImageConverter.ToLimitedImageSize(Image);
 
         public bool IsDefault { get; }
 
