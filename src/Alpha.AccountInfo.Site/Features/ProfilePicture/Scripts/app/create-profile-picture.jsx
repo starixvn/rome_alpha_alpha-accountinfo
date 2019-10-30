@@ -40,7 +40,7 @@ class App extends PureComponent {
         this.makeClientCrop(crop);
     };
 
-    onCropChange (crop, percentCrop) {
+    onCropChange(crop) {
         this.setState({ crop });
     };
 
@@ -62,7 +62,7 @@ class App extends PureComponent {
         }
     }
 
-    getCroppedImg(image, crop, fileName) {
+    getCroppedImg(image, crop) {
         const canvas = document.createElement("canvas");
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
@@ -92,7 +92,8 @@ class App extends PureComponent {
             <div className="crop-image">
                 {src && (
                     <div>
-                    <ReactCrop
+                        <ReactCrop
+                        minWidth={240}
                         src={src}
                         crop={crop}
                         onImageLoaded={this.onImageLoaded}

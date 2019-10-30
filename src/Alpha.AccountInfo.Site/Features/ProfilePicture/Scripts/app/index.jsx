@@ -2,13 +2,17 @@
 import React, { PureComponent } from "react";
 import { profilePictureAPI } from './profile-picture-api';
 import { setTimeout } from "core-js";
+import { handleError } from '../../../Shared/Scripts/api-client';
+import Raven from 'raven-js';
 
 class App extends PureComponent {
     constructor(props) {
         super(props);
 
+        const { avatar} = this.props;
         this.state = {
-            croppedImage: this.props.avatar,
+            originalAvatar: avatar,
+            croppedImage: avatar,
             hideMessages: true,
             message: ''
         };
@@ -22,6 +26,14 @@ class App extends PureComponent {
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
         this.handleViewLibrary = this.handleViewLibrary.bind(this);
         this.uploadFromDevice = this.uploadFromDevice.bind(this);
+
+        this.handleActionsAfterUpdateSuccessfully = this.handleActionsAfterUpdateSuccessfully.bind(this);
+        this.showMessage = this.showMessage.bind(this);
+    }
+
+    componentDidCatch(error, errorInfo) {
+        this.setState({ error });
+        Raven.captureException(error, { extra: errorInfo });
     }
 
     handleOnClick(image) {
@@ -44,23 +56,36 @@ class App extends PureComponent {
                     </div>
                 </div>;
 
-                this.setState({
-                    hideMessages: false,
-                    message: message
-                });
+                this.showMessage(message);
 
                 if (data.IsSuccess) {
-                    setTimeout(function() {
-                        window.top.location.reload(true);
-                    }, 3000);
+                    this.handleActionsAfterUpdateSuccessfully();   
                 }
 
                 $.unblockUI();
+            }).catch(handleError);
+    }
+
+    showMessage(message) {
+        this.setState({
+            hideMessages: false,
+            message: message
+        });
+    }
+
+    handleActionsAfterUpdateSuccessfully() {
+        setTimeout(() => {
+            window.top.indexManager.loadPartialViews();
+            this.setState({
+                hideMessages: true,
+                message: ''
             });
+        }, 3000);
     }
 
     handleOnReset() {
-        this.setState({ croppedImage: this.props.avatar });
+        const { originalAvatar } = this.state;
+        this.setState({ croppedImage: originalAvatar });
     }
 
     profilePictureClosing(src) {
@@ -75,14 +100,14 @@ class App extends PureComponent {
     }
 
     handleViewLibrary() {
-        this.handleOpenPopup('ViewPictureLibrary', 'Picture Library');
+        this.handleOpenPopup('ViewPictureLibrary', 'Picture Library', 750, 750);
     }
 
     handleCreateProfilePicture(imageBase64) {
-        this.handleOpenPopup('CreateProfilePicture', 'Create Profile Picture', imageBase64);
+        this.handleOpenPopup('CreateProfilePicture', 'Create Profile Picture', 750, 550, imageBase64);
     }
 
-    handleOpenPopup(actionName, popupTitle, imageBase64 = null ) {
+    handleOpenPopup(actionName, popupTitle, width, height, imageBase64 = null ) {
         if (window.top.createProfilePicturePopup === null || window.top.createProfilePicturePopup === undefined) {
             window.top.createProfilePicturePopup = window.top.ageWnd.createInstance();
         }
@@ -91,7 +116,7 @@ class App extends PureComponent {
 
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
         window.top.createProfilePicturePopup.imageBase64 = imageBase64;
-        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, popupTitle, 750, 750);
+        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, popupTitle, width, height);
     }
 
     onSelectFile(e) {

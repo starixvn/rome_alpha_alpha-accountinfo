@@ -1,18 +1,16 @@
 ﻿@{
-    /**/
-
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
+
 @section Styles {
-    @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/react-crop-images")
+    @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/create-profile-picture")
 
 }
 
 <div id="root"></div>
 
 @section Scripts {
-   @* @StaticResources.RenderScripts("~/node_modules/file-dialog/file-dialog.min")*@
-    @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/react-crop-images")
+    @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/create-profile-picture")
 
     <script>
         renderApp();

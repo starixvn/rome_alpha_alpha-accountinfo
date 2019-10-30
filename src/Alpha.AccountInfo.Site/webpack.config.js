@@ -31,14 +31,13 @@ module.exports = {
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
         ],
-        "./ProfilePicture/Bundles/react-crop-images": [
-            //"./node_modules/file-dialog/file-dialog.min.js",
-            "./Features/ProfilePicture/Scripts/app/react-crop-images.jsx",
-            "./Features/ProfilePicture/Styles/crop-image.scss",
+        "./ProfilePicture/Bundles/create-profile-picture": [
+            "./Features/ProfilePicture/Scripts/app/create-profile-picture.jsx",
+            "./Features/ProfilePicture/Styles/create-profile-picture.scss",
             "./node_modules/react-image-crop/dist/ReactCrop.css"
         ],
         "./ProfilePicture/Bundles/index": [
-            "./Features/ProfilePicture/Styles/profile-picture.scss",
+            "./Features/ProfilePicture/Styles/index.scss",
             "./Features/ProfilePicture/Scripts/app/index.jsx",
         ],
         "./ProfilePicture/Bundles/picture-library": [

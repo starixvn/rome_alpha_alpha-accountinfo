@@ -1,11 +1,11 @@
 ﻿@model ProfielPictureViewModel
-@{
-    /**/
 
+@{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
     var imagesLibrary = JsonConvert.SerializeObject(Model.Images);
     var actorAvatar = JsonConvert.SerializeObject(Model.ActorAvatar);
 }
+
 @section Styles {
     @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/index")
 }
