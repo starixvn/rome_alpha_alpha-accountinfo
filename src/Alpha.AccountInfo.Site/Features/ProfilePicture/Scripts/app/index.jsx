@@ -94,13 +94,23 @@ class App extends PureComponent {
 
         return (
             <div className="profile-picture">
-                <div className='cropped-image'>
-                    <img alt="Crop" src={croppedImage.Image} />
+                <div className="crop-img-info">
+                    <img alt="Crop" src={croppedImage.Image} className='cropped-image' />
+                    <div className="wrapper-right">
+                        <div className="noted">
+                            <span>- You can Upload JPG, GIF or PNG files.</span>
+                            <span>- Maximum file size 1024KB.</span>
+                            <span>- Your picture should be square.</span>
+                        </div>
+                        <button onClick={this.handleOpenPopup} className="btn-from-device">Upload from your device</button>
+                    </div>
                 </div>
-
                 <div className="choose-picture">
-                    <span>Choose your picture</span>
-                    <div>
+                    <div className="extend-section">
+                        <span className="txt">or choose from our gallery</span>
+                        <a className='view-all' onClick={() => { this.handleOpenPopup(false); }} >View All</a>
+                    </div>                    
+                    <div className="list-picture">
                         <img className={`image-item ${croppedImage.ImageId === avatar.ImageId ? 'selected-image' : ''}`}
                             alt="Crop"
                             onClick={() => this.handleOnClick(avatar)} src={avatar.Image} />
@@ -116,25 +126,13 @@ class App extends PureComponent {
                         }
 
                     </div>
-                    <div>
-                        <a className='view-all' onClick={this.handleOpenPopup}>View All</a>
-                    </div>
-                </div>
+                </div>                              
 
-                <div className='create-profile-picture'>
-                    <button onClick={() => { this.handleOpenPopup(false); }}>Create Profile Picture</button>
                     <div className='select-image'>
                         <input type="file" onChange={this.onSelectFile} />
                     </div>
-                </div>
-
-                <div className="noted">
-                    <span>- You can Upload JPG, GIF or PNG files.</span>
-                    <span>- Maximum file size 1024KB.</span>
-                    <span>- Your picture should be square.</span>
-                </div>
                 {this.state.message}
-                <div>
+                <div className="btn-group">
                     <button className="btn-submit" onClick={this.handleOnSubmit}>Submit</button>
                     <button className="btn-reset" onClick={this.handleOnReset}>Reset</button>
                 </div>

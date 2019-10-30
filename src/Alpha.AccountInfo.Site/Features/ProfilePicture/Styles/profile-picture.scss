@@ -1,33 +1,75 @@
-﻿.profile-picture {
-    padding: 10px;
-    width: 620px;
+﻿@import '../../Shared/Styles/_variables';
+@import '../../Shared/Styles/mixins';
 
-    .create-profile-picture {
-        display: block;
-        padding: 20px 0 20px 0;
+.profile-picture {
+    padding: 12px 4px;
+    display: inline-block;
+    font-size: 14px;
+
+    .crop-img-info {
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        bottom: 10px;
     }
 
     .cropped-image {
         height: 240px;
         width: 240px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
+        margin-right: 24px;
+    }
 
-        img{
-            width:100%;
-        }
+    .wrapper-right {
+        position: relative;
+        bottom: 16px;
+    }
+
+    .btn-from-device {
+        height: 32px;
+        color: #66151A;
+        border: 1px solid #66151A;
+        background-color: #fff;
+        padding: 0 12px;
     }
 
     .choose-picture {
-        font-weight: bold;
-        padding: 20px 0 5px 0;
+        margin: 32px 0 24px;
+
+        .extend-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .txt {
+            color: #66151A;
+        }
 
         .image-item {
             height: 120px;
             width: 120px;
-            padding: 4px
+            margin: 4px;
+            box-sizing: border-box;
+            cursor: pointer; 
+
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
         }
 
         .selected-image {
-            background-color: red;
+            border: 3px solid #FFB800;
+            border-radius: 4px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .list-picture {
+            padding-top: 4px;
         }
     }
 
@@ -38,6 +80,7 @@
     .view-all {
         float: right;
         cursor: pointer;
+        color: #0B589C;
     }
 
     .noted {
@@ -49,8 +92,45 @@
             display: block;
         }
     }
+    .btn-submit {
+        margin-right: 12px;
+    }
 
-    .submit-button {
-        margin-right: 5px;
+    .btn-reset {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-device-width: 640px) {
+    .profile-picture {
+        width: 100%;
+        font-size: calculateScale(14px);
+
+        .btn-from-device {
+            height: calculateScale(32px)
+        }
+
+        .list-picture {
+            white-space: nowrap;
+            overflow: auto;
+        }
+
+        .cropped-image {
+            width: 180px;
+            height: 180px;
+        }
+
+        .noted {
+            font-size: calculateScale(12px);
+        }
+
+        .btn-group {
+            display: flex;
+
+            [class*="btn"] {
+                flex: 0 0 49%;
+                height: calculateScale(32px);
+            }
+        }
     }
 }
