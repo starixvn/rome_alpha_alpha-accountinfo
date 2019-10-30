@@ -27,6 +27,9 @@ class App extends PureComponent {
         const { imagesList } = this.props, { croppedImage } = this.state;
         return (
             <div className="picture-library">
+                <div>
+                    <button className='btn-select' onClick={this.hanldeOnSelect}>Select</button>
+                </div>
                 <div className="library">
                     {
                         imagesList.map((profilePicture, index) =>
@@ -37,9 +40,7 @@ class App extends PureComponent {
                     }
                 </div>
 
-                <div>
-                    <button className='selected-button' onClick={this.hanldeOnSelect}>Select</button>
-                </div>
+               
             </div>
         );
     }

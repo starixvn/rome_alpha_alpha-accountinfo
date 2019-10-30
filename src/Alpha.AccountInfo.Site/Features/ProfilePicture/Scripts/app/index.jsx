@@ -120,7 +120,7 @@ class App extends PureComponent {
 
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
         window.top.createProfilePicturePopup.imageBase64 = imageBase64;
-        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, popupTitle, width, height);
+        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 651, 758);
     }
 
     onSelectFile(e) {
