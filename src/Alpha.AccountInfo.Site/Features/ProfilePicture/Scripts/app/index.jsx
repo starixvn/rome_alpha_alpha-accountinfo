@@ -21,7 +21,7 @@ class App extends PureComponent {
 
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
         this.handleViewLibrary = this.handleViewLibrary.bind(this);
-        this.handleCreateProfilePicture = this.handleCreateProfilePicture.bind(this);
+        this.uploadFromDevice = this.uploadFromDevice.bind(this);
     }
 
     handleOnClick(image) {
@@ -70,6 +70,10 @@ class App extends PureComponent {
         }
     }
 
+    uploadFromDevice() {
+        this.fileInput.click();
+    }
+
     handleViewLibrary() {
         this.handleOpenPopup('ViewPictureLibrary', 'Picture Library');
     }
@@ -113,19 +117,21 @@ class App extends PureComponent {
                             <span>- Maximum file size 1024KB.</span>
                             <span>- Your picture should be square.</span>
                         </div>
-                        <button onClick={this.handleOpenPopup} className="btn-from-device">Upload from your device</button>
+                        <button onClick={this.uploadFromDevice} className="btn-from-device">
+                            Upload from your device
+                             <input style={{ display: 'none' }} ref={(input) => { this.fileInput = input; }}  type="file" onChange={this.onSelectFile} />
+                        </button>
                     </div>
                 </div>
                 <div className="choose-picture">
                     <div className="extend-section">
                         <span className="txt">or choose from our gallery</span>
-                        <a className='view-all' onClick={() => { this.handleOpenPopup(false); }} >View All</a>
+                        <a className='view-all' onClick={this.handleViewLibrary}>View All</a>
                     </div>                    
                     <div className="list-picture">
                         <img className={`image-item ${croppedImage.ImageId === avatar.ImageId ? 'selected-image' : ''}`}
                             alt="Crop"
                             onClick={() => this.handleOnClick(avatar)} src={avatar.Image} />
-                        
                         {
                             imagesList.map(
                                 (profilePicture, index) =>
@@ -135,14 +141,8 @@ class App extends PureComponent {
                                         key={index}/>
                             )
                         }
-
                     </div>
-                        <a className='view-all' onClick={this.handleViewLibrary}>View All</a>
                 </div>                              
-
-                    <div className='select-image'>
-                        <input type="file" onChange={this.onSelectFile} />
-                    </div>
                 {this.state.message}
                 <div className="btn-group">
                     <button className="btn-submit" onClick={this.handleOnSubmit}>Submit</button>
