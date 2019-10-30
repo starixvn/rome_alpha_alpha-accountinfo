@@ -1,12 +1,14 @@
 ﻿import ReactDOM from "react-dom";
 import React, { PureComponent } from "react";
 import ReactCrop from "react-image-crop";
+import fileDialog from 'file-dialog';
 
 class App extends PureComponent {
     constructor(props) {
         super(props);
+        var imageBase64 = window.top.createProfilePicturePopup.imageBase64;
         this.state = {
-            src: null,
+            src: imageBase64,
             crop: {
                 unit: 'px',
                 x: 130,
@@ -25,14 +27,30 @@ class App extends PureComponent {
         this.handleOnClosing = this.handleOnClosing.bind(this);
     }
 
-    componentDidMount() {
-        //setTimeout(function () {
-        //    //$("input").trigger("click");
-        //    $('#select-file').click();
-        //}, 1000);
+    triggerClick() {
+        console.log('click selected file');
+    }
 
-        //$('#select-file').click();
-        //$('#select-file').hide();
+    triggerButton() {
+        $('input[type=file]').trigger('click');
+    }
+
+    openFileInput(){
+        this.fileInput.click()
+    }
+
+    componentDidMount() {
+        fileDialog()
+            .then(file => {
+                const data = new FormData()
+                data.append('file', file[0])
+                data.append('imageName', 'flower')
+            })
+        setTimeout(function () {
+            //$("input").trigger("click");
+            //$('input[type=file]').focus().click();
+            $("#select-image").trigger("click");
+        }, 3000);
     }
 
     onSelectFile(e) {
@@ -112,8 +130,11 @@ class App extends PureComponent {
 
         return (
             <div className="crop-image">
+                <a href="#" onClick={this.openFileInput}>
+                    <p>Carregue sua foto de perfil</p>
+                </a>
                 <div className='select-image'>
-                    <input id='select-file' type='file' onChange={this.onSelectFile} />
+                    <input style={{ display: 'none' }} ref={(input) => { this.fileInput = input; }} type="file" onChange={this.onSelectFile}/>
                 </div>
                 {src && (
                     <div>

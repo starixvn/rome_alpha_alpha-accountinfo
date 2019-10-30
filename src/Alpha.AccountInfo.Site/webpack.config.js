@@ -32,6 +32,7 @@ module.exports = {
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
         ],
         "./ProfilePicture/Bundles/react-crop-images": [
+            //"./node_modules/file-dialog/file-dialog.min.js",
             "./Features/ProfilePicture/Scripts/app/react-crop-images.jsx",
             "./Features/ProfilePicture/Styles/crop-image.scss",
             "./node_modules/react-image-crop/dist/ReactCrop.css"

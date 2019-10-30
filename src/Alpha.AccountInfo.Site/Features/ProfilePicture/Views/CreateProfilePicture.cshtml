@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     /**/
 
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
@@ -12,6 +11,7 @@
 <div id="root"></div>
 
 @section Scripts {
+   @* @StaticResources.RenderScripts("~/node_modules/file-dialog/file-dialog.min")*@
     @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/react-crop-images")
 
     <script>

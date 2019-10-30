@@ -21,7 +21,16 @@
             => await ViewAsync(message, IndexViewPath).ConfigureAwait(false);
 
         public async Task<ActionResult> CreateProfilePicture(ProfilePictureQuery message)
-            => await ViewAsync(message, ProfilePictureViewPath).ConfigureAwait(false);
+          => await ViewAsync(message, ProfilePictureViewPath).ConfigureAwait(false);
+
+        //[HttpPost]
+        //public async Task<ActionResult> CreateProfilePicture(CreateProfilePictureQuery message)
+        //{
+        //    return RedirectToAction("RedirectCreateProfilePictureIndex", "ProfilePicture");
+        //}
+
+        //public async Task<ActionResult> RedirectCreateProfilePictureIndex(CreateProfilePictureQuery message)
+        //  => await ViewAsync(message, ProfilePictureViewPath).ConfigureAwait(false);
 
         public async Task<ActionResult> ViewPictureLibrary(ProfilePictureLibaryQuery message)
             => await ViewAsync(message, PictureLibraryViewPath).ConfigureAwait(false);

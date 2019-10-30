@@ -14,6 +14,6 @@
 
         public int ActorId { get;}
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => ActorId > 0;
     }
 }

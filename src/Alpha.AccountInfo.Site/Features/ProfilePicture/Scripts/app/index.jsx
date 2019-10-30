@@ -18,6 +18,7 @@ class App extends PureComponent {
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnReset = this.handleOnReset.bind(this);
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
+        this.onSelectFile = this.onSelectFile.bind(this);
     }
 
     handleOnClick(image) {
@@ -66,7 +67,7 @@ class App extends PureComponent {
         }
     }
 
-    handleOpenPopup(createAvatar = true) {
+    handleOpenPopup(createAvatar = false, imageBase64 = null) {
         if (window.top.createProfilePicturePopup === null || window.top.createProfilePicturePopup === undefined) {
             window.top.createProfilePicturePopup = window.top.ageWnd.createInstance();
         }
@@ -74,8 +75,19 @@ class App extends PureComponent {
         var url = `${window.top.alpha.urls.accountInfoRootPath}/ProfilePicture/${createAvatar ? 'CreateProfilePicture' : 'ViewPictureLibrary'}`;
 
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
+        window.top.createProfilePicturePopup.imageBase64 = createAvatar ? imageBase64 : null;
         window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 750, 750);
     }
+
+    onSelectFile(e) {
+        if (e.target.files && e.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+                this.handleOpenPopup(true, reader.result);
+            });
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
 
     render() {
         const { avatar, imagesList } = this.props, { croppedImage } = this.state;
@@ -105,12 +117,15 @@ class App extends PureComponent {
 
                     </div>
                     <div>
-                        <a className='view-all' onClick={() => { this.handleOpenPopup(false); }} >View All</a>
+                        <a className='view-all' onClick={this.handleOpenPopup}>View All</a>
                     </div>
                 </div>
 
                 <div className='create-profile-picture'>
-                    <button onClick={this.handleOpenPopup}>Create Profile Picture</button>
+                    <button onClick={() => { this.handleOpenPopup(false); }}>Create Profile Picture</button>
+                    <div className='select-image'>
+                        <input type="file" onChange={this.onSelectFile} />
+                    </div>
                 </div>
 
                 <div className="noted">

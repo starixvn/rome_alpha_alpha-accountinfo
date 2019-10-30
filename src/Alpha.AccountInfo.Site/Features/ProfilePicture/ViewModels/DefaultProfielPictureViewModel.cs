@@ -2,10 +2,6 @@
 {
     public class DefaultProfielPictureViewModel
     {
-        public DefaultProfielPictureViewModel()
-        {
-        }
-
         public DefaultProfielPictureViewModel(int imageId, string image)
         {
             ImageId = imageId;

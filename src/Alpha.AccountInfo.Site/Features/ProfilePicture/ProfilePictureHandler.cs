@@ -14,7 +14,8 @@
     public class ProfilePictureHandler :
         IAsyncRequestHandler<ProfilePictureQuery, ProfielPictureViewModel>,
         IAsyncRequestHandler<ProfilePictureLibaryQuery, IEnumerable<DefaultProfielPictureViewModel>>,
-        IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
+        IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>,
+        IAsyncRequestHandler<CreateProfilePictureQuery, string>
     {
         private readonly ProfilePictureServices profilePictureServices;
 
@@ -31,9 +32,14 @@
                    avatar.ImageId,
                    GenerateImage(avatar.Image))).OrderBy(n => Guid.NewGuid()).Take(4);
 
-            return new ProfielPictureViewModel(
-                images, 
-                new DefaultProfielPictureViewModel(0, GenerateImage(actorAvatarBinary.Image)));
+            // TO DO : checking if actor has not avatar
+            var actorAvartar = actorAvatarBinary == null ?
+                binaryImages.Select(avatar => new DefaultProfielPictureViewModel(
+                  avatar.ImageId,
+                  GenerateImage(avatar.Image))).OrderBy(n => Guid.NewGuid()).Take(1).FirstOrDefault() :
+                 new DefaultProfielPictureViewModel(0, GenerateImage(actorAvatarBinary.Image));
+
+            return new ProfielPictureViewModel(images, actorAvartar);
         }
 
         public async Task<IEnumerable<DefaultProfielPictureViewModel>> Handle(ProfilePictureLibaryQuery message)
@@ -54,6 +60,8 @@
                   message.ImageBinary,
                   message.IsDefault,
                   message.IP));
+
+        public Task<string> Handle(CreateProfilePictureQuery message) => Task.FromResult(message.OriginalImage);
 
         private string GenerateImage(byte[] binaryImages)
             => binaryImages != null ?
