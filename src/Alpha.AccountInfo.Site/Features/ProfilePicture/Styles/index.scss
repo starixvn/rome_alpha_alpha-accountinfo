@@ -2,7 +2,7 @@
 @import '../../Shared/Styles/mixins';
 
 .profile-picture {
-    padding: 12px 4px;
+    padding: 24px 4px 12px;
     display: inline-block;
     font-size: 14px;
 
@@ -48,6 +48,8 @@
         }
 
         .image-item {
+            border-radius: 4px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
             height: 120px;
             width: 120px;
             margin: 4px;
@@ -65,8 +67,6 @@
 
         .selected-image {
             border: 3px solid #FFB800;
-            border-radius: 4px;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
         }
 
         .list-picture {
