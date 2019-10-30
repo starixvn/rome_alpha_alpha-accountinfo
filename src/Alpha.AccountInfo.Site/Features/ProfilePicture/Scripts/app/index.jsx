@@ -14,11 +14,14 @@ class App extends PureComponent {
         };
 
         this.profilePictureClosing = this.profilePictureClosing.bind(this);
-        this.handleOpenPopup = this.handleOpenPopup.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnReset = this.handleOnReset.bind(this);
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
         this.onSelectFile = this.onSelectFile.bind(this);
+
+        this.handleOpenPopup = this.handleOpenPopup.bind(this);
+        this.handleViewLibrary = this.handleViewLibrary.bind(this);
+        this.handleCreateProfilePicture = this.handleCreateProfilePicture.bind(this);
     }
 
     handleOnClick(image) {
@@ -67,23 +70,31 @@ class App extends PureComponent {
         }
     }
 
-    handleOpenPopup(createAvatar = false, imageBase64 = null) {
+    handleViewLibrary() {
+        this.handleOpenPopup('ViewPictureLibrary', 'Picture Library');
+    }
+
+    handleCreateProfilePicture(imageBase64) {
+        this.handleOpenPopup('CreateProfilePicture', 'Create Profile Picture', imageBase64);
+    }
+
+    handleOpenPopup(actionName, popupTitle, imageBase64 = null ) {
         if (window.top.createProfilePicturePopup === null || window.top.createProfilePicturePopup === undefined) {
             window.top.createProfilePicturePopup = window.top.ageWnd.createInstance();
         }
 
-        var url = `${window.top.alpha.urls.accountInfoRootPath}/ProfilePicture/${createAvatar ? 'CreateProfilePicture' : 'ViewPictureLibrary'}`;
+        var url = `${window.top.alpha.urls.accountInfoRootPath}/ProfilePicture/${actionName}`;
 
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
-        window.top.createProfilePicturePopup.imageBase64 = createAvatar ? imageBase64 : null;
-        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 750, 750);
+        window.top.createProfilePicturePopup.imageBase64 = imageBase64;
+        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, popupTitle, 750, 750);
     }
 
     onSelectFile(e) {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener("load", () => {
-                this.handleOpenPopup(true, reader.result);
+                this.handleCreateProfilePicture(reader.result);
             });
             reader.readAsDataURL(e.target.files[0]);
         }
@@ -126,6 +137,7 @@ class App extends PureComponent {
                         }
 
                     </div>
+                        <a className='view-all' onClick={this.handleViewLibrary}>View All</a>
                 </div>                              
 
                     <div className='select-image'>

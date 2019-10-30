@@ -595,8 +595,6 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Features\ProfilePicture\DemoController.cs" />
-    <Compile Include="Features\ProfilePicture\Requests\CreateProfilePictureQuery.cs" />
-    <Compile Include="Features\ProfilePicture\ViewModels\CreateProfielPictureViewModel.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibaryQuery.cs" />

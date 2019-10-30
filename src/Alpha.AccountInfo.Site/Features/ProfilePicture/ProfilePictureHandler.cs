@@ -14,8 +14,7 @@
     public class ProfilePictureHandler :
         IAsyncRequestHandler<ProfilePictureQuery, ProfielPictureViewModel>,
         IAsyncRequestHandler<ProfilePictureLibaryQuery, IEnumerable<DefaultProfielPictureViewModel>>,
-        IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>,
-        IAsyncRequestHandler<CreateProfilePictureQuery, string>
+        IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
     {
         private readonly ProfilePictureServices profilePictureServices;
 
@@ -60,8 +59,6 @@
                   message.ImageBinary,
                   message.IsDefault,
                   message.IP));
-
-        public Task<string> Handle(CreateProfilePictureQuery message) => Task.FromResult(message.OriginalImage);
 
         private string GenerateImage(byte[] binaryImages)
             => binaryImages != null ?
