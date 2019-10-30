@@ -9,14 +9,16 @@ class App extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { avatar} = this.props;
+        const { avatar, imagesList } = this.props;
         this.state = {
+            imagesList: imagesList,
             originalAvatar: avatar,
             croppedImage: avatar,
             hideMessages: true,
             message: ''
         };
 
+        this.uploadFromDevice = this.uploadFromDevice.bind(this);
         this.profilePictureClosing = this.profilePictureClosing.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnReset = this.handleOnReset.bind(this);
@@ -25,8 +27,8 @@ class App extends PureComponent {
 
         this.handleOpenPopup = this.handleOpenPopup.bind(this);
         this.handleViewLibrary = this.handleViewLibrary.bind(this);
-        this.uploadFromDevice = this.uploadFromDevice.bind(this);
 
+        this.handleActionsAfterUpdate = this.handleActionsAfterUpdate.bind(this);
         this.handleActionsAfterUpdateSuccessfully = this.handleActionsAfterUpdateSuccessfully.bind(this);
         this.showMessage = this.showMessage.bind(this);
     }
@@ -43,27 +45,11 @@ class App extends PureComponent {
     handleOnSubmit() {
         $.blockUI();
         const { croppedImage } = this.state;
-        const data = {
+
+        profilePictureAPI.updateActorProfilePicture({
             ImageId: croppedImage.ImageId,
             Image: croppedImage.ImageId < 0 ? croppedImage.Image.split(';base64,')[1] : null
-        };
-
-        profilePictureAPI.updateActorProfilePicture(data)
-            .then(data => {
-                const message = <div className='msg-container'>
-                    <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
-                        {data.IsSuccess ? 'Update successfully' : data.Message.trim()}
-                    </div>
-                </div>;
-
-                this.showMessage(message);
-
-                if (data.IsSuccess) {
-                    this.handleActionsAfterUpdateSuccessfully();   
-                }
-
-                $.unblockUI();
-            }).catch(handleError);
+        }).then(data => this.handleActionsAfterUpdate(data)).catch(handleError);
     }
 
     showMessage(message) {
@@ -73,10 +59,28 @@ class App extends PureComponent {
         });
     }
 
+    handleActionsAfterUpdate(data) {
+        const message = <div className='msg-container'>
+            <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
+                {data.IsSuccess ? 'Update successfully' : data.Message.trim()}
+            </div>
+        </div>;
+
+        this.showMessage(message);
+
+        if (data.IsSuccess) {
+            this.handleActionsAfterUpdateSuccessfully();
+        }
+
+        $.unblockUI();
+    }
+
     handleActionsAfterUpdateSuccessfully() {
         setTimeout(() => {
             window.top.indexManager.loadPartialViews();
+            const { croppedImage } = this.state;
             this.setState({
+                originalAvatar: croppedImage,
                 hideMessages: true,
                 message: ''
             });
@@ -96,7 +100,7 @@ class App extends PureComponent {
     }
 
     uploadFromDevice() {
-        this.fileInput.click();
+        this.refs.fileUploader.click();
     }
 
     handleViewLibrary() {
@@ -130,7 +134,7 @@ class App extends PureComponent {
     };
 
     render() {
-        const { avatar, imagesList } = this.props, { croppedImage } = this.state;
+        const { croppedImage, imagesList, originalAvatar } = this.state;
 
         return (
             <div className="profile-picture">
@@ -142,9 +146,9 @@ class App extends PureComponent {
                             <span>- Maximum file size 1024KB.</span>
                             <span>- Your picture should be square.</span>
                         </div>
-                        <button onClick={this.uploadFromDevice} className="btn-from-device">
+                        <button onClick={this.uploadFromDevice} className="btn-from-device" type='button'>
                             Upload from your device
-                             <input style={{ display: 'none' }} ref={(input) => { this.fileInput = input; }}  type="file" onChange={this.onSelectFile} />
+                            <input type="file" ref="fileUploader" onChange={this.onSelectFile}/>
                         </button>
                     </div>
                 </div>
@@ -154,12 +158,11 @@ class App extends PureComponent {
                         <a className='view-all' onClick={this.handleViewLibrary}>View All</a>
                     </div>                    
                     <div className="list-picture">
-                        <img className={`image-item ${croppedImage.ImageId === avatar.ImageId ? 'selected-image' : ''}`}
+                        <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
                             alt="Crop"
-                            onClick={() => this.handleOnClick(avatar)} src={avatar.Image} />
+                            onClick={() => this.handleOnClick(originalAvatar)} src={originalAvatar.Image} />
                         {
-                            imagesList.map(
-                                (profilePicture, index) =>
+                            imagesList.map((profilePicture, index) =>
                                     <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
                                         alt="Crop"
                                         onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}

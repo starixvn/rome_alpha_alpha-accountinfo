@@ -52,11 +52,12 @@
             width: 120px;
             margin: 4px;
             box-sizing: border-box;
-            cursor: pointer; 
+            cursor: pointer;
 
             &:first-child {
                 margin-left: 0;
             }
+
             &:last-child {
                 margin-right: 0;
             }
@@ -92,12 +93,17 @@
             display: block;
         }
     }
+
     .btn-submit {
         margin-right: 12px;
     }
 
     .btn-reset {
         margin-right: 0;
+    }
+
+    input[type="file"] {
+        display: none;
     }
 }
 
