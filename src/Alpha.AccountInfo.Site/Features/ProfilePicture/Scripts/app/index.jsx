@@ -87,7 +87,7 @@ class App extends PureComponent {
             window.top.indexManager.loadPartialViews();
             const { croppedImage } = this.state;
             const { imagesList } = this.props;
-            const imageListState = cloneDeep(imagesList).filter(item => item.ImageId != croppedImage.ImageId);
+            const imageListState = cloneDeep(imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5);
             this.setState({
                 imagesList: imageListState.length === 5 ? imageListState.splice(0, imageListState.length - 1) : imageListState,
                 originalAvatar: croppedImage,
