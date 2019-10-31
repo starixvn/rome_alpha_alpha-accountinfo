@@ -1,10 +1,6 @@
 ﻿@import '../../Shared/Styles/_variables';
 @import '../../Shared/Styles/mixins';
 
-body {
-    background-color: #f4f4f4;
-}
-
 .profile-picture {
     padding: 24px 4px 12px;
     display: inline-block;
@@ -13,8 +9,6 @@ body {
     .crop-img-info {
         display: flex;
         align-items: flex-end;
-        position: relative;
-        bottom: 10px;
     }
 
     .cropped-image {
@@ -25,10 +19,10 @@ body {
         box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
         margin-right: 24px;
     }
-
+    
     .wrapper-right {
         position: relative;
-        bottom: 16px;
+        bottom: -16px;
     }
 
     .btn-from-device {
@@ -40,6 +34,7 @@ body {
         display: table-cell;
         vertical-align: middle;
         cursor: pointer;
+        font-weight: normal;
     }
 
     .choose-picture {
@@ -146,5 +141,11 @@ body {
                 height: calculateScale(32px);
             }
         }
+    }
+}
+
+@media screen and (min-device-width: 768px) {
+    body {
+        background-color: #f4f4f4;
     }
 }
