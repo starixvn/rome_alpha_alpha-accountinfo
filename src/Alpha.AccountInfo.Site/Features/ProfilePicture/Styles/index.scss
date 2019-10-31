@@ -1,6 +1,10 @@
 ﻿@import '../../Shared/Styles/_variables';
 @import '../../Shared/Styles/mixins';
 
+body {
+    background-color: #f4f4f4;
+}
+
 .profile-picture {
     padding: 24px 4px 12px;
     display: inline-block;
