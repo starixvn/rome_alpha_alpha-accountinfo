@@ -15,6 +15,9 @@ namespace Alpha.AccountInfo.Site.Features.Shared.Helpers
         const int MIN_LEVEL = 5;
         const int MAX_LEVEL = 100;
 
+        const int IMAGE_WIDTH = 240;
+        const int IMAGE_HEIGHT = 240;
+
         public static byte[] ToLimitedImageSize(string base64String)
         {
             for (int level = MAX_LEVEL; level > MIN_LEVEL; level -= STEP_LEVEL)
@@ -64,7 +67,7 @@ namespace Alpha.AccountInfo.Site.Features.Shared.Helpers
             using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
             {
                 var image = Image.FromStream(ms);
-                var result = new Bitmap(240, 240);
+                var result = new Bitmap(IMAGE_WIDTH, IMAGE_HEIGHT);
                 using (var gr = Graphics.FromImage(result))
                 {
                     gr.CompositingQuality = CompositingQuality.HighSpeed;

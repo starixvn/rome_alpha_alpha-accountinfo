@@ -29,7 +29,7 @@
             var binaryImages = await profilePictureServices.GetProfilePictureLibrary().ConfigureAwait(false);
             var images = binaryImages.Select(avatar => new DefaultProfielPictureViewModel(
                    avatar.ImageId,
-                   GenerateImage(avatar.Image))).OrderBy(n => Guid.NewGuid()).Take(4);
+                   GenerateImage(avatar.Image))).OrderBy(n => Guid.NewGuid()).Take(5);
 
             // TO DO : checking if actor has not avatar
             var actorAvartar = actorAvatarBinary == null ?

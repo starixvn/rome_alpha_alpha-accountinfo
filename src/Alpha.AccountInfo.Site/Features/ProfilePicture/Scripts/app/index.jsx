@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import { profilePictureAPI } from './profile-picture-api';
 import { setTimeout } from "core-js";
 import { handleError } from '../../../Shared/Scripts/api-client';
+import { cloneDeep } from 'lodash';
 import Raven from 'raven-js';
 
 class App extends PureComponent {
@@ -11,7 +12,7 @@ class App extends PureComponent {
 
         const { avatar, imagesList } = this.props;
         this.state = {
-            imagesList: imagesList,
+            imagesList: cloneDeep(imagesList).splice(0, imagesList.length - 1),
             originalAvatar: avatar,
             croppedImage: avatar,
             hideMessages: true,
@@ -79,7 +80,10 @@ class App extends PureComponent {
         setTimeout(() => {
             window.top.indexManager.loadPartialViews();
             const { croppedImage } = this.state;
+            const { imagesList } = this.props;
+            const imageListState = cloneDeep(imagesList).filter(item => item.ImageId != croppedImage.ImageId);
             this.setState({
+                imagesList: imageListState.length === 5 ? imageListState.splice(0, imageListState.length - 1) : imageListState,
                 originalAvatar: croppedImage,
                 hideMessages: true,
                 message: ''
@@ -120,7 +124,7 @@ class App extends PureComponent {
 
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
         window.top.createProfilePicturePopup.imageBase64 = imageBase64;
-        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 651, 758);
+        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, popupTitle, width, height);
     }
 
     onSelectFile(e) {
