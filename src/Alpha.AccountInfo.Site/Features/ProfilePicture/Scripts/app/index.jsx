@@ -131,7 +131,7 @@ class App extends PureComponent {
             });
             reader.readAsDataURL(e.target.files[0]);
         }
-    };
+    }
 
     render() {
         const { croppedImage, imagesList, originalAvatar } = this.state;
@@ -146,10 +146,9 @@ class App extends PureComponent {
                             <span>- Maximum file size 1024KB.</span>
                             <span>- Your picture should be square.</span>
                         </div>
-                        <button onClick={this.uploadFromDevice} className="btn-from-device" type='button'>
-                            Upload from your device
-                            <input type="file" ref="fileUploader" onChange={this.onSelectFile}/>
-                        </button>
+
+                        <label htmlFor="files" className="btn-from-device">Upload from your device </label>
+                        <input id="files" accept="image/png, image/jpeg" type="file" onChange={this.onSelectFile}/>
                     </div>
                 </div>
                 <div className="choose-picture">

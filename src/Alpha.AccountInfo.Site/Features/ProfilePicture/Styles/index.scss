@@ -33,6 +33,9 @@
         border: 1px solid #66151A;
         background-color: #fff;
         padding: 0 12px;
+        display: table-cell;
+        vertical-align: middle;
+        cursor: pointer;
     }
 
     .choose-picture {
@@ -103,7 +106,8 @@
     }
 
     input[type="file"] {
-        display: none;
+        /*display: none;*/
+        visibility: hidden;
     }
 }
 
