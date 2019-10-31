@@ -4,8 +4,9 @@
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
+    using System.Collections.Generic;
 
-    public class ProfilePictureQuery : BaseRequest, IRequest<ProfielPictureViewModel>
+    public class ProfilePictureQuery : BaseRequest, IRequest<IEnumerable<DefaultProfielPictureViewModel>>
     {
         public ProfilePictureQuery(IUser viewer) : base(viewer)
         {

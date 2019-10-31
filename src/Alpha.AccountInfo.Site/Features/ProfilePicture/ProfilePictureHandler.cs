@@ -12,7 +12,7 @@
     using System.Threading.Tasks;
 
     public class ProfilePictureHandler :
-        IAsyncRequestHandler<ProfilePictureQuery, ProfielPictureViewModel>,
+        IAsyncRequestHandler<ProfilePictureQuery, IEnumerable<DefaultProfielPictureViewModel>>,
         IAsyncRequestHandler<ProfilePictureLibaryQuery, IEnumerable<DefaultProfielPictureViewModel>>,
         IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
     {
@@ -23,29 +23,26 @@
             this.profilePictureServices = profilePictureServices;
         }
 
-        public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
+        public async Task<IEnumerable<DefaultProfielPictureViewModel>> Handle(ProfilePictureQuery message)
         {
             var actorAvatarBinary = await profilePictureServices.GetActorProfilePicture(message.ActorId).ConfigureAwait(false);
             var binaryImages = await profilePictureServices.GetProfilePictureLibrary().ConfigureAwait(false);
+
             var images = binaryImages.Select(avatar => new DefaultProfielPictureViewModel(
-                   avatar.ImageId,
-                   GenerateImage(avatar.Image))).OrderBy(n => Guid.NewGuid()).Take(5);
+               avatar.ImageId,
+               GenerateImage(avatar.Image))).OrderBy(n => Guid.NewGuid()).Take(6);
 
-            // TO DO : checking if actor has not avatar
-            var actorAvartar = actorAvatarBinary == null ?
-                binaryImages.Select(avatar => new DefaultProfielPictureViewModel(
-                  avatar.ImageId,
-                  GenerateImage(avatar.Image))).OrderBy(n => Guid.NewGuid()).Take(1).FirstOrDefault() :
-                 new DefaultProfielPictureViewModel(0, GenerateImage(actorAvatarBinary.Image));
-
-            return new ProfielPictureViewModel(images, actorAvartar);
+            return images.Concat(
+                actorAvatarBinary == null ? 
+                Enumerable.Empty<DefaultProfielPictureViewModel>() :
+                new[] { new DefaultProfielPictureViewModel(0, GenerateImage(actorAvatarBinary?.Image)) });
         }
 
         public async Task<IEnumerable<DefaultProfielPictureViewModel>> Handle(ProfilePictureLibaryQuery message)
         {
             var binaryImages = await profilePictureServices.GetProfilePictureLibrary().ConfigureAwait(false);
 
-            return binaryImages.Select(avatar => 
+            return binaryImages.Select(avatar =>
                 new DefaultProfielPictureViewModel(
                    avatar.ImageId,
                    GenerateImage(avatar.Image)));

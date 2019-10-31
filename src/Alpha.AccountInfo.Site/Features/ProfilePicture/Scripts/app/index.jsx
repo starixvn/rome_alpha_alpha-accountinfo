@@ -6,15 +6,21 @@ import { handleError } from '../../../Shared/Scripts/api-client';
 import { cloneDeep } from 'lodash';
 import Raven from 'raven-js';
 
+const defaultAvatar = {
+    ImageId: -100,
+    Image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAkVJREFUeNrsmFlrAkEMgN1xvRFBRK34ouj//0Pqk3ghgme97VdDl+KZ7rZbHyYPwzqTzXxOMknUWSwWkdcTE3lJsVgWy2JZLIv1K+IGN+E4jjGGkefT6XQ8Hhn/E0uA1uv1fD5nZCaZTGazWcaAcG4QJjbudrv9fn+328HxGRPGxGKxt7OIgk/jvjsIdu10OoPBIBqNigdFQDkcDuVyuV6v+8byGfKgjEaj4XB4wSS4TLKEAg/hYbHxfr9nY+csNxUQFFC7qfBXWO9nIZLu2jVGdELFInokxh8ICqiFh0Ug33PftSv9Rb1PrEQi4brugy1ZQgG1sLFyuRw+uqfDEgqhYglZtVpl15sRxiRLKISdt9gvnU43m022JwtIqZGCyEcmWULhH7K8JFVKIflpOp1ut1tm4vE4viuVSpTFBy7+WyyvWsuBSboi0oM3EUEbG6mA5ixesNs28FaqlGyJy743NjhRusLTl4SBJVsSTKvViu5vuVxS+LxaxCr3IJVKZTIZ+kEuo2Tdp5XKf8hLdEMzHo8nkwl3UMLoohB5JwQf9zGfzxcKBfh+dA+0WADhqV6vRxfFgyA+fUtQ6FeLxWKlUuFBeWwqLOlSWq0WXvN+TfzotkKDTxuNBv7VkBmN74ikdrsN03UvqvQ+L/I6RpSNodEcFZE0m818d8BeScAIpjTeV53WZrMJ/tNPvIkpzWm5SnMcfnAsjCi/nqu5TVTfWq2mOXyNKU3Ia29icCaPTIPl/qIt+0eSxbJYFstiWSyVfAgwANaLooANmykXAAAAAElFTkSuQmCC'
+};
+
 class App extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { avatar, imagesList } = this.props;
+        const { imagesList } = this.props, originalAvatar = imagesList.length == 0 ?  defaultAvatar : imagesList.pop();
+
         this.state = {
-            imagesList: cloneDeep(imagesList).splice(0, imagesList.length - 1),
-            originalAvatar: avatar,
-            croppedImage: avatar,
+            imagesList: cloneDeep(imagesList).slice(1, 5),
+            originalAvatar: originalAvatar,
+            croppedImage: originalAvatar,
             hideMessages: true,
             message: ''
         };
@@ -138,8 +144,8 @@ class App extends PureComponent {
     }
 
     render() {
-        const { croppedImage, imagesList, originalAvatar } = this.state;
-
+        const { croppedImage, imagesList, originalAvatar } = this.state, showButton = imagesList.length > 0;
+        
         return (
             <div className="profile-picture">
                 <div className="crop-img-info">
@@ -151,14 +157,14 @@ class App extends PureComponent {
                             <span>- Your picture should be square.</span>
                         </div>
 
-                        <label htmlFor="files" className="btn-from-device">Upload from your device </label>
+                        {showButton && <label htmlFor="files" className="btn-from-device">Upload from your device </label>}
                         <input id="files" accept="image/png, image/jpeg" type="file" onChange={this.onSelectFile}/>
                     </div>
                 </div>
                 <div className="choose-picture">
                     <div className="extend-section">
                         <span className="txt">or choose from our gallery</span>
-                        <a className='view-all' onClick={this.handleViewLibrary}>View All</a>
+                        {showButton && <a className='view-all' onClick={this.handleViewLibrary}>View All</a>}
                     </div>                    
                     <div className="list-picture">
                         <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
@@ -175,10 +181,12 @@ class App extends PureComponent {
                     </div>
                 </div>                              
                 {this.state.message}
-                <div className="btn-group">
-                    <button className="btn-submit" onClick={this.handleOnSubmit}>Submit</button>
-                    <button className="btn-reset" onClick={this.handleOnReset}>Reset</button>
-                </div>
+                {showButton &&
+                    <div className="btn-group">
+                        <button className="btn-submit" onClick={this.handleOnSubmit}>Submit</button>
+                        <button className="btn-reset" onClick={this.handleOnReset}>Reset</button>
+                    </div>
+                }
             </div>
         );
     }
@@ -186,9 +194,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = (avatar, imagesList) => {
+export const renderApp = (imagesList) => {
     ReactDOM.render(
-        <App avatar={avatar} imagesList={imagesList}/>,
+        <App imagesList={imagesList}/>,
         document.getElementById('root')
     );
 };

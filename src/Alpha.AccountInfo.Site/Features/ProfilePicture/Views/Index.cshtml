@@ -1,9 +1,8 @@
-﻿@model ProfielPictureViewModel
+﻿@model IEnumerable<DefaultProfielPictureViewModel>
 
 @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
-    var imagesLibrary = JsonConvert.SerializeObject(Model.Images);
-    var actorAvatar = JsonConvert.SerializeObject(Model.ActorAvatar);
+    var imagesLibrary = JsonConvert.SerializeObject(Model);
 }
 
 @section Styles {
@@ -16,6 +15,6 @@
     @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/index")
 
     <script>
-        renderApp(@Html.Raw(actorAvatar), @Html.Raw(imagesLibrary));
+        renderApp(@Html.Raw(imagesLibrary));
     </script>
 }

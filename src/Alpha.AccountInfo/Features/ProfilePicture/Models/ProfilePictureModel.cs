@@ -1,12 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Features.ProfilePicture.Models
 {
-    public class DefaultProfilePicture
+    public class ProfilePictureModel
     {
-        public DefaultProfilePicture()
+        public ProfilePictureModel()
         {
         }
 
-        public DefaultProfilePicture(int imageId, byte[] image)
+        public ProfilePictureModel(int imageId, byte[] image)
         {
             ImageId = imageId;
             Image = image;

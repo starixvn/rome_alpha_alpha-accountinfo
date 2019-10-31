@@ -176,8 +176,8 @@
       <DependentUpon>ProductStatus.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Features\ProfilePicture\Models\ActorProfilePicture.cs" />
-    <Compile Include="Features\ProfilePicture\Models\DefaultProfilePicture.cs" />
+    <Compile Include="Features\ProfilePicture\Models\ActorProfilePictureModel.cs" />
+    <Compile Include="Features\ProfilePicture\Models\ProfilePictureModel.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureCommand.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\Criteria\SelectActorProfilePictureCriteria.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\Criteria\SelectProfilePictureLibraryCriteria.cs" />
