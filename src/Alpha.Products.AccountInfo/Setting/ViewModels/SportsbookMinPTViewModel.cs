@@ -18,8 +18,7 @@
             => new Dictionary<string, string>
             {
                 ["custId"] = SearchAccount.Id.ToString(),
-                ["username"] = SearchAccount.Username,
-                ["callback"] = "Fanex.EditMinPT.OnRedirectToPage()"
+                ["username"] = SearchAccount.Username
             };
 
         public override bool Visible => base.Visible && SearchAccount.IsNotMember;

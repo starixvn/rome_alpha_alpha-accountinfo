@@ -26,16 +26,6 @@
             Assert.True(viewModel.Url.IndexOf($"&username={request.SearchAccount.Username}", StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
-        [Theory]
-        [ClassData(typeof(ActorAndSearchAccountLevelTestData))]
-        public void Url_QueryString_Contains_callback_Paramater(byte actorLevel, byte searchAccountLevel)
-        {
-            var request = RequestHelper.CreateRequest(actorLevel, searchAccountLevel);
-            var viewModel = new SportsbookMinPTViewModel(request);
-
-            Assert.True(viewModel.Url.IndexOf($"&callback=Fanex.EditMinPT.OnRedirectToPage()", StringComparison.OrdinalIgnoreCase) >= 0);
-        }
-
         [Fact]
         public void Visible_Is_True_When_Actor_Is_Super_And_SearchAccount_Is_Master()
         {

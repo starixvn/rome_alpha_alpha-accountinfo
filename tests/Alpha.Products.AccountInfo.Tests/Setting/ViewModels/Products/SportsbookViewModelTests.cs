@@ -62,19 +62,5 @@
 
             Assert.True(viewModel.Url.IndexOf("m=0", StringComparison.OrdinalIgnoreCase) >= 0);
         }
-
-        [Theory]
-        [InlineData(4, 3, "Fanex.EditPT.OnRedirectToPage()")]
-        [InlineData(4, 1, "Fanex.Customer.NewMember.OnRedirectToPage()")]
-        [InlineData(3, 2, "Fanex.EditPT.OnRedirectToPage()")]
-        [InlineData(3, 1, "Fanex.Customer.NewMember.OnRedirectToPage()")]
-        [InlineData(2, 1, "Fanex.Customer.NewMember.OnRedirectToPage()")]
-        public void Url_QueryString_Returns_Correct_OnRedirectToPage_Callback_Param(byte actorLevel, byte searchAccountLevel, string callback)
-        {
-            var request = RequestHelper.CreateRequest(actorLevel, searchAccountLevel);
-            var viewModel = new SportsbookViewModel(request);
-
-            Assert.True(viewModel.Url.IndexOf($"callback={callback}", StringComparison.OrdinalIgnoreCase) >= 0);
-        }
     }
 }
