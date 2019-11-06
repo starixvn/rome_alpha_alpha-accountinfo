@@ -5,12 +5,14 @@
         public MemberBalanceInfoModel(
              MemberBalanceInfoDTO memberBalanceInfoDTO,
              decimal balance,
-             decimal customerOutstanding)
+             decimal customerOutstanding,
+             decimal netPosition)
         {
             Balance = balance;
             CustomerOutstanding = customerOutstanding;
+            NetPosition = netPosition;
 
-            BetCredit = Credit + balance;
+            CustId = memberBalanceInfoDTO.CustId;
             CustomerCash = balance + customerOutstanding;
             YesterdayCustomerCash = memberBalanceInfoDTO.YesterdayCustomerCash;
         }
@@ -18,12 +20,8 @@
         public int CustId { get; private set; }
 
         public decimal Balance { get; private set; }
-        
-        public decimal Credit { get; private set; }
 
-        public decimal BetCredit { get; private set; }
-
-        public decimal MemMaxCreditMax { get; private set; }
+        public decimal NetPosition { get; private set; }
 
         public decimal CustomerCash { get; private set; }
 
@@ -45,16 +43,10 @@
              decimal memMaxCreditMax)
         {
             CustId = custId;
-            Credit = credit;
             YesterdayCustomerCash = yesterdayCustomerCash;
-            MemMaxCreditMax = memMaxCreditMax;
         }
 
         public int CustId { get; private set; }
-
-        public decimal Credit { get; private set; }
-
-        public decimal MemMaxCreditMax { get; private set; }
 
         public decimal YesterdayCustomerCash { get; private set; }
     }

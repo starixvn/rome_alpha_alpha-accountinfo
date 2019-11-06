@@ -35,6 +35,7 @@ export const Agent = {
             'TotalBalance': -4809,
             'YesterdayBalance': -4809,
             'Outstanding': 0,
+            'NetPosition': 0,
             'GivenCredit': 20000,
             'BetCredit': 15191,
             'GivenCreditMax': 350200,

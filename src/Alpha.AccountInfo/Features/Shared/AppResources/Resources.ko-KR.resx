@@ -240,6 +240,9 @@
   <data name="Name" xml:space="preserve">
     <value>이름</value>
   </data>
+  <data name="NetPosition" xml:space="preserve">
+    <value>Net Position</value>
+  </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>There is no change to update.</value>
   </data>

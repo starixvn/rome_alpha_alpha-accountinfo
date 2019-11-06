@@ -67,6 +67,7 @@ const BalanceInfo = ({
             Contents: [
                 ...sharedContents,
                 givenCreditContent,
+                <BalanceInfoRow id='net-position' title={resources.NetPosition} value={balanceInfo.NetPosition} />,
                 <BalanceInfoRow id='bet-credit' title={resources.BetCredit} value={balanceInfo.BetCredit} />
             ]
         }
