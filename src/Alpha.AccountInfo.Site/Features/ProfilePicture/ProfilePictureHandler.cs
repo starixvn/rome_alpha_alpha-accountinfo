@@ -5,6 +5,7 @@
     using Alpha.AccountInfo.ProfilePicture.Services;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.Requests;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
+    using Fanex.Caching;
     using MediatR;
     using System;
     using System.Collections.Generic;
@@ -16,6 +17,8 @@
         IAsyncRequestHandler<ProfilePictureLibaryQuery, IEnumerable<DefaultProfielPictureViewModel>>,
         IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
     {
+        private const string ProfilePictureLibaryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
+        private const int NumerousOfDefaultPictures = 6;
         private readonly ProfilePictureServices profilePictureServices;
 
         public ProfilePictureHandler(ProfilePictureServices profilePictureServices)
@@ -26,27 +29,16 @@
         public async Task<IEnumerable<DefaultProfielPictureViewModel>> Handle(ProfilePictureQuery message)
         {
             var actorAvatarBinary = await profilePictureServices.GetActorProfilePicture(message.ActorId).ConfigureAwait(false);
-            var binaryImages = await profilePictureServices.GetProfilePictureLibrary().ConfigureAwait(false);
+            var binaryImages = await GetProfilePictureLibrary().ConfigureAwait(false);
 
-            var images = binaryImages.Select(avatar => new DefaultProfielPictureViewModel(
-               avatar.ImageId,
-               GenerateImage(avatar.Image))).OrderBy(n => Guid.NewGuid()).Take(6);
-
-            return images.Concat(
+            return binaryImages.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures).Concat(
                 actorAvatarBinary == null ? 
                 Enumerable.Empty<DefaultProfielPictureViewModel>() :
                 new[] { new DefaultProfielPictureViewModel(0, GenerateImage(actorAvatarBinary?.Image)) });
         }
 
         public async Task<IEnumerable<DefaultProfielPictureViewModel>> Handle(ProfilePictureLibaryQuery message)
-        {
-            var binaryImages = await profilePictureServices.GetProfilePictureLibrary().ConfigureAwait(false);
-
-            return binaryImages.Select(avatar =>
-                new DefaultProfielPictureViewModel(
-                   avatar.ImageId,
-                   GenerateImage(avatar.Image)));
-        }
+            => await GetProfilePictureLibrary().ConfigureAwait(false);
 
         public Task<Result> Handle(UpdateActorProfilePictureQuery message)
           => profilePictureServices.UpdateActorProfilePicture(
@@ -56,6 +48,21 @@
                   message.ImageBinary,
                   message.IsDefault,
                   message.IP));
+
+        internal async Task<IEnumerable<DefaultProfielPictureViewModel>> GetProfilePictureLibrary()
+            => await await ConfiguredCacheService.GetOrSetAsync(
+                    ProfilePictureLibaryKey,
+                    async () => await GetProfilePictureLibraryFromService().ConfigureAwait(false));
+
+        internal async Task<IEnumerable<DefaultProfielPictureViewModel>> GetProfilePictureLibraryFromService()
+        {
+            var binaryImages = await profilePictureServices.GetProfilePictureLibrary().ConfigureAwait(false);
+
+           return binaryImages.Select(avatar =>
+                new DefaultProfielPictureViewModel(
+                   avatar.ImageId,
+                   GenerateImage(avatar.Image)));
+        }
 
         private string GenerateImage(byte[] binaryImages)
             => binaryImages != null ?
