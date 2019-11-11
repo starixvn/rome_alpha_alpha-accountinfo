@@ -106,8 +106,10 @@ class App extends PureComponent {
 
     handleActionsAfterUpdateSuccessfully() {
         setTimeout(() => {
-            window.top.indexManager.loadPartialViews();
+            //window.top.indexManager.loadPartialViews();
+            //window.top.headerNav.setProfilePictureOnNav();
             const { croppedImage } = this.state;
+            window.top.alpha.isScreenLower768 ? window.top.headerNav.setProfilePictureOnNav(croppedImage.Image) : window.top.indexManager.loadPartialViews();
             this.setState({
                 imagesList: cloneDeep(this.props.imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5),
                 originalAvatar: croppedImage,
