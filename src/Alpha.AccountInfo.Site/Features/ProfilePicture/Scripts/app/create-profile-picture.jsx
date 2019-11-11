@@ -19,6 +19,7 @@ class App extends PureComponent {
 
         this.onImageLoaded = this.onImageLoaded.bind(this);
         this.onCropComplete = this.onCropComplete.bind(this);
+        this.onDragStart = this.onDragStart.bind(this);
         this.onCropChange = this.onCropChange.bind(this);
         this.handleOnClosing = this.handleOnClosing.bind(this);
     }
@@ -33,11 +34,15 @@ class App extends PureComponent {
     }
 
     onImageLoaded(image) {
-        this.imageRef = image;
+        //this.imageRef = image;
     };
 
     onCropComplete(crop) {
-        this.makeClientCrop(crop);
+        //this.makeClientCrop(crop);
+    };
+
+    onDragStart(crop) {
+        //alert('drag start');
     };
 
     onCropChange(crop) {
@@ -45,21 +50,15 @@ class App extends PureComponent {
     };
 
     makeClientCrop(crop) {
-        if (this.imageRef && crop.width && crop.height) {
-            const croppedImageUrl = this.getCroppedImg(
-                this.imageRef,
-                crop,
-                "newFile.Jpeg"
-            );
+        //if (this.imageRef && crop.width && crop.height) {
+        //    const croppedImageUrl = this.getCroppedImg(
+        //        this.imageRef,
+        //        crop,
+        //        "newFile.Jpeg"
+        //    );
 
-            var stringLength = croppedImageUrl.length - 'data:image/png;base64,'.length;
-
-            var sizeInBytes = 4 * Math.ceil((stringLength / 3)) * 0.5624896334383812;
-            var sizeInKb = sizeInBytes / 1000;
-            console.log(sizeInKb);
-
-            this.setState({ croppedImageUrl });
-        }
+        //    this.setState({ croppedImageUrl });
+        //}
     }
 
     getCroppedImg(image, crop) {
@@ -93,12 +92,13 @@ class App extends PureComponent {
                 {src && (
                     <div>
                         <ReactCrop
-                        minWidth={240}
-                        src={src}
-                        crop={crop}
-                        onImageLoaded={this.onImageLoaded}
-                        onComplete={this.onCropComplete}
-                        onChange={this.onCropChange}
+                            minWidth={240}
+                            src={src}
+                            crop={crop}
+                            onImageLoaded={this.onImageLoaded}
+                            onComplete={this.onCropComplete}
+                            onChange={this.onCropChange}
+                            onDragStart={this.onDragStart}
                     />
                         <button className="btn-submit" onClick={this.handleOnClosing}>Select</button>
                     </div>

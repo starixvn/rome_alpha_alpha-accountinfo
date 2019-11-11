@@ -52,7 +52,7 @@
         internal async Task<IEnumerable<DefaultProfielPictureViewModel>> GetProfilePictureLibrary()
             => await await ConfiguredCacheService.GetOrSetAsync(
                     ProfilePictureLibaryKey,
-                    async () => await GetProfilePictureLibraryFromService().ConfigureAwait(false));
+                    async () => await GetProfilePictureLibraryFromService().ConfigureAwait(false)).ConfigureAwait(false);
 
         internal async Task<IEnumerable<DefaultProfielPictureViewModel>> GetProfilePictureLibraryFromService()
         {

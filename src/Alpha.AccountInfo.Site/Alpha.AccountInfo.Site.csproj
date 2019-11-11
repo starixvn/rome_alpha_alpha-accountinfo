@@ -357,6 +357,7 @@
     <Content Include="Features\ProfilePicture\Bundles\jquery-3.3.1.js" />
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.css" />
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js" />
+    <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture-modal.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\index.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture.jsx" />

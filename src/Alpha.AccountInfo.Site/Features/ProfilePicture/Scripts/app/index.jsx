@@ -1,10 +1,11 @@
-﻿import ReactDOM from "react-dom";
-import React, { PureComponent } from "react";
-import { profilePictureAPI } from './profile-picture-api';
-import { setTimeout } from "core-js";
-import { handleError } from '../../../Shared/Scripts/api-client';
+﻿import { setTimeout } from "core-js";
 import { cloneDeep } from 'lodash';
 import Raven from 'raven-js';
+import React, { PureComponent } from "react";
+import ReactDOM from "react-dom";
+import { handleError } from '../../../Shared/Scripts/api-client';
+import CreateProfilePictureModal from './create-profile-picture-modal';
+import { profilePictureAPI } from './profile-picture-api';
 
 const defaultAvatar = {
     ImageId: -100,
@@ -18,6 +19,8 @@ class App extends PureComponent {
         const { imagesList } = this.props, originalAvatar = imagesList.length == 0 ?  defaultAvatar : imagesList.pop();
 
         this.state = {
+            src: null,
+            modalIsOpen: false,
             imagesList: cloneDeep(imagesList).slice(1, 5),
             originalAvatar: originalAvatar,
             croppedImage: originalAvatar,
@@ -38,6 +41,27 @@ class App extends PureComponent {
         this.handleActionsAfterUpdate = this.handleActionsAfterUpdate.bind(this);
         this.handleActionsAfterUpdateSuccessfully = this.handleActionsAfterUpdateSuccessfully.bind(this);
         this.showMessage = this.showMessage.bind(this);
+
+        this.setCroppedImage = this.setCroppedImage.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    setCroppedImage(src) {
+        this.setState({
+            croppedImage: {
+                Image: src,
+                ImageId: -1
+            }
+        });
+    }
+
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    closeModal() {
+        this.setState({modalIsOpen: false});
     }
 
     componentDidCatch(error, errorInfo) {
@@ -135,15 +159,16 @@ class App extends PureComponent {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener("load", () => {
-                this.handleCreateProfilePicture(reader.result);
+                this.setState({ src: reader.result, modalIsOpen: true});
             });
             reader.readAsDataURL(e.target.files[0]);
+            $(e.target).val('');
         }
     }
 
     render() {
-        const { croppedImage, imagesList, originalAvatar } = this.state, showButton = imagesList.length > 0;
-        
+        const { croppedImage, imagesList, originalAvatar, modalIsOpen, src } = this.state, showButton = imagesList.length > 0;
+
         return (
             <div className="profile-picture">
                 <div className="crop-img-info">
@@ -185,6 +210,9 @@ class App extends PureComponent {
                         <button className="btn-reset" onClick={this.handleOnReset}>Reset</button>
                     </div>
                 }
+
+                <CreateProfilePictureModal modalIsOpen={modalIsOpen} imageSrc={src} setCroppedImage={this.setCroppedImage}
+                    openModal={this.openModal} closeModal={this.closeModal} />
             </div>
         );
     }

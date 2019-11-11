@@ -110,6 +110,20 @@
     }
 }
 
+.crop-image {
+    .select-image {
+        margin: 20px 0 20px 0;
+    }
+
+    button {
+        float: left;
+        margin-left: 0px !important;
+    }
+
+    div:last-child {
+        display: block;
+    }
+}
 @media screen and (max-device-width: 640px) {
     .profile-picture {
         width: 100%;
