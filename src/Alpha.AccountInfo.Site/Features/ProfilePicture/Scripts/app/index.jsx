@@ -27,15 +27,13 @@ class App extends PureComponent {
             hideMessages: true,
             message: ''
         };
-
-        this.uploadFromDevice = this.uploadFromDevice.bind(this);
+        
         this.profilePictureClosing = this.profilePictureClosing.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnReset = this.handleOnReset.bind(this);
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
         this.onSelectFile = this.onSelectFile.bind(this);
 
-        this.handleOpenPopup = this.handleOpenPopup.bind(this);
         this.handleViewLibrary = this.handleViewLibrary.bind(this);
 
         this.handleActionsAfterUpdate = this.handleActionsAfterUpdate.bind(this);
@@ -131,28 +129,15 @@ class App extends PureComponent {
         }
     }
 
-    uploadFromDevice() {
-        this.refs.fileUploader.click();
-    }
-
     handleViewLibrary() {
-        this.handleOpenPopup('ViewPictureLibrary', 'Picture Library', 750, 750);
-    }
-
-    handleCreateProfilePicture(imageBase64) {
-        this.handleOpenPopup('CreateProfilePicture', 'Create Profile Picture', 750, 550, imageBase64);
-    }
-
-    handleOpenPopup(actionName, popupTitle, width, height, imageBase64 = null ) {
         if (window.top.createProfilePicturePopup === null || window.top.createProfilePicturePopup === undefined) {
             window.top.createProfilePicturePopup = window.top.ageWnd.createInstance();
         }
 
-        var url = `${window.top.alpha.urls.accountInfoRootPath}/ProfilePicture/${actionName}`;
+        var url = `${window.top.alpha.urls.accountInfoRootPath}/ProfilePicture/ViewPictureLibrary`;
 
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
-        window.top.createProfilePicturePopup.imageBase64 = imageBase64;
-        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, popupTitle, width, height);
+        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 750, 750);
     }
 
     onSelectFile(e) {
@@ -211,8 +196,13 @@ class App extends PureComponent {
                     </div>
                 }
 
-                <CreateProfilePictureModal modalIsOpen={modalIsOpen} imageSrc={src} setCroppedImage={this.setCroppedImage}
-                    openModal={this.openModal} closeModal={this.closeModal} />
+                <CreateProfilePictureModal
+                    modalIsOpen={modalIsOpen}
+                    imageSrc={src}
+                    setCroppedImage={this.setCroppedImage}
+                    openModal={this.openModal}
+                    closeModal={this.closeModal}
+                />
             </div>
         );
     }
