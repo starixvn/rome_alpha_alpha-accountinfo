@@ -5,14 +5,12 @@ import { urls } from './profile-picture-helper';
 
 const customStyles = {
     content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        height: window.top.alpha.isScreenLower768 ? '100%' : '85%',
-        width: window.top.alpha.isScreenLower768 ? '100%' :'90%',
+        top: '0',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        border: 'none',
+        padding: '0',
         overflow: 'hidden'
     }
 };
@@ -70,9 +68,11 @@ export default class PictureLibraryModal extends PureComponent {
                 contentLabel=""
             >
                 <div className="picture-library">
-                    <div className='header'>
-                        <span className='title'>{resources.PictureLibrary}</span>
-                        <span className='closed' onClick={this.props.closeModal}>X</span>
+                    <div className="header">
+                        <span class="title">Profile picture gallery</span>
+                        <span className="icon-close" onClick={this.props.closeModal}></span>
+                    </div>
+                        <button className='btn-select' onClick={this.hanldeOnSelect}>Select</button>                        
                     </div>
                     <div className="library">
                         {
