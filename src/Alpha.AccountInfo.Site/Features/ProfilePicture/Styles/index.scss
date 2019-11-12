@@ -124,10 +124,12 @@
         display: block;
     }
 }
+
 .picture-library {
     .library {
         overflow: auto;
         margin-bottom: 10px;
+        height: 600px;
     }
 
     .display-block {

@@ -1,7 +1,6 @@
-﻿import ReactDOM from "react-dom";
-import React, { PureComponent } from "react";
-import { handleError, requests } from '../../../Shared/Scripts/api-client';
+﻿import React, { PureComponent } from "react";
 import Modal from 'react-modal';
+import { handleError, requests } from '../../../Shared/Scripts/api-client';
 
 const customStyles = {
     content: {
@@ -12,7 +11,8 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         height: '80%',
-        width: '70%'
+        width: '70%',
+        overflow: 'hidden'
     }
 };
 
@@ -23,7 +23,6 @@ export default class PictureLibraryModal extends PureComponent {
     constructor(props) {
         super(props);
 
-        //const { imagesList } = this.props;
         this.state = {
             imagesList: []
         };

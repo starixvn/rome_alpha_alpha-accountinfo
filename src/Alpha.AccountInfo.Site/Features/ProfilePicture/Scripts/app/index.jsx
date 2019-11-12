@@ -32,7 +32,6 @@ class App extends PureComponent {
             message: ''
         };
 
-        this.profilePictureClosing = this.profilePictureClosing.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnReset = this.handleOnReset.bind(this);
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
@@ -110,13 +109,14 @@ class App extends PureComponent {
     }
 
     handleActionsAfterUpdateSuccessfully() {
-        const { croppedImage } = this.state;
+        const { croppedImage } = this.state, { imagesList } = this.props;
+
         window.top.alpha.isScreenLower768 ?
             window.top.headerNav.setProfilePictureOnNav(croppedImage.Image) :
             window.top.indexManager.loadPartialViews();
 
         this.setState({
-            imagesList: cloneDeep(this.props.imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5),
+            imagesList: cloneDeep(imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5),
             originalAvatar: croppedImage,
             hideMessages: true,
             message: ''
@@ -129,22 +129,8 @@ class App extends PureComponent {
         this.setState({ croppedImage: originalAvatar });
     }
 
-    profilePictureClosing(src) {
-        window.top.createProfilePicturePopup.close();
-        if (src !== undefined) {
-            this.setState({ croppedImage: src });
-        }
-    }
-
     handleViewLibrary() {
         this.setState({ pictureLibraryModalIsOpen: true });
-        //if (window.top.createProfilePicturePopup === null || window.top.createProfilePicturePopup === undefined) {
-        //    window.top.createProfilePicturePopup = window.top.ageWnd.createInstance();
-        //}
-
-        //window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
-        //var url = `${accountinfoUrl}/ProfilePicture/ViewPictureLibrary`;
-        //window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 750, 750);
     }
 
     onSelectFile(e) {
@@ -159,7 +145,8 @@ class App extends PureComponent {
     }
 
     render() {
-        const { croppedImage, imagesList, originalAvatar, modalIsOpen, src, pictureLibraryModalIsOpen } = this.state, showButton = imagesList.length > 0;
+        const { croppedImage, imagesList, originalAvatar, modalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
+            showButton = imagesList.length > 0;
 
         return (
             <div className="profile-picture">

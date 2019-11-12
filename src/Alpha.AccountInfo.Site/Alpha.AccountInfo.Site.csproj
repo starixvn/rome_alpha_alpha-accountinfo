@@ -477,7 +477,6 @@
     <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
     <Content Include="Features\ProfilePicture\Views\ConvertImageToBinary.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\index.scss" />
-    <Content Include="Features\ProfilePicture\Styles\picture-library.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
