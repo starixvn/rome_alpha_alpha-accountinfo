@@ -15,7 +15,7 @@ const customStyles = {
     }
 };
 
-Modal.setAppElement('#root');
+export const croppedImageId = -1;
 
 export default class CreateProfilePictureModal extends PureComponent {
     constructor(props) {
@@ -55,7 +55,10 @@ export default class CreateProfilePictureModal extends PureComponent {
     };
 
     handleOnSelect() {
-        this.props.setCroppedImage(this.state.croppedImageUrl);
+        this.props.setCroppedImage({
+            Image: this.state.croppedImageUrl,
+            ImageId: croppedImageId
+        });
         this.props.closeModal();
     }
 
@@ -121,8 +124,8 @@ export default class CreateProfilePictureModal extends PureComponent {
                             onChange={this.onCropChange}
                         />
                         <div className="btn-group">
-                            <button className="btn-submit" onClick={this.handleOnSelect}>OK</button>
-                            <button className="btn-reset" onClick={closeModal}>Cancel</button>
+                            <button className="btn-submit" onClick={this.handleOnSelect}>Selected</button>
+                            <button className="btn-cancel" onClick={closeModal}>Cancel</button>
                         </div>
                     </div>
                 )}

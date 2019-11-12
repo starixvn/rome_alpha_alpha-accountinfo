@@ -1,13 +1,15 @@
 ﻿import { setTimeout } from "core-js";
 import { cloneDeep } from 'lodash';
-import Raven from 'raven-js';
 import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
-import { handleError } from '../../../Shared/Scripts/api-client';
-import CreateProfilePictureModal from './create-profile-picture-modal';
-import { requests } from '../../../Shared/Scripts/api-client';
+import CreateProfilePictureModal, { croppedImageId } from './create-profile-picture-modal';
+import PictureLibraryModal from './picture-library-modal';
+import { handleError, requests } from '../../../Shared/Scripts/api-client';
+import Raven from 'raven-js';
+import Modal from 'react-modal';
 
-const defaultImageId = -100, croppedImageId = -1, accountinfoUrl = window.top.alpha.urls.accountInfoRootPath;
+const defaultImageId = -100, accountinfoUrl = window.top.alpha.urls.accountInfoRootPath;
+Modal.setAppElement('#root');
 
 class App extends PureComponent {
     constructor(props) {
@@ -22,6 +24,7 @@ class App extends PureComponent {
         this.state = {
             src: null,
             modalIsOpen: false,
+            pictureLibraryModalIsOpen: false,
             imagesList: cloneDeep(imagesList).slice(1, 5),
             originalAvatar: originalAvatar,
             croppedImage: originalAvatar,
@@ -46,21 +49,18 @@ class App extends PureComponent {
         this.closeModal = this.closeModal.bind(this);
     }
 
-    setCroppedImage(src) {
+    setCroppedImage(profilePicture) {
         this.setState({
-            croppedImage: {
-                Image: src,
-                ImageId: croppedImageId
-            }
+            croppedImage: profilePicture
         });
     }
 
     openModal() {
-        this.setState({ modalIsOpen: true });
+        this.setState({ modalIsOpen: true, pictureLibraryModalIsOpen: true });
     }
 
     closeModal() {
-        this.setState({ modalIsOpen: false });
+        this.setState({ modalIsOpen: false, pictureLibraryModalIsOpen: false });
     }
 
     componentDidCatch(error, errorInfo) {
@@ -137,13 +137,14 @@ class App extends PureComponent {
     }
 
     handleViewLibrary() {
-        if (window.top.createProfilePicturePopup === null || window.top.createProfilePicturePopup === undefined) {
-            window.top.createProfilePicturePopup = window.top.ageWnd.createInstance();
-        }
+        this.setState({ pictureLibraryModalIsOpen: true });
+        //if (window.top.createProfilePicturePopup === null || window.top.createProfilePicturePopup === undefined) {
+        //    window.top.createProfilePicturePopup = window.top.ageWnd.createInstance();
+        //}
 
-        window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
-        var url = `${accountinfoUrl}/ProfilePicture/ViewPictureLibrary`;
-        window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 750, 750);
+        //window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
+        //var url = `${accountinfoUrl}/ProfilePicture/ViewPictureLibrary`;
+        //window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 750, 750);
     }
 
     onSelectFile(e) {
@@ -158,7 +159,7 @@ class App extends PureComponent {
     }
 
     render() {
-        const { croppedImage, imagesList, originalAvatar, modalIsOpen, src } = this.state, showButton = imagesList.length > 0;
+        const { croppedImage, imagesList, originalAvatar, modalIsOpen, src, pictureLibraryModalIsOpen } = this.state, showButton = imagesList.length > 0;
 
         return (
             <div className="profile-picture">
@@ -209,6 +210,13 @@ class App extends PureComponent {
                     openModal={this.openModal}
                     closeModal={this.closeModal}
                 />
+
+                <PictureLibraryModal
+                    pictureLibraryModalIsOpen={pictureLibraryModalIsOpen}
+                    setCroppedImage={this.setCroppedImage}
+                    openModal={this.openModal}
+                    closeModal={this.closeModal}
+                />
             </div>
         );
     }
@@ -218,7 +226,7 @@ export default App;
 
 export const renderApp = (imagesList, defaultAvatarUrl) => {
     ReactDOM.render(
-        <App imagesList={imagesList} defaultAvatarRoot={defaultAvatarUrl} />,
+        <App {...{ imagesList, defaultAvatarUrl}}/>,
         document.getElementById('root')
     );
 };

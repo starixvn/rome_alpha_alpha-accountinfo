@@ -9,7 +9,6 @@
     public class ProfilePictureController : AccountInfoBaseController
     {
         private const string IndexViewPath = "~/Features/ProfilePicture/Views/Index.cshtml";
-        private const string PictureLibraryViewPath = "~/Features/ProfilePicture/Views/PictureLibrary.cshtml";
 
         public ProfilePictureController(IMediator mediator)
          : base(mediator)
@@ -19,8 +18,9 @@
         public async Task<ActionResult> Index(ProfilePictureQuery message)
             => await ViewAsync(message, IndexViewPath).ConfigureAwait(false);
 
-        public async Task<ActionResult> ViewPictureLibrary(ProfilePictureLibaryQuery message)
-            => await ViewAsync(message, PictureLibraryViewPath).ConfigureAwait(false);
+        [HttpPost]
+        public async Task<ActionResult> GetPictureLibrary(ProfilePictureLibaryQuery message)
+        => await JsonDataAsync(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
         //, AntiXsrfFilter
         [HttpPost]
