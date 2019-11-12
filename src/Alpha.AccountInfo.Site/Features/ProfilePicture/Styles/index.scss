@@ -126,8 +126,26 @@
 }
 
 .picture-library {
+    .header {
+        display: block;
+        height: 30px;
+        border-bottom: 1px gray solid;
+
+
+        .title {
+            float: left;
+        }
+
+        .closed {
+            cursor: pointer;
+            color: red;
+            float: right;
+        }
+    }
+
     .library {
         overflow: auto;
+        margin-top: 10px;
         margin-bottom: 10px;
         height: 600px;
     }
@@ -157,6 +175,7 @@
         color: #fff;
         border: none;
         width: 72px;
+        margin-right: 12px;
     }
 }
 

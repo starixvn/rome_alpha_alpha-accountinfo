@@ -10,8 +10,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        height: '80%',
-        width: '70%',
+        height: window.top.alpha.isScreenLower768 ? '100%' : '85%',
+        width: window.top.alpha.isScreenLower768 ? '100%' :'90%',
         overflow: 'hidden'
     }
 };
@@ -75,9 +75,9 @@ export default class PictureLibraryModal extends PureComponent {
                 contentLabel="Example Modal"
             >
                 <div className="picture-library">
-                    <div className="btn-group">
-                        <button className='btn-select' onClick={this.hanldeOnSelect}>Select</button>
-                        <button className="btn-cancel" onClick={this.props.closeModal}>Cancel</button>
+                    <div className='header'>
+                        <span className='title'>Picture Library</span>
+                        <span className='closed' onClick={this.props.closeModal}>X</span>
                     </div>
                     <div className="library">
                         {
@@ -87,6 +87,10 @@ export default class PictureLibraryModal extends PureComponent {
                                     onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}
                                     key={index} />)
                         }
+                    </div>
+                    <div className="btn-group">
+                        <button className='btn-select' onClick={this.hanldeOnSelect}>Select</button>
+                        <button className="btn-cancel" onClick={this.props.closeModal}>Cancel</button>
                     </div>
                 </div>
             </Modal>
