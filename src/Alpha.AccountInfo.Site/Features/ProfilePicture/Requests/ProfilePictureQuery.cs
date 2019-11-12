@@ -4,16 +4,18 @@
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
-    using System.Collections.Generic;
 
-    public class ProfilePictureQuery : BaseRequest, IRequest<IEnumerable<DefaultProfielPictureViewModel>>
+    public class ProfilePictureQuery : BaseRequest, IRequest<ProfielPictureViewModel>
     {
         public ProfilePictureQuery(IUser viewer) : base(viewer)
         {
-            this.ActorId = viewer.Id;
+            ActorId = viewer.Id;
+            Language = viewer.Language;
         }
 
         public int ActorId { get;}
+
+        public string Language { get; private set; }
 
         public override bool IsValid() => ActorId > 0;
     }

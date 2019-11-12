@@ -22,7 +22,7 @@ const accountinfoUrl = window.top.alpha.urls.accountInfoRootPath;
 export default class PictureLibraryModal extends PureComponent {
     constructor(props) {
         super(props);
-
+        $.blockUI();
         this.state = {
             imagesList: []
         };
@@ -47,6 +47,7 @@ export default class PictureLibraryModal extends PureComponent {
                     imagesList: data,
                     croppedImage: data.length > 0 ? data[0] : undefined
                 });
+                $.unblockUI();
             }
         ).catch(handleError);
     }
@@ -65,18 +66,18 @@ export default class PictureLibraryModal extends PureComponent {
         //this.subtitle.style.color = '#f00';
     }
     render() {
-        const { croppedImage, imagesList } = this.state;
+        const { croppedImage, imagesList } = this.state, { resources, closeModal } = this.props;
         return (
             <Modal
                 isOpen={this.props.pictureLibraryModalIsOpen}
                 onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
                 style={customStyles}
-                contentLabel="Example Modal"
+                contentLabel=""
             >
                 <div className="picture-library">
                     <div className='header'>
-                        <span className='title'>Picture Library</span>
+                        <span className='title'>{resources.PictureLibrary}</span>
                         <span className='closed' onClick={this.props.closeModal}>X</span>
                     </div>
                     <div className="library">
@@ -89,8 +90,8 @@ export default class PictureLibraryModal extends PureComponent {
                         }
                     </div>
                     <div className="btn-group">
-                        <button className='btn-select' onClick={this.hanldeOnSelect}>Select</button>
-                        <button className="btn-cancel" onClick={this.props.closeModal}>Cancel</button>
+                        <button className="btn-submit" onClick={this.handleOnSelect}>{resources.Selected}</button>
+                        <button className="btn-cancel" onClick={closeModal}>{resources.Cancel}</button>
                     </div>
                 </div>
             </Modal>

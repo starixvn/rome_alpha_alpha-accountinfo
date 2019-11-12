@@ -20,7 +20,7 @@ export const croppedImageId = -1;
 export default class CreateProfilePictureModal extends PureComponent {
     constructor(props) {
         super(props);
-
+        $.blockUI();
         this.state = {
             croppedImageUrl: null,
             crop: {
@@ -103,7 +103,8 @@ export default class CreateProfilePictureModal extends PureComponent {
     }
 
     render() {
-        const { crop } = this.state, { imageSrc, closeModal} = this.props;
+        $.unblockUI();
+        const { crop } = this.state, { imageSrc, closeModal, resources} = this.props;
 
         return (
             <Modal
@@ -111,12 +112,12 @@ export default class CreateProfilePictureModal extends PureComponent {
                 onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
                 style={customStyles}
-                contentLabel="Example Modal"
+                contentLabel=""
             >
                 {imageSrc && (
                     <div className='crop-image'>
                         <div className='header'>
-                            <span className='title'>Create your profile picture</span>
+                            <span className='title'>{resources.UploadFromYourDevice}</span>
                             <span className='closed' onClick={this.props.closeModal}>X</span>
                         </div>
                         <ReactCrop
@@ -128,8 +129,8 @@ export default class CreateProfilePictureModal extends PureComponent {
                             onChange={this.onCropChange}
                         />
                         <div className="btn-group">
-                            <button className="btn-submit" onClick={this.handleOnSelect}>Selected</button>
-                            <button className="btn-cancel" onClick={closeModal}>Cancel</button>
+                            <button className="btn-submit" onClick={this.handleOnSelect}>{resources.Selected}</button>
+                            <button className="btn-cancel" onClick={closeModal}>{resources.Cancel}</button>
                         </div>
                     </div>
                 )}

@@ -13,7 +13,7 @@
     using System.Threading.Tasks;
 
     public class ProfilePictureHandler :
-        IAsyncRequestHandler<ProfilePictureQuery, IEnumerable<DefaultProfielPictureViewModel>>,
+        IAsyncRequestHandler<ProfilePictureQuery, ProfielPictureViewModel>,
         IAsyncRequestHandler<ProfilePictureLibaryQuery, IEnumerable<DefaultProfielPictureViewModel>>,
         IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
     {
@@ -26,15 +26,17 @@
             this.profilePictureServices = profilePictureServices;
         }
 
-        public async Task<IEnumerable<DefaultProfielPictureViewModel>> Handle(ProfilePictureQuery message)
+        public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
         {
             var actorAvatarBinary = await profilePictureServices.GetActorProfilePicture(message.ActorId).ConfigureAwait(false);
             var binaryImages = await GetProfilePictureLibrary().ConfigureAwait(false);
 
-            return binaryImages.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures).Concat(
+            var images = binaryImages.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures).Concat(
                 actorAvatarBinary == null ? 
                 Enumerable.Empty<DefaultProfielPictureViewModel>() :
                 new[] { new DefaultProfielPictureViewModel(0, GenerateImage(actorAvatarBinary?.Image)) });
+
+            return new ProfielPictureViewModel(images, message.Language);
         }
 
         public async Task<IEnumerable<DefaultProfielPictureViewModel>> Handle(ProfilePictureLibaryQuery message)

@@ -1,12 +1,14 @@
-﻿import { setTimeout } from "core-js";
-import { cloneDeep } from 'lodash';
-import React, { PureComponent } from "react";
+﻿import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
-import CreateProfilePictureModal, { croppedImageId } from './create-profile-picture-modal';
-import PictureLibraryModal from './picture-library-modal';
-import { handleError, requests } from '../../../Shared/Scripts/api-client';
+import { setTimeout } from "core-js";
+import { cloneDeep } from 'lodash';
 import Raven from 'raven-js';
 import Modal from 'react-modal';
+import { handleError, requests } from '../../../Shared/Scripts/api-client';
+import { decodeResources } from '../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
+import CreateProfilePictureModal, { croppedImageId } from './create-profile-picture-modal';
+import PictureLibraryModal from './picture-library-modal';
+
 
 const defaultImageId = -100, accountinfoUrl = window.top.alpha.urls.accountInfoRootPath;
 Modal.setAppElement('#root');
@@ -91,9 +93,10 @@ class App extends PureComponent {
     }
 
     handleActionsAfterUpdate(data) {
+        const { resources } = this.props;
         const message = <div className='msg-container'>
             <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
-                {data.IsSuccess ? 'Update successfully' : data.Message.trim()}
+                {data.IsSuccess ? resources.ProfilePictureUpdatedSuccessfully : data.Message.trim()}
             </div>
         </div>;
 
@@ -146,27 +149,21 @@ class App extends PureComponent {
 
     render() {
         const { croppedImage, imagesList, originalAvatar, modalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
-            showButton = imagesList.length > 0;
+            { resources } = this.props, showButton = imagesList.length > 0;
 
         return (
             <div className="profile-picture">
                 <div className="crop-img-info">
                     <img alt="Crop" src={croppedImage.Image} className='cropped-image' />
                     <div className="wrapper-right">
-                        <div className="noted">
-                            <span>- You can Upload JPG, GIF or PNG files.</span>
-                            <span>- Maximum file size 1024KB.</span>
-                            <span>- Your picture should be square.</span>
-                        </div>
-
-                        {showButton && <label htmlFor="files" className="btn-from-device">Upload from your device </label>}
+                        {showButton && <label htmlFor="files" className="btn-from-device"> {resources.UploadFromYourDevice} </label>}
                         <input id="files" accept="image/png, image/jpeg, image/gif" type="file" onChange={this.onSelectFile} />
                     </div>
                 </div>
                 <div className="choose-picture">
                     <div className="extend-section">
-                        <span className="txt">or choose from our gallery</span>
-                        {showButton && <a className='view-all' onClick={this.handleViewLibrary}>View All</a>}
+                        <span className="txt">{resources.OrChooseFromOurGallery}</span>
+                        {showButton && <a className='view-all' onClick={this.handleViewLibrary}>{resources.ViewAll}</a>}
                     </div>
                     <div className="list-picture">
                         <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
@@ -185,14 +182,15 @@ class App extends PureComponent {
                 {this.state.message}
                 {showButton &&
                     <div className="btn-group">
-                        <button className="btn-submit" onClick={this.handleOnSubmit}>Submit</button>
-                        <button className="btn-reset" onClick={this.handleOnReset}>Reset</button>
+                    <button className="btn-submit" onClick={this.handleOnSubmit}>{resources.Submit}</button>
+                    <button className="btn-reset" onClick={this.handleOnReset}>{resources.Reset}</button>
                     </div>
                 }
 
                 <CreateProfilePictureModal
                     modalIsOpen={modalIsOpen}
                     imageSrc={src}
+                    resources={resources}
                     setCroppedImage={this.setCroppedImage}
                     openModal={this.openModal}
                     closeModal={this.closeModal}
@@ -200,6 +198,7 @@ class App extends PureComponent {
 
                 <PictureLibraryModal
                     pictureLibraryModalIsOpen={pictureLibraryModalIsOpen}
+                    resources={resources}
                     setCroppedImage={this.setCroppedImage}
                     openModal={this.openModal}
                     closeModal={this.closeModal}
@@ -211,9 +210,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = (imagesList, defaultAvatarUrl) => {
+export const renderApp = (imagesList, defaultAvatarUrl, resources) => {
     ReactDOM.render(
-        <App {...{ imagesList, defaultAvatarUrl}}/>,
+        <App {...{ imagesList, defaultAvatarUrl, resources: decodeResources(resources)}}/>,
         document.getElementById('root')
     );
 };
