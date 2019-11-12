@@ -19,7 +19,7 @@
             => await ViewAsync(message, IndexViewPath).ConfigureAwait(false);
 
         [HttpPost]
-        public async Task<ActionResult> GetPictureLibrary(ProfilePictureLibaryQuery message)
+        public async Task<ActionResult> GetPictureLibrary(ProfilePictureLibraryQuery message)
         => await JsonDataAsync(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
         //, AntiXsrfFilter

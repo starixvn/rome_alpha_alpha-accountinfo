@@ -24,7 +24,7 @@ class App extends PureComponent {
 
         this.state = {
             src: null,
-            modalIsOpen: false,
+            uploadFromDeviceModalIsOpen: false,
             pictureLibraryModalIsOpen: false,
             imagesList: cloneDeep(imagesList).slice(1, 5),
             originalAvatar: originalAvatar,
@@ -52,11 +52,11 @@ class App extends PureComponent {
     }
 
     openModal() {
-        this.setState({ modalIsOpen: true, pictureLibraryModalIsOpen: true });
+        this.setState({ uploadFromDeviceModalIsOpen: true, pictureLibraryModalIsOpen: true });
     }
 
     closeModal() {
-        this.setState({ modalIsOpen: false, pictureLibraryModalIsOpen: false });
+        this.setState({ uploadFromDeviceModalIsOpen: false, pictureLibraryModalIsOpen: false });
     }
 
     componentDidCatch(error, errorInfo) {
@@ -129,7 +129,7 @@ class App extends PureComponent {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener("load", () => {
-                this.setState({ src: reader.result, modalIsOpen: true });
+                this.setState({ src: reader.result, uploadFromDeviceModalIsOpen: true });
             });
             reader.readAsDataURL(e.target.files[0]);
             $(e.target).val('');
@@ -137,7 +137,7 @@ class App extends PureComponent {
     }
 
     render() {
-        const { croppedImage, imagesList, originalAvatar, modalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
+        const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
             { resources } = this.props, showButton = imagesList.length > 0;
 
         return (
@@ -179,7 +179,7 @@ class App extends PureComponent {
                 }
 
                 <CreateProfilePictureModal
-                    modalIsOpen={modalIsOpen}
+                    modalIsOpen={uploadFromDeviceModalIsOpen}
                     imageSrc={src}
                     resources={resources}
                     setCroppedImage={this.setCroppedImage}
@@ -188,7 +188,7 @@ class App extends PureComponent {
                 />
 
                 <PictureLibraryModal
-                    pictureLibraryModalIsOpen={pictureLibraryModalIsOpen}
+                    modalIsOpen={pictureLibraryModalIsOpen}
                     resources={resources}
                     setCroppedImage={this.setCroppedImage}
                     openModal={this.openModal}

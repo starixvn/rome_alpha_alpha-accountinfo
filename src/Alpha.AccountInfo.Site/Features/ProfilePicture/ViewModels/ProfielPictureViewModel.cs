@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels
 {
     using Alpha.AccountInfo.Features.ProfilePicture.AppResources;
+    using Alpha.AccountInfo.Features.ProfilePicture.Models;
     using Alpha.Products.Core.Services;
     using System;
     using System.Collections.Generic;
@@ -9,7 +10,7 @@
     public class ProfielPictureViewModel
     {
         public ProfielPictureViewModel(
-            IEnumerable<DefaultProfielPictureViewModel> images,
+            IEnumerable<ProfilePictureModel> images,
             string language,
             Func<string, ResourceManager, string> convertResourcesJson = null)
         {
@@ -19,7 +20,7 @@
             Resources = ConvertResourcesJson(language, ProfilePictureResources.ResourceManager);
         }
 
-        public IEnumerable<DefaultProfielPictureViewModel> Images { get; private set; }
+        public IEnumerable<ProfilePictureModel> Images { get; private set; }
 
         public string Resources { get; private set; }
     }

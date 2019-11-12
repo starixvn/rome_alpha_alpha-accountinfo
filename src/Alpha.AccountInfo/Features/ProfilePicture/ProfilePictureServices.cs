@@ -6,16 +6,18 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Fanex.Caching;
     using Fanex.Data.Repository;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public interface ProfilePictureServices
     {
         Result UpdateManualProfilePictureCommand(byte[] image, string filename);
 
-        Task<ActorProfilePictureModel> GetActorProfilePicture(int custId);
+        Task<ProfilePictureModel> GetActorProfilePicture(int custId);
 
         Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibrary();
 
@@ -24,6 +26,7 @@
 
     public class ProfilePictureServicesImpl : ProfilePictureServices
     {
+        private const string ProfilePictureLibaryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
         private readonly IDynamicRepository dynamicRepository;
 
         public ProfilePictureServicesImpl(IDynamicRepository dynamicRepository)
@@ -47,11 +50,22 @@
             }
         }
 
-        public async Task<ActorProfilePictureModel> GetActorProfilePicture(int custId)
-        => await dynamicRepository.GetAsync<ActorProfilePictureModel>(new SelectActorProfilePictureCriteria(custId)).ConfigureAwait(false);
+        public async Task<ProfilePictureModel> GetActorProfilePicture(int custId)
+        {
+            var actorProfilePicture = await dynamicRepository.GetAsync<ActorProfilePictureModel>(new SelectActorProfilePictureCriteria(custId)).ConfigureAwait(false);
+            return new ProfilePictureModel(actorProfilePicture.Image);
+        }
 
         public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibrary()
-          => await dynamicRepository.FetchAsync<ProfilePictureModel>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);
+            => await await ConfiguredCacheService.GetOrSetAsync(
+                    ProfilePictureLibaryKey,
+                    async () => await FectchProfilePictureLibrary().ConfigureAwait(false)).ConfigureAwait(false);
+
+        internal async Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibrary()
+        {
+            var binaryProfilePictures = await dynamicRepository.FetchAsync<ProfilePictureDTO>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);
+            return binaryProfilePictures.Select(profilePictureDto => new ProfilePictureModel(profilePictureDto));
+        }
 
         public async Task<Result> UpdateActorProfilePicture(UpdateActorProfilePictureParam param)
         {

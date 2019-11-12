@@ -96,9 +96,6 @@
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Enyim.Caching.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Caching, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Caching.2.2.1\lib\net461\Fanex.Caching.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
@@ -596,11 +593,10 @@
     <Compile Include="Features\ProfilePicture\DemoController.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
-    <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibaryQuery.cs" />
+    <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibraryQuery.cs" />
     <Compile Include="Features\ProfilePicture\Requests\UpdateActorProfilePictureQuery.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureQuery.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureHandler.cs" />
-    <Compile Include="Features\ProfilePicture\ViewModels\DefaultProfielPictureViewModel.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureViewModel.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountController.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />

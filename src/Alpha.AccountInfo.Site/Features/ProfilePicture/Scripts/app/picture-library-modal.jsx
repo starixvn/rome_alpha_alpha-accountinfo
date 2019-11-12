@@ -61,10 +61,10 @@ export default class PictureLibraryModal extends PureComponent {
     }
 
     render() {
-        const { croppedImage, imagesList } = this.state, { resources, closeModal } = this.props;
+        const { croppedImage, imagesList } = this.state, { resources, closeModal, modalIsOpen } = this.props;
         return (
             <Modal
-                isOpen={this.props.pictureLibraryModalIsOpen}
+                isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel=""
