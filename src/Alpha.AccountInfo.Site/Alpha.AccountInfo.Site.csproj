@@ -360,8 +360,7 @@
     <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture-modal.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\index.jsx" />
-    <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture.jsx" />
-    <Content Include="Features\ProfilePicture\Scripts\app\profile-picture-api.jsx" />
+    <Content Include="Features\ProfilePicture\Styles\Images\icon_user_default.png" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
     <Content Include="Features\SearchAccount\Bundles\given-credit.min.css" />
@@ -472,7 +471,6 @@
     <Content Include="Features\UnsuspendDownlines\Views\EditMultiple.cshtml" />
     <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines.scss" />
     <Content Include="__mocks__\axios.js" />
-    <Content Include="Features\ProfilePicture\Views\CreateProfilePicture.cshtml" />
     <Content Include="Features\ProfilePicture\Views\web.config" />
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.css.map" />
     <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js.map" />
@@ -481,7 +479,6 @@
     <Content Include="Features\ProfilePicture\Views\ConvertImageToBinary.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\index.scss" />
     <Content Include="Features\ProfilePicture\Styles\picture-library.scss" />
-    <Content Include="Features\ProfilePicture\Styles\create-profile-picture.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />

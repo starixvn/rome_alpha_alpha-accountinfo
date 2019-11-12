@@ -3,6 +3,7 @@
 @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
     var imagesLibrary = JsonConvert.SerializeObject(Model);
+    var defaultAvatarUrl = Url.Content("~/Features/ProfilePicture/Styles/Images/icon_user_default.png");
 }
 
 @section Styles {
@@ -15,6 +16,6 @@
     @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/index")
 
     <script>
-        renderApp(@Html.Raw(imagesLibrary));
+        renderApp(@Html.Raw(imagesLibrary),'@defaultAvatarUrl');
     </script>
 }

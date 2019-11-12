@@ -5,18 +5,19 @@ import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import { handleError } from '../../../Shared/Scripts/api-client';
 import CreateProfilePictureModal from './create-profile-picture-modal';
-import { profilePictureAPI } from './profile-picture-api';
+import { requests } from '../../../Shared/Scripts/api-client';
 
-const defaultAvatar = {
-    ImageId: -100,
-    Image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAkVJREFUeNrsmFlrAkEMgN1xvRFBRK34ouj//0Pqk3ghgme97VdDl+KZ7rZbHyYPwzqTzXxOMknUWSwWkdcTE3lJsVgWy2JZLIv1K+IGN+E4jjGGkefT6XQ8Hhn/E0uA1uv1fD5nZCaZTGazWcaAcG4QJjbudrv9fn+328HxGRPGxGKxt7OIgk/jvjsIdu10OoPBIBqNigdFQDkcDuVyuV6v+8byGfKgjEaj4XB4wSS4TLKEAg/hYbHxfr9nY+csNxUQFFC7qfBXWO9nIZLu2jVGdELFInokxh8ICqiFh0Ug33PftSv9Rb1PrEQi4brugy1ZQgG1sLFyuRw+uqfDEgqhYglZtVpl15sRxiRLKISdt9gvnU43m022JwtIqZGCyEcmWULhH7K8JFVKIflpOp1ut1tm4vE4viuVSpTFBy7+WyyvWsuBSboi0oM3EUEbG6mA5ixesNs28FaqlGyJy743NjhRusLTl4SBJVsSTKvViu5vuVxS+LxaxCr3IJVKZTIZ+kEuo2Tdp5XKf8hLdEMzHo8nkwl3UMLoohB5JwQf9zGfzxcKBfh+dA+0WADhqV6vRxfFgyA+fUtQ6FeLxWKlUuFBeWwqLOlSWq0WXvN+TfzotkKDTxuNBv7VkBmN74ikdrsN03UvqvQ+L/I6RpSNodEcFZE0m818d8BeScAIpjTeV53WZrMJ/tNPvIkpzWm5SnMcfnAsjCi/nqu5TVTfWq2mOXyNKU3Ia29icCaPTIPl/qIt+0eSxbJYFstiWSyVfAgwANaLooANmykXAAAAAElFTkSuQmCC'
-};
+const defaultImageId = -100, croppedImageId = -1, accountinfoUrl = window.top.alpha.urls.accountInfoRootPath;
 
 class App extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { imagesList } = this.props, originalAvatar = imagesList.length == 0 ?  defaultAvatar : imagesList.pop();
+        const { imagesList, defaultAvatarUrl } = this.props,
+            originalAvatar = imagesList.length == 0 ? {
+                ImageId: defaultImageId,
+                Image: defaultAvatarUrl
+            } : imagesList.pop();
 
         this.state = {
             src: null,
@@ -27,7 +28,7 @@ class App extends PureComponent {
             hideMessages: true,
             message: ''
         };
-        
+
         this.profilePictureClosing = this.profilePictureClosing.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnReset = this.handleOnReset.bind(this);
@@ -49,7 +50,7 @@ class App extends PureComponent {
         this.setState({
             croppedImage: {
                 Image: src,
-                ImageId: -1
+                ImageId: croppedImageId
             }
         });
     }
@@ -59,7 +60,7 @@ class App extends PureComponent {
     }
 
     closeModal() {
-        this.setState({modalIsOpen: false});
+        this.setState({ modalIsOpen: false });
     }
 
     componentDidCatch(error, errorInfo) {
@@ -75,10 +76,12 @@ class App extends PureComponent {
         $.blockUI();
         const { croppedImage } = this.state;
 
-        profilePictureAPI.updateActorProfilePicture({
-            ImageId: croppedImage.ImageId,
-            Image: croppedImage.ImageId < 0 ? croppedImage.Image.split(';base64,')[1] : null
-        }).then(data => this.handleActionsAfterUpdate(data)).catch(handleError);
+        croppedImage.ImageId !== defaultImageId && requests.post(
+            accountinfoUrl + '/ProfilePicture/UpdateActorProfilePicture',
+            {
+                ImageId: croppedImage.ImageId,
+                Image: croppedImage.ImageId === croppedImageId ? croppedImage.Image.split(';base64,')[1] : null
+            }).then(data => this.handleActionsAfterUpdate(data)).catch(handleError);
     }
 
     showMessage(message) {
@@ -98,25 +101,27 @@ class App extends PureComponent {
         this.showMessage(message);
 
         if (data.IsSuccess) {
-            this.handleActionsAfterUpdateSuccessfully();
+            setTimeout(() => {
+                this.handleActionsAfterUpdateSuccessfully();
+            }, 1500);
         }
 
         $.unblockUI();
     }
 
     handleActionsAfterUpdateSuccessfully() {
-        setTimeout(() => {
-            //window.top.indexManager.loadPartialViews();
-            //window.top.headerNav.setProfilePictureOnNav();
-            const { croppedImage } = this.state;
-            window.top.alpha.isScreenLower768 ? window.top.headerNav.setProfilePictureOnNav(croppedImage.Image) : window.top.indexManager.loadPartialViews();
-            this.setState({
-                imagesList: cloneDeep(this.props.imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5),
-                originalAvatar: croppedImage,
-                hideMessages: true,
-                message: ''
-            });
-        }, 3000);
+        const { croppedImage } = this.state;
+        window.top.alpha.isScreenLower768 ?
+            window.top.headerNav.setProfilePictureOnNav(croppedImage.Image) :
+            window.top.indexManager.loadPartialViews();
+
+        this.setState({
+            imagesList: cloneDeep(this.props.imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5),
+            originalAvatar: croppedImage,
+            hideMessages: true,
+            message: ''
+        });
+
     }
 
     handleOnReset() {
@@ -136,9 +141,8 @@ class App extends PureComponent {
             window.top.createProfilePicturePopup = window.top.ageWnd.createInstance();
         }
 
-        var url = `${window.top.alpha.urls.accountInfoRootPath}/ProfilePicture/ViewPictureLibrary`;
-
         window.top.createProfilePicturePopup.onClosing = this.profilePictureClosing;
+        var url = `${accountinfoUrl}/ProfilePicture/ViewPictureLibrary`;
         window.top.popupManager.openWithHanlder(top.createProfilePicturePopup, url, 'Picture Library', 750, 750);
     }
 
@@ -146,7 +150,7 @@ class App extends PureComponent {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener("load", () => {
-                this.setState({ src: reader.result, modalIsOpen: true});
+                this.setState({ src: reader.result, modalIsOpen: true });
             });
             reader.readAsDataURL(e.target.files[0]);
             $(e.target).val('');
@@ -168,28 +172,28 @@ class App extends PureComponent {
                         </div>
 
                         {showButton && <label htmlFor="files" className="btn-from-device">Upload from your device </label>}
-                        <input id="files" accept="image/png, image/jpeg" type="file" onChange={this.onSelectFile}/>
+                        <input id="files" accept="image/png, image/jpeg, image/gif" type="file" onChange={this.onSelectFile} />
                     </div>
                 </div>
                 <div className="choose-picture">
                     <div className="extend-section">
                         <span className="txt">or choose from our gallery</span>
                         {showButton && <a className='view-all' onClick={this.handleViewLibrary}>View All</a>}
-                    </div>                    
+                    </div>
                     <div className="list-picture">
                         <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
                             alt="Crop"
                             onClick={() => this.handleOnClick(originalAvatar)} src={originalAvatar.Image} />
                         {
                             imagesList.map((profilePicture, index) =>
-                                    <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
-                                        alt="Crop"
-                                        onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}
-                                        key={index}/>
+                                <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
+                                    alt="Crop"
+                                    onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}
+                                    key={index} />
                             )
                         }
                     </div>
-                </div>                              
+                </div>
                 {this.state.message}
                 {showButton &&
                     <div className="btn-group">
@@ -212,9 +216,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = (imagesList) => {
+export const renderApp = (imagesList, defaultAvatarUrl) => {
     ReactDOM.render(
-        <App imagesList={imagesList}/>,
+        <App imagesList={imagesList} defaultAvatarRoot={defaultAvatarUrl} />,
         document.getElementById('root')
     );
 };

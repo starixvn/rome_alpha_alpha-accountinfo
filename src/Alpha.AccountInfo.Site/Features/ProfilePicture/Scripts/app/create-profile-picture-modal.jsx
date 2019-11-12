@@ -16,7 +16,8 @@ const customStyles = {
 };
 
 Modal.setAppElement('#root');
-class CreateProfilePictureModal extends PureComponent {
+
+export default class CreateProfilePictureModal extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -129,5 +130,3 @@ class CreateProfilePictureModal extends PureComponent {
         );
     }
 }
-
-export default CreateProfilePictureModal;

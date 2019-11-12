@@ -31,11 +31,6 @@ module.exports = {
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
         ],
-        "./ProfilePicture/Bundles/create-profile-picture": [
-            "./Features/ProfilePicture/Scripts/app/create-profile-picture.jsx",
-            "./Features/ProfilePicture/Styles/create-profile-picture.scss",
-            "./node_modules/react-image-crop/dist/ReactCrop.css"
-        ],
         "./ProfilePicture/Bundles/index": [
             "./node_modules/react-image-crop/dist/ReactCrop.css",
             "./Features/ProfilePicture/Styles/index.scss",
