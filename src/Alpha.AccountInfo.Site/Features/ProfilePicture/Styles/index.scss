@@ -111,6 +111,34 @@
 }
 
 .crop-image {
+    .header {
+        display: block;
+        height: 30px;
+        border-bottom: 1px gray solid;
+
+
+        .title {
+            float: left;
+        }
+
+        .closed {
+            cursor: pointer;
+            color: red;
+            float: right;
+        }
+    }
+
+    .ReactCrop {
+        margin-top: 10px;
+
+        div:first-child {
+            display: block;
+            max-width: 800px;
+            max-height: 500px;
+            overflow:auto;
+        }
+    }
+
     .select-image {
         margin: 20px 0 20px 0;
     }

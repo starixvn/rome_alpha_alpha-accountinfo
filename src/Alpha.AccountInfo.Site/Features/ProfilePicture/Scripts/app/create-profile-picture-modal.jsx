@@ -10,8 +10,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        height: '80%',
-        width: '70%'
+        height: 'auto',
+        width: window.top.alpha.isScreenLower768 ? '100%' : '900px'
     }
 };
 
@@ -115,6 +115,10 @@ export default class CreateProfilePictureModal extends PureComponent {
             >
                 {imageSrc && (
                     <div className='crop-image'>
+                        <div className='header'>
+                            <span className='title'>Create your profile picture</span>
+                            <span className='closed' onClick={this.props.closeModal}>X</span>
+                        </div>
                         <ReactCrop
                             minWidth={240}
                             src={imageSrc}
