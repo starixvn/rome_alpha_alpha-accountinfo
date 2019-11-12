@@ -6,11 +6,10 @@ import Raven from 'raven-js';
 import Modal from 'react-modal';
 import { handleError, requests } from '../../../Shared/Scripts/api-client';
 import { decodeResources } from '../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
-import CreateProfilePictureModal, { croppedImageId } from './create-profile-picture-modal';
+import CreateProfilePictureModal from './create-profile-picture-modal';
 import PictureLibraryModal from './picture-library-modal';
+import { defaultImageId, croppedImageId, urls} from './profile-picture-helper';
 
-
-const defaultImageId = -100, accountinfoUrl = window.top.alpha.urls.accountInfoRootPath;
 Modal.setAppElement('#root');
 
 class App extends PureComponent {
@@ -40,8 +39,6 @@ class App extends PureComponent {
         this.onSelectFile = this.onSelectFile.bind(this);
 
         this.handleViewLibrary = this.handleViewLibrary.bind(this);
-
-        this.handleActionsAfterUpdate = this.handleActionsAfterUpdate.bind(this);
         this.handleActionsAfterUpdateSuccessfully = this.handleActionsAfterUpdateSuccessfully.bind(this);
         this.showMessage = this.showMessage.bind(this);
 
@@ -51,9 +48,7 @@ class App extends PureComponent {
     }
 
     setCroppedImage(profilePicture) {
-        this.setState({
-            croppedImage: profilePicture
-        });
+        this.setState({ croppedImage: profilePicture});
     }
 
     openModal() {
@@ -77,8 +72,7 @@ class App extends PureComponent {
         $.blockUI();
         const { croppedImage } = this.state;
 
-        croppedImage.ImageId !== defaultImageId && requests.post(
-            accountinfoUrl + '/ProfilePicture/UpdateActorProfilePicture',
+        croppedImage.ImageId !== defaultImageId && requests.post(urls.UpdateActorProfilePicture,
             {
                 ImageId: croppedImage.ImageId,
                 Image: croppedImage.ImageId === croppedImageId ? croppedImage.Image.split(';base64,')[1] : null
@@ -86,17 +80,13 @@ class App extends PureComponent {
     }
 
     showMessage(message) {
-        this.setState({
-            hideMessages: false,
-            message: message
-        });
+        this.setState({ hideMessages: false, message: message });
     }
 
     handleActionsAfterUpdate(data) {
-        const { resources } = this.props;
         const message = <div className='msg-container'>
             <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
-                {data.IsSuccess ? resources.ProfilePictureUpdatedSuccessfully : data.Message.trim()}
+                {data.IsSuccess ? this.props.resources.ProfilePictureUpdatedSuccessfully : data.Message.trim()}
             </div>
         </div>;
 
@@ -124,7 +114,6 @@ class App extends PureComponent {
             hideMessages: true,
             message: ''
         });
-
     }
 
     handleOnReset() {
@@ -179,7 +168,9 @@ class App extends PureComponent {
                         }
                     </div>
                 </div>
+
                 {this.state.message}
+
                 {showButton &&
                     <div className="btn-group">
                     <button className="btn-submit" onClick={this.handleOnSubmit}>{resources.Submit}</button>

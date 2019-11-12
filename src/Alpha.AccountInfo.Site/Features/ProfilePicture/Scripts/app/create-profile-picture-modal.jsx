@@ -1,6 +1,7 @@
 ﻿import React, { PureComponent } from "react";
 import ReactCrop from "react-image-crop";
 import Modal from 'react-modal';
+import { croppedImageId } from './profile-picture-helper';
 
 const customStyles = {
     content: {
@@ -14,8 +15,6 @@ const customStyles = {
         width: window.top.alpha.isScreenLower768 ? '100%' : '900px'
     }
 };
-
-export const croppedImageId = -1;
 
 export default class CreateProfilePictureModal extends PureComponent {
     constructor(props) {
@@ -33,12 +32,9 @@ export default class CreateProfilePictureModal extends PureComponent {
             }
         };
         
-        this.afterOpenModal = this.afterOpenModal.bind(this);
-
         this.onImageLoaded = this.onImageLoaded.bind(this);
         this.onCropComplete = this.onCropComplete.bind(this);
         this.onCropChange = this.onCropChange.bind(this);
-
         this.handleOnSelect = this.handleOnSelect.bind(this);
     }
 
@@ -97,20 +93,14 @@ export default class CreateProfilePictureModal extends PureComponent {
         return canvas.toDataURL();
     }
 
-    afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        //this.subtitle.style.color = '#f00';
-    }
-
     render() {
         $.unblockUI();
-        const { crop } = this.state, { imageSrc, closeModal, resources} = this.props;
+        const { crop } = this.state, { imageSrc, closeModal, resources, modalIsOpen} = this.props;
 
         return (
             <Modal
-                isOpen={this.props.modalIsOpen}
-                onAfterOpen={this.afterOpenModal}
-                onRequestClose={this.closeModal}
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel=""
             >

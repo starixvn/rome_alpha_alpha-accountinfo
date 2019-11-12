@@ -1,6 +1,7 @@
 ﻿import React, { PureComponent } from "react";
 import Modal from 'react-modal';
 import { handleError, requests } from '../../../Shared/Scripts/api-client';
+import { urls } from './profile-picture-helper';
 
 const customStyles = {
     content: {
@@ -16,21 +17,18 @@ const customStyles = {
     }
 };
 
-Modal.setAppElement('#root');
-const accountinfoUrl = window.top.alpha.urls.accountInfoRootPath;
-
 export default class PictureLibraryModal extends PureComponent {
     constructor(props) {
         super(props);
         $.blockUI();
         this.state = {
+            croppedImage: undefined,
             imagesList: []
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
-        this.hanldeOnSelect = this.hanldeOnSelect.bind(this);
+        this.handleOnSelect = this.handleOnSelect.bind(this);
         this.getPictureLibary = this.getPictureLibary.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
     }
 
     componentDidMount() {
@@ -41,7 +39,7 @@ export default class PictureLibraryModal extends PureComponent {
     }
 
     getPictureLibary() {
-        requests.post(accountinfoUrl + '/ProfilePicture/GetPictureLibrary').then(
+        requests.post(urls.GetPictureLibrary).then(
             data => {
                 this.setState({
                     imagesList: data,
@@ -56,22 +54,18 @@ export default class PictureLibraryModal extends PureComponent {
         this.setState({ croppedImage: image })
     }
 
-    hanldeOnSelect() {
+    handleOnSelect() {
         const { croppedImage } = this.state;
         this.props.setCroppedImage(croppedImage);
         this.props.closeModal();
     }
-    afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        //this.subtitle.style.color = '#f00';
-    }
+
     render() {
         const { croppedImage, imagesList } = this.state, { resources, closeModal } = this.props;
         return (
             <Modal
                 isOpen={this.props.pictureLibraryModalIsOpen}
-                onAfterOpen={this.afterOpenModal}
-                onRequestClose={this.closeModal}
+                onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel=""
             >
