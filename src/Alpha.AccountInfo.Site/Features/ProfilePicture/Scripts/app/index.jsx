@@ -71,19 +71,19 @@ class App extends PureComponent {
     handleOnSubmit() {
         const { croppedImage, originalAvatar } = this.state;
 
-        if (croppedImage.ImageId !== originalAvatar.ImageId) {
+        if (croppedImage.ImageId === originalAvatar.ImageId && croppedImage.ImageId > 0) {
+            this.showMessage({
+                IsSuccess: false,
+                Message: this.props.resources.ThereIsNoChange
+            });
+        }
+        else {
             $.blockUI();
             croppedImage.ImageId !== defaultImageId && requests.post(urls.UpdateActorProfilePicture,
                 {
                     ImageId: croppedImage.ImageId,
                     Image: croppedImage.ImageId === croppedImageId ? croppedImage.Image.split(';base64,')[1] : null
                 }).then(data => this.handleActionsAfterUpdate(data)).catch(handleError);
-        }
-        else {
-            this.showMessage({
-                IsSuccess: false,
-                Message: this.props.resources.ThereIsNoChange
-            });
         }
     }
 

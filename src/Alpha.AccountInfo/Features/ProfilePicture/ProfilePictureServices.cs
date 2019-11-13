@@ -53,7 +53,9 @@
         public async Task<ProfilePictureModel> GetActorProfilePicture(int custId)
         {
             var actorProfilePicture = await dynamicRepository.GetAsync<ActorProfilePictureModel>(new SelectActorProfilePictureCriteria(custId)).ConfigureAwait(false);
-            return new ProfilePictureModel(actorProfilePicture.ImageId, actorProfilePicture.Image);
+            return actorProfilePicture == null ?
+                new ProfilePictureModel() :
+                new ProfilePictureModel(actorProfilePicture.ImageId, actorProfilePicture.Image);
         }
 
         public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibrary()

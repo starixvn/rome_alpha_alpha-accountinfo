@@ -28,7 +28,6 @@ const customStyles = {
 export default class PictureLibraryModal extends PureComponent {
     constructor(props) {
         super(props);
-        $.blockUI();
         this.state = {
             croppedImage: undefined,
             imagesList: []
@@ -39,9 +38,10 @@ export default class PictureLibraryModal extends PureComponent {
         this.getPictureLibary = this.getPictureLibary.bind(this);
     }
 
-    componentDidMount() {
-        const { imagesList } = this.state;
-        if (imagesList.length === 0) {
+    componentDidUpdate() {
+        const { imagesList } = this.state, { modalIsOpen } = this.props;
+        if (imagesList.length === 0 && modalIsOpen) {
+            $.blockUI();
             this.getPictureLibary();
         }
     }
