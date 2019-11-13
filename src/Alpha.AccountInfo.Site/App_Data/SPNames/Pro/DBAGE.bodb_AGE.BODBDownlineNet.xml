@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions SiteId="" SiteName="Account Info">
+  <Function Name="Profile Picture">
+    <Setting Key="Age_CustomerProfilePictureLibrarySel" SpName="Age_CustomerProfilePictureLibrarySel_xtest" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>
