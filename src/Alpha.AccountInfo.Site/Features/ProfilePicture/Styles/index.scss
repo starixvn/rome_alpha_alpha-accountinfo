@@ -160,12 +160,13 @@
         color: #545454;
         height: 40px;
         line-height: 40px;
+        padding: 0 12px;
 
         .icon-close {
             position: absolute;
             right: 0;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 18px;
             width: 36px;
             text-align: center;
             padding: 12px 0;
@@ -178,6 +179,7 @@
         margin-top: 10px;
         margin-bottom: 10px;
         height: 600px;
+        padding: 0 12px;
     }
 
     .display-block {
@@ -199,13 +201,12 @@
     }
 
     .btn-select {
-        margin: 12px 0 4px 4px;
+        margin: 12px 12px 4px 16px;
         height: 32px;
         background-color: #66151A;
         color: #fff;
         border: none;
         width: 72px;
-        margin-right: 12px;
     }
 }
 
@@ -215,6 +216,10 @@
         background-color: #f4f4f4;
         width: 100%;
         font-size: calculateScale(14px);
+
+        .icon-close {
+            font-size: calculateScale(18px);
+        }
 
         .btn-from-device {
             height: calculateScale(32px);
