@@ -18,7 +18,7 @@
         IAsyncRequestHandler<ProfilePictureLibraryQuery, IEnumerable<ProfilePictureModel>>,
         IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
     {
-        private const int NumerousOfDefaultPictures = 6;
+        private const int NumerousOfDefaultPictures = 7;
         private readonly ProfilePictureServices profilePictureServices;
 
         public ProfilePictureHandler(ProfilePictureServices profilePictureServices)
@@ -34,7 +34,7 @@
                 var imageLibrary = await profilePictureServices.GetProfilePictureLibrary().ConfigureAwait(false);
 
                 return new ProfielPictureViewModel(
-                    imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures).Concat(new[] { actorAvatar }),
+                    imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures).Concat(new[] { actorAvatar }).Distinct(),
                     message.Language);
             }
             catch (Exception ex)

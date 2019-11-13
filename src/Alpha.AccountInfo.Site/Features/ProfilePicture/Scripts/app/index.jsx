@@ -69,28 +69,36 @@ class App extends PureComponent {
     }
 
     handleOnSubmit() {
-        $.blockUI();
-        const { croppedImage } = this.state;
+        const { croppedImage, originalAvatar } = this.state;
 
-        croppedImage.ImageId !== defaultImageId && requests.post(urls.UpdateActorProfilePicture,
-            {
-                ImageId: croppedImage.ImageId,
-                Image: croppedImage.ImageId === croppedImageId ? croppedImage.Image.split(';base64,')[1] : null
-            }).then(data => this.handleActionsAfterUpdate(data)).catch(handleError);
+        if (croppedImage.ImageId !== originalAvatar.ImageId) {
+            $.blockUI();
+            croppedImage.ImageId !== defaultImageId && requests.post(urls.UpdateActorProfilePicture,
+                {
+                    ImageId: croppedImage.ImageId,
+                    Image: croppedImage.ImageId === croppedImageId ? croppedImage.Image.split(';base64,')[1] : null
+                }).then(data => this.handleActionsAfterUpdate(data)).catch(handleError);
+        }
+        else {
+            this.showMessage({
+                IsSuccess: false,
+                Message: this.props.resources.ThereIsNoChange
+            });
+        }
     }
 
-    showMessage(message) {
-        this.setState({ hideMessages: false, message: message });
-    }
-
-    handleActionsAfterUpdate(data) {
+    showMessage(data) {
         const message = <div className='msg-container'>
             <div className={`msg ${data.IsSuccess ? 'msg-success' : 'msg msg-error'}`}>
                 {data.IsSuccess ? this.props.resources.ProfilePictureUpdatedSuccessfully : data.Message.trim()}
             </div>
         </div>;
 
-        this.showMessage(message);
+        this.setState({ hideMessages: false, message: message });
+    }
+
+    handleActionsAfterUpdate(data) {
+        this.showMessage(data);
 
         if (data.IsSuccess) {
             setTimeout(() => {

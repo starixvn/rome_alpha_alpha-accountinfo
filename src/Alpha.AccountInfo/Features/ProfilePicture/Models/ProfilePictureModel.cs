@@ -8,23 +8,15 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.Models
         {
         }
 
-        public ProfilePictureModel(byte[] image)
+        public ProfilePictureModel(int imageId, byte[] image)
         {
-            ImageId = 0;
-            Image = BuildImageBase64String(image);
-        }
-
-        public ProfilePictureModel(ProfilePictureDTO profilePictureDTO)
-        {
-            ImageId = profilePictureDTO.ImageId;
-            Image = BuildImageBase64String(profilePictureDTO.Image);
+            ImageId = imageId;
+            Image = $"data:image/jpeg;base64,{Convert.ToBase64String(image)}";
         }
 
         public int ImageId { get; private set; }
 
         public string Image { get; private set; }
-
-        private string BuildImageBase64String(byte[] image) => $"data:image/jpeg;base64,{Convert.ToBase64String(image)}";
     }
 
     public class ProfilePictureDTO

@@ -124,6 +124,15 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no change to update !.
+        /// </summary>
+        public static string ThereIsNoChange {
+            get {
+                return ResourceManager.GetString("ThereIsNoChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload from your device.
         /// </summary>
         public static string UploadFromYourDevice {

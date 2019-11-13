@@ -53,7 +53,7 @@
         public async Task<ProfilePictureModel> GetActorProfilePicture(int custId)
         {
             var actorProfilePicture = await dynamicRepository.GetAsync<ActorProfilePictureModel>(new SelectActorProfilePictureCriteria(custId)).ConfigureAwait(false);
-            return new ProfilePictureModel(actorProfilePicture.Image);
+            return new ProfilePictureModel(actorProfilePicture.ImageId, actorProfilePicture.Image);
         }
 
         public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibrary()
@@ -64,7 +64,7 @@
         internal async Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibrary()
         {
             var binaryProfilePictures = await dynamicRepository.FetchAsync<ProfilePictureDTO>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);
-            return binaryProfilePictures.Select(profilePictureDto => new ProfilePictureModel(profilePictureDto));
+            return binaryProfilePictures.Select(profilePictureDto => new ProfilePictureModel(profilePictureDto.ImageId, profilePictureDto.Image));
         }
 
         public async Task<Result> UpdateActorProfilePicture(UpdateActorProfilePictureParam param)
