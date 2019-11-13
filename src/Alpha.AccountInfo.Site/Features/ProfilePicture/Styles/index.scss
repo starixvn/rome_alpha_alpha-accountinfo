@@ -8,12 +8,12 @@
 
     .crop-img-info {
         display: flex;
-        align-items: flex-end;
+        align-items: center;
     }
 
     .cropped-image {
-        height: 240px;
-        width: 240px;
+        height: 160px;
+        width: 160px;
         border-radius: 50%;
         border: 3px solid #fff;
         box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
@@ -158,8 +158,8 @@
         border-bottom: 1px solid #d3d3d3;
         position: relative;
         color: #545454;
-        height: 50px;
-        line-height: 50px;
+        height: 40px;
+        line-height: 40px;
 
         .icon-close {
             position: absolute;
@@ -199,7 +199,7 @@
     }
 
     .btn-select {
-        margin: 8px 0 4px 4px;
+        margin: 12px 0 4px 4px;
         height: 32px;
         background-color: #66151A;
         color: #fff;
@@ -226,8 +226,8 @@
         }
 
         .cropped-image {
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
         }
 
         .noted {
@@ -248,15 +248,23 @@
         font-size: calculateScale(14px);
         height: 100%;
 
+        .header {
+            height: calculateScale(40px);
+            line-height: calculateScale(40px);
+        }
+
         .btn-select {
-            font-size: calculateScale(12px);
+            font-size: calculateScale(13px);
+            height: calculateScale(32px);
+            width: calculateScale(72px);
         }
 
         .library {
             height: calc(100% - 100px);
+
             .image-item {
-                width: 140px;
-                height: 140px;
+                width: 150px;
+                height: 150px;
             }
         }
     }
@@ -266,9 +274,12 @@
     .picture-library {
         font-size: calculateScale(14px);
         height: 100%;
+        background-color: #f4f4f4;
 
         .btn-select {
-            font-size: calculateScale(12px);
+            font-size: calculateScale(13px);
+            height: calculateScale(32px);
+            width: calculateScale(72px);
         }
 
         .library {

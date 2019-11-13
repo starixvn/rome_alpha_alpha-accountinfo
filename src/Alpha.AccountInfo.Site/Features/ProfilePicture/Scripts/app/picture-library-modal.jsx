@@ -4,7 +4,7 @@ import { handleError, requests } from '../../../Shared/Scripts/api-client';
 import { urls } from './profile-picture-helper';
 
 const customStyles = {
-    content: window.top.alpha.isScreenLower768 ? {
+    content: window.top.alpha.isScreenLower1024 ? {
         top: '0',
         left: '0',
         right: '0',
@@ -13,7 +13,15 @@ const customStyles = {
         padding: '0',
         overflow: 'hidden'
     } : {
-        overflow: 'hidden'
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        padding: '0',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: '600px',
+        height: 'auto'
     }
 };
 
@@ -74,9 +82,7 @@ export default class PictureLibraryModal extends PureComponent {
                         <span className="title">Profile picture gallery</span>
                         <span className="icon-close" onClick={this.props.closeModal}></span>
                     </div>
-                    <div>
-                        <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>                        
-                    </div>
+                    <button className='btn-select' onClick={this.hanldeOnSelect}>Select</button>   
                     <div className="library">
                         {
                             imagesList.map((profilePicture, index) =>
