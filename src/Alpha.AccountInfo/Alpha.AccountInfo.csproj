@@ -135,6 +135,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
@@ -228,6 +229,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Features\Shared\ImageConverter.cs" />
     <Compile Include="Features\Shared\StatusNames.cs" />
     <Compile Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.Designer.cs">
       <AutoGen>True</AutoGen>
