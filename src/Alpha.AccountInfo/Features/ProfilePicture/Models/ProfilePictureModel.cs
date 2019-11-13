@@ -4,6 +4,10 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.Models
 {
     public class ProfilePictureModel
     {
+        public ProfilePictureModel()
+        {
+        }
+
         public ProfilePictureModel(byte[] image)
         {
             ImageId = 0;
