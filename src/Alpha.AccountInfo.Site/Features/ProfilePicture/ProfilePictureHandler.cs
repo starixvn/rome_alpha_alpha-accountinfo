@@ -6,7 +6,6 @@
     using Alpha.AccountInfo.ProfilePicture.Services;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.Requests;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
-    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Fanex.Logging.Extensions.Web;
     using MediatR;
     using System;
