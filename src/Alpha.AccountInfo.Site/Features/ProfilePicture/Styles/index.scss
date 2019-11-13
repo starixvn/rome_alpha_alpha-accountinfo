@@ -213,13 +213,8 @@
 
 @media screen and (max-device-width: 480px) {
     .profile-picture {
-        background-color: #f4f4f4;
         width: 100%;
         font-size: calculateScale(14px);
-
-        .icon-close {
-            font-size: calculateScale(18px);
-        }
 
         .btn-from-device {
             height: calculateScale(32px);
@@ -250,12 +245,15 @@
     }
 
     .picture-library {
-        font-size: calculateScale(14px);
-        height: 100%;
+        background-color: #fff !important;
 
         .header {
             height: calculateScale(40px);
             line-height: calculateScale(40px);
+
+            .icon-close {
+                font-size: calculateScale(18px);
+            }
         }
 
         .btn-select {

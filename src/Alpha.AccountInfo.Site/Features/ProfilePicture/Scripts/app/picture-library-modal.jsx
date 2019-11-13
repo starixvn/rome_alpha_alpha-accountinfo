@@ -4,7 +4,7 @@ import { handleError, requests } from '../../../Shared/Scripts/api-client';
 import { urls } from './profile-picture-helper';
 
 const customStyles = {
-    content: window.top.alpha.isScreenLower1024 ? {
+    content: window.top.alpha.isScreenLower768 ? {
         top: '0',
         left: '0',
         right: '0',
