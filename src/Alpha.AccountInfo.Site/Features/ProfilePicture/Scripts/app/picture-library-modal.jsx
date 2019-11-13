@@ -13,7 +13,7 @@ const customStyles = {
         padding: '0',
         overflow: 'hidden'
     } : {
-
+        overflow: 'hidden'
     }
 };
 
@@ -71,11 +71,11 @@ export default class PictureLibraryModal extends PureComponent {
             >
                 <div className="picture-library">
                     <div className="header">
-                        <span class="title">Profile picture gallery</span>
+                        <span className="title">Profile picture gallery</span>
                         <span className="icon-close" onClick={this.props.closeModal}></span>
                     </div>
                     <div>
-                        <button className='btn-select' onClick={this.hanldeOnSelect}>Select</button>                        
+                        <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>                        
                     </div>
                     <div className="library">
                         {
@@ -85,10 +85,6 @@ export default class PictureLibraryModal extends PureComponent {
                                     onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}
                                     key={index} />)
                         }
-                    </div>
-                    <div className="btn-group">
-                        <button className="btn-submit" onClick={this.handleOnSelect}>{resources.Selected}</button>
-                        <button className="btn-cancel" onClick={closeModal}>{resources.Cancel}</button>
                     </div>
                 </div>
             </Modal>

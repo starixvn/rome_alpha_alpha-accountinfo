@@ -42,7 +42,7 @@
             {
                 ExceptionHandler.Handle(ex);
 
-                return new ProfielPictureViewModel(GetImagesHardCode().Concat(Enumerable.Empty<ProfilePictureModel>()) ,message.Language);
+                return new ProfielPictureViewModel(GetImagesHardCode().Concat(Enumerable.Empty<ProfilePictureModel>()), message.Language);
             }
         }
 
