@@ -71,7 +71,7 @@ class App extends PureComponent {
     handleOnSubmit() {
         const { croppedImage, originalAvatar } = this.state;
 
-        if (croppedImage.ImageId === originalAvatar.ImageId && croppedImage.ImageId > 0) {
+        if (croppedImage.ImageId > 0 && croppedImage.ImageId === originalAvatar.ImageId) {
             this.showMessage({
                 IsSuccess: false,
                 Message: this.props.resources.ThereIsNoChange
