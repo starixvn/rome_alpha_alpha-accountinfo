@@ -77,7 +77,7 @@ export default class PictureLibraryModal extends PureComponent {
                 style={customStyles}
                 contentLabel=""
             >
-                <div className="picture-library">
+                <div className="picture-library select-modal">
                     <div className="header">
                         <span className="title">Profile picture gallery</span>
                         <span className="icon-close" onClick={this.props.closeModal}></span>

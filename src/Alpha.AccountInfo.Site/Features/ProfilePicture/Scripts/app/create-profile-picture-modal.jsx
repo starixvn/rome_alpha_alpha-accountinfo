@@ -4,15 +4,24 @@ import Modal from 'react-modal';
 import { croppedImageId } from './profile-picture-helper';
 
 const customStyles = {
-    content: {
+    content: window.top.alpha.isScreenLower768 ? {
+        top: '0',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        border: 'none',
+        padding: '0',
+        overflow: 'hidden'
+    } : {
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
+        padding: '0',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        height: 'auto',
-        width: window.top.alpha.isScreenLower768 ? '100%' : '900px'
+        width: '600px',
+        height: 'auto'
     }
 };
 
@@ -105,11 +114,13 @@ export default class CreateProfilePictureModal extends PureComponent {
                 contentLabel=""
             >
                 {imageSrc && (
-                    <div className='crop-image'>
+                    <div className='crop-image select-modal'>
                         <div className='header'>
                             <span className='title'>{resources.UploadFromYourDevice}</span>
-                            <span className='closed' onClick={this.props.closeModal}>X</span>
+                            <span className='icon-close' onClick={this.props.closeModal}></span>
                         </div>
+                        <button className="btn-select" onClick={this.handleOnSelect}>{resources.Selected}</button>
+
                         <ReactCrop
                             minWidth={240}
                             src={imageSrc}
@@ -118,10 +129,6 @@ export default class CreateProfilePictureModal extends PureComponent {
                             onComplete={this.onCropComplete}
                             onChange={this.onCropChange}
                         />
-                        <div className="btn-group">
-                            <button className="btn-submit" onClick={this.handleOnSelect}>{resources.Selected}</button>
-                            <button className="btn-cancel" onClick={closeModal}>{resources.Cancel}</button>
-                        </div>
                     </div>
                 )}
             </Modal>

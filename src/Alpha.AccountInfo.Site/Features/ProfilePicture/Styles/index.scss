@@ -111,22 +111,6 @@
 }
 
 .crop-image {
-    .header {
-        display: block;
-        height: 30px;
-        border-bottom: 1px gray solid;
-
-
-        .title {
-            float: left;
-        }
-
-        .closed {
-            cursor: pointer;
-            color: red;
-            float: right;
-        }
-    }
 
     .ReactCrop {
         margin-top: 10px;
@@ -142,18 +126,9 @@
     .select-image {
         margin: 20px 0 20px 0;
     }
-
-    button {
-        float: left;
-        margin-left: 0px !important;
-    }
-
-    div:last-child {
-        display: block;
-    }
 }
 
-.picture-library {
+.select-modal {
     .header {
         border-bottom: 1px solid #d3d3d3;
         position: relative;
@@ -173,6 +148,18 @@
             cursor: pointer;
         }
     }
+
+    .btn-select {
+        margin: 12px 12px 4px 16px;
+        height: 32px;
+        background-color: #66151A;
+        color: #fff;
+        border: none;
+        width: 72px;
+    }
+}
+
+.picture-library {
 
     .library {
         overflow: auto;
@@ -200,14 +187,7 @@
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
 
-    .btn-select {
-        margin: 12px 12px 4px 16px;
-        height: 32px;
-        background-color: #66151A;
-        color: #fff;
-        border: none;
-        width: 72px;
-    }
+    
 }
 
 
@@ -244,9 +224,7 @@
         }
     }
 
-    .picture-library {
-        background-color: #fff !important;
-
+    .select-modal {
         .header {
             height: calculateScale(40px);
             line-height: calculateScale(40px);
@@ -261,6 +239,10 @@
             height: calculateScale(32px);
             width: calculateScale(72px);
         }
+    }
+
+    .picture-library {
+        background-color: #fff !important;
 
         .library {
             height: calc(100% - 100px);
@@ -279,14 +261,16 @@
         height: 100%;
         background-color: #f4f4f4;
 
+        .library {
+            height: calc(100% - 100px);
+        }
+    }
+
+    .select-modal {
         .btn-select {
             font-size: calculateScale(13px);
             height: calculateScale(32px);
             width: calculateScale(72px);
-        }
-
-        .library {
-            height: calc(100% - 100px);
         }
     }
 }
