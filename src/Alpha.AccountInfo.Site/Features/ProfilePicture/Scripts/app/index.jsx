@@ -22,6 +22,10 @@ class App extends PureComponent {
                 Image: defaultAvatarUrl
             } : imagesList.pop();
 
+        if (originalAvatar.Image === '') {
+            originalAvatar.Image = defaultAvatarUrl;
+        };
+
         this.state = {
             src: null,
             uploadFromDeviceModalIsOpen: false,

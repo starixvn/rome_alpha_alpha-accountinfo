@@ -58,6 +58,9 @@
     <Reference Include="Alpha.Products.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Products.Core.1.0.0.1\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Alpha.ProfilePicture, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.ProfilePicture.1.0.0-ForceChangeProfilePicture\lib\net461\Alpha.ProfilePicture.dll</HintPath>
+    </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
     </Reference>
@@ -344,7 +347,9 @@
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBTXN.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DB042.bodb02.BODBDownlineNet.xml" />

@@ -30,9 +30,4 @@
   <Function Name="Given Credit">
     <Setting Key="Acc_CustomerUpdCreditOnReplicateServer" SpName="Acc_CustomerUpdCreditOnReplicateServer" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
-
-  <Function Name="Profile Picture">
-    <Setting Key="Age_CustomerSelProfilePicture" SpName="Age_CustomerSelProfilePicture_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-  </Function>
-
 </Functions>

@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels
 {
     using Alpha.AccountInfo.Features.ProfilePicture.AppResources;
-    using Alpha.AccountInfo.Features.ProfilePicture.Models;
     using Alpha.Products.Core.Services;
+    using Alpha.ProfilePicture.Models;
     using System;
     using System.Collections.Generic;
     using System.Resources;

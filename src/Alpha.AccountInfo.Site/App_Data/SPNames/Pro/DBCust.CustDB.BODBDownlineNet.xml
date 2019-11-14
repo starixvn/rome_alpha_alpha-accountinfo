@@ -46,7 +46,6 @@
   </Function>
 
   <Function Name="Profile Picture">
-    <Setting Key="Age_CustomerUpdProfilePicture" SpName="Age_CustomerUpdProfilePicture_xtest" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="DBA_InsertProfilePictureLibrary" SpName="DBA_InsertProfilePictureLibrary" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   

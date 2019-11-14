@@ -5,7 +5,6 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Features.UnsuspendDownlines;
-    using Alpha.AccountInfo.ProfilePicture.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
@@ -19,6 +18,7 @@
     using Alpha.Products.Core.Configuration;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.ViewModels;
+    using Alpha.ProfilePicture.Services;
     using Alpha.SecurityCode.Services;
     using Alpha.Web.Helpers;
     using Fanex.Data.Repository;

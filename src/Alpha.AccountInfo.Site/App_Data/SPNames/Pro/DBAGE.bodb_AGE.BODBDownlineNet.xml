@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="" SiteName="Account Info">
   <Function Name="Profile Picture">
+    <Setting Key="Age_CustomerSelProfilePicture" SpName="Age_CustomerSelProfilePicture_xtest" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerProfilePictureLibrarySel" SpName="Age_CustomerProfilePictureLibrarySel_xtest" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_ProfilePictureDel	" SpName="Age_ProfilePictureDel	_xtest" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_ProfilePictureIns" SpName="Age_ProfilePictureIns_xtest" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_ProfilePictureUpd" SpName="Age_ProfilePictureUpd_xtest" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerUpdProfilePicture" SpName="Age_CustomerUpdProfilePicture_xtest" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

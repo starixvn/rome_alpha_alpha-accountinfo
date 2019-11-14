@@ -1,7 +1,9 @@
 ﻿namespace uploadAvarta.Controllers
 {
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.ProfilePicture.Services;
+    using Alpha.ProfilePicture.Models;
+    using Alpha.ProfilePicture.Services;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Drawing;
@@ -35,26 +37,26 @@
         [HttpPost]
         public ActionResult DoConvertImageToBinary(string url)
         {
-            //String searchFolder = @"";
+            String searchFolder = @"";
             var filters = new String[] { "jpg", "jpeg", "png", "gif", "tiff", "bmp", "svg" };
             var files = GetFilesFrom(url, filters, false);
 
-            //var fileName = new DirectoryInfo(url).Name;
+            var fileName = new DirectoryInfo(url).Name;
 
-            //string jsonData = JsonConvert.SerializeObject(files, Formatting.None);
-            //System.IO.File.WriteAllText(Server.MapPath($"~/JsonData/{fileName}.txt"), jsonData);
+            string jsonData = JsonConvert.SerializeObject(files, Formatting.None);
+            System.IO.File.WriteAllText(Server.MapPath($"~/JsonData/{fileName}.txt"), jsonData);
 
             return Json(files);
         }
 
-        public Result[] GetFilesFrom(String searchFolder, String[] filters, bool isRecursive)
+        public ProfilePictureResult[] GetFilesFrom(String searchFolder, String[] filters, bool isRecursive)
         {
-            List<Result> results = new List<Result>();
+            List<ProfilePictureResult> results = new List<ProfilePictureResult>();
             var searchOption = isRecursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
             foreach (var filter in filters)
             {
                 var paths = Directory.GetFiles(searchFolder, String.Format("*.{0}", filter), searchOption);
-               
+
 
                 foreach (var path in paths)
                 {
@@ -65,13 +67,13 @@
 
                     var result = profilePictureServices.UpdateManualProfilePictureCommand(imageBinary, name);
 
-                    if(!result.IsSuccess)
+                    if (!result.IsSuccess)
                     {
                         results.Add(result);
                     }
 
                     //var binaryData = string.Join("", $"0x{BitConverter.ToString(imageBinary).Replace("-", string.Empty)}");
-                 
+
                     //filesFound.Add(new ImageBinary($"{name}", binaryData));
                 }
             }
