@@ -34,8 +34,8 @@
     <CodeAnalysisRuleSet>Alpha.AccountInfo.Release.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
+    <Reference Include="Alpha.Products.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0.1\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="CasinoLibrary, Version=2.0.3.38621, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.0.3.38621\lib\net40\CasinoLibrary.dll</HintPath>
@@ -198,7 +198,6 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerInfoCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\NonQueryProductStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateCasinoStatusCriteria.cs" />
-    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateColossusBetStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateDCSProductStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateNG2StatusCriteria.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>

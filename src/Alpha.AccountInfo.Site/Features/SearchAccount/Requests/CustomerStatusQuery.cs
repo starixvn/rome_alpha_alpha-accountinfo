@@ -43,10 +43,6 @@
 
         public bool IsCasinoDisabled => viewer.IsCasinoDisabled;
 
-        public bool IsHideColossusBets => viewer.IsHideColossusBets;
-
-        public bool DisableColossusBets => viewer.DisableColossusBets;
-
         public bool IsDisabledESports => viewer.IsDisabledESports;
 
         public bool IsNumberGameDisabled => viewer.IsNumberGameDisabled;

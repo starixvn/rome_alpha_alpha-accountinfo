@@ -12,9 +12,6 @@
             bool uplineDisableNumber,
             bool disableEsports,
             bool uplineDisableEsports,
-            bool disableColossusBet,
-            bool hideColossusBet,
-            bool uplineDisableColossusBet,
             bool hideKeno,
             bool uplineHideGoldDeluxe,
             bool uplineDisableGoldDeluxe,
@@ -30,10 +27,6 @@
 
             DisableEsports = disableEsports;
             UplineDisableEsports = uplineDisableEsports;
-
-            DisableColossusBet = disableColossusBet;
-            HideColossusBet = hideColossusBet;
-            UplineDisableColossusBet = uplineDisableColossusBet;
 
             HideKeno = hideKeno;
 
@@ -56,12 +49,6 @@
         public bool DisableEsports { get; private set; }
 
         public bool UplineDisableEsports { get; private set; }
-
-        public bool DisableColossusBet { get; private set; }
-
-        public bool HideColossusBet { get; private set; }
-
-        public bool UplineDisableColossusBet { get; private set; }
 
         public bool HideKeno { get; private set; }
 

@@ -48,10 +48,6 @@
 
         bool IsCasinoDisabled { get; }
 
-        bool IsHideColossusBets { get; }
-
-        bool DisableColossusBets { get; }
-
         bool IsDisabledESports { get; }
 
         bool IsNumberGameDisabled { get; }

@@ -50,9 +50,6 @@
                 case GoldDeluxe:
                     return new GoldDeluxeViewModel(request);
 
-                case ColossusBets:
-                    return new ColossusBetsViewModel(request);
-
                 case Sportsbook2:
                     return new Sportsbook2ViewModel(request);
 

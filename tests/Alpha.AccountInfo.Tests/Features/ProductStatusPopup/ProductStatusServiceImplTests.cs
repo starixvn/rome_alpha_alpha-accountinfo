@@ -61,7 +61,6 @@
 
         [Theory]
         [InlineData(ProductConstants.RNGCasino, "Casino")]
-        [InlineData(ProductConstants.ColossusBets, "Colossus Bets")]
         public async Task GetProductStatusAsync_CasinoColossusBets_ReturnsDataFromDynamicRepository(int productId, string productName)
         {
             // Arrange
@@ -455,81 +454,6 @@
                 .Returns(true);
             criteriaFactory
                 .CreateUpdateCasinoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
-                .Returns(criteria);
-            dynamicRepository
-                .ExecuteAsync(Arg.Any<INonQueryCommand>())
-                .Returns(Task.CompletedTask);
-
-            // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
-
-            // Assert
-            Assert.True(!actualResult.IsSuccess &&
-                actualResult.Message == "You are not allowed to disable for downlines.");
-        }
-
-        [Fact]
-        public async Task UpdateProductStatusAsync_ColossusBets_ReturnsSucessfulResult()
-        {
-            // Arrange
-            var commandParam = new ProductStatusCommandParam(
-                ProductConstants.ColossusBets,
-                CustIdTest,
-                CustRoleTest,
-                0,
-                UplineLevelTest,
-                0,
-                string.Empty,
-                0,
-                null,
-                null,
-                null,
-                "en-US");
-            var criteria = new UpdateColossusBetStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
-            authorizationService
-                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
-                .Returns(criteria);
-            dynamicRepository
-                .ExecuteAsync(Arg.Any<INonQueryCommand>())
-                .Returns(Task.CompletedTask);
-
-            // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
-
-            // Assert
-            Assert.True(actualResult.IsSuccess);
-        }
-
-        [Fact]
-        public async Task UpdateProductStatusAsync_ColossusBets_ReturnsErrorResult()
-        {
-            // Arrange
-            var commandParam = new ProductStatusCommandParam(
-                ProductConstants.ColossusBets,
-                CustIdTest,
-                CustRoleTest,
-                0,
-                UplineLevelTest,
-                0,
-                string.Empty,
-                0,
-                null,
-                null,
-                null,
-                "en-US");
-            var criteria = new UpdateColossusBetStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
-            {
-                ErrCode = 102,
-                ErrMsg = "You are not allowed to disable for downlines."
-            };
-            authorizationService
-                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateUpdateCriteria(Arg.Any<ProductStatusCommandParam>())
                 .Returns(criteria);
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())

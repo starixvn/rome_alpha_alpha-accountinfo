@@ -19,10 +19,7 @@
              ["m"] = "0",
              ["custId"] = SearchAccount.Id.ToString(),
              ["user"] = SearchAccount.Username,
-             [$"{SearchAccount.Upline.CustomerLevel.DisplayName}id"] = SearchAccount.Upline.Id.ToString(),
-             ["callback"] = SearchAccount.IsMember
-                ? "Fanex.Customer.NewMember.OnRedirectToPage()"
-                : "Fanex.EditPT.OnRedirectToPage()"
+             [$"{SearchAccount.Upline.CustomerLevel.DisplayName}id"] = SearchAccount.Upline.Id.ToString()
          };
 
         protected override string BaseAddress

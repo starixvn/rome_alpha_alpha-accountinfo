@@ -14,7 +14,6 @@
         private readonly static List<int> productsAllowedSuperViewAgent = new List<int>
         {
             ProductConstants.Keno,
-            ProductConstants.ColossusBets,
             ProductConstants.RNGCasino
         };
 

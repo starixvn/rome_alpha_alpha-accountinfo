@@ -38,8 +38,8 @@
     <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Products.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0\lib\net461\Alpha.Products.Core.dll</HintPath>
+    <Reference Include="Alpha.Products.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0.1\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="AutoFixture, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoFixture.4.0.0\lib\net452\AutoFixture.dll</HintPath>
@@ -174,7 +174,6 @@
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectNG2ProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateCasinoStatusCriteriaTests.cs" />
-    <Compile Include="Features\ProductStatusPopup\SpParams\UpdateColossusBetStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateDCSProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateKenoStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateNG2StatusCriteriaTests.cs" />

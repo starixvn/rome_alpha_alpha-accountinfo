@@ -386,7 +386,6 @@
                 new CustomerProductStatus(ProductConstants.NumberGame, true),
                 new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
                 new CustomerProductStatus(ProductConstants.ESport, true),
-                new CustomerProductStatus(ProductConstants.ColossusBets, true, hidden: true),
                 new CustomerProductStatus(ProductConstants.Keno, hidden: true),
                 new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
             };
@@ -404,7 +403,6 @@
                 new CustomerProductStatus(ProductConstants.NumberGame, true),
                 new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
                 new CustomerProductStatus(ProductConstants.ESport, true),
-                new CustomerProductStatus(ProductConstants.ColossusBets, true, hidden: true),
                 new CustomerProductStatus(ProductConstants.Keno, hidden: true),
                 new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
             };
@@ -422,7 +420,6 @@
                 new CustomerProductStatus(ProductConstants.NumberGame, true),
                 new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
                 new CustomerProductStatus(ProductConstants.ESport, true),
-                new CustomerProductStatus(ProductConstants.ColossusBets, true),
                 new CustomerProductStatus(ProductConstants.Keno, hidden: true),
                 new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
             };
@@ -477,9 +474,6 @@
                        uplineDisableNumber: true,
                        disableEsports: true,
                        uplineDisableEsports: true,
-                       disableColossusBet: true,
-                       hideColossusBet: true,
-                       uplineDisableColossusBet: true,
                        hideKeno: true,
                        uplineHideGoldDeluxe: true,
                        uplineDisableGoldDeluxe: true,
