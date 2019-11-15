@@ -3,6 +3,7 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.Requests;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
+    using Alpha.Products.Core.Services;
     using Alpha.ProfilePicture.Models;
     using Alpha.ProfilePicture.Params;
     using Alpha.ProfilePicture.Services;
@@ -20,10 +21,20 @@
     {
         private const int NumerousOfDefaultPictures = 7;
         private readonly ProfilePictureServices profilePictureServices;
+        private readonly Func<int> getInsertProfilePictureSiteMode;
 
         public ProfilePictureHandler(ProfilePictureServices profilePictureServices)
+            : this(profilePictureServices, null)
+        {
+        }
+
+        internal ProfilePictureHandler(
+            ProfilePictureServices profilePictureServices,
+            Func<int> getInsertProfilePictureSiteMode)
         {
             this.profilePictureServices = profilePictureServices;
+            this.getInsertProfilePictureSiteMode = getInsertProfilePictureSiteMode ??
+             SimpleServiceLocator.GetService<Func<int>>();
         }
 
         public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
@@ -63,7 +74,7 @@
                   message.ActorId,
                   message.ImageId,
                   message.ImageBinary,
-                  1,
+                  getInsertProfilePictureSiteMode(),
                   false,
                   message.IP));
     }
