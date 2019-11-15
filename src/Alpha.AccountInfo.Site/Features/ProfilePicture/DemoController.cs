@@ -65,7 +65,8 @@
                     var dirInfo = new DirectoryInfo(path);
                     var name = $"{dirInfo.Parent.Name}-{dirInfo.Name}";
 
-                    var result = profilePictureServices.UpdateManualProfilePictureCommand(imageBinary, name);
+                    var limitedImageSize = Alpha.AccountInfo.Site.Features.Shared.Helpers.ImageConverter.ToLimitedImageSize(Convert.ToBase64String(imageBinary));
+                    var result = profilePictureServices.UpdateManualProfilePictureCommand(limitedImageSize, name);
 
                     if (!result.IsSuccess)
                     {

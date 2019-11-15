@@ -7,7 +7,7 @@
     using Alpha.ProfilePicture.Models;
     using Alpha.ProfilePicture.Params;
     using Alpha.ProfilePicture.Services;
-    using Fanex.Logging.Extensions.Web;
+    using Fanex.Caching;
     using MediatR;
     using System;
     using System.Collections.Generic;
@@ -19,6 +19,7 @@
         IAsyncRequestHandler<ProfilePictureLibraryQuery, IEnumerable<ProfilePictureModel>>,
         IAsyncRequestHandler<UpdateActorProfilePictureQuery, ProfilePictureResult>
     {
+        private const string ProfilePictureLibaryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
         private const int NumerousOfDefaultPictures = 7;
         private readonly ProfilePictureServices profilePictureServices;
         private readonly Func<int> getInsertProfilePictureSiteMode;
@@ -39,34 +40,17 @@
 
         public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
         {
-            try
-            {
-                var actorAvatar = await profilePictureServices.GetActorProfilePictureAsync(message.ActorId).ConfigureAwait(false);
-                var imageLibrary = await profilePictureServices.GetProfilePictureLibraryAsync().ConfigureAwait(false);
+            var actorAvatar = await profilePictureServices.GetActorProfilePictureAsync(message.ActorId).ConfigureAwait(false);
+            var imageLibrary = await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
 
-                return new ProfielPictureViewModel(
-                    imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures)
-                    .Concat(new[] { new ProfilePictureModel(actorAvatar.ImageId, actorAvatar.Image) }).Distinct(),
-                    message.Language);
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.Handle(ex);
-                return new ProfielPictureViewModel(Enumerable.Empty<ProfilePictureModel>(), message.Language);
-            }
+            return new ProfielPictureViewModel(
+                imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures)
+                .Concat(new[] { new ProfilePictureModel(actorAvatar.ImageId, actorAvatar.Image) }).Distinct(),
+                message.Language);
         }
 
         public async Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
-        {
-            try
-            {
-                return await profilePictureServices.GetProfilePictureLibraryAsync().ConfigureAwait(false);
-            }
-            catch
-            {
-                return Enumerable.Empty<ProfilePictureModel>();
-            }
-        }
+            => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
 
         public Task<ProfilePictureResult> Handle(UpdateActorProfilePictureQuery message)
           => profilePictureServices.UpdateActorProfilePictureAsync(
@@ -77,5 +61,10 @@
                   getInsertProfilePictureSiteMode(),
                   false,
                   message.IP));
+
+        public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
+            => await await ConfiguredCacheService.GetOrSetAsync(
+                    ProfilePictureLibaryKey,
+                    async () => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false)).ConfigureAwait(false);
     }
 }
