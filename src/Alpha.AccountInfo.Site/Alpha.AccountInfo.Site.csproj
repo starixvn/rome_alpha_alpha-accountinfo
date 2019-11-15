@@ -335,6 +335,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Internal\DBTXN.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DB042.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml" />
@@ -354,6 +357,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBAGE.bodb_AGE.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\SIT\DBTXN.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DB042.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBACC.bodb02.BODBDownlineNet.xml" />
@@ -362,9 +368,8 @@
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.css" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
-    <Content Include="Features\ProfilePicture\Bundles\jquery-3.3.1.js" />
-    <Content Include="Features\ProfilePicture\Bundles\react-crop-images.css" />
-    <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js" />
+    <Content Include="Features\ProfilePicture\Bundles\index.min.css" />
+    <Content Include="Features\ProfilePicture\Bundles\index.min.js" />
     <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture-modal.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\profile-picture-helper.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library-modal.jsx" />
@@ -481,8 +486,6 @@
     <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines.scss" />
     <Content Include="__mocks__\axios.js" />
     <Content Include="Features\ProfilePicture\Views\web.config" />
-    <Content Include="Features\ProfilePicture\Bundles\react-crop-images.css.map" />
-    <Content Include="Features\ProfilePicture\Bundles\react-crop-images.js.map" />
     <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
     <Content Include="Features\ProfilePicture\Views\ConvertImageToBinary.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\index.scss" />
@@ -601,7 +604,6 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Features\ProfilePicture\DemoController.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibraryQuery.cs" />
