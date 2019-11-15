@@ -12,10 +12,10 @@ export default class GivenCreditRow extends React.Component {
         this.reloadLeftPanel = this.reloadLeftPanel.bind(this);
     }
 
-    givenPopupOnclosing(updateSuccessfully = false) {
+    givenPopupOnclosing(username = null, updateSuccessfully = false) {
         if (updateSuccessfully === true) {
-            this.reloadLeftPanel();
-            const autoCloseGivenPopupTimeOut = 4000;
+            const autoCloseGivenPopupTimeOut = 1000;
+            this.reloadLeftPanel(username);
 
             setTimeout(() => {
                 window.top.updateGivenCreditPopup.close();
@@ -26,13 +26,13 @@ export default class GivenCreditRow extends React.Component {
         }
     }
 
-    reloadLeftPanel() {
-        $.blockUI();
-
-        const reloadLeftPanelTimeOut = 300;
+    reloadLeftPanel(username) {
+        const reloadLeftPanelTimeOut = 1500;
         setTimeout(() => {
-            const { customerInfo, fetchCustomerInfoFromServer } = this.props;
-            fetchCustomerInfoFromServer(customerInfo.UserName, LoadCustomerInfo.ByUpdateGivenCredit);
+            const searchAccountNameText = $('#search-account-id').attr('data-search-account-username');
+            if (username === searchAccountNameText) {
+                this.props.fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateGivenCredit);
+            }
         }, reloadLeftPanelTimeOut);
     }
 
@@ -51,9 +51,9 @@ export default class GivenCreditRow extends React.Component {
 
         if (window.top.updateGivenCreditPopup === null || window.top.updateGivenCreditPopup === undefined) {
             window.top.updateGivenCreditPopup = window.top.ageWnd.createInstance();
-            window.top.updateGivenCreditPopup.onClosing = this.givenPopupOnclosing;
         }
 
+        window.top.updateGivenCreditPopup.onClosing = this.givenPopupOnclosing;
         window.top.popupManager.openWithHanlder(top.updateGivenCreditPopup, givenCreditUrl, `${resources.GivenCreditPopupTitle} - ${customerInfo.UserName}`, width, height);
 
         if (mobileView) {

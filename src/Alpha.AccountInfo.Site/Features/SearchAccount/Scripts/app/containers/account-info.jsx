@@ -83,7 +83,7 @@ export default class AccountInfo extends React.Component {
         const loadCustomerInfoByClick = requestId === LoadCustomerInfo.ByClick;
         const resetSetting = requestId !== LoadCustomerInfo.ByUpdateStatus;
 
-        this.blockUIWrapper();
+        $.blockUI();
         accountInfoAPI.getCustomerInfo({ searchAccountName: username }, requestId).then(
             responeData => {
                 if (loadCustomerInfoByClick) {
