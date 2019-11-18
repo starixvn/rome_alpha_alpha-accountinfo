@@ -115,10 +115,8 @@ class App extends PureComponent {
 
     handleActionsAfterUpdateSuccessfully() {
         const { croppedImage } = this.state, { imagesList } = this.props;
-
-        window.top.alpha.isScreenLower768 ?
-            window.top.headerNav.setProfilePictureOnNav(croppedImage.Image) :
-            window.top.indexManager.loadPartialViews();
+        window.top.headerNav.setProfilePictureOnNav(croppedImage.Image);
+        window.top.indexManager.loadPartialViews();
 
         this.setState({
             imagesList: cloneDeep(imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5),
