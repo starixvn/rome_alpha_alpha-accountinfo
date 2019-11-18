@@ -238,15 +238,9 @@
             }
         }
 
-        .btn-select {
+        .btn-select, .btn-cancel {
             font-size: calculateScale(13px);
             height: calculateScale(32px);
-            width: calculateScale(72px);
-        }
-
-        .btn-cancel {
-            font-size: calculateScale(13px);
-            height: calculateScale(30px);
             width: calculateScale(72px);
         }
     }
@@ -278,15 +272,9 @@
     .select-modal {
         font-size: calculateScale(14px);
 
-        .btn-select {
+        .btn-select, .btn-cancel {
             font-size: calculateScale(13px);
             height: calculateScale(32px);
-            width: calculateScale(72px);
-        }
-
-        .btn-cancel {
-            font-size: calculateScale(13px);
-            height: calculateScale(30px);
             width: calculateScale(72px);
         }
     }
