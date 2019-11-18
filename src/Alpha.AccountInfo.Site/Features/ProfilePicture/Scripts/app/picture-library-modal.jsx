@@ -82,8 +82,10 @@ export default class PictureLibraryModal extends PureComponent {
                         <span className="title">Profile picture gallery</span>
                         <span className="icon-close" onClick={this.props.closeModal}></span>
                     </div>
-                    <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>
-                    <button className='btn-cancel' onClick={this.handleOnSelect}>Cancel</button> 
+                    <div className="btn-group">
+                        <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>
+                        <button className='btn-cancel' onClick={this.handleOnSelect}>Cancel</button> 
+                    </div>
                     <div className="library">
                         {
                             imagesList.map((profilePicture, index) =>
