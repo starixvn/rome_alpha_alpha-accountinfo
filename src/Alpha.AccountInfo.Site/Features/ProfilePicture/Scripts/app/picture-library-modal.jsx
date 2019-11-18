@@ -21,7 +21,7 @@ const customStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         width: '600px',
-        height: 'auto'
+        height: '710px'
     }
 };
 
@@ -82,7 +82,8 @@ export default class PictureLibraryModal extends PureComponent {
                         <span className="title">Profile picture gallery</span>
                         <span className="icon-close" onClick={this.props.closeModal}></span>
                     </div>
-                    <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>   
+                    <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>
+                    <button className='btn-cancel' onClick={this.handleOnSelect}>Cancel</button> 
                     <div className="library">
                         {
                             imagesList.map((profilePicture, index) =>

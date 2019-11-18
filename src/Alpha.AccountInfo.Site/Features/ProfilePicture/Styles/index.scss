@@ -165,7 +165,6 @@
         overflow: auto;
         margin-top: 10px;
         margin-bottom: 10px;
-        height: 600px;
         padding: 0 12px;
     }
 
@@ -234,7 +233,7 @@
             }
         }
 
-        .btn-select {
+        .btn-select, .btn-cancel {
             font-size: calculateScale(13px);
             height: calculateScale(32px);
             width: calculateScale(72px);
@@ -245,7 +244,7 @@
         background-color: #fff !important;
 
         .library {
-            height: calc(100% - 100px);
+            //height: calc(100% - 100px);
 
             .image-item {
                 width: 150px;
@@ -257,17 +256,17 @@
 
 @media screen and (max-device-width: 1024px) {
     .picture-library {
-        font-size: calculateScale(14px);
         height: 100%;
         background-color: #f4f4f4;
 
         .library {
-            height: calc(100% - 100px);
+            height: calc(100% - 122px);
         }
     }
 
     .select-modal {
-        .btn-select {
+        font-size: calculateScale(14px);
+        .btn-select, .btn-cancel {
             font-size: calculateScale(13px);
             height: calculateScale(32px);
             width: calculateScale(72px);

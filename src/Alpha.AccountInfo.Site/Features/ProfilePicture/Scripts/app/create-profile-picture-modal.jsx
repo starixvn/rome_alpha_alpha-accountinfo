@@ -120,7 +120,7 @@ export default class CreateProfilePictureModal extends PureComponent {
                             <span className='icon-close' onClick={this.props.closeModal}></span>
                         </div>
                         <button className="btn-select" onClick={this.handleOnSelect}>{resources.Selected}</button>
-
+                        <button className='btn-cancel' onClick={this.handleOnSelect}>Cancel</button> 
                         <ReactCrop
                             minWidth={240}
                             src={imageSrc}
