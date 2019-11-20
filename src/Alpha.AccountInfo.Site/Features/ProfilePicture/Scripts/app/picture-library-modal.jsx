@@ -36,6 +36,7 @@ export default class PictureLibraryModal extends PureComponent {
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnSelect = this.handleOnSelect.bind(this);
         this.getPictureLibary = this.getPictureLibary.bind(this);
+        this.handleOnDbClick = this.handleOnDbClick.bind(this);
     }
 
     componentDidUpdate() {
@@ -62,6 +63,11 @@ export default class PictureLibraryModal extends PureComponent {
         this.setState({ croppedImage: image })
     }
 
+    handleOnDbClick(image) {
+        this.handleOnClick(image);
+        this.handleOnSelect();
+    }
+
     handleOnSelect() {
         const { croppedImage } = this.state;
         this.props.setCroppedImage(croppedImage);
@@ -80,18 +86,20 @@ export default class PictureLibraryModal extends PureComponent {
                 <div className="picture-library select-modal">
                     <div className="header">
                         <span className="title">Profile picture gallery</span>
-                        <span className="icon-close" onClick={this.props.closeModal}></span>
+                        <span className="icon-close" onClick={closeModal}></span>
                     </div>
                     <div className="btn-group">
                         <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>
-                        <button className='btn-cancel' onClick={this.handleOnSelect}>Cancel</button> 
+                        <button className='btn-cancel' onClick={closeModal}>Cancel</button> 
                     </div>
                     <div className="library">
                         {
                             imagesList.map((profilePicture, index) =>
                                 <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
                                     alt="Crop"
-                                    onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}
+                                    src={profilePicture.Image}
+                                    onClick={() => this.handleOnClick(profilePicture)} 
+                                    onDoubleClick={() => this.handleOnDbClick(profilePicture)} 
                                     key={index} />)
                         }
                     </div>

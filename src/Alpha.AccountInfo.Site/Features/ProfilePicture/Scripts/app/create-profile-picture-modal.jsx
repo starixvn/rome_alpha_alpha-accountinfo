@@ -117,11 +117,11 @@ export default class CreateProfilePictureModal extends PureComponent {
                     <div className='crop-image select-modal'>
                         <div className='header'>
                             <span className='title'>{resources.UploadFromYourDevice}</span>
-                            <span className='icon-close' onClick={this.props.closeModal}></span>
+                            <span className='icon-close' onClick={closeModal}></span>
                         </div>
                         <div className="btn-group">
                             <button className="btn-select" onClick={this.handleOnSelect}>{resources.Selected}</button>
-                            <button className='btn-cancel' onClick={this.handleOnSelect}>Cancel</button> 
+                            <button className='btn-cancel' onClick={closeModal}>Cancel</button> 
                         </div>
                         <ReactCrop
                             minWidth={240}
