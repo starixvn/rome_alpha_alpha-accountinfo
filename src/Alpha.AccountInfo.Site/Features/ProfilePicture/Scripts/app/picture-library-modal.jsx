@@ -25,6 +25,8 @@ const customStyles = {
     }
 };
 
+let tapped = false;
+
 export default class PictureLibraryModal extends PureComponent {
     constructor(props) {
         super(props);
@@ -36,7 +38,6 @@ export default class PictureLibraryModal extends PureComponent {
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnSelect = this.handleOnSelect.bind(this);
         this.getPictureLibary = this.getPictureLibary.bind(this);
-        this.handleOnDbClick = this.handleOnDbClick.bind(this);
     }
 
     componentDidUpdate() {
@@ -60,12 +61,16 @@ export default class PictureLibraryModal extends PureComponent {
     }
 
     handleOnClick(image) {
-        this.setState({ croppedImage: image })
-    }
-
-    handleOnDbClick(image) {
-        this.handleOnClick(image);
-        this.handleOnSelect();
+        if (!tapped) {
+            this.setState({ croppedImage: image });
+            tapped = setTimeout(function () {
+                tapped = null;
+            }, 300);
+        } else {
+            clearTimeout(tapped);
+            tapped = null;
+            this.handleOnSelect();
+        }
     }
 
     handleOnSelect() {
@@ -98,8 +103,8 @@ export default class PictureLibraryModal extends PureComponent {
                                 <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
                                     alt="Crop"
                                     src={profilePicture.Image}
-                                    onClick={() => this.handleOnClick(profilePicture)} 
-                                    onDoubleClick={() => this.handleOnDbClick(profilePicture)} 
+                                    onClick={() => this.handleOnClick(profilePicture)}
+                                    onTouchStart={() => this.handleOnClick(profilePicture)}
                                     key={index} />)
                         }
                     </div>
