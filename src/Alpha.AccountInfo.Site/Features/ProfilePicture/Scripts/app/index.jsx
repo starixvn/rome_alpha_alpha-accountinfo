@@ -153,83 +153,81 @@ class App extends PureComponent {
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
         return (
-            <div className="profile-picture">
-                <div>
-                    <div>
-                        <ul>
-                            <li className="current">
-                                <a>
-                                    <span>Profile Picture</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href={setUpOTPLink}>
-                                    <span>OTP</span>
-                                </a>
-                            </li>
-                        </ul>
+            <div>
+                <ul className="nav nav-tabs">
+                    <li className="tab-item active">
+                        <a>
+                            <span>Profile Picture</span>
+                        </a>
+                    </li>
+                    <li className="tab-item">
+                        <a href={setUpOTPLink}>
+                            <span>OTP</span>
+                        </a>
+                    </li>
+                </ul>
+                <div className="profile-picture">                    
+                    <div className="crop-img-info">
+                        <img alt="Crop" src={croppedImage.Image} className='cropped-image' />
+                        <div className="wrapper-right">
+                            <label htmlFor="files" {...disabled} className="btn-from-device"> {resources.UploadFromYourDevice} </label>
+                            <input id="files" {...disabled} accept="image/png, image/jpeg, image/gif" type="file" onChange={this.onSelectFile} />
+                        </div>
                     </div>
-                </div>
-                <div className="crop-img-info">
-                    <img alt="Crop" src={croppedImage.Image} className='cropped-image' />
-                    <div className="wrapper-right">
-                        <label htmlFor="files" {...disabled} className="btn-from-device"> {resources.UploadFromYourDevice} </label>
-                        <input id="files" {...disabled} accept="image/png, image/jpeg, image/gif" type="file" onChange={this.onSelectFile} />
+                    <div className="choose-picture">
+                        <div className="extend-section">
+                            <span className="txt">{resources.OrChooseFromOurGallery}</span>
+                            <a className='view-all'
+                                onClick={this.handleViewLibrary}
+                                onTouchStart={this.handleViewLibrary} 
+                            >{resources.ViewAll}</a>
+                        </div>
+                        <div className="list-picture">
+                            <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
+                                alt="Crop"
+                                onClick={() => this.handleOnClick(originalAvatar)}
+                                onTouchStart={() => this.handleOnClick(originalAvatar)}
+                                src={originalAvatar.Image}
+                            />
+                            {
+                                imagesList.map((profilePicture, index) =>
+                                    <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
+                                        alt="Crop"
+                                        onClick={() => this.handleOnClick(profilePicture)}
+                                        onTouchStart={() => this.handleOnClick(profilePicture)}
+                                        src={profilePicture.Image}
+                                        key={index}
+                                    />
+                                )
+                            }
+                        </div>
                     </div>
-                </div>
-                <div className="choose-picture">
-                    <div className="extend-section">
-                        <span className="txt">{resources.OrChooseFromOurGallery}</span>
-                        <a className='view-all'
-                            onClick={this.handleViewLibrary}
-                            onTouchStart={this.handleViewLibrary} 
-                        >{resources.ViewAll}</a>
+
+                    {this.state.message}
+
+                    <div className="btn-group">
+                        <button className="btn-submit" {...disabled} onClick={this.handleOnSubmit} onTouchStart={this.handleOnSubmit}>{resources.Submit}</button>
+                        <button className="btn-reset" {...disabled} onClick={this.handleOnReset} onTouchStart={this.handleOnReset}>{resources.Reset}</button>
                     </div>
-                    <div className="list-picture">
-                        <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
-                            alt="Crop"
-                            onClick={() => this.handleOnClick(originalAvatar)}
-                            onTouchStart={() => this.handleOnClick(originalAvatar)}
-                            src={originalAvatar.Image}
-                        />
-                        {
-                            imagesList.map((profilePicture, index) =>
-                                <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
-                                    alt="Crop"
-                                    onClick={() => this.handleOnClick(profilePicture)}
-                                    onTouchStart={() => this.handleOnClick(profilePicture)}
-                                    src={profilePicture.Image}
-                                    key={index}
-                                />
-                            )
-                        }
-                    </div>
-                </div>
 
-                {this.state.message}
+                    <CreateProfilePictureModal
+                        modalIsOpen={uploadFromDeviceModalIsOpen}
+                        imageSrc={src}
+                        resources={resources}
+                        setCroppedImage={this.setCroppedImage}
+                        openModal={this.openModal}
+                        closeModal={this.closeModal}
+                    />
 
-                <div className="btn-group">
-                    <button className="btn-submit" {...disabled} onClick={this.handleOnSubmit} onTouchStart={this.handleOnSubmit}>{resources.Submit}</button>
-                    <button className="btn-reset" {...disabled} onClick={this.handleOnReset} onTouchStart={this.handleOnReset}>{resources.Reset}</button>
-                </div>
-
-                <CreateProfilePictureModal
-                    modalIsOpen={uploadFromDeviceModalIsOpen}
-                    imageSrc={src}
-                    resources={resources}
-                    setCroppedImage={this.setCroppedImage}
-                    openModal={this.openModal}
-                    closeModal={this.closeModal}
-                />
-
-                <PictureLibraryModal
-                    modalIsOpen={pictureLibraryModalIsOpen}
-                    resources={resources}
-                    setCroppedImage={this.setCroppedImage}
-                    openModal={this.openModal}
-                    closeModal={this.closeModal}
-                />
-            </div >
+                    <PictureLibraryModal
+                        modalIsOpen={pictureLibraryModalIsOpen}
+                        resources={resources}
+                        setCroppedImage={this.setCroppedImage}
+                        openModal={this.openModal}
+                        closeModal={this.closeModal}
+                    />
+                </div >
+            </div>
         );
     }
 }

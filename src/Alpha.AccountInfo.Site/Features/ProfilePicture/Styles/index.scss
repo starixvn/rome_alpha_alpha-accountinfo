@@ -259,6 +259,17 @@
     }
 }
 
+.nav-tabs {
+    display: table;
+    width: 100%;
+
+    .tab-item {
+        display: table-cell;
+        float: none;
+        text-align: center;
+    }
+}
+
 @media screen and (max-device-width: 1024px) {
     .picture-library {
         height: 100%;
