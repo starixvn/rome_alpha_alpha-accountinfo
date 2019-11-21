@@ -8,6 +8,8 @@
 
         byte LevelId { get; }
 
+        bool IsSubAcc { get; }
+
         int SubAccId { get; }
 
         string SubAccName { get; }

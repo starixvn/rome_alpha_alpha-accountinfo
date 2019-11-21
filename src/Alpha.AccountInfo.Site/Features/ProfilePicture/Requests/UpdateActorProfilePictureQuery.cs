@@ -3,7 +3,6 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.Shared;
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
-    using Alpha.ProfilePicture.Models;
     using MediatR;
 
     public class UpdateActorProfilePictureQuery : BaseRequest, IRequest<ProfilePictureResult>
@@ -12,6 +11,7 @@
         {
             ActorId = viewer.Id;
             IP = viewer.IP;
+            AllowUpdate = viewer.CanUpdateAccount && !viewer.IsSubAcc;
         }
 
         public int ActorId { get;}
@@ -25,6 +25,13 @@
 
         public string IP { get; }
 
-        public override bool IsValid() => ActorId > 0 && (ImageId > 0 || (ImageId < 0 && ImageBinary != null));
+        public bool AllowUpdate { get; private set; }
+
+        public override bool IsValid()
+        {
+            var IsValidActorPermission = AllowUpdate && ActorId > 0;
+            var IsValidImage = ImageId > 0 || (ImageId < 0 && ImageBinary != null);
+            return IsValidActorPermission && IsValidImage;
+        }
     }
 }

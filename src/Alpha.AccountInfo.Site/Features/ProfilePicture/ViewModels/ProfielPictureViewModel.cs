@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels
 {
     using Alpha.Products.Core.Services;
+    using Alpha.Products.Core.Shared;
     using Alpha.ProfilePicture.AppResources;
     using Alpha.ProfilePicture.Models;
     using System;
@@ -9,19 +10,30 @@
 
     public class ProfielPictureViewModel
     {
+        private readonly Func<string, string, string> GetMicroSiteUrl;
+        private readonly Func<string, ResourceManager, string> ConvertResourcesJson;
+        private readonly string Language;
+
         public ProfielPictureViewModel(
             IEnumerable<ProfilePictureModel> images,
             string language,
-            Func<string, ResourceManager, string> convertResourcesJson = null)
+            bool allowUpdate,
+            Func<string, ResourceManager, string> convertResourcesJson = null,
+            Func<string, string, string> getMicroSiteUrl = null)
         {
             Images = images;
-
-            var ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
-            Resources = ConvertResourcesJson(language, ProfilePictureResources.ResourceManager);
+            Language = language;
+            AllowUpdate = allowUpdate;
+            ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
+            GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
         }
 
         public IEnumerable<ProfilePictureModel> Images { get; private set; }
 
-        public string Resources { get; private set; }
+        public bool AllowUpdate { get; private set; }
+
+        public string Resources => ConvertResourcesJson(Language, ProfilePictureResources.ResourceManager);
+
+        public string SetUpOTPLink => $"{GetMicroSiteUrl(MicroSiteConstants.Main, "~/")}/Otp/SetupOtp";
     }
 }

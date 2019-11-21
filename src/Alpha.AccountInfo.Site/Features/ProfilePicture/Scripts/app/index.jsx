@@ -8,7 +8,7 @@ import { handleError, requests } from '../../../Shared/Scripts/api-client';
 import { decodeResources } from '../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 import CreateProfilePictureModal from './create-profile-picture-modal';
 import PictureLibraryModal from './picture-library-modal';
-import { defaultImageId, croppedImageId, urls} from './profile-picture-helper';
+import { defaultImageId, croppedImageId, urls } from './profile-picture-helper';
 
 Modal.setAppElement('#root');
 
@@ -52,7 +52,7 @@ class App extends PureComponent {
     }
 
     setCroppedImage(profilePicture) {
-        this.setState({ croppedImage: profilePicture});
+        this.setState({ croppedImage: profilePicture });
     }
 
     openModal() {
@@ -146,34 +146,61 @@ class App extends PureComponent {
         }
     }
 
+    // TODO: ProfilePictureResource
     render() {
         const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
-            { resources } = this.props, showButton = imagesList.length > 0;
+            { resources, setUpOTPLink, allowUpdate } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
+            disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
         return (
             <div className="profile-picture">
+                <div>
+                    <div>
+                        <ul>
+                            <li className="current">
+                                <a>
+                                    <span>Profile Picture</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href={setUpOTPLink}>
+                                    <span>OTP</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div className="crop-img-info">
                     <img alt="Crop" src={croppedImage.Image} className='cropped-image' />
                     <div className="wrapper-right">
-                        {showButton && <label htmlFor="files" className="btn-from-device"> {resources.UploadFromYourDevice} </label>}
-                        <input id="files" accept="image/png, image/jpeg, image/gif" type="file" onChange={this.onSelectFile} />
+                        <label htmlFor="files" {...disabled} className="btn-from-device"> {resources.UploadFromYourDevice} </label>
+                        <input id="files" {...disabled} accept="image/png, image/jpeg, image/gif" type="file" onChange={this.onSelectFile} />
                     </div>
                 </div>
                 <div className="choose-picture">
                     <div className="extend-section">
                         <span className="txt">{resources.OrChooseFromOurGallery}</span>
-                        {showButton && <a className='view-all' onClick={this.handleViewLibrary} onTouchStart={this.handleViewLibrary}>{resources.ViewAll}</a>}
+                        <a className='view-all'
+                            onClick={this.handleViewLibrary}
+                            onTouchStart={this.handleViewLibrary} 
+                        >{resources.ViewAll}</a>
                     </div>
                     <div className="list-picture">
                         <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
                             alt="Crop"
-                            onClick={() => this.handleOnClick(originalAvatar)} src={originalAvatar.Image} />
+                            onClick={() => this.handleOnClick(originalAvatar)}
+                            onTouchStart={() => this.handleOnClick(originalAvatar)}
+                            src={originalAvatar.Image}
+                        />
                         {
                             imagesList.map((profilePicture, index) =>
                                 <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
                                     alt="Crop"
-                                    onClick={() => this.handleOnClick(profilePicture)} src={profilePicture.Image}
-                                    key={index} />
+                                    onClick={() => this.handleOnClick(profilePicture)}
+                                    onTouchStart={() => this.handleOnClick(profilePicture)}
+                                    src={profilePicture.Image}
+                                    key={index}
+                                />
                             )
                         }
                     </div>
@@ -181,12 +208,10 @@ class App extends PureComponent {
 
                 {this.state.message}
 
-                {showButton &&
-                    <div className="btn-group">
-                    <button className="btn-submit" onClick={this.handleOnSubmit}>{resources.Submit}</button>
-                    <button className="btn-reset" onClick={this.handleOnReset}>{resources.Reset}</button>
-                    </div>
-                }
+                <div className="btn-group">
+                    <button className="btn-submit" {...disabled} onClick={this.handleOnSubmit} onTouchStart={this.handleOnSubmit}>{resources.Submit}</button>
+                    <button className="btn-reset" {...disabled} onClick={this.handleOnReset} onTouchStart={this.handleOnReset}>{resources.Reset}</button>
+                </div>
 
                 <CreateProfilePictureModal
                     modalIsOpen={uploadFromDeviceModalIsOpen}
@@ -204,16 +229,16 @@ class App extends PureComponent {
                     openModal={this.openModal}
                     closeModal={this.closeModal}
                 />
-            </div>
+            </div >
         );
     }
 }
 
 export default App;
 
-export const renderApp = (imagesList, defaultAvatarUrl, resources) => {
+export const renderApp = (imagesList, defaultAvatarUrl, resources, setUpOTPLink, allowUpdate) => {
     ReactDOM.render(
-        <App {...{ imagesList, defaultAvatarUrl, resources: decodeResources(resources)}}/>,
+        <App {...{ imagesList, defaultAvatarUrl, resources: decodeResources(resources), setUpOTPLink, allowUpdate }} />,
         document.getElementById('root')
     );
 };

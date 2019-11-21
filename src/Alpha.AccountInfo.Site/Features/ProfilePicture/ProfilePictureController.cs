@@ -2,6 +2,7 @@
 {
     using Alpha.AccountInfo.Site.Features.ProfilePicture.Requests;
     using Alpha.AccountInfo.Site.Features.Shared;
+    using Alpha.Web.Filters;
     using MediatR;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -22,8 +23,7 @@
         public async Task<ActionResult> GetPictureLibrary(ProfilePictureLibraryQuery message)
         => await JsonDataAsync(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
-        //, AntiXsrfFilter
-        [HttpPost]
+        [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UpdateActorProfilePicture(UpdateActorProfilePictureQuery query)
         => await JsonDataAsync(query, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
     }

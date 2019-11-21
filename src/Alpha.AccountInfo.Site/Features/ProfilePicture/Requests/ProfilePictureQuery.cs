@@ -11,11 +11,14 @@
         {
             ActorId = viewer.Id;
             Language = viewer.Language;
+            AllowUpdate = viewer.CanUpdateAccount && !viewer.IsSubAcc;
         }
 
         public int ActorId { get;}
 
         public string Language { get; private set; }
+
+        public bool AllowUpdate { get; private set; }
 
         public override bool IsValid() => ActorId > 0;
     }

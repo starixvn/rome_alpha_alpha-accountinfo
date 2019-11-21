@@ -46,7 +46,8 @@
             return new ProfielPictureViewModel(
                 imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures)
                 .Concat(new[] { new ProfilePictureModel(actorAvatar.ImageId, actorAvatar.Image) }).Distinct(),
-                message.Language);
+                message.Language,
+                message.AllowUpdate);
         }
 
         public async Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
