@@ -257,16 +257,16 @@
             }
         }
     }
-}
 
-.nav-tabs {
-    display: table;
-    width: 100%;
+    .nav-tabs {
+        display: table;
+        width: 100%;
 
-    .tab-item {
-        display: table-cell;
-        float: none;
-        text-align: center;
+        .tab-item {
+            display: table-cell;
+            float: none;
+            text-align: center;
+        }
     }
 }
 
