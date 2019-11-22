@@ -30,15 +30,8 @@ export default class CreateProfilePictureModal extends PureComponent {
         super(props);
         $.blockUI();
         this.state = {
-            croppedImageUrl: null,
-            crop: {
-                unit: 'px',
-                x: 130,
-                y: 50,
-                aspect: 1,
-                width: 240,
-                height: 240
-            }
+            croppedImageUrl: null
+           
         };
         
         this.onImageLoaded = this.onImageLoaded.bind(this);
@@ -49,6 +42,17 @@ export default class CreateProfilePictureModal extends PureComponent {
 
     onImageLoaded(image) {
         this.imageRef = image;
+        this.setState({
+            crop: {
+                x: 130,
+                y: 50,
+                aspect: 1,
+                width: 240,
+                height: 240
+            }
+        });
+
+        return false;
     };
 
     onCropComplete(crop) {
@@ -127,6 +131,7 @@ export default class CreateProfilePictureModal extends PureComponent {
                             minWidth={240}
                             src={imageSrc}
                             crop={crop}
+                            circularCrop={true}
                             onImageLoaded={this.onImageLoaded}
                             onComplete={this.onCropComplete}
                             onChange={this.onCropChange}

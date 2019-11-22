@@ -105,8 +105,13 @@ class App extends PureComponent {
         this.showMessage(data);
 
         if (data.IsSuccess) {
+            this.handleActionsAfterUpdateSuccessfully();
+
             setTimeout(() => {
-                this.handleActionsAfterUpdateSuccessfully();
+                this.setState({
+                    hideMessages: true,
+                    message: ''
+                });
             }, 1500);
         }
 
@@ -120,9 +125,7 @@ class App extends PureComponent {
 
         this.setState({
             imagesList: cloneDeep(imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5),
-            originalAvatar: croppedImage,
-            hideMessages: true,
-            message: ''
+            originalAvatar: croppedImage
         });
     }
 
@@ -137,11 +140,21 @@ class App extends PureComponent {
 
     onSelectFile(e) {
         if (e.target.files && e.target.files.length > 0) {
-            const reader = new FileReader();
-            reader.addEventListener("load", () => {
-                this.setState({ src: reader.result, uploadFromDeviceModalIsOpen: true });
-            });
-            reader.readAsDataURL(e.target.files[0]);
+            const file = e.target.files[0], fileType = file["type"];
+            if (fileType.search('image') >= 0) {
+                const reader = new FileReader();
+                reader.addEventListener("load", () => {
+                    this.setState({ src: reader.result, uploadFromDeviceModalIsOpen: true });
+                });
+                reader.readAsDataURL(e.target.files[0]);
+            }
+            else {
+                this.showMessage({
+                    IsSuccess: false,
+                    Message: 'Wrong files.'
+                });
+            }
+
             $(e.target).val('');
         }
     }
