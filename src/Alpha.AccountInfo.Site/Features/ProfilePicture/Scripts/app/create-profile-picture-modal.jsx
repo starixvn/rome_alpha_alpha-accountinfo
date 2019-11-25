@@ -26,7 +26,7 @@ const customStyles = {
 };
 
 const cropDefault = {
-    x: 130,
+    x: 180,
     y: 50,
     aspect: 1,
     width: 240,
@@ -57,7 +57,7 @@ export default class CreateProfilePictureModal extends PureComponent {
     };
 
     onCropChange(crop) {
-        this.setState({ crop: crop.width < 240 || crop.height < 240 ? cropDefault : crop });
+        this.setState({ crop: crop.width < 240 || crop.height < 240 || crop.x < 0 || crop.y < 0 ? cropDefault : crop });
     };
 
     handleOnSelect() {

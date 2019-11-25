@@ -119,8 +119,39 @@
             display: block;
             max-width: 800px;
             max-height: 500px;
-            overflow:auto;
+            overflow: auto;
         }
+    }
+
+    .ReactCrop__drag-handle {
+        width: 120px !important;
+        height: 120px !important;
+        background-color: inherit !important;
+        border: none !important;
+    }
+
+    .ord-sw {
+        margin-bottom: -40px !important;
+        margin-left: -40px !important;
+    }
+
+    .ord-se {
+        margin-bottom: -40px !important;
+        margin-right: -40px !important;
+    }
+
+    .ord-nw {
+        margin-top: -40px !important;
+        margin-left: -40px !important;
+    }
+
+    .ord-ne {
+        margin-top: -40px !important;
+        margin-right: -40px !important;
+    }
+
+    .select-image {
+        margin: 20px 0 20px 0;
     }
 
     .select-image {
