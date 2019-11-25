@@ -111,16 +111,14 @@
 }
 
 .crop-image {
+    height: 100%;
 
     .ReactCrop {
         margin-top: 10px;
-
-        div:first-child {
-            display: block;
-            max-width: 800px;
-            max-height: 500px;
-            overflow: auto;
-        }
+        height: calc(100% - 122px);
+        display: block;
+        overflow: auto;
+        background: #fff;
     }
 
     .ReactCrop__drag-handle {
