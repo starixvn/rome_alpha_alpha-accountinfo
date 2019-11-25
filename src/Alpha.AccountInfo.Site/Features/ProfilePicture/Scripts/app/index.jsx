@@ -49,10 +49,11 @@ class App extends PureComponent {
         this.setCroppedImage = this.setCroppedImage.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.resetMessageContainer = this.resetMessageContainer.bind(this);
     }
 
     setCroppedImage(profilePicture) {
-        this.setState({ croppedImage: profilePicture });
+        this.setState({ croppedImage: profilePicture, src: null });
     }
 
     openModal() {
@@ -73,6 +74,7 @@ class App extends PureComponent {
     }
 
     handleOnSubmit() {
+        $.blockUI();
         const { croppedImage, originalAvatar } = this.state;
 
         if (croppedImage.ImageId > 0 && croppedImage.ImageId === originalAvatar.ImageId) {
@@ -82,13 +84,21 @@ class App extends PureComponent {
             });
         }
         else {
-            $.blockUI();
             croppedImage.ImageId !== defaultImageId && requests.post(urls.UpdateActorProfilePicture,
                 {
                     ImageId: croppedImage.ImageId,
                     Image: croppedImage.ImageId === croppedImageId ? croppedImage.Image.split(';base64,')[1] : null
                 }).then(data => this.handleActionsAfterUpdate(data)).catch(handleError);
         }
+
+        $.unblockUI();
+    }
+
+    resetMessageContainer() {
+        this.setState({
+            hideMessages: true,
+            message: ''
+        });
     }
 
     showMessage(data) {
@@ -108,14 +118,9 @@ class App extends PureComponent {
             this.handleActionsAfterUpdateSuccessfully();
 
             setTimeout(() => {
-                this.setState({
-                    hideMessages: true,
-                    message: ''
-                });
+                this.resetMessageContainer();
             }, 1500);
         }
-
-        $.unblockUI();
     }
 
     handleActionsAfterUpdateSuccessfully() {
@@ -146,12 +151,13 @@ class App extends PureComponent {
                 reader.addEventListener("load", () => {
                     this.setState({ src: reader.result, uploadFromDeviceModalIsOpen: true });
                 });
-                reader.readAsDataURL(e.target.files[0]);
+                reader.readAsDataURL(file);
             }
             else {
                 this.showMessage({
                     IsSuccess: false,
-                    Message: 'Wrong files.'
+                    Message: 'The uploading file is not a picture, please try again!'
+                      // TODO: wrong files Resource
                 });
             }
 
@@ -230,6 +236,7 @@ class App extends PureComponent {
                         setCroppedImage={this.setCroppedImage}
                         openModal={this.openModal}
                         closeModal={this.closeModal}
+                        resetMessageContainer={this.resetMessageContainer}
                     />
 
                     <PictureLibraryModal

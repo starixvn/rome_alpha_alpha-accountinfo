@@ -13,16 +13,24 @@ const customStyles = {
         padding: '0',
         overflow: 'hidden'
     } : {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        padding: '0',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        width: '600px',
-        height: 'auto'
-    }
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            padding: '0',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            width: '600px',
+            height: 'auto'
+        }
+};
+
+const cropDefault = {
+    x: 130,
+    y: 50,
+    aspect: 1,
+    width: 240,
+    height: 240
 };
 
 export default class CreateProfilePictureModal extends PureComponent {
@@ -30,10 +38,10 @@ export default class CreateProfilePictureModal extends PureComponent {
         super(props);
         $.blockUI();
         this.state = {
-            croppedImageUrl: null
-           
+            croppedImageUrl: null,
+            crop: cropDefault
         };
-        
+
         this.onImageLoaded = this.onImageLoaded.bind(this);
         this.onCropComplete = this.onCropComplete.bind(this);
         this.onCropChange = this.onCropChange.bind(this);
@@ -42,17 +50,6 @@ export default class CreateProfilePictureModal extends PureComponent {
 
     onImageLoaded(image) {
         this.imageRef = image;
-        this.setState({
-            crop: {
-                x: 130,
-                y: 50,
-                aspect: 1,
-                width: 240,
-                height: 240
-            }
-        });
-
-        return false;
     };
 
     onCropComplete(crop) {
@@ -60,15 +57,18 @@ export default class CreateProfilePictureModal extends PureComponent {
     };
 
     onCropChange(crop) {
-        this.setState({ crop });
+        this.setState({ crop: crop.width < 240 || crop.height < 240 ? cropDefault : crop });
     };
 
     handleOnSelect() {
-        this.props.setCroppedImage({
+        const { setCroppedImage, closeModal, resetMessageContainer } = this.props;
+        setCroppedImage({
             Image: this.state.croppedImageUrl,
             ImageId: croppedImageId
         });
-        this.props.closeModal();
+
+        closeModal();
+        resetMessageContainer();
     }
 
     makeClientCrop(crop) {
@@ -108,7 +108,7 @@ export default class CreateProfilePictureModal extends PureComponent {
 
     render() {
         $.unblockUI();
-        const { crop } = this.state, { imageSrc, closeModal, resources, modalIsOpen} = this.props;
+        const { crop } = this.state, { imageSrc, closeModal, resources, modalIsOpen } = this.props;
 
         return (
             <Modal
@@ -125,7 +125,7 @@ export default class CreateProfilePictureModal extends PureComponent {
                         </div>
                         <div className="btn-group">
                             <button className="btn-select" onClick={this.handleOnSelect}>{resources.Selected}</button>
-                            <button className='btn-cancel' onClick={closeModal}>Cancel</button> 
+                            <button className='btn-cancel' onClick={closeModal}>Cancel</button>
                         </div>
                         <ReactCrop
                             minWidth={240}
