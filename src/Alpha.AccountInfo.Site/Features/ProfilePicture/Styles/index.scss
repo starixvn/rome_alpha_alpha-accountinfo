@@ -119,6 +119,16 @@
         display: block;
         overflow: auto;
         background: #fff;
+
+        > div {
+            height: 100%;
+        }
+
+        .ReactCrop__image {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
     }
 
     .ReactCrop__drag-handle {
