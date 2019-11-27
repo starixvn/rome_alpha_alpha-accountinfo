@@ -31,6 +31,10 @@ const cropDefault = {
     aspect: 1,
     width: 240,
     height: 240
+},
+    imageStyle = {
+    width: '500px',
+    height: '600px'
 };
 
 export default class CreateProfilePictureModal extends PureComponent {
@@ -130,6 +134,7 @@ export default class CreateProfilePictureModal extends PureComponent {
                         <ReactCrop
                             minWidth={240}
                             src={imageSrc}
+                            imageStyle={imageStyle }
                             crop={crop}
                             circularCrop={true}
                             onImageLoaded={this.onImageLoaded}
