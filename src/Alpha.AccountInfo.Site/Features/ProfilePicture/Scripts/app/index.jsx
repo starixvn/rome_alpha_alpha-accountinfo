@@ -28,6 +28,8 @@ class App extends PureComponent {
 
         this.state = {
             src: null,
+            srcWidth: 0,
+            srcHeight: 0,
             uploadFromDeviceModalIsOpen: false,
             pictureLibraryModalIsOpen: false,
             imagesList: cloneDeep(imagesList).slice(1, 5),
@@ -53,7 +55,7 @@ class App extends PureComponent {
     }
 
     setCroppedImage(profilePicture) {
-        this.setState({ croppedImage: profilePicture, src: null });
+        this.setState({ croppedImage: profilePicture});
     }
 
     openModal() {
@@ -149,7 +151,13 @@ class App extends PureComponent {
             if (fileType.search('image') >= 0) {
                 const reader = new FileReader();
                 reader.addEventListener("load", () => {
-                    this.setState({ src: reader.result, uploadFromDeviceModalIsOpen: true });
+                    const img = new Image();
+                    img.addEventListener('load', () => {
+                        this.setState({ src: reader.result, uploadFromDeviceModalIsOpen: true, srcWidth: img.naturalWidth, srcHeight: img.naturalHeight });
+                    });
+
+                    img.src = reader.result;
+                   
                 });
                 reader.readAsDataURL(file);
             }
@@ -237,6 +245,8 @@ class App extends PureComponent {
                         openModal={this.openModal}
                         closeModal={this.closeModal}
                         resetMessageContainer={this.resetMessageContainer}
+                        srcHeight={this.state.srcHeight}
+                        srcWidth={this.state.srcWidth}
                     />
 
                     <PictureLibraryModal
