@@ -370,6 +370,7 @@
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.css" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.js" />
+    <Content Include="Features\ProfilePicture\Bundles\jquery-3.3.1.js" />
     <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture-modal.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\profile-picture-helper.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library-modal.jsx" />
@@ -604,6 +605,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Features\ProfilePicture\DemoController.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibraryQuery.cs" />
