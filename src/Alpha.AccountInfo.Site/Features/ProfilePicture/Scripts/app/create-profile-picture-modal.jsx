@@ -171,15 +171,17 @@ export default class CreateProfilePictureModal extends PureComponent {
                             <button className="btn-select" onClick={this.handleOnSelect}>{resources.Selected}</button>
                             <button className='btn-cancel' onClick={closeModal}>Cancel</button>
                         </div>
-                        <ReactCrop
-                            minWidth={profilePictureWidthDefault}
-                            src={imageSrc}
-                            crop={crop}
-                            style={imageWrapperStyle}
-                            onImageLoaded={this.onImageLoaded}
-                            onComplete={this.onCropComplete}
-                            onChange={this.onCropChange}
-                        />
+                        <div className="img-container">
+                            <ReactCrop
+                                minWidth={profilePictureWidthDefault}
+                                src={imageSrc}
+                                crop={crop}
+                                style={imageWrapperStyle}
+                                onImageLoaded={this.onImageLoaded}
+                                onComplete={this.onCropComplete}
+                                onChange={this.onCropChange}
+                                />
+                        </div>
                     </div>
                 )}
             </Modal>

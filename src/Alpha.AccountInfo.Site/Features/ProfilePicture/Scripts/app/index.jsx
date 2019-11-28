@@ -211,12 +211,8 @@ class App extends PureComponent {
                     </div>
                     <div className="choose-picture">
                         <div className="extend-section">
-                            <span className="txt">{resources.OrChooseFromOurGallery}</span>
-                            {!disabledButton &&
-                                <a className='view-all'
-                                    onClick={this.handleViewLibrary}
-                                    onTouchStart={this.handleViewLibrary}
-                                >{resources.ViewAll}</a>}
+                            <span className="txt">{resources.OrChooseFromOurGallery}</span
+
                         </div>
                         <div className="list-picture">
                             <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
@@ -235,8 +231,12 @@ class App extends PureComponent {
                                         key={index}
                                     />
                                 )
-                            }
+                            }                            
                         </div>
+                        {disabledButton ? resources.ViewAll : <a className='view-all'
+                            onClick={this.handleViewLibrary}
+                            onTouchStart={this.handleViewLibrary}
+                        >{resources.ViewAll}</a>}
                     </div>
 
                     {this.state.message}
