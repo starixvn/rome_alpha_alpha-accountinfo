@@ -238,7 +238,7 @@
 }
 
 
-@media screen and (max-device-width: 480px) {
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
     .profile-picture {
         width: 100%;
         font-size: calculateScale(14px);
@@ -293,7 +293,6 @@
 
         .library {
             //height: calc(100% - 100px);
-
             .image-item {
                 width: 150px;
                 height: 150px;
