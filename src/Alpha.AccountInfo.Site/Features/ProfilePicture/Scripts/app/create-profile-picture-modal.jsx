@@ -26,8 +26,6 @@ let customStyles = {
         }
 };
 
-let style = {};
-
 const cropDefault = {
     x: 0,
     y: 0,
@@ -43,12 +41,7 @@ export default class CreateProfilePictureModal extends PureComponent {
         this.state = {
             croppedImageUrl: null,
             crop: cropDefault,
-            iframeHeight: 0,
-            iframeWidth: 0,
-            imageHeight: 0,
-            imageWidth: 0,
-            imageWidthScale: 0,
-            imageHeightScale: 0
+            imageWrapperStyle: {}
         };
 
         this.onImageLoaded = this.onImageLoaded.bind(this);
@@ -59,8 +52,7 @@ export default class CreateProfilePictureModal extends PureComponent {
 
     componentWillUpdate(nextProps) {
         if (this.props.imageSrc !== nextProps.imageSrc) {
-            this.setState({ crop: cropDefault });
-            style = {};
+            this.setState({ crop: cropDefault, imageWrapperStyle: {} });
 
             if (!window.top.alpha.isScreenLower768) {
                 customStyles.content.height = 710;
@@ -72,16 +64,15 @@ export default class CreateProfilePictureModal extends PureComponent {
         this.imageRef = image;
         var imgDimension = this.getContainedSize(image);
 
-        style.width = imgDimension.width;
-        style.height = imgDimension.height;
-
-        if (!window.top.alpha.isScreenLower768 && style.width > style.height) {
-            customStyles.content.height = style.height + 108;
+        if (!window.top.alpha.isScreenLower768 && imgDimension.width > imgDimension.height) {
+            customStyles.content.height = imgDimension.height + 108;
         }
 
         this.setState({
-            imageWidthScale: imgDimension.width,
-            imageHeightScale: imgDimension.height
+            imageWrapperStyle: {
+                width: imgDimension.width,
+                height: imgDimension.height
+            }
         });
     };
 
@@ -117,12 +108,12 @@ export default class CreateProfilePictureModal extends PureComponent {
     }
 
     getContainedSize(img) {
-        var ratio = img.naturalWidth / img.naturalHeight;
-        var heightTemp = img.height < img.naturalHeight ? img.height : img.naturalHeight ;
-        var width = heightTemp * ratio;
-        var height = heightTemp;
+        const ratio = img.naturalWidth / img.naturalHeight;
 
-        var widthTemp = img.width < img.naturalWidth ? img.width : img.naturalWidth;
+        let height = img.height < img.naturalHeight ? img.height : img.naturalHeight ;
+        let width = height * ratio;
+
+        let widthTemp = img.width < img.naturalWidth ? img.width : img.naturalWidth;
         if (width > widthTemp) {
             width = widthTemp;
             height = widthTemp / ratio;
@@ -156,7 +147,7 @@ export default class CreateProfilePictureModal extends PureComponent {
 
     render() {
         $.unblockUI();
-        const { crop } = this.state, { imageSrc, closeModal, resources, modalIsOpen } = this.props;
+        const { crop, imageWrapperStyle } = this.state, { imageSrc, closeModal, resources, modalIsOpen } = this.props;
 
         return (
             <Modal
@@ -179,7 +170,7 @@ export default class CreateProfilePictureModal extends PureComponent {
                             minWidth={240}
                             src={imageSrc}
                             crop={crop}
-                            style={style}
+                            style={imageWrapperStyle}
                             onImageLoaded={this.onImageLoaded}
                             onComplete={this.onCropComplete}
                             onChange={this.onCropChange}

@@ -153,7 +153,13 @@ class App extends PureComponent {
                 reader.addEventListener("load", () => {
                     const img = new Image();
                     img.addEventListener('load', () => {
-                        this.setState({ src: reader.result, uploadFromDeviceModalIsOpen: true, srcWidth: img.naturalWidth, srcHeight: img.naturalHeight });
+                        const { naturalWidth, naturalHeight } = img;
+                        this.setState({
+                            src: reader.result,
+                            uploadFromDeviceModalIsOpen: true,
+                            srcWidth: naturalWidth,
+                            srcHeight: naturalHeight
+                        });
                     });
 
                     img.src = reader.result;
