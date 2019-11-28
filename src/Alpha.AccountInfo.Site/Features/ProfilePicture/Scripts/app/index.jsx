@@ -20,9 +20,10 @@ class App extends PureComponent {
             originalAvatar = imagesList.length == 0 ? {
                 ImageId: defaultImageId,
                 Image: defaultAvatarUrl
-            } : imagesList.pop();
+            } : imagesList.pop(),
+            isDefaultAvatar = originalAvatar.Image === '';
 
-        if (originalAvatar.Image === '') {
+        if (isDefaultAvatar) {
             originalAvatar.Image = defaultAvatarUrl;
         };
 
@@ -35,6 +36,7 @@ class App extends PureComponent {
             imagesList: cloneDeep(imagesList).slice(1, 5),
             originalAvatar: originalAvatar,
             croppedImage: originalAvatar,
+            isDefaultAvatar: isDefaultAvatar,
             hideMessages: true,
             message: ''
         };
@@ -55,7 +57,7 @@ class App extends PureComponent {
     }
 
     setCroppedImage(profilePicture) {
-        this.setState({ croppedImage: profilePicture});
+        this.setState({ croppedImage: profilePicture });
     }
 
     openModal() {
@@ -163,7 +165,7 @@ class App extends PureComponent {
                     });
 
                     img.src = reader.result;
-                   
+
                 });
                 reader.readAsDataURL(file);
             }
@@ -171,7 +173,7 @@ class App extends PureComponent {
                 this.showMessage({
                     IsSuccess: false,
                     Message: 'The uploading file is not a picture, please try again!'
-                      // TODO: wrong files Resource
+                    // TODO: wrong files Resource
                 });
             }
 
@@ -181,8 +183,8 @@ class App extends PureComponent {
 
     // TODO: ProfilePictureResource
     render() {
-        const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
-            { resources, setUpOTPLink, allowUpdate } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
+        const { croppedImage, imagesList, originalAvatar, isDefaultAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
+            { resources, setUpOTPLink, allowUpdate } = this.props, disabledButton = !allowUpdate || isDefaultAvatar || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
         return (
@@ -199,7 +201,7 @@ class App extends PureComponent {
                         </a>
                     </li>
                 </ul>
-                <div className="profile-picture">                    
+                <div className="profile-picture">
                     <div className="crop-img-info">
                         <img alt="Crop" src={croppedImage.Image} className='cropped-image' />
                         <div className="wrapper-right">
@@ -210,10 +212,11 @@ class App extends PureComponent {
                     <div className="choose-picture">
                         <div className="extend-section">
                             <span className="txt">{resources.OrChooseFromOurGallery}</span>
-                            {disabledButton ? resources.ViewAll : <a className='view-all'
-                                onClick={this.handleViewLibrary}
-                                onTouchStart={this.handleViewLibrary}
-                            >{resources.ViewAll}</a>}
+                            {!disabledButton &&
+                                <a className='view-all'
+                                    onClick={this.handleViewLibrary}
+                                    onTouchStart={this.handleViewLibrary}
+                                >{resources.ViewAll}</a>}
                         </div>
                         <div className="list-picture">
                             <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
