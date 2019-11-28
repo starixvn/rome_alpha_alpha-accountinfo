@@ -120,15 +120,20 @@
         overflow: auto;
         background: #fff;
 
-        /*> div {
+        left: 50%;
+        top: 0%;
+        -webkit-transform: translate(-50%, 0%);
+        transform: translate(-50%, 0%);
+
+        > div {
             height: 100%;
         }
 
         .ReactCrop__image {
             height: 100%;
             width: 100%;
-            object-fit: contain;
-        }*/
+            object-fit: scale-down;
+        }
     }
 
     .ReactCrop__drag-handle {

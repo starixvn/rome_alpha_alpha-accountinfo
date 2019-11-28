@@ -204,10 +204,10 @@ class App extends PureComponent {
                     <div className="choose-picture">
                         <div className="extend-section">
                             <span className="txt">{resources.OrChooseFromOurGallery}</span>
-                            <a className='view-all'
+                            {disabledButton ? resources.ViewAll : <a className='view-all'
                                 onClick={this.handleViewLibrary}
-                                onTouchStart={this.handleViewLibrary} 
-                            >{resources.ViewAll}</a>
+                                onTouchStart={this.handleViewLibrary}
+                            >{resources.ViewAll}</a>}
                         </div>
                         <div className="list-picture">
                             <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}

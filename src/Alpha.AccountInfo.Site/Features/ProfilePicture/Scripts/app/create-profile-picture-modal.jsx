@@ -2,7 +2,6 @@
 import ReactCrop from "react-image-crop";
 import Modal from 'react-modal';
 import { croppedImageId } from './profile-picture-helper';
-import { cloneDeep } from 'lodash';
 
 let customStyles = {
     content: window.top.alpha.isScreenLower768 ? {
@@ -22,22 +21,16 @@ let customStyles = {
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
             width: '600px',
-            height: '700px',
+            height: '710px',
             overflow: 'auto',
         }
 };
 
-let style = {
-    marginRight: '0px',
-    marginLeft: '0px',
-    marginTop: '0px',
-    marginBottom: '0px',
-    position: 'absolute'
-};
+let style = {};
 
 const cropDefault = {
-    x: 180,
-    y: 50,
+    x: 0,
+    y: 0,
     aspect: 1,
     width: 240,
     height: 240
@@ -64,43 +57,32 @@ export default class CreateProfilePictureModal extends PureComponent {
         this.handleOnSelect = this.handleOnSelect.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-        const { srcHeight, srcWidth } = this.props;
-        if (prevProps.imageSrc !== this.props.imageSrc) {
-            const aa = $('body');
-            const height1 = window.top.alpha.isScreenLower768 ? aa.height() : 700;
-            const width1 = window.top.alpha.isScreenLower768 ? aa.width() : 600;
+    componentWillUpdate(nextProps) {
+        if (this.props.imageSrc !== nextProps.imageSrc) {
+            this.setState({ crop: cropDefault });
+            style = {};
 
-            if (srcHeight > srcWidth) {
-                const scale = srcWidth / srcHeight;
-                style.height = height1 - 108;
-                style.marginTop = 10;
-                style.width = width1 * scale;
-                style.left = (width1 * (1 - scale)) / 2;
-                customStyles.content.height = height1;
+            if (!window.top.alpha.isScreenLower768) {
+                customStyles.content.height = 710;
             }
-            else {
-                const scale01 = srcHeight / srcWidth;
-                style.width = width1;
-                style.height = width1 * scale01;
-                style.marginTop = 10;
-                style.left = 0;
-                customStyles.content.height = (width1 * scale01) + 100; 
-            }
-
-            this.setState({
-                iframeHeight: height1,
-                iframeWidth: width1,
-                imageWidth: srcWidth,
-                imageHeight: srcHeight,
-                imageWidthScale: style.width,
-                imageHeightScale: style.height
-            });
         }
     }
 
     onImageLoaded(image) {
         this.imageRef = image;
+        var imgDimension = this.getContainedSize(image);
+
+        style.width = imgDimension.width;
+        style.height = imgDimension.height;
+
+        if (!window.top.alpha.isScreenLower768 && style.width > style.height) {
+            customStyles.content.height = style.height + 108;
+        }
+
+        this.setState({
+            imageWidthScale: imgDimension.width,
+            imageHeightScale: imgDimension.height
+        });
     };
 
     onCropComplete(crop) {
@@ -132,6 +114,21 @@ export default class CreateProfilePictureModal extends PureComponent {
 
             this.setState({ croppedImageUrl });
         }
+    }
+
+    getContainedSize(img) {
+        var ratio = img.naturalWidth / img.naturalHeight;
+        var heightTemp = img.height < img.naturalHeight ? img.height : img.naturalHeight ;
+        var width = heightTemp * ratio;
+        var height = heightTemp;
+
+        var widthTemp = img.width < img.naturalWidth ? img.width : img.naturalWidth;
+        if (width > widthTemp) {
+            width = widthTemp;
+            height = widthTemp / ratio;
+        }  
+
+        return { width, height };
     }
 
     getCroppedImg(image, crop) {
@@ -177,19 +174,12 @@ export default class CreateProfilePictureModal extends PureComponent {
                         <div className="btn-group">
                             <button className="btn-select" onClick={this.handleOnSelect}>{resources.Selected}</button>
                             <button className='btn-cancel' onClick={closeModal}>Cancel</button>
-
-                            <button className='btn-cancel' >{this.state.iframeWidth}</button>
-                            <button className='btn-cancel'>{this.state.iframeHeight}</button>
-                            <button className='btn-cancel' >{this.state.imageWidth}</button>
-                            <button className='btn-cancel'>{this.state.imageHeight}</button>
-                            <button className='btn-cancel' >{this.state.imageWidthScale}</button>
-                            <button className='btn-cancel'>{this.state.imageHeightScale}</button>
                         </div>
                         <ReactCrop
                             minWidth={240}
                             src={imageSrc}
-                            style={style}
                             crop={crop}
+                            style={style}
                             onImageLoaded={this.onImageLoaded}
                             onComplete={this.onCropComplete}
                             onChange={this.onCropChange}
