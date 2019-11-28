@@ -2,9 +2,12 @@
 import ReactCrop from "react-image-crop";
 import Modal from 'react-modal';
 import { croppedImageId } from './profile-picture-helper';
+import { cloneDeep } from 'lodash';
 
-let customStyles = {
-    content: window.top.alpha.isScreenLower768 ? {
+const isDesktop = !window.top.alpha.isScreenLower768,
+    totalHeightOfTitleAndButtonOnPopup = 108,
+    profilePictureWidthDefault=240,
+    popupStyleMobile = {
         top: '0',
         left: '0',
         right: '0',
@@ -12,27 +15,27 @@ let customStyles = {
         border: 'none',
         padding: '0',
         overflow: 'hidden'
-    } : {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            padding: '0',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            width: '600px',
-            height: '710px',
-            overflow: 'auto',
-        }
-};
-
-const cropDefault = {
-    x: 0,
-    y: 0,
-    aspect: 1,
-    width: 240,
-    height: 240
-};
+    },
+    popupStyleDesktop = {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        padding: '0',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: '600px',
+        height: '710px',
+        overflow: 'hidden',
+    },
+    cropDefault = {
+        x: 0,
+        y: 0,
+        aspect: 1,
+        width: 240,
+        height: 240
+    },
+    popupStyles = { content: isDesktop ? popupStyleDesktop : popupStyleMobile };
 
 export default class CreateProfilePictureModal extends PureComponent {
     constructor(props) {
@@ -41,7 +44,8 @@ export default class CreateProfilePictureModal extends PureComponent {
         this.state = {
             croppedImageUrl: null,
             crop: cropDefault,
-            imageWrapperStyle: {}
+            imageWrapperStyle: {},
+            popupStyles: popupStyles
         };
 
         this.onImageLoaded = this.onImageLoaded.bind(this);
@@ -52,11 +56,7 @@ export default class CreateProfilePictureModal extends PureComponent {
 
     componentWillUpdate(nextProps) {
         if (this.props.imageSrc !== nextProps.imageSrc) {
-            this.setState({ crop: cropDefault, imageWrapperStyle: {} });
-
-            if (!window.top.alpha.isScreenLower768) {
-                customStyles.content.height = 710;
-            }
+            this.setState({ crop: cropDefault, imageWrapperStyle: {}, popupStyles: popupStyles });
         }
     }
 
@@ -64,8 +64,10 @@ export default class CreateProfilePictureModal extends PureComponent {
         this.imageRef = image;
         var imgDimension = this.getContainedSize(image);
 
-        if (!window.top.alpha.isScreenLower768 && imgDimension.width > imgDimension.height) {
-            customStyles.content.height = imgDimension.height + 108;
+        if (isDesktop && imgDimension.width > imgDimension.height) {
+            let customStyles = cloneDeep(popupStyles);
+            customStyles.content.height = imgDimension.height + totalHeightOfTitleAndButtonOnPopup;
+            this.setState({ popupStyles: customStyles });
         }
 
         this.setState({
@@ -81,7 +83,10 @@ export default class CreateProfilePictureModal extends PureComponent {
     };
 
     onCropChange(crop) {
-        this.setState({ crop: crop.width < 240 || crop.height < 240 || crop.x < 0 || crop.y < 0 ? cropDefault : crop });
+        const invalidCrop = crop.width < profilePictureWidthDefault || crop.height < profilePictureWidthDefault || crop.x < 0 || crop.y < 0;
+        this.setState({
+            crop: invalidCrop? cropDefault : crop
+        });
     };
 
     handleOnSelect() {
@@ -147,13 +152,13 @@ export default class CreateProfilePictureModal extends PureComponent {
 
     render() {
         $.unblockUI();
-        const { crop, imageWrapperStyle } = this.state, { imageSrc, closeModal, resources, modalIsOpen } = this.props;
+        const { crop, imageWrapperStyle, popupStyles } = this.state, { imageSrc, closeModal, resources, modalIsOpen } = this.props;
 
         return (
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                style={customStyles}
+                style={popupStyles}
                 contentLabel=""
             >
                 {imageSrc && (
@@ -167,7 +172,7 @@ export default class CreateProfilePictureModal extends PureComponent {
                             <button className='btn-cancel' onClick={closeModal}>Cancel</button>
                         </div>
                         <ReactCrop
-                            minWidth={240}
+                            minWidth={profilePictureWidthDefault}
                             src={imageSrc}
                             crop={crop}
                             style={imageWrapperStyle}
