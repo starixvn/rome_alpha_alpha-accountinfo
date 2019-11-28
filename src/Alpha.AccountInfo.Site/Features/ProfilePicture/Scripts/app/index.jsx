@@ -211,8 +211,7 @@ class App extends PureComponent {
                     </div>
                     <div className="choose-picture">
                         <div className="extend-section">
-                            <span className="txt">{resources.OrChooseFromOurGallery}</span
-
+                            <span className="txt">{resources.OrChooseFromOurGallery}</span>
                         </div>
                         <div className="list-picture">
                             <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
