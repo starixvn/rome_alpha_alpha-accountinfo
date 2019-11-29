@@ -375,6 +375,15 @@
     <Content Include="Features\ProfilePicture\Scripts\app\profile-picture-helper.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library-modal.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\index.jsx" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\continue.gif" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\edit.gif" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\fine-uploader-new.css" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\jquery.fine-uploader.js" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\loading.gif" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\pause.gif" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\placeholders\not_available-generic.png" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\placeholders\waiting-generic.png" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\processing.gif" />
     <Content Include="Features\ProfilePicture\Styles\Images\icon_user_default.png" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
