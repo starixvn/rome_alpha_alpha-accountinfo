@@ -172,8 +172,7 @@ class App extends PureComponent {
             else {
                 this.showMessage({
                     IsSuccess: false,
-                    Message: 'The uploading file is not a picture, please try again!'
-                    // TODO: wrong files Resource
+                    Message: this.resources.FailByFileType
                 });
             }
 
@@ -181,7 +180,6 @@ class App extends PureComponent {
         }
     }
 
-    // TODO: ProfilePictureResource
     render() {
         const { croppedImage, imagesList, originalAvatar, isDefaultAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
             { resources, setUpOTPLink, allowUpdate } = this.props, disabledButton = !allowUpdate || isDefaultAvatar || imagesList.length === 0,
@@ -192,7 +190,7 @@ class App extends PureComponent {
                 <ul className="nav nav-tabs">
                     <li className="tab-item active">
                         <a>
-                            <span>Profile Picture</span>
+                            <span>{resources.ProfilePicture}</span>
                         </a>
                     </li>
                     <li className="tab-item">

@@ -41,7 +41,7 @@
         public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
         {
             var actorAvatar = await profilePictureServices.GetActorProfilePictureAsync(message.ActorId).ConfigureAwait(false);
-            var imageLibrary = await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
+            var imageLibrary = await GetProfilePictureLibraryAsync().ConfigureAwait(false);
 
             return new ProfielPictureViewModel(
                 imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures)
@@ -51,7 +51,7 @@
         }
 
         public async Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
-            => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
+            => await GetProfilePictureLibraryAsync().ConfigureAwait(false);
 
         public Task<ProfilePictureResult> Handle(UpdateActorProfilePictureQuery message)
           => profilePictureServices.UpdateActorProfilePictureAsync(

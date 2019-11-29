@@ -34,6 +34,10 @@
         .qq-upload-list {
             max-height: 98%;
         }
+
+        #isIMBC{
+            margin-left: 15px;
+        }
     </style>
 }
 
@@ -58,6 +62,7 @@
                 <button type="button" id="trigger-upload" class="btn btn-primary">
                     <i class="icon-upload icon-white"></i> Upload
                 </button>
+                <input type="checkbox" id="isIMBC"/> Is IMBC
             </div>
             <span class="qq-drop-processing-selector qq-drop-processing">
                 <span>Processing dropped files...</span>
@@ -111,18 +116,24 @@
             $('#fine-uploader-manual-trigger').fineUploader({
                 template: 'qq-template-manual-trigger',
                 request: {
-                    endpoint:  '@Url.Action("DoConvertImageToBinary", "Demo")'
+                    endpoint: '@Url.Action("DoConvertImageToBinary", "Demo")',
+                    params: {
+                        isIMBC: function () {
+                            return JSON.parse($('#isIMBC').prop('checked'));
+                        }
+                    }
                 },
                 thumbnails: {
                     placeholders: {
                         waitingPath: '@Url.Content("~/Features/ProfilePicture/Scripts/fine-uploader/placeholders/waiting-generic.png")',
-                        notAvailablePath:  '@Url.Content("~/Features/ProfilePicture/Scripts/fine-uploader/placeholders/not_available-generic.png")'
+                        notAvailablePath: '@Url.Content("~/Features/ProfilePicture/Scripts/fine-uploader/placeholders/not_available-generic.png")'
                     }
                 },
                 autoUpload: false
             });
 
             $('#trigger-upload').click(function () {
+                //isIMBC= JSON.parse($('#isIMBC').prop('checked'));
                 $('#fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
             });
         });

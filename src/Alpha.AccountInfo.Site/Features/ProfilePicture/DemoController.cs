@@ -32,7 +32,7 @@
         public ActionResult Index() => View("~/Features/ProfilePicture/Views/ConvertImageToBinary.cshtml");
 
         [HttpPost]
-        public ActionResult DoConvertImageToBinary()
+        public ActionResult DoConvertImageToBinary(bool isIMBC)
         {
             try
             {
@@ -40,7 +40,7 @@
                 var image = Image.FromStream(fileBase.InputStream, true, true);
                 byte[] imageBinary = ImageToByteArray(image);
                 var limitedImageSize = Alpha.AccountInfo.Site.Features.Shared.Helpers.ImageConverter.ToLimitedImageSize(Convert.ToBase64String(imageBinary));
-                var result = profilePictureServices.UpdateManualProfilePictureCommand(limitedImageSize, string.Empty);
+                var result = profilePictureServices.UpdateManualProfilePictureCommand(limitedImageSize, isIMBC);
                 return Json(new { success = result.IsSuccess, error = result.Message });
             }
             catch (Exception ex)
