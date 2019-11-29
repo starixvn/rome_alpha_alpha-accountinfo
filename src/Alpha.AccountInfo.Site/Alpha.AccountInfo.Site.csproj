@@ -378,6 +378,7 @@
     <Content Include="Features\ProfilePicture\Scripts\fine-uploader\continue.gif" />
     <Content Include="Features\ProfilePicture\Scripts\fine-uploader\edit.gif" />
     <Content Include="Features\ProfilePicture\Scripts\fine-uploader\fine-uploader-new.css" />
+    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\fine-uploader-new.min.css" />
     <Content Include="Features\ProfilePicture\Scripts\fine-uploader\jquery.fine-uploader.js" />
     <Content Include="Features\ProfilePicture\Scripts\fine-uploader\loading.gif" />
     <Content Include="Features\ProfilePicture\Scripts\fine-uploader\pause.gif" />

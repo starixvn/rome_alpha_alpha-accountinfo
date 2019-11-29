@@ -29,7 +29,7 @@
             this.profilePictureServices = profilePictureServices;
         }
 
-        public ActionResult ConvertImageToBinary() => View("~/Features/ProfilePicture/Views/ConvertImageToBinary.cshtml");
+        public ActionResult Index() => View("~/Features/ProfilePicture/Views/ConvertImageToBinary.cshtml");
 
         [HttpPost]
         public ActionResult DoConvertImageToBinary()
@@ -41,7 +41,7 @@
                 byte[] imageBinary = ImageToByteArray(image);
                 var limitedImageSize = Alpha.AccountInfo.Site.Features.Shared.Helpers.ImageConverter.ToLimitedImageSize(Convert.ToBase64String(imageBinary));
                 var result = profilePictureServices.UpdateManualProfilePictureCommand(limitedImageSize, string.Empty);
-                return Json(new { success = result.IsSuccess });
+                return Json(new { success = result.IsSuccess, error = result.Message });
             }
             catch (Exception ex)
             {
