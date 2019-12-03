@@ -1,24 +1,12 @@
 ﻿namespace uploadAvarta.Controllers
 {
-    using Alpha.ProfilePicture.Services;
+    using Alpha.AccountInfo.ProfilePicture.Services;
     using System;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
     using System.Web;
     using System.Web.Mvc;
-
-    public class ImageBinary
-    {
-        public ImageBinary(string name, string value)
-        {
-            Name = name;
-            Value = value;
-        }
-
-        public string Name { get; }
-        public string Value { get; }
-    }
 
     public class DemoController : Controller
     {
@@ -49,7 +37,7 @@
             }
         }
 
-        public byte[] ImageToByteArray(Image imageIn)
+        private static byte[] ImageToByteArray(Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, ImageFormat.Jpeg);

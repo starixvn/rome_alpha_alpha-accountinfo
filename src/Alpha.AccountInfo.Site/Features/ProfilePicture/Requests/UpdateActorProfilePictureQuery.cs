@@ -5,7 +5,7 @@
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using MediatR;
 
-    public class UpdateActorProfilePictureQuery : BaseRequest, IRequest<ProfilePictureResult>
+    public class UpdateActorProfilePictureQuery : BaseRequest, IRequest<Result>
     {
         public UpdateActorProfilePictureQuery(IUser viewer) : base(viewer)
         {

@@ -2,8 +2,6 @@
 
 @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
-    var imagesLibrary = JsonConvert.SerializeObject(Model.Images);
-    var defaultAvatarUrl = Url.Content("~/Features/ProfilePicture/Styles/Images/icon_user_default.png");
 }
 
 @*TODO: Level*@
@@ -20,8 +18,6 @@
 
     <script>
         renderApp(
-            @Html.Raw(imagesLibrary),
-            '@defaultAvatarUrl',
             @Html.Raw(Model.Resources),
             '@Model.SetUpOTPLink',
             JSON.parse('@Model.AllowUpdate'.toLowerCase()),);

@@ -2,6 +2,7 @@
 import Modal from 'react-modal';
 import { handleError, requests } from '../../../Shared/Scripts/api-client';
 import { urls } from './profile-picture-helper';
+import { isEmpty } from 'lodash';
 
 const customStyles = {
     content: window.top.alpha.isScreenLower768 ? {
@@ -31,33 +32,11 @@ export default class PictureLibraryModal extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            croppedImage: undefined,
-            imagesList: []
+            croppedImage: this.props.pictureLibrary[0]
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnSelect = this.handleOnSelect.bind(this);
-        this.getPictureLibary = this.getPictureLibary.bind(this);
-    }
-
-    componentDidUpdate() {
-        const { imagesList } = this.state, { modalIsOpen } = this.props;
-        if (imagesList.length === 0 && modalIsOpen) {
-            $.blockUI();
-            this.getPictureLibary();
-        }
-    }
-
-    getPictureLibary() {
-        requests.post(urls.GetPictureLibrary).then(
-            data => {
-                this.setState({
-                    imagesList: data,
-                    croppedImage: data.length > 0 ? data[0] : undefined
-                });
-                $.unblockUI();
-            }
-        ).catch(handleError);
     }
 
     handleOnClick(image) {
@@ -80,7 +59,7 @@ export default class PictureLibraryModal extends PureComponent {
     }
 
     render() {
-        const { croppedImage, imagesList } = this.state, { resources, closeModal, modalIsOpen } = this.props;
+        const { croppedImage } = this.state, { resources, closeModal, modalIsOpen, pictureLibrary } = this.props;
         return (
             <Modal
                 isOpen={modalIsOpen}
@@ -99,7 +78,7 @@ export default class PictureLibraryModal extends PureComponent {
                     </div>
                     <div className="library">
                         {
-                            imagesList.map((profilePicture, index) =>
+                           pictureLibrary.map((profilePicture, index) =>
                                 <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
                                     alt="Crop"
                                     src={profilePicture.Image}

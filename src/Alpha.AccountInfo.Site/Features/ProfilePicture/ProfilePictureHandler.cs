@@ -1,26 +1,24 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProfilePicture
 {
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.ProfilePicture.Models;
+    using Alpha.AccountInfo.ProfilePicture.Params;
+    using Alpha.AccountInfo.ProfilePicture.Services;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.Requests;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
     using Alpha.Products.Core.Services;
-    using Alpha.ProfilePicture.Models;
-    using Alpha.ProfilePicture.Params;
-    using Alpha.ProfilePicture.Services;
     using Fanex.Caching;
     using MediatR;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public class ProfilePictureHandler :
         IAsyncRequestHandler<ProfilePictureQuery, ProfielPictureViewModel>,
         IAsyncRequestHandler<ProfilePictureLibraryQuery, IEnumerable<ProfilePictureModel>>,
-        IAsyncRequestHandler<UpdateActorProfilePictureQuery, ProfilePictureResult>
+        IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
     {
         private const string ProfilePictureLibaryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
-        private const int NumerousOfDefaultPictures = 7;
         private readonly ProfilePictureServices profilePictureServices;
         private readonly Func<int> getInsertProfilePictureSiteMode;
 
@@ -39,21 +37,14 @@
         }
 
         public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
-        {
-            var actorAvatar = await profilePictureServices.GetActorProfilePictureAsync(message.ActorId).ConfigureAwait(false);
-            var imageLibrary = await GetProfilePictureLibraryAsync().ConfigureAwait(false);
-
-            return new ProfielPictureViewModel(
-                imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures)
-                .Concat(new[] { new ProfilePictureModel(actorAvatar.ImageId, actorAvatar.Image) }).Distinct(),
-                message.Language,
-                message.AllowUpdate);
-        }
+            => new ProfielPictureViewModel(message.Language, message.AllowUpdate);
 
         public async Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
-            => await GetProfilePictureLibraryAsync().ConfigureAwait(false);
+            => await await ConfiguredCacheService.GetOrSetAsync(
+                    ProfilePictureLibaryKey,
+                    async () => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false)).ConfigureAwait(false);
 
-        public Task<ProfilePictureResult> Handle(UpdateActorProfilePictureQuery message)
+        public Task<Result> Handle(UpdateActorProfilePictureQuery message)
           => profilePictureServices.UpdateActorProfilePictureAsync(
               new UpdateActorProfilePictureParam(
                   message.ActorId,
@@ -62,10 +53,5 @@
                   getInsertProfilePictureSiteMode(),
                   false,
                   message.IP));
-
-        public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
-            => await await ConfiguredCacheService.GetOrSetAsync(
-                    ProfilePictureLibaryKey,
-                    async () => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false)).ConfigureAwait(false);
     }
 }
