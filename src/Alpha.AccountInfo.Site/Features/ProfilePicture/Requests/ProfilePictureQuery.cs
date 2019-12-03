@@ -10,11 +10,14 @@
         public ProfilePictureQuery(IUser viewer) : base(viewer)
         {
             ActorId = viewer.Id;
+            ActorRoleId = viewer.LevelId;
             Language = viewer.Language;
             AllowUpdate = viewer.CanUpdateAccount && !viewer.IsSubAcc;
         }
 
         public int ActorId { get;}
+
+        public byte ActorRoleId { get; private set; }
 
         public string Language { get; private set; }
 

@@ -11,6 +11,7 @@
     using MediatR;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class ProfilePictureHandler :
@@ -19,6 +20,7 @@
         IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
     {
         private const string ProfilePictureLibaryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
+        private const int NumerousOfDefaultPictures = 7;
         private readonly ProfilePictureServices profilePictureServices;
         private readonly Func<int> getInsertProfilePictureSiteMode;
 
@@ -36,11 +38,19 @@
              SimpleServiceLocator.GetService<Func<int>>();
         }
 
-        public Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
-            => Task.FromResult(new ProfielPictureViewModel(message.Language, message.AllowUpdate));
+        public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
+        {
+            var imageLibrary = await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
 
-        public Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
-            => profilePictureServices.FectchProfilePictureLibraryAsync();
+            return new ProfielPictureViewModel(
+                imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures),
+                message.ActorRoleId,
+                message.Language,
+                message.AllowUpdate);
+        }
+
+        public async Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
+            => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
 
         public Task<Result> Handle(UpdateActorProfilePictureQuery message)
           => profilePictureServices.UpdateActorProfilePictureAsync(
@@ -51,5 +61,10 @@
                   getInsertProfilePictureSiteMode(),
                   false,
                   message.IP));
+
+        public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
+            => await await ConfiguredCacheService.GetOrSetAsync(
+                    ProfilePictureLibaryKey,
+                    async () => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false)).ConfigureAwait(false);
     }
 }

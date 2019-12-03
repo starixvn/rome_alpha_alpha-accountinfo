@@ -16,7 +16,7 @@ class App extends PureComponent {
     constructor(props) {
         super(props);
 
-        const actorProfilePicture = JSON.parse(localStorage.getItem('actorProfilePicture'));
+        const { imagesList } = this.props, actorProfilePicture = JSON.parse(localStorage.getItem('actorProfilePicture'));
 
         this.state = {
             src: null,
@@ -24,8 +24,7 @@ class App extends PureComponent {
             srcHeight: 0,
             uploadFromDeviceModalIsOpen: false,
             pictureLibraryModalIsOpen: false,
-            pictureLibrary: [],
-            imagesList: [],
+            imagesList: cloneDeep(imagesList).slice(1, 5),
             originalAvatar: actorProfilePicture,
             croppedImage: actorProfilePicture,
             isDefaultAvatar: JSON.parse(actorProfilePicture.IsDefaultAvatar),
@@ -46,32 +45,6 @@ class App extends PureComponent {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.resetMessageContainer = this.resetMessageContainer.bind(this);
-    }
-
-    componentWillMount() {
-        const profilePictureLibrary = JSON.parse(localStorage.getItem('profilePictureLibrary'));
-        if (isEmpty(profilePictureLibrary)) {
-            this.getPictureLibary();
-        }
-        else {
-            this.setState({
-                pictureLibrary: profilePictureLibrary,
-                imagesList: sampleSize(profilePictureLibrary, 4)
-            });
-        }
-    }
-
-    getPictureLibary() {
-        requests.post(urls.GetPictureLibrary).then(
-            data => {
-                this.setState({
-                    pictureLibrary: data,
-                    imagesList: sampleSize(data, 4)
-                });
-
-                localStorage.setItem('profilePictureLibrary', JSON.stringify(data));
-            }
-        ).catch(handleError);
     }
 
     setCroppedImage(profilePicture) {
@@ -146,12 +119,12 @@ class App extends PureComponent {
     }
 
     handleActionsAfterUpdateSuccessfully() {
-        const { croppedImage, pictureLibrary } = this.state;
+        const { croppedImage } = this.state, { imagesList } = this.props;
         window.top.headerNav.setProfilePictureOnNav(croppedImage.Image);
         window.top.indexManager.loadPartialViews();
 
         this.setState({
-            imagesList: sampleSize(pictureLibrary, 4),
+            imagesList: cloneDeep(imagesList).filter(item => item.ImageId != croppedImage.ImageId).slice(1, 5),
             originalAvatar: croppedImage
         });
     }
@@ -199,7 +172,7 @@ class App extends PureComponent {
     }
 
     render() {
-        const { croppedImage, pictureLibrary, imagesList, originalAvatar, isDefaultAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
+        const { croppedImage, imagesList, originalAvatar, isDefaultAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
             { resources, setUpOTPLink, allowUpdate } = this.props, disabledButton = !allowUpdate || isDefaultAvatar || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
@@ -273,17 +246,13 @@ class App extends PureComponent {
                         srcWidth={this.state.srcWidth}
                     />
 
-                    {
-                        pictureLibrary.length > 0 &&
-                        <PictureLibraryModal
-                            modalIsOpen={pictureLibraryModalIsOpen}
-                            resources={resources}
-                            setCroppedImage={this.setCroppedImage}
-                            openModal={this.openModal}
-                            closeModal={this.closeModal}
-                            pictureLibrary={pictureLibrary}
-                        />
-                    }
+                    <PictureLibraryModal
+                        modalIsOpen={pictureLibraryModalIsOpen}
+                        resources={resources}
+                        setCroppedImage={this.setCroppedImage}
+                        openModal={this.openModal}
+                        closeModal={this.closeModal}
+                    />
                 </div >
             </div>
         );
@@ -292,9 +261,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = ( resources, setUpOTPLink, allowUpdate) => {
+export const renderApp = ( imagesList, resources, setUpOTPLink, allowUpdate) => {
     ReactDOM.render(
-        <App {...{ resources: decodeResources(resources), setUpOTPLink, allowUpdate }} />,
+        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, allowUpdate }} />,
         document.getElementById('root')
     );
 };

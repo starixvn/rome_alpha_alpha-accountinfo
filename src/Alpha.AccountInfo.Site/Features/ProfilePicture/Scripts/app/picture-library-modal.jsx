@@ -32,11 +32,38 @@ export default class PictureLibraryModal extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            croppedImage: this.props.pictureLibrary[0]
+            pictureLibrary: [],
+            croppedImage: undefined
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnSelect = this.handleOnSelect.bind(this);
+    }
+
+    componentWillMount() {
+        const profilePictureLibrary = JSON.parse(localStorage.getItem('profilePictureLibrary'));
+        if (isEmpty(profilePictureLibrary)) {
+            this.getPictureLibary();
+        }
+        else {
+            this.setState({
+                pictureLibrary: profilePictureLibrary,
+                croppedImage: profilePictureLibrary[0]
+            });
+        }
+    }
+
+    getPictureLibary() {
+        requests.post(urls.GetPictureLibrary).then(
+            data => {
+                this.setState({
+                    pictureLibrary: data,
+                    croppedImage: data[0]
+                });
+
+                localStorage.setItem('profilePictureLibrary', JSON.stringify(data));
+            }
+        ).catch(handleError);
     }
 
     handleOnClick(image) {
@@ -59,7 +86,7 @@ export default class PictureLibraryModal extends PureComponent {
     }
 
     render() {
-        const { croppedImage } = this.state, { resources, closeModal, modalIsOpen, pictureLibrary } = this.props;
+        const { croppedImage, pictureLibrary } = this.state, { resources, closeModal, modalIsOpen } = this.props;
         return (
             <Modal
                 isOpen={modalIsOpen}
