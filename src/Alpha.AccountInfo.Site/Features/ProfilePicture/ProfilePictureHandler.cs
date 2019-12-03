@@ -36,13 +36,11 @@
              SimpleServiceLocator.GetService<Func<int>>();
         }
 
-        public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
-            => new ProfielPictureViewModel(message.Language, message.AllowUpdate);
+        public Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
+            => Task.FromResult(new ProfielPictureViewModel(message.Language, message.AllowUpdate));
 
-        public async Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
-            => await await ConfiguredCacheService.GetOrSetAsync(
-                    ProfilePictureLibaryKey,
-                    async () => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false)).ConfigureAwait(false);
+        public Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
+            => profilePictureServices.FectchProfilePictureLibraryAsync();
 
         public Task<Result> Handle(UpdateActorProfilePictureQuery message)
           => profilePictureServices.UpdateActorProfilePictureAsync(
