@@ -1,17 +1,21 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProfilePicture.Requests
 {
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.ProfilePicture.Models;
+    using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
-    using System.Collections.Generic;
 
-    public class ProfilePictureLibraryQuery : BaseRequest, IRequest<IEnumerable<ProfilePictureModel>>
+    public class ProfilePictureLibraryQuery : BaseRequest, IRequest<ProfielPictureLibraryViewModel>
     {
         public ProfilePictureLibraryQuery(IUser viewer) : base(viewer)
         {
+            ActorId = viewer.Id;
         }
 
-        public override bool IsValid() => true;
+        public int CurrentPage { get; set; }
+
+        public int ActorId { get; }
+
+        public override bool IsValid() => ActorId > 0;
     }
 }

@@ -8,6 +8,7 @@
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
     using Alpha.Products.Core.Services;
     using Fanex.Caching;
+    using JW;
     using MediatR;
     using System;
     using System.Collections.Generic;
@@ -16,7 +17,7 @@
 
     public class ProfilePictureHandler :
         IAsyncRequestHandler<ProfilePictureQuery, ProfielPictureViewModel>,
-        IAsyncRequestHandler<ProfilePictureLibraryQuery, IEnumerable<ProfilePictureModel>>,
+        IAsyncRequestHandler<ProfilePictureLibraryQuery, ProfielPictureLibraryViewModel>,
         IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
     {
         private const string ProfilePictureLibaryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
@@ -49,8 +50,14 @@
                 message.AllowUpdate);
         }
 
-        public async Task<IEnumerable<ProfilePictureModel>> Handle(ProfilePictureLibraryQuery message)
-            => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
+        public async Task<ProfielPictureLibraryViewModel> Handle(ProfilePictureLibraryQuery message)
+        {
+            var images = await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
+            var pager = new Pager(totalItems: images.Count(), currentPage: message.CurrentPage);
+
+            var currentPageItems = images.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
+            return new ProfielPictureLibraryViewModel(currentPageItems, pager);
+        }
 
         public Task<Result> Handle(UpdateActorProfilePictureQuery message)
           => profilePictureServices.UpdateActorProfilePictureAsync(

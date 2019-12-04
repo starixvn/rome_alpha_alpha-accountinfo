@@ -53,15 +53,18 @@ export default class PictureLibraryModal extends PureComponent {
         }
     }
 
-    getPictureLibary() {
-        requests.post(urls.GetPictureLibrary).then(
+    getPictureLibary(currentPage = 1) {
+        requests.post(urls.GetPictureLibrary, { CurrentPage: currentPage}).then(
             data => {
+                const images = [...this.state.pictureLibrary, ...data.Images];
                 this.setState({
-                    pictureLibrary: data,
-                    croppedImage: data[0]
+                    pictureLibrary: images,
+                    croppedImage: images[0]
                 });
 
-                localStorage.setItem('profilePictureLibrary', JSON.stringify(data));
+                currentPage < data.Pager.TotalPages ?
+                    this.getPictureLibary(currentPage + 1) :
+                    localStorage.setItem('profilePictureLibrary', JSON.stringify(images));
             }
         ).catch(handleError);
     }
@@ -105,7 +108,8 @@ export default class PictureLibraryModal extends PureComponent {
                     </div>
                     <div className="library">
                         {
-                           pictureLibrary.map((profilePicture, index) =>
+                            pictureLibrary.length > 0 && croppedImage !== undefined &&
+                            pictureLibrary.map((profilePicture, index) =>
                                 <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
                                     alt="Crop"
                                     src={profilePicture.Image}
