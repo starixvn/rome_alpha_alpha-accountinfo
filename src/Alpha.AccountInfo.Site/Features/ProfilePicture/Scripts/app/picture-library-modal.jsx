@@ -56,15 +56,17 @@ export default class PictureLibraryModal extends PureComponent {
     getPictureLibary(currentPage = 1) {
         requests.post(urls.GetPictureLibrary, { CurrentPage: currentPage}).then(
             data => {
-                const images = [...this.state.pictureLibrary, ...data.Images];
-                this.setState({
-                    pictureLibrary: images,
-                    croppedImage: images[0]
-                });
+                if (data !== null && data !== undefined && data.length > 0) {
+                    const images = [...this.state.pictureLibrary, ...data.Images];
+                    this.setState({
+                        pictureLibrary: images,
+                        croppedImage: images[0]
+                    });
 
-                currentPage < data.Pager.TotalPages ?
-                    this.getPictureLibary(currentPage + 1) :
-                    localStorage.setItem('profilePictureLibrary', JSON.stringify(images));
+                    currentPage < data.Pager.TotalPages ?
+                        this.getPictureLibary(currentPage + 1) :
+                        localStorage.setItem('profilePictureLibrary', JSON.stringify(images));
+                }
             }
         ).catch(handleError);
     }

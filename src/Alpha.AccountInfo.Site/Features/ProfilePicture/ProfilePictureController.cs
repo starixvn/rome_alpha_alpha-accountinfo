@@ -21,10 +21,10 @@
 
         [HttpPost]
         public async Task<ActionResult> GetPictureLibrary(ProfilePictureLibraryQuery message)
-        => await JsonDataAsync(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+            => await JsonDataAsync(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UpdateActorProfilePicture(UpdateActorProfilePictureQuery query)
-        => await JsonDataAsync(query, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+            => await JsonDataAsync(query, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
     }
 }

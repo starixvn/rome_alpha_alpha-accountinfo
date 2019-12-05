@@ -1,7 +1,7 @@
 ﻿import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import { setTimeout } from "core-js";
-import { cloneDeep, isEmpty, sampleSize } from 'lodash';
+import { cloneDeep } from 'lodash';
 import Raven from 'raven-js';
 import Modal from 'react-modal';
 import { handleError, requests } from '../../../Shared/Scripts/api-client';
@@ -27,7 +27,6 @@ class App extends PureComponent {
             imagesList: cloneDeep(imagesList).slice(1, 5),
             originalAvatar: actorProfilePicture,
             croppedImage: actorProfilePicture,
-            isDefaultAvatar: JSON.parse(actorProfilePicture.IsDefaultAvatar),
             hideMessages: true,
             message: ''
         };
@@ -172,8 +171,8 @@ class App extends PureComponent {
     }
 
     render() {
-        const { croppedImage, imagesList, originalAvatar, isDefaultAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
-            { resources, setUpOTPLink, allowUpdate } = this.props, disabledButton = !allowUpdate || isDefaultAvatar || imagesList.length === 0,
+        const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
+            { resources, setUpOTPLink, allowUpdate } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
         return (
