@@ -124,7 +124,7 @@
     <value>Agent</value>
   </data>
   <data name="AgentList" xml:space="preserve">
-    <value>Các Agent</value>
+    <value>Danh Sách Agent</value>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Agent</value>
@@ -232,7 +232,7 @@
     <value>Member</value>
   </data>
   <data name="MemberList" xml:space="preserve">
-    <value>Các Thành Viên</value>
+    <value>Danh Sách Member</value>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>Hạn mức tín dụng tối đa của Member</value>
