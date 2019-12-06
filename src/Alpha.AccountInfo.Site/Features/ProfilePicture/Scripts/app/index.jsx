@@ -1,6 +1,6 @@
-﻿import React, { PureComponent } from "react";
-import ReactDOM from "react-dom";
-import { setTimeout } from "core-js";
+﻿import React, { PureComponent } from 'react';
+import ReactDOM from 'react-dom';
+import { setTimeout } from 'core-js';
 import { cloneDeep } from 'lodash';
 import Raven from 'raven-js';
 import Modal from 'react-modal';
@@ -139,10 +139,10 @@ class App extends PureComponent {
 
     onSelectFile(e) {
         if (e.target.files && e.target.files.length > 0) {
-            const file = e.target.files[0], fileType = file["type"];
+            const file = e.target.files[0], fileType = file['type'];
             if (fileType.search('image') >= 0) {
                 const reader = new FileReader();
-                reader.addEventListener("load", () => {
+                reader.addEventListener('load', () => {
                     const img = new Image();
                     img.addEventListener('load', () => {
                         const { naturalWidth, naturalHeight } = img;
@@ -177,33 +177,33 @@ class App extends PureComponent {
 
         return (
             <div>
-                <ul className="nav nav-tabs">
-                    <li className="tab-item active">
+                <ul className='nav nav-tabs'>
+                    <li className='tab-item active'>
                         <a>
                             <span>{resources.ProfilePicture}</span>
                         </a>
                     </li>
-                    <li className="tab-item">
+                    <li className='tab-item'>
                         <a href={setUpOTPLink}>
                             <span>OTP</span>
                         </a>
                     </li>
                 </ul>
-                <div className="profile-picture">
-                    <div className="crop-img-info">
-                        <img alt="Crop" src={croppedImage.Image} className='cropped-image' />
-                        <div className="wrapper-right">
-                            <label htmlFor="files" {...disabled} className="btn-from-device"> {resources.UploadFromYourDevice} </label>
-                            <input id="files" {...disabled} accept="image/png, image/jpeg, image/gif" type="file" onChange={this.onSelectFile} />
+                <div className='profile-picture'>
+                    <div className='crop-img-info'>
+                        <img alt='Crop' src={croppedImage.Image} className='cropped-image' />
+                        <div className='wrapper-right'>
+                            <label htmlFor='files' {...disabled} className='btn-from-device'> {resources.UploadFromYourDevice} </label>
+                            <input id='files' {...disabled} accept='image/png, image/jpeg, image/gif' type='file' onChange={this.onSelectFile} />
                         </div>
                     </div>
-                    <div className="choose-picture">
-                        <div className="extend-section">
-                            <span className="txt">{resources.OrChooseFromOurGallery}</span>
+                    <div className='choose-picture'>
+                        <div className='extend-section'>
+                            <span className='txt'>{resources.OrChooseFromOurGallery}</span>
                         </div>
-                        <div className="list-picture">
+                        <div className='list-picture'>
                             <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
-                                alt="Crop"
+                                alt='Crop'
                                 onClick={() => this.handleOnClick(originalAvatar)}
                                 onTouchStart={() => this.handleOnClick(originalAvatar)}
                                 src={originalAvatar.Image}
@@ -211,7 +211,7 @@ class App extends PureComponent {
                             {
                                 imagesList.map((profilePicture, index) =>
                                     <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
-                                        alt="Crop"
+                                        alt='Crop'
                                         onClick={() => this.handleOnClick(profilePicture)}
                                         onTouchStart={() => this.handleOnClick(profilePicture)}
                                         src={profilePicture.Image}
@@ -228,9 +228,9 @@ class App extends PureComponent {
 
                     {this.state.message}
 
-                    <div className="btn-group">
-                        <button className="btn-submit" {...disabled} onClick={this.handleOnSubmit} onTouchStart={this.handleOnSubmit}>{resources.Submit}</button>
-                        <button className="btn-reset" {...disabled} onClick={this.handleOnReset} onTouchStart={this.handleOnReset}>{resources.Reset}</button>
+                    <div className='btn-group'>
+                        <button className='btn-submit' {...disabled} onClick={this.handleOnSubmit} onTouchStart={this.handleOnSubmit}>{resources.Submit}</button>
+                        <button className='btn-reset' {...disabled} onClick={this.handleOnReset} onTouchStart={this.handleOnReset}>{resources.Reset}</button>
                     </div>
 
                     <CreateProfilePictureModal

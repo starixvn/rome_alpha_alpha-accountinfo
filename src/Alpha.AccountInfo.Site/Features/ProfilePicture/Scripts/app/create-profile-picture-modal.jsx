@@ -1,5 +1,5 @@
-﻿import React, { PureComponent } from "react";
-import ReactCrop from "react-image-crop";
+﻿import React, { PureComponent } from 'react';
+import ReactCrop from 'react-image-crop';
 import Modal from 'react-modal';
 import { croppedImageId } from './profile-picture-helper';
 import { cloneDeep } from 'lodash';
@@ -105,7 +105,7 @@ export default class CreateProfilePictureModal extends PureComponent {
             const croppedImageUrl = this.getCroppedImg(
                 this.imageRef,
                 crop,
-                "newFile.Jpeg"
+                'newFile.Jpeg'
             );
 
             this.setState({ croppedImageUrl });
@@ -128,12 +128,12 @@ export default class CreateProfilePictureModal extends PureComponent {
     }
 
     getCroppedImg(image, crop) {
-        const canvas = document.createElement("canvas");
+        const canvas = document.createElement('canvas');
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
         canvas.width = crop.width;
         canvas.height = crop.height;
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext('2d');
 
         ctx.drawImage(
             image,
@@ -159,7 +159,7 @@ export default class CreateProfilePictureModal extends PureComponent {
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={popupStyles}
-                contentLabel=""
+                contentLabel=''
             >
                 {imageSrc && (
                     <div className='crop-image select-modal'>
@@ -167,8 +167,8 @@ export default class CreateProfilePictureModal extends PureComponent {
                             <span className='title'>{resources.UploadFromYourDevice}</span>
                             <span className='icon-close' onClick={closeModal}></span>
                         </div>
-                        <div className="btn-group">
-                            <button className="btn-select" onClick={this.handleOnSelect}>{resources.Selected}</button>
+                        <div className='btn-group'>
+                            <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>
                             <button className='btn-cancel' onClick={closeModal}>Cancel</button>
                         </div>
                         <ReactCrop

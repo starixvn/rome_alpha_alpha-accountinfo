@@ -1,4 +1,4 @@
-﻿import React, { PureComponent } from "react";
+﻿import React, { PureComponent } from 'react';
 import Modal from 'react-modal';
 import { handleError, requests } from '../../../Shared/Scripts/api-client';
 import { urls } from './profile-picture-helper';
@@ -97,23 +97,23 @@ export default class PictureLibraryModal extends PureComponent {
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={customStyles}
-                contentLabel=""
+                contentLabel=''
             >
-                <div className="picture-library select-modal">
-                    <div className="header">
-                        <span className="title">Profile picture gallery</span>
-                        <span className="icon-close" onClick={closeModal}></span>
+                <div className='picture-library select-modal'>
+                    <div className='header'>
+                        <span className='title'>Profile picture gallery</span>
+                        <span className='icon-close' onClick={closeModal}></span>
                     </div>
-                    <div className="btn-group">
+                    <div className='btn-group'>
                         <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>
                         <button className='btn-cancel' onClick={closeModal}>Cancel</button> 
                     </div>
-                    <div className="library">
+                    <div className='library'>
                         {
                             pictureLibrary.length > 0 && croppedImage !== undefined &&
                             pictureLibrary.map((profilePicture, index) =>
                                 <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
-                                    alt="Crop"
+                                    alt='Crop'
                                     src={profilePicture.Image}
                                     onClick={() => this.handleOnClick(profilePicture)}
                                     onTouchStart={() => this.handleOnClick(profilePicture)}
