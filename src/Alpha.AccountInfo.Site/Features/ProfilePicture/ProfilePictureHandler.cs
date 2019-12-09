@@ -41,7 +41,7 @@
 
         public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
         {
-            var imageLibrary = await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
+            var imageLibrary = await GetProfilePictureLibraryAsync().ConfigureAwait(false);
 
             return new ProfielPictureViewModel(
                 imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures),
@@ -52,7 +52,7 @@
 
         public async Task<ProfielPictureLibraryViewModel> Handle(ProfilePictureLibraryQuery message)
         {
-            var images = await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false);
+            var images = await GetProfilePictureLibraryAsync().ConfigureAwait(false);
             var pager = new Pager(totalItems: images.Count(), currentPage: message.CurrentPage);
 
             var currentPageItems = images.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
@@ -72,6 +72,6 @@
         public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
             => await await ConfiguredCacheService.GetOrSetAsync(
                     ProfilePictureLibaryKey,
-                    async () => await profilePictureServices.FectchProfilePictureLibraryAsync().ConfigureAwait(false)).ConfigureAwait(false);
+                    async () => await profilePictureServices.FectchProfilePictureLibraryAsync(getInsertProfilePictureSiteMode()).ConfigureAwait(false)).ConfigureAwait(false);
     }
 }

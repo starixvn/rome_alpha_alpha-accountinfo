@@ -17,7 +17,7 @@
     {
         Result UpdateManualProfilePictureCommand(byte[] image, bool isMBC);
 
-        Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync();
+        Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync(int systemMode);
 
         Task<Result> UpdateActorProfilePictureAsync(UpdateActorProfilePictureParam param);
     }
@@ -51,11 +51,12 @@
             }
         }
 
-        public async Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync()
+        public async Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync(int systemMode)
         {
             try
             {
-                var binaryProfilePictures = await dynamicRepository.FetchAsync<ProfilePictureDTO>(new SelectProfilePictureLibraryCriteria()).ConfigureAwait(false);
+                var binaryProfilePictures = await dynamicRepository.FetchAsync<ProfilePictureDTO>(
+                    new SelectProfilePictureLibraryCriteria(systemMode)).ConfigureAwait(false);
                 return binaryProfilePictures == null ? Enumerable.Empty<ProfilePictureModel>() :
                     binaryProfilePictures.Select(profilePictureDto => new ProfilePictureModel(profilePictureDto.ImageId, profilePictureDto.Image));
             }

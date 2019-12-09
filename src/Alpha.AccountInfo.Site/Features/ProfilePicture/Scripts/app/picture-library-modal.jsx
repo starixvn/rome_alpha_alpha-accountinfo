@@ -56,7 +56,7 @@ export default class PictureLibraryModal extends PureComponent {
     getPictureLibary(currentPage = 1) {
         requests.post(urls.GetPictureLibrary, { CurrentPage: currentPage}).then(
             data => {
-                if (data !== null && data !== undefined && data.length > 0) {
+                if (data !== null && data !== undefined && data.Images.length > 0) {
                     const images = [...this.state.pictureLibrary, ...data.Images];
                     this.setState({
                         pictureLibrary: images,

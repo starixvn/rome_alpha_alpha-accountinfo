@@ -4,13 +4,14 @@
 
     public class SelectProfilePictureLibraryCriteria : CriteriaBase
     {
-        public SelectProfilePictureLibraryCriteria()
+        public SelectProfilePictureLibraryCriteria(int systemMode)
         {
+            Mode = systemMode;
         }
 
         public override string GetSettingKey() => "Age_CustomerProfilePictureLibrarySel";
 
-        public byte Mode => 1;
+        public int Mode { get; }
 
         public override bool IsValid() => true;
     }

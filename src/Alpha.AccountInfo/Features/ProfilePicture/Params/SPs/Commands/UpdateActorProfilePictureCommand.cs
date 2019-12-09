@@ -28,6 +28,7 @@
             IsDefault = isDefault;
             Mode = mode;
             IP = ip;
+            IsMainServer = true;
         }
 
         [SpParam(SqlParamName = "CustId")]
@@ -39,7 +40,7 @@
 
         public bool IsDefault { get; }
 
-        public bool IsMainServer => true;
+        public bool IsMainServer { get; }
 
         public int Mode { get; }
 
