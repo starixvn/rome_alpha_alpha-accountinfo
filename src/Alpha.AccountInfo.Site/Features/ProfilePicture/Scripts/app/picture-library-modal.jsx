@@ -112,7 +112,7 @@ export default class PictureLibraryModal extends PureComponent {
                         {
                             pictureLibrary.length > 0 && croppedImage !== undefined &&
                             pictureLibrary.map((profilePicture, index) =>
-                                <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
+                                <img className={`library-image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
                                     alt='Crop'
                                     src={profilePicture.Image}
                                     onClick={() => this.handleOnClick(profilePicture)}
