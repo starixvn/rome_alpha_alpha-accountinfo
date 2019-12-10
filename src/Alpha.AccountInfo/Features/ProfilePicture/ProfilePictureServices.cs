@@ -75,7 +75,6 @@
                         param.ActorId,
                         param.ImageId,
                         param.Image,
-                        param.IsDefault,
                         param.Mode,
                         param.IP);
 

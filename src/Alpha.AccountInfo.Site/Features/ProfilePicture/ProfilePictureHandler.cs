@@ -66,7 +66,6 @@
                   message.ImageId,
                   message.ImageBinary,
                   getInsertProfilePictureSiteMode(),
-                  false,
                   message.IP));
 
         public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()

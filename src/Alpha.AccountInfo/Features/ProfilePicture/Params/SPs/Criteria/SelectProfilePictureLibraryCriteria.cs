@@ -13,6 +13,6 @@
 
         public int Mode { get; }
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => Mode > 0;
     }
 }

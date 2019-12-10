@@ -7,14 +7,13 @@
     {
         public UpdateActorProfilePictureCommand(
             int actorId,
-            int? imageId,
+            int imageId,
             byte[] image,
-            bool isDefault,
             int mode,
             string ip)
         {
-            ActorId = actorId;
-            if(imageId != null && imageId < 0)
+            
+            if(imageId < 0)
             {
                 ImageId = null;
                 Image = image;
@@ -24,10 +23,11 @@
                 ImageId = imageId;
                 Image = null;
             }
-          
-            IsDefault = isDefault;
+
+            ActorId = actorId;
             Mode = mode;
             IP = ip;
+            IsDefault = false;
             IsMainServer = true;
         }
 
