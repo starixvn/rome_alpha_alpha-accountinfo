@@ -186,7 +186,6 @@
     <Compile Include="Features\ProfilePicture\ProfilePictureServices.cs" />
     <Compile Include="Features\ProfilePicture\Models\ProfilePictureModel.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureCommand.cs" />
-    <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateManualProfilePictureCommand.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\Criteria\SelectProfilePictureLibraryCriteria.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\UpdateActorProfilePictureParam.cs" />
     <Compile Include="Features\SearchAccount\AppResources\GivenCredit.Designer.cs">

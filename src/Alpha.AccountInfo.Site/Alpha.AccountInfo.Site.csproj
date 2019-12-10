@@ -370,21 +370,10 @@
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.css" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.js" />
-    <Content Include="Features\ProfilePicture\Bundles\jquery-3.3.1.js" />
     <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture-modal.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\profile-picture-helper.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library-modal.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\index.jsx" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\continue.gif" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\edit.gif" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\fine-uploader-new.css" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\fine-uploader-new.min.css" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\jquery.fine-uploader.js" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\loading.gif" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\pause.gif" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\placeholders\not_available-generic.png" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\placeholders\waiting-generic.png" />
-    <Content Include="Features\ProfilePicture\Scripts\fine-uploader\processing.gif" />
     <Content Include="Features\ProfilePicture\Styles\Images\icon_user_default.png" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
@@ -498,7 +487,6 @@
     <Content Include="__mocks__\axios.js" />
     <Content Include="Features\ProfilePicture\Views\web.config" />
     <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
-    <Content Include="Features\ProfilePicture\Views\ConvertImageToBinary.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\index.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
@@ -615,7 +603,6 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Features\ProfilePicture\DemoController.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureLibraryViewModel.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />

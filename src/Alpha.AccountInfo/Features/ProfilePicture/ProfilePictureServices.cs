@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.ProfilePicture.Services
 {
-    using Alpha.AccountInfo.Features.ProfilePicture.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.ProfilePicture.Models;
     using Alpha.AccountInfo.ProfilePicture.Params;
@@ -15,8 +14,6 @@
 
     public interface ProfilePictureServices
     {
-        Result UpdateManualProfilePictureCommand(byte[] image, bool isMBC);
-
         Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync(int systemMode);
 
         Task<Result> UpdateActorProfilePictureAsync(UpdateActorProfilePictureParam param);
@@ -24,31 +21,11 @@
 
     public class ProfilePictureServicesImpl : ProfilePictureServices
     {
-        private const int ErrorCodeDefault = 100;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly Result ErrorDefaultResult =
-            Result.CreateErrorResult(ErrorCodeDefault, ProfilePictureResources.ProfilePictureUpdatedFailed);
 
         public ProfilePictureServicesImpl(IDynamicRepository dynamicRepository)
         {
             this.dynamicRepository = dynamicRepository;
-        }
-
-        public Result UpdateManualProfilePictureCommand(byte[] image, bool isMBC)
-        {
-            try
-            {
-                var command = new UpdateManualProfilePictureCommand(image, isMBC);
-
-                dynamicRepository.Execute(command);
-
-                return Result.CreateSuccessResult();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.Handle(ex);
-                return Result.CreateErrorResult(ErrorCodeDefault, ex.Message);
-            }
         }
 
         public async Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync(int systemMode)
@@ -69,26 +46,18 @@
 
         public async Task<Result> UpdateActorProfilePictureAsync(UpdateActorProfilePictureParam param)
         {
-            try
-            {
-                var command = new UpdateActorProfilePictureCommand(
+            var command = new UpdateActorProfilePictureCommand(
                         param.ActorId,
                         param.ImageId,
                         param.Image,
                         param.Mode,
                         param.IP);
 
-                await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
+            await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
 
-                return command.ErrCode.Equals(0) ?
-                    Result.CreateSuccessResult() :
-                    Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.Handle(ex);
-                return ErrorDefaultResult;
-            }
+            return command.ErrCode.Equals(0) ?
+                Result.CreateSuccessResult() :
+                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
     }
 }
