@@ -18,7 +18,7 @@
     public class ProfilePictureHandler :
         IAsyncRequestHandler<ProfilePictureQuery, ProfielPictureViewModel>,
         IAsyncRequestHandler<ProfilePictureLibraryQuery, ProfielPictureLibraryViewModel>,
-        IAsyncRequestHandler<UpdateActorProfilePictureQuery, Result>
+        IAsyncRequestHandler<UpdateActorProfilePictureRequest, Result>
     {
         private const string ProfilePictureLibaryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
         private const int NumerousOfDefaultPictures = 7;
@@ -59,7 +59,7 @@
             return new ProfielPictureLibraryViewModel(currentPageItems, pager);
         }
 
-        public Task<Result> Handle(UpdateActorProfilePictureQuery message)
+        public Task<Result> Handle(UpdateActorProfilePictureRequest message)
           => profilePictureServices.UpdateActorProfilePictureAsync(
               new UpdateActorProfilePictureParam(
                   message.ActorId,
@@ -68,7 +68,7 @@
                   getInsertProfilePictureSiteMode(),
                   message.IP));
 
-        public async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
+        internal async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
             => await await ConfiguredCacheService.GetOrSetAsync(
                     ProfilePictureLibaryKey,
                     async () => await profilePictureServices.FectchProfilePictureLibraryAsync(getInsertProfilePictureSiteMode()).ConfigureAwait(false)).ConfigureAwait(false);

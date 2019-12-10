@@ -154,7 +154,6 @@
             AssertExtension.Equal(actualViewModel, expectedViewModel);
         }
 
-
         [Fact]
         public void HandleUnsuspendMultipleCommand_IsValidMultipleBelonging_ReturnsCorrectViewModel()
         {

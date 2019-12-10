@@ -24,7 +24,7 @@
             => await JsonDataAsync(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
         [HttpPost, AntiXsrfFilter]
-        public async Task<ActionResult> UpdateActorProfilePicture(UpdateActorProfilePictureQuery query)
+        public async Task<ActionResult> UpdateActorProfilePicture(UpdateActorProfilePictureRequest query)
             => await JsonDataAsync(query, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
     }
 }

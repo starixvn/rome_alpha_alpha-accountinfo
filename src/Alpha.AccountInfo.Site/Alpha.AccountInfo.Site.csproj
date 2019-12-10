@@ -607,7 +607,7 @@
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibraryQuery.cs" />
-    <Compile Include="Features\ProfilePicture\Requests\UpdateActorProfilePictureQuery.cs" />
+    <Compile Include="Features\ProfilePicture\Requests\UpdateActorProfilePictureRequest.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureQuery.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureHandler.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureViewModel.cs" />

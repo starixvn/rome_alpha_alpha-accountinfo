@@ -5,9 +5,9 @@
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using MediatR;
 
-    public class UpdateActorProfilePictureQuery : BaseRequest, IRequest<Result>
+    public class UpdateActorProfilePictureRequest : BaseRequest, IRequest<Result>
     {
-        public UpdateActorProfilePictureQuery(IUser viewer) : base(viewer)
+        public UpdateActorProfilePictureRequest(IUser viewer) : base(viewer)
         {
             ActorId = viewer.Id;
             IP = viewer.IP;
