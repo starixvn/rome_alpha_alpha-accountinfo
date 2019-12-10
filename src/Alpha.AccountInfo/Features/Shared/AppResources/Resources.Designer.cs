@@ -106,7 +106,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agents.
+        ///   Looks up a localized string similar to Agents (Active/Closed/Suspended).
         /// </summary>
         public static string Agents {
             get {
@@ -565,7 +565,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Members.
+        ///   Looks up a localized string similar to Members (Active/Closed/Suspended).
         /// </summary>
         public static string Members {
             get {

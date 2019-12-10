@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -382,10 +382,10 @@
     <value>更改</value>
   </data>
   <data name="Agents" xml:space="preserve">
-    <value>代理们</value>
+    <value>代理们 (活跃/关闭/暫停)</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>会员们</value>
+    <value>会员们 (活跃/关闭/暫停)</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>用户名不存在！</value>

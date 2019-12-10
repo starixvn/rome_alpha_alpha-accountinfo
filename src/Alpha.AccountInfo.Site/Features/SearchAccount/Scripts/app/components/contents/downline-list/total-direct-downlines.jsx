@@ -51,7 +51,7 @@ export default class TotalDirectDownlines extends React.Component {
         const { resources, searchAccountIsMaster } = this.props;
 
         return <div>
-            <div className='row-info bold'>{searchAccountIsMaster ? resources.Agents : resources.Members} (A/C/S)</div>
+            <div className='row-info bold'>{searchAccountIsMaster ? resources.Agents : resources.Members}</div>
             <div className='totalstatus-list'>
                 {
                     data.map((item, index) => {
