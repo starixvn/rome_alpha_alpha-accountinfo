@@ -6,8 +6,6 @@
     using Alpha.AccountInfo.ProfilePicture.Params.SPs.Commands;
     using Alpha.AccountInfo.ProfilePicture.Params.SPs.Criteria;
     using Fanex.Data.Repository;
-    using Fanex.Logging.Extensions.Web;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -30,18 +28,10 @@
 
         public async Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync(int systemMode)
         {
-            try
-            {
-                var binaryProfilePictures = await dynamicRepository.FetchAsync<ProfilePictureDTO>(
-                    new SelectProfilePictureLibraryCriteria(systemMode)).ConfigureAwait(false);
-                return binaryProfilePictures == null ? Enumerable.Empty<ProfilePictureModel>() :
-                    binaryProfilePictures.Select(profilePictureDto => new ProfilePictureModel(profilePictureDto.ImageId, profilePictureDto.Image));
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.Handle(ex);
-                return Enumerable.Empty<ProfilePictureModel>();
-            }
+            var binaryProfilePictures = await dynamicRepository.FetchAsync<ProfilePictureDTO>(
+                new SelectProfilePictureLibraryCriteria(systemMode)).ConfigureAwait(false);
+
+            return binaryProfilePictures.Select(profilePictureDto => new ProfilePictureModel(profilePictureDto.ImageId, profilePictureDto.Image));
         }
 
         public async Task<Result> UpdateActorProfilePictureAsync(UpdateActorProfilePictureParam param)
