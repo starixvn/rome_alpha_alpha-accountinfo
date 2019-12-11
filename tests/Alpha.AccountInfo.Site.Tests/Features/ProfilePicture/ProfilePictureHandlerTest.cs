@@ -1,19 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.UnsuspendDownlines
 {
-    using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Features.UnsuspendDownlines;
-    using Alpha.AccountInfo.Features.UnsuspendDownlines.Models;
     using Alpha.AccountInfo.ProfilePicture.Models;
     using Alpha.AccountInfo.ProfilePicture.Params;
     using Alpha.AccountInfo.ProfilePicture.Services;
-    using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.ProfilePicture;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.Requests;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
-    using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
-    using Alpha.AccountInfo.Site.Features.UnsuspendDownlines;
-    using Alpha.AccountInfo.Site.Features.UnsuspendDownlines.Requests;
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers;
     using Alpha.Products.Core.Services;

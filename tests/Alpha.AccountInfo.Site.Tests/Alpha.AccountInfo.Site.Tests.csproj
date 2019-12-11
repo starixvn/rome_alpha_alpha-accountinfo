@@ -198,6 +198,9 @@
   <ItemGroup>
     <Compile Include="Features\ProfilePicture\ProfilePictureControllerTest.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureHandlerTest.cs" />
+    <Compile Include="Features\ProfilePicture\Requests\UpdateActorProfilePictureRequestTest.cs" />
+    <Compile Include="Features\ProfilePicture\Requests\ProfilePictureQueryTest.cs" />
+    <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibraryQueryTest.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountControllerTest.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusControllerTests.cs" />
     <Compile Include="Extensions\AssertExtension.cs" />
