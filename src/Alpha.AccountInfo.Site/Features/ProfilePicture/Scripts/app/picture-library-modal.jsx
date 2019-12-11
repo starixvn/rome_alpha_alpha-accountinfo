@@ -33,7 +33,8 @@ export default class PictureLibraryModal extends PureComponent {
         super(props);
         this.state = {
             pictureLibrary: [],
-            croppedImage: undefined
+            croppedImage: undefined,
+            loadingIcon: false
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -60,12 +61,20 @@ export default class PictureLibraryModal extends PureComponent {
                     const images = [...this.state.pictureLibrary, ...data.Images];
                     this.setState({
                         pictureLibrary: images,
-                        croppedImage: images[0]
+                        croppedImage: images[0],
+                        loadingIcon: true
                     });
 
-                    currentPage < data.Pager.TotalPages ?
-                        this.getPictureLibary(currentPage + 1) :
+                    if (currentPage < data.Pager.TotalPages) {
+                        this.getPictureLibary(currentPage + 1);
+                    }
+                    else {
+                        this.setState({
+                            loadingIcon: false
+                        });
+
                         localStorage.setItem('profilePictureLibrary', JSON.stringify(images));
+                    }
                 }
             }
         ).catch(handleError);
@@ -91,7 +100,7 @@ export default class PictureLibraryModal extends PureComponent {
     }
 
     render() {
-        const { croppedImage, pictureLibrary } = this.state, { resources, closeModal, modalIsOpen } = this.props;
+        const { croppedImage, pictureLibrary, loadingIcon } = this.state, { resources, closeModal, modalIsOpen } = this.props;
         return (
             <Modal
                 isOpen={modalIsOpen}
@@ -118,6 +127,9 @@ export default class PictureLibraryModal extends PureComponent {
                                     onClick={() => this.handleOnClick(profilePicture)}
                                     onTouchStart={() => this.handleOnClick(profilePicture)}
                                     key={index} />)
+                        }
+                        {
+                            loadingIcon && <img className='blockMsg library-image-item'/>
                         }
                     </div>
                 </div>
