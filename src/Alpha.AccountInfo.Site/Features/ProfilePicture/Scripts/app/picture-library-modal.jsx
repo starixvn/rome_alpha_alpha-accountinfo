@@ -69,9 +69,7 @@ export default class PictureLibraryModal extends PureComponent {
                         this.getPictureLibary(currentPage + 1);
                     }
                     else {
-                        this.setState({
-                            loadingIcon: false
-                        });
+                        this.setState({ loadingIcon: false });
 
                         localStorage.setItem('profilePictureLibrary', JSON.stringify(images));
                     }
@@ -110,12 +108,12 @@ export default class PictureLibraryModal extends PureComponent {
             >
                 <div className='picture-library select-modal'>
                     <div className='header'>
-                        <span className='title'>Profile picture gallery</span>
+                        <span className='title'>{resources.PictureLibrary}</span>
                         <span className='icon-close' onClick={closeModal}></span>
                     </div>
                     <div className='btn-group'>
                         <button className='btn-select' onClick={this.handleOnSelect}>{resources.Selected}</button>
-                        <button className='btn-cancel' onClick={closeModal}>Cancel</button> 
+                        <button className='btn-cancel' onClick={closeModal}>{resources.Cancel}</button> 
                     </div>
                     <div className='library'>
                         {

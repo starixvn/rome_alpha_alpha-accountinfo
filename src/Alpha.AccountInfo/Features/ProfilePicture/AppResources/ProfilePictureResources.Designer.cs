@@ -88,7 +88,7 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Picture Library.
+        ///   Looks up a localized string similar to Profile picture gallery.
         /// </summary>
         public static string PictureLibrary {
             get {
