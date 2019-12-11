@@ -12,6 +12,7 @@
             ActorId = viewer.Id;
             IP = viewer.IP;
             AllowUpdate = viewer.CanUpdateAccount && !viewer.IsSubAcc;
+            IsInternal = viewer.IsInternal;
         }
 
         public int ActorId { get;}
@@ -27,9 +28,11 @@
 
         public bool AllowUpdate { get; private set; }
 
+        public bool IsInternal { get; private set; }
+
         public override bool IsValid()
         {
-            var IsValidActorPermission = AllowUpdate && ActorId > 0;
+            var IsValidActorPermission = !IsInternal && AllowUpdate && ActorId > 0;
             var IsValidImage = ImageId > 0 || (ImageId < 0 && ImageBinary != null);
             return IsValidActorPermission && IsValidImage;
         }

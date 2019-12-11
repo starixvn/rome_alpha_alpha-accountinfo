@@ -2,10 +2,10 @@
 import ReactCrop from 'react-image-crop';
 import Modal from 'react-modal';
 import { croppedImageId } from './profile-picture-helper';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, over } from 'lodash';
 
 const isDesktop = !window.top.alpha.isScreenLower768,
-    totalHeightOfTitleAndButtonOnPopup = 108,
+    totalHeightOfTitleAndButtonOnPopup = 118,
     profilePictureWidthDefault=240,
     popupStyleMobile = {
         top: '0',
@@ -21,7 +21,7 @@ const isDesktop = !window.top.alpha.isScreenLower768,
         left: '50%',
         right: 'auto',
         bottom: 'auto',
-        padding: '0',
+        padding: '10',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         width: '600px',
@@ -115,16 +115,32 @@ export default class CreateProfilePictureModal extends PureComponent {
     getContainedSize(img) {
         const ratio = img.naturalWidth / img.naturalHeight;
 
-        let height = img.height < img.naturalHeight ? img.height : img.naturalHeight ;
+        let height = this.getMinValueOfArray([img.height, img.naturalHeight]);
         let width = height * ratio;
 
-        let widthTemp = img.width < img.naturalWidth ? img.width : img.naturalWidth;
-        if (width > widthTemp) {
-            width = widthTemp;
-            height = widthTemp / ratio;
+        const minWidth = this.getMinValueOfArray([img.width, img.naturalWidth]);
+
+        if (width > minWidth) {
+            width = minWidth;
+            height = minWidth / ratio;
         }  
 
-        return { width, height };
+        return {
+            width: this.getMaxValueOfArray([width, profilePictureWidthDefault]),
+            height: this.getMaxValueOfArray([height, profilePictureWidthDefault])
+        };
+    }
+
+    getMinValueOfArray(values) {
+        const getMinValueFunc = over(Math.min);
+        const [minValue] = getMinValueFunc(...values);
+        return minValue;
+    }
+
+    getMaxValueOfArray(values) {
+        const getMaxValueFunc = over(Math.max);
+        const [maxValue] = getMaxValueFunc(...values);
+        return maxValue;
     }
 
     getCroppedImg(image, crop) {

@@ -153,10 +153,6 @@
 .crop-image {
     height: 100%;
 
-    .btn-group {
-        padding-bottom: 10px;
-    }
-
     .img-container {
         margin: 0 12px;
     }
@@ -236,7 +232,7 @@
     }
 
     .btn-select {
-        margin: 12px 12px 4px 12px;
+        margin: 12px 12px 4px 0px;
         height: 32px;
         background-color: #66151A;
         color: #fff;
