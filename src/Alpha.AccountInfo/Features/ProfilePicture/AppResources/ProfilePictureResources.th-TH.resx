@@ -156,4 +156,7 @@
   <data name="ViewAll" xml:space="preserve">
     <value>ดูทั้งหมด</value>
   </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
+  </data>
 </root>

@@ -79,6 +79,15 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function..
+        /// </summary>
+        public static string notAuthorized {
+            get {
+                return ResourceManager.GetString("notAuthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to or choose from our gallery.
         /// </summary>
         public static string OrChooseFromOurGallery {

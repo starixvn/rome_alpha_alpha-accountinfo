@@ -156,4 +156,7 @@
   <data name="ViewAll" xml:space="preserve">
     <value>Xem tất cả</value>
   </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này.</value>
+  </data>
 </root>

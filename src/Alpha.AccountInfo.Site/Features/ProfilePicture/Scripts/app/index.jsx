@@ -190,6 +190,13 @@ class App extends PureComponent {
                     </li>
                 </ul>
                 <div className='profile-picture'>
+                    {!allowUpdate && (
+                        <div className='msg-container'>
+                            <div className='msg msg-error'>
+                                {resources.notAuthorized}
+                            </div>
+                        </div>)
+                    }
                     <div className='crop-img-info'>
                         <img alt='Crop' src={croppedImage.Image} className='cropped-image' />
                         <div className='wrapper-right'>

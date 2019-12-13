@@ -12,7 +12,7 @@
             ActorId = viewer.Id;
             ActorRoleId = viewer.LevelId;
             Language = viewer.Language;
-            AllowUpdate = viewer.CanUpdateAccount && !viewer.IsSubAcc;
+            AllowUpdate = viewer.CanUpdateAccount && !viewer.IsSubAcc && !viewer.IsInternal;
         }
 
         public int ActorId { get;}

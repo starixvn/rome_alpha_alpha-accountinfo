@@ -156,4 +156,7 @@
   <data name="ViewAll" xml:space="preserve">
     <value>查看全部</value>
   </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>您沒有使用此功能的權限</value>
+  </data>
 </root>
