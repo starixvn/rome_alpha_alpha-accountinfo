@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -382,10 +382,10 @@
     <value>ล่าสุด</value>
   </data>
   <data name="Agents" xml:space="preserve">
-    <value>เอเย่นต์</value>
+    <value>เอเย่นต์ (เปิด/ปิด/การแข่งขันถูกระงับ)</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>สมาชิก</value>
+    <value>สมาชิก (เปิด/ปิด/การแข่งขันถูกระงับ)</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>ไม่พบบัญชี!</value>

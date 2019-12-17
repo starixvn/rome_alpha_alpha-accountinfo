@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Active" xml:space="preserve">
-    <value>Active</value>
+    <value>Mở</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
   <data name="AgentList" xml:space="preserve">
-    <value>Các Agent</value>
+    <value>Danh Sách Agent</value>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Agent</value>
@@ -232,7 +232,7 @@
     <value>Member</value>
   </data>
   <data name="MemberList" xml:space="preserve">
-    <value>Các Thành Viên</value>
+    <value>Danh Sách Member</value>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>Hạn mức tín dụng tối đa của Member</value>
@@ -382,10 +382,10 @@
     <value>Cập nhật</value>
   </data>
   <data name="Agents" xml:space="preserve">
-    <value>Agents</value>
+    <value>Agents (Mở/Bị khóa/Bị đình chỉ)</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>Members</value>
+    <value>Members (Mở/Bị khóa/Bị đình chỉ)</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>Không tìm thấy tài khoản!</value>

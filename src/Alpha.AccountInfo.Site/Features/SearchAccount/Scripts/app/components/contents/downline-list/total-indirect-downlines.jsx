@@ -78,7 +78,7 @@ const TotalIndirectDownlines = ({ resources, totalIndirectDownline }) => {
     };
 
     return <div className='col-xs-12 row-info'>
-        <div className='col-xs-6 px-0'>{resources.Members} (A/C/S)</div>
+        <div className='col-xs-6 px-0'>{resources.Members}</div>
         <div className='col-xs-6 col-right px-0'>
             <div className='pull-right pointer'>
                 <Tooltip {...tooltipProps}>

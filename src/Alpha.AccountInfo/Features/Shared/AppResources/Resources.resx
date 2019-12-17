@@ -382,10 +382,10 @@
     <value>Update</value>
   </data>
   <data name="Agents" xml:space="preserve">
-    <value>Agents</value>
+    <value>Agents (Active/Closed/Suspended)</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>Members</value>
+    <value>Members (Active/Closed/Suspended)</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>Account not found!</value>
