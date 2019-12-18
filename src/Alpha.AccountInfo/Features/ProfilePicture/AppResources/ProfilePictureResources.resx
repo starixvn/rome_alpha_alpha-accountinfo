@@ -148,7 +148,7 @@
     <value>Submit</value>
   </data>
   <data name="ThereIsNoChange" xml:space="preserve">
-    <value>There is no change to update !</value>
+    <value>There is no change to update.</value>
   </data>
   <data name="UploadFromYourDevice" xml:space="preserve">
     <value>Upload from your device</value>

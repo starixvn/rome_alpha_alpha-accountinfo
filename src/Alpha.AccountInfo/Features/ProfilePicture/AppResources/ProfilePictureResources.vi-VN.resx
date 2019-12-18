@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="FailByFileType" xml:space="preserve">
     <value>Tập tin đang tải lên không phải là một hình ảnh, vui lòng thử lại !</value>
@@ -139,16 +139,16 @@
     <value>Hình đại diện của bạn đã được tải lên thành công.</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Làm lại</value>
   </data>
   <data name="Selected" xml:space="preserve">
-    <value>Select</value>
+    <value>Chọn</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>Xác nhận</value>
   </data>
   <data name="ThereIsNoChange" xml:space="preserve">
-    <value>There is no change to update !</value>
+    <value>Không có gì thay đổi để cập nhật.</value>
   </data>
   <data name="UploadFromYourDevice" xml:space="preserve">
     <value>Tải ảnh lên</value>

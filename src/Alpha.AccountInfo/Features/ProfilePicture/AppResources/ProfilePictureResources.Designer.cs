@@ -160,7 +160,7 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no change to update !.
+        ///   Looks up a localized string similar to There is no change to update..
         /// </summary>
         public static string ThereIsNoChange {
             get {
