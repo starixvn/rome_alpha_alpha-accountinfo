@@ -722,7 +722,6 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\ProfilePicture\Helpers\" />
     <Folder Include="Features\ProfilePicture\Scripts\tests\" />
   </ItemGroup>
   <PropertyGroup>
