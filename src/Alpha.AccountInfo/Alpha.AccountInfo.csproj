@@ -53,6 +53,9 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Caching, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Caching.2.2.1\lib\net461\Fanex.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
@@ -158,9 +161,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Transactions" />
-    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -176,6 +178,16 @@
       <DependentUpon>ProductStatus.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Features\ProfilePicture\AppResources\ProfilePictureResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfilePictureResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ProfilePicture\ProfilePictureServices.cs" />
+    <Compile Include="Features\ProfilePicture\Models\ProfilePictureModel.cs" />
+    <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureCommand.cs" />
+    <Compile Include="Features\ProfilePicture\Params\SPs\Criteria\SelectProfilePictureLibraryCriteria.cs" />
+    <Compile Include="Features\ProfilePicture\Params\SPs\UpdateActorProfilePictureParam.cs" />
     <Compile Include="Features\SearchAccount\AppResources\GivenCredit.Designer.cs">
       <DependentUpon>GivenCredit.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -264,12 +276,34 @@
     <None Include="Alpha.AccountInfo.Debug.ruleset" />
     <None Include="Alpha.AccountInfo.Release.ruleset" />
     <None Include="app.config" />
+    <EmbeddedResource Include="Features\ProfilePicture\AppResources\ProfilePictureResources.ko-KR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ProfilePicture\AppResources\ProfilePictureResources.th-TH.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ProfilePicture\AppResources\ProfilePictureResources.vi-VN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ProfilePicture\AppResources\ProfilePictureResources.zh-CN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ProfilePicture\AppResources\ProfilePictureResources.zh-TW.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ProfilePicture\AppResources\ProfilePictureResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfilePictureResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.ko-KR.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.th-TH.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.vi-VN.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.zh-CN.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.zh-TW.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.ja-JP.resx" />
+    <EmbeddedResource Include="Features\ProfilePicture\AppResources\ProfilePictureResources.ja-JP.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +353,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

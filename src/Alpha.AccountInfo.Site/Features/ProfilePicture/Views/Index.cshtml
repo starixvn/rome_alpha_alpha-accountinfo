@@ -1,0 +1,26 @@
+﻿@model ProfielPictureViewModel
+
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    var imagesLibrary = JsonConvert.SerializeObject(Model.Images);
+}
+
+@section Styles {
+    @StaticResources.AssetStyles.Render($"/bundles/site-accountinfo/profilepicture/profilepicture-" + Model.ActorLevel)
+    @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/index")
+}
+
+@Html.AntiForgeryToken()
+<div id="root"></div>
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/index")
+
+    <script>
+        renderApp(
+             @Html.Raw(imagesLibrary),
+            @Html.Raw(Model.Resources),
+            '@Model.SetUpOTPLink',
+            JSON.parse('@Model.AllowUpdate'.toLowerCase()),);
+    </script>
+}

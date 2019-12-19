@@ -157,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettingsTests.cs" />
+    <Compile Include="Features\ProfilePicture\ProfilePictureServicesTest.cs" />
+    <Compile Include="Features\ProfilePicture\SPs\Commands\UpdateActorProfilePictureCommandTest.cs" />
+    <Compile Include="Features\ProfilePicture\SPs\Criteria\SelectProfilePictureLibraryCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\Models\OnlineUserModelTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Base\AccountInfoCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\SelectTotalDownlineSummaryCriteriaTest.cs" />

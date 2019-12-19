@@ -24,6 +24,8 @@
 
         public byte LevelId => userSession.RoleId;
 
+        public bool IsSubAcc => userSession.IsSubAcc;
+
         public int SubAccId => userSession.SubAccId;
 
         public string SubAccName => userSession.SubUserName;

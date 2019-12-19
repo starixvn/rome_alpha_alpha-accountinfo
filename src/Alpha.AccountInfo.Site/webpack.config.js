@@ -30,6 +30,11 @@ module.exports = {
             "./Features/UnsuspendDownlines/Scripts/app/unsuspend-view-list.jsx",
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
+        ],
+        "./ProfilePicture/Bundles/index": [
+            "./node_modules/react-image-crop/dist/ReactCrop.css",
+            "./Features/ProfilePicture/Styles/index.scss",
+            "./Features/ProfilePicture/Scripts/app/index.jsx",
         ]
     },
 

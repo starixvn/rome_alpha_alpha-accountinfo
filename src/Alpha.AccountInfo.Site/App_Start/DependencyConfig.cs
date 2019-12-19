@@ -5,6 +5,7 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Features.UnsuspendDownlines;
+    using Alpha.AccountInfo.ProfilePicture.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
@@ -119,6 +120,8 @@
             container.Register<SearchAccountDataAccess, SearchAccountDataAccessImpl>(Lifestyle.Scoped);
             container.Register<UnsuspendDownlinesService, UnsuspendDownlinesServiceImpl>(Lifestyle.Scoped);
             container.Register<UnsuspendDownlinesDataAccess, UnsuspendDownlinesDataAccessImpl>(Lifestyle.Scoped);
+
+            container.Register<ProfilePictureServices, ProfilePictureServicesImpl>(Lifestyle.Scoped);
         }
 
         private static void StartConfiguration(Container container)
@@ -140,6 +143,7 @@
               .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), productConfigFile))
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
+              .Register<Func<int>>(AppSettingsHelper.GetInsertProfilePictureSiteMode)
               .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer);
         }
     }

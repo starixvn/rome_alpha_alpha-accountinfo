@@ -151,7 +151,7 @@
     <value>Tài khoản không bị ảnh hưởng</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Làm lại</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
@@ -238,7 +238,7 @@
     <value>No.</value>
   </data>
   <data name="NoData" xml:space="preserve">
-    <value>There is no data</value>
+    <value>Không có dữ liệu</value>
   </data>
   <data name="UnsuspendedWithNoDownlinesMessages" xml:space="preserve">
     <value>Bạn có chắc muốn thay đổi trạng thái "Đình Chỉ" cho thành viên này không?</value>
