@@ -66,7 +66,7 @@
 
            
             var actualResutl = profilePictureServices
-                .UpdateActorProfilePictureAsync(param)
+                .UpdateActorProfilePictureMainServerAsync(param)
                 .GetAwaiter()
                 .GetResult();
 

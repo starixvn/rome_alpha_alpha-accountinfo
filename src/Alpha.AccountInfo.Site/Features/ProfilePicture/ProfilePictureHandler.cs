@@ -60,7 +60,7 @@
         }
 
         public Task<Result> Handle(UpdateActorProfilePictureRequest message)
-          => profilePictureServices.UpdateActorProfilePictureAsync(
+          => profilePictureServices.UpdateActorProfilePictureMainServerAsync(
               new UpdateActorProfilePictureParam(
                   message.ActorId,
                   message.ImageId,

@@ -6,6 +6,8 @@
     using Alpha.AccountInfo.ProfilePicture.Params.SPs.Commands;
     using Alpha.AccountInfo.ProfilePicture.Params.SPs.Criteria;
     using Fanex.Data.Repository;
+    using Fanex.Logging.Extensions.Web;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -14,7 +16,7 @@
     {
         Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync(int systemMode);
 
-        Task<Result> UpdateActorProfilePictureAsync(UpdateActorProfilePictureParam param);
+        Task<Result> UpdateActorProfilePictureMainServerAsync(UpdateActorProfilePictureParam param);
     }
 
     public class ProfilePictureServicesImpl : ProfilePictureServices
@@ -34,9 +36,9 @@
             return binaryProfilePictures.Select(profilePictureDto => new ProfilePictureModel(profilePictureDto.ImageId, profilePictureDto.Image));
         }
 
-        public async Task<Result> UpdateActorProfilePictureAsync(UpdateActorProfilePictureParam param)
+        public async Task<Result> UpdateActorProfilePictureMainServerAsync(UpdateActorProfilePictureParam param)
         {
-            var command = new UpdateActorProfilePictureCommand(
+            var command = new UpdateActorProfilePictureMainServerCommand(
                         param.ActorId,
                         param.ImageId,
                         param.Image,
@@ -45,9 +47,32 @@
 
             await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
 
-            return command.ErrCode.Equals(0) ?
-                Result.CreateSuccessResult() :
-                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+            if(command.ErrCode.Equals(0))
+            {
+                await UpdateActorProfilePictureStandbyServerAsync(param).ConfigureAwait(false);
+                return Result.CreateSuccessResult();
+            }
+
+            return Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+        }
+
+        internal async Task UpdateActorProfilePictureStandbyServerAsync(UpdateActorProfilePictureParam param)
+        {
+            try
+            {
+                var command = new UpdateActorProfilePictureStandbyServerCommand(
+                            param.ActorId,
+                            param.ImageId,
+                            param.Image,
+                            param.Mode,
+                            param.IP);
+
+                await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
         }
     }
 }

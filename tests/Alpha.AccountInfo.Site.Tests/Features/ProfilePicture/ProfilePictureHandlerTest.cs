@@ -111,7 +111,7 @@
             var expectedViewModel = result;
 
             profilePictureServices
-             .UpdateActorProfilePictureAsync(Arg.Any<UpdateActorProfilePictureParam>())
+             .UpdateActorProfilePictureMainServerAsync(Arg.Any<UpdateActorProfilePictureParam>())
              .Returns(result);
 
             var actualViewModel =
