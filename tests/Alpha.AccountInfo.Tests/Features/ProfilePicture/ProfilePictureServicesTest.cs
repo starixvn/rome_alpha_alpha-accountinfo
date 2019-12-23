@@ -56,15 +56,13 @@
             AssertExtension.Equal(actualResult, result);
         }
 
-
         [Fact]
         public void UpdateActorProfilePictureAsync_Always_ReturnsCorrecResult()
         {
             var result = Result.CreateSuccessResult();
             var param = fixture.Create<UpdateActorProfilePictureParam>();
-            dynamicRepository.ExecuteAsync(Arg.Any<UpdateActorProfilePictureCommand>());
+            dynamicRepository.ExecuteAsync(Arg.Any<UpdateActorProfilePictureMainServerCommand>());
 
-           
             var actualResutl = profilePictureServices
                 .UpdateActorProfilePictureMainServerAsync(param)
                 .GetAwaiter()
