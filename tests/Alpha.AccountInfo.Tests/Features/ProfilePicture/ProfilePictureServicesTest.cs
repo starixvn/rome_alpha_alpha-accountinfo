@@ -19,7 +19,7 @@
     public class ProfilePictureServicesTest
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly ProfilePictureServices profilePictureServices;
+        private readonly ProfilePictureServicesImpl profilePictureServices;
         private readonly CompareLogic compareLogic = new CompareLogic();
         private readonly Fixture fixture = new Fixture();
 
@@ -61,7 +61,14 @@
         {
             var result = Result.CreateSuccessResult();
             var param = fixture.Create<UpdateActorProfilePictureParam>();
-            dynamicRepository.ExecuteAsync(Arg.Any<UpdateActorProfilePictureMainServerCommand>());
+            dynamicRepository
+                .When(repo => repo.ExecuteAsync(Arg.Any<UpdateActorProfilePictureMainServerCommand>()))
+               .Do((callInfo) =>
+               {
+                   var command = callInfo[0] as UpdateActorProfilePictureMainServerCommand;
+                   command.ErrCode = result.Code;
+                   command.ErrMsg = result.Message;
+               });
 
             var actualResutl = profilePictureServices
                 .UpdateActorProfilePictureMainServerAsync(param)
@@ -69,6 +76,23 @@
                 .GetResult();
 
             Assert.True(compareLogic.Compare(actualResutl, result).AreEqual);
+        }
+
+        [Fact]
+        public void UpdateActorProfilePictureStandbyServerAsync_Always_ReturnsCorrecResult()
+        {
+            var param = new UpdateActorProfilePictureParam(1, 109, null, 1, "192.168.1.1");
+
+            profilePictureServices
+                .UpdateActorProfilePictureStandbyServerAsync(param)
+                .GetAwaiter();
+
+            dynamicRepository.Received().ExecuteAsync(Arg.Is<UpdateActorProfilePictureStandbyServerCommand>(
+                command => command.ActorId == param.ActorId
+                        && command.Mode == param.Mode
+                        && command.Image == param.Image
+                        && command.ImageId == param.ImageId
+                        && command.IP == param.IP));
         }
     }
 }
