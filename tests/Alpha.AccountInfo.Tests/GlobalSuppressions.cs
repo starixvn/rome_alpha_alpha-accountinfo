@@ -27,4 +27,5 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in camel case", Justification = "<Pending>", Scope = "type", Target = "~T:Alpha.AccountInfo.Tests.Features.ProductStatusPopup.SpParams.SelectDCSProductStatusCriteriaTests")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S4144:Methods should not have identical implementations", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.AccountInfo.Tests.Features.ProductStatusPopup.ProductStatusCriteriaFactoryImplTests.CreateSelectCriteria_InvalidProductId_ReturnsSelectDCSProductStatusCriteria(System.Int32)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S112:General exceptions should never be thrown", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.AccountInfo.Tests.Features.ProfilePicture.ProfilePictureServicesTest.UpdateActorProfilePictureStandbyServerAsync_ThrowException_CallWriteLog")]
 

@@ -17,6 +17,16 @@
         }
 
         [Fact]
+        public void GetSettingKey_Always_ReturnsemptySettingKey()
+        {
+            var criteria = new UpdateActorProfilePictureCommandBase(1, 1, null, 1, string.Empty, true);
+
+            var actualSettingKey = criteria.GetSettingKey();
+
+            Assert.Equal(actualSettingKey, string.Empty);
+        }
+
+        [Fact]
         public void ImageId_Less_Than_Zero_Should_Pass_ImageID_Null_To_SP()
         {
             var criteria = new UpdateActorProfilePictureCommandBase(1, -100, new byte[5], 1, string.Empty, true);

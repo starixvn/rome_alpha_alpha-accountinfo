@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.ProfilePicture
 {
+    using Alpha.AccountInfo.Features.Shared.Helpers;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.ProfilePicture.Models;
     using Alpha.AccountInfo.ProfilePicture.Params;
@@ -11,6 +12,7 @@
     using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Xunit;
@@ -19,6 +21,7 @@
     public class ProfilePictureServicesTest
     {
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ExceptionHandlerWrapper exceptionHandlerWrapper;
         private readonly ProfilePictureServicesImpl profilePictureServices;
         private readonly CompareLogic compareLogic = new CompareLogic();
         private readonly Fixture fixture = new Fixture();
@@ -26,7 +29,8 @@
         public ProfilePictureServicesTest()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            profilePictureServices = new ProfilePictureServicesImpl( dynamicRepository);
+            exceptionHandlerWrapper = Substitute.For<ExceptionHandlerWrapper>();
+            profilePictureServices = new ProfilePictureServicesImpl( dynamicRepository, exceptionHandlerWrapper);
         }
 
         [Fact]
@@ -93,6 +97,23 @@
                         && command.Image == param.Image
                         && command.ImageId == param.ImageId
                         && command.IP == param.IP));
+        }
+
+        [Fact]
+        public void UpdateActorProfilePictureStandbyServerAsync_ThrowException_CallWriteLog()
+        {
+            dynamicRepository
+               .When(repo => repo.ExecuteAsync(Arg.Any<UpdateActorProfilePictureStandbyServerCommand>()))
+               .Do((callInfo) =>
+               {
+                   throw new Exception("DB eroor");
+               });
+
+            profilePictureServices.UpdateActorProfilePictureStandbyServerAsync(
+                new UpdateActorProfilePictureParam(1, 109, null, 1, "192.168.1.1"))
+                .GetAwaiter();
+
+            exceptionHandlerWrapper.Received().Handle(Arg.Any<Exception>());
         }
     }
 }

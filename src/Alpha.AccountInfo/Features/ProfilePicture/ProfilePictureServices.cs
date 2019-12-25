@@ -1,12 +1,12 @@
 ﻿namespace Alpha.AccountInfo.ProfilePicture.Services
 {
+    using Alpha.AccountInfo.Features.Shared.Helpers;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.ProfilePicture.Models;
     using Alpha.AccountInfo.ProfilePicture.Params;
     using Alpha.AccountInfo.ProfilePicture.Params.SPs.Commands;
     using Alpha.AccountInfo.ProfilePicture.Params.SPs.Criteria;
     using Fanex.Data.Repository;
-    using Fanex.Logging.Extensions.Web;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -22,10 +22,12 @@
     public class ProfilePictureServicesImpl : ProfilePictureServices
     {
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ExceptionHandlerWrapper exceptionHandlerWrapper;
 
-        public ProfilePictureServicesImpl(IDynamicRepository dynamicRepository)
+        public ProfilePictureServicesImpl(IDynamicRepository dynamicRepository, ExceptionHandlerWrapper exceptionHandlerWrapper)
         {
             this.dynamicRepository = dynamicRepository;
+            this.exceptionHandlerWrapper = exceptionHandlerWrapper;
         }
 
         public async Task<IEnumerable<ProfilePictureModel>> FectchProfilePictureLibraryAsync(int systemMode)
@@ -71,7 +73,7 @@
             }
             catch (Exception ex)
             {
-                ExceptionHandler.Handle(ex);
+                exceptionHandlerWrapper.Handle(ex);
             }
         }
     }
