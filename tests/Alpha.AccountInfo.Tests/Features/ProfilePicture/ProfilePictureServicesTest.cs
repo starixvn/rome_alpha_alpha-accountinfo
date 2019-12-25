@@ -60,10 +60,12 @@
             AssertExtension.Equal(actualResult, result);
         }
 
-        [Fact]
-        public void UpdateActorProfilePictureAsync_Always_ReturnsCorrecResult()
+        [Theory]
+        [InlineData(0, "")]
+        [InlineData(1, "DB errore")]
+        public void UpdateActorProfilePictureAsync_Always_ReturnsCorrecResult(int code, string message)
         {
-            var result = Result.CreateSuccessResult();
+            var result = new Result(code, message);
             var param = fixture.Create<UpdateActorProfilePictureParam>();
             dynamicRepository
                 .When(repo => repo.ExecuteAsync(Arg.Any<UpdateActorProfilePictureMainServerCommand>()))
