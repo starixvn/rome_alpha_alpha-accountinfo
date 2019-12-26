@@ -73,6 +73,8 @@
 
             var viewModel = new ConfirmClosedViewModel(request);
 
+            Assert.True(viewModel.ReloadCustomerInfo);
+            Assert.Equal("Closed", viewModel.StatusName);
             Assert.Equal(expectedStatusValue, viewModel.StatusValue);
         }
     }

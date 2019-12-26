@@ -16,7 +16,7 @@
         private const int UplineIdTest = 1176070;
 
         [Fact]
-        public void GetSettingKey_Always_ReturnsValidSettingKey()
+        public void UpdateKenoStatusCriteria_Always_ReturnsCorrectProperties()
         {
             // Arrange
             var criteria = new UpdateKenoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, BetTypeTest, DisableTest, UplineIdTest);
@@ -26,6 +26,10 @@
             var actualSettingKey = criteria.GetSettingKey();
 
             // Assert
+            Assert.Equal(BetTypeTest, criteria.BetType);
+            Assert.Equal(DisableTest, criteria.Disable);
+            Assert.Equal(UplineIdTest, criteria.UplineId);
+            Assert.Equal(LanguageTest, criteria.Language);
             Assert.Equal(expectedSettingKey, actualSettingKey);
         }
 

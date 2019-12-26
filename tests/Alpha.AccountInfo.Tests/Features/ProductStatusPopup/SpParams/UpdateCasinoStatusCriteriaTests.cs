@@ -9,13 +9,12 @@
         private const int CustIdTest = 1176083;
         private const int SubAccIdTest = 536751;
         private const int UserIdTest = 1176070;
-        private const string UserNameTest = "User Test";
         private const string IPTest = "127.0.0.1";
         private const string LanguageTest = "E";
         private const bool DisableTest = false;
 
         [Fact]
-        public void GetSettingKey_Always_ReturnsValidSettingKey()
+        public void UpdateCasinoStatusCriteria_Always_ReturnsCorrectProperties()
         {
             // Arrange
             var criteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
@@ -25,6 +24,10 @@
             var actualSettingKey = criteria.GetSettingKey();
 
             // Assert
+            Assert.Equal(DisableTest, criteria.Disable);
+            Assert.Equal(IPTest, criteria.IP);
+            Assert.True(criteria.SyncCS);
+            Assert.Equal(LanguageTest, criteria.Language);
             Assert.Equal(expectedSettingKey, actualSettingKey);
         }
 

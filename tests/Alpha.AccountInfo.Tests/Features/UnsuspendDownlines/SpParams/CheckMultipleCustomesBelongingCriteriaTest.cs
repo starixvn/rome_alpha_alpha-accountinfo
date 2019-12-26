@@ -28,5 +28,15 @@
 
             Assert.Equal(expectedIsValid, actualResult);
         }
+
+        [Fact]
+        public void Returns_CorrectProperties()
+        {
+            var criteria = new CheckMultipleCustomesBelongingCriteria(1, 0, "33,22");
+
+            Assert.Equal(1, criteria.SubAccountId);
+            Assert.Equal(0, criteria.ActorId);
+            Assert.Equal("33,22", criteria.CustIds);
+        }
     }
 }

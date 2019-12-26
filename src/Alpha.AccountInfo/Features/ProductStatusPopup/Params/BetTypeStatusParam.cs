@@ -2,10 +2,6 @@
 {
     public class BetTypeStatusParam
     {
-        public BetTypeStatusParam()
-        {
-        }
-
         public BetTypeStatusParam(int sportType, int betType, bool isDisabled)
         {
             SportType = sportType;

@@ -17,6 +17,8 @@
 
             var viewModel = new ConfirmSuspendedViewModel(request);
 
+            Assert.True(viewModel.ReloadCustomerInfo);
+            Assert.Equal("Suspended", viewModel.StatusName);
             Assert.True(viewModel.Disabled);
         }
 
@@ -67,6 +69,51 @@
             var viewModel = new ConfirmSuspendedViewModel(request);
 
             Assert.Equal(expectedStatusValue, viewModel.StatusValue);
+        }
+
+        [Theory]
+        [InlineData(false, false, "")]
+        [InlineData(false, true, "")]
+        [InlineData(true, false, "SuspendedByUplineTooltip")]
+        [InlineData(true, true, "")]
+        public void Return_CorrectTooltip(bool IsSuspendedUpline, bool IsDirectSuspend, string expectedTooltip)
+        {
+            var request = RequestHelper.CreateRequest(4, 3);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.Upline.IsClosed", false);
+            request.AddData("SearchAccount.Upline.IsSuspended", IsSuspendedUpline);
+            request.AddData("SearchAccount.Upline.IsDirectSuspend", IsDirectSuspend);
+            request.AddData("SearchAccount.IsSuspended", true);
+
+            var viewModel = new ConfirmSuspendedViewModel(request);
+
+            Assert.Equal(expectedTooltip, viewModel.Tooltip);
+        }
+
+        [Theory]
+        [InlineData(true, 3, true, "MicroSiteName/UnsuspendDownlines/EditSingle?SearchAccountId=2&SearchAccountName=username1")]
+        [InlineData(true, 2, true, "MicroSiteName/UnsuspendDownlines/EditSingle?SearchAccountId=2&SearchAccountName=username1")]
+        [InlineData(true, 1, false, "MicroSiteName/SearchAccount/UpdateCustomerStatus")]
+        [InlineData(false, 3, false, "MicroSiteName/SearchAccount/UpdateCustomerStatus")]
+        [InlineData(false, 2, false, "MicroSiteName/SearchAccount/UpdateCustomerStatus")]
+        [InlineData(false, 1, false, "MicroSiteName/SearchAccount/UpdateCustomerStatus")]
+        public void Return_CorrectIsPopupProperty(
+            bool IsSuspendedSearchAccount, 
+            byte downlineLevel, 
+            bool expectedResult,
+            string expectedUrl)
+        {
+            var request = RequestHelper.CreateRequest(4, downlineLevel);
+            request.AddData("Actor.HasUpdateAccountPermission", true);
+            request.AddData("SearchAccount.Upline.IsClosed", false);
+            request.AddData("SearchAccount.Upline.IsSuspended", true);
+            request.AddData("SearchAccount.Upline.IsDirectSuspend", false);
+            request.AddData("SearchAccount.IsSuspended", IsSuspendedSearchAccount);
+
+            var viewModel = new ConfirmSuspendedViewModel(request);
+
+            Assert.Equal(expectedResult, viewModel.IsPopup);
+            Assert.Equal(expectedUrl, viewModel.Url);
         }
     }
 }

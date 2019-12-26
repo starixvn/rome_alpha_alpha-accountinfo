@@ -4,18 +4,22 @@
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
-    public class UpdateUserSearchCriteriaTest
+    public class UpdateGivenCreditCriteriaTest
     {
-        [Fact]
-        public void GetSettingKey_Always_ReturnsValidSettingKey()
+        [Theory]
+        [InlineData(1, "Age_CustomerUpdCredit_Ag")]
+        [InlineData(2, "Age_CustomerUpdCredit_MAg")]
+        [InlineData(3, "Age_CustomerUpdCredit_SAg")]
+        public void GetSettingKey_Always_ReturnsValidSettingKey(byte searchAccountRoleId, string expectedSettingKey)
         {
-            var expectedSettingKey = "Acc_CustomerUpdUserSearch";
-            var criteria = new UpdateUserSearchCriteria(
-                userId: 1,
-                search: "MA",
-                firstName: string.Empty,
-                lastName: string.Empty,
-                nickname: string.Empty);
+            var criteria = new UpdateGivenCreditCommand(
+                searchAccountId: 1,
+                searchAccountRoleId: searchAccountRoleId,
+                creditAmount: 999,
+                actorId: 2,
+                subAccountId: 0,
+                language: "E",
+                ip: "192.196.10.1");
 
             var actualSettingKey = criteria.GetSettingKey();
 
@@ -25,32 +29,70 @@
         [Theory]
         [InlineData(0, false)]
         [InlineData(1, true)]
-        public void IsValid_UserId_Should_ReturnsValidSettingKey(int userId, bool expectedIsValid)
+        public void IsValid_CustId_Should_ReturnsValidSettingKey(int custid, bool expectedIsValid)
         {
-            var criteria = new UpdateUserSearchCriteria(
-               userId: userId,
-               search: "MA",
-               firstName: string.Empty,
-               lastName: string.Empty,
-               nickname: string.Empty);
+            var criteria = new UpdateGivenCreditCommand(
+               searchAccountId: custid,
+               searchAccountRoleId: 2,
+               creditAmount: 999,
+               actorId: 2,
+               subAccountId: 0,
+               language: "E",
+               ip: "192.196.10.1");
 
             Assert.Equal(expectedIsValid, criteria.IsValid());
         }
 
         [Theory]
-        [InlineData("MA", true)]
-        [InlineData("", false)]
-        [InlineData(null, false)]
-        public void IsValid_Search_Should_ReturnsCorrectValue(string search, bool expectedValue)
+        [InlineData(1, true)]
+        [InlineData(-1, false)]
+        public void IsValid_ActorId_Should_ReturnsCorrectValue(int actorId, bool expectedValue)
         {
-            var criteria = new UpdateUserSearchCriteria(
-               userId: 1,
-               search: search,
-               firstName: string.Empty,
-               lastName: string.Empty,
-               nickname: string.Empty);
+            var criteria = new UpdateGivenCreditCommand(
+                  searchAccountId: 1,
+                  searchAccountRoleId: 2,
+                  creditAmount: 999,
+                  actorId: actorId,
+                  subAccountId: 0,
+                  language: "E",
+                  ip: "192.196.10.1");
 
             Assert.Equal(expectedValue, criteria.IsValid());
+        }
+
+        [Theory]
+        [InlineData(1, true)]
+        [InlineData(-1, false)]
+        public void IsValid_CreditAmount_Should_ReturnsCorrectValue(int creditAmount, bool expectedValue)
+        {
+            var criteria = new UpdateGivenCreditCommand(
+                  searchAccountId: 1,
+                  searchAccountRoleId: 2,
+                  creditAmount: creditAmount,
+                  actorId: 3,
+                  subAccountId: 0,
+                  language: "E",
+                  ip: "192.196.10.1");
+
+            Assert.Equal(expectedValue, criteria.IsValid());
+        }
+
+        [Fact]
+        public void Returns_CorrectProperties()
+        {
+            var criteria = new UpdateGivenCreditCommand(
+                  searchAccountId: 1,
+                  searchAccountRoleId: 2,
+                  creditAmount: 100,
+                  actorId: 3,
+                  subAccountId: 0,
+                  language: "E",
+                  ip: "192.196.10.1");
+
+            Assert.Equal(100, criteria.CreditAmount);
+            Assert.Equal(0, criteria.SubAccountId);
+            Assert.Equal("E", criteria.Language);
+            Assert.Equal("192.196.10.1", criteria.IP);
         }
     }
 }

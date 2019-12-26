@@ -16,8 +16,6 @@
 
         public int UplineId { get; }
 
-        public bool IsInternalAgent { get; }
-
         public override string GetSettingKey() => "Age_CustomerSelAllInfo";
 
         public override bool IsValid() => !string.IsNullOrEmpty(SearchAccountName) && UplineId > 0;

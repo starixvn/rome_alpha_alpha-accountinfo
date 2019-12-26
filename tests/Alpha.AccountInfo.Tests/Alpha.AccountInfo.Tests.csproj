@@ -163,8 +163,8 @@
     <Compile Include="Features\ProfilePicture\SPs\Commands\UpdateActorProfilePictureMainServerCommandTest.cs" />
     <Compile Include="Features\ProfilePicture\SPs\Criteria\SelectProfilePictureLibraryCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\Models\OnlineUserModelTests.cs" />
-    <Compile Include="Features\SearchAccount\SpParams\AccountInfoCriteriaTest.cs" />
-    <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateUserSearchCriteriaTest.cs" />
+    <Compile Include="Features\SearchAccount\SpParams\AccountInfoCriteriaBaseTest.cs" />
+    <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateGivenCreditCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateGivenCreditReplicateServerCommandTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectMemberBalanceCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectMemberOutstandingCriteriaTest.cs" />
@@ -175,7 +175,7 @@
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectBalanceInfoCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCustomerAllStatusModelCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCustomerInfoCriteriaTest.cs" />
-    <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateGivenCreditCriteriaTest.cs" />
+    <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateUserSearchCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectOnlineListCriteriaCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectDownlineListCriteriaTest.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\NonQueryProductStatusCriteriaForTesting.cs" />

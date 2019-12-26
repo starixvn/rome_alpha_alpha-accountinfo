@@ -22,17 +22,16 @@
         }
 
         [Fact]
-        public void IsValid_ValidCriteria_ReturnsTrue()
+        public void NonQueryProductStatusCriteriaForTesting_Always_ReturnCorrectProperties()
         {
-            // Arrange
-            var expectedResult = true;
             var nonQueryCriteria = new NonQueryProductStatusCriteriaForTesting(CustIdTest, SubAccIdTest, UserIdTest, IPTest);
 
-            // Act
-            var actualResult = nonQueryCriteria.IsValid();
-
-            // Assert
-            Assert.Equal(expectedResult, actualResult);
+            Assert.True(nonQueryCriteria.IsValid());
+            Assert.Equal(CustIdTest, nonQueryCriteria.CustId);
+            Assert.Equal(SubAccIdTest, nonQueryCriteria.SubAccId);
+            Assert.Equal(UserIdTest, nonQueryCriteria.ActorId);
+            Assert.Equal(IPTest, nonQueryCriteria.IP);
+            Assert.Equal(2, nonQueryCriteria.SystemId);
         }
 
         [Theory]

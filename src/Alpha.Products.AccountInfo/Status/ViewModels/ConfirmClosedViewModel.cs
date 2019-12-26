@@ -1,7 +1,6 @@
 ﻿namespace Alpha.Products.AccountInfo.Status.ViewModels
 {
     using Alpha.Products.AccountInfo.Requests;
-    using Alpha.Products.Core.Shared;
 
     public class ConfirmClosedViewModel : ConfirmStatusItemViewModelBase
     {
