@@ -1,8 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -13,8 +10,10 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
-    using Criteria.ProductStatus;
     using Fanex.Data.Repository;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface SearchAccountService
     {

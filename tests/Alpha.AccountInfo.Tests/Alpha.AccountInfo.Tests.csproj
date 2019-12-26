@@ -164,6 +164,8 @@
     <Compile Include="Features\ProfilePicture\SPs\Criteria\SelectProfilePictureLibraryCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\Models\OnlineUserModelTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\AccountInfoCriteriaTest.cs" />
+    <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateUserSearchCriteriaTest.cs" />
+    <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateGivenCreditReplicateServerCommandTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectMemberBalanceCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectMemberOutstandingCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCreditInfoCriteriaTest.cs" />
