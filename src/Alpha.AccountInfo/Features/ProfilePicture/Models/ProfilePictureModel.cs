@@ -4,10 +4,6 @@
 
     public class ProfilePictureModel
     {
-        public ProfilePictureModel()
-        {
-        }
-
         public ProfilePictureModel(int imageId, byte[] image)
         {
             ImageId = imageId;

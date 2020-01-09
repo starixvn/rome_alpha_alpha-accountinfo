@@ -59,7 +59,7 @@
 
         public override string GetSettingKey() => settingKeys[SearchAccountLevel];
 
-        public override bool IsValid() => SearchAccountId > 0 && ActorId > 0;
+        public override bool IsValid() => SearchAccountId > 0 && ActorId > 0 && CreditAmount > 0;
 
         private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(SearchAccountRoleId);
     }

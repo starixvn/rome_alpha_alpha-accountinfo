@@ -6,16 +6,6 @@
     [Trait("Category", "AccountInfo")]
     public class SelectAutoSuggestionTest
     {
-        [Theory]
-        [InlineData(1, true)]
-        [InlineData(-1, false)]
-        public void IsValid_Should_ReturnsCorrectValue(int custId, bool expectedValue)
-        {
-            var criteria = new SelectAutoSuggestionCriteria(custId, "AC", false);
-
-            Assert.Equal(expectedValue, criteria.IsValid());
-        }
-
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
@@ -46,6 +36,17 @@
             var criteria = new SelectAutoSuggestionCriteria(actorId, "UserTest", false);
 
             Assert.Equal(expectedIsValid, criteria.IsValid());
+        }
+
+        [Fact]
+        public void SelectAutoSuggestionCriteria_Always_ReturnsCorrectProperties()
+        {
+            var criteria = new SelectAutoSuggestionCriteria(1, "AC", false);
+
+            Assert.Equal(1, criteria.UserId);
+            Assert.Equal("AC", criteria.SuggestionQuery);
+            Assert.False(criteria.IsInternal);
+            Assert.Equal("Age_CustomerSelUserSearch", criteria.GetSettingKey());
         }
     }
 }

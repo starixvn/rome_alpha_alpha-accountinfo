@@ -338,12 +338,18 @@
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data\SPNames\Internal\DBAGE_STANDBY.bodb_AGE.BODBDownlineNetView.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Internal\DBTXN.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DB042.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBAGE_STANDBY.bodb_AGE.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb_AGE.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -358,6 +364,9 @@
     </Content>
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb_AGE.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\SIT\DBAGE_STANDBY.bodb_AGE.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\SIT\DBTXN.bodb02.BODBDownlineNet.xml" />
@@ -722,7 +731,6 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\ProfilePicture\Helpers\" />
     <Folder Include="Features\ProfilePicture\Scripts\tests\" />
   </ItemGroup>
   <PropertyGroup>
@@ -761,13 +769,8 @@
   </Target>
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <PropertyGroup>
-    <PostBuildEvent>cd $(ProjectDir)
-cd..
-cd..
-cd build
-webpack.dev.bat
-if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
-start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

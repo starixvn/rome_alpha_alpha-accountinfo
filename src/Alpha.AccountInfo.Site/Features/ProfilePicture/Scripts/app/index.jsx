@@ -68,7 +68,6 @@ class App extends PureComponent {
     }
 
     handleOnSubmit() {
-        $.blockUI();
         const { croppedImage, originalAvatar } = this.state;
 
         if (croppedImage.ImageId > 0 && croppedImage.ImageId === originalAvatar.ImageId) {
@@ -78,14 +77,13 @@ class App extends PureComponent {
             });
         }
         else {
+            $.blockUI();
             croppedImage.ImageId !== defaultImageId && requests.post(urls.UpdateActorProfilePicture,
                 {
                     ImageId: croppedImage.ImageId,
                     Image: croppedImage.ImageId === croppedImageId ? croppedImage.Image.split(';base64,')[1] : null
                 }).then(data => this.handleActionsAfterUpdate(data)).catch(handleError);
         }
-
-        $.unblockUI();
     }
 
     resetMessageContainer() {
@@ -115,6 +113,8 @@ class App extends PureComponent {
                 this.resetMessageContainer();
             }, 1500);
         }
+
+        $.unblockUI();
     }
 
     handleActionsAfterUpdateSuccessfully() {

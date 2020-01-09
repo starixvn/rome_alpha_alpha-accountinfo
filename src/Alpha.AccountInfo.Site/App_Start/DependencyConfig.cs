@@ -2,6 +2,7 @@
 {
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Features.Shared.Helpers;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Features.UnsuspendDownlines;
@@ -104,6 +105,7 @@
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
             container.RegisterSingleton(Logger.Log);
+            container.RegisterSingleton<ExceptionHandlerWrapper, ExceptionHandlerWrapperImpl>();
 
             container.Register<ProductStatusAuthorizationService>(
                 () => new ProductStatusAuthorizationServiceImpl(

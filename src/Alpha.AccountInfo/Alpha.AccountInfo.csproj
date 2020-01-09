@@ -171,7 +171,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Criteria\ProductStatus\UpdateUserSearchCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,9 +183,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfilePictureResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureStandbyServerCommand.cs" />
+    <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureCommandBase.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureServices.cs" />
     <Compile Include="Features\ProfilePicture\Models\ProfilePictureModel.cs" />
-    <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureCommand.cs" />
+    <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureMainServerCommand.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\Criteria\SelectProfilePictureLibraryCriteria.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\UpdateActorProfilePictureParam.cs" />
     <Compile Include="Features\SearchAccount\AppResources\GivenCredit.Designer.cs">
@@ -225,6 +227,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Features\Shared\Helpers\ExceptionHandlerWrapper.cs" />
     <Compile Include="Features\Shared\StatusNames.cs" />
     <Compile Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -16,5 +16,15 @@
 
             Assert.Equal(expectedSettingKey, actualSettingKey);
         }
+
+        [Theory]
+        [InlineData("", false)]
+        [InlineData(null, false)]
+        [InlineData("1,2", true)]
+        public void IsValid_Always_ReturnsCorrectValues(string custIds, bool expectedResult)
+        {
+            var criteria = new SelectSuspendInfoMultipleCriteria(custIds, 1);
+            Assert.Equal(expectedResult, criteria.IsValid());
+        }
     }
 }

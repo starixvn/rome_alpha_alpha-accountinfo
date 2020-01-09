@@ -59,5 +59,40 @@
 
             Assert.Equal(expectedValue, criteria.IsValid());
         }
+
+        [Theory]
+        [InlineData(1, true)]
+        [InlineData(-1, false)]
+        public void IsValid_CreditAmount_Should_ReturnsCorrectValue(int creditAmount, bool expectedValue)
+        {
+            var criteria = new UpdateGivenCreditCommand(
+                  searchAccountId: 1,
+                  searchAccountRoleId: 2,
+                  creditAmount: creditAmount,
+                  actorId: 3,
+                  subAccountId: 0,
+                  language: "E",
+                  ip: "192.196.10.1");
+
+            Assert.Equal(expectedValue, criteria.IsValid());
+        }
+
+        [Fact]
+        public void Returns_CorrectProperties()
+        {
+            var criteria = new UpdateGivenCreditCommand(
+                  searchAccountId: 1,
+                  searchAccountRoleId: 2,
+                  creditAmount: 100,
+                  actorId: 3,
+                  subAccountId: 0,
+                  language: "E",
+                  ip: "192.196.10.1");
+
+            Assert.Equal(100, criteria.CreditAmount);
+            Assert.Equal(0, criteria.SubAccountId);
+            Assert.Equal("E", criteria.Language);
+            Assert.Equal("192.196.10.1", criteria.IP);
+        }
     }
 }

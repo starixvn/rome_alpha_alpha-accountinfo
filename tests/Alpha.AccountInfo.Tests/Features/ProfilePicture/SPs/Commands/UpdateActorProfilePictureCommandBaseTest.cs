@@ -4,33 +4,32 @@
     using Xunit;
 
     [Trait("Category", "ProfilePicture")]
-    public class UpdateActorProfilePictureCommandTest
+    public class UpdateActorProfilePictureCommandBaseTest
     {
         [Theory]
         [InlineData(1, true)]
         [InlineData(-1, false)]
         public void IsValid_Should_ReturnsCorrectValue(int actorId, bool expectedValue)
         {
-            var criteria = new UpdateActorProfilePictureCommand(actorId, 1, null, 1, string.Empty);
+            var criteria = new UpdateActorProfilePictureCommandBase(actorId, 1, null, 1, string.Empty, true);
 
             Assert.Equal(expectedValue, criteria.IsValid());
         }
 
         [Fact]
-        public void GetSettingKey_Always_ReturnsValidSettingKey()
+        public void GetSettingKey_Always_ReturnsemptySettingKey()
         {
-            var criteria = new UpdateActorProfilePictureCommand(1, 1, null, 1, string.Empty);
-            var expectedSettingKey = "Age_CustomerUpdProfilePicture";
+            var criteria = new UpdateActorProfilePictureCommandBase(1, 1, null, 1, string.Empty, true);
 
             var actualSettingKey = criteria.GetSettingKey();
 
-            Assert.Equal(expectedSettingKey, actualSettingKey);
+            Assert.Equal(actualSettingKey, string.Empty);
         }
 
         [Fact]
         public void ImageId_Less_Than_Zero_Should_Pass_ImageID_Null_To_SP()
         {
-            var criteria = new UpdateActorProfilePictureCommand(1, -100, new byte[5], 1, string.Empty);
+            var criteria = new UpdateActorProfilePictureCommandBase(1, -100, new byte[5], 1, string.Empty, true);
 
             Assert.Null(criteria.ImageId);
         }
@@ -38,7 +37,7 @@
         [Fact]
         public void ImageId_Greater_Than_Zero_Should_Pass_Image_Null_To_SP()
         {
-            var criteria = new UpdateActorProfilePictureCommand(1, 100, new byte[5], 1, string.Empty);
+            var criteria = new UpdateActorProfilePictureCommandBase(1, 100, new byte[5], 1, string.Empty, true);
 
             Assert.Null(criteria.Image);
         }

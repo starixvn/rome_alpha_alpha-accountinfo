@@ -1,4 +1,4 @@
-﻿namespace Alpha.AccountInfo.Criteria.ProductStatus
+﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands
 {
     using Fanex.Data;
     using Fanex.Data.Repository;

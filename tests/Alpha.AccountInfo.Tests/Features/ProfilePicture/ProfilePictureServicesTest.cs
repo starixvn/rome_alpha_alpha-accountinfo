@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.ProfilePicture
 {
+    using Alpha.AccountInfo.Features.Shared.Helpers;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.ProfilePicture.Models;
     using Alpha.AccountInfo.ProfilePicture.Params;
@@ -11,6 +12,7 @@
     using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Xunit;
@@ -19,14 +21,16 @@
     public class ProfilePictureServicesTest
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly ProfilePictureServices profilePictureServices;
+        private readonly ExceptionHandlerWrapper exceptionHandlerWrapper;
+        private readonly ProfilePictureServicesImpl profilePictureServices;
         private readonly CompareLogic compareLogic = new CompareLogic();
         private readonly Fixture fixture = new Fixture();
 
         public ProfilePictureServicesTest()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            profilePictureServices = new ProfilePictureServicesImpl( dynamicRepository);
+            exceptionHandlerWrapper = Substitute.For<ExceptionHandlerWrapper>();
+            profilePictureServices = new ProfilePictureServicesImpl( dynamicRepository, exceptionHandlerWrapper);
         }
 
         [Fact]
@@ -56,21 +60,62 @@
             AssertExtension.Equal(actualResult, result);
         }
 
-
-        [Fact]
-        public void UpdateActorProfilePictureAsync_Always_ReturnsCorrecResult()
+        [Theory]
+        [InlineData(0, "")]
+        [InlineData(1, "DB errore")]
+        public void UpdateActorProfilePictureAsync_Always_ReturnsCorrecResult(int code, string message)
         {
-            var result = Result.CreateSuccessResult();
+            var result = new Result(code, message);
             var param = fixture.Create<UpdateActorProfilePictureParam>();
-            dynamicRepository.ExecuteAsync(Arg.Any<UpdateActorProfilePictureCommand>());
+            dynamicRepository
+                .When(repo => repo.ExecuteAsync(Arg.Any<UpdateActorProfilePictureMainServerCommand>()))
+               .Do((callInfo) =>
+               {
+                   var command = callInfo[0] as UpdateActorProfilePictureMainServerCommand;
+                   command.ErrCode = result.Code;
+                   command.ErrMsg = result.Message;
+               });
 
-           
             var actualResutl = profilePictureServices
-                .UpdateActorProfilePictureAsync(param)
+                .UpdateActorProfilePictureMainServerAsync(param)
                 .GetAwaiter()
                 .GetResult();
 
             Assert.True(compareLogic.Compare(actualResutl, result).AreEqual);
+        }
+
+        [Fact]
+        public void UpdateActorProfilePictureStandbyServerAsync_Always_ReturnsCorrecResult()
+        {
+            var param = new UpdateActorProfilePictureParam(1, 109, null, 1, "192.168.1.1");
+
+            profilePictureServices
+                .UpdateActorProfilePictureStandbyServerAsync(param)
+                .GetAwaiter();
+
+            dynamicRepository.Received().ExecuteAsync(Arg.Is<UpdateActorProfilePictureStandbyServerCommand>(
+                command => command.ActorId == param.ActorId
+                        && command.Mode == param.Mode
+                        && command.Image == param.Image
+                        && command.ImageId == param.ImageId
+                        && command.IP == param.IP));
+        }
+
+        [Fact]
+        public void UpdateActorProfilePictureStandbyServerAsync_ThrowException_CallWriteLog()
+        {
+            dynamicRepository
+               .When(repo => repo.ExecuteAsync(Arg.Any<UpdateActorProfilePictureStandbyServerCommand>()))
+               .Do((callInfo) =>
+               {
+                   throw new Exception("DB eroor");
+               });
+
+            profilePictureServices.UpdateActorProfilePictureStandbyServerAsync(
+                new UpdateActorProfilePictureParam(1, 109, null, 1, "192.168.1.1"))
+                .GetAwaiter();
+
+            exceptionHandlerWrapper.Received().Handle(Arg.Any<Exception>());
         }
     }
 }

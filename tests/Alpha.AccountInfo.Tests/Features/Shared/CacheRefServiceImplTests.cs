@@ -33,5 +33,45 @@
             // Assert
             Assert.Equal(expectedResult, actualResult);
         }
+
+        [Fact]
+        public void GetProductName_ValidProductId_ReturnsCorrectProductName()
+        {
+            // Arrange
+            var expectedResult = "SportBook";
+
+            remotingRefService
+                .GetResourceDataByRefIdAndResourceId(
+                Arg.Any<string>(),
+               Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<string>())
+                .Returns(expectedResult);
+
+            // Act
+            var actualResult = cacheRefService.GetProductName(1);
+
+            // Assert
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Fact]
+        public void GetSportTypeName_ValidSportTypeId_ReturnsCorrectSportypeName()
+        {
+            // Arrange
+            var expectedResult = "SportBook";
+
+            remotingRefService
+                .GetSportName(
+                Arg.Any<string>(),
+                Arg.Any<string>())
+                .Returns(expectedResult);
+
+            // Act
+            var actualResult = cacheRefService.GetSportTypeName(1);
+
+            // Assert
+            Assert.Equal(expectedResult, actualResult);
+        }
     }
 }

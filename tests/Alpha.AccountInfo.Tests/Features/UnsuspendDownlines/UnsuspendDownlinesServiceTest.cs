@@ -76,5 +76,37 @@
 
             AssertExtension.Equal(model, actualModel);
         }
+
+        [Theory]
+        [InlineData(1, true, true, true)]
+        [InlineData(1, true, false, true)]
+        [InlineData(1, false, true, true)]
+        [InlineData(1, false, false, false)]
+        [InlineData(0, true, true, false)]
+        [InlineData(0, false, true, false)]
+        [InlineData(0, true, false, false)]
+        [InlineData(0, false, false, false)]
+        public void CheckMultipleCustomesBelonging_Always_ReturnsCorrectResult(
+            byte roleId, 
+            bool isInternal, 
+            bool isActive,
+            bool expectedResult)
+        {
+            dynamicRepository
+               .When(repo => repo.ExecuteAsync(Arg.Any<CheckMultipleCustomesBelongingCriteria>()))
+              .Do((callInfo) =>
+              {
+                  var command = callInfo[0] as CheckMultipleCustomesBelongingCriteria;
+                  command.RoleId = roleId;
+                  command.IsActive = isActive;
+              });
+
+            var actualResutl = service
+                .CheckMultipleCustomesBelonging(roleId, 0, "12,13", isInternal)
+                .GetAwaiter()
+                .GetResult();
+
+            AssertExtension.Equal(actualResutl, expectedResult);
+        }
     }
 }
