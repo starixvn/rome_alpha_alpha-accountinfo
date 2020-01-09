@@ -127,7 +127,7 @@
 
             await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
             
-            if(command.CreditProblem)
+            if(command.IsInvalid() || command.CreditProblem)
             {
                 return Result.CreateErrorResult(failErrorCode, command.ErrMsg);
             }
