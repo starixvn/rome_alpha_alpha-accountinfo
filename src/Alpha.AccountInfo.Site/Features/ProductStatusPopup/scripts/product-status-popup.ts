@@ -1,9 +1,7 @@
 ﻿"use strict";
 interface Window {
-    isClearInterval: boolean,
-    reloadLeftPanel: boolean,
-    ageWnd: {
-        close: Function
+    updateProductStatusPopup: {
+        onClosing: Function
     }
 }
 
@@ -28,6 +26,7 @@ class ProductStatusPopup {
     $formProductStatus: JQuery;
     productId: number;
     custId: number;
+    custName: string;
     custRoleId: number;
     token: string;
 
@@ -46,6 +45,7 @@ class ProductStatusPopup {
         this.$formProductStatus = this.$("#formProductStatus");
         this.productId = this.$("#hiddenProductId").val();
         this.custId = this.$("#hiddenCustId").val();
+        this.custName = this.$("#hiddenCustName").val();
         this.custRoleId = this.$("#hiddenCustRoleId").val();
         this.token = this.$("input[name=\"__RequestVerificationToken\"]", this.$formProductStatus).val();
     };
@@ -121,14 +121,8 @@ class ProductStatusPopup {
     };
 
     showSuccess = (message: string) => {
-        const timeoutDefault = 1500;
         this.showMessage("msg msg-success", message);
-
-        setTimeout(() => {
-            this.topWindow.isClearInterval = true;
-            this.topWindow.reloadLeftPanel = true;
-            this.topWindow.ageWnd.close();
-        }, timeoutDefault);
+        window.top.updateProductStatusPopup.onClosing(this.custName, true);
     };
 
     showError = (message: string) => {

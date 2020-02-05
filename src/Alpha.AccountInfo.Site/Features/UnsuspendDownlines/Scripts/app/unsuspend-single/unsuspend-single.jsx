@@ -41,11 +41,7 @@ export default class UnsuspendSingle extends React.Component {
                         window.top.main.DelayReloadPage();
                     }
 
-                    setTimeout(() => {
-                        window.top.isClearInterval = true;
-                        window.top.reloadLeftPanel = true;
-                        window.top.ageWnd.close();
-                    }, 1500);
+                    window.top.confirmPopupPopup.onClosing(viewModel.SearchAccountName, true);
                 }
 
                 $.unblockUI();
@@ -60,7 +56,7 @@ export default class UnsuspendSingle extends React.Component {
 
         window.top.bootboxConfirm(
             message,
-            e.target,
+           undefined,
             this.doUpdate
         );
     }

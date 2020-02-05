@@ -225,19 +225,4 @@ describe('ConfirmStatus', () => {
             expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(expectedCallTimes);
         }
     );
-
-    test.each([[false, true, 0], [false, false, 0], [true, false, 0], [true, true, 1]])(
-        'call correct #fetchCustomerInfoFromServer and #fetchCustomerAllStatusFromServer base on window.top.reloadLeftPanel && window.top.isClearInterval',
-        (isClearInterval, reloadLeftPanel, expectedCallTimes) => {
-            window.top.ageWnd.open = jest.fn();
-            props.status.Disabled = false;
-            buildWrapper();
-
-            wrapper.instance().openPopup(event);
-            window.top.reloadLeftPanel = reloadLeftPanel;
-            window.top.isClearInterval = isClearInterval;
-            clock.tick(1000);
-            expect(props.fetchCustomerInfoFromServer).toHaveBeenCalledTimes(expectedCallTimes);
-            expect(props.fetchCustomerAllStatusFromServer).toHaveBeenCalledTimes(expectedCallTimes);
-        });
 });

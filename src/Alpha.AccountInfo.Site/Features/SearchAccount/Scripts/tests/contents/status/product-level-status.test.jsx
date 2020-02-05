@@ -75,14 +75,14 @@ describe('ProductLevelStatus', () => {
     );
 
     test.each([[true, 0], [false, 1]])(
-        'call correct #window.top.ageWnd.open() base on status.Disabled',
+        'call correct #window.top.popupManager.openWithHanlder() base on status.Disabled',
         (disabled, expectedCallTimes) => {
-            window.top.ageWnd.open = jest.fn();
+            window.top.popupManager.openWithHanlder = jest.fn();
             props.status.Disabled = disabled;
             buildWrapper();
 
             wrapper.instance().handleOpenPopup();
-            expect(window.top.ageWnd.open).toBeCalledTimes(expectedCallTimes);
+            expect(window.top.popupManager.openWithHanlder).toBeCalledTimes(expectedCallTimes);
         });
 
     test.each([[true, false, 0], [true, true, 0], [false, true, 1], [false, false, 0]])(
@@ -98,22 +98,4 @@ describe('ProductLevelStatus', () => {
             expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(expectedCallTimes);
         }
     );
-
-    test.each([
-        [true, true, 1],
-        [false, true, 0],
-        [true, false, 0],
-        [false, false, 0]])(
-        'call correct #fetchCustomerAllStatusFromServer base on window.top.reloadLeftPanel',
-        (isClearInterval, reloadLeftPanel, expectedCallTimes) => {
-            window.top.ageWnd.open = jest.fn();
-            props.status.Disabled = false;
-            buildWrapper();
-
-            wrapper.instance().handleOpenPopup();
-            window.top.reloadLeftPanel = reloadLeftPanel;
-            window.top.isClearInterval = isClearInterval;
-            clock.tick(1500);
-            expect(props.fetchCustomerAllStatusFromServer).toHaveBeenCalledTimes(expectedCallTimes);
-        });
 });

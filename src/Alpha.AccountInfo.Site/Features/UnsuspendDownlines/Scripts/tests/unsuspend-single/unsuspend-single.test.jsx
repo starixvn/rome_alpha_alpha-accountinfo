@@ -30,8 +30,6 @@ describe('UnsuspendSingle', () => {
         props = null;
         wrapper = null;
         window.top.reloadCustomerList = null;
-        window.top.reloadLeftPanel = null;
-        window.top.isClearInterval = null;
     });
 
     const buildWrapper = () => {
@@ -172,9 +170,7 @@ describe('UnsuspendSingle', () => {
         expect(wrapper.find('.msg-success').text()).toBe('Successfully updated!');
         expect(window.top.main.DelayReloadPage).toHaveBeenCalled();
 
-        clock.tick(3000);
-        expect(window.top.ageWnd.close).toHaveBeenCalled();
-        expect(window.top.reloadLeftPanel).toBe(true);
-        expect(window.top.isClearInterval).toBe(true);
+        clock.tick(1500);
+        expect(window.top.confirmPopupPopup.onClosing).toHaveBeenCalled();
     });
 });

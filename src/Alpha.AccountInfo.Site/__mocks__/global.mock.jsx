@@ -30,6 +30,14 @@ window.top.updateGivenCreditPopup = {
     onClosing: jest.fn()
 };
 
+window.top.confirmPopupPopup = {
+    onClosing: jest.fn()
+};
+
+window.top.updateProductStatusPopup = {
+    onClosing: jest.fn()
+};
+
 window.top.popupManager = {
     openWithHanlder: jest.fn()
 };

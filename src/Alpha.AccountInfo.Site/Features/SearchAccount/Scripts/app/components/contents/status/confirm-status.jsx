@@ -12,17 +12,35 @@ export default class ConfirmStatus extends React.Component {
         this.openBootboxConfirm = this.openBootboxConfirm.bind(this);
         this.openPopup = this.openPopup.bind(this);
         this.updateCustomerStatus = this.updateCustomerStatus.bind(this);
-        this.reloadCustomerConfirmStatus = this.reloadCustomerConfirmStatus.bind(this);
 
-        this.reloadCustomerConfirmStatusTimer = null;
+        this.confirmPopupOnclosing = this.confirmPopupOnclosing.bind(this);
+        this.reloadLeftPanel = this.reloadLeftPanel.bind(this);
     }
 
-    componentDidUpdate() {
-        clearInterval(this.reloadCustomerConfirmStatusTimer);
+   confirmPopupOnclosing(username = null, updateSuccessfully = false) {
+        if (updateSuccessfully === true) {
+            const autoClosePopupTimeOut = 1000;
+            this.reloadLeftPanel(username);
+
+            setTimeout(() => {
+                window.top.confirmPopupPopup.close();
+            }, autoClosePopupTimeOut);
+        }
+        else {
+            window.top.confirmPopupPopup.close();
+        }
     }
 
-    componentWillUnmount() {
-        clearInterval(this.reloadCustomerConfirmStatusTimer);
+    reloadLeftPanel(username) {
+        const reloadLeftPanelTimeOut = 1500;
+        setTimeout(() => {
+            const searchAccountNameText = $('#search-account-id').attr('data-search-account-username');
+            if (username === searchAccountNameText) {
+                const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer } = this.props;
+                fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
+                fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
+            }
+        }, reloadLeftPanelTimeOut);
     }
 
     updateCustomerStatus() {
@@ -56,25 +74,17 @@ export default class ConfirmStatus extends React.Component {
         }
     }
 
-    reloadCustomerConfirmStatus() {
-        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username } = this.props;
-        if (window.top.isClearInterval) {
-            clearInterval(this.reloadCustomerConfirmStatusTimer);
-            if (window.top.reloadLeftPanel) {
-                fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
-                fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
-            }
-        }
-    }
-
     openPopup() {
-        const { username, status, mobileView, resources } = this.props;
-        window.top.isClearInterval = false;
-        window.top.reloadLeftPanel = false;
-        this.reloadCustomerConfirmStatusTimer = setInterval(this.reloadCustomerConfirmStatus, 1000);
+        if (window.top.confirmPopupPopup === null || window.top.confirmPopupPopup === undefined) {
+            window.top.confirmPopupPopup = window.top.ageWnd.createInstance();
+        }
 
+        const { username, status, mobileView, resources } = this.props;
         const headerPopupText = usernameRegExp(resources.UnuspendStatusPopupHeader, username);
-        window.top.ageWnd.open(status.Url, headerPopupText, undefined, undefined, 700, 500);
+
+        window.top.confirmPopupPopup.onClosing = this.confirmPopupOnclosing;
+        window.top.popupManager.openWithHanlder(top.confirmPopupPopup, status.Url, headerPopupText, 700, 500);
+
         if (mobileView) {
             resizePopupOnMobile();
         }
