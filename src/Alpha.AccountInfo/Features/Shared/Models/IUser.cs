@@ -59,5 +59,7 @@
         bool DisableGoldDeluxe { get; }
 
         bool IsEnabledCustomerDateLimit { get; }
+
+        string Site { get; }
     }
 }
