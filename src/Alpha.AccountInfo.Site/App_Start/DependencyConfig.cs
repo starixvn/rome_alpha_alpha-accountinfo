@@ -138,7 +138,7 @@
 
         private static void RegisterProductConfiguration()
         {
-            var productConfigFile = HttpContext.Current.Server.MapPath("../ProductConfigs/ProductConfiguration.json");
+            var productConfigFile = HttpContext.Current.Server.MapPath(AppSettingsHelper.GetProductConfigsFileRelativePath());
 
             SimpleServiceLocator
               .Instance
