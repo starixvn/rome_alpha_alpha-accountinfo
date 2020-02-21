@@ -1,162 +1,168 @@
-﻿//namespace Alpha.AccountInfo.Site.Tests.Features.ProductStatusPopup
-//{
-//    using System.Collections.Generic;
-//    using System.Linq;
-//    using System.Threading.Tasks;
-//    using AccountInfo.Models.ProductStatus;
-//    using Alpha.AccountInfo.Features.Shared.Models;
-//    using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
-//    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
-//    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
-//    using Alpha.Products.Core.Shared;
-//    using NSubstitute;
-//    using Params.ProductStatus;
-//    using Services.ProductStatus;
-//    using Xunit;
+﻿namespace Alpha.AccountInfo.Site.Tests.Features.ProductStatusPopup
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AccountInfo.Models.ProductStatus;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
+    using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
+    using Alpha.Products.Core.Services;
+    using Alpha.Products.Core.Shared;
+    using NSubstitute;
+    using Params.ProductStatus;
+    using Services.ProductStatus;
+    using Xunit;
 
-//    [Trait("Category", "ProductStatus")]
-//    public class ProductStatusHandlerTests
-//    {
-//        private const int UplineIdTest = 1176070;
-//        private const bool IsInternalTest = false;
-//        private const bool CanUpdateAccountTest = true;
-//        private const int ProductIdTest = 22;
-//        private const int CustIdTest = 1176083;
-//        private static readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
-//        private static readonly UserLevel UplineLevelTest = Enumeration.FromValue<UserLevel>(4);
+    [Trait("Category", "ProductStatus")]
+    public class ProductStatusHandlerTests
+    {
+        private const int UplineIdTest = 1176070;
+        private const bool IsInternalTest = false;
+        private const bool CanUpdateAccountTest = true;
+        private const int ProductIdTest = 22;
+        private const int CustIdTest = 1176083;
+        private static readonly UserLevel CustRoleTest = Enumeration.FromValue<UserLevel>(3);
+        private static readonly UserLevel UplineLevelTest = Enumeration.FromValue<UserLevel>(4);
 
-//        private readonly IUser user;
-//        private readonly ProductStatusService statusService;
-//        private readonly ProductStatusHandler statusHandler;
+        private readonly IUser user;
+        private readonly ProductStatusService statusService;
+        private readonly ProductStatusHandler statusHandler;
 
-//        public ProductStatusHandlerTests()
-//        {
-//            user = Substitute.For<IUser>();
-//            statusService = Substitute.For<ProductStatusService>();
-//            statusHandler = new ProductStatusHandler(statusService);
-//        }
+        public ProductStatusHandlerTests()
+        {
+            user = Substitute.For<IUser>();
+            statusService = Substitute.For<ProductStatusService>();
+            statusHandler = new ProductStatusHandler(statusService);
 
-//        [Fact]
-//        public async Task HandleProductStatusQuery_Always_ReturnsCorrectViewModel()
-//        {
-//            // Arrange
-//            user.Id.Returns(UplineIdTest);
-//            user.LevelId.Returns(UplineLevelTest.Value);
-//            user.IsInternal.Returns(IsInternalTest);
-//            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
-//            var message = new ProductStatusQuery(user)
-//            {
-//                ProductId = ProductIdTest,
-//                CustId = CustIdTest,
-//                CustRoleId = CustRoleTest.Value
-//            };
-//            var productStatus = new List<ProductStatusModel>
-//            {
-//                new ProductStatusModel(ProductIdTest, 207, 1004, false, false)
-//            };
-//            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false);
+            SimpleServiceLocator
+               .Instance
+               .Register<Func<string, bool>>((site) => false);
+        }
 
-//            statusService
-//                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
-//                .Returns(productStatus);
+        [Fact]
+        public async Task HandleProductStatusQuery_Always_ReturnsCorrectViewModel()
+        {
+            // Arrange
+            user.Id.Returns(UplineIdTest);
+            user.LevelId.Returns(UplineLevelTest.Value);
+            user.IsInternal.Returns(IsInternalTest);
+            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
+            var message = new ProductStatusQuery(user)
+            {
+                ProductId = ProductIdTest,
+                CustId = CustIdTest,
+                CustRoleId = CustRoleTest.Value
+            };
+            var productStatus = new List<ProductStatusModel>
+            {
+                new ProductStatusModel(ProductIdTest, 207, 1004, false, false)
+            };
+            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false);
 
-//            // Act
-//            var actualViewModel = await statusHandler.Handle(message);
+            statusService
+                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
+                .Returns(productStatus);
 
-//            // Assert
-//            Assert.True(
-//                expectedViewModel.ProductId == actualViewModel.ProductId &&
-//                expectedViewModel.CustId == actualViewModel.CustId &&
-//                expectedViewModel.CustName == actualViewModel.CustName &&
-//                expectedViewModel.CustRole == actualViewModel.CustRole &&
-//                expectedViewModel.ProductStatus.Count() == actualViewModel.ProductStatus.Count() &&
-//                expectedViewModel.IsAgentUpdateMember == actualViewModel.IsAgentUpdateMember &&
-//                expectedViewModel.IsDirectDownline == actualViewModel.IsDirectDownline &&
-//                expectedViewModel.IsViewOnly == actualViewModel.IsViewOnly);
-//        }
+            // Act
+            var actualViewModel = await statusHandler.Handle(message);
 
-//        [Fact]
-//        public async Task HandleProductStatusQuery_NoViewPermission_ReturnsNull()
-//        {
-//            // Arrange
-//            user.Id.Returns(UplineIdTest);
-//            user.LevelId.Returns(UplineLevelTest.Value);
-//            user.IsInternal.Returns(IsInternalTest);
-//            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
-//            var message = new ProductStatusQuery(user)
-//            {
-//                ProductId = ProductIdTest,
-//                CustId = CustIdTest,
-//                CustRoleId = CustRoleTest.Value
-//            };
+            // Assert
+            Assert.True(
+                expectedViewModel.ProductId == actualViewModel.ProductId &&
+                expectedViewModel.CustId == actualViewModel.CustId &&
+                expectedViewModel.CustName == actualViewModel.CustName &&
+                expectedViewModel.CustRole == actualViewModel.CustRole &&
+                expectedViewModel.ProductStatus.Count() == actualViewModel.ProductStatus.Count() &&
+                expectedViewModel.IsAgentUpdateMember == actualViewModel.IsAgentUpdateMember &&
+                expectedViewModel.IsDirectDownline == actualViewModel.IsDirectDownline &&
+                expectedViewModel.IsViewOnly == actualViewModel.IsViewOnly);
+        }
 
-//            statusService
-//                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
-//                .Returns(Enumerable.Empty<ProductStatusModel>());
+        [Fact]
+        public async Task HandleProductStatusQuery_NoViewPermission_ReturnsNull()
+        {
+            // Arrange
+            user.Id.Returns(UplineIdTest);
+            user.LevelId.Returns(UplineLevelTest.Value);
+            user.IsInternal.Returns(IsInternalTest);
+            user.CanUpdateAccount.Returns(CanUpdateAccountTest);
+            var message = new ProductStatusQuery(user)
+            {
+                ProductId = ProductIdTest,
+                CustId = CustIdTest,
+                CustRoleId = CustRoleTest.Value
+            };
 
-//            // Act
-//            var actualViewModel = await statusHandler.Handle(message);
+            statusService
+                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
+                .Returns(Enumerable.Empty<ProductStatusModel>());
 
-//            // Assert
-//            Assert.False(actualViewModel.ProductStatus.Any());
-//        }
+            // Act
+            var actualViewModel = await statusHandler.Handle(message);
 
-//        [Fact]
-//        public async Task HandleProductStatusCommand_Always_ReturnsSuccessResult()
-//        {
-//            // Arrange
-//            user.Id.Returns(UplineIdTest);
-//            user.LevelId.Returns(UplineLevelTest.Value);
-//            var message = new ProductStatusCommand(user)
-//            {
-//                ProductId = ProductConstants.Keno,
-//                CustId = CustIdTest,
-//                CustRoleId = CustRoleTest.Value,
-//                BetTypeStatus = new[]
-//                {
-//                    new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
-//                }
-//            };
-//            var expectedResult = Result.CreateSuccessResult();
+            // Assert
+            Assert.False(actualViewModel.ProductStatus.Any());
+        }
 
-//            statusService
-//                .UpdateProductStatusAsync(Arg.Any<ProductStatusCommandParam>())
-//                .Returns(expectedResult);
+        [Fact]
+        public async Task HandleProductStatusCommand_Always_ReturnsSuccessResult()
+        {
+            // Arrange
+            user.Id.Returns(UplineIdTest);
+            user.LevelId.Returns(UplineLevelTest.Value);
+            var message = new ProductStatusCommand(user)
+            {
+                ProductId = ProductConstants.Keno,
+                CustId = CustIdTest,
+                CustRoleId = CustRoleTest.Value,
+                BetTypeStatus = new[]
+                {
+                    new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
+                }
+            };
+            var expectedResult = Result.CreateSuccessResult();
 
-//            // Act
-//            var actualResult = await statusHandler.Handle(message);
+            statusService
+                .UpdateProductStatusAsync(Arg.Any<ProductStatusCommandParam>())
+                .Returns(expectedResult);
 
-//            // Assert
-//            Assert.True(expectedResult.Code == actualResult.Code);
-//        }
+            // Act
+            var actualResult = await statusHandler.Handle(message);
 
-//        [Fact]
-//        public async Task HandleProductStatusCommand_NoHostPermission_ReturnsForbidden()
-//        {
-//            // Arrange
-//            user.Id.Returns(UplineIdTest);
-//            user.LevelId.Returns(UplineLevelTest.Value);
-//            var message = new ProductStatusCommand(user)
-//            {
-//                ProductId = ProductConstants.Keno,
-//                CustId = CustIdTest,
-//                CustRoleId = CustRoleTest.Value,
-//                BetTypeStatus = new[]
-//                {
-//                    new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
-//                }
-//            };
-//            var expectedResult = Result.CreateForbiddenResult();
+            // Assert
+            Assert.True(expectedResult.Code == actualResult.Code);
+        }
 
-//            statusService
-//                .UpdateProductStatusAsync(Arg.Any<ProductStatusCommandParam>())
-//                .Returns(expectedResult);
+        [Fact]
+        public async Task HandleProductStatusCommand_NoHostPermission_ReturnsForbidden()
+        {
+            // Arrange
+            user.Id.Returns(UplineIdTest);
+            user.LevelId.Returns(UplineLevelTest.Value);
+            var message = new ProductStatusCommand(user)
+            {
+                ProductId = ProductConstants.Keno,
+                CustId = CustIdTest,
+                CustRoleId = CustRoleTest.Value,
+                BetTypeStatus = new[]
+                {
+                    new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
+                }
+            };
+            var expectedResult = Result.CreateForbiddenResult();
 
-//            // Act
-//            var actualResult = await statusHandler.Handle(message);
+            statusService
+                .UpdateProductStatusAsync(Arg.Any<ProductStatusCommandParam>())
+                .Returns(expectedResult);
 
-//            // Assert
-//            Assert.Equal(403, actualResult.Code);
-//        }
-//    }
-//}
+            // Act
+            var actualResult = await statusHandler.Handle(message);
+
+            // Assert
+            Assert.Equal(403, actualResult.Code);
+        }
+    }
+}
