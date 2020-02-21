@@ -10,8 +10,8 @@
         {
         }
 
-        public ProductStatusCommand(IUser viewer, Func<string, bool> checkSiteGroup)
-            : base(viewer, checkSiteGroup)
+        public ProductStatusCommand(IUser viewer, Func<string, bool> hideProductStatusBySites)
+            : base(viewer, hideProductStatusBySites)
         {
             ActorId = viewer.UserId;
             ActorName = viewer.Name;

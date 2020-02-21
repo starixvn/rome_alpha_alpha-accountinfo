@@ -10,13 +10,13 @@
 
     public class ProductStatusQuery : BaseRequest, IRequest<ProductStatusViewModel>
     {
-        private readonly Func<string, bool> disallowedAccessProductBySites;
+        private readonly Func<string, bool> hideProductStatusBySites;
 
         public ProductStatusQuery(IUser viewer): this(viewer,  null)
         {
         }
 
-        public ProductStatusQuery(IUser viewer, Func<string, bool> disallowedAccessProductBySites)
+        public ProductStatusQuery(IUser viewer, Func<string, bool> hideProductStatusBySites)
             : base(viewer)
         {
             UplineId = viewer.Id;
@@ -24,7 +24,7 @@
             IsViewOnly = viewer.IsInternal || !viewer.CanUpdateAccount;
             Site = viewer.Site;
 
-            this.disallowedAccessProductBySites = disallowedAccessProductBySites ?? SimpleServiceLocator.GetService<Func<string, bool>>();
+            this.hideProductStatusBySites = hideProductStatusBySites ?? SimpleServiceLocator.GetService<Func<string, bool>>();
         }
 
         public int ProductId { get; set; }
@@ -50,6 +50,6 @@
             && CustId > 0
             && UserLevel.Member.Value <= CustRoleId
             && CustRoleId <= UserLevel.Master.Value
-            && !disallowedAccessProductBySites(Site);
+            && !hideProductStatusBySites(Site);
     }
 }
