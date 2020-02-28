@@ -61,15 +61,6 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Baccarat, Roulette, Sic Bo, Dragon Tiger, Win 3 Cards, Bull Bull.
-        /// </summary>
-        public static string BetType_2401 {
-            get {
-                return ResourceManager.GetString("BetType_2401", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to edit downline&apos;s Product Status because the account disabled for this product..
         /// </summary>
         public static string Msg60033 {

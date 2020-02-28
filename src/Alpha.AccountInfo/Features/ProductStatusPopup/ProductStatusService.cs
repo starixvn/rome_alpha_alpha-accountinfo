@@ -31,7 +31,6 @@
 
     public class ProductStatusServiceImpl : ProductStatusService
     {
-        private const int AllbetStartRange = 2401;
         private const int DefaultErrorCode = 101;
 
         private readonly IDynamicRepository repository;
@@ -125,7 +124,7 @@
 
             foreach (var item in rawData)
             {
-                item.Name = setNameByBetTypeId || item.BetType == AllbetStartRange
+                item.Name = setNameByBetTypeId
                     ? GetBetTypeName(item.BetType)
                     : cacheRefService.GetProductName(productId);
 
@@ -135,11 +134,6 @@
 
         private string GetBetTypeName(int betType)
         {
-            if (betType == AllbetStartRange)
-            {
-                return ProductStatus.BetType_2401;
-            }
-
             return cacheRefService.GetBetTypeName(betType);
         }
 

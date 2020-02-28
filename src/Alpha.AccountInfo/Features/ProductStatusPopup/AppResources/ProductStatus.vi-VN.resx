@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BetType_2401" xml:space="preserve">
-    <value>Baccarat, Roulette, Sic Bo, Dragon Tiger, Win 3 Cards, Bull Bull</value>
-  </data>
   <data name="Msg60033" xml:space="preserve">
     <value>Không thể tùy chỉnh trạng thái trò chơi của thành viên cấp dưới bởi vì tài khoản hiện tại</value>
   </data>
