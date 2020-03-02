@@ -39,6 +39,7 @@
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ILogger logger;
+        private const int LiveCasino = 41;
 
         public ProductStatusServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -205,7 +206,7 @@
                     errMsgFromResource ?? xmlRoot.Attributes("Msg").First().Value
                 };
 
-                if (productId == ProductConstants.AllBet)
+                if (productId == LiveCasino)
                 {
                     errors.AddRange(xmlRoot.Elements()
                         .Select(row => GetBetTypeName(int.Parse(row.Attributes("BetType").First().Value))));
