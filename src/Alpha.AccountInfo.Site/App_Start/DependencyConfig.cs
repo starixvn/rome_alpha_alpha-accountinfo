@@ -138,7 +138,7 @@
 
         private static void RegisterProductConfiguration()
         {
-            var productConfigFile = HttpContext.Current.Server.MapPath("../ProductConfigs/ProductConfiguration.json");
+            var productConfigFile = HttpContext.Current.Server.MapPath(AppSettingsHelper.GetProductConfigsFileRelativePath());
 
             SimpleServiceLocator
               .Instance
@@ -146,7 +146,8 @@
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
               .Register<Func<int>>(AppSettingsHelper.GetInsertProfilePictureSiteMode)
-              .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer);
+              .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer)
+              .Register<Func<string, bool>>(AppSettingsHelper.HideProductStatusBySites);
         }
     }
 }

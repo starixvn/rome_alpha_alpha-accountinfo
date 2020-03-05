@@ -2,11 +2,16 @@
 {
     using Alpha.AccountInfo.Features.Shared.Models;
     using MediatR;
+    using System;
 
     public class ProductStatusCommand : ProductStatusQuery, IRequest<Result>
     {
-        public ProductStatusCommand(IUser viewer)
-            : base(viewer)
+        public ProductStatusCommand(IUser viewer) : this(viewer, null)
+        {
+        }
+
+        public ProductStatusCommand(IUser viewer, Func<string, bool> hideProductStatusBySites)
+            : base(viewer, hideProductStatusBySites)
         {
             ActorId = viewer.UserId;
             ActorName = viewer.Name;

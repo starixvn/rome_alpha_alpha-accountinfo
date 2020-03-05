@@ -75,6 +75,8 @@
 
         public bool DisableGoldDeluxe => userSession.DisableGoldDeluxe;
 
+        public string Site => userSession.Site;
+
         public bool IsEnabledCustomerDateLimit
            => userSession.GetProperty<DateTime>(CustomerDateLimitSessionKey) != default(DateTime);
     }

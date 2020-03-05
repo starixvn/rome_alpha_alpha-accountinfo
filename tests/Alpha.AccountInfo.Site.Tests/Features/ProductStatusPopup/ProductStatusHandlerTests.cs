@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.ProductStatusPopup
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -8,6 +9,7 @@
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
+    using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
     using NSubstitute;
     using Params.ProductStatus;
@@ -34,6 +36,10 @@
             user = Substitute.For<IUser>();
             statusService = Substitute.For<ProductStatusService>();
             statusHandler = new ProductStatusHandler(statusService);
+
+            SimpleServiceLocator
+               .Instance
+               .Register<Func<string, bool>>((site) => false);
         }
 
         [Fact]

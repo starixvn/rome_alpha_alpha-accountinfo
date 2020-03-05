@@ -1,11 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.ProductStatusPopup
 {
+    using System;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
+    using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
     using MediatR;
     using NSubstitute;
@@ -36,6 +38,10 @@
             user = Substitute.For<IUser>();
             mediator = Substitute.For<IMediator>();
             productStatusController = new ProductStatusController(mediator);
+
+            SimpleServiceLocator
+               .Instance
+               .Register<Func<string, bool>>((site) => false);
         }
 
         [Fact]

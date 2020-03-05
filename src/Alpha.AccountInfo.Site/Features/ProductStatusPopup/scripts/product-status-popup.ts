@@ -18,6 +18,11 @@ interface ProductStatus {
     BetTypeStatus: Array<BettypeStatus>
 }
 
+const ProductConstants = {
+    AllBet: 21,
+    Keno: 8
+};
+
 class ProductStatusPopup {
     $: JQueryStatic;
     topWindow: Window;
@@ -43,7 +48,7 @@ class ProductStatusPopup {
     cacheDOMElements = () => {
         this.$msgServerResult = this.$("#msg-serverResult");
         this.$formProductStatus = this.$("#formProductStatus");
-        this.productId = this.$("#hiddenProductId").val();
+        this.productId = parseInt(this.$("#hiddenProductId").val());
         this.custId = this.$("#hiddenCustId").val();
         this.custName = this.$("#hiddenCustName").val();
         this.custRoleId = this.$("#hiddenCustRoleId").val();
@@ -122,7 +127,13 @@ class ProductStatusPopup {
 
     showSuccess = (message: string) => {
         this.showMessage("msg msg-success", message);
-        window.top.updateProductStatusPopup.onClosing(this.custName, true);
+        if (this.productId !== ProductConstants.Keno
+            && this.productId !== ProductConstants.AllBet
+            && window.top.updateProductStatusPopup
+            && window.top.updateProductStatusPopup.onClosing
+            && typeof window.top.updateProductStatusPopup.onClosing === 'function') {
+            window.top.updateProductStatusPopup.onClosing(this.custName, true);
+        }
     };
 
     showError = (message: string) => {

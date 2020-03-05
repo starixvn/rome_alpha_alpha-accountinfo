@@ -54,6 +54,9 @@ namespace Alpha.Products.AccountInfo.Setting
                 case Sportsbook2:
                     return new Sportsbook2ViewModel(request);
 
+                case NG2:
+                    return new Ng2ProductViewModel(request, productItem.ProductId);
+
                 default:
                     return new DynamicProductViewModel(request, productItem.ProductId);
             }
