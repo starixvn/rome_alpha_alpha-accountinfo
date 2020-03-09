@@ -135,6 +135,11 @@
 
         public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
 
+        public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel();
+
+        public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
+            $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
+
         internal string DefaultStringValueIfNull(string value)
         {
             return string.IsNullOrEmpty(value) ? string.Empty : value;
