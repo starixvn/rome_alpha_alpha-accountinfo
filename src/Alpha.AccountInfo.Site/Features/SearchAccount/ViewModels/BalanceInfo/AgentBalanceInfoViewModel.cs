@@ -35,7 +35,7 @@
 
         public decimal UsedCredit => RoundUpNumber(creditInfo.AgentUsedCredit);
 
-        public decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
+        public override decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
 
         public bool ShowMemberMaxCreditLimit => ActorLevel.IsMasterLevel();
 

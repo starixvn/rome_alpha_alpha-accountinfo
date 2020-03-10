@@ -15,7 +15,7 @@ import OnlineList from '../components/contents/online-list';
 
 import AccountInfoMobile from '../components/mobile-version/account-info-mobile';
 import AccountInfoDesktop from '../components/desktop-version/account-info-desktop';
-import { resizePopupOnMobile } from '../helpers/accountinfo-helper';
+import { resizePopupOnMobile, closeLeftPanelOnMobile } from '../helpers/accountinfo-helper';
 import Raven from 'raven-js';
 
 export default class AccountInfo extends React.Component {
@@ -54,6 +54,7 @@ export default class AccountInfo extends React.Component {
         this.fetchDownlineListFromServer = this.fetchDownlineListFromServer.bind(this);
         this.fetchOnlineListFromServer = this.fetchOnlineListFromServer.bind(this);
         this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
+        this.handleOpenShowQRCode = this.handleOpenShowQRCode.bind(this);
 
         $(window).on({
             orientationchange: function () {
@@ -234,6 +235,20 @@ export default class AccountInfo extends React.Component {
         resizePopupOnMobile();
     }
 
+    handleOpenShowQRCode(showQRCodeLink) {
+        if (this.props.mobileView) {
+            closeLeftPanelOnMobile();
+        }
+
+        const mainFrame = window.top.$('#main');
+        if (!window.top.alpha.core.isIe()) {
+            mainFrame.contents().find('head').append($('#AssetCommonCssLink').val());
+            mainFrame.contents().find('body').empty().block();
+        }
+
+        mainFrame.attr('src', showQRCodeLink);
+    }
+
     buildContentItems() {
         const {
             actorRoleId,
@@ -360,6 +375,7 @@ export default class AccountInfo extends React.Component {
         const contentItems = this.buildContentItems();
         const userNamePlaceHolder = resources.UserNamePlaceHolder;
         const fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer;
+        const handleOpenShowQRCode = this.handleOpenShowQRCode;
 
         return (
             <div className="accountinfo-container">
@@ -367,8 +383,8 @@ export default class AccountInfo extends React.Component {
                 <CustomerInfo {...{ resources, customerInfo, searchCounter, mobileView, fetchCustomerInfoFromServer }} />
                 {
                     mobileView ?
-                        <AccountInfoMobile {...{ contentItems, redirectToBalanceInfoPage, customerInfo }} /> :
-                        customerInfo !== null && <AccountInfoDesktop {...{ contentItems, redirectToBalanceInfoPage }} />
+                        <AccountInfoMobile {...{ contentItems, redirectToBalanceInfoPage, customerInfo, handleOpenShowQRCode }} /> :
+                        customerInfo !== null && <AccountInfoDesktop {...{ contentItems, redirectToBalanceInfoPage, customerInfo, handleOpenShowQRCode }} />
                 }
             </div>
         );

@@ -28,7 +28,7 @@
 
         public decimal NetPosition => RoundDownNumber(balanceInfoModel.NetPosition);
 
-        public decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
+        public override decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
 
         public decimal BetCredit => RoundDownNumber(creditInfo.Credit + balanceInfoModel.Balance + balanceInfoModel.NetPosition);
 

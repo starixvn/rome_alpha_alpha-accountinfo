@@ -35,7 +35,7 @@ export default class AccountInfoMobile extends React.Component {
 
     render() {
         const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
-        const { contentItems, customerInfo } = this.props;
+        const { contentItems, customerInfo, handleOpenShowQRCode } = this.props;
 
         const routePropsArray = [
             {
@@ -57,6 +57,7 @@ export default class AccountInfoMobile extends React.Component {
             }
         ];
 
+        const showQRCodeUrl = customerInfo !== null ? customerInfo.ShowQRCodeUrl : '';
         return (
             <HashRouter>
                 <Switch>
@@ -73,6 +74,8 @@ export default class AccountInfoMobile extends React.Component {
                                                     ...routeProps,
                                                     redirectToBalanceInfoPage,
                                                     redirectToFeatureList,
+                                                    handleOpenShowQRCode,
+                                                    showQRCodeUrl,
                                                     addAnimation: props.location.state !== undefined ? props.location.state.addAnimation : false,
                                                     backText: contentItems.contactInfoProps.backText
                                                 }}

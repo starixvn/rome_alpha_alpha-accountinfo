@@ -35,12 +35,19 @@ export const ContentPage = ({
     );
 };
 
-export const FeatureListPage = ({ contentItems, animationClass }) =>
+export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQRCode, showQRCodeUrl }) =>
     <div className={`${animationClass} feature-list`}>
         <nav>
             {
                 Object.values(contentItems).map((content, index) => content.visible && <CustomLink {...content} key={index} />)
             }
+        </nav>
+        <nav>
+            <div
+                onClick={() => { handleOpenShowQRCode(showQRCodeUrl) }}
+            >
+                <span className='icon-onlinelist' /> FIRST LOGIN QR CODE
+                    </div>
         </nav>
     </div>;
 
@@ -81,6 +88,8 @@ export default class ContentMobile extends React.Component {
             children,
             fetchDataFromServer,
             contentItems = [],
+            handleOpenShowQRCode,
+            showQRCodeUrl,
             redirectToBalanceInfoPage = false,
             redirectToFeatureList = false,
             backText
@@ -101,6 +110,6 @@ export default class ContentMobile extends React.Component {
 
         return contentItems.length === 0 ?
             <ContentPage {...{ iconClass, animationClass, featureText, children, fetchDataFromServer, backText }} /> :
-            <FeatureListPage {...{ contentItems, animationClass }} />;
+            <FeatureListPage {...{ contentItems, animationClass, handleOpenShowQRCode, showQRCodeUrl }} />;
     }
 }

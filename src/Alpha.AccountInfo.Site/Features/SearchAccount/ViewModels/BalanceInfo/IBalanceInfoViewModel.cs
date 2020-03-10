@@ -9,5 +9,7 @@
         string TotalBalanceTransferLink { get; }
 
         string YesterdayBalanceTransferLink { get; }
+
+        decimal GivenCredit { get; }
     }
 }

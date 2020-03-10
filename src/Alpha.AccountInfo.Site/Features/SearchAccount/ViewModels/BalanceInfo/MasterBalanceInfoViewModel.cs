@@ -40,7 +40,7 @@
 
         public decimal UsedCredit => RoundUpNumber(creditInfo.MasterUsedCredit);
 
-        public decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
+        public override decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
 
         public decimal GivenCreditMin => creditInfo.MasterCreditMin;
 

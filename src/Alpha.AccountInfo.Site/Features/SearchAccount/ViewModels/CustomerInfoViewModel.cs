@@ -138,7 +138,11 @@
         public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel();
 
         public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
-            $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
+            $"{MemberInfoUrl}/QRCodeMemberSignIn?Credit={BalanceInfo.GivenCredit}" : string.Empty;
+
+        // TODO: 
+        public string ShowQRCodeUrl => 
+            $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?MemberName={UserName}&FirstName={customerInfo.FirstName}&Credit={BalanceInfo.GivenCredit}";
 
         internal string DefaultStringValueIfNull(string value)
         {
