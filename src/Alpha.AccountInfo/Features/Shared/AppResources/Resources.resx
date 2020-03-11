@@ -417,4 +417,13 @@
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>This account was indirectly suspended by upline</value>
   </data>
+  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
+    <value>All Day Bal Transfer</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
+    <value>Are you sure you want to change Transfer Mode for {0}?</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
+    <value>Check to allow All-Day Balance Transfer mode</value>
+  </data>
 </root>

@@ -11,6 +11,8 @@
             public const string IsAllowedDoubleComm = "SearchAccount.IsAllowedDoubleComm";
             public const string IsClosed = "SearchAccount.IsClosed";
             public const string IsEnableSecurityCode = "SearchAccount.IsEnableSecurityCode";
+            public const string IsAllDayBalTransfer = "SearchAccount.IsAllDayBalTransfer";
+            public const string AllowedAllDayBalTransfer = "SearchAccount.AllowedAllDayBalTransfer";
 
             public static class Upline
             {
@@ -38,6 +40,7 @@
             public const string DoubleComm = "DoubleCommLosing";
             public const string DisableOutright = "DisableOutright";
             public const string Suspended = "Suspended";
+            public const string IsAllDayBalTransfer = "IsAllDayBalTransfer";
         }
     }
 }

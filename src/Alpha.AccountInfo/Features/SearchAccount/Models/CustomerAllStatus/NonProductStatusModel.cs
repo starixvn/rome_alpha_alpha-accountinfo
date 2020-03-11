@@ -20,7 +20,8 @@
             bool doubleCommLosing,
             bool uplineDoubleCommLosing,
             bool disableOutright,
-            bool uplineDisableOutright)
+            bool uplineDisableOutright,
+            bool isAllDayBalTransfer)
         {
             HasDownline = hasDownline;
             DisableAutoMPT = disableAutoMPT;
@@ -39,6 +40,7 @@
 
             DisableOutright = disableOutright;
             UplineDisableOutright = uplineDisableOutright;
+            IsAllDayBalTransfer = isAllDayBalTransfer;
         }
 
         public bool HasDownline { get; private set; }
@@ -68,5 +70,7 @@
         public bool DisableOutright { get; private set; }
 
         public bool UplineDisableOutright { get; private set; }
+
+        public bool IsAllDayBalTransfer { get; }
     }
 }

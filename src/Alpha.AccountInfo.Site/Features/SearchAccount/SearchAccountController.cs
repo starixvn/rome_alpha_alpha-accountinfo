@@ -47,5 +47,9 @@
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UpdateCustomerStatus(CustomerNonProductStatusCommand command)
            => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+
+        [HttpPost, AntiXsrfFilter]
+        public async Task<ActionResult> UpdateAllDayBalanceTransfer(UpdateAllBalanceTransferCommand command)
+           => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
     }
 }

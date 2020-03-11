@@ -420,4 +420,13 @@
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>此賬號被上線間接暫停</value>
   </data>
+  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
+    <value>全天餘額轉賬</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
+    <value>您確定要更改{0}的轉賬模式嗎？</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
+    <value>檢查以允許全天餘額轉賬模式</value>
+  </data>
 </root>

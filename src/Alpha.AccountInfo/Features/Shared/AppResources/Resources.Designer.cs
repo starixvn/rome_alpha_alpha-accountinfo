@@ -394,6 +394,33 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Transfer Mode for {0}?.
+        /// </summary>
+        public static string ConfirmTransferBalanceDailyViewModelMessage {
+            get {
+                return ResourceManager.GetString("ConfirmTransferBalanceDailyViewModelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Day Bal Transfer.
+        /// </summary>
+        public static string ConfirmTransferBalanceDailyViewModelText {
+            get {
+                return ResourceManager.GetString("ConfirmTransferBalanceDailyViewModelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check to allow All-Day Balance Transfer mode.
+        /// </summary>
+        public static string ConfirmTransferBalanceDailyViewModelTooltip {
+            get {
+                return ResourceManager.GetString("ConfirmTransferBalanceDailyViewModelTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created Date.
         /// </summary>
         public static string CreatedDate {

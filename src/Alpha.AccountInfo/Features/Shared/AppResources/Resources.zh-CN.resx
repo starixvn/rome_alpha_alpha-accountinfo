@@ -417,4 +417,13 @@
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>此账号被上线间接暂停</value>
   </data>
+  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
+    <value>全天余额转账</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
+    <value>您确定要更改{0}的转账模式吗？</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
+    <value>检查以允许全天余额转账模式</value>
+  </data>
 </root>

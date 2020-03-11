@@ -171,6 +171,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -221,6 +222,7 @@
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectNG2StatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectProductStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateKenoStatusCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\UpdateAllDayBalanceTransferParam.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountDataAccess.cs" />
     <Compile Include="Features\Shared\AppResources\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>

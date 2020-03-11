@@ -32,7 +32,8 @@
         IAsyncRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>,
-        IAsyncRequestHandler<GivenCreditCommand, Result>
+        IAsyncRequestHandler<GivenCreditCommand, Result>,
+        IAsyncRequestHandler<UpdateAllBalanceTransferCommand, Result>        
     {
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
@@ -186,6 +187,16 @@
                    message.StatusName,
                    message.ActorName));
 
+        public Task<Result> Handle(UpdateAllBalanceTransferCommand message)
+           => accountInfoService.UpdateAllDayBalanceTransfer(
+               new UpdateAllDayBalanceTransferParam(
+                   message.SearchAccountId,
+                   message.ActorId,
+                   message.Language,
+                   message.IP,
+                   message.StatusValue,
+                   message.StatusName));
+
         internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
@@ -305,7 +316,10 @@
 
                 .AddData(DataKey.SearchAccount.Upline.IsSuspended, model.NonProduct.UplineSuspend)
                 .AddData(DataKey.SearchAccount.IsSuspended, model.NonProduct.Suspended)
-                .AddData(DataKey.SearchAccount.IsDirectSuspend, model.NonProduct.IsDirectSuspend);
+                .AddData(DataKey.SearchAccount.IsDirectSuspend, model.NonProduct.IsDirectSuspend)
+
+                .AddData(DataKey.SearchAccount.AllowedAllDayBalTransfer, message.AllowedAllDayBalTransfer)
+                .AddData(DataKey.SearchAccount.IsAllDayBalTransfer, model.NonProduct.IsAllDayBalTransfer);
 
             return statusViewModelFactory.GetViewModels(request).Where(status => status.Visible).OrderBy(status => status.DisplayOrder);
         }

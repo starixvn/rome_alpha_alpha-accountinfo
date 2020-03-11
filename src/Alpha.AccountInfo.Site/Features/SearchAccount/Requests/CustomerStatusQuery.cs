@@ -61,5 +61,7 @@
         internal bool IsValidUpline =>
             IsValidName(UplineName) &&
             UplineRoleId > SearchAccountRoleId;
+
+        public bool AllowedAllDayBalTransfer => viewer.AllowedAllDayBalTransfer;
     }
 }
