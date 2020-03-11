@@ -31,6 +31,8 @@
 
     public class ProductStatusServiceImpl : ProductStatusService
     {
+        private const int AllbetSportType = 211;
+        private const int SaGamingSportType = 244;
         private const int DefaultErrorCode = 101;
 
         private readonly IDynamicRepository repository;
@@ -125,18 +127,26 @@
 
             foreach (var item in rawData)
             {
-                item.Name = setNameByBetTypeId
-                    ? GetBetTypeName(item.BetType)
+                item.Name = setNameByBetTypeId || IsLiveCasinoProduct(item.SportType)
+                    ? GetSportOrBetTypeName(item.BetType, item.SportType)
                     : cacheRefService.GetProductName(productId);
 
                 yield return item;
             }
         }
 
-        private string GetBetTypeName(int betType)
+        private string GetSportOrBetTypeName(int betType, int sportType)
         {
+            if (IsLiveCasinoProduct(sportType))
+            {
+                return cacheRefService.GetSportTypeName(sportType);
+            }
+
             return cacheRefService.GetBetTypeName(betType);
         }
+
+        private static bool IsLiveCasinoProduct(int sportType)
+            => sportType == AllbetSportType || sportType == SaGamingSportType;
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
@@ -209,7 +219,7 @@
                 if (productId == LiveCasino)
                 {
                     errors.AddRange(xmlRoot.Elements()
-                        .Select(row => GetBetTypeName(int.Parse(row.Attributes("BetType").First().Value))));
+                        .Select(row => GetSportOrBetTypeName(int.Parse(row.Attributes("BetType").First().Value), int.Parse(row.Attributes("SportType").First().Value))));
                 }
 
                 return string.Join("<br>", errors);
