@@ -42,8 +42,8 @@
 
         public override decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
 
-        public decimal GivenCreditMin => creditInfo.MasterCreditMin;
+        public override decimal GivenCreditMin => creditInfo.MasterCreditMin;
 
-        public decimal GivenCreditMax => creditInfo.MasterCreditMax;
+        public override decimal GivenCreditMax => creditInfo.MasterCreditMax;
     }
 }

@@ -11,5 +11,9 @@
         string YesterdayBalanceTransferLink { get; }
 
         decimal GivenCredit { get; }
+
+        decimal GivenCreditMin { get; }
+
+        decimal GivenCreditMax { get; }
     }
 }

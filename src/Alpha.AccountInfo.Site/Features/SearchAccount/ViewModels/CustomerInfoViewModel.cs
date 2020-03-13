@@ -138,11 +138,13 @@
         public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel();
 
         public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
-            $"{MemberInfoUrl}/QRCodeMemberSignIn?Credit={BalanceInfo.GivenCredit}" : string.Empty;
+            $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
 
-        // TODO: 
+        // TODO: customerInfo.LastLogged == DateTime.MinValue ?
         public string ShowQRCodeUrl => 
-            $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?MemberName={UserName}&FirstName={customerInfo.FirstName}&Credit={BalanceInfo.GivenCredit}";
+            $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?MemberName={UserName}&FirstName={customerInfo.FirstName}" +
+            $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
+            $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}";
 
         internal string DefaultStringValueIfNull(string value)
         {

@@ -41,9 +41,9 @@
 
         public string MemberMaxCreditLimit => $">={MemMaxCreditMin} {Resources.And} <={GivenCredit}";
 
-        public decimal GivenCreditMin => creditInfo.AgentCreditMin;
+        public override decimal GivenCreditMin => creditInfo.AgentCreditMin;
 
-        public decimal GivenCreditMax => creditInfo.AgentCreditMax;
+        public override decimal GivenCreditMax => creditInfo.AgentCreditMax;
 
         internal override bool ShowTransferLink => ActorLevel.IsMasterLevel() && base.ShowTransferLink;
 
