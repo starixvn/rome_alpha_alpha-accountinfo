@@ -101,11 +101,9 @@ export default class AccountInfoDesktop extends React.Component {
                                 {item.children}
                             </CustomizedAccordionItem>;
                     })}
-                <div
-                    onClick={() => { handleOpenShowQRCode(customerInfo.ShowQRCodeUrl) }}
-                >
-                    <span className='icon-onlinelist' /> FIRST LOGIN QR CODE
-                    </div>
+                <div className='icon-qr-code' onClick={() => { handleOpenShowQRCode(customerInfo.ShowQRCodeUrl) }}>
+                    <span>FIRST LOGIN QR CODE</span>
+                </div>
             </div>
         );
     }

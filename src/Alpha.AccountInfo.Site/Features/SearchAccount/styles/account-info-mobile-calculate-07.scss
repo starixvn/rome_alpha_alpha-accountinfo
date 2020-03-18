@@ -155,6 +155,11 @@ hr {
     }
 }
 
+.icon-qr-code {
+    font-size: calculateScale(13px);
+    padding: calculateScale(14px) calculateScale(25px) calculateScale(14px) calculateScale(10px);
+}
+
 .feature-item {
     padding: calculateScale(14px) calculateScale(25px) calculateScale(14px) calculateScale(10px);
     font-size: calculateScale(13px);

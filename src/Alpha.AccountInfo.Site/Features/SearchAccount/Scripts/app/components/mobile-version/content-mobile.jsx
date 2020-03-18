@@ -43,10 +43,10 @@ export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQR
             }
         </nav>
         <nav>
-            <div
+            <div className='icon-qr-code'
                 onClick={() => { handleOpenShowQRCode(showQRCodeUrl) }}
             >
-                <span className='icon-onlinelist' /> FIRST LOGIN QR CODE
+                <span> FIRST LOGIN QR CODE </span> 
                     </div>
         </nav>
     </div>;

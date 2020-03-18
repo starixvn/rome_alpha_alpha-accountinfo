@@ -135,7 +135,7 @@ export default class SearchAccountInfo extends React.Component {
             {Tootltip === '' ? content : contentWithTooltip}
             {customerInfo.IsShowCreateMemberByQRCode &&
                 <CustomAnchorTag {...createMemberAccountByQRCodeProps}>
-                <span className='icon-viewlog' />
+                <span className='icon-clone-account' />
             </CustomAnchorTag>}
             </div>;
     }
