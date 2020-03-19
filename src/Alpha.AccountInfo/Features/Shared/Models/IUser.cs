@@ -61,5 +61,11 @@
         bool IsEnabledCustomerDateLimit { get; }
 
         string Site { get; }
+
+        int Srecommend { get; }
+
+        int Mrecommend { get; }
+
+        int Arecommend { get; }
     }
 }

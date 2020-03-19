@@ -79,5 +79,11 @@
 
         public bool IsEnabledCustomerDateLimit
            => userSession.GetProperty<DateTime>(CustomerDateLimitSessionKey) != default(DateTime);
+
+        public int Srecommend => userSession.SRecommendId;
+
+        public int Mrecommend => userSession.MRecommendId;
+
+        public int Arecommend => userSession.ARecommendId;
     }
 }
