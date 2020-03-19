@@ -23,6 +23,7 @@ namespace Alpha.Products.AccountInfo.Status
             yield return new ConfirmAllowOutrightViewModel(request);
             yield return new ConfirmAllowAutoMasterPTViewModel(request);
             yield return new ConfirmDoubleCommViewModel(request);
+            yield return new ConfirmTransferBalanceDailyViewModel(request);
         }
 
         protected override IStatusItemViewModel GetProductViewModel(IConfigurationItem productItem, ISearchAccountInfoRequest request)

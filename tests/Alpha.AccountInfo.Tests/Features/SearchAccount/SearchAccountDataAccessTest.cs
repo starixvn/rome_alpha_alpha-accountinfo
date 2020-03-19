@@ -138,7 +138,8 @@
                              doubleCommLosing: true,
                              uplineDoubleCommLosing: true,
                              disableOutright: true,
-                             uplineDisableOutright: true);
+                             uplineDisableOutright: true,
+                             isAllDayBalTransfer: false);
 
         private static List<DCSProductStatusModel> StubDcsProducts()
             => new List<DCSProductStatusModel>

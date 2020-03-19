@@ -38,6 +38,8 @@
         Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param);
 
         Task<CreditInfo> GetCreditInfo(int custId);
+
+        Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param);
     }
 
     public class SearchAccountServiceImpl : SearchAccountService
@@ -99,7 +101,7 @@
                new SelectBalanceInfoCriteria(custId, roleId)).ConfigureAwait(false);
 
         public async Task<CustomerStatusModel> GetCustomerStatus(int custId)
-          => await accountInfoDataAccess.GetCustomerStatus(
+            => await accountInfoDataAccess.GetCustomerStatus(
               new SelectCustomerAllStatusModelCriteria(custId)).ConfigureAwait(false);
 
         public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
@@ -126,8 +128,8 @@
                     param.IP);
 
             await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
-            
-            if(command.IsInvalid() || command.CreditProblem)
+
+            if (command.IsInvalid() || command.CreditProblem)
             {
                 return Result.CreateErrorResult(failErrorCode, command.ErrMsg);
             }
@@ -191,5 +193,21 @@
 
         public async Task<CreditInfo> GetCreditInfo(int custId)
             => await dynamicRepository.GetAsync<CreditInfo>(new SelectCreditInfoCriteria(custId));
+
+        public async Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param)
+        {
+            var command = new UpdateAllDayBalanceTransferCommand(
+                param.SearchAccountId,
+                param.ActorId,
+                param.Language,
+                param.IP,
+                param.StatusName,
+                param.StatusValue);
+            var result = await accountInfoDataAccess.UpdateAllDayBalanceTransfer(command);
+
+            return result.IsSuccess ?
+                Result.CreateSuccessResult() :
+                result;
+        }
     }
 }

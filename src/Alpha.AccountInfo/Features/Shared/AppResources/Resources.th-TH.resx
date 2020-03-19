@@ -417,4 +417,13 @@
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>บัญชีนี้ถูกระงับจากอัพไลน์โดยทางอ้อม</value>
   </data>
+  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
+    <value>โอนยอดคงเหลือทั้งวัน</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าคุณต้องการเปลี่ยนโหมดการถ่ายโอนสำหรับ{0}</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
+    <value>ตรวจสอบเพื่ออนุญาต โหมดการโอนยอดคงเหลือทั้งวัน</value>
+  </data>
 </root>

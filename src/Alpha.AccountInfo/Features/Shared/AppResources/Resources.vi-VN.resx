@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -416,5 +416,14 @@
   </data>
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>Tài khoản này bị gián tiếp đình chỉ bởi cấp trên</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
+    <value>Chuyển Khoản Tổng Số Dư</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
+    <value>Bạn có chắc muốn thay đổi chế độ Chuyển khoản cho tài khoản {0}?</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
+    <value>Chọn để mở chế độ Chuyển Khoản Tổng Số Dư</value>
   </data>
 </root>
