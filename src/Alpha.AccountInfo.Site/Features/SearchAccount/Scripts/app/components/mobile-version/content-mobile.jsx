@@ -42,13 +42,17 @@ export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQR
                 Object.values(contentItems).map((content, index) => content.visible && <CustomLink {...content} key={index} />)
             }
         </nav>
-        <nav>
+        {
+            customerInfo.ShowQRCodeUrl !== ''
+            && customerInfo.ShowQRCodeUrl !== undefined
+            && <nav>
             <div className='icon-qr-code'
                 onClick={() => { handleOpenShowQRCode(showQRCodeUrl) }}
             >
-                <span> FIRST LOGIN QR CODE </span> 
-                    </div>
+                <span> FIRST LOGIN QR CODE </span>
+            </div>
         </nav>
+        }
     </div>;
 
 export default class ContentMobile extends React.Component {

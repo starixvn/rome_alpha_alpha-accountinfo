@@ -214,7 +214,8 @@
             var expectedViewModel = new CustomerInfoViewModel(
                 customerInfoQuery,
                 customerInfo,
-                memberBalanceInfoViewModel);
+                memberBalanceInfoViewModel,
+                true);
 
             var actualViewModel = accountInfoHandler.Handle(customerInfoQuery).GetAwaiter().GetResult();
 
