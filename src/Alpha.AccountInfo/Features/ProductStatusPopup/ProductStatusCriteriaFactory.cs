@@ -20,6 +20,8 @@
 
     public class ProductStatusCriteriaFactoryImpl : ProductStatusCriteriaFactory
     {
+        private const int Sabaclub = 42;
+
         public ICriteria CreateSelectCriteria(int productId, int customerId, byte roleId)
         {
             switch (productId)
@@ -29,6 +31,7 @@
                     return new SelectProductStatusCriteria(productId, customerId);
 
                 case ProductConstants.NG2:
+                case Sabaclub:
                     return new SelectNG2StatusCriteria(productId, customerId);
 
                 default:
@@ -44,6 +47,7 @@
                     return CreateUpdateCasinoStatusCriteria(param);
 
                 case ProductConstants.NG2:
+                case Sabaclub:
                     return CreateUpdateNG2StatusCriteria(param);
 
                 default:
