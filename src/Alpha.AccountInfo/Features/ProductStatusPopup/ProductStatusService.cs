@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
+    using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared;
@@ -15,7 +17,6 @@
     using Fanex.Logging;
     using Models.ProductStatus;
     using Params.ProductStatus;
-    using System.Globalization;
 
     public interface ProductStatusService
     {
@@ -31,8 +32,6 @@
 
     public class ProductStatusServiceImpl : ProductStatusService
     {
-        private const int AllbetSportType = 211;
-        private const int SaGamingSportType = 244;
         private const int DefaultErrorCode = 101;
 
         private readonly IDynamicRepository repository;
@@ -41,7 +40,6 @@
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ILogger logger;
-        private const int LiveCasino = 41;
 
         public ProductStatusServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -123,11 +121,11 @@
             int productId,
             IEnumerable<ProductStatusModel> rawData)
         {
-            var setNameByBetTypeId = rawData.Skip(1).Any();
+            var hasMultipleRow = rawData.Count() > 1;
 
             foreach (var item in rawData)
             {
-                item.Name = setNameByBetTypeId || IsLiveCasinoProduct(item.SportType)
+                item.Name = hasMultipleRow
                     ? GetSportOrBetTypeName(item.BetType, item.SportType)
                     : cacheRefService.GetProductName(productId);
 
@@ -146,7 +144,7 @@
         }
 
         private static bool IsLiveCasinoProduct(int sportType)
-            => sportType == AllbetSportType || sportType == SaGamingSportType;
+            => SportTypeConstants.SportTypeOfLiveCasino.Contains(sportType);
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
@@ -176,7 +174,7 @@
 
             return criteria.Success ?
                 Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language)) :
-                Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.ProductId, param.Language));
+                Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language));
         }
 
         private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
@@ -203,7 +201,7 @@
             return Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
         }
 
-        private string ParseDCSXmlErrorMessage(string errMsg, int productId, string language)
+        private string ParseDCSXmlErrorMessage(string errMsg, string language)
         {
             if (IsValidXml(errMsg))
             {
@@ -215,12 +213,6 @@
                 {
                     errMsgFromResource ?? xmlRoot.Attributes("Msg").First().Value
                 };
-
-                if (productId == LiveCasino)
-                {
-                    errors.AddRange(xmlRoot.Elements()
-                        .Select(row => GetSportOrBetTypeName(int.Parse(row.Attributes("BetType").First().Value), int.Parse(row.Attributes("SportType").First().Value))));
-                }
 
                 return string.Join("<br>", errors);
             }

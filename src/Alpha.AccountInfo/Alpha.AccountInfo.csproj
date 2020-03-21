@@ -171,6 +171,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\ProductStatusPopup\SportTypeConstants.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
