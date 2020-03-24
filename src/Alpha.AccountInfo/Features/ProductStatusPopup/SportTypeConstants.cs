@@ -12,7 +12,7 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
         {
             SportTypeConstants.AllBet,
             SportTypeConstants.SexyGaming,
-            SportTypeConstants.SexyGaming
+            SportTypeConstants.SAGaming
         };
     }
 }
