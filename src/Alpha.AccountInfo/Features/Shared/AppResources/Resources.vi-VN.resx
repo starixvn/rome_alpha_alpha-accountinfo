@@ -426,4 +426,7 @@
   <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
     <value>Chọn để mở chế độ Chuyển Khoản Tổng Số Dư</value>
   </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>Create Member with QR Code</value>
+  </data>
 </root>

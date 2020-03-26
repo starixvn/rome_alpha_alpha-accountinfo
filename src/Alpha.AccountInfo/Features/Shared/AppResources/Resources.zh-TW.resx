@@ -429,4 +429,7 @@
   <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
     <value>檢查以允許全天餘額轉賬模式</value>
   </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>Create Member with QR Code</value>
+  </data>
 </root>

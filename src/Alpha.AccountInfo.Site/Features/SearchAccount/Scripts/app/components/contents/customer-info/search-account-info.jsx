@@ -104,7 +104,7 @@ export default class SearchAccountInfo extends React.Component {
 
 
         const createMemberAccountByQRCodeProps = {
-            title: 'create member with QR Code',
+            title: resources.CreateMemberWithQRCode,
             classNames: 'pointer',
             href: customerInfo.CreateMemberByQRCodeUrl,
             mobileView

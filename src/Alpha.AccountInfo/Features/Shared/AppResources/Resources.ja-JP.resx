@@ -417,4 +417,7 @@
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>This account was indirectly suspended by upline</value>
   </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>Create Member with QR Code</value>
+  </data>
 </root>

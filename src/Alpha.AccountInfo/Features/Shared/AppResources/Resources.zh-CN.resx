@@ -426,4 +426,7 @@
   <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
     <value>检查以允许全天余额转账模式</value>
   </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>Create Member with QR Code</value>
+  </data>
 </root>
