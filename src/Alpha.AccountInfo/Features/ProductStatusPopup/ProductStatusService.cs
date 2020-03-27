@@ -125,7 +125,7 @@
 
             foreach (var item in rawData)
             {
-                item.Name = hasMultipleRow
+                item.Name = hasMultipleRow || SportTypeConstants.SportTypeOfLiveCasino.Any(i => i == item.SportType)
                     ? GetSportOrBetTypeName(item.BetType, item.SportType)
                     : cacheRefService.GetProductName(productId);
 
