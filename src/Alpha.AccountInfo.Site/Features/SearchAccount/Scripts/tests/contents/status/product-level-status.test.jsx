@@ -14,10 +14,10 @@ describe('ProductLevelStatus', () => {
     beforeEach(() => {
         props = {
             status: {
-                'Text': 'Allbet',
+                'Text': 'Live Casino',
                 'DisplayOrder': 210,
                 'ProductId': 21,
-                'Url': '/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3',
+                'Url': '/site-accountinfo/ProductStatus?productid=41&custId=1382145&custName=ACGUUS38&custRoleId=3',
                 'Disabled': false,
                 'Visible': true,
                 'IsEditOnProductLevel': false,
@@ -58,7 +58,7 @@ describe('ProductLevelStatus', () => {
         const spy = sinon.spy(ProductLevelStatus.prototype, 'handleOpenPopup');
         buildWrapper();
 
-        wrapper.find('#product-Allbet').simulate('click');
+        wrapper.find('#product-LiveCasino').simulate('click');
         expect(spy.calledOnce).toBeTruthy();
     });
 
@@ -69,7 +69,7 @@ describe('ProductLevelStatus', () => {
             accountInfoHelper.resizePopupOnMobile = jest.fn();
 
             buildWrapper();
-            wrapper.find('#product-Allbet').simulate('click');
+            wrapper.find('#product-LiveCasino').simulate('click');
             expect(accountInfoHelper.resizePopupOnMobile).toBeCalledTimes(expectedCallTimes);
         }
     );

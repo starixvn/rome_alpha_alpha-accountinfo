@@ -92,20 +92,20 @@ describe('Status', () => {
 
     test.each([
         [{
-            'Text': 'Allbet',
+            'Text': 'Live Casino',
             'DisplayOrder': 210,
             'ProductId': 21,
-            'Url': '/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3',
+            'Url': '/site-accountinfo/ProductStatus?productid=41&custId=1382145&custName=ACGUUS38&custRoleId=3',
             'Disabled': false,
             'Visible': true,
             'IsEditOnProductLevel': true,
             'Checked': true
         }, 0],
         [{
-            'Text': 'Allbet',
+            'Text': 'Live Casino',
             'DisplayOrder': 210,
             'ProductId': 21,
-            'Url': '/site-accountinfo/ProductStatus?productid=21&custId=1382145&custName=ACGUUS38&custRoleId=3',
+            'Url': '/site-accountinfo/ProductStatus?productid=41&custId=1382145&custName=ACGUUS38&custRoleId=3',
             'Disabled': false,
             'Visible': true,
             'IsEditOnProductLevel': false,

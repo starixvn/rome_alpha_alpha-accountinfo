@@ -15,7 +15,7 @@
                 new ConfigurationItem(8, "Keno", extendProductProperty: new SearchAccountProperties(true, true, true)),
                 new ConfigurationItem(12, "Gold Deluxe", extendProductProperty: new SearchAccountProperties(true, true, true)),
                 new ConfigurationItem(16, "Sportsbook2", extendProductProperty: new SearchAccountProperties(true, true, true)),
-                new ConfigurationItem(21, "AllBet", extendProductProperty: new SearchAccountProperties(true, true, true)),
+                new ConfigurationItem(41, "Live Casino", extendProductProperty: new SearchAccountProperties(true, true, true)),
                 new ConfigurationItem(22, "Macau Games", extendProductProperty: new SearchAccountProperties(true, true, true)),
                 new ConfigurationItem(23, "NG2", extendProductProperty: new SearchAccountProperties(true, true, true)),
                 new ConfigurationItem(24, "Fishing World", extendProductProperty: new SearchAccountProperties(true, true, true)),

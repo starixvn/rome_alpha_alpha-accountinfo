@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
+    using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared;
@@ -15,7 +17,6 @@
     using Fanex.Logging;
     using Models.ProductStatus;
     using Params.ProductStatus;
-    using System.Globalization;
 
     public interface ProductStatusService
     {
@@ -31,7 +32,6 @@
 
     public class ProductStatusServiceImpl : ProductStatusService
     {
-        private const int AllbetStartRange = 2401;
         private const int DefaultErrorCode = 101;
 
         private readonly IDynamicRepository repository;
@@ -121,27 +121,30 @@
             int productId,
             IEnumerable<ProductStatusModel> rawData)
         {
-            var setNameByBetTypeId = rawData.Skip(1).Any();
+            var hasMultipleRow = rawData.Count() > 1;
 
             foreach (var item in rawData)
             {
-                item.Name = setNameByBetTypeId || item.BetType == AllbetStartRange
-                    ? GetBetTypeName(item.BetType)
+                item.Name = hasMultipleRow || SportTypeConstants.SportTypeOfLiveCasino.Any(i => i == item.SportType)
+                    ? GetSportOrBetTypeName(item.BetType, item.SportType)
                     : cacheRefService.GetProductName(productId);
 
                 yield return item;
             }
         }
 
-        private string GetBetTypeName(int betType)
+        private string GetSportOrBetTypeName(int betType, int sportType)
         {
-            if (betType == AllbetStartRange)
+            if (IsLiveCasinoProduct(sportType))
             {
-                return ProductStatus.BetType_2401;
+                return cacheRefService.GetSportTypeName(sportType);
             }
 
             return cacheRefService.GetBetTypeName(betType);
         }
+
+        private static bool IsLiveCasinoProduct(int sportType)
+            => SportTypeConstants.SportTypeOfLiveCasino.Contains(sportType);
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
@@ -171,7 +174,7 @@
 
             return criteria.Success ?
                 Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language)) :
-                Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.ProductId, param.Language));
+                Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language));
         }
 
         private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
@@ -198,7 +201,7 @@
             return Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
         }
 
-        private string ParseDCSXmlErrorMessage(string errMsg, int productId, string language)
+        private string ParseDCSXmlErrorMessage(string errMsg, string language)
         {
             if (IsValidXml(errMsg))
             {
@@ -210,12 +213,6 @@
                 {
                     errMsgFromResource ?? xmlRoot.Attributes("Msg").First().Value
                 };
-
-                if (productId == ProductConstants.AllBet)
-                {
-                    errors.AddRange(xmlRoot.Elements()
-                        .Select(row => GetBetTypeName(int.Parse(row.Attributes("BetType").First().Value))));
-                }
 
                 return string.Join("<br>", errors);
             }
