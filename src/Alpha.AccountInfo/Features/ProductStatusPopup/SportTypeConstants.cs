@@ -16,5 +16,9 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
             SexyGaming,
             SAGaming
         };
+
+        public static readonly IEnumerable<int> SportTypeOfLottery = new List<int>
+        {
+        };
     }
 }
