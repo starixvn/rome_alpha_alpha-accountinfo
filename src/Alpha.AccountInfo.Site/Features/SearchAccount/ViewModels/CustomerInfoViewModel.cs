@@ -12,6 +12,7 @@
     {
         private readonly CustomerInfoQuery message;
         private readonly CustomerInfoModel customerInfo;
+        private readonly bool isFirstLoginQRCode;
 
         public CustomerInfoViewModel(
             CustomerInfoQuery message,
@@ -23,10 +24,7 @@
             this.message = message;
             this.customerInfo = customerInfo;
             BalanceInfo = balanceInfo;
-            this.ShowQRCodeUrl = customerInfo.LastLogged == DateTime.MinValue && isFirstLoginQRCode ?
-                $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?MemberName={UserName}&FirstName={customerInfo.FirstName}" +
-                $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
-                $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
+            this.isFirstLoginQRCode = isFirstLoginQRCode;
         }
 
         private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(RoleId);
@@ -145,7 +143,10 @@
         public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
             $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
 
-        public string ShowQRCodeUrl { get; }
+        public string ShowQRCodeUrl => customerInfo.LastLogged == DateTime.MinValue && isFirstLoginQRCode ?
+                $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?MemberName={UserName}&FirstName={customerInfo.FirstName}" +
+                $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
+                $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
 
         internal string DefaultStringValueIfNull(string value)
         {
