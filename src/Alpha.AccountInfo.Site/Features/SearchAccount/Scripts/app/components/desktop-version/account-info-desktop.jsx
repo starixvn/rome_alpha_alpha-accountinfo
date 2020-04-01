@@ -90,7 +90,7 @@ export default class AccountInfoDesktop extends React.Component {
     }
 
     render() {
-        const { handleOpenShowQRCode, customerInfo } = this.props;
+        const { handleOpenShowQRCode, customerInfo, resources } = this.props;
 
         return (
             <div className='accordions'>
@@ -105,7 +105,7 @@ export default class AccountInfoDesktop extends React.Component {
                     customerInfo.ShowQRCodeUrl !== ''
                     && customerInfo.ShowQRCodeUrl !== undefined
                     && <div className='icon-qr-code' onClick={() => { handleOpenShowQRCode(customerInfo.ShowQRCodeUrl) }}>
-                        <span>FIRST LOGIN QR CODE</span>
+                        <span>{resources.FirstLoginQRCode}</span>
                     </div>
                 }
             </div>

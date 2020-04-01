@@ -383,8 +383,8 @@ export default class AccountInfo extends React.Component {
                 <CustomerInfo {...{ resources, customerInfo, searchCounter, mobileView, fetchCustomerInfoFromServer }} />
                 {
                     mobileView ?
-                        <AccountInfoMobile {...{ contentItems, redirectToBalanceInfoPage, customerInfo, handleOpenShowQRCode }} /> :
-                        customerInfo !== null && <AccountInfoDesktop {...{ contentItems, redirectToBalanceInfoPage, customerInfo, handleOpenShowQRCode }} />
+                        <AccountInfoMobile {...{ resources, contentItems, redirectToBalanceInfoPage, customerInfo, handleOpenShowQRCode }} /> :
+                        customerInfo !== null && <AccountInfoDesktop {...{ resources, contentItems, redirectToBalanceInfoPage, customerInfo, handleOpenShowQRCode }} />
                 }
             </div>
         );

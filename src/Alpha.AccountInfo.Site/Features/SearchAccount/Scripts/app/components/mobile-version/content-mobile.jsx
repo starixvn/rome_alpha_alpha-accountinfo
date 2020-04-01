@@ -49,7 +49,7 @@ export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQR
             <div className='icon-qr-code'
                 onClick={() => { handleOpenShowQRCode(showQRCodeUrl) }}
             >
-                <span> FIRST LOGIN QR CODE </span>
+                <span> {resources.FirstLoginQRCode} </span>
             </div>
         </nav>
         }
@@ -96,7 +96,8 @@ export default class ContentMobile extends React.Component {
             showQRCodeUrl,
             redirectToBalanceInfoPage = false,
             redirectToFeatureList = false,
-            backText
+            backText,
+            resources
         } = this.props;
 
         const { featureListPath, balanceInfoPath, animationClass } = this.state;
@@ -114,6 +115,6 @@ export default class ContentMobile extends React.Component {
 
         return contentItems.length === 0 ?
             <ContentPage {...{ iconClass, animationClass, featureText, children, fetchDataFromServer, backText }} /> :
-            <FeatureListPage {...{ contentItems, animationClass, handleOpenShowQRCode, showQRCodeUrl }} />;
+            <FeatureListPage {...{ resources, contentItems, animationClass, handleOpenShowQRCode, showQRCodeUrl }} />;
     }
 }
