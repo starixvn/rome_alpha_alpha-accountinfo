@@ -125,35 +125,29 @@
 
             foreach (var item in rawData)
             {
-                item.Name = hasMultipleRow || IsBetTypeOfSport(item.SportType)
-                    ? GetSportOrBetTypeName(item.BetType, item.SportType)
-                    : cacheRefService.GetProductName(productId);
+                item.Name = GetProductStatusName(productId, item, hasMultipleRow);
 
                 yield return item;
             }
         }
 
-        private static bool IsBetTypeOfSport(int betType)
+        private string GetProductStatusName(int productId, ProductStatusModel product, bool hasMultipleRow)
         {
-            return SportTypeConstants.SportTypeOfLiveCasino.Contains(betType)
-                || SportTypeConstants.SportTypeOfLottery.Contains(betType);
-        }
-
-        private string GetSportOrBetTypeName(int betType, int sportType)
-        {
-            if (IsLiveCasinoProduct(sportType) || IsLotteryProduct(sportType))
+            if (IsSportTypeOfProduct(product.SportType))
             {
-                return cacheRefService.GetSportTypeName(sportType);
+                return cacheRefService.GetSportTypeName(product.SportType);
             }
 
-            return cacheRefService.GetBetTypeName(betType);
+            if (hasMultipleRow)
+            {
+                return cacheRefService.GetBetTypeName(product.BetType);
+            }
+
+            return cacheRefService.GetProductName(productId);
         }
 
-        private static bool IsLiveCasinoProduct(int sportType)
-            => SportTypeConstants.SportTypeOfLiveCasino.Contains(sportType);
-
-        private static bool IsLotteryProduct(int sportType)
-            => SportTypeConstants.SportTypeOfLottery.Contains(sportType);
+        private static bool IsSportTypeOfProduct(int sportType)
+            => SportTypeConstants.SportTypeOfProduct.Contains(sportType);
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
