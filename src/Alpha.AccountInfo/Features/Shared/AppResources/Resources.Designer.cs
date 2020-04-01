@@ -430,7 +430,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Member with QR Code.
+        ///   Looks up a localized string similar to Create Member via QR Code.
         /// </summary>
         public static string CreateMemberWithQRCode {
             get {
@@ -471,6 +471,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         public static string Fax {
             get {
                 return ResourceManager.GetString("Fax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FIRST LOGIN QR CODE.
+        /// </summary>
+        public static string FirstLoginQRCode {
+            get {
+                return ResourceManager.GetString("FirstLoginQRCode", resourceCulture);
             }
         }
         
