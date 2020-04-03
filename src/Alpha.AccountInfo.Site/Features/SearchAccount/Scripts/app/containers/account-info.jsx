@@ -21,14 +21,13 @@ import Raven from 'raven-js';
 export default class AccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        let { searchAccountName, actorRoleId, actorName, mobileView, showLoginInfo, resources } = this.props;
+        let { searchAccountName, actorRoleId, mobileView, showLoginInfo, resources } = this.props;
         let username = searchAccountName;
 
-        if (username === '' && localStorage.getItem('actorName') === actorName) {
+        if (username === '' && JSON.parse(localStorage.getItem('IsOldActor'))) {
             username = localStorage.getItem('lastSearchUsername') !== null ? localStorage.getItem('lastSearchUsername') : '';
         }
         else {
-            localStorage.setItem('actorName', actorName);
             localStorage.removeItem('lastSearchUsername');
         }
 
