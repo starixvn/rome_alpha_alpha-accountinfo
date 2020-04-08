@@ -19,7 +19,7 @@
                 new ConfigurationItem(22, "Macau Games", extendProductProperty: new SearchAccountProperties(true, true, true)),
                 new ConfigurationItem(23, "NG2", extendProductProperty: new SearchAccountProperties(true, true, true)),
                 new ConfigurationItem(24, "Fishing World", extendProductProperty: new SearchAccountProperties(true, true, true)),
-                new ConfigurationItem(28, "Lottery", extendProductProperty: new SearchAccountProperties(true, true, true))
+                new ConfigurationItem(44, "RNG Lottery", extendProductProperty: new SearchAccountProperties(true, true, true))
         };
 
         internal static IList<IConfigurationItem> LoadApplicationProductConfiguration(params int[] productIds)
