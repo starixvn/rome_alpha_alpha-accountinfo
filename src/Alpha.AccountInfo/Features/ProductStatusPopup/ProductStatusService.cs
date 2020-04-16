@@ -1,11 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml.Linq;
     using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
@@ -17,6 +11,12 @@
     using Fanex.Logging;
     using Models.ProductStatus;
     using Params.ProductStatus;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml.Linq;
 
     public interface ProductStatusService
     {
@@ -125,26 +125,29 @@
 
             foreach (var item in rawData)
             {
-                item.Name = hasMultipleRow || SportTypeConstants.SportTypeOfLiveCasino.Any(i => i == item.SportType)
-                    ? GetSportOrBetTypeName(item.BetType, item.SportType)
-                    : cacheRefService.GetProductName(productId);
+                item.Name = GetProductStatusName(productId, item, hasMultipleRow);
 
                 yield return item;
             }
         }
 
-        private string GetSportOrBetTypeName(int betType, int sportType)
+        private string GetProductStatusName(int productId, ProductStatusModel product, bool hasMultipleRow)
         {
-            if (IsLiveCasinoProduct(sportType))
+            if (IsSportTypeOfProduct(product.SportType))
             {
-                return cacheRefService.GetSportTypeName(sportType);
+                return cacheRefService.GetSportTypeName(product.SportType);
             }
 
-            return cacheRefService.GetBetTypeName(betType);
+            if (hasMultipleRow)
+            {
+                return cacheRefService.GetBetTypeName(product.BetType);
+            }
+
+            return cacheRefService.GetProductName(productId);
         }
 
-        private static bool IsLiveCasinoProduct(int sportType)
-            => SportTypeConstants.SportTypeOfLiveCasino.Contains(sportType);
+        private static bool IsSportTypeOfProduct(int sportType)
+            => SportTypeConstants.SportTypeOfProduct.Contains(sportType);
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
