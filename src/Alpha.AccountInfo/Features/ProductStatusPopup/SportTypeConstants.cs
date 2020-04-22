@@ -6,6 +6,7 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
     {
         public const int AllBet = 211;
         public const int BBIN = 241;
+        public const int GTCasino = 242;
         public const int SexyGaming = 243;
         public const int SAGaming = 244;
         public const int Lottery = 220;
@@ -17,6 +18,7 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
             BBIN,
             SexyGaming,
             SAGaming,
+            GTCasino,
             Lottery,
             TableGaming
         };
