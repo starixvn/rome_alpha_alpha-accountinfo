@@ -48,4 +48,7 @@
       <Mapping ObjectProperty="SearchAccountId" DataField="custid" />
     </Setting>
   </Function>
+  <Function Name="QR Code">
+    <Setting Key=" Age_CheckQRFirstLogin" SpName=" Age_CheckQRFirstLogin" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0"/>
+  </Function>
 </Functions>

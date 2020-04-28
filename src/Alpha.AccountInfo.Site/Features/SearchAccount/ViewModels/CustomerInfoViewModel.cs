@@ -144,7 +144,7 @@
             $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
 
         public string ShowQRCodeUrl => customerInfo.LastLogged == DateTime.MinValue && isFirstLoginQRCode ?
-                $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?MemberName={UserName}&FirstName={customerInfo.FirstName}" +
+                $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?FirstName={customerInfo.FirstName}" +
                 $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
                 $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
 
