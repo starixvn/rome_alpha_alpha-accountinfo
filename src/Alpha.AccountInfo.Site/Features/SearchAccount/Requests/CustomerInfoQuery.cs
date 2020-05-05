@@ -9,35 +9,49 @@
 
     public class CustomerInfoQuery : BaseRequest, IRequest<CustomerInfoViewModel>
     {
-        private readonly IUser viewer;
-
         public CustomerInfoQuery(IUser viewer) : base(viewer)
         {
-            this.viewer = viewer;
+            ActorId = viewer.Id;
+            ActorName = viewer.Name;
+            ActorRoleId = viewer.LevelId;
+            AllDayBalTransfer = viewer.AllowedAllDayBalTransfer;
+            AllowedTotalBalanceTransfer = viewer.AllowedTotalBalanceTransfer;
+            AllowTransfer = viewer.AllowTransfer;
+            CanViewReports = viewer.CanViewReports;
+            CanViewLog = viewer.CanViewLog;
+            CanUpdateAccount = viewer.CanUpdateAccount;
+            CanCreateAccount = viewer.CanCreateAccount;
+            CanViewMemberInfo = viewer.ViewMemberInfo;
         }
 
         [AllowHtml]
         public string SearchAccountName { get; set; }
 
-        public int ActorId => viewer.Id;
+        public int ActorId { get; } 
 
-        public byte ActorRoleId => viewer.LevelId;
+        public string ActorName { get; }
 
-        public bool AllDayBalTransfer => viewer.AllowedAllDayBalTransfer;
+        public byte ActorRoleId { get; }
 
-        public bool AllowedTotalBalanceTransfer => viewer.AllowedTotalBalanceTransfer;
+        public bool AllDayBalTransfer { get; }
 
-        public bool AllowTransfer => viewer.AllowTransfer;
+        public bool AllowedTotalBalanceTransfer { get; } 
 
-        public bool CanViewReports => viewer.CanViewReports;
+        public bool AllowTransfer { get; }
 
-        public bool CanViewLog => viewer.CanViewLog;
+        public bool CanViewReports { get; }
 
-        public bool CanUpdateAccount => viewer.CanUpdateAccount;
+        public bool CanViewLog { get; }
+
+        public bool CanUpdateAccount { get; }
+
+        public bool CanCreateAccount { get; }
+
+        public bool CanViewMemberInfo { get; }
 
         public override bool IsValid() =>
             IsValidName(SearchAccountName) &&
-            viewer.ViewMemberInfo &&
-            !SearchAccountName.Trim().Equals(viewer.Name, StringComparison.OrdinalIgnoreCase);
+            CanViewMemberInfo &&
+            !SearchAccountName.Trim().Equals(ActorName, StringComparison.OrdinalIgnoreCase);
     }
 }

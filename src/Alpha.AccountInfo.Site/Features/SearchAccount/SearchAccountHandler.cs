@@ -101,7 +101,8 @@
                     message, 
                     customerInfo, 
                     balanceInfo,
-                    await accountInfoService.CheckFirstLoginByQRCode(customerInfo.CustId).ConfigureAwait(false));
+                    await accountInfoService.CheckFirstLoginByQRCode(customerInfo.CustId).ConfigureAwait(false),
+                    message.CanCreateAccount);
             }
 
             return null;

@@ -16,6 +16,7 @@
 #pragma warning restore CS0618 // Type or member is obsolete
         {
             this.userSession = userSession;
+
         }
 
         public int Id => userSession.CustId;
@@ -54,6 +55,8 @@
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;
 
         public bool CanViewLog => userSession.SubPageAccess.ViewLog;
+
+        public bool CanCreateAccount => userSession.SubPageAccess.CreateAccount;
 
         public bool GetDisabledProduct(int productId) => userSession.GetDisabledProduct(productId);
 

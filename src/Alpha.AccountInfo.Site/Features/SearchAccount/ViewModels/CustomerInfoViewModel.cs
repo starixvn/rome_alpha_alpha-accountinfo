@@ -13,18 +13,21 @@
         private readonly CustomerInfoQuery message;
         private readonly CustomerInfoModel customerInfo;
         private readonly bool isFirstLoginQRCode;
+        private readonly bool canCreateAccount;
 
         public CustomerInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             IBalanceInfoViewModel balanceInfo,
             bool isFirstLoginQRCode,
+            bool canCreateAccount,
             Func<string, string, string> getMicroSiteUrl = null) : base(getMicroSiteUrl)
         {
             this.message = message;
             this.customerInfo = customerInfo;
             BalanceInfo = balanceInfo;
             this.isFirstLoginQRCode = isFirstLoginQRCode;
+            this.canCreateAccount = canCreateAccount;
         }
 
         private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(RoleId);
@@ -138,12 +141,15 @@
 
         public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
 
-        public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel();
+        public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && canCreateAccount;
 
         public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
             $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
 
-        public string ShowQRCodeUrl => customerInfo.LastLogged == DateTime.MinValue && isFirstLoginQRCode ?
+        public string ShowQRCodeUrl =>
+            IsShowCreateMemberByQRCode && 
+            customerInfo.LastLogged == DateTime.MinValue && 
+            isFirstLoginQRCode ?
                 $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?FirstName={customerInfo.FirstName}" +
                 $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
                 $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
