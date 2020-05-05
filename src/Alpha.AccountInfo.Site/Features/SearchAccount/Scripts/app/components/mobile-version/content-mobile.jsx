@@ -35,7 +35,7 @@ export const ContentPage = ({
     );
 };
 
-export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQRCode, showQRCodeUrl }) =>
+export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQRCode, showQRCodeUrl, resources }) =>
     <div className={`${animationClass} feature-list`}>
         <nav>
             {
@@ -43,9 +43,8 @@ export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQR
             }
         </nav>
         {
-            customerInfo.ShowQRCodeUrl !== ''
-            && customerInfo.ShowQRCodeUrl !== undefined
-            && <nav>
+            showQRCodeUrl !== '' && showQRCodeUrl !== undefined &&
+            <nav>
             <div className='icon-qr-code'
                 onClick={() => { handleOpenShowQRCode(showQRCodeUrl) }}
             >

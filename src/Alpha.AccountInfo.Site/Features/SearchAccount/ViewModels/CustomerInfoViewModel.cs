@@ -149,7 +149,7 @@
         public string ShowQRCodeUrl =>
             IsShowCreateMemberByQRCode && 
             customerInfo.LastLogged == DateTime.MinValue && 
-            isFirstLoginQRCode ?
+            !isFirstLoginQRCode ?
                 $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?FirstName={customerInfo.FirstName}" +
                 $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
                 $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
