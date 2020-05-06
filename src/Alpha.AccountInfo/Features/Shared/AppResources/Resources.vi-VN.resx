@@ -427,7 +427,7 @@
     <value>Chọn để mở chế độ Chuyển Khoản Tổng Số Dư</value>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
-    <value>Tạo Member bằng mã QR</value>
+    <value>Tạo Member với mã QR</value>
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
     <value>ĐĂNG NHẬP BẰNG MÃ QR LẦN ĐẦU TIÊN</value>

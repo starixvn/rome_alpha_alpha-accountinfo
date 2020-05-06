@@ -427,7 +427,7 @@
     <value>Check to allow All-Day Balance Transfer mode</value>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
-    <value>Create Member via QR Code</value>
+    <value>Create Member with QR Code</value>
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
     <value>FIRST LOGIN QR CODE</value>

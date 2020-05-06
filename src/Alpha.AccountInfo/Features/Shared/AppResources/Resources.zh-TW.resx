@@ -430,7 +430,7 @@
     <value>檢查以允許全天餘額轉賬模式</value>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
-    <value>通過二維碼創建會員</value>
+    <value>用二維碼創建會員</value>
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
     <value>首次登入二維碼</value>
