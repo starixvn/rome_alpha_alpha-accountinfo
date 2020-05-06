@@ -78,6 +78,7 @@
             viewer.IsHideGoldDeluxe.Returns(true);
             viewer.IsDisabledESports.Returns(true);
             viewer.IsNumberGameDisabled.Returns(true);
+            viewer.CanCreateAccount.Returns(true);
 
             return viewer;
         }

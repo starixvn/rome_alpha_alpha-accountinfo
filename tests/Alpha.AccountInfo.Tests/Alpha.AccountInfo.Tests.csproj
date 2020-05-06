@@ -166,6 +166,7 @@
     <Compile Include="Features\SearchAccount\SpParams\AccountInfoCriteriaBaseTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateGivenCreditCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateGivenCreditReplicateServerCommandTest.cs" />
+    <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectFirstLoginByQRCodeCriteriaTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectMemberBalanceCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectMemberOutstandingCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCreditInfoCriteriaTest.cs" />

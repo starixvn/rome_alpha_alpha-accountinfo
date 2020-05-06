@@ -3,6 +3,7 @@
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
@@ -285,6 +286,37 @@
             dynamicRepository.Received().ExecuteAsync(Arg.Is<SelectMemberBalanceCriteria>(criteria => criteria.SearchAccountId == 1));
             dynamicRepository.Received().GetAsync<MemberBalanceInfoDTO>(Arg.Is<SelectBalanceInfoCriteria>(
                 criteria => criteria.SearchAccountId == 1 && criteria.SearchAccountRoleId == 1));
+        }
+
+        [Fact]
+        public void GetCreditInfo_Always_ReturnsCorrectModel()
+        {
+            var model = fixture.Create<CreditInfo>();
+            dynamicRepository
+                .GetAsync<CreditInfo>(Arg.Any<SelectCreditInfoCriteria>())
+                .Returns(model);
+
+            var actualModel = accountInfoService
+                .GetCreditInfo(1)
+                .GetAwaiter()
+                .GetResult();
+
+            AssertExtension.Equal(model, actualModel);
+        }
+
+        [Fact]
+        public void CheckFirstLoginByQRCode_Always_ReturnsCorrectModel()
+        {
+            dynamicRepository
+                .GetAsync<bool>(Arg.Any<SelectFirstLoginByQRCodeCriteria>())
+                .Returns(true);
+
+            var actualModel = accountInfoService
+                .CheckFirstLoginByQRCode(1)
+                .GetAwaiter()
+                .GetResult();
+
+            Assert.True(actualModel);
         }
 
         private Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria)
