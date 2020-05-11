@@ -12,21 +12,21 @@
     {
         private readonly CustomerInfoQuery message;
         private readonly CustomerInfoModel customerInfo;
-        private readonly bool isFirstLoginQRCode;
+        private readonly bool showQRCode;
         private readonly bool canCreateAccount;
 
         public CustomerInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             IBalanceInfoViewModel balanceInfo,
-            bool isFirstLoginQRCode,
+            bool showQRCode,
             bool canCreateAccount,
             Func<string, string, string> getMicroSiteUrl = null) : base(getMicroSiteUrl)
         {
             this.message = message;
             this.customerInfo = customerInfo;
             BalanceInfo = balanceInfo;
-            this.isFirstLoginQRCode = isFirstLoginQRCode;
+            this.showQRCode = showQRCode;
             this.canCreateAccount = canCreateAccount;
         }
 
@@ -149,7 +149,7 @@
         public string ShowQRCodeUrl =>
             IsShowCreateMemberByQRCode && 
             customerInfo.LastLogged == DateTime.MinValue && 
-            !isFirstLoginQRCode ?
+            showQRCode ?
                 $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?FirstName={customerInfo.FirstName}" +
                 $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
                 $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
