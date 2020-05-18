@@ -107,7 +107,7 @@ export default class AccountInfoDesktop extends React.Component {
                     &&
                     <div className='accordion-item'>
                         <div className='feature-item-qr' onClick={() => { handleOpenShowQRCode(customerInfo.ShowQRCodeUrl) }}>
-                            <span className='icon-qr-code'>{resources.FirstLoginQRCode}</span>
+                            <span className='icon-qr-code'></span>{resources.FirstLoginQRCode}
                         </div>
                     </div>
                 }

@@ -46,8 +46,8 @@ export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQR
             showQRCodeUrl !== '' && showQRCodeUrl !== undefined &&
             <nav>
                 <div className='accordion-item'>
-                    <div className='feature-item-qr' onClick={() => { handleOpenShowQRCode(customerInfo.ShowQRCodeUrl) }}>
-                        <span className='icon-qr-code'>{resources.FirstLoginQRCode}</span>
+                    <div className='feature-item-qr' onClick={() => { handleOpenShowQRCode(showQRCodeUrl) }}>
+                        <span className='icon-qr-code'></span>{resources.FirstLoginQRCode}
                     </div>
                 </div>
             </nav>

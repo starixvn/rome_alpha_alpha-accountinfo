@@ -157,7 +157,11 @@ hr {
 
 .icon-qr-code {
     font-size: calculateScale(12px);
-    padding: calculateScale(14px) calculateScale(25px) calculateScale(14px) calculateScale(10px);
+    padding: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 10px !important;
+    margin-left: 6px !important;
 }
 
 .feature-item {
