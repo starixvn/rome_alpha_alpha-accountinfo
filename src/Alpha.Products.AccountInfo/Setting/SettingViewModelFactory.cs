@@ -17,7 +17,6 @@ namespace Alpha.Products.AccountInfo.Setting
         private const int ResetPasswordDisplayAfterLastProduct = 1;
         private const int ResetSecurityDisplayAfterLastProduct = 2;
         private const int RemoveOTPDisplayAfterLastProduct = 3;
-        private const int Sabaclub = 42;
 
         public SettingViewModelFactory(ConfigurationService configurationService = null)
             : base(configurationService)
@@ -56,7 +55,6 @@ namespace Alpha.Products.AccountInfo.Setting
                     return new Sportsbook2ViewModel(request);
 
                 case NG2:
-                case Sabaclub:
                     return new Ng2ProductViewModel(request, productItem.ProductId);
 
                 default:
