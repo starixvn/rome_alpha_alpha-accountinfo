@@ -28,11 +28,13 @@
 
         public decimal NetPosition => RoundDownNumber(balanceInfoModel.NetPosition);
 
-        public decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
+        public override decimal GivenCredit => RoundUpNumber(creditInfo.Credit);
 
         public decimal BetCredit => RoundDownNumber(creditInfo.Credit + balanceInfoModel.Balance + balanceInfoModel.NetPosition);
 
-        public decimal GivenCreditMax => creditInfo.MemMaxCreditMax;
+        public override decimal GivenCreditMax => creditInfo.MemMaxCreditMax;
+
+        public override decimal GivenCreditMin => 0;
 
         internal override bool ShowTransferLink => ActorLevel.IsAgentLevel() && base.ShowTransferLink;
     }

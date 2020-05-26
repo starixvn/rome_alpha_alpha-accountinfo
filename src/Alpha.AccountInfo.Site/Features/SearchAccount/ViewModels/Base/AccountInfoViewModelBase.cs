@@ -22,5 +22,7 @@
         protected string ViewLogUrl => GetMicroSiteUrl(MicroSiteConstants.ViewLog, "~/");
 
         protected string ReportsUrl => GetMicroSiteUrl(MicroSiteConstants.Reports, "~/");
+
+        protected string MemberInfoUrl => GetMicroSiteUrl(MicroSiteConstants.MemberInfo, "~/");
     }
 }

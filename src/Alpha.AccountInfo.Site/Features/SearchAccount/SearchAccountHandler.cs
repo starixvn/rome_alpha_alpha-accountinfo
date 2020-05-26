@@ -97,7 +97,12 @@
                     await accountInfoService.GetCreditInfo(customerInfo.CustId).ConfigureAwait(false),
                     await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false));
 
-                return new CustomerInfoViewModel(message, customerInfo, balanceInfo);
+                return new CustomerInfoViewModel(
+                    message, 
+                    customerInfo, 
+                    balanceInfo,
+                    await accountInfoService.CheckFirstLoginByQRCode(customerInfo.CustId).ConfigureAwait(false),
+                    message.CanCreateAccount);
             }
 
             return null;

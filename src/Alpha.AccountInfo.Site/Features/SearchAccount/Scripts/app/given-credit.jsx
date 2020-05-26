@@ -30,7 +30,14 @@ class GivenCredit extends React.Component {
     }
 
     handleClose(updateSuccessfully = false) {
-        window.top.updateGivenCreditPopup.onClosing(this.props.searchAccountName, updateSuccessfully);
+        if (window.top.updateGivenCreditPopup
+            && window.top.updateGivenCreditPopup.onClosing
+            && typeof window.top.updateGivenCreditPopup.onClosing === 'function') {
+            window.top.updateGivenCreditPopup.onClosing(
+                this.props.searchAccountName,
+                updateSuccessfully,
+                this.state.newGivenCredit);
+        }
     }
 
     showErrorMessage(message) {

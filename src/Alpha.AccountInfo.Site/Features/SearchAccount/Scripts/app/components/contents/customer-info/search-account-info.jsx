@@ -102,7 +102,21 @@ export default class SearchAccountInfo extends React.Component {
             mobileView
         };
 
-        const spanContent = <span className={Css} id="search-account-id" data-search-account-username={customerInfo.UserName}> {isTruncate ? `${username.substring(0, maxLength)}...` : username} </span>;
+
+        const createMemberAccountByQRCodeProps = {
+            title: resources.CreateMemberWithQRCode,
+            classNames: 'pointer',
+            href: customerInfo.CreateMemberByQRCodeUrl,
+            mobileView
+        };
+
+        const spanContent =
+        <span
+            className={Css}
+            id="search-account-id"
+            data-search-account-username={customerInfo.UserName}>
+            {isTruncate ? `${username.substring(0, maxLength)}...` : username}
+        </span>;
 
         const spanContentViewLog =
             <CustomAnchorTag {...customAnchorTagProps}>
@@ -117,6 +131,12 @@ export default class SearchAccountInfo extends React.Component {
                 {content}
             </Tooltip>;
 
-        return Tootltip === '' ? content : contentWithTooltip;
+        return <div> 
+            {Tootltip === '' ? content : contentWithTooltip}
+            {customerInfo.IsShowCreateMemberByQRCode &&
+                <CustomAnchorTag {...createMemberAccountByQRCodeProps}>
+                <span className='icon-clone-account' />
+            </CustomAnchorTag>}
+            </div>;
     }
 }

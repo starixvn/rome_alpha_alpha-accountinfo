@@ -34,6 +34,12 @@
 
         public abstract decimal Outstanding { get; }
 
+        public abstract decimal GivenCredit { get; }
+
+        public abstract decimal GivenCreditMin { get; }
+
+        public abstract decimal GivenCreditMax { get; }
+
         internal virtual bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
 
         public bool ShowOutstandingLink => message.CanViewReports && Outstanding > 0;

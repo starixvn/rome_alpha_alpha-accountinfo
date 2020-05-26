@@ -90,6 +90,8 @@ export default class AccountInfoDesktop extends React.Component {
     }
 
     render() {
+        const { handleOpenShowQRCode, customerInfo, resources } = this.props;
+
         return (
             <div className='accordions'>
                 {
@@ -99,6 +101,16 @@ export default class AccountInfoDesktop extends React.Component {
                                 {item.children}
                             </CustomizedAccordionItem>;
                     })}
+                {
+                    customerInfo.ShowQRCodeUrl !== ''
+                    && customerInfo.ShowQRCodeUrl !== undefined
+                    &&
+                    <div className='accordion-item'>
+                        <div className='feature-item-qr' onClick={() => { handleOpenShowQRCode(customerInfo.ShowQRCodeUrl) }}>
+                            <span className='icon-qr-code'></span>{resources.FirstLoginQRCode}
+                        </div>
+                    </div>
+                }
             </div>
         );
     }

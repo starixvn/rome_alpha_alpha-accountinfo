@@ -35,13 +35,23 @@ export const ContentPage = ({
     );
 };
 
-export const FeatureListPage = ({ contentItems, animationClass }) =>
+export const FeatureListPage = ({ contentItems, animationClass, handleOpenShowQRCode, showQRCodeUrl, resources }) =>
     <div className={`${animationClass} feature-list`}>
         <nav>
             {
                 Object.values(contentItems).map((content, index) => content.visible && <CustomLink {...content} key={index} />)
             }
         </nav>
+        {
+            showQRCodeUrl !== '' && showQRCodeUrl !== undefined &&
+            <nav>
+                <div className='accordion-item'>
+                    <div className='feature-item-qr' onClick={() => { handleOpenShowQRCode(showQRCodeUrl) }}>
+                        <span className='icon-qr-code'></span>{resources.FirstLoginQRCode}
+                    </div>
+                </div>
+            </nav>
+        }
     </div>;
 
 export default class ContentMobile extends React.Component {
@@ -81,9 +91,12 @@ export default class ContentMobile extends React.Component {
             children,
             fetchDataFromServer,
             contentItems = [],
+            handleOpenShowQRCode,
+            showQRCodeUrl,
             redirectToBalanceInfoPage = false,
             redirectToFeatureList = false,
-            backText
+            backText,
+            resources
         } = this.props;
 
         const { featureListPath, balanceInfoPath, animationClass } = this.state;
@@ -101,6 +114,6 @@ export default class ContentMobile extends React.Component {
 
         return contentItems.length === 0 ?
             <ContentPage {...{ iconClass, animationClass, featureText, children, fetchDataFromServer, backText }} /> :
-            <FeatureListPage {...{ contentItems, animationClass }} />;
+            <FeatureListPage {...{ resources, contentItems, animationClass, handleOpenShowQRCode, showQRCodeUrl }} />;
     }
 }

@@ -211,10 +211,14 @@
             accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(customerInfo);
             accountInfoService.GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>()).Returns(AccountInfoHelper.MemberBalanceInfo);
             accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(creditInfo);
+            accountInfoService.CheckFirstLoginByQRCode(Arg.Any<int>()).Returns(false);
+
             var expectedViewModel = new CustomerInfoViewModel(
                 customerInfoQuery,
                 customerInfo,
-                memberBalanceInfoViewModel);
+                memberBalanceInfoViewModel,
+                false,
+                true);
 
             var actualViewModel = accountInfoHandler.Handle(customerInfoQuery).GetAwaiter().GetResult();
 

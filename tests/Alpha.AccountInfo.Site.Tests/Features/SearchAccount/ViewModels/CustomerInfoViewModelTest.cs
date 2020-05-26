@@ -128,6 +128,8 @@
                 messages,
                 AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId),
                 AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, AccountInfoHelper.BuildCustomerInfo(), AccountInfoHelper.CreditInfo),
+                true,
+                true,
                 AccountInfoHelper.GetMicroSiteUrl);
     }
 }

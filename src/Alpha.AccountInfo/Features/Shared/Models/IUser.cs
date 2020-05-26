@@ -26,6 +26,8 @@
 
         bool CanUpdateAccount { get; }
 
+        bool CanCreateAccount { get; }
+
         bool AllowedAllDayBalTransfer { get; }
 
         bool AllowedTotalBalanceTransfer { get; }

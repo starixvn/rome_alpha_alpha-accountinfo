@@ -199,6 +199,7 @@
     </Compile>
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\CreditInfo.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditReplicateServerCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectFirstLoginByQRCodeCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCreditInfoCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberBalanceCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberOutstandingCriteria.cs" />
