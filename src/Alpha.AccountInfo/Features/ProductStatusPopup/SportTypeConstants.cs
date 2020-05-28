@@ -11,6 +11,7 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
         public const int SAGaming = 244;
         public const int Lottery = 220;
         public const int TableGaming = 222;
+        public const int RNGWar = 224;
 
         public static readonly IEnumerable<int> SportTypeOfProduct = new List<int>
         {
@@ -20,7 +21,8 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
             SAGaming,
             GTCasino,
             Lottery,
-            TableGaming
+            TableGaming,
+            RNGWar
         };
     }
 }
