@@ -55,7 +55,7 @@
 
         [Theory]
         [InlineData(20, true)]
-        [InlineData(-16, false)]
+        [InlineData(-16, true)]
         [InlineData(-20, true)]
         public void ShowTotalBalanceTransferLink_TotalBalance_ReturnCorrectValue(
          decimal balance,
