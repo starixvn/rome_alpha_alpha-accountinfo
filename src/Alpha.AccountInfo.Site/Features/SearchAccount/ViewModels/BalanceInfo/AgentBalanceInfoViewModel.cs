@@ -45,6 +45,8 @@
 
         public override decimal GivenCreditMax => creditInfo.AgentCreditMax;
 
+        public override decimal PendingTransfer3rd => balanceInfoModel.PendingTransfer3rd;
+
         internal override bool ShowTransferLink => ActorLevel.IsMasterLevel() && base.ShowTransferLink;
 
         private decimal MemMaxCreditMin => creditInfo.MemMaxCreditMin;

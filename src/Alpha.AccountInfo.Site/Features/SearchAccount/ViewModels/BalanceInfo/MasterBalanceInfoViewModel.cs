@@ -45,5 +45,7 @@
         public override decimal GivenCreditMin => creditInfo.MasterCreditMin;
 
         public override decimal GivenCreditMax => creditInfo.MasterCreditMax;
+
+        public override decimal PendingTransfer3rd => balanceInfoModel.PendingTransfer3rd;
     }
 }

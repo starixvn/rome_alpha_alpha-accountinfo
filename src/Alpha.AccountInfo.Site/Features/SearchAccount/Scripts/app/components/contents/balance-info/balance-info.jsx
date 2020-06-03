@@ -16,7 +16,7 @@ const BalanceInfo = ({
 
     const balanceInfo = customerInfo.BalanceInfo;
 
-    const sharedContents = [
+	const sharedContents = [
         <BalanceInfoRow
             id='total-balance'
             title={resources.TotalBalance}
@@ -37,7 +37,13 @@ const BalanceInfo = ({
             value={balanceInfo.Outstanding}
             hrefLink={balanceInfo.ShowOutstandingLink ? balanceInfo.ReportLink.Url : ``}
             mobileView={mobileView}
-        />
+		/>,
+		<BalanceInfoRow
+			id='pending-transfer-3rd'
+			title={resources.PendingTransfer3rd}
+			value={balanceInfo.PendingTransfer3rd}
+			mobileView={mobileView}
+		/>
     ];
 
     const givenCreditContent = <GivenCreditRow {...{ customerInfo, mobileView, resources, fetchCustomerInfoFromServer }} />;
@@ -45,7 +51,6 @@ const BalanceInfo = ({
     const masterContents = [
         <BalanceInfoRow id='total-cash' title={resources.TotalCash} value={balanceInfo.TotalCash} />,
         <BalanceInfoRow id='yesterday-cash' title={resources.YesterdayCash} value={balanceInfo.YesterdayCash} />,
-        <BalanceInfoRow id='pending-transfer-3rd' title={resources.PendingTransfer3rd} value={balanceInfo.PendingTransfer3rd} />,
         ...sharedContents,
         <BalanceInfoRow id='used-credit' title={resources.UsedCredit} value={balanceInfo.UsedCredit} />,
         givenCreditContent

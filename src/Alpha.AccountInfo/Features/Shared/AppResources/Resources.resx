@@ -433,6 +433,6 @@
     <value>FIRST LOGIN QR CODE</value>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
-    <value></value>
+    <value>3rd Pending Transfer</value>
   </data>
 </root>

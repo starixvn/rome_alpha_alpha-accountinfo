@@ -727,7 +727,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to 3rd Pending Transfer.
         /// </summary>
         public static string PendingTransfer3rd {
             get {
