@@ -16,10 +16,12 @@
       <Mapping ObjectProperty="YesterdayMasterCash" DataField="yesterday_MasterCash" />
       <Mapping ObjectProperty="YesterdayAgentCash" DataField="yesterday_AgentCash" />
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_CustomerCash" />
+      <Mapping ObjectProperty="PendingTransfer3rd" DataField="3rdPendingTransfer" />
     </Setting>
     <Setting Key="Age_BalanceAgentSel" SpName="Age_BalanceAgentSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping ObjectProperty="YesterdayAgentCash" DataField="yesterday_AgentCash" />
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_CustomerCash" />
+      <Mapping ObjectProperty="PendingTransfer3rd" DataField="3rdPendingTransfer" />
     </Setting>
     <Setting Key="Age_BalanceMemberSel" SpName="Age_BalanceMemberSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping ObjectProperty="YesterdayCustomerCash" DataField="yesterday_Cash" />
