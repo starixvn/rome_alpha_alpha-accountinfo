@@ -17,7 +17,7 @@
 
         public decimal NetPosition { get; set; }
 
-        [SpParam(SqlParamName = "3rdPendingTransfer ")]
+        [SpParam(SqlParamName = "3rdPendingTransfer")]
         public decimal PendingTransfer3rd  { get; set; }
 
         public override string GetSettingKey() => "Acc_BalanceMemberSel";
