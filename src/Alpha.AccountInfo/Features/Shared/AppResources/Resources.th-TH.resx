@@ -432,4 +432,7 @@
   <data name="FirstLoginQRCode" xml:space="preserve">
     <value>เข้าสู่ระบบคิวอาร์โค้ดครั้งแรก</value>
   </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>บุคคลที่สามรอการถ่ายโอน</value>
+  </data>
 </root>

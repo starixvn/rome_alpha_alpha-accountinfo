@@ -45,6 +45,7 @@ const BalanceInfo = ({
     const masterContents = [
         <BalanceInfoRow id='total-cash' title={resources.TotalCash} value={balanceInfo.TotalCash} />,
         <BalanceInfoRow id='yesterday-cash' title={resources.YesterdayCash} value={balanceInfo.YesterdayCash} />,
+        <BalanceInfoRow id='pending-transfer-3rd' title={resources.PendingTransfer3rd} value={balanceInfo.PendingTransfer3rd} />,
         ...sharedContents,
         <BalanceInfoRow id='used-credit' title={resources.UsedCredit} value={balanceInfo.UsedCredit} />,
         givenCreditContent

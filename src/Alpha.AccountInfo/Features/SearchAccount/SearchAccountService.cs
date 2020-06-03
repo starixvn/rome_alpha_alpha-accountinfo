@@ -180,7 +180,8 @@
             return new MemberBalanceInfoModel(
                 await memberBalanceInfoDTOTask,
                 memberBalanceCriteria.Balance,
-                memberOutstandingCriteria.Outstanding,
+                memberBalanceCriteria.PendingTransfer3rd,
+                memberOutstandingCriteria.Outstanding,                
                 memberBalanceCriteria.NetPosition);
         }
 
