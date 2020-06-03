@@ -130,7 +130,7 @@
         public static string GetMicroSiteUrl(string microSiteName, string virtualPath) => "MicroSiteUrl/";
 
         public static MemberBalanceInfoModel MemberBalanceInfo
-          => new MemberBalanceInfoModel(new MemberBalanceInfoDTO(1, 12, 15, 20), 20, 16, 19);
+          => new MemberBalanceInfoModel(new MemberBalanceInfoDTO(1, 12, 15, 20), 20, 16, 19, 10);
 
         public static AgentBalanceInfoModel AgentBalanceInfo
             => new AgentBalanceInfoModel(
@@ -140,7 +140,8 @@
                       customerCash: 15,
                       yesterdayCustomerCash: 16,
                       customerOutstanding: 17,
-                      agentPositionTaking: 19);
+                      agentPositionTaking: 19,
+                      pendingTransfer3rd: 10);
 
         public static MasterBalanceInfoModel MasterBalanceInfo
             => new MasterBalanceInfoModel(
@@ -152,7 +153,8 @@
                     yesterdayAgentCash: 17,
                     customerCash: 18,
                     yesterdayCustomerCash: 19,
-                    customerOutstanding: 20);
+                    customerOutstanding: 20,
+                    pendingTransfer3rd: 10);
 
         public static CreditInfo CreditInfo
             => new CreditInfo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
