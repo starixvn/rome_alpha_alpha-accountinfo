@@ -1,11 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.SearchAccount.Requests
 {
-    using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using MediatR;
-    using System;
-    using System.Linq;
 
     public class CustomerStatusQuery : SearchAccountQueryBase, IRequest<CustomerStatusViewModel>
     {
@@ -66,18 +63,6 @@
             UplineRoleId > SearchAccountRoleId;
 
         public bool AllowedAllDayBalTransfer 
-            => viewer.AllowedAllDayBalTransfer 
-                && IsAllowTransferAlldayForConfigSuper();
-
-        private bool IsAllowTransferAlldayForConfigSuper()
-        {
-            var configSuperIds = AppSettings.AppSettingValues["OfferClearGivenCredit:ExcludeCustIds"]
-                    ?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-            return configSuperIds != null && configSuperIds.Any(superId => superId == viewer.Id.ToString() ||
-                superId == viewer.Srecommend.ToString() ||
-                superId == viewer.Mrecommend.ToString() ||
-                superId == viewer.Arecommend.ToString());
-        }
+            => viewer.AllowedAllDayBalTransfer;
     }
 }
