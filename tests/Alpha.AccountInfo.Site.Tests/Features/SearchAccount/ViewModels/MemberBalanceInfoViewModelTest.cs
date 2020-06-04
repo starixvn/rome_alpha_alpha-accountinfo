@@ -36,12 +36,12 @@
             var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo);
 
             Assert.True(
-                viewModel.TotalBalance.Equals(36) &&
+                viewModel.TotalBalance.Equals(55) &&
                 viewModel.YesterdayBalance.Equals(15) &&
-                viewModel.Outstanding.Equals(16) &&
-                viewModel.NetPosition.Equals(19) &&
+                viewModel.Outstanding.Equals(19) &&
+                viewModel.NetPosition.Equals(10) &&
                 viewModel.GivenCredit.Equals(1) &&
-                viewModel.BetCredit.Equals(40));
+                viewModel.BetCredit.Equals(31));
         }
     }
 }

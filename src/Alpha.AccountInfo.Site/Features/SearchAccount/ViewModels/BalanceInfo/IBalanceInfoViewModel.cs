@@ -15,5 +15,7 @@
         decimal GivenCreditMin { get; }
 
         decimal GivenCreditMax { get; }
+
+        decimal PendingTransfer3rd { get; }
     }
 }

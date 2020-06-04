@@ -5,15 +5,17 @@
         public MemberBalanceInfoModel(
              MemberBalanceInfoDTO memberBalanceInfoDTO,
              decimal balance,
-             decimal customerOutstanding,
+             decimal pendingTransfer3rd,
+             decimal customerOutstanding,             
              decimal netPosition)
         {
             Balance = balance;
             CustomerOutstanding = customerOutstanding;
+            PendingTransfer3rd = pendingTransfer3rd;
             NetPosition = netPosition;
 
             CustId = memberBalanceInfoDTO.CustId;
-            CustomerCash = balance + customerOutstanding;
+            CustomerCash = balance + customerOutstanding + pendingTransfer3rd;
             YesterdayCustomerCash = memberBalanceInfoDTO.YesterdayCustomerCash;
         }
 
@@ -28,6 +30,8 @@
         public decimal YesterdayCustomerCash { get; private set; }
 
         public decimal CustomerOutstanding { get; private set; }
+
+        public decimal PendingTransfer3rd { get; private set; }
     }
 
     public class MemberBalanceInfoDTO

@@ -40,6 +40,8 @@
 
         public abstract decimal GivenCreditMax { get; }
 
+        public abstract decimal PendingTransfer3rd { get; }
+
         internal virtual bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
 
         public bool ShowOutstandingLink => message.CanViewReports && Outstanding > 0;

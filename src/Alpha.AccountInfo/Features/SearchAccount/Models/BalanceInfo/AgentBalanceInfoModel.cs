@@ -13,7 +13,8 @@
              decimal customerCash,
              decimal yesterdayCustomerCash,
              decimal customerOutstanding,
-             decimal agentPositionTaking)
+             decimal agentPositionTaking,
+             decimal pendingTransfer3rd)
         {
             CustId = custId;
 
@@ -25,6 +26,7 @@
             CustomerOutstanding = customerOutstanding;
 
             AgentPositionTaking = agentPositionTaking;
+            PendingTransfer3rd = pendingTransfer3rd;
         }
 
         public int CustId { get; private set; }
@@ -40,5 +42,7 @@
         public decimal AgentPositionTaking { get; private set; }
 
         public decimal CustomerOutstanding { get; private set; }
+
+        public decimal PendingTransfer3rd { get; private set; }
     }
 }

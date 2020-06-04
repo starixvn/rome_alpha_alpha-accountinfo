@@ -16,6 +16,8 @@
         public decimal Balance { get; set; }
 
         public decimal NetPosition { get; set; }
+        
+        public decimal PendingTransfer3rd  { get; set; }
 
         public override string GetSettingKey() => "Acc_BalanceMemberSel";
 
