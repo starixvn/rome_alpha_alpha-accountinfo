@@ -138,9 +138,11 @@
                 SportTypeConstants.BBIN,
                 SportTypeConstants.SexyGaming,
                 SportTypeConstants.SAGaming,
+                SportTypeConstants.GTCasino,
                 SportTypeConstants.Lottery,
                 SportTypeConstants.TableGaming,
                 SportTypeConstants.ION,
+                SportTypeConstants.RNGWar
             };
 
             if (sportShowName.Contains(product.SportType))
