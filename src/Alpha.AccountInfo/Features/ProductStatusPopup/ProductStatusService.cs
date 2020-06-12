@@ -133,7 +133,19 @@
 
         private string GetProductStatusName(int productId, ProductStatusModel product, bool hasMultipleRow)
         {
-            if (IsSportTypeOfProduct(product.SportType))
+            var sportShowName = new List<int>{
+                SportTypeConstants.AllBet,
+                SportTypeConstants.BBIN,
+                SportTypeConstants.SexyGaming,
+                SportTypeConstants.SAGaming,
+                SportTypeConstants.GTCasino,
+                SportTypeConstants.Lottery,
+                SportTypeConstants.TableGaming,
+                SportTypeConstants.ION,
+                SportTypeConstants.RNGWar
+            };
+
+            if (sportShowName.Contains(product.SportType))
             {
                 return cacheRefService.GetSportTypeName(product.SportType);
             }
@@ -145,9 +157,6 @@
 
             return cacheRefService.GetProductName(productId);
         }
-
-        private static bool IsSportTypeOfProduct(int sportType)
-            => SportTypeConstants.SportTypeOfProduct.Contains(sportType);
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
