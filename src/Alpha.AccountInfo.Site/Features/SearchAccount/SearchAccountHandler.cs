@@ -165,8 +165,10 @@
         public async Task<IEnumerable<OnlineUserModel>> Handle(OnlineListQuery message)
             => await accountInfoService.GetOnlineList(message.SearchAccountId).ConfigureAwait(false);
 
-        public Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
-           => Task.FromResult(new GivenCreditViewModel(message));
+        public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
+            => new GivenCreditViewModel(
+                message, 
+                await accountInfoService.GetCreditAndStatus(message.SearchAccountName).ConfigureAwait(false));
 
         public Task<Result> Handle(GivenCreditCommand message)
             => accountInfoService.UpdateGivenCredit(

@@ -34,9 +34,10 @@ class GivenCredit extends React.Component {
             && window.top.updateGivenCreditPopup.onClosing
             && typeof window.top.updateGivenCreditPopup.onClosing === 'function') {
             window.top.updateGivenCreditPopup.onClosing(
-                this.props.searchAccountName,
+                this.props.searchAccountName, // use for reload left panel
                 updateSuccessfully,
-                this.state.newGivenCredit);
+				this.state.newGivenCredit, // use for update value on html Show QR code form
+				this.props.searchAccountId); // use for update value on html Credit Balance form
         }
     }
 

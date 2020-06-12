@@ -42,6 +42,8 @@
         Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param);
 
         Task<bool> CheckFirstLoginByQRCode(int custId);
+
+        Task<CreditAndStatusModel> GetCreditAndStatus(string SearchAccountName);
     }
 
     public class SearchAccountServiceImpl : SearchAccountService
@@ -216,5 +218,9 @@
         public async Task<bool> CheckFirstLoginByQRCode(int custId)
             => await dynamicRepository.GetAsync<bool>(
                 new SelectFirstLoginByQRCodeCriteria(custId)).ConfigureAwait(false);
+
+        public async Task<CreditAndStatusModel> GetCreditAndStatus(string SearchAccountName)
+          => await dynamicRepository.GetAsync<CreditAndStatusModel>(
+              new SelectCreditAndStatusCriteria(SearchAccountName)).ConfigureAwait(false);
     }
 }

@@ -261,7 +261,9 @@
                 SearchAccountName = "test",
                 SearchAccountRoleId = 2
             };
-            var expectedViewModel = new GivenCreditViewModel(message);
+
+            var model = new CreditAndStatusModel(100, 10, 1000, "OPEN");
+            var expectedViewModel = new GivenCreditViewModel(message, model);
 
             var actualViewModel = await accountInfoHandler.Handle(message);
 

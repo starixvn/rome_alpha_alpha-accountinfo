@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\ProductStatusPopup\SportTypeConstants.cs" />
+    <Compile Include="Features\SearchAccount\Models\BalanceInfo\CreditAndStatusModel.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
@@ -199,6 +200,7 @@
     </Compile>
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\CreditInfo.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditReplicateServerCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCreditAndStatusCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectFirstLoginByQRCodeCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCreditInfoCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberBalanceCriteria.cs" />

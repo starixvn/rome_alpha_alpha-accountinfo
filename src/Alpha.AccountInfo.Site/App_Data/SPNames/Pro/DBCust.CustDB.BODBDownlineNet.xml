@@ -47,5 +47,10 @@
   </Function>
   <Function Name="QR Code">
     <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0"/>
+    <Setting Key="Age_CustomerInsMember_Ag_CreditStatusSel" SpName="Age_CustomerInsMember_Ag_CreditStatusSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" >
+      <Mapping DataField="RefCredit" ObjectProperty="Credit" />
+      <Mapping DataField="MaxCredit_Mem" ObjectProperty="CreditMax" />
+      <Mapping DataField="MinCredit_Mem" ObjectProperty="CreditMin" />
+    </Setting>
   </Function>
 </Functions>
