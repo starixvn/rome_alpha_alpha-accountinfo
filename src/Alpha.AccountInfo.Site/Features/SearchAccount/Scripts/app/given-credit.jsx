@@ -55,7 +55,7 @@ class GivenCredit extends React.Component {
             givenCreditMax = parseFloat(this.props.givenCreditMax),
             newGivenCredit = parseFloat(this.state.newGivenCredit);
 
-        if (newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
+		if (newGivenCredit < 0 || newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
             this.showErrorMessage(resources.InvalidValue);
             return;
         }
@@ -147,7 +147,8 @@ class GivenCredit extends React.Component {
                     <NumberFormat className="textbox col-xs-5"
                         value={newGivenCredit}
                         fixedDecimalScale={true}
-                        thousandSeparator={true}
+						thousandSeparator={true}
+						allowNegative={false}
                         decimalScale={2}
                         onKeyPress={this.handleKeyPress}
                         onValueChange={values => {
