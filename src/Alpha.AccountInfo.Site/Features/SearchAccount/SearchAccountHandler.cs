@@ -167,8 +167,8 @@
 
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
             => new GivenCreditViewModel(
-                message, 
-                await accountInfoService.GetCreditAndStatus(message.SearchAccountName).ConfigureAwait(false));
+                message,
+                await accountInfoService.GetCreditInfo(message.SearchAccountId).ConfigureAwait(false));
 
         public Task<Result> Handle(GivenCreditCommand message)
             => accountInfoService.UpdateGivenCredit(
