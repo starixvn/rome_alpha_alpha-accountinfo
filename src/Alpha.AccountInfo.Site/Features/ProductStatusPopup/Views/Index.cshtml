@@ -10,7 +10,7 @@
 @model ProductStatusViewModel
 
 <div id="msg-serverResult" class="hide"></div>
-@if (!Model.IsAgentUpdateMember)
+@if (Model.IsShowMessageWarnning)
 {
     <div class="msg msg-warning">
         @ProductStatus.ProductStatusWarningMessage

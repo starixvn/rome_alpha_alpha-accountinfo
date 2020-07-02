@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
+    using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.Products.Core.Shared;
     using Criteria.ProductStatus;
     using Fanex.Data.Repository;
@@ -30,6 +31,8 @@
 
                 case ProductConstants.NG2:
                     return new SelectNG2StatusCriteria(productId, customerId);
+                case ProductIdConstants.SabaVirtualSports:
+                    return new SelectDCSProductStatusFor4Criteria(productId, customerId);
 
                 default:
                     return new SelectDCSProductStatusCriteria(productId, customerId, roleId);
@@ -45,7 +48,8 @@
 
                 case ProductConstants.NG2:
                     return CreateUpdateNG2StatusCriteria(param);
-
+                case ProductIdConstants.SabaVirtualSports:
+                    return new UpdateDCSProductStatusFor4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
                 default:
                     return CreateUpdateDCSProductStatusCriteria(param);
             }
@@ -95,5 +99,6 @@
                 param.ActorId,
                 param.IP,
                 param.ProductStatusParams);
+
     }
 }

@@ -171,6 +171,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectDCSProductStatusFor4Criteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateDCSProductStatusFor4Criteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductIdConstants.cs" />
     <Compile Include="Features\ProductStatusPopup\SportTypeConstants.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
