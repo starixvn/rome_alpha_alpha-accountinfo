@@ -68,6 +68,6 @@
         }
 
         public bool IsShowMessageWarnning
-            => !AppSettings.IsIBCIndo && !IsAgentUpdateMember && ProductId != ProductIdConstants.SabaVirtualSports;
+            => !IsAgentUpdateMember && ProductId != ProductIdConstants.SabaVirtualSports;
     }
 }
