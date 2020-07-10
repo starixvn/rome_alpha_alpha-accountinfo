@@ -5,15 +5,15 @@
   </Function>
   <Function Name="Product Status">
     <Setting Key="Acc_AdminSelStatusByProductId" SpName="Acc_AdminSelStatusByProductId" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect_xpre" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_CustSetting_DisableProductStatusSelect" SpName="Acc_CustSetting_DisableProductStatusSelect_xpre" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableProductStatusSelect" SpName="Acc_CustSetting_DisableProductStatusSelect" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableGameStatusSelect" SpName="Acc_CustSetting_DisableGameStatusSelect" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_UpdCSStatus_Cust" SpName="Acc_UpdCSStatus_Cust" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableGameStatusUpd" SpName="Acc_CustSetting_DisableGameStatusUpd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableNewProductStatusUpd" SpName="Acc_CustSetting_DisableNewProductStatusUpd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_CustSetting_DisableProductStatusUpd" SpName="Acc_CustSetting_DisableProductStatusUpd_xpre" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect_xpre" DbName="DBCust.CustDB.BODBDownlineNet" />
+    <Setting Key="Acc_CustSetting_DisableProductStatusUpd" SpName="Acc_CustSetting_DisableProductStatusUpd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCust.CustDB.BODBDownlineNet" />
   </Function>
   <Function Name="Account Info">
     <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
