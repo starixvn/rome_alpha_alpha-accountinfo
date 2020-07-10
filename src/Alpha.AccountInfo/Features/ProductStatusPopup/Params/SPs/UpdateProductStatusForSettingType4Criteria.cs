@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using Params.ProductStatus;
 
-    public class UpdateDCSProductStatusFor4Criteria : UpdateDCSProductStatusCriteria
+    public class UpdateProductStatusForSettingType4Criteria : UpdateDCSProductStatusCriteria
     {
-        public UpdateDCSProductStatusFor4Criteria(
+        public UpdateProductStatusForSettingType4Criteria(
             int custId,
             int subAccId,
             int userId,
