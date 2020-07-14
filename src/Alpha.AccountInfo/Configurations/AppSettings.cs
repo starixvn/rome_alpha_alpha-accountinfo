@@ -20,6 +20,10 @@
 
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
 
+        public static string SiteGroup => GetConfigValue("SiteGroup");
+
+        public static bool IsIBCIndo => SiteGroup.Equals("IBCIndo", StringComparison.OrdinalIgnoreCase);
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

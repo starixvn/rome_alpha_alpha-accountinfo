@@ -17,12 +17,6 @@
 
         public byte SearchAccountRoleId { get; set; }
 
-        public decimal CurrentGivenCredit { get; set; }
-
-        public decimal GivenCreditMin { get; set; }
-
-        public decimal GivenCreditMax { get; set; }
-
         public string Language => viewer.Language;
 
         public override bool IsValid() =>

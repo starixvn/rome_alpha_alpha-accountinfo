@@ -1,10 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels
 {
-    using System;
-    using System.Resources;
     using Alpha.AccountInfo.Features.SearchAccount.AppResources;
+    using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
+    using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.Products.Core.Services;
+    using Alpha.Products.Core.Shared;
+    using System;
+    using System.Resources;
 
     public class GivenCreditViewModel : AccountInfoViewModelBase
     {
@@ -13,9 +16,29 @@
 
         public GivenCreditViewModel(
             GivenCreditQuery message,
+            CreditInfo creditInfo,
             Func<string, ResourceManager, string> convertResourcesJson = null)
         {
             this.message = message;
+            CurrentGivenCredit = creditInfo.Credit;
+
+            var level = Enumeration.FromValue<UserLevel>(message.SearchAccountRoleId);
+            if (level.IsMasterLevel())
+            {
+                GivenCreditMax = creditInfo.MasterCreditMax;
+                GivenCreditMin = creditInfo.MasterCreditMin;
+            }
+            else if(level.IsAgentLevel())
+            {
+                GivenCreditMax = creditInfo.AgentCreditMax;
+                GivenCreditMin = creditInfo.AgentCreditMin;
+            }
+            else
+            {
+                GivenCreditMax = creditInfo.MemMaxCreditMax;
+                GivenCreditMin = 0;
+            }
+
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
         }
 
@@ -25,11 +48,11 @@
 
         public byte SearchAccountRoleId => message.SearchAccountRoleId;
 
-        public decimal CurrentGivenCredit => message.CurrentGivenCredit;
+        public decimal CurrentGivenCredit { get; }
 
-        public decimal GivenCreditMin => message.GivenCreditMin;
+        public decimal GivenCreditMin { get;  }
 
-        public decimal GivenCreditMax => message.GivenCreditMax;
+        public decimal GivenCreditMax { get; }
 
         public string GivenCreditResources => ConvertResourcesJson(message.Language, GivenCredit.ResourceManager);
     }

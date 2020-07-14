@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="" SiteName="Account Info">
   <Function Name="Customer Information">
     <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
@@ -5,11 +6,13 @@
   <Function Name="Product Status">
     <Setting Key="Acc_AdminSelStatusByProductId" SpName="Acc_AdminSelStatusByProductId" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableProductStatusSelect" SpName="Acc_CustSetting_DisableProductStatusSelect" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableGameStatusSelect" SpName="Acc_CustSetting_DisableGameStatusSelect" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_UpdCSStatus_Cust" SpName="Acc_UpdCSStatus_Cust" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableGameStatusUpd" SpName="Acc_CustSetting_DisableGameStatusUpd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableNewProductStatusUpd" SpName="Acc_CustSetting_DisableNewProductStatusUpd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableProductStatusUpd" SpName="Acc_CustSetting_DisableProductStatusUpd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCust.CustDB.BODBDownlineNet" />
   </Function>
   <Function Name="Account Info">
@@ -46,6 +49,6 @@
     </Setting>
   </Function>
   <Function Name="QR Code">
-    <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0"/>
+    <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

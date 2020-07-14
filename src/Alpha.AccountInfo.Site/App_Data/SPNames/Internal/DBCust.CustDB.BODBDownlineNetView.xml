@@ -6,11 +6,13 @@
   <Function Name="Product Status">
     <Setting Key="Acc_AdminSelStatusByProductId" SpName="Acc_AdminSelStatusByProductId" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableProductStatusSelect" SpName="Acc_CustSetting_DisableProductStatusSelect" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableGameStatusSelect" SpName="Acc_CustSetting_DisableGameStatusSelect" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_UpdCSStatus_Cust" SpName="Acc_UpdCSStatus_Cust" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableGameStatusUpd" SpName="Acc_CustSetting_DisableGameStatusUpd" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustSetting_DisableNewProductStatusUpd" SpName="Acc_CustSetting_DisableNewProductStatusUpd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableProductStatusUpd" SpName="Acc_CustSetting_DisableProductStatusUpd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCust.CustDB.BODBDownlineNetView" />
   </Function>
 

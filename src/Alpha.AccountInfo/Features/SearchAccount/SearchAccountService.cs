@@ -181,7 +181,7 @@
                 await memberBalanceInfoDTOTask,
                 memberBalanceCriteria.Balance,
                 memberBalanceCriteria.PendingTransfer3rd,
-                memberOutstandingCriteria.Outstanding,                
+                memberOutstandingCriteria.Outstanding,
                 memberBalanceCriteria.NetPosition);
         }
 

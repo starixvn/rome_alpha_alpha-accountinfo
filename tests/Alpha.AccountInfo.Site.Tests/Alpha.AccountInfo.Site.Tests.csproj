@@ -196,6 +196,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\ProductStatusPopup\ViewModel\ProductStatusViewModelTests.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureControllerTest.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureHandlerTest.cs" />
     <Compile Include="Features\ProfilePicture\Requests\UpdateActorProfilePictureRequestTest.cs" />

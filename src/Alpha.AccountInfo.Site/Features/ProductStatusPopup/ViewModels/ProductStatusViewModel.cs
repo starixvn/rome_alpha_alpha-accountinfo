@@ -1,6 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels
 {
     using System.Collections.Generic;
+    using Alpha.AccountInfo.Configurations;
+    using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Models.ProductStatus;
 
@@ -42,13 +44,30 @@
         public bool IsViewOnly { get; }
 
         public bool IsDisabledEditCustStatus(ProductStatusModel productStatus)
-            => !IsDirectDownline
-            || productStatus.IsDisabledUpline
-            || (!IsAgentUpdateMember && !productStatus.IsDisabled);
+        {
+            if (AppSettings.IsIBCIndo && ProductId == ProductIdConstants.SabaVirtualSports)
+            {
+                return !IsDirectDownline;
+            }
+
+            return !IsDirectDownline
+                || productStatus.IsDisabledUpline
+                || (!IsAgentUpdateMember && !productStatus.IsDisabled);
+        }
 
         public bool IsEnabledSubmitButton(ProductStatusModel productStatus)
-            => IsAgentUpdateMember
+        {
+            if(AppSettings.IsIBCIndo && ProductId == ProductIdConstants.SabaVirtualSports)
+            {
+                return IsDirectDownline;
+            }
+
+            return IsAgentUpdateMember
             ? !productStatus.IsDisabledUpline
             : !productStatus.IsDisabledUpline && productStatus.IsDisabled;
+        }
+
+        public bool IsShowMessageWarnning
+            => !IsAgentUpdateMember && ProductId != ProductIdConstants.SabaVirtualSports;
     }
 }

@@ -34,9 +34,10 @@ class GivenCredit extends React.Component {
             && window.top.updateGivenCreditPopup.onClosing
             && typeof window.top.updateGivenCreditPopup.onClosing === 'function') {
             window.top.updateGivenCreditPopup.onClosing(
-                this.props.searchAccountName,
+                this.props.searchAccountName, // use for reload left panel
                 updateSuccessfully,
-                this.state.newGivenCredit);
+				this.state.newGivenCredit, // use for update value on html Show QR code form
+				this.props.searchAccountId); // use for update value on html Credit Balance form
         }
     }
 
@@ -55,7 +56,7 @@ class GivenCredit extends React.Component {
             givenCreditMax = parseFloat(this.props.givenCreditMax),
             newGivenCredit = parseFloat(this.state.newGivenCredit);
 
-        if (newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
+		if (newGivenCredit < 0 || newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
             this.showErrorMessage(resources.InvalidValue);
             return;
         }
@@ -147,7 +148,8 @@ class GivenCredit extends React.Component {
                     <NumberFormat className="textbox col-xs-5"
                         value={newGivenCredit}
                         fixedDecimalScale={true}
-                        thousandSeparator={true}
+						thousandSeparator={true}
+						allowNegative={false}
                         decimalScale={2}
                         onKeyPress={this.handleKeyPress}
                         onValueChange={values => {
