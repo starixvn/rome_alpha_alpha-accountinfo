@@ -166,9 +166,20 @@
             => await accountInfoService.GetOnlineList(message.SearchAccountId).ConfigureAwait(false);
 
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
-            => new GivenCreditViewModel(
+        {
+            decimal memberCreditMin = 0;
+            if (Enumeration.FromValue<UserLevel>(message.SearchAccountRoleId).IsMemberLevel())
+            {
+                var balanceInfo = (MemberBalanceInfoModel) await accountInfoService.GetBalanceInfo(message.SearchAccountId, message.SearchAccountRoleId).ConfigureAwait(false);
+
+                memberCreditMin = Math.Max(0, balanceInfo.CustomerOutstanding - balanceInfo.CustomerCash + balanceInfo.PendingTransfer3rd);
+            }
+
+            return new GivenCreditViewModel(
                 message,
-                await accountInfoService.GetCreditInfo(message.SearchAccountId).ConfigureAwait(false));
+                await accountInfoService.GetCreditInfo(message.SearchAccountId).ConfigureAwait(false),
+                memberCreditMin);
+        }
 
         public Task<Result> Handle(GivenCreditCommand message)
             => accountInfoService.UpdateGivenCredit(

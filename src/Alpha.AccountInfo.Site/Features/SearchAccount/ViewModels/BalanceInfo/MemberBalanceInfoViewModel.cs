@@ -34,9 +34,9 @@
 
         public override decimal GivenCreditMax => creditInfo.MemMaxCreditMax;
 
-        public override decimal GivenCreditMin => 0;
-
         public override decimal PendingTransfer3rd => balanceInfoModel.PendingTransfer3rd;
+
+        public override decimal GivenCreditMin => Math.Max(0, Outstanding - TotalBalance + PendingTransfer3rd);
 
         internal override bool ShowTransferLink => ActorLevel.IsAgentLevel() && base.ShowTransferLink;
     }

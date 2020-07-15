@@ -112,14 +112,9 @@ class GivenCredit extends React.Component {
                 thousandSeparator={true}
             />;
 
-        const memberGivenCreditLimit = <div className="content"> {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)} </div>;
-
-        const masterAgentGivenCreditLimit =
-            <div className="content">
-                {buildNumberFormat(givenCreditMin)} ≤  {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)}
-            </div>;
-
-        const noted = parseInt(searchAccountRoleId, 10) === UserLevel.Member ? memberGivenCreditLimit : masterAgentGivenCreditLimit;
+		const noted = <div className="content">
+			{buildNumberFormat(givenCreditMin)} ≤  {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)}
+		</div>;
 
         return (
             <div className="note">

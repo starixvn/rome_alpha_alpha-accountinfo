@@ -17,6 +17,7 @@
         public GivenCreditViewModel(
             GivenCreditQuery message,
             CreditInfo creditInfo,
+            decimal memberCreditMin,
             Func<string, ResourceManager, string> convertResourcesJson = null)
         {
             this.message = message;
@@ -36,7 +37,7 @@
             else
             {
                 GivenCreditMax = creditInfo.MemMaxCreditMax;
-                GivenCreditMin = 0;
+                GivenCreditMin = memberCreditMin;
             }
 
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();

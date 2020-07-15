@@ -263,7 +263,7 @@
             };
 
             var model = new CreditInfo(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
-            var expectedViewModel = new GivenCreditViewModel(message, model);
+            var expectedViewModel = new GivenCreditViewModel(message, model, 0);
             accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(model);
 
             var actualViewModel = await accountInfoHandler.Handle(message);
