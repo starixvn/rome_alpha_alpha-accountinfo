@@ -13,6 +13,7 @@
     {
         private const string SearchAccountViewPath = "~/Features/SearchAccount/Views/Index.cshtml";
         private const string GiventCreditViewPath = "~/Features/SearchAccount/Views/GivenCredit.cshtml";
+        private const string EditPopupViewPath = "~/Features/SearchAccount/Views/EditPopup.cshtml";
 
         public SearchAccountController(IMediator mediator)
             : base(mediator)
@@ -51,5 +52,8 @@
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UpdateAllDayBalanceTransfer(UpdateAllBalanceTransferCommand command)
            => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+
+        public async Task<ActionResult> EditPopup(CustomerStatusQuery message)
+          => await ViewAsync(message, EditPopupViewPath).ConfigureAwait(false);
     }
 }
