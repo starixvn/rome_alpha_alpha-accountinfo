@@ -13,7 +13,7 @@
             this.viewer = viewer;
         }
 
-        public string SearchAccountName { get; set; }
+        public virtual string SearchAccountName { get; set; }
 
         public byte SearchAccountRoleId { get; set; }
 

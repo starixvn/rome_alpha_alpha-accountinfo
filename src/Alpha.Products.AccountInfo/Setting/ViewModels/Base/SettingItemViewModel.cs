@@ -45,7 +45,27 @@
 
         protected abstract string BaseAddress { get; }
 
+        public virtual string UpdateMultipleUrl
+        {
+            get
+            {
+                if (QueryStringParamatersUpdateMultiple != null && QueryStringParamatersUpdateMultiple.ToList().Count > 1)
+                {
+                    var queryString =
+                   string.Join("&", QueryStringParamatersUpdateMultiple.Select(query => $"{query.Key}={query.Value}"));
+
+                    return $"{BaseAddressUpdateMultiple}?{queryString}";
+                }
+
+                return BaseAddressUpdateMultiple;
+            }
+        }
+
+        protected virtual string BaseAddressUpdateMultiple { get; }
+
         protected abstract Dictionary<string, string> QueryStringParamaters { get; }
+
+        protected virtual Dictionary<string, string> QueryStringParamatersUpdateMultiple { get; }
 
         protected virtual string OldMainUrl => Request.GetMicroSiteUrl(MicroSiteConstants.OldMain,"~/");
 

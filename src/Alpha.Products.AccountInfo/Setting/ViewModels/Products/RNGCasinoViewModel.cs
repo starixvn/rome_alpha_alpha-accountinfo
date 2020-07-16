@@ -37,6 +37,10 @@
                 ["username"] = SearchAccount.Username
             };
 
+        protected override Dictionary<string, string> QueryStringParamatersUpdateMultiple => QueryStringParamaters;
+
+        protected override string BaseAddressUpdateMultiple => BaseAddress;
+
         public override bool Visible
         {
             get

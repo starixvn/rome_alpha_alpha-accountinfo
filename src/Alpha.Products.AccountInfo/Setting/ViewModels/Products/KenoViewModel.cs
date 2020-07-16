@@ -29,6 +29,18 @@
              ["isMultipleEdit"] = "0"
          };
 
+        protected override Dictionary<string, string> QueryStringParamatersUpdateMultiple
+              => new Dictionary<string, string>
+              {
+                  ["custId"] = SearchAccount.Id.ToString(),
+                  ["username"] = SearchAccount.Username,
+                  ["userId"] = Actor.Id.ToString(),
+                  ["SubAccId"] = Actor.SubAccountId.ToString(),
+                  ["isMultipleEdit"] = "1"
+              };
+
+        protected override string BaseAddressUpdateMultiple => BaseAddress;
+
         public override bool Visible => base.Visible && !Actor.ProductStatusOf(ProductId).Hidden;
     }
 }

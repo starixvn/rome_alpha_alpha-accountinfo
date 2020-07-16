@@ -55,5 +55,8 @@
 
         public async Task<ActionResult> EditPopup(CustomerStatusQuery message)
           => await ViewAsync(message, EditPopupViewPath).ConfigureAwait(false);
+
+        public async Task<ActionResult> MultipleEditPopup(MultipleCustomerStatusQuery message)
+          => await ViewAsync(message, EditPopupViewPath).ConfigureAwait(false);
     }
 }

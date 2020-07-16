@@ -7,5 +7,7 @@
         string Text { get; }
 
         string Url { get; }
+
+        string UpdateMultipleUrl { get; }
     }
 }

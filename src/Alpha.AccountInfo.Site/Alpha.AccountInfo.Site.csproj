@@ -591,6 +591,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureLibraryViewModel.cs" />
+    <Compile Include="Features\SearchAccount\Requests\MultipleCustomerStatusQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\UpdateAllBalanceTransferCommand.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
