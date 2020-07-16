@@ -13,7 +13,7 @@
 	<ul>
 		@foreach (var item in Model.Settings)
 		{
-			<li class="edit-popup" data-url="@item.UpdateMultipleUrl">
+			<li class="edit-popup" data-url="@(Model.IsMultiple ? item.UpdateMultipleUrl : item.Url)">
 				@item.Text
 			</li>
 		}

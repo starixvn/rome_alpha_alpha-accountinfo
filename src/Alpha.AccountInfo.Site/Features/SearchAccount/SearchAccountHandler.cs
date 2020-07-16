@@ -170,7 +170,8 @@
 
             return Task.FromResult(new CustomerStatusViewModel(
                 BuildCustomerProductStatus(actor, searchAccount, message, customerStatusModel),
-                BuildCustomerProductSettings(actor, searchAccount, message, customerStatusModel, isMultiple)));
+                BuildCustomerProductSettings(actor, searchAccount, message, customerStatusModel, isMultiple, customerIds, usernames),
+                isMultiple));
         }
 
         public async Task<IEnumerable<OnlineUserModel>> Handle(OnlineListQuery message)
