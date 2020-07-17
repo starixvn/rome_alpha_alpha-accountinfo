@@ -41,6 +41,8 @@
 
         protected override string BaseAddressUpdateMultiple => BaseAddress;
 
+        public override bool IsUpdateMultiple => true;
+
         public override bool Visible
         {
             get

@@ -42,5 +42,7 @@
         protected override string BaseAddressUpdateMultiple => BaseAddress;
 
         public override bool Visible => base.Visible && !Actor.ProductStatusOf(ProductId).Hidden;
+
+        public override bool IsUpdateMultiple => true;
     }
 }

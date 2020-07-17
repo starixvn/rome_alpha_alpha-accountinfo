@@ -8,6 +8,10 @@
 
         string Url { get; }
 
+        bool IsUpdateMultiple { get; }
+
+        string UpdateMultipleText { get; }
+
         string UpdateMultipleUrl { get; }
     }
 }

@@ -47,9 +47,9 @@
               ["productId"] = ProductId.ToString(),
               ["uplineId"] = Actor.Id.ToString(),
               ["actorId"] = Actor.Id.ToString(),
-              ["customerIds"] = Request.GetData<string>("customerIds"),
-              ["usernames"] = Request.GetData<string>("usernames"),
-              ["customerNames"] = Request.GetData<string>("usernames"),
+              //["customerIds"] = Request.GetData<string>("customerIds"),
+              //["usernames"] = Request.GetData<string>("usernames"),
+              //["customerNames"] = Request.GetData<string>("usernames"),
               //usernames, customerNames // Bind at client
               //customerIds
               ["customerLevel"] = SearchAccount.CusomerLevelValue.ToString(),
@@ -58,6 +58,8 @@
               ["isForcingMode"] = "false"
           };
 
+        public override bool IsUpdateMultiple => true;
+        
         protected override string BaseAddressUpdateMultiple => BaseAddress;
 
         public override bool Visible => base.Visible && Actor.CanSeeProduct(ProductId);

@@ -43,5 +43,7 @@
         protected override string BaseAddressUpdateMultiple => $"{OldMainUrl}GoldDeluxeSetting/GoldDeluxe/EditSettingMultiple";
 
         public override bool Visible => base.Visible && !Actor.ProductStatusOf(ProductId).Hidden;
+
+        public override bool IsUpdateMultiple => true;
     }
 }

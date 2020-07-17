@@ -45,6 +45,10 @@
 
         protected abstract string BaseAddress { get; }
 
+        public virtual bool IsUpdateMultiple => false;
+
+        public virtual string UpdateMultipleText => $"Edit Multiple {Text}";
+
         public virtual string UpdateMultipleUrl
         {
             get

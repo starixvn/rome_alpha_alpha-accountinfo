@@ -34,6 +34,8 @@
 
         protected override Dictionary<string, string> QueryStringParamatersUpdateMultiple => QueryStringParamaters;
 
+        public override bool IsUpdateMultiple => true;
+
         protected override string BaseAddressUpdateMultiple
         {
             get

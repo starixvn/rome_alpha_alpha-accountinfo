@@ -13,18 +13,21 @@
 	<ul>
 		@foreach (var item in Model.Settings)
 		{
+			if (item.Visible && (!Model.IsMultiple || (Model.IsMultiple && item.IsUpdateMultiple)))
+			{
 			<li class="edit-popup" data-url="@(Model.IsMultiple ? item.UpdateMultipleUrl : item.Url)">
-				@item.Text
+				@(Model.IsMultiple ? item.UpdateMultipleText : item.Text)
 			</li>
+			}
 		}
-		</ul>
 
+	</ul>
 </div>
 
 @section Scripts {
 	@*@StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
 
-	@StaticResources.RenderScripts("~/Features/CustomerList/Bundles/master-list")*@
+		@StaticResources.RenderScripts("~/Features/CustomerList/Bundles/master-list")*@
 
 	<script>
 		function productPopupOnCustomerListOnclosing() {
