@@ -3,7 +3,7 @@
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Xunit;
 
-    [Trait("Category", "AccountInfo")]
+    [Trait("Category", "NumberHelpers")]
     public class NumberHelpersTest
     {
         [Theory]
