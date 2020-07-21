@@ -206,6 +206,7 @@
     <Compile Include="Features\ProductStatusPopup\ProductStatusControllerTests.cs" />
     <Compile Include="Extensions\AssertExtension.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomererStatusViewModelTests.cs" />
+    <Compile Include="Features\Shared\Helpers\NumberHelpersTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesControllerTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandlerTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendMultipleResultViewModelTest.cs" />

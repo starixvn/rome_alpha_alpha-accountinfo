@@ -4,6 +4,7 @@
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
+    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
     using System;
@@ -13,30 +14,35 @@
     {
         private readonly GivenCreditQuery message;
         private readonly Func<string, ResourceManager, string> ConvertResourcesJson;
+        private readonly NumberHelpers numberHelpers;
 
         public GivenCreditViewModel(
             GivenCreditQuery message,
             CreditInfo creditInfo,
-            Func<string, ResourceManager, string> convertResourcesJson = null)
+            decimal memberCreditMin,
+            Func<string, ResourceManager, string> convertResourcesJson = null,
+             NumberHelpers numberHelpers = null)
         {
+            this.numberHelpers = numberHelpers ?? new NumberHelpersImpl();
+
             this.message = message;
             CurrentGivenCredit = creditInfo.Credit;
 
             var level = Enumeration.FromValue<UserLevel>(message.SearchAccountRoleId);
             if (level.IsMasterLevel())
             {
-                GivenCreditMax = creditInfo.MasterCreditMax;
-                GivenCreditMin = creditInfo.MasterCreditMin;
+                GivenCreditMax = this.numberHelpers.RoundDown(creditInfo.MasterCreditMax);
+                GivenCreditMin = this.numberHelpers.RoundUp(creditInfo.MasterCreditMin);
             }
             else if(level.IsAgentLevel())
             {
-                GivenCreditMax = creditInfo.AgentCreditMax;
-                GivenCreditMin = creditInfo.AgentCreditMin;
+                GivenCreditMax = this.numberHelpers.RoundDown(creditInfo.AgentCreditMax);
+                GivenCreditMin = this.numberHelpers.RoundUp(creditInfo.AgentCreditMin);
             }
             else
             {
-                GivenCreditMax = creditInfo.MemMaxCreditMax;
-                GivenCreditMin = 0;
+                GivenCreditMax = this.numberHelpers.RoundDown(creditInfo.MemMaxCreditMax);
+                GivenCreditMin = this.numberHelpers.RoundUp(memberCreditMin);
             }
 
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
