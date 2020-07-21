@@ -598,6 +598,7 @@
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
     <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
+    <Compile Include="Features\Shared\Helpers\NumberHelpers.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleCommand.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendSingleCommand.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleRequest.cs" />
