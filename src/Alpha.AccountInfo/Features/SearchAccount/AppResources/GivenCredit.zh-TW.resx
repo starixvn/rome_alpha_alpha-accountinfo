@@ -127,7 +127,7 @@
     <value>差別</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>數額無效</value>
+    <value>新設定的投注額度超出允許範圍。</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>新的信用額度</value>

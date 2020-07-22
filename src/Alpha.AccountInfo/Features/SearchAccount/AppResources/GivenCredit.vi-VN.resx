@@ -127,7 +127,7 @@
     <value>Chênh lệch</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>Giá trị không hợp lệ</value>
+    <value>Hạn mức khả dụng mới vượt quá mức cho phép.</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>Hạn mức tín dụng mới</value>

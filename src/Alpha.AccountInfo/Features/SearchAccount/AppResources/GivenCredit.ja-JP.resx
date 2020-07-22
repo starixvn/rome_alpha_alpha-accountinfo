@@ -127,7 +127,7 @@
     <value>Difference</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>Invalid Amount</value>
+    <value>The new bet credit is out of the available range.</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>New Given Credit</value>

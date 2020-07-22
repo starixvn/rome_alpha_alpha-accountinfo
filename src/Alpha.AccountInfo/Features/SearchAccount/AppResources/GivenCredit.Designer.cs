@@ -88,7 +88,7 @@ namespace Alpha.AccountInfo.Features.SearchAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Amount.
+        ///   Looks up a localized string similar to The new bet credit is out of the available range..
         /// </summary>
         public static string InvalidValue {
             get {
