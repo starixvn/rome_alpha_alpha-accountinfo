@@ -127,7 +127,7 @@
     <value>Difference</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>잘못된 금액입니다.</value>
+    <value>The new bet credit is out of the available range.</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>New Given Credit</value>

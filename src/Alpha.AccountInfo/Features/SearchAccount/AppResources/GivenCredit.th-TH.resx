@@ -127,7 +127,7 @@
     <value>ผลต่าง</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>จำนวนเงินไม่ถูกต้อง</value>
+    <value>ยอดใหม่ของเครดิตสำหรับการวางเดิมพันอยู่นอกช่วงที่ใช้งานได้</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>เครดิต ใหม่</value>
