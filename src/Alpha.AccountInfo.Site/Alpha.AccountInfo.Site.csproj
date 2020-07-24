@@ -633,7 +633,6 @@
     <Compile Include="Features\SearchAccount\Requests\GivenCreditCommand.cs" />
     <Compile Include="Features\SearchAccount\Requests\CustomerStatusQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\OnlineListQuery.cs" />
-    <Compile Include="Features\SearchAccount\Requests\UserNameSuggestionQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\DownlineListQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\CustomerInfoQuery.cs" />
     <Compile Include="Features\Shared\BaseRequest.cs" />

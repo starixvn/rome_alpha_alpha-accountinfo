@@ -102,24 +102,6 @@
         }
 
         [Fact]
-        public void HandleUserNameSuggestionQuery_Always_ReturnsCorrectViewModel()
-        {
-            var message = new UserNameSuggestionQuery(viewer)
-            {
-                SuggestionQuery = "test"
-            };
-
-            var expectedViewModel = Enumerable.Empty<UsernameSuggestion>();
-            accountInfoService
-                .GetUsernamesSuggestion(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<bool>())
-                .Returns(expectedViewModel);
-
-            var actualViewModel = accountInfoHandler.Handle(message).GetAwaiter().GetResult();
-
-            AssertExtension.Equal(actualViewModel, expectedViewModel);
-        }
-
-        [Fact]
         public void HandleDownlineListQuery_Always_ReturnsCorrectViewModel()
         {
             var message = new DownlineListQuery(viewer)

@@ -23,9 +23,6 @@
         public async Task<ActionResult> Index(SearchAccountQuery message)
           => await ViewAsync(message, SearchAccountViewPath).ConfigureAwait(false);
 
-        public async Task<ActionResult> GetUsernamesSuggestion(UserNameSuggestionQuery message)
-           => await JsonDataAsync(message).ConfigureAwait(false);
-
         public async Task<ActionResult> GetCustomerInfo(CustomerInfoQuery message)
             => await JsonDataAsync(message).ConfigureAwait(false);
 

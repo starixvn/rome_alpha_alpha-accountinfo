@@ -34,35 +34,6 @@
         }
 
         [Fact]
-        public void GetUsernamesSuggestion_ValidViewModel_ReturnsView()
-        {
-            var message = new UserNameSuggestionQuery(viewer)
-            {
-                SuggestionQuery = "test"
-            };
-
-            accountInfoController.GetUsernamesSuggestion(message).GetAwaiter().GetResult();
-
-            mediator.Received().Send(message);
-        }
-
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void GetUsernamesSuggestion_InvalidQuery_ReturnsInvalidPageView(string suggestionQuery)
-        {
-            var message = new UserNameSuggestionQuery(viewer)
-            {
-                SuggestionQuery = suggestionQuery
-            };
-
-            var actualResult = accountInfoController.GetUsernamesSuggestion(message).GetAwaiter().GetResult() as JsonResult;
-            var actualData = (Result)actualResult.Data;
-
-            Assert.True(!actualData.IsSuccess);
-        }
-
-        [Fact]
         public void CustomerInfoQuery_ValidViewModel_ReturnsView()
         {
             var message = new CustomerInfoQuery(viewer)

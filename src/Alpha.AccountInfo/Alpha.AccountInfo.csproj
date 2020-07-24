@@ -258,7 +258,6 @@
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\MemberBalanceInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\MasterBalanceInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\CustomerStatusModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CutomerInfo\UsernameSuggestion.cs" />
     <Compile Include="Features\SearchAccount\Models\CutomerInfo\CustomerInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonProductStatusModel.cs" />
     <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonDCSProductStatusModel.cs" />

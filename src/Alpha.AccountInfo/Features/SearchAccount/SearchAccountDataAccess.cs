@@ -1,14 +1,14 @@
 ﻿namespace Alpha.AccountInfo.DataAccess
 {
-    using System.Data;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Fanex.Data;
+    using System.Data;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public interface SearchAccountDataAccess
     {

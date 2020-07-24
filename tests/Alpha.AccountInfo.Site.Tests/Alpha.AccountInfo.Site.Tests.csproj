@@ -222,7 +222,6 @@
     <Compile Include="Features\SearchAccount\Requests\CustomerAllStatusQueryTest.cs" />
     <Compile Include="Features\SearchAccount\Requests\CustomerInfoQueryTest.cs" />
     <Compile Include="Features\SearchAccount\Requests\CustomerStatusCommandTest.cs" />
-    <Compile Include="Features\SearchAccount\Requests\UserNameSuggestionQueryTest.cs" />
     <Compile Include="Features\SearchAccount\Requests\GivenCreditCommandTest.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\AgentBalanceInfoViewModelTest.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\MasterBalanceInfoViewModelTest.cs" />

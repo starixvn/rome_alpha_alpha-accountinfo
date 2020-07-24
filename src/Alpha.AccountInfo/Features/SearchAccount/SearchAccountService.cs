@@ -20,8 +20,6 @@
 
     public interface SearchAccountService
     {
-        Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
-
         Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId);
 
         Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname);
@@ -79,10 +77,6 @@
                     {UserLevel.Member, GetMemberBalanceInfoModel}
                 };
         }
-
-        public async Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
-            => await dynamicRepository.FetchAsync<UsernameSuggestion>(
-                new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal)).ConfigureAwait(false);
 
         public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId)
         {
