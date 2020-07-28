@@ -5,9 +5,9 @@
     using Fanex.Common;
     using MediatR;
 
-    public class MultipleCustomerStatusQuery : CustomerStatusQuery, IRequest<CustomerStatusViewModel>
+    public class CustomerStatusMultipleQuery : CustomerStatusQueryBase, IRequest<CustomerStatusMultipleViewModel>
     {
-        public MultipleCustomerStatusQuery(IUser viewer) : base(viewer)
+        public CustomerStatusMultipleQuery(IUser viewer) : base(viewer)
         {
         }
 

@@ -96,25 +96,34 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchAccountConfigurationLoader.cs" />
     <Compile Include="SearchAccountProperties.cs" />
+    <Compile Include="Setting\SettingMultipleViewModelFactory.cs" />
     <Compile Include="Setting\SettingViewModelFactory.cs" />
+    <Compile Include="Setting\ViewModels\Base\ISettingItemMultipleViewModel.cs" />
     <Compile Include="Setting\ViewModels\Base\ISettingItemViewModel.cs" />
     <Compile Include="Setting\ViewModels\BetSettingViewModel.cs" />
-    <Compile Include="Setting\ViewModels\Products\Ng2ProductViewModel.cs" />
-    <Compile Include="Setting\ViewModels\Products\GoldDeluxeViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\DynamicProduct\DynamicProductMultipleViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\GoldDeluxe\GoldDeluxeMultipleViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\Keno\KenoMultipleViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\NG2\Ng2ProductMultipleViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\NG2\Ng2ProductViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\GoldDeluxe\GoldDeluxeViewModel.cs" />
     <Compile Include="Setting\ViewModels\Base\ProductSettingItemViewModel.cs" />
-    <Compile Include="Setting\ViewModels\Products\KenoViewModel.cs" />
-    <Compile Include="Setting\ViewModels\Products\RNGCasinoViewModel.cs" />
-    <Compile Include="Setting\ViewModels\Products\Sportsbook2ViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\Keno\KenoViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\RnGCasino\RNGCasinoMultipleViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\RnGCasino\RNGCasinoViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\Sportsbook2\Sportsbook2MultipeViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\Sportsbook2\Sportsbook2ViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\Sportsbook\SportsbookMultipleViewModel.cs" />
     <Compile Include="Setting\ViewModels\RemoveOtpViewModel.cs" />
     <Compile Include="Setting\ViewModels\ResetPasswordViewModel.cs" />
     <Compile Include="Setting\ViewModels\TransferViewModel.cs" />
     <Compile Include="Setting\ViewModels\CommissionViewModel.cs" />
-    <Compile Include="Setting\ViewModels\Products\DynamicProductViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\DynamicProduct\DynamicProductViewModel.cs" />
     <Compile Include="Setting\ViewModels\EditInfoViewModel.cs" />
     <Compile Include="Setting\ViewModels\Base\SettingItemViewModel.cs" />
     <Compile Include="Setting\ViewModels\ResetSecurityCodeViewModel.cs" />
     <Compile Include="Setting\ViewModels\SportsbookMinPTViewModel.cs" />
-    <Compile Include="Setting\ViewModels\Products\SportsbookViewModel.cs" />
+    <Compile Include="Setting\ViewModels\Products\Sportsbook\SportsbookViewModel.cs" />
     <Compile Include="Status\StatusViewModelFactory.cs" />
     <Compile Include="Status\ViewModels\Base\ConfirmStatusItemViewModelBase.cs" />
     <Compile Include="Status\ViewModels\ConfirmAllowAutoMasterPTViewModel.cs" />
@@ -153,6 +162,7 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.

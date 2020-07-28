@@ -31,19 +31,5 @@
                 return $"{OldMainUrl}_MemberInfo/PositionTaking/{useCase}.aspx";
             }
         }
-
-        protected override Dictionary<string, string> QueryStringParamatersUpdateMultiple => QueryStringParamaters;
-
-        public override bool IsUpdateMultiple => true;
-
-        protected override string BaseAddressUpdateMultiple
-        {
-            get
-            {
-                var useCase = $"{Actor.CustomerLevel.DisplayName}/EditMultiple{SearchAccount.CustomerLevel.DisplayName}";
-
-                return $"{OldMainUrl}_MemberInfo/PositionTaking/{useCase}.aspx";
-            }
-        }
     }
 }

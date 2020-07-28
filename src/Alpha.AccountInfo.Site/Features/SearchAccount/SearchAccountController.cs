@@ -29,8 +29,8 @@
         public async Task<ActionResult> GetDownlineList(DownlineListQuery message)
             => await JsonDataAsync(message).ConfigureAwait(false);
 
-        public async Task<ActionResult> GetCustomerAllStatus(CustomerStatusQuery message)
-            => await JsonDataAsync(message).ConfigureAwait(false);
+        //public async Task<ActionResult> GetCustomerAllStatus(CustomerStatusQuery message)
+        //    => await JsonDataAsync(message).ConfigureAwait(false);
 
         public async Task<ActionResult> GetOnlineList(OnlineListQuery message)
            => await JsonDataAsync(message).ConfigureAwait(false);
@@ -50,10 +50,10 @@
         public async Task<ActionResult> UpdateAllDayBalanceTransfer(UpdateAllBalanceTransferCommand command)
            => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
-        public async Task<ActionResult> EditPopup(CustomerStatusQuery message)
-          => await ViewAsync(message, EditPopupViewPath).ConfigureAwait(false);
+        //public async Task<ActionResult> EditPopup(CustomerStatusQuery message)
+        //  => await ViewAsync(message, EditPopupViewPath).ConfigureAwait(false);
 
-        public async Task<ActionResult> MultipleEditPopup(MultipleCustomerStatusQuery message)
-          => await ViewAsync(message, EditPopupViewPath).ConfigureAwait(false);
+        //public async Task<ActionResult> MultipleEditPopup(MultipleCustomerStatusQuery message)
+        //  => await ViewAsync(message, EditPopupViewPath).ConfigureAwait(false);
     }
 }

@@ -290,33 +290,33 @@
             AssertExtension.Equal(actualViewModel, model);
         }
 
-        [Fact]
-        public void HandleCustomerAllStatusQuery_Always_ReturnsCorrectViewModel()
-        {
-            var message = new CustomerStatusQuery(viewer)
-            {
-                SearchAccountId = 1,
-                SearchAccountName = "username1",
-                SearchAccountRoleId = 3,
-                UplineId = 2,
-                UplineName = "username2",
-                UplineRoleId = 4
-            };
+        //[Fact]
+        //public void HandleCustomerAllStatusQuery_Always_ReturnsCorrectViewModel()
+        //{
+        //    var message = new CustomerStatusQuery(viewer)
+        //    {
+        //        SearchAccountId = 1,
+        //        SearchAccountName = "username1",
+        //        SearchAccountRoleId = 3,
+        //        UplineId = 2,
+        //        UplineName = "username2",
+        //        UplineRoleId = 4
+        //    };
 
-            var expectedSetting = StubSettingViewModel();
-            var expectedStatus = StubStatusViewModel();
+        //    var expectedSetting = StubSettingViewModel();
+        //    var expectedStatus = StubStatusViewModel();
 
-            var model = fixture.Create<CustomerStatusModel>();
-            accountInfoService.GetCustomerStatus(Arg.Any<int>()).Returns(Task.FromResult(model));
-            var expectedViewModel = new CustomerStatusViewModel(expectedStatus, expectedSetting);
+        //    var model = fixture.Create<CustomerStatusModel>();
+        //    accountInfoService.GetCustomerStatus(Arg.Any<int>()).Returns(Task.FromResult(model));
+        //    var expectedViewModel = new CustomerStatusViewModel(expectedStatus, expectedSetting);
 
-            var actualViewModel = accountInfoHandler
-                .Handle(message)
-                .GetAwaiter()
-                .GetResult();
+        //    var actualViewModel = accountInfoHandler
+        //        .Handle(message)
+        //        .GetAwaiter()
+        //        .GetResult();
 
-            Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);
-        }
+        //    Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);
+        //}
 
         [Fact]
         public void BuildCustomerProductSettings_Always_ReturnsCorrectSettingViewModel()

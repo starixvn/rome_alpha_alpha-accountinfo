@@ -27,8 +27,8 @@
         IAsyncRequestHandler<SearchAccountQuery, AccountInfoViewModel>,
         IAsyncRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IAsyncRequestHandler<DownlineListQuery, DownlineListViewModel>,
-        IAsyncRequestHandler<CustomerStatusQuery, CustomerStatusViewModel>,
-        IAsyncRequestHandler<MultipleCustomerStatusQuery, CustomerStatusViewModel>,
+        //IAsyncRequestHandler<CustomerStatusQuery, CustomerStatusViewModel>,
+        //IAsyncRequestHandler<MultipleCustomerStatusQuery, CustomerStatusViewModel>,
         IAsyncRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>,
@@ -127,11 +127,11 @@
             return new DownlineListViewModel(downlineList, totalDownlinesSummarys);
         }
 
-        public async Task<CustomerStatusViewModel> Handle(CustomerStatusQuery message)
-            => await BuildCustomerStatus(message).ConfigureAwait(false);
+        //public async Task<CustomerStatusViewModel> Handle(CustomerStatusQuery message)
+        //    => await BuildCustomerStatus(message).ConfigureAwait(false);
 
-        public async Task<CustomerStatusViewModel> Handle(MultipleCustomerStatusQuery message)
-           => await BuildCustomerStatus(message, true, message.CustomerIds, message.Usernames).ConfigureAwait(false);
+        //public async Task<CustomerStatusViewModel> Handle(MultipleCustomerStatusQuery message)
+        //   => await BuildCustomerStatus(message, true, message.CustomerIds, message.Usernames).ConfigureAwait(false);
 
         internal Task<CustomerStatusViewModel> BuildCustomerStatus(
             CustomerStatusQuery message,
@@ -373,6 +373,28 @@
                  .AddData("customerNames", usernames)
                  .AddData("isMultiple", "1");
             }
+
+            return settingViewModelFactory.GetViewModels(request).Where(setting => setting.Visible).OrderBy(setting => setting.DisplayOrder);
+        }
+
+        internal IEnumerable<ISettingItemViewModel> BuildCustomerProductMultipleSettings(
+           Customer actor,
+           Customer searchAccount,
+           CustomerStatusQuery message,
+           CustomerStatusModel model,
+           bool isMultiple = false,
+           string customerIds = "",
+           string usernames = "")
+        {
+            var request = new SettingSearchAccountRequest(actor, searchAccount);
+            request
+                 .AddData(DataKey.Actor.CanEditDailyTransferOption, model.NonProduct.TransferDaily)
+                 .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount)
+                 .AddData(DataKey.SearchAccount.IsEnableSecurityCode, securityCodeChecker.IsEnableSecurityCode())
+                 .AddData("customerIds", customerIds)
+                 .AddData("usernames", usernames)
+                 .AddData("customerNames", usernames)
+                 .AddData("isMultiple", "1");
 
             return settingViewModelFactory.GetViewModels(request).Where(setting => setting.Visible).OrderBy(setting => setting.DisplayOrder);
         }

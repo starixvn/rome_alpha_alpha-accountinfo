@@ -145,6 +145,7 @@
               .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), productConfigFile))
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
               .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
+              .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>(new SettingMultipleViewModelFactory())
               .Register<Func<int>>(AppSettingsHelper.GetInsertProfilePictureSiteMode)
               .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer)
               .Register<Func<string, bool>>(AppSettingsHelper.HideProductStatusBySites);

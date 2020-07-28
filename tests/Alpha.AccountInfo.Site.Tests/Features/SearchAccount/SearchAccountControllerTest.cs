@@ -134,44 +134,44 @@
             Assert.True(!actualData.IsSuccess);
         }
 
-        [Fact]
-        public void CustomerAllStatusQuery_ValidViewModel_ReturnsView()
-        {
-            var message = new CustomerStatusQuery(viewer)
-            {
-                SearchAccountId = 2,
-                SearchAccountName = "SearchAccountName",
-                SearchAccountRoleId = 1,
-                UplineId = 2,
-                UplineName = "UplineName",
-                UplineRoleId = 4
-            };
+        //[Fact]
+        //public void CustomerAllStatusQuery_ValidViewModel_ReturnsView()
+        //{
+        //    var message = new CustomerStatusQuery(viewer)
+        //    {
+        //        SearchAccountId = 2,
+        //        SearchAccountName = "SearchAccountName",
+        //        SearchAccountRoleId = 1,
+        //        UplineId = 2,
+        //        UplineName = "UplineName",
+        //        UplineRoleId = 4
+        //    };
 
-            accountInfoController.GetCustomerAllStatus(message).GetAwaiter().GetResult();
+        //    accountInfoController.GetCustomerAllStatus(message).GetAwaiter().GetResult();
 
-            mediator.Received().Send(message);
-        }
+        //    mediator.Received().Send(message);
+        //}
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        public void CustomerAllStatusQuery_InvalidUserName_ReturnsInvalidPageView(int searchAccountId)
-        {
-            var message = new CustomerStatusQuery(viewer)
-            {
-                SearchAccountId = searchAccountId,
-                SearchAccountName = "SearchAccountName",
-                SearchAccountRoleId = 3,
-                UplineId = 2,
-                UplineName = "UplineName",
-                UplineRoleId = 4
-            };
+        //[Theory]
+        //[InlineData(0)]
+        //[InlineData(-1)]
+        //public void CustomerAllStatusQuery_InvalidUserName_ReturnsInvalidPageView(int searchAccountId)
+        //{
+        //    var message = new CustomerStatusQuery(viewer)
+        //    {
+        //        SearchAccountId = searchAccountId,
+        //        SearchAccountName = "SearchAccountName",
+        //        SearchAccountRoleId = 3,
+        //        UplineId = 2,
+        //        UplineName = "UplineName",
+        //        UplineRoleId = 4
+        //    };
 
-            var actualResult = accountInfoController.GetCustomerAllStatus(message).GetAwaiter().GetResult() as JsonResult;
-            var actualData = (Result)actualResult.Data;
+        //    var actualResult = accountInfoController.GetCustomerAllStatus(message).GetAwaiter().GetResult() as JsonResult;
+        //    var actualData = (Result)actualResult.Data;
 
-            Assert.True(!actualData.IsSuccess);
-        }
+        //    Assert.True(!actualData.IsSuccess);
+        //}
 
         [Fact]
         public async Task HandleGivenCreditQuery_Always_CallsMediatorSendAccountInfoQuery()

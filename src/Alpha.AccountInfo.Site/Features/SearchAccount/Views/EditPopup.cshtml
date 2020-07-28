@@ -13,10 +13,10 @@
 	<ul>
 		@foreach (var item in Model.Settings)
 		{
-			if (item.Visible && (!Model.IsMultiple || (Model.IsMultiple && item.IsUpdateMultiple)))
+			if (item.Visible)
 			{
-			<li class="edit-popup" data-url="@(Model.IsMultiple ? item.UpdateMultipleUrl : item.Url)">
-				@(Model.IsMultiple ? item.UpdateMultipleText : item.Text)
+			<li class="edit-popup" data-url="@item.Url">
+				@item.Text
 			</li>
 			}
 		}

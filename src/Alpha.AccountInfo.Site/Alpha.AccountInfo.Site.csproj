@@ -502,6 +502,7 @@
     <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\index.scss" />
     <Content Include="Features\SearchAccount\Views\EditPopup.cshtml" />
+    <Content Include="Features\SearchAccount\Views\EditPopupMultiple.cshtml" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
@@ -591,8 +592,12 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureLibraryViewModel.cs" />
-    <Compile Include="Features\SearchAccount\Requests\MultipleCustomerStatusQuery.cs" />
+    <Compile Include="Features\SearchAccount\Requests\CustomerStatusMultipleQuery.cs" />
+    <Compile Include="Features\SearchAccount\Requests\CustomerStatusQueryBase.cs" />
     <Compile Include="Features\SearchAccount\Requests\UpdateAllBalanceTransferCommand.cs" />
+    <Compile Include="Features\SearchAccount\EditProductController.cs" />
+    <Compile Include="Features\SearchAccount\EditProductHandler.cs" />
+    <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusMultipleViewModel.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibraryQuery.cs" />
