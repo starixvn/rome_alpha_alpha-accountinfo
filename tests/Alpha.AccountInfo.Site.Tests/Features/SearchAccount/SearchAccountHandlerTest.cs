@@ -1,10 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.SearchAccount
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Resources;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
@@ -17,23 +12,23 @@
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers;
     using Alpha.Products.AccountInfo.Requests;
-    using Alpha.Products.AccountInfo.Setting;
     using Alpha.Products.AccountInfo.Setting.ViewModels;
     using Alpha.Products.AccountInfo.Setting.ViewModels.Base;
     using Alpha.Products.AccountInfo.Setting.ViewModels.Products;
-    using Alpha.Products.AccountInfo.Status;
     using Alpha.Products.AccountInfo.Status.ViewModels;
     using Alpha.Products.AccountInfo.Status.ViewModels.Base;
     using Alpha.Products.AccountInfo.Tests.Utility;
     using Alpha.Products.Core.Configuration;
     using Alpha.Products.Core.Models;
     using Alpha.Products.Core.Services;
-    using Alpha.Products.Core.Shared;
-    using Alpha.Products.Core.ViewModels;
-    using Alpha.SecurityCode.Services;
     using AutoFixture;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Resources;
+    using System.Threading.Tasks;
     using Xunit;
     using static Alpha.AccountInfo.Tests.Utility.AppProductConfigurationHelper;
 
@@ -44,7 +39,6 @@
         private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo();
         private readonly CreditInfo creditInfo = AccountInfoHelper.CreditInfo;
         private readonly SearchAccountService accountInfoService;
-        private readonly SecurityCodeChecker securityCodeChecker;
         private readonly SearchAccountHandler accountInfoHandler;
         private readonly Fixture fixture = new Fixture();
         private readonly CustomerInfoQuery customerInfoQuery;
@@ -64,8 +58,6 @@
              .Register<Func<string, string, string>>((microSiteName, virtualPath) => "MicroSiteUrl/")
              .Register<Func<string, ResourceManager, string>>((language, resources) => "{}")
              .Register<IConfigurationLoader>(configurationLoader)
-             .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
-             .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
              .Register<Func<int, string>>((productId) => $"Product Name of {productId}")
              .Register<Func<string, string>>(key => $"value of {key}")
              .Register<Func<bool>>(() => false)
@@ -80,9 +72,7 @@
                };
 
             accountInfoService = Substitute.For<SearchAccountService>();
-            securityCodeChecker = Substitute.For<SecurityCodeChecker>();
-            securityCodeChecker.IsEnableSecurityCode().Returns(true);
-            accountInfoHandler = new SearchAccountHandler(accountInfoService, getBalanceInfoViewModelByLevel, null, null, securityCodeChecker, null);
+            accountInfoHandler = new SearchAccountHandler(accountInfoService, getBalanceInfoViewModelByLevel, null);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {
@@ -318,104 +308,104 @@
         //    Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);
         //}
 
-        [Fact]
-        public void BuildCustomerProductSettings_Always_ReturnsCorrectSettingViewModel()
-        {
-            var message = new CustomerStatusQuery(viewer)
-            {
-                SearchAccountId = 1,
-                SearchAccountName = "username1",
-                SearchAccountRoleId = 3,
-                UplineId = 2,
-                UplineName = "username2",
-                UplineRoleId = 4
-            };
+        //[Fact]
+        //public void BuildCustomerProductSettings_Always_ReturnsCorrectSettingViewModel()
+        //{
+        //    var message = new CustomerStatusQuery(viewer)
+        //    {
+        //        SearchAccountId = 1,
+        //        SearchAccountName = "username1",
+        //        SearchAccountRoleId = 3,
+        //        UplineId = 2,
+        //        UplineName = "username2",
+        //        UplineRoleId = 4
+        //    };
 
-            var expectedSetting = StubSettingViewModel();
+        //    var expectedSetting = StubSettingViewModel();
 
-            var actualSettings = accountInfoHandler.BuildCustomerProductSettings(actor, searchAccount, message, CreateCustomerStatusModelStub());
-            Assert.True(compareLogic.Compare(actualSettings, expectedSetting).AreEqual);
-        }
+        //    var actualSettings = accountInfoHandler.BuildCustomerProductSettings(actor, searchAccount, message, CreateCustomerStatusModelStub());
+        //    Assert.True(compareLogic.Compare(actualSettings, expectedSetting).AreEqual);
+        //}
 
-        [Fact]
-        public void BuildCustomerProductStatus_Always_ReturnsCorrectSettingViewModel()
-        {
-            var message = new CustomerStatusQuery(viewer)
-            {
-                SearchAccountId = 1,
-                SearchAccountName = "username1",
-                SearchAccountRoleId = 3,
-                UplineId = 2,
-                UplineName = "username2",
-                UplineRoleId = 4
-            };
+        //[Fact]
+        //public void BuildCustomerProductStatus_Always_ReturnsCorrectSettingViewModel()
+        //{
+        //    var message = new CustomerStatusQuery(viewer)
+        //    {
+        //        SearchAccountId = 1,
+        //        SearchAccountName = "username1",
+        //        SearchAccountRoleId = 3,
+        //        UplineId = 2,
+        //        UplineName = "username2",
+        //        UplineRoleId = 4
+        //    };
 
-            var expectedStatus = StubStatusViewModel();
+        //    var expectedStatus = StubStatusViewModel();
 
-            var actualStatus = accountInfoHandler.BuildCustomerProductStatus(actor, searchAccount, message, CreateCustomerStatusModelStub());
-            Assert.True(compareLogic.Compare(actualStatus, expectedStatus).AreEqual);
-        }
+        //    var actualStatus = accountInfoHandler.BuildCustomerProductStatus(actor, searchAccount, message, CreateCustomerStatusModelStub());
+        //    Assert.True(compareLogic.Compare(actualStatus, expectedStatus).AreEqual);
+        //}
 
-        [Fact]
-        public void BuildActorProductStatus_Always_ReturnsCorrectSettingViewModel()
-        {
-            var message = new CustomerStatusQuery(viewer)
-            {
-                SearchAccountId = 1,
-                SearchAccountName = "username1",
-                SearchAccountRoleId = 3,
-                UplineId = 2,
-                UplineName = "username2",
-                UplineRoleId = 4
-            };
+        //[Fact]
+        //public void BuildActorProductStatus_Always_ReturnsCorrectSettingViewModel()
+        //{
+        //    var message = new CustomerStatusQuery(viewer)
+        //    {
+        //        SearchAccountId = 1,
+        //        SearchAccountName = "username1",
+        //        SearchAccountRoleId = 3,
+        //        UplineId = 2,
+        //        UplineName = "username2",
+        //        UplineRoleId = 4
+        //    };
 
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductConstants.Sportsbook, true),
-                new CustomerProductStatus(ProductConstants.NumberGame, true),
-                new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
-                new CustomerProductStatus(ProductConstants.ESport, true),
-                new CustomerProductStatus(ProductConstants.Keno, hidden: true),
-                new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
-            };
+        //    var customerProductStatus = new List<CustomerProductStatus>
+        //    {
+        //        new CustomerProductStatus(ProductConstants.Sportsbook, true),
+        //        new CustomerProductStatus(ProductConstants.NumberGame, true),
+        //        new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
+        //        new CustomerProductStatus(ProductConstants.ESport, true),
+        //        new CustomerProductStatus(ProductConstants.Keno, hidden: true),
+        //        new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
+        //    };
 
-            var actualActorProductStatus = accountInfoHandler.BuildActorProductStatus(message, Enumerable.Empty<DCSProductStatusModel>());
-            Assert.True(compareLogic.Compare(actualActorProductStatus, customerProductStatus).AreEqual);
-        }
+        //    var actualActorProductStatus = accountInfoHandler.BuildActorProductStatus(message, Enumerable.Empty<DCSProductStatusModel>());
+        //    Assert.True(compareLogic.Compare(actualActorProductStatus, customerProductStatus).AreEqual);
+        //}
 
-        [Fact]
-        public void BuildSearchAccountProductStatus_Always_ReturnsCorrectSettingViewModel()
-        {
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductConstants.Sportsbook, true),
-                new CustomerProductStatus(ProductConstants.NumberGame, true),
-                new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
-                new CustomerProductStatus(ProductConstants.ESport, true),
-                new CustomerProductStatus(ProductConstants.Keno, hidden: true),
-                new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
-            };
+        //[Fact]
+        //public void BuildSearchAccountProductStatus_Always_ReturnsCorrectSettingViewModel()
+        //{
+        //    var customerProductStatus = new List<CustomerProductStatus>
+        //    {
+        //        new CustomerProductStatus(ProductConstants.Sportsbook, true),
+        //        new CustomerProductStatus(ProductConstants.NumberGame, true),
+        //        new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
+        //        new CustomerProductStatus(ProductConstants.ESport, true),
+        //        new CustomerProductStatus(ProductConstants.Keno, hidden: true),
+        //        new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
+        //    };
 
-            var actualSearchAccountProduct = accountInfoHandler.BuildSearchAccountProductStatus(StubNonDCSProduct(), Enumerable.Empty<DCSProductStatusModel>());
-            Assert.True(compareLogic.Compare(actualSearchAccountProduct, customerProductStatus).AreEqual);
-        }
+        //    var actualSearchAccountProduct = accountInfoHandler.BuildSearchAccountProductStatus(StubNonDCSProduct(), Enumerable.Empty<DCSProductStatusModel>());
+        //    Assert.True(compareLogic.Compare(actualSearchAccountProduct, customerProductStatus).AreEqual);
+        //}
 
-        [Fact]
-        public void BuildUplineProductStatus_Always_ReturnsCorrectSettingViewModel()
-        {
-            var customerProductStatus = new List<CustomerProductStatus>
-            {
-                new CustomerProductStatus(ProductConstants.Sportsbook, true),
-                new CustomerProductStatus(ProductConstants.NumberGame, true),
-                new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
-                new CustomerProductStatus(ProductConstants.ESport, true),
-                new CustomerProductStatus(ProductConstants.Keno, hidden: true),
-                new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
-            };
+        //[Fact]
+        //public void BuildUplineProductStatus_Always_ReturnsCorrectSettingViewModel()
+        //{
+        //    var customerProductStatus = new List<CustomerProductStatus>
+        //    {
+        //        new CustomerProductStatus(ProductConstants.Sportsbook, true),
+        //        new CustomerProductStatus(ProductConstants.NumberGame, true),
+        //        new CustomerProductStatus(ProductConstants.RNGCasino, true, synced: true),
+        //        new CustomerProductStatus(ProductConstants.ESport, true),
+        //        new CustomerProductStatus(ProductConstants.Keno, hidden: true),
+        //        new CustomerProductStatus(ProductConstants.GoldDeluxe, true, true)
+        //    };
 
-            var actualUplineProductStatus = accountInfoHandler.BuildUplineProductStatus(StubNonDCSProduct(), Enumerable.Empty<DCSProductStatusModel>());
-            Assert.True(compareLogic.Compare(actualUplineProductStatus, customerProductStatus).AreEqual);
-        }
+        //    var actualUplineProductStatus = accountInfoHandler.BuildUplineProductStatus(StubNonDCSProduct(), Enumerable.Empty<DCSProductStatusModel>());
+        //    Assert.True(compareLogic.Compare(actualUplineProductStatus, customerProductStatus).AreEqual);
+        //}
 
         private IEnumerable<IStatusItemViewModel> StubStatusViewModel()
         {
