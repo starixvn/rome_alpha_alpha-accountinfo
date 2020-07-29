@@ -4,6 +4,7 @@ namespace Alpha.Products.AccountInfo.Setting
     using Alpha.Products.AccountInfo.Requests;
     using Alpha.Products.Core.Configuration;
     using Alpha.Products.Core.ViewModels;
+    using System.Collections.Generic;
     using ViewModels.Base;
     using ViewModels.Products;
     using static Alpha.Products.Core.Shared.ProductConstants;
@@ -19,6 +20,12 @@ namespace Alpha.Products.AccountInfo.Setting
         public SettingMultipleViewModelFactory(ConfigurationService configurationService = null)
             : base(configurationService)
         {
+        }
+
+        protected override IEnumerable<ISettingItemMultipleViewModel> GetNonProductViewModels(ISearchAccountInfoRequest request)
+        {
+            yield return new DoubleCommMultipleViewModel(request);
+            yield return new SuspendedMultipleViewModel(request);
         }
 
         protected override ISettingItemMultipleViewModel GetProductViewModel(IConfigurationItem productItem, ISearchAccountInfoRequest request)

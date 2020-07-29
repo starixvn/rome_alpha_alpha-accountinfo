@@ -1,11 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.SearchAccount.Requests
 {
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
+    using Alpha.Products.AccountInfo.Setting.ViewModels.Base;
     using Fanex.Common;
     using MediatR;
+    using System.Collections.Generic;
 
-    public class CustomerStatusMultipleQuery : CustomerStatusQueryBase, IRequest<CustomerStatusMultipleViewModel>
+    public class CustomerStatusMultipleQuery : CustomerStatusQueryBase, IRequest<IEnumerable<ISettingItemMultipleViewModel>>
     {
         public CustomerStatusMultipleQuery(IUser viewer) : base(viewer)
         {

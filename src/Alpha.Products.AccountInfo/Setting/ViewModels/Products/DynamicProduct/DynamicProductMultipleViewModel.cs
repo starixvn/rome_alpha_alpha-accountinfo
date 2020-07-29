@@ -30,8 +30,6 @@
                     ["customerIds"] = Request.GetData<string>("customerIds"),
                     ["usernames"] = Request.GetData<string>("usernames"),
                     ["customerNames"] = Request.GetData<string>("usernames"),
-                    //usernames, customerNames // Bind at client
-                    //customerIds
                     ["customerLevel"] = SearchAccount.CusomerLevelValue.ToString(),
                     ["subAccId"] = Actor.SubAccountId.ToString(),
                     ["formType"] = "1",

@@ -10,7 +10,7 @@
         {
         }
 
-        public override string Text => $"Edit Multiple {base.Text}";
+        public override string Text => $"Edit Multiple {Request.GetResource("GoldDeluxeViewModelText")}";
 
         protected override string BaseAddress 
             => $"{OldMainUrl}GoldDeluxeSetting/GoldDeluxe/EditSettingMultiple";
@@ -21,12 +21,13 @@
                 ["uplineId"] = Actor.Id.ToString(),
                 ["uplineLevel"] = Actor.CusomerLevelValue.ToString(),
                 ["actorId"] = Actor.Id.ToString(),
-                //["custId"] = SearchAccount.Id.ToString(),
-                //usernames, // Bind at client
-                //customerIds
+                ["customerIds"] = Request.GetData<string>("customerIds"),
+                ["usernames"] = Request.GetData<string>("usernames"),
                 ["level"] = SearchAccount.CusomerLevelValue.ToString(),
                 ["subAccId"] = Actor.SubAccountId.ToString(),
-                ["formType"] = "1"
+                ["formType"] = "1",
+                ["isGetMultipleDCS"] = "1",
+                ["isForcingMode"] = "0"
             };
     }
 }

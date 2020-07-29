@@ -51,6 +51,8 @@
 
         protected virtual string MainUrl => Request.GetMicroSiteUrl(MicroSiteConstants.Main, "~/");
 
+        protected virtual string AccountInfoUrl => Request.GetMicroSiteUrl(MicroSiteConstants.AccountInfo, "~/");
+
         public virtual bool Visible => Request.ActorIsEdittingDirectDownline;
     }
 }

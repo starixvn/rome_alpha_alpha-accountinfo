@@ -20,7 +20,7 @@
 
     public class EditProductHandler :
         IAsyncRequestHandler<CustomerStatusQuery, CustomerStatusViewModel>,
-        IAsyncRequestHandler<CustomerStatusMultipleQuery, CustomerStatusMultipleViewModel>
+        IAsyncRequestHandler<CustomerStatusMultipleQuery, IEnumerable<ISettingItemMultipleViewModel>>
     {
         private readonly SearchAccountService accountInfoService;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel> settingMultipleViewModelFactory;
@@ -36,7 +36,7 @@
         internal EditProductHandler(
             SearchAccountService accountInfoService,
             GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel> settingMultipleViewModelFactory,
-             GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory,
+            GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory,
             GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory,
             SecurityCodeChecker securityCodeChecker)
         {
@@ -57,7 +57,7 @@
         public async Task<CustomerStatusViewModel> Handle(CustomerStatusQuery message)
             => await BuildCustomerStatus(message).ConfigureAwait(false);
 
-        public async Task<CustomerStatusMultipleViewModel> Handle(CustomerStatusMultipleQuery message)
+        public async Task<IEnumerable<ISettingItemMultipleViewModel>> Handle(CustomerStatusMultipleQuery message)
            => await BuildCustomerStatusMultiple(message, message.CustomerIds, message.Usernames).ConfigureAwait(false);
 
         internal Task<CustomerStatusViewModel> BuildCustomerStatus(CustomerStatusQuery message)
@@ -92,10 +92,10 @@
                 BuildCustomerProductSettings(actor, searchAccount, message, customerStatusModel)));
         }
 
-        internal Task<CustomerStatusMultipleViewModel> BuildCustomerStatusMultiple(
+        internal Task<IEnumerable<ISettingItemMultipleViewModel>> BuildCustomerStatusMultiple(
             CustomerStatusMultipleQuery message,
-            string customerIds = "",
-            string usernames = "")
+            string customerIds,
+            string usernames)
         {
             var responseTask = Task.Run(() => accountInfoService.GetCustomerStatus(message.SearchAccountId));
             var customerStatusModel = responseTask.Result;
@@ -122,9 +122,7 @@
                BuildSearchAccountProductStatus(customerStatusModel.NonDCSProduct, customerStatusModel.DCSProducts.ToList()),
                upline);
 
-            return Task.FromResult(new CustomerStatusMultipleViewModel(
-                BuildCustomerProductStatus(actor, searchAccount, message, customerStatusModel),
-                BuildCustomerProductMultipleSettings(actor, searchAccount, message, customerStatusModel, customerIds, usernames)));
+            return Task.FromResult(BuildCustomerProductMultipleSettings(actor, searchAccount, message, customerStatusModel, customerIds, usernames));
 
         }
 
@@ -255,8 +253,8 @@
            Customer searchAccount,
            CustomerStatusMultipleQuery message,
            CustomerStatusModel model,
-           string customerIds = "",
-           string usernames = "")
+           string customerIds,
+           string usernames)
         {
             var request = new SettingSearchAccountRequest(actor, searchAccount);
             request
@@ -265,8 +263,7 @@
                  .AddData(DataKey.SearchAccount.IsEnableSecurityCode, securityCodeChecker.IsEnableSecurityCode())
                  .AddData("customerIds", customerIds)
                  .AddData("usernames", usernames)
-                 .AddData("customerNames", usernames)
-                 .AddData("isMultiple", "1");
+                 .AddData("customerNames", usernames);
 
             return settingMultipleViewModelFactory.GetViewModels(request).Where(setting => setting.Visible).OrderBy(setting => setting.DisplayOrder);
         }
