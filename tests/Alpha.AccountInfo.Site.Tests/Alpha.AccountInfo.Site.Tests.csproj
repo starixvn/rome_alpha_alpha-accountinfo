@@ -219,7 +219,6 @@
     <Compile Include="Features\SearchAccount\Requests\GivenCreditQueryTest.cs" />
     <Compile Include="Features\SearchAccount\Requests\SearchAccountQueryTest.cs" />
     <Compile Include="Features\SearchAccount\Requests\SearchAccountQueryBaseTest.cs" />
-    <Compile Include="Features\SearchAccount\Requests\CustomerAllStatusQueryTest.cs" />
     <Compile Include="Features\SearchAccount\Requests\CustomerInfoQueryTest.cs" />
     <Compile Include="Features\SearchAccount\Requests\CustomerStatusCommandTest.cs" />
     <Compile Include="Features\SearchAccount\Requests\GivenCreditCommandTest.cs" />
@@ -229,10 +228,6 @@
     <Compile Include="Features\Shared\Helpers\AccountInfoHelper.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\BalanceInfoViewModelBaseTest.cs" />
     <Compile Include="Features\SearchAccount\ViewModels\CustomerInfoViewModelTest.cs" />
-    <Compile Include="Utility\AppProductConfigurationHelper.cs" />
-    <Compile Include="Utility\CustomerHelper.cs" />
-    <Compile Include="Utility\RequestHelper.cs" />
-    <Compile Include="Utility\SearchAccountRequestStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -256,15 +251,13 @@
       <Project>{19fff821-8518-4c8f-b23b-db8d91c1552a}</Project>
       <Name>Alpha.AccountInfo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Alpha.Products.AccountInfo\Alpha.Products.AccountInfo.csproj">
-      <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
-      <Name>Alpha.Products.AccountInfo</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utility\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

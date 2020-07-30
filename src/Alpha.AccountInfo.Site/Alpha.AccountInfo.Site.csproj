@@ -501,8 +501,6 @@
     <Content Include="Features\ProfilePicture\Views\web.config" />
     <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\index.scss" />
-    <Content Include="Features\SearchAccount\Views\EditPopup.cshtml" />
-    <Content Include="Features\SearchAccount\Views\EditPopupMultiple.cshtml" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
@@ -592,12 +590,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureLibraryViewModel.cs" />
-    <Compile Include="Features\SearchAccount\Requests\CustomerStatusMultipleQuery.cs" />
-    <Compile Include="Features\SearchAccount\Requests\CustomerStatusQueryBase.cs" />
     <Compile Include="Features\SearchAccount\Requests\UpdateAllBalanceTransferCommand.cs" />
-    <Compile Include="Features\SearchAccount\EditProductController.cs" />
-    <Compile Include="Features\SearchAccount\EditProductHandler.cs" />
-    <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusMultipleViewModel.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
     <Compile Include="Features\ProfilePicture\Requests\ProfilePictureLibraryQuery.cs" />
@@ -607,7 +600,6 @@
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureViewModel.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountController.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductStatusController.cs" />
-    <Compile Include="Features\SearchAccount\ViewModels\CustomerStatusViewModel.cs" />
     <Compile Include="Features\Shared\AccountInfoBaseController.cs" />
     <Compile Include="Features\Shared\Helpers\NumberHelpers.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleCommand.cs" />
@@ -636,7 +628,6 @@
     <Compile Include="Features\SearchAccount\Requests\CustomerNonProductStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Requests\GivenCreditQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\GivenCreditCommand.cs" />
-    <Compile Include="Features\SearchAccount\Requests\CustomerStatusQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\OnlineListQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\DownlineListQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\CustomerInfoQuery.cs" />
@@ -702,10 +693,6 @@
     <ProjectReference Include="..\Alpha.AccountInfo\Alpha.AccountInfo.csproj">
       <Project>{19fff821-8518-4c8f-b23b-db8d91c1552a}</Project>
       <Name>Alpha.AccountInfo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Alpha.Products.AccountInfo\Alpha.Products.AccountInfo.csproj">
-      <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
-      <Name>Alpha.Products.AccountInfo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

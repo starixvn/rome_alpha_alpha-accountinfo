@@ -12,8 +12,6 @@
 
     public interface SearchAccountDataAccess
     {
-        Task<CustomerStatusModel> GetCustomerStatus(SelectCustomerAllStatusModelCriteria criteria);
-
         Task<DownlineListModel> GetDownlineList(SelectDownlineListByStatusCriteria criteria);
 
         Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command);
@@ -23,26 +21,6 @@
 
     public class SearchAccountDataAccessImpl : SearchAccountDataAccess
     {
-        public async Task<CustomerStatusModel> GetCustomerStatus(SelectCustomerAllStatusModelCriteria criteria)
-        {
-            using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
-            {
-                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
-                {
-                    var customerStatus = (await multiResultReader.ReadAsync<NonProductStatusModel>().ConfigureAwait(false)).FirstOrDefault();
-                    var nonDCSProduct = (await multiResultReader.ReadAsync<NonDCSProductStatusModel>().ConfigureAwait(false)).FirstOrDefault();
-                    var dcsProducts = await multiResultReader.ReadAsync<DCSProductStatusModel>().ConfigureAwait(false);
-
-                    return new CustomerStatusModel(
-                        customerStatus,
-                        nonDCSProduct,
-                        dcsProducts
-                            .GroupBy(product => product.ProductId)
-                            .Select(group => group.First()));
-                }
-            }
-        }
-
         public async Task<DownlineListModel> GetDownlineList(SelectDownlineListByStatusCriteria criteria)
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))

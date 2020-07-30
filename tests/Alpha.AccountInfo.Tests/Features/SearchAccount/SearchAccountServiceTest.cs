@@ -134,22 +134,6 @@
         }
 
         [Fact]
-        public void GetCustomerStatus_Always_ReturnsCorrectModel()
-        {
-            var model = fixture.Create<CustomerStatusModel>();
-            accountInfoDataAccess
-                .GetCustomerStatus(Arg.Any<SelectCustomerAllStatusModelCriteria>())
-                .Returns(Task.FromResult(model));
-
-            var actualModel = accountInfoService
-                .GetCustomerStatus(1)
-                .GetAwaiter()
-                .GetResult();
-
-            AssertExtension.Equal(model, actualModel);
-        }
-
-        [Fact]
         public void GetOnlineListModel_Always_ReturnsCorrectModel()
         {
             var model = Enumerable.Empty<OnlineUserModel>();

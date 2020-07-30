@@ -211,7 +211,6 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectAutoSuggestionCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateCustomerStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditCommand.cs" />
-    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerAllStatusModelCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\AccountInfoCriteriaBase.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectTotalDownlineSummaryCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectOnlineListCriteria.cs" />
@@ -257,11 +256,7 @@
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\IBalanceInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\MemberBalanceInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\MasterBalanceInfoModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\CustomerStatusModel.cs" />
     <Compile Include="Features\SearchAccount\Models\CutomerInfo\CustomerInfoModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonProductStatusModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonDCSProductStatusModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\DCSProductStatusModel.cs" />
     <Compile Include="Features\SearchAccount\Models\OnlineUserModel.cs" />
     <Compile Include="Features\SearchAccount\Models\DownlineListModel.cs" />
     <Compile Include="Features\ProductStatusPopup\Models\CustomerInformation.cs" />
@@ -352,12 +347,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UnsuspendDownlinesResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Alpha.Products.AccountInfo\Alpha.Products.AccountInfo.csproj">
-      <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
-      <Name>Alpha.Products.AccountInfo</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.9.0.19135\analyzers\Google.Protobuf.dll" />

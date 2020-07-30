@@ -176,7 +176,6 @@
     <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateCustomerStatusCriteriaTestTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectAutoSuggestionTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectBalanceInfoCriteriaTest.cs" />
-    <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCustomerAllStatusModelCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCustomerInfoCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Commands\UpdateUserSearchCriteriaTest.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectOnlineListCriteriaCriteriaTest.cs" />

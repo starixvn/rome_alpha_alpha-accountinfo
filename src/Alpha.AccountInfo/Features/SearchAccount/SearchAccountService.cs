@@ -30,8 +30,6 @@
 
         Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId);
 
-        Task<CustomerStatusModel> GetCustomerStatus(int custId);
-
         Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid);
 
         Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param);
@@ -100,15 +98,7 @@
            => await getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](
                new SelectBalanceInfoCriteria(custId, roleId)).ConfigureAwait(false);
 
-        public async Task<CustomerStatusModel> GetCustomerStatus(int custId)
-        { 
-            var result = await accountInfoDataAccess.GetCustomerStatus(
-              new SelectCustomerAllStatusModelCriteria(custId)).ConfigureAwait(false);
 
-            cacheService.Set($"SyncCasino_{custId}", result.NonDCSProduct.SyncCasino);
-
-            return result;
-        }
 
         public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
             => await accountInfoDataAccess.GetDownlineList(
