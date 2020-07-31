@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using Alpha.AccountInfo.Configurations;
-    using Alpha.AccountInfo.Features.ProductStatusPopup;
+    using Alpha.AccountInfo.Features.Shared.Constants;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Models.ProductStatus;
 

@@ -32,6 +32,7 @@
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ProductStatusServiceImpl productStatusServiceImpl;
         private readonly ILogger logger;
+        private readonly UMService umService;
 
         public ProductStatusServiceImplTests()
         {
@@ -41,13 +42,15 @@
             authorizationService = Substitute.For<ProductStatusAuthorizationService>();
             rnGCasinoService = Substitute.For<RnGCasinoService>();
             logger = Substitute.For<ILogger>();
+            umService = Substitute.For<UMService>();
             productStatusServiceImpl = new ProductStatusServiceImpl(
                 dynamicRepository,
                 cacheRefService,
                 criteriaFactory,
                 authorizationService,
                 rnGCasinoService,
-                logger);
+                logger,
+                umService);
 
             rnGCasinoService.SyncedToRnGCasino3rdByStatus(
                 new UpdateRnGCasino3rdParam(

@@ -1,22 +1,25 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using Alpha.AccountInfo.Features.ProductStatusPopup;
-    using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
-    using Alpha.AccountInfo.Features.SearchAccount.Params;
-    using Alpha.AccountInfo.Features.Shared;
-    using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Features.Shared.Services;
-    using Alpha.Products.Core.Shared;
-    using Fanex.Data.Repository;
-    using Fanex.Logging;
-    using Models.ProductStatus;
-    using Params.ProductStatus;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
+    using Alpha.AccountInfo.Features.ProductStatusPopup;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
+    using Alpha.AccountInfo.Features.SearchAccount.Params;
+    using Alpha.AccountInfo.Features.Shared;
+    using Alpha.AccountInfo.Features.Shared.Constants;
+    using Alpha.AccountInfo.Features.Shared.Extensions;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.Params;
+    using Alpha.AccountInfo.Features.Shared.Services;
+    using Alpha.Products.Core.Shared;
+    using Fanex.Data.Repository;
+    using Fanex.Logging;
+    using Models.ProductStatus;
+    using Params.ProductStatus;
 
     public interface ProductStatusService
     {
@@ -40,6 +43,7 @@
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ILogger logger;
+        private readonly UMService umService;
 
         public ProductStatusServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -47,7 +51,8 @@
             ProductStatusCriteriaFactory criteriaFactory,
             ProductStatusAuthorizationService authorizationService,
             RnGCasinoService rnGCasinoService,
-            ILogger logger)
+            ILogger logger,
+            UMService umService)
         {
             repository = dynamicRepository;
             this.cacheRefService = cacheRefService;
@@ -55,6 +60,7 @@
             this.authorizationService = authorizationService;
             this.rnGCasinoService = rnGCasinoService;
             this.logger = logger;
+            this.umService = umService;
         }
 
         public async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -125,15 +131,16 @@
 
             foreach (var item in rawData)
             {
-                item.Name = GetProductStatusName(productId, item, hasMultipleRow);
+                item.Name = GetProductStatusName(productId, item.SportType, item.BetType, hasMultipleRow);
 
                 yield return item;
             }
         }
 
-        private string GetProductStatusName(int productId, ProductStatusModel product, bool hasMultipleRow)
+        private string GetProductStatusName(int productId, int sportType, int betType, bool hasMultipleRow)
         {
-            var sportShowName = new List<int>{
+            var sportShowName = new List<int>
+            {
                 SportTypeConstants.AllBet,
                 SportTypeConstants.BBIN,
                 SportTypeConstants.SexyGaming,
@@ -145,14 +152,14 @@
                 SportTypeConstants.RNGWar
             };
 
-            if (sportShowName.Contains(product.SportType))
+            if (sportShowName.Contains(sportType))
             {
-                return cacheRefService.GetSportTypeName(product.SportType);
+                return cacheRefService.GetSportTypeName(sportType);
             }
 
             if (hasMultipleRow)
             {
-                return cacheRefService.GetBetTypeName(product.BetType);
+                return cacheRefService.GetBetTypeName(betType);
             }
 
             return cacheRefService.GetProductName(productId);
@@ -160,6 +167,7 @@
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
+            const int UMErrorCode = 90014;
             IList<string> errorMessages = new List<string>();
             var criteria = criteriaFactory.CreateUpdateKenoStatusCriteria(param);
 
@@ -169,7 +177,14 @@
 
                 if (!item.Success)
                 {
-                    errorMessages.Add($"{item.ErrMsg}: {cacheRefService.GetBetTypeName(item.BetType)}");
+                    if (item.ErrCode != UMErrorCode)
+                    {
+                        errorMessages.Add($"{item.ErrMsg}: {cacheRefService.GetBetTypeName(item.BetType)}");
+                    }
+                    else if (errorMessages.Count == 0)
+                    {
+                        errorMessages.Add(item.ErrMsg);
+                    }
                 }
             }
 
@@ -181,13 +196,45 @@
         private async Task<Result> UpdateStatusAsync(ProductStatusCommandParam param)
         {
             var criteria = criteriaFactory.CreateUpdateCriteria(param);
-
             await repository.ExecuteAsync(criteria).ConfigureAwait(false);
 
-            return criteria.Success ?
-                Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language)) :
-                Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language));
+            if (criteria.Success)
+            {
+                var umMessages = await GetUMMessagesAsync(param);
+
+                return string.IsNullOrWhiteSpace(umMessages)
+                    ? Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language))
+                    : Result.CreateErrorResult(DefaultErrorCode, umMessages);
+            }
+
+            return Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language));
         }
+
+        private async Task<string> GetUMMessagesAsync(ProductStatusCommandParam param)
+        {
+            IList<string> umMessages = new List<string>();
+            var settingType = umService.GetDCSSettingType(param.ProductId);
+
+            foreach (var item in param.ProductStatusParams)
+            {
+                var message = await umService.GetUMMessageAsync(
+                    new CheckUMParam(param.CustId, param.ProductId, item.SportType, settingType, FunctionTypeConstants.LockEdit, param.Language));
+
+                if (message != null)
+                {
+                    umMessages.Add(BuildProductStatusUMMessage(message, param.ProductId, item.SportType, param.Language));
+                }
+            }
+
+            return string.Join("<br>", umMessages);
+        }
+
+        private string BuildProductStatusUMMessage(UMMessageItem message, int productId, int sportType, string language)
+            => string.Format(
+                GetResource("UMProductStatusPattern", language),
+                GetProductStatusName(productId, sportType, 0, false),
+                message.BeginTime.ToLongDateWithSlash(),
+                message.EndTime.ToLongDateWithSlash());
 
         private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
         {

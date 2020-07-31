@@ -1,12 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using Alpha.AccountInfo.Features.ProductStatusPopup;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Alpha.AccountInfo.Features.Shared.Constants;
     using Alpha.Products.Core.Shared;
     using Criteria.ProductStatus;
     using Fanex.Data.Repository;
     using Params.ProductStatus;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public interface ProductStatusCriteriaFactory
     {

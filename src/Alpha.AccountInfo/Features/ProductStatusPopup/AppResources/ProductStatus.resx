@@ -132,4 +132,7 @@
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>Status updated successfully.</value>
   </data>
+  <data name="UMProductStatusPattern" xml:space="preserve">
+    <value>{0} is under maintenance for Product Status from {1} (GMT+8) to {2} (GMT+8): Update failed</value>
+  </data>
 </root>

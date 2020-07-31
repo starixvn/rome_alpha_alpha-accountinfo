@@ -54,4 +54,8 @@
   <Function Name="QR Code">
     <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0"/>
   </Function>
+
+  <Function Name="UM Message">
+    <Setting Key="Acc_CheckUM" SpName="Acc_CheckUM" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
 </Functions>

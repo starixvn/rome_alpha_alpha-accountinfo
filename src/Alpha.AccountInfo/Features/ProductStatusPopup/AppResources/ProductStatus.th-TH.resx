@@ -132,4 +132,7 @@
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>สถานะการปรับปรุงเรียบร้อยแล้ว</value>
   </data>
+  <data name="UMProductStatusPattern" xml:space="preserve">
+    <value>{0} อยู่ระหว่างการบำรุงรักษาสำหรับ Product Status จาก {1} (GMT+8) ถึง {2} (GMT+8): การอัปเดตล้มเหลว</value>
+  </data>
 </root>

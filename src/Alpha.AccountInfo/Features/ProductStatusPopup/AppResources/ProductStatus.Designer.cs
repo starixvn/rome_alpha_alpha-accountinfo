@@ -104,5 +104,14 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup.AppResources {
                 return ResourceManager.GetString("StatusUpdatedSuccessfully", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is under maintenance for Product Status from {1} (GMT+8) to {2} (GMT+8): Update failed.
+        /// </summary>
+        public static string UMProductStatusPattern {
+            get {
+                return ResourceManager.GetString("UMProductStatusPattern", resourceCulture);
+            }
+        }
     }
 }
