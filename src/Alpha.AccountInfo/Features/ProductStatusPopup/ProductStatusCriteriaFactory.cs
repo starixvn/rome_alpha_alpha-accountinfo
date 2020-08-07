@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.AccountInfo.Features.Shared.Constants;
+    using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.Products.Core.Shared;
     using Criteria.ProductStatus;
     using Fanex.Data.Repository;

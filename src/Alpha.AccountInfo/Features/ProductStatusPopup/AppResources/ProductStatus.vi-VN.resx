@@ -133,6 +133,6 @@
     <value>Cập nhật trạng thái thành công.</value>
   </data>
   <data name="UMProductStatusPattern" xml:space="preserve">
-    <value>{0} đang được bảo trì Product Status từ {1} (GMT+8) đến {2} (GMT+8): Cập nhật bị lỗi</value>
+    <value>{0} đang được bảo trì Trạng Thái Sản Phẩm từ {1} (GMT+8) đến {2} (GMT+8): Cập nhật bị lỗi</value>
   </data>
 </root>

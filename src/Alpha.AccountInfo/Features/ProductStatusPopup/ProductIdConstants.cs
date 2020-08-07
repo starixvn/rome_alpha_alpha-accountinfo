@@ -1,8 +1,7 @@
-﻿namespace Alpha.AccountInfo.Features.Shared.Constants
+﻿namespace Alpha.AccountInfo.Features.ProductStatusPopup
 {
     public static class ProductIdConstants
     {
-        public const int NG2 = 23;
         public const int SabaVirtualSports = 54;
     }
 }

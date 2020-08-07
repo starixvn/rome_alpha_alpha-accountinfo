@@ -115,7 +115,6 @@
 #pragma warning restore CS0618 // Type or member is obsolete
                 Lifestyle.Scoped);
 
-            container.RegisterSingleton<UMService, UMServiceImpl>();
             container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Singleton);
             container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
             container.Register<RnGCasinoService, RnGCasinoServiceImpl>(Lifestyle.Scoped);

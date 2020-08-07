@@ -133,6 +133,6 @@
     <value>狀態已成功更新</value>
   </data>
   <data name="UMProductStatusPattern" xml:space="preserve">
-    <value>{0} 針對 Product Status 正在維護 {1} (GMT+8) 至 {2} (GMT+8): 更新失敗</value>
+    <value>{0} 針對 產品狀態 正在維護 {1} (GMT+8) 至 {2} (GMT+8): 更新失敗</value>
   </data>
 </root>

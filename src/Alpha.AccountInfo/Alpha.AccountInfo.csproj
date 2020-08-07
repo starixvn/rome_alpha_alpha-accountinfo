@@ -171,8 +171,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\ProductStatusPopup\Models\ProductStatusUM.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\CheckProductStatusUMCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectDCSProductStatusFor4Criteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateProductStatusForSettingType4Criteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\ProductIdConstants.cs" />
     <Compile Include="Features\ProductStatusPopup\SportTypeConstants.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
@@ -233,14 +236,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Features\Shared\Constants\FunctionTypeConstants.cs" />
-    <Compile Include="Features\Shared\Constants\ProductIdConstants.cs" />
-    <Compile Include="Features\Shared\Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Features\Shared\Extensions\DateTimeExtensions.cs">
+	  <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Features\Shared\Helpers\ExceptionHandlerWrapper.cs" />
-    <Compile Include="Features\Shared\Models\UMMessageItem.cs" />
-    <Compile Include="Features\Shared\Params\CheckUMParam.cs" />
-    <Compile Include="Features\Shared\Params\SPs\CheckUMCriteria.cs" />
-    <Compile Include="Features\Shared\Services\UMService.cs" />
     <Compile Include="Features\Shared\StatusNames.cs" />
     <Compile Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.AccountInfo.Criteria.ProductStatus;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.Models;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -32,7 +34,6 @@
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ProductStatusServiceImpl productStatusServiceImpl;
         private readonly ILogger logger;
-        private readonly UMService umService;
 
         public ProductStatusServiceImplTests()
         {
@@ -42,15 +43,13 @@
             authorizationService = Substitute.For<ProductStatusAuthorizationService>();
             rnGCasinoService = Substitute.For<RnGCasinoService>();
             logger = Substitute.For<ILogger>();
-            umService = Substitute.For<UMService>();
             productStatusServiceImpl = new ProductStatusServiceImpl(
                 dynamicRepository,
                 cacheRefService,
                 criteriaFactory,
                 authorizationService,
                 rnGCasinoService,
-                logger,
-                umService);
+                logger);
 
             rnGCasinoService.SyncedToRnGCasino3rdByStatus(
                 new UpdateRnGCasino3rdParam(
@@ -485,7 +484,7 @@
                 0,
                 null,
                 null,
-                null,
+                Enumerable.Empty<BetTypeStatusParam>(),
                 "en-US");
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
@@ -501,6 +500,9 @@
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
+            dynamicRepository
+                .FetchAsync<ProductStatusUM>(Arg.Any<CheckProductStatusUMCriteria>())
+                .Returns(Enumerable.Empty<ProductStatusUM>());
 
             // Act
             var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);

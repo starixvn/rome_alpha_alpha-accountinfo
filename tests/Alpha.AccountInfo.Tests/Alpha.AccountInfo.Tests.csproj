@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettingsTests.cs" />
+    <Compile Include="Features\ProductStatusPopup\SpParams\CheckProductStatusUMCriteriaTests.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureServicesTest.cs" />
     <Compile Include="Features\ProfilePicture\SPs\Commands\UpdateActorProfilePictureCommandBaseTest.cs" />
     <Compile Include="Features\ProfilePicture\SPs\Commands\UpdateActorProfilePictureStandbyServerCommandTest.cs" />

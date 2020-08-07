@@ -8,12 +8,12 @@
     using System.Xml.Linq;
     using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.Models;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared;
-    using Alpha.AccountInfo.Features.Shared.Constants;
     using Alpha.AccountInfo.Features.Shared.Extensions;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Features.Shared.Params;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.Products.Core.Shared;
     using Fanex.Data.Repository;
@@ -36,6 +36,7 @@
     public class ProductStatusServiceImpl : ProductStatusService
     {
         private const int DefaultErrorCode = 101;
+        private const int UMErrorCode = 90014;
 
         private readonly IDynamicRepository repository;
         private readonly CacheRefService cacheRefService;
@@ -43,7 +44,6 @@
         private readonly ProductStatusAuthorizationService authorizationService;
         private readonly RnGCasinoService rnGCasinoService;
         private readonly ILogger logger;
-        private readonly UMService umService;
 
         public ProductStatusServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -51,8 +51,7 @@
             ProductStatusCriteriaFactory criteriaFactory,
             ProductStatusAuthorizationService authorizationService,
             RnGCasinoService rnGCasinoService,
-            ILogger logger,
-            UMService umService)
+            ILogger logger)
         {
             repository = dynamicRepository;
             this.cacheRefService = cacheRefService;
@@ -60,7 +59,6 @@
             this.authorizationService = authorizationService;
             this.rnGCasinoService = rnGCasinoService;
             this.logger = logger;
-            this.umService = umService;
         }
 
         public async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -167,7 +165,6 @@
 
         private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
         {
-            const int UMErrorCode = 90014;
             IList<string> errorMessages = new List<string>();
             var criteria = criteriaFactory.CreateUpdateKenoStatusCriteria(param);
 
@@ -200,25 +197,26 @@
 
             if (criteria.Success)
             {
-                var umMessages = await GetUMMessagesAsync(param);
+                var umMessages = await GetProductStatusUMAsync(param);
 
                 return string.IsNullOrWhiteSpace(umMessages)
                     ? Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language))
-                    : Result.CreateErrorResult(DefaultErrorCode, umMessages);
+                    : Result.CreateErrorResult(UMErrorCode, umMessages);
             }
 
             return Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language));
         }
 
-        private async Task<string> GetUMMessagesAsync(ProductStatusCommandParam param)
+        private async Task<string> GetProductStatusUMAsync(ProductStatusCommandParam param)
         {
             IList<string> umMessages = new List<string>();
-            var settingType = umService.GetDCSSettingType(param.ProductId);
+
+            var productStatusUM = await repository.FetchAsync<ProductStatusUM>(
+                new CheckProductStatusUMCriteria(param.ProductId, param.CustId));
 
             foreach (var item in param.ProductStatusParams)
             {
-                var message = await umService.GetUMMessageAsync(
-                    new CheckUMParam(param.CustId, param.ProductId, item.SportType, settingType, FunctionTypeConstants.LockEdit, param.Language));
+                var message = productStatusUM.FirstOrDefault(m => m.SportType == 0 || m.SportType == item.SportType);
 
                 if (message != null)
                 {
@@ -229,7 +227,7 @@
             return string.Join("<br>", umMessages);
         }
 
-        private string BuildProductStatusUMMessage(UMMessageItem message, int productId, int sportType, string language)
+        private string BuildProductStatusUMMessage(ProductStatusUM message, int productId, int sportType, string language)
             => string.Format(
                 GetResource("UMProductStatusPattern", language),
                 GetProductStatusName(productId, sportType, 0, false),
