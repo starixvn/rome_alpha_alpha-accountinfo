@@ -1,9 +1,4 @@
 ﻿"use strict";
-interface Window {
-    updateProductStatusPopup: {
-        onClosing: Function
-    }
-}
 
 interface BettypeStatus {
     SportType: number,
@@ -25,7 +20,7 @@ const ProductConstants = {
 
 class ProductStatusPopup {
     $: JQueryStatic;
-    topWindow: Window;
+    topWindow: any;
 
     $msgServerResult: JQuery;
     $formProductStatus: JQuery;
@@ -35,7 +30,7 @@ class ProductStatusPopup {
     custRoleId: number;
     token: string;
 
-    constructor($: JQueryStatic, topWindow: Window) {
+    constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
         this.topWindow = topWindow;
     }
@@ -66,7 +61,7 @@ class ProductStatusPopup {
         const formData = this.getProductStatusData();
 
         if (!formData) {
-            this.showNoDataChange();
+            this.addNoDataChange();
             this.$.unblockUI();
             return;
         }
@@ -115,43 +110,62 @@ class ProductStatusPopup {
     };
 
     afterUpdateStatusSuccessfully = data => {
-        const code = this.$.type(data.ErrCode) === "undefined" ? data.Code : data.ErrCode,
-            messsage = data.Message || data.ErrMsg;
+        var html = [];
+        var isSuccess = true;
+        if (this.$.type(data.ErrCode) !== "undefined") {
+            html.push(this.buildErrorMessage(data.ErrMsg));
+            isSuccess = false;
+        } else {
+            const self = this;
+            this.$.each(data, function (index, item) {
+                if (item.Code !== 0) {
+                    html.push(self.buildErrorMessage(item.Message));
+                    isSuccess = false;
+                } else {
+                    html.push(self.buildSuccessMessage(item.Message));
+                }
+            });
+        }
 
-        code === 0 ? this.showSuccess(messsage) : this.showError(messsage);
-    };
+        this.showMessage(html.join(""));
 
-    showNoDataChange = () => {
-        this.showMessage("msg msg-warning", this.$("#hiddenNoDataChange").val());
-    };
-
-    showSuccess = (message: string) => {
-        this.showMessage("msg msg-success", message);
-        if (this.productId !== ProductConstants.Keno
+        if (isSuccess
+            && this.productId !== ProductConstants.Keno
             && this.productId !== ProductConstants.AllBet
-            && window.top.updateProductStatusPopup
-            && window.top.updateProductStatusPopup.onClosing
-            && typeof window.top.updateProductStatusPopup.onClosing === 'function') {
-            window.top.updateProductStatusPopup.onClosing(this.custName, true);
+            && this.topWindow.updateProductStatusPopup
+            && this.topWindow.updateProductStatusPopup.onClosing
+            && typeof this.topWindow.updateProductStatusPopup.onClosing === 'function') {
+            this.topWindow.updateProductStatusPopup.onClosing(this.custName, true);
         }
     };
 
-    showError = (message: string) => {
-        this.showMessage("msg msg-error", message);
+    addNoDataChange = () => {
+        const html = this.buildWarningMessage(this.$("#hiddenNoDataChange").val());
+        this.showMessage(html);
     };
 
-    showMessage = (className: string, message: string) => {
+    showMessage = (html) => {
         this.$msgServerResult
-            .removeClass()
-            .addClass(className)
-            .html(message);
+            .removeClass("hide")
+            .html(html);
     };
 
     hideMessage = () => {
         this.$msgServerResult
-            .removeClass()
             .addClass("hide")
             .html("");
+    };
+
+    buildSuccessMessage = (message: string) => {
+        return '<div class="msg msg-success">' + message + '</div>'
+    };
+
+    buildErrorMessage = (message: string) => {
+        return '<div class="msg msg-error">' + message + '</div>'
+    };
+
+    buildWarningMessage = (message: string) => {
+        return '<div class="msg msg-warning">' + message + '</div>'
     };
 }
 

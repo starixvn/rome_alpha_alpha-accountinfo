@@ -337,7 +337,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(actualResult.IsSuccess);
@@ -386,7 +386,7 @@
             cacheRefService.GetBetTypeName(1503).Returns("Slovakia");
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(!actualResult.IsSuccess &&
@@ -423,7 +423,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(actualResult.IsSuccess);
@@ -462,7 +462,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(!actualResult.IsSuccess &&
@@ -505,7 +505,7 @@
                 .Returns(Enumerable.Empty<ProductStatusUM>());
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(actualResult.IsSuccess);
@@ -549,7 +549,7 @@
             cacheRefService.GetBetTypeName(2401).Returns("Baccarat, Roulette, Sic Bo, Dragon Tiger");
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(!actualResult.IsSuccess &&
@@ -578,7 +578,7 @@
                 .Returns(false);
 
             // Act
-            var actualData = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualData = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.Equal(403, actualData.Code);

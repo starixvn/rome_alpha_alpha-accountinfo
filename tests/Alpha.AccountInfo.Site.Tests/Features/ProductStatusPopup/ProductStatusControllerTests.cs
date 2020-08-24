@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.ProductStatusPopup
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -146,7 +147,7 @@
             await productStatusController.Update(message);
 
             // Assert
-            await mediator.Received().Send<Result>(message);
+            await mediator.Received().Send<IEnumerable<Result>>(message);
         }
 
         [Theory]

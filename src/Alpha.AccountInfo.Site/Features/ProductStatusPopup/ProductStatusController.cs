@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProductStatusPopup
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
     using Alpha.AccountInfo.Site.Features.Shared;
@@ -23,6 +23,6 @@
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> Update(ProductStatusCommand message)
-            => await JsonDataAsync<Result>(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+            => await JsonDataAsync<IEnumerable<Result>>(message, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
     }
 }

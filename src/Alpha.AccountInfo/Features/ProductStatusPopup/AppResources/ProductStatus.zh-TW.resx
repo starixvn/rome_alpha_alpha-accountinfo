@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllProducts" xml:space="preserve">
+    <value>所有產品</value>
+  </data>
+  <data name="CustomerSettings" xml:space="preserve">
+    <value>客戶設定</value>
+  </data>
   <data name="Msg60033" xml:space="preserve">
     <value>由於賬號的此產品已關閉導致無法更改下線產品狀態。</value>
   </data>
@@ -126,13 +132,19 @@
   <data name="Msg90012" xml:space="preserve">
     <value>您不能執行此操作。</value>
   </data>
+  <data name="ProductStatusUM" xml:space="preserve">
+    <value>由於以下設定正在維護中，因此無法更新 (GMT +8):</value>
+  </data>
+  <data name="ProductStatusUMPattern" xml:space="preserve">
+    <value>- {0}: {1} ({2} 至 {3})</value>
+  </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
     <value>根據公司的政策, 您不允許禁用此產品於下線。</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>狀態已成功更新</value>
   </data>
-  <data name="UMProductStatusPattern" xml:space="preserve">
-    <value>{0} 針對 產品狀態 正在維護 {1} (GMT+8) 至 {2} (GMT+8): 更新失敗</value>
+  <data name="_ProductStatus" xml:space="preserve">
+    <value>產品狀態</value>
   </data>
 </root>

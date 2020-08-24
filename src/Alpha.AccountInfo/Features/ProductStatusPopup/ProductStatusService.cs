@@ -12,7 +12,6 @@
     using Alpha.AccountInfo.Features.ProductStatusPopup.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared;
-    using Alpha.AccountInfo.Features.Shared.Extensions;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.Products.Core.Shared;
@@ -30,14 +29,15 @@
             int uplineId,
             UserLevel uplineLevel);
 
-        Task<Result> UpdateProductStatusAsync(ProductStatusCommandParam commandParam);
+        Task<IEnumerable<Result>> UpdateProductStatusAsync(ProductStatusCommandParam commandParam);
     }
 
     public class ProductStatusServiceImpl : ProductStatusService
     {
         private const int DefaultErrorCode = 101;
         private const int UMKenoErrorCode = 90014;
-        private const int UMDCSErrorCode = 90017;
+        private const int DoNothingErrorCode = 90017;
+        private const string UMDatetimeFormat = "dd/MM/yyyy HH:mm";
 
         private readonly IDynamicRepository repository;
         private readonly CacheRefService cacheRefService;
@@ -84,7 +84,7 @@
             return await GetProductStatusAsync(productId, custId, custRole).ConfigureAwait(false);
         }
 
-        public async Task<Result> UpdateProductStatusAsync(ProductStatusCommandParam commandParam)
+        public async Task<IEnumerable<Result>> UpdateProductStatusAsync(ProductStatusCommandParam commandParam)
         {
             var authorizationParam = new ProductStatusAuthorizationParam(
                    commandParam.ProductId,
@@ -95,16 +95,16 @@
 
             if (!authorizationService.CanUpdate(authorizationParam))
             {
-                return Result.CreateForbiddenResult();
+                return new[] { Result.CreateForbiddenResult() };
             }
 
             switch (commandParam.ProductId)
             {
                 case ProductConstants.Keno:
-                    return await UpdateKenoStatusAsync(commandParam).ConfigureAwait(false);
+                    return new[] { await UpdateKenoStatusAsync(commandParam).ConfigureAwait(false) };
 
                 case ProductConstants.RNGCasino:
-                    return await UpdateCasinoStatus(commandParam).ConfigureAwait(false);
+                    return new[] { await UpdateCasinoStatus(commandParam).ConfigureAwait(false) };
 
                 default:
                     return await UpdateStatusAsync(commandParam).ConfigureAwait(false);
@@ -181,7 +181,10 @@
                     }
                     else if (errorMessages.Count == 0)
                     {
-                        errorMessages.Add(item.ErrMsg);
+                        var errorMessage = item.ErrMsg.Contains("{0}")
+                            ? string.Format(item.ErrMsg, cacheRefService.GetProductName(ProductConstants.Keno, param.Language))
+                            : item.ErrMsg;
+                        errorMessages.Add(errorMessage);
                     }
                 }
             }
@@ -191,52 +194,78 @@
                 : Result.CreateErrorResult(DefaultErrorCode, string.Join("<br>", errorMessages));
         }
 
-        private async Task<Result> UpdateStatusAsync(ProductStatusCommandParam param)
+        private async Task<IEnumerable<Result>> UpdateStatusAsync(ProductStatusCommandParam param)
         {
             var criteria = criteriaFactory.CreateUpdateCriteria(param);
             await repository.ExecuteAsync(criteria).ConfigureAwait(false);
 
+            if (!criteria.Success && criteria.ErrCode != DoNothingErrorCode)
+            {
+                return new[] { Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language)) };
+            }
+
+            IList<Result> results = new List<Result>();
+
             if (criteria.Success)
             {
-                return Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language));
+                results.Add(Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language)));
             }
 
-            if (criteria.ErrCode == UMDCSErrorCode)
+            var umMessages = await GetProductStatusUMAsync(param);
+
+            if (!string.IsNullOrWhiteSpace(umMessages))
             {
-                var umMessages = await GetProductStatusUMAsync(param);
-
-                return Result.CreateErrorResult(criteria.ErrCode, umMessages);
+                results.Add(Result.CreateErrorResult(DoNothingErrorCode, umMessages));
             }
 
-            return Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language));
+            return results;
         }
 
         private async Task<string> GetProductStatusUMAsync(ProductStatusCommandParam param)
         {
-            IList<string> umMessages = new List<string>();
+            var umMessages = new List<string>();
+            var productStatusUM = await repository.FetchAsync<ProductStatusUM>(new CheckProductStatusUMCriteria(param.ProductId, param.CustId));
 
-            var productStatusUM = await repository.FetchAsync<ProductStatusUM>(
-                new CheckProductStatusUMCriteria(param.ProductId, param.CustId));
-
-            foreach (var item in param.ProductStatusParams)
+            foreach (var item in productStatusUM)
             {
-                var message = productStatusUM.FirstOrDefault(m => m.SportType == 0 || m.SportType == item.SportType);
-
-                if (message != null)
+                if (item.ProductId == 0 || item.SportType == 0)
                 {
-                    umMessages.Add(BuildProductStatusUMMessage(message, param.ProductId, item.SportType, param.Language));
+                    return $"{GetResource("ProductStatusUM", param.Language)}<br>{BuildProductStatusUMMessage(item, param.Language)}";
+                }
+
+                if (param.ProductStatusParams.Any(p => p.SportType == item.SportType))
+                {
+                    umMessages.Add(BuildProductStatusUMMessage(item, param.Language));
                 }
             }
 
-            return string.Join("<br>", umMessages);
+            return umMessages.Count == 0
+                ? string.Empty
+                : $"{GetResource("ProductStatusUM", param.Language)}<br>{string.Join("<br>", umMessages)}";
         }
 
-        private string BuildProductStatusUMMessage(ProductStatusUM message, int productId, int sportType, string language)
+        private string BuildProductStatusUMMessage(ProductStatusUM message, string language)
             => string.Format(
-                GetResource("UMProductStatusPattern", language),
-                GetProductStatusName(productId, sportType, 0, false),
-                message.BeginTime.ToLongDateWithSlash(),
-                message.EndTime.ToLongDateWithSlash());
+                GetResource("ProductStatusUMPattern", language),
+                GetProductStatusName(message, language),
+                message.SettingType == 0 ? GetResource("CustomerSettings", language) : GetResource("_ProductStatus", language),
+                ToUMDatetime(message.BeginTime),
+                ToUMDatetime(message.EndTime));
+
+        private string GetProductStatusName(ProductStatusUM message, string language)
+        {
+            if (message.ProductId == 0)
+            {
+                return GetResource("AllProducts", language);
+            }
+
+            if (message.SportType == 0)
+            {
+                cacheRefService.GetProductName(message.ProductId, language);
+            }
+
+            return GetProductStatusName(message.ProductId, message.SportType, 0, false);
+        }
 
         private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
         {
@@ -247,19 +276,22 @@
             if (criteria.Success)
             {
                 rnGCasinoService.SyncedToRnGCasino3rdByStatus(
-                 new UpdateRnGCasino3rdParam(
-                     criteria.CustId,
-                     StatusNames.EnableRnGCasino3rd,
-                     !criteria.Disable,
-                     criteria.ActorId,
-                      param.ActorName,
-                      criteria.IP
-                     ));
+                    new UpdateRnGCasino3rdParam(
+                        criteria.CustId,
+                        StatusNames.EnableRnGCasino3rd,
+                        !criteria.Disable,
+                        criteria.ActorId,
+                        param.ActorName,
+                        criteria.IP));
 
                 return Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language));
             }
 
-            return Result.CreateErrorResult(criteria.ErrCode, criteria.ErrMsg);
+            var errorMessage = criteria.ErrMsg.Contains("{0}")
+                ? string.Format(criteria.ErrMsg, cacheRefService.GetProductName(ProductConstants.RNGCasino, param.Language))
+                : criteria.ErrMsg;
+
+            return Result.CreateErrorResult(criteria.ErrCode, errorMessage);
         }
 
         private string ParseDCSXmlErrorMessage(string errMsg, string language)
@@ -301,5 +333,8 @@
 
         private static string GetResource(string name, string language)
             => ProductStatus.ResourceManager.GetString(name, new CultureInfo(language));
+
+        private static string ToUMDatetime(DateTime dateTime)
+            => dateTime.ToString(UMDatetimeFormat);
     }
 }

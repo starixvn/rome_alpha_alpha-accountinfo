@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllProducts" xml:space="preserve">
+    <value>All products</value>
+  </data>
+  <data name="CustomerSettings" xml:space="preserve">
+    <value>Customer Settings</value>
+  </data>
   <data name="Msg60033" xml:space="preserve">
     <value>Unable to edit downline's Product Status because the account disabled for this product.</value>
   </data>
@@ -126,13 +132,19 @@
   <data name="Msg90012" xml:space="preserve">
     <value>You are not allowed to perform this action.</value>
   </data>
+  <data name="ProductStatusUM" xml:space="preserve">
+    <value>Unable to Update because of the maintenance of the settings below (GMT +8):</value>
+  </data>
+  <data name="ProductStatusUMPattern" xml:space="preserve">
+    <value>- {0}: {1} ({2} to {3})</value>
+  </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
     <value>You are not allowed to disable this product on your downlines per company policy.</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>Status updated successfully.</value>
   </data>
-  <data name="UMProductStatusPattern" xml:space="preserve">
-    <value>{0} is under maintenance for Product Status from {1} (GMT+8) to {2} (GMT+8): Update failed</value>
+  <data name="_ProductStatus" xml:space="preserve">
+    <value>Product Status</value>
   </data>
 </root>

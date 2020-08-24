@@ -18,8 +18,10 @@ export default class BettypeLevelStatus extends React.Component {
     getPopupHeightByProduct(productId) {
         switch (productId) {
             case ProductConstants.Keno: return 530;
-            case ProductConstants.LiveCasino: return 360;
-            default: return 200;
+            case ProductConstants.LiveCasino:
+            case ProductConstants.RNGLottery:
+                return 430;
+            default: return 300;
         }
     }
 

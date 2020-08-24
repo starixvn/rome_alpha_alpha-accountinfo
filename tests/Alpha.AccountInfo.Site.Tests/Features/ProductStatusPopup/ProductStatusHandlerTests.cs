@@ -123,17 +123,17 @@
                     new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
                 }
             };
-            var expectedResult = Result.CreateSuccessResult();
+            var expectedResult = new[] { Result.CreateSuccessResult() };
 
             statusService
                 .UpdateProductStatusAsync(Arg.Any<ProductStatusCommandParam>())
                 .Returns(expectedResult);
 
             // Act
-            var actualResult = await statusHandler.Handle(message);
+            var actualResult = (await statusHandler.Handle(message)).FirstOrDefault();
 
             // Assert
-            Assert.True(expectedResult.Code == actualResult.Code);
+            Assert.True(expectedResult[0].Code == actualResult.Code);
         }
 
         [Fact]
@@ -152,14 +152,14 @@
                     new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
                 }
             };
-            var expectedResult = Result.CreateForbiddenResult();
+            var expectedResult = new[] { Result.CreateForbiddenResult() };
 
             statusService
                 .UpdateProductStatusAsync(Arg.Any<ProductStatusCommandParam>())
                 .Returns(expectedResult);
 
             // Act
-            var actualResult = await statusHandler.Handle(message);
+            var actualResult = (await statusHandler.Handle(message)).FirstOrDefault();
 
             // Assert
             Assert.Equal(403, actualResult.Code);

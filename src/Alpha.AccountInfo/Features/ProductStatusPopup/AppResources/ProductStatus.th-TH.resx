@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllProducts" xml:space="preserve">
+    <value>โปรดักส์ทั้งหมด</value>
+  </data>
+  <data name="CustomerSettings" xml:space="preserve">
+    <value>การตั้งค่าของลูกค้า</value>
+  </data>
   <data name="Msg60033" xml:space="preserve">
     <value>ไม่สามารถแก้ไขสถานะผลิตภัณฑ์ของดาวน์ไลน์ได้ เนื่องจากไม่ได้เปิดการใช้งานผลิตภัณฑ์นี้</value>
   </data>
@@ -126,13 +132,19 @@
   <data name="Msg90012" xml:space="preserve">
     <value>คุณไม่สามารถดำเนินการนี้</value>
   </data>
+  <data name="ProductStatusUM" xml:space="preserve">
+    <value>เนื่องจากอยู่ในระหว่างการปรับปรุง ดังนั้นในช่วงเวลาดังกล่าวจึงไม่สามารถอัพเดทได้ (GMT +8):</value>
+  </data>
+  <data name="ProductStatusUMPattern" xml:space="preserve">
+    <value>- {0}: {1} ({2} ถึง {3})</value>
+  </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
     <value>ตามนโยบายของบริษัท คุณไม่ได้อนุญาตให้ปิดใช้งานผลิตภัณฑ์ของดาวน์ไลน์</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>สถานะการปรับปรุงเรียบร้อยแล้ว</value>
   </data>
-  <data name="UMProductStatusPattern" xml:space="preserve">
-    <value>{0} อยู่ระหว่างการบำรุงรักษาสำหรับ สถานะโปรดักส์ จาก {1} (GMT+8) ถึง {2} (GMT+8): การอัปเดตล้มเหลว</value>
+  <data name="_ProductStatus" xml:space="preserve">
+    <value>สถานะโปรดักส์</value>
   </data>
 </root>
