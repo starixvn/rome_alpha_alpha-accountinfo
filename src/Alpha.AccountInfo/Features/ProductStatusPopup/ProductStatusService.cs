@@ -36,7 +36,8 @@
     public class ProductStatusServiceImpl : ProductStatusService
     {
         private const int DefaultErrorCode = 101;
-        private const int UMErrorCode = 90014;
+        private const int UMKenoErrorCode = 90014;
+        private const int UMDCSErrorCode = 90017;
 
         private readonly IDynamicRepository repository;
         private readonly CacheRefService cacheRefService;
@@ -174,7 +175,7 @@
 
                 if (!item.Success)
                 {
-                    if (item.ErrCode != UMErrorCode)
+                    if (item.ErrCode != UMKenoErrorCode)
                     {
                         errorMessages.Add($"{item.ErrMsg}: {cacheRefService.GetBetTypeName(item.BetType)}");
                     }
@@ -197,11 +198,14 @@
 
             if (criteria.Success)
             {
+                return Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language));
+            }
+
+            if (criteria.ErrCode == UMDCSErrorCode)
+            {
                 var umMessages = await GetProductStatusUMAsync(param);
 
-                return string.IsNullOrWhiteSpace(umMessages)
-                    ? Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language))
-                    : Result.CreateErrorResult(UMErrorCode, umMessages);
+                return Result.CreateErrorResult(criteria.ErrCode, umMessages);
             }
 
             return Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language));
