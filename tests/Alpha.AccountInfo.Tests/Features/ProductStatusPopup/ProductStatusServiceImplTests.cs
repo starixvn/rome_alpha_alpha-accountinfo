@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.AccountInfo.Criteria.ProductStatus;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.Models;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -335,7 +337,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(actualResult.IsSuccess);
@@ -384,7 +386,7 @@
             cacheRefService.GetBetTypeName(1503).Returns("Slovakia");
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(!actualResult.IsSuccess &&
@@ -421,7 +423,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(actualResult.IsSuccess);
@@ -460,7 +462,7 @@
                 .Returns(Task.CompletedTask);
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(!actualResult.IsSuccess &&
@@ -482,7 +484,7 @@
                 0,
                 null,
                 null,
-                null,
+                Enumerable.Empty<BetTypeStatusParam>(),
                 "en-US");
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
             {
@@ -498,9 +500,12 @@
             dynamicRepository
                 .ExecuteAsync(Arg.Any<INonQueryCommand>())
                 .Returns(Task.CompletedTask);
+            dynamicRepository
+                .FetchAsync<ProductStatusUM>(Arg.Any<CheckProductStatusUMCriteria>())
+                .Returns(Enumerable.Empty<ProductStatusUM>());
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(actualResult.IsSuccess);
@@ -544,7 +549,7 @@
             cacheRefService.GetBetTypeName(2401).Returns("Baccarat, Roulette, Sic Bo, Dragon Tiger");
 
             // Act
-            var actualResult = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.True(!actualResult.IsSuccess &&
@@ -573,7 +578,7 @@
                 .Returns(false);
 
             // Act
-            var actualData = await productStatusServiceImpl.UpdateProductStatusAsync(commandParam);
+            var actualData = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
 
             // Assert
             Assert.Equal(403, actualData.Code);

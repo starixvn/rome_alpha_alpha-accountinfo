@@ -61,6 +61,33 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Status.
+        /// </summary>
+        public static string _ProductStatus {
+            get {
+                return ResourceManager.GetString("_ProductStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All products.
+        /// </summary>
+        public static string AllProducts {
+            get {
+                return ResourceManager.GetString("AllProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Settings.
+        /// </summary>
+        public static string CustomerSettings {
+            get {
+                return ResourceManager.GetString("CustomerSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to edit downline&apos;s Product Status because the account disabled for this product..
         /// </summary>
         public static string Msg60033 {
@@ -84,6 +111,24 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup.AppResources {
         public static string Msg90012 {
             get {
                 return ResourceManager.GetString("Msg90012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to Update because of the maintenance of the settings below (GMT +8):.
+        /// </summary>
+        public static string ProductStatusUM {
+            get {
+                return ResourceManager.GetString("ProductStatusUM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - {0}: {1} ({2} to {3}).
+        /// </summary>
+        public static string ProductStatusUMPattern {
+            get {
+                return ResourceManager.GetString("ProductStatusUMPattern", resourceCulture);
             }
         }
         

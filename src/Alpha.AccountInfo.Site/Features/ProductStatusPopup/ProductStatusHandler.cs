@@ -14,7 +14,7 @@
 
     public class ProductStatusHandler :
         IAsyncRequestHandler<ProductStatusQuery, ProductStatusViewModel>,
-        IAsyncRequestHandler<ProductStatusCommand, Result>
+        IAsyncRequestHandler<ProductStatusCommand, IEnumerable<Result>>
     {
         private readonly ProductStatusService statusService;
 
@@ -35,7 +35,7 @@
             return ToProductStatusViewModel(message, model);
         }
 
-        public async Task<Result> Handle(ProductStatusCommand message)
+        public async Task<IEnumerable<Result>> Handle(ProductStatusCommand message)
         {
             var commandParam = ToUpdateProductStatusParam(message);
 

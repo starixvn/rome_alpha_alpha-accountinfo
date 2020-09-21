@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllProducts" xml:space="preserve">
+    <value>Tất cả sản phẩm</value>
+  </data>
+  <data name="CustomerSettings" xml:space="preserve">
+    <value>Thiết lập khách hàng</value>
+  </data>
   <data name="Msg60033" xml:space="preserve">
     <value>Không thể tùy chỉnh trạng thái trò chơi của thành viên cấp dưới bởi vì tài khoản hiện tại</value>
   </data>
@@ -126,10 +132,19 @@
   <data name="Msg90012" xml:space="preserve">
     <value>Bạn không thể thực thi hành động này.</value>
   </data>
+  <data name="ProductStatusUM" xml:space="preserve">
+    <value>Unable to Update because of the maintenance of the settings below (GMT +8):</value>
+  </data>
+  <data name="ProductStatusUMPattern" xml:space="preserve">
+    <value>- {0}: {1} ({2} to {3})</value>
+  </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
     <value>Theo chính sách của công ty, bạn không được phép vô hiệu hoá sản phẩm cược của cấp dưới.</value>
   </data>
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>Cập nhật trạng thái thành công.</value>
+  </data>
+  <data name="_ProductStatus" xml:space="preserve">
+    <value>Trạng Thái Sản Phẩm</value>
   </data>
 </root>

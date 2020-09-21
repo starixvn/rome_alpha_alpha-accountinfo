@@ -9,6 +9,8 @@
 
         string GetProductName(int productId);
 
+        string GetProductName(int productId, string languageCode);
+
         string GetSportTypeName(int sportTypeId);
     }
 
@@ -25,10 +27,13 @@
             => remotingRefService.GetBetTypeName(betTypeId.ToString(), LanguageCode);
 
         public string GetProductName(int productId)
+            => GetProductName(productId, LanguageCode);
+
+        public string GetProductName(int productId, string languageCode)
             => remotingRefService.GetResourceDataByRefIdAndResourceId(
                 "Product",
                 productId.ToString(),
-                LanguageCode,
+                languageCode,
                 string.Empty);
 
         public string GetSportTypeName(int sportTypeId)

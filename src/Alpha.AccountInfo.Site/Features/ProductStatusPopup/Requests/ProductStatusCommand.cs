@@ -1,10 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests
 {
+    using System;
+    using System.Collections.Generic;
     using Alpha.AccountInfo.Features.Shared.Models;
     using MediatR;
-    using System;
 
-    public class ProductStatusCommand : ProductStatusQuery, IRequest<Result>
+    public class ProductStatusCommand : ProductStatusQuery, IRequest<IEnumerable<Result>>
     {
         public ProductStatusCommand(IUser viewer) : this(viewer, null)
         {
