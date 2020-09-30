@@ -41,7 +41,7 @@ export default class UnsuspendSingle extends React.Component {
                         window.top.main.DelayReloadPage();
                     }
 
-                    window.top.confirmPopupPopup.onClosing(viewModel.SearchAccountName, true);
+                    window.top.confirmPopupPopup && window.top.confirmPopupPopup.onClosing && window.top.confirmPopupPopup.onClosing(viewModel.SearchAccountName, true);
                 }
 
                 $.unblockUI();

@@ -16,5 +16,6 @@
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @RenderSection("Scripts", required: false)
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
+    <script src="@Url.Content("~/Features/Shared/Scripts/Array.from.js")"></script>
 </body>
 </html>

@@ -456,6 +456,7 @@
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\blockUI.js" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\libs\jquery\jquery-1.11.3.js" />
     <Content Include="Features\Shared\Scripts\api-client.jsx" />
+    <Content Include="Features\Shared\Scripts\Array.from.js" />
     <Content Include="Features\Shared\Scripts\react-paginations\autosize-input.jsx" />
     <Content Include="Features\Shared\Scripts\react-paginations\react-pagination.jsx" />
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.css" />
