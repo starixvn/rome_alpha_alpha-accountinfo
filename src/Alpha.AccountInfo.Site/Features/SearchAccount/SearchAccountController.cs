@@ -38,7 +38,7 @@
         public async Task<ActionResult> UpdateGivenCredit(GivenCreditCommand command)
           => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost]
         public async Task<ActionResult> UpdateCustomerStatus(CustomerNonProductStatusCommand command)
            => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
 

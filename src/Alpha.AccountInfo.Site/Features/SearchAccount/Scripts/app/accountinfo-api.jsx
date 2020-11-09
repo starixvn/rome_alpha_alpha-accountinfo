@@ -9,5 +9,5 @@ export const accountInfoAPI = {
 	getCustomerAllStatus: data => requests.get(top.alpha.urls.memberInfoRootPath + 'CustomerList/GetCustomerAllStatus', data),
     getOnlineList: data => requests.get(accountinfoUrl + 'SearchAccount/GetOnlineList', data),
     updateGivenCredit: data => requests.post(accountinfoUrl + 'SearchAccount/UpdateGivenCredit', data),
-    updateCustomerStatus: (url, data) => requests.post(url, data)
+	updateCustomerStatus: (action, data) => requests.post(accountinfoUrl + 'SearchAccount/' + action, data)
 };
