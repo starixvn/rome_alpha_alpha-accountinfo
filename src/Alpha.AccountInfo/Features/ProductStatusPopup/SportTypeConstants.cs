@@ -12,6 +12,7 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
         public const int Lottery = 220;
         public const int TableGaming = 222;
         public const int RNGWar = 224;
-        public const int ION = 225; 
+        public const int ION = 225;
+        public const int WM = 233;
     }
 }
