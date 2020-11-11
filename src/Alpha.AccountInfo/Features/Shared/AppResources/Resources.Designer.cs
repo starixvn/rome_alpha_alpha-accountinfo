@@ -187,7 +187,16 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was closed due to failed login attempts or expired account.
+        ///   Looks up a localized string similar to This account was closed by inactivity.
+        /// </summary>
+        public static string ClosedByArchive {
+            get {
+                return ResourceManager.GetString("ClosedByArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account was closed by failed logins..
         /// </summary>
         public static string ClosedByFailedLoginOrAccountExpired {
             get {

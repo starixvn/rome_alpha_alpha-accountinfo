@@ -361,7 +361,7 @@
     <value>此賬號已被管理員關閉。</value>
   </data>
   <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>由於輸入密碼錯誤或是賬號已過期，此賬號已被關閉。</value>
+    <value>This account was closed by failed logins.</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
     <value>由於動態密碼輸入錯誤，該帳戶已被停用。</value>
@@ -437,5 +437,8 @@
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>第三方待定轉賬</value>
+  </data>
+  <data name="ClosedByArchive" xml:space="preserve">
+    <value>This account was closed by inactivity</value>
   </data>
 </root>
