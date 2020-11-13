@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Alpha.AccountInfo.Features.ProductStatusPopup
+﻿namespace Alpha.AccountInfo.Features.ProductStatusPopup
 {
     public static class SportTypeConstants
     {
@@ -15,5 +13,6 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
         public const int ION = 225;
         public const int WM = 233;
         public const int GDG = 236;
+        public const int BigGame = 239;
     }
 }
