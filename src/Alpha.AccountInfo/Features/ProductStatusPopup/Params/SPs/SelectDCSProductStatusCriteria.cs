@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Criteria.ProductStatus
 {
+    using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.Shared.Models;
 
     public class SelectDCSProductStatusCriteria : SelectProductStatusCriteria
@@ -15,6 +16,8 @@
         public byte RoleId { get; }
 
         public int SettingType { get; } = NotNG2SettingType;
+
+        public byte SettingStatus => AppSettings.SettingStatus;
 
         public override string GetSettingKey() => "Acc_CustSetting_StatusSettingSelect";
 
