@@ -56,9 +56,10 @@ export default class UnsuspendMultiple extends React.Component {
                 });
 
                 if (isSuccess) {
-                    window.top.main.DelayReloadPage();
                     setTimeout(() => {
-                        window.top.ageWnd.close();
+                        const mainFrame = window.top.$('#main');
+                        var currSrc = mainFrame.attr("src");
+                        mainFrame.attr("src", currSrc);
                     }, timeoutDefault);
                 }
 
