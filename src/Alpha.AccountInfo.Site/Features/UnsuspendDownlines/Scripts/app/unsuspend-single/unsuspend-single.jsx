@@ -34,12 +34,13 @@ export default class UnsuspendSingle extends React.Component {
                     message: message
                 });
 
+                const timeoutDefault = 3000;
                 if (data.IsSuccess) {
-                    if (window.top.reloadCustomerList
-                        && window.top.main.DelayReloadPage
-                        && typeof (window.top.main.DelayReloadPage) == 'function') {
-                        window.top.main.DelayReloadPage();
-                    }
+                    setTimeout(() => {
+                        const mainFrame = window.top.$('#main');
+                        var currSrc = mainFrame.attr("src");
+                        mainFrame.attr("src", currSrc);
+                    }, timeoutDefault);
 
                     window.top.confirmPopupPopup && window.top.confirmPopupPopup.onClosing && window.top.confirmPopupPopup.onClosing(viewModel.SearchAccountName, true);
                 }
@@ -56,7 +57,7 @@ export default class UnsuspendSingle extends React.Component {
 
         window.top.bootboxConfirm(
             message,
-           undefined,
+            undefined,
             this.doUpdate
         );
     }
