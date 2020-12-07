@@ -57,9 +57,9 @@ export default class UnsuspendMultiple extends React.Component {
 
                 if (isSuccess) {
                     setTimeout(() => {
-                        const mainFrame = window.top.$('#main');
-                        var currSrc = mainFrame.attr("src");
-                        mainFrame.attr("src", currSrc);
+                        if (window.top.customerListPopup) {
+                            window.top.customerListPopup.successfulUpdatingCallbackSportbook();
+                        }
                     }, timeoutDefault);
                 }
 

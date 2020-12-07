@@ -37,9 +37,9 @@ export default class UnsuspendSingle extends React.Component {
                 const timeoutDefault = 3000;
                 if (data.IsSuccess) {
                     setTimeout(() => {
-                        const mainFrame = window.top.$('#main');
-                        var currSrc = mainFrame.attr("src");
-                        mainFrame.attr("src", currSrc);
+                        if (window.top.customerListPopup) {
+                            window.top.customerListPopup.successfulUpdatingCallbackSportbook();
+                        }
                     }, timeoutDefault);
 
                     window.top.confirmPopupPopup && window.top.confirmPopupPopup.onClosing && window.top.confirmPopupPopup.onClosing(viewModel.SearchAccountName, true);
