@@ -14,5 +14,6 @@ namespace Alpha.AccountInfo.Features.ProductStatusPopup
         public const int RNGWar = 224;
         public const int ION = 225;
         public const int WM = 233;
+        public const int GDG = 236;
     }
 }
