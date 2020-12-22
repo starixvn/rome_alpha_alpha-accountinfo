@@ -84,7 +84,7 @@
         public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
-        
+
         public string Phone { get; private set; }
 
         public string MobilePhone { get; private set; }
@@ -107,7 +107,9 @@
 
         public DateTime LastTxn { get; private set; }
 
-        public string LastLoginIP { get; private set; }
+        public bool AllowOpenInfoPopup { get; set; }
+
+        public string LastLoginIP { get; set; }
 
         public DateTime PwdExpiry { get; private set; }
 

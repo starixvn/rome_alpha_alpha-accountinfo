@@ -9,6 +9,7 @@
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
+    using Alpha.Utilities.IP;
     using MediatR;
     using Services.AccountInfo;
     using System;
@@ -24,23 +25,26 @@
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>,
         IAsyncRequestHandler<GivenCreditCommand, Result>,
-        IAsyncRequestHandler<UpdateAllBalanceTransferCommand, Result>        
+        IAsyncRequestHandler<UpdateAllBalanceTransferCommand, Result>
     {
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly Func<bool> getUpdateCreditReplicateServer;
+        private readonly IPService ipService;
 
-        public SearchAccountHandler(SearchAccountService accountInfoService) 
-            : this(accountInfoService, null, null)
+        public SearchAccountHandler(SearchAccountService accountInfoService, IPService ipService)
+            : this(accountInfoService, ipService, null, null)
         {
         }
 
         internal SearchAccountHandler(
             SearchAccountService accountInfoService,
+            IPService ipService,
             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
             Func<bool> getUpdateCreditReplicateServer)
         {
             this.accountInfoService = accountInfoService;
+            this.ipService = ipService;
 
             this.getBalanceInfoViewModelByLevel = getBalanceInfoViewModelByLevel ??
                 new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>>
@@ -50,7 +54,7 @@
                     {UserLevel.Member, BuildMemberBalanceInfoViewModel}
                 };
 
-            this.getUpdateCreditReplicateServer = getUpdateCreditReplicateServer ?? 
+            this.getUpdateCreditReplicateServer = getUpdateCreditReplicateServer ??
                 SimpleServiceLocator.GetService<Func<bool>>();
         }
 
@@ -71,9 +75,14 @@
                     await accountInfoService.GetCreditInfo(customerInfo.CustId).ConfigureAwait(false),
                     await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false));
 
+                var formatedIP = ipService.FormatIP(customerInfo.LastLoginIP, message.IsAdminCanViewVNIP);
+
+                customerInfo.LastLoginIP = formatedIP.IP;
+                customerInfo.AllowOpenInfoPopup = formatedIP.AllowOpenInfoPopup;
+
                 return new CustomerInfoViewModel(
-                    message, 
-                    customerInfo, 
+                    message,
+                    customerInfo,
                     balanceInfo,
                     await accountInfoService.CheckFirstLoginByQRCode(customerInfo.CustId).ConfigureAwait(false),
                     message.CanCreateAccount);
@@ -112,7 +121,7 @@
             decimal memberCreditMin = 0;
             if (Enumeration.FromValue<UserLevel>(message.SearchAccountRoleId).IsMemberLevel())
             {
-                var balanceInfo = (MemberBalanceInfoModel) await accountInfoService.GetBalanceInfo(message.SearchAccountId, message.SearchAccountRoleId).ConfigureAwait(false);
+                var balanceInfo = (MemberBalanceInfoModel)await accountInfoService.GetBalanceInfo(message.SearchAccountId, message.SearchAccountRoleId).ConfigureAwait(false);
 
                 memberCreditMin = Math.Max(0, balanceInfo.CustomerOutstanding - balanceInfo.CustomerCash + balanceInfo.PendingTransfer3rd);
             }

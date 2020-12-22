@@ -12,6 +12,7 @@
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers;
     using Alpha.Products.Core.Services;
+    using Alpha.Utilities.IP;
     using NSubstitute;
     using System;
     using System.Collections.Generic;
@@ -30,6 +31,7 @@
         private readonly SearchAccountHandler accountInfoHandler;
         private readonly CustomerInfoQuery customerInfoQuery;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
+        private readonly IPService ipService;
 
         public SearchAccountHandlerTest()
         {
@@ -51,7 +53,8 @@
                };
 
             accountInfoService = Substitute.For<SearchAccountService>();
-            accountInfoHandler = new SearchAccountHandler(accountInfoService, getBalanceInfoViewModelByLevel, null);
+            ipService = Substitute.For<IPService>();
+            accountInfoHandler = new SearchAccountHandler(accountInfoService, ipService, getBalanceInfoViewModelByLevel, null);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {

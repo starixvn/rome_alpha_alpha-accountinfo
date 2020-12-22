@@ -13,6 +13,7 @@
     using Alpha.AccountInfo.Site.Features.Shared.Models;
     using Alpha.Products.Core.Services;
     using Alpha.SecurityCode.Services;
+    using Alpha.Utilities.IP;
     using Alpha.Web.Helpers;
     using Fanex.Data.Repository;
     using Fanex.Logging;
@@ -95,6 +96,7 @@
 #pragma warning restore CS0618 // Type or member is obsolete
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.RegisterSingleton<IPService, IPServiceImpl>();
             container.RegisterSingleton(Logger.Log);
             container.RegisterSingleton<ExceptionHandlerWrapper, ExceptionHandlerWrapperImpl>();
 

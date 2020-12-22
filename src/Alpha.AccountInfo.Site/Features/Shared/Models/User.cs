@@ -88,5 +88,7 @@
         public int Mrecommend => userSession.MRecommendId;
 
         public int Arecommend => userSession.ARecommendId;
+
+        public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
     }
 }
