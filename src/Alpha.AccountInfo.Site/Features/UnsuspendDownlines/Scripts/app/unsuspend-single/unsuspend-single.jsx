@@ -38,7 +38,7 @@ export default class UnsuspendSingle extends React.Component {
                 if (data.IsSuccess) {
                     setTimeout(() => {
                         if (window.top.customerListPopup) {
-                            window.top.customerListPopup.successfulUpdatingCallbackSportbook();
+                            window.top.customerListPopup.successfulUpdatingCallbackAndReloadMainFrame();
                         }
                     }, timeoutDefault);
 

@@ -58,7 +58,7 @@ export default class UnsuspendMultiple extends React.Component {
                 if (isSuccess) {
                     setTimeout(() => {
                         if (window.top.customerListPopup) {
-                            window.top.customerListPopup.successfulUpdatingCallbackSportbook();
+                            window.top.customerListPopup.successfulUpdatingCallbackAndReloadMainFrame();
                         }
                     }, timeoutDefault);
                 }
