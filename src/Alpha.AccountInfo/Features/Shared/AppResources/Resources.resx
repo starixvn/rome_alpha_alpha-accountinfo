@@ -436,6 +436,6 @@
     <value>3rd Party Pending Transfer</value>
   </data>
   <data name="ClosedByArchive" xml:space="preserve">
-    <value>This account was closed by inactivity</value>
+    <value>This account was closed by inactivity.</value>
   </data>
 </root>

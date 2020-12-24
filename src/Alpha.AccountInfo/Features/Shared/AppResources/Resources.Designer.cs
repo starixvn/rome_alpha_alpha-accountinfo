@@ -187,7 +187,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was closed by inactivity.
+        ///   Looks up a localized string similar to This account was closed by inactivity..
         /// </summary>
         public static string ClosedByArchive {
             get {
