@@ -51,8 +51,8 @@
     <Reference Include="Alpha.Utilities.IP, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Utilities.IP.1.0.3.1-CustomerList03\lib\net461\Alpha.Utilities.IP.dll</HintPath>
     </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.7.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.7.3\lib\net461\Alpha.Web.dll</HintPath>
+    <Reference Include="Alpha.Web, Version=1.0.8.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.8.1-CustomerList1\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="AutoFixture, Version=4.8.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoFixture.4.8.0\lib\net452\AutoFixture.dll</HintPath>
@@ -90,6 +90,12 @@
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.6\lib\net461\Fanex.Logging.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.8\lib\net461\Fanex.Logging.Extensions.Web.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
@@ -169,6 +175,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>

@@ -1,13 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers
 {
-    using System;
-    using System.Collections.Generic;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using NSubstitute;
+    using System;
+    using System.Collections.Generic;
 
     public static class AccountInfoHelper
     {
@@ -128,6 +128,8 @@
                      GetMicroSiteUrl);
 
         public static string GetMicroSiteUrl(string microSiteName, string virtualPath) => "MicroSiteUrl/";
+
+        public static bool GetAppSettingBooleanKey(string appSetting) => true;
 
         public static MemberBalanceInfoModel MemberBalanceInfo
           => new MemberBalanceInfoModel(new MemberBalanceInfoDTO(1, 12, 15, 20), 20, 16, 19, 10);

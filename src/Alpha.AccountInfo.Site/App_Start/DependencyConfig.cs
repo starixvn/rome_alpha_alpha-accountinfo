@@ -15,6 +15,7 @@
     using Alpha.SecurityCode.Services;
     using Alpha.Utilities.IP;
     using Alpha.Web.Helpers;
+    using Alpha.Web.Models;
     using Fanex.Data.Repository;
     using Fanex.Logging;
     using Fanex.RemotingRef;
@@ -135,7 +136,8 @@
               .Instance
               .Register<Func<int>>(AppSettingsHelper.GetInsertProfilePictureSiteMode)
               .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer)
-              .Register<Func<string, bool>>(AppSettingsHelper.HideProductStatusBySites);
+              .Register<Func<string, bool>>(AppSettingsHelper.HideProductStatusBySites)
+              .Register<Func<AppSettingEnum, bool>>(AppSettingsHelper.GetAppSettingBooleanKey);
         }
     }
 }

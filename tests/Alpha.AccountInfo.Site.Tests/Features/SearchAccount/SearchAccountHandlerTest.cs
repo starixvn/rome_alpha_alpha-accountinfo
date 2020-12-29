@@ -54,7 +54,7 @@
 
             accountInfoService = Substitute.For<SearchAccountService>();
             ipService = Substitute.For<IPService>();
-            accountInfoHandler = new SearchAccountHandler(accountInfoService, ipService, getBalanceInfoViewModelByLevel, null);
+            accountInfoHandler = new SearchAccountHandler(accountInfoService, ipService, getBalanceInfoViewModelByLevel, null, null);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {
@@ -172,6 +172,7 @@
                 customerInfo,
                 memberBalanceInfoViewModel,
                 false,
+                true,
                 true);
 
             var actualViewModel = accountInfoHandler.Handle(customerInfoQuery).GetAwaiter().GetResult();

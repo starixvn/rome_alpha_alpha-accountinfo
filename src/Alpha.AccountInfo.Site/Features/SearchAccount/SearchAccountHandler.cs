@@ -30,10 +30,11 @@
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly Func<bool> getUpdateCreditReplicateServer;
+        private readonly Func<Alpha.Web.Models.AppSettingEnum, bool> getAppSettingBooleanKey;
         private readonly IPService ipService;
 
         public SearchAccountHandler(SearchAccountService accountInfoService, IPService ipService)
-            : this(accountInfoService, ipService, null, null)
+            : this(accountInfoService, ipService, null, null, null)
         {
         }
 
@@ -41,7 +42,8 @@
             SearchAccountService accountInfoService,
             IPService ipService,
             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
-            Func<bool> getUpdateCreditReplicateServer)
+            Func<bool> getUpdateCreditReplicateServer,
+            Func<Alpha.Web.Models.AppSettingEnum, bool> getAppSettingBooleanKey)
         {
             this.accountInfoService = accountInfoService;
             this.ipService = ipService;
@@ -56,6 +58,9 @@
 
             this.getUpdateCreditReplicateServer = getUpdateCreditReplicateServer ??
                 SimpleServiceLocator.GetService<Func<bool>>();
+
+            this.getAppSettingBooleanKey = getAppSettingBooleanKey ??
+             SimpleServiceLocator.GetService<Func<Alpha.Web.Models.AppSettingEnum, bool>>();
         }
 
         public Task<AccountInfoViewModel> Handle(SearchAccountQuery message)
@@ -85,7 +90,8 @@
                     customerInfo,
                     balanceInfo,
                     await accountInfoService.CheckFirstLoginByQRCode(customerInfo.CustId).ConfigureAwait(false),
-                    message.CanCreateAccount);
+                    message.CanCreateAccount,
+                    getAppSettingBooleanKey(Alpha.Web.Models.AppSettingEnum.ShowOldCustomerList));
             }
 
             return null;
