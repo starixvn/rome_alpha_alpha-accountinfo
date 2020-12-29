@@ -65,7 +65,7 @@
 
         protected void Application_Error()
         {
-            var currentCustomer = UserSession.Current;
+            var currentCustomer = new Sunplus.Agent.Model.Base.UserSessionExt();
 
             Exception exception = Server.GetLastError().GetBaseException();
 
