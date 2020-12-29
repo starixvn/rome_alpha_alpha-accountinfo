@@ -13,6 +13,7 @@
     using Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers;
     using Alpha.Products.Core.Services;
     using Alpha.Utilities.IP;
+    using Alpha.Utilities.IP.Model;
     using NSubstitute;
     using System;
     using System.Collections.Generic;
@@ -42,7 +43,8 @@
              .Register<Func<int, string>>((productId) => $"Product Name of {productId}")
              .Register<Func<string, string>>(key => $"value of {key}")
              .Register<Func<bool>>(() => false)
-             .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/");
+             .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/")
+             .Register<Func<Alpha.Web.Models.AppSettingEnum, bool>>((appSettingKey) => true);
 
             getBalanceInfoViewModelByLevel =
                new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>>
@@ -166,6 +168,7 @@
             accountInfoService.GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>()).Returns(AccountInfoHelper.MemberBalanceInfo);
             accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(creditInfo);
             accountInfoService.CheckFirstLoginByQRCode(Arg.Any<int>()).Returns(false);
+            ipService.FormatIP(Arg.Any<string>(), Arg.Any<bool>()).Returns(new FormatedIP(string.Empty, true));
 
             var expectedViewModel = new CustomerInfoViewModel(
                 customerInfoQuery,
