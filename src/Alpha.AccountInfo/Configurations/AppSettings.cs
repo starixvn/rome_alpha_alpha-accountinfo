@@ -26,6 +26,14 @@
 
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
+        public static byte SettingStatus {
+            get
+            {
+                byte.TryParse(GetConfigValue("SettingStatus"), out byte settingStatus);
+                return settingStatus;
+            }
+        }
+
         public static void Verify()
         {
             Require(StoredProcedurePath, nameof(StoredProcedurePath));

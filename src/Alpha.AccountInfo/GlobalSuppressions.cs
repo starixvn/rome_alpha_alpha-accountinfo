@@ -37,3 +37,5 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.AccountInfo.Features.Shared.Services.UMServiceImpl.GetDCSSettingType(System.Int32)~System.Byte")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S126:\"if ... else if\" constructs should end with \"else\" clauses", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.AccountInfo.Services.ProductStatus.ProductStatusServiceImpl.UpdateKenoStatusAsync(Alpha.AccountInfo.Params.ProductStatus.ProductStatusCommandParam)~System.Threading.Tasks.Task{Alpha.AccountInfo.Features.Shared.Models.Result}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2325:Methods and properties that don't access instance data should be static", Justification = "<Pending>", Scope = "module")]
+
