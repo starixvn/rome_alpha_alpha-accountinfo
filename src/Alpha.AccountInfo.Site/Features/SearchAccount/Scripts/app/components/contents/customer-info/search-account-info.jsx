@@ -8,7 +8,8 @@ const ClosedReason = {
     ByOtherReason: 0,
     ByAdmin: 1,
     ByUpline: 2,
-    ByWrongOTPSC: 3
+    ByWrongOTPSC: 3,
+    ByArchive: 4
 };
 
 export default class SearchAccountInfo extends React.Component {
@@ -55,6 +56,11 @@ export default class SearchAccountInfo extends React.Component {
                     Id: ClosedReason.ByWrongOTPSC,
                     Css: 'closed-wrongOTPSC',
                     Tootltip: resources.ClosedByFailedOTPOrSC
+                },
+                {
+                    Id: ClosedReason.ByArchive,
+                    Css: 'closed-byArchive',
+                    Tootltip: resources.ClosedByArchive
                 }
             ],
             Suspended: {

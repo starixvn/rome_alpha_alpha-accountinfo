@@ -358,7 +358,7 @@
     <value>บัญชีนี้ถูกปิดโดยระบบ</value>
   </data>
   <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>บัญชีนี้ถูกปิดเนื่องจากการเข้าสู่ระบบล้มเหลวหรือบัญชีหมดอายุ</value>
+    <value>บัญชีนี้ถูกปิดเนื่องจากการเข้าสู่ระบบล้มเหลว</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
     <value>บัญชีนี้ถูกปิดเนื่องจากพิมพ์ รหัส OTP/Security Code ผิด</value>
@@ -434,5 +434,8 @@
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>บุคคลที่สามรอการถ่ายโอน</value>
+  </data>
+  <data name="ClosedByArchive" xml:space="preserve">
+    <value>บัญชีนี้ถูกปิดเนื่องจากไม่มีการใช้งาน</value>
   </data>
 </root>

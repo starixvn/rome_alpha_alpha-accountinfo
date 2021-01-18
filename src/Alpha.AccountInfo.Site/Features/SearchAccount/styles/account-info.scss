@@ -154,7 +154,6 @@ hr {
     .icon-clone-account {
         padding-left: 5px;
     }
-
     // User status for business
     .actived, .closed, .suspended {
         font-weight: bold;
@@ -199,6 +198,10 @@ hr {
 
     .closed-wrongOTPSC {
         background-color: #86c5e4;
+    }
+
+    .closed-byArchive {
+        background-color: #969696;
     }
 }
 

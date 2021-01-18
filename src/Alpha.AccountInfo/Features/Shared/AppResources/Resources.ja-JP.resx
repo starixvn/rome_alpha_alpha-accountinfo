@@ -358,7 +358,7 @@
     <value>This account was closed by admin.</value>
   </data>
   <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>This account was closed by failed login or account expired.</value>
+    <value>This account was closed by failed logins.</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
     <value>This account was closed due to failed OTP/Security Code attempts.</value>
@@ -425,5 +425,8 @@
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>3rd Party Pending Transfer</value>
+  </data>
+  <data name="ClosedByArchive" xml:space="preserve">
+    <value>This account was closed by inactivity.</value>
   </data>
 </root>

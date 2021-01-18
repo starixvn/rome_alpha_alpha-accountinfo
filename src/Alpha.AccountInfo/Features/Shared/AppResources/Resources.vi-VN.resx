@@ -358,7 +358,7 @@
     <value>Tài khoản bị đóng bởi admin.</value>
   </data>
   <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>Tài khoản bị đóng do đăng nhập sai mật khẩu hoặc tài khoản đã hết hạn.</value>
+    <value>Tài khoản này đã bị đóng do đăng nhập không thành công.</value>
   </data>
   <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
     <value>Tài khoản bị đóng do nhập sai mã OTP/mã bảo mật.</value>
@@ -434,5 +434,8 @@
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
+  </data>
+  <data name="ClosedByArchive" xml:space="preserve">
+    <value>Tài khoản này đã bị đóng do không hoạt động.</value>
   </data>
 </root>
