@@ -35,8 +35,14 @@ export default class UnsuspendSingle extends React.Component {
                 });
 
                 if (data.IsSuccess) {
-                    if (top.successfulUpdatingCallbackAndReloadMainFrame) {
-                        top.successfulUpdatingCallbackAndReloadMainFrame();
+                    if (top.customerListNew) {
+                        top.successfulUpdatingCallbackAndReloadMainFrame(true);
+                    }
+
+                    if (window.top.reloadCustomerList
+                        && window.top.main.DelayReloadPage
+                        && typeof (window.top.main.DelayReloadPage) == 'function') {
+                        window.top.main.DelayReloadPage();
                     }
 
                     window.top.confirmPopupPopup && window.top.confirmPopupPopup.onClosing && window.top.confirmPopupPopup.onClosing(viewModel.SearchAccountName, true);

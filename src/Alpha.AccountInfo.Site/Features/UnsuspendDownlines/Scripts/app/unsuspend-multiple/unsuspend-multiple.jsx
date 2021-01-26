@@ -36,6 +36,8 @@ export default class UnsuspendMultiple extends React.Component {
         unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: params })
             .then(data => {
                 let isSuccess = true;
+                const timeoutDefault = 3000;
+
                 const message = <div className='msg-container'>
                     {
                         data.Results.map((result, index) => {
@@ -54,8 +56,16 @@ export default class UnsuspendMultiple extends React.Component {
                     message: message
                 });
 
-                if (isSuccess && top.successfulUpdatingCallbackAndReloadMainFrame) {
-                    top.successfulUpdatingCallbackAndReloadMainFrame();
+                if (isSuccess) {
+                    if (top.customerListNew) {
+                        top.successfulUpdatingCallbackAndReloadMainFrame(true);
+                    }
+                    else {
+                        window.top.main.DelayReloadPage();
+                        setTimeout(() => {
+                            window.top.ageWnd.close();
+                        }, timeoutDefault);
+                    }
                 }
 
                 $.unblockUI();
