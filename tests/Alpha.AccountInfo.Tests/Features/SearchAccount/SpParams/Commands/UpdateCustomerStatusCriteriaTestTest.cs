@@ -12,7 +12,8 @@
         [InlineData(-1, false)]
         public void IsValid_SearchAccountId_Should_ReturnsCorrectValue(int searchAccountId, bool expectedValue)
         {
-            var criteria = new UpdateCustomerStatusCommand(searchAccountId, 1462, 0, "E", "192.168.1.1", StatusNames.Closed, true);
+            var criteria = new UpdateCustomerStatusCommand(searchAccountId, 1462, 0, "E", "192.168.1.1", StatusNames.Closed, true,
+                actorName: "abc");
 
             Assert.Equal(expectedValue, criteria.IsValid());
         }
@@ -22,7 +23,8 @@
         [InlineData(-1, false)]
         public void IsValid_ActorId_Should_ReturnsCorrectValue(int actorId, bool expectedValue)
         {
-            var criteria = new UpdateCustomerStatusCommand(123, actorId, 0, "E", "192.168.1.1", StatusNames.Closed, true);
+            var criteria = new UpdateCustomerStatusCommand(123, actorId, 0, "E", "192.168.1.1", StatusNames.Closed, true,
+                actorName: "abc");
 
             Assert.Equal(expectedValue, criteria.IsValid());
         }
@@ -35,7 +37,8 @@
         [InlineData(StatusNames.Suspended, "Acc_CustomerUpdSuspended")]
         public void GetSettingKey_Always_ReturnsValidSettingKey(string statusName, string expectedSettingKey)
         {
-            var criteria = new UpdateCustomerStatusCommand(1, 2, 0, "E", "192.168.1.1", statusName, true);
+            var criteria = new UpdateCustomerStatusCommand(1, 2, 0, "E", "192.168.1.1", statusName, true,
+                actorName: "abc");
             var actualSettingKey = criteria.GetSettingKey();
 
             Assert.Equal(expectedSettingKey, actualSettingKey);

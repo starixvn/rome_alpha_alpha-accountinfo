@@ -179,7 +179,8 @@
                 statusName: StatusNames.Closed,
                 statusValue: true,
                 language: "E",
-                ip: "192.168.1.1");
+                ip: "192.168.1.1",
+                actorName: "abc");
 
             var expectedResult = Result.CreateSuccessResult();
             objectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 0 }, { "errmsg", string.Empty } });
@@ -205,7 +206,8 @@
                 statusName: StatusNames.Closed,
                 statusValue: true,
                 language: "E",
-                ip: "192.168.1.1");
+                ip: "192.168.1.1",
+                actorName: "abc");
 
             var errorMsg = "Update Failed !";
             var expectedResult = Result.CreateErrorResult(100, errorMsg);
