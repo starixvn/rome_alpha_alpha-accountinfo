@@ -54,6 +54,7 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
         private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
+        private readonly ICacheService cacheService = new CacheService();
 
         public SearchAccountServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -110,8 +111,7 @@
             var result = await accountInfoDataAccess.GetCustomerStatus(
               new SelectCustomerAllStatusModelCriteria(custId)).ConfigureAwait(false);
 
-            var cache = new CacheService();
-            cache.Set($"SyncCasino_{custId}", result.NonDCSProduct.SyncCasino);
+            cacheService.Set($"SyncCasino_{custId}", result.NonDCSProduct.SyncCasino);
 
             return result;
         }
@@ -199,8 +199,7 @@
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
         {
             var result = await accountInfoDataAccess.UpdateCustomerStatus(command).ConfigureAwait(false);
-            var cache = new CacheService();
-            bool isSyncCasino = cache.Get<bool>($"SyncCasino_{command.SearchAccountId}");
+            bool isSyncCasino = cacheService.Get<bool>($"SyncCasino_{command.SearchAccountId}");
 
             if (result.IsSuccess && command.StatusName.Equals(StatusNames.DisableAutoMasterPT) && isSyncCasino)
             {
