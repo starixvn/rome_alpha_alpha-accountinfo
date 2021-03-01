@@ -181,16 +181,16 @@
     <value>ท่านแน่ใจหรือไม่ที่จะอนุญาติการใช้งานรูปแบบดับเบิลคอมมิชชั่นสำหรับตั๋วต่างๆ ที่เสียในการทายผลหน้ากีฬาของลูกค้าท่านนี้?</value>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
-    <value>คุณแน่ใจหรือว่าจะเปลียนสถานะเป็นระงับให้กับลูกค้า \n คำเดือน, สมาชิกทั้งหมดที่อยู่ภายใต้เอเย่นท่านนี้ไม่สามารถวางเดิมพันได้</value>
+    <value>คุณแน่ใจหรือไม่ที่จะระงับบัญชีของลูกค้า? \n คำเตือน, สมาชิกทั้งหมดที่อยู่ภายใต้เอเย่นนี้จะไม่สามารถวางเดิมพันได้!</value>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
-    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?  คำเตือน : สมาชิกท่านนี้ไม่สามารถวางพนันได้</value>
+    <value>คุณแน่ใจหรือไม่ที่จะระงับบัญชีของลูกค้า? \n คำเตือน, สมาชิกนี้จะไม่สามารถวางเดิมพันได้!</value>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?  คำเตือน : ดาวน์ไลน์ทั้งหมดไม่สามารถยกเลิกการระงับการใช้งานได้</value>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
-    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?</value>
+    <value>คุณแน่ใจหรือไม่ที่จะระงับบัญชีของลูกค้า?</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>สร้างขึ้นเมื่อ</value>
