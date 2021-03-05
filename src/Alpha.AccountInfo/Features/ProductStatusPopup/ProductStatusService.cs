@@ -151,7 +151,8 @@
                 SportTypeConstants.RNGWar,
                 SportTypeConstants.WM,
                 SportTypeConstants.GDG,
-                SportTypeConstants.BigGame
+                SportTypeConstants.BigGame,
+                SportTypeConstants.SportsLottery
             };
 
             if (sportShowName.Contains(sportType))
