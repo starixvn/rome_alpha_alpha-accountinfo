@@ -8,8 +8,11 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
+    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
+    using CasinoLibrary.SBAgent;
+    using Fanex.Caching;
     using Fanex.Data.Repository;
     using System;
     using System.Collections.Generic;
@@ -51,6 +54,7 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
         private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
+        private readonly ICacheService cacheService = new CacheService();
 
         public SearchAccountServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -103,8 +107,14 @@
                new SelectBalanceInfoCriteria(custId, roleId)).ConfigureAwait(false);
 
         public async Task<CustomerStatusModel> GetCustomerStatus(int custId)
-            => await accountInfoDataAccess.GetCustomerStatus(
+        { 
+            var result = await accountInfoDataAccess.GetCustomerStatus(
               new SelectCustomerAllStatusModelCriteria(custId)).ConfigureAwait(false);
+
+            cacheService.Set($"SyncCasino_{custId}", result.NonDCSProduct.SyncCasino);
+
+            return result;
+        }
 
         public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
             => await accountInfoDataAccess.GetDownlineList(
@@ -155,7 +165,8 @@
                    param.Language,
                    param.IP,
                    param.StatusName,
-                   param.StatusValue)).ConfigureAwait(false);
+                   param.StatusValue,
+                   param.ActorName)).ConfigureAwait(false);
 
         internal async Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria)
           => await dynamicRepository.GetAsync<MasterBalanceInfoModel>(criteria).ConfigureAwait(false);
@@ -188,6 +199,12 @@
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
         {
             var result = await accountInfoDataAccess.UpdateCustomerStatus(command).ConfigureAwait(false);
+            bool isSyncCasino = cacheService.Get<bool>($"SyncCasino_{command.SearchAccountId}");
+
+            if (result.IsSuccess && command.StatusName.Equals(StatusNames.DisableAutoMasterPT) && isSyncCasino)
+            {
+                UpdateDisableAutoPtCasino(command.SearchAccountId, command.StatusValue, command.IP, command.ActorId, command.ActorName);
+            }
 
             return result.IsSuccess
                 ? Result.CreateSuccessResult()
@@ -216,5 +233,12 @@
         public async Task<bool> CheckFirstLoginByQRCode(int custId)
             => await dynamicRepository.GetAsync<bool>(
                 new SelectFirstLoginByQRCodeCriteria(custId)).ConfigureAwait(false);
+
+        private static void UpdateDisableAutoPtCasino(int custid, bool disable, string ip, int userid, string username)
+        {
+            const int AlphaSystem = 2;
+            var casinoApi = new Customer();
+            casinoApi.UpdateMasterDisableAutoMPT(custid, !disable, ip, userid, username, AlphaSystem);
+        }
     }
 }

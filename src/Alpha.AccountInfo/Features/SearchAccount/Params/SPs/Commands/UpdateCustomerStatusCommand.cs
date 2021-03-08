@@ -27,7 +27,8 @@
             string language,
             string ip,
             string statusName,
-            bool statusValue)
+            bool statusValue,
+            string actorName)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
@@ -36,6 +37,7 @@
             IP = ip;
             StatusName = statusName;
             StatusValue = statusValue;
+            ActorName = actorName;
         }
 
         [SpParam(SqlParamName = "CustId")]
@@ -60,6 +62,9 @@
 
         [SpParam(Ignored = true)]
         public bool StatusValue { get; }
+
+        [SpParam(Ignored = true)]
+        public string ActorName { get; }
 
         public override string GetSettingKey()
             => CustomerStatusSettingKeys[StatusName];
