@@ -130,6 +130,7 @@
                 AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, AccountInfoHelper.BuildCustomerInfo(), AccountInfoHelper.CreditInfo),
                 true,
                 true,
+                true,
                 AccountInfoHelper.GetMicroSiteUrl);
     }
 }

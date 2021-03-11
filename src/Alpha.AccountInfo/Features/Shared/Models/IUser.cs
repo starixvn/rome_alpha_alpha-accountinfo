@@ -69,5 +69,7 @@
         int Mrecommend { get; }
 
         int Arecommend { get; }
+
+        bool IsAdminCanViewVNIP { get; }
     }
 }

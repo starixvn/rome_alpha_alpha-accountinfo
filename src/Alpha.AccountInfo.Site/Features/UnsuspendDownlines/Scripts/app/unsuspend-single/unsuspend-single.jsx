@@ -35,6 +35,10 @@ export default class UnsuspendSingle extends React.Component {
                 });
 
                 if (data.IsSuccess) {
+                    if (top.customerListNew) {
+                        top.successfulUpdatingCallbackAndReloadMainFrame(true);
+                    }
+
                     if (window.top.reloadCustomerList
                         && window.top.main.DelayReloadPage
                         && typeof (window.top.main.DelayReloadPage) == 'function') {
@@ -56,7 +60,7 @@ export default class UnsuspendSingle extends React.Component {
 
         window.top.bootboxConfirm(
             message,
-           undefined,
+            undefined,
             this.doUpdate
         );
     }

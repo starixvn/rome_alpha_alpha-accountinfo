@@ -20,8 +20,6 @@
 
     public interface SearchAccountService
     {
-        Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal);
-
         Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId);
 
         Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname);
@@ -31,8 +29,6 @@
         Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages);
 
         Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId);
-
-        Task<CustomerStatusModel> GetCustomerStatus(int custId);
 
         Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid);
 
@@ -80,10 +76,6 @@
                 };
         }
 
-        public async Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int actorId, string suggestionQuery, bool isInternal)
-            => await dynamicRepository.FetchAsync<UsernameSuggestion>(
-                new SelectAutoSuggestionCriteria(actorId, suggestionQuery, isInternal)).ConfigureAwait(false);
-
         public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId)
         {
             var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId))
@@ -106,15 +98,7 @@
            => await getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](
                new SelectBalanceInfoCriteria(custId, roleId)).ConfigureAwait(false);
 
-        public async Task<CustomerStatusModel> GetCustomerStatus(int custId)
-        { 
-            var result = await accountInfoDataAccess.GetCustomerStatus(
-              new SelectCustomerAllStatusModelCriteria(custId)).ConfigureAwait(false);
 
-            cacheService.Set($"SyncCasino_{custId}", result.NonDCSProduct.SyncCasino);
-
-            return result;
-        }
 
         public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
             => await accountInfoDataAccess.GetDownlineList(

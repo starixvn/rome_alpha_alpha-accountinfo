@@ -34,8 +34,8 @@
     <CodeAnalysisRuleSet>Alpha.AccountInfo.Release.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Products.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.Core.1.0.0.1\lib\net461\Alpha.Products.Core.dll</HintPath>
+    <Reference Include="Alpha.Products.Core, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.1.3\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="CasinoLibrary, Version=2.0.3.38621, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.0.3.38621\lib\net40\CasinoLibrary.dll</HintPath>
@@ -208,10 +208,8 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCreditInfoCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberBalanceCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberOutstandingCriteria.cs" />
-    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectAutoSuggestionCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateCustomerStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditCommand.cs" />
-    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerAllStatusModelCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\AccountInfoCriteriaBase.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectTotalDownlineSummaryCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectOnlineListCriteria.cs" />
@@ -257,12 +255,7 @@
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\IBalanceInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\MemberBalanceInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\MasterBalanceInfoModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\CustomerStatusModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CutomerInfo\UsernameSuggestion.cs" />
     <Compile Include="Features\SearchAccount\Models\CutomerInfo\CustomerInfoModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonProductStatusModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\NonDCSProductStatusModel.cs" />
-    <Compile Include="Features\SearchAccount\Models\CustomerAllStatus\DCSProductStatusModel.cs" />
     <Compile Include="Features\SearchAccount\Models\OnlineUserModel.cs" />
     <Compile Include="Features\SearchAccount\Models\DownlineListModel.cs" />
     <Compile Include="Features\ProductStatusPopup\Models\CustomerInformation.cs" />
@@ -353,12 +346,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UnsuspendDownlinesResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Alpha.Products.AccountInfo\Alpha.Products.AccountInfo.csproj">
-      <Project>{d00a2d4e-7115-48a5-a8a5-5da2354cf1e9}</Project>
-      <Name>Alpha.Products.AccountInfo</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.9.0.19135\analyzers\Google.Protobuf.dll" />

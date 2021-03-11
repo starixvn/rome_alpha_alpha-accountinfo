@@ -2,7 +2,6 @@
 {
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
-    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared;
@@ -73,100 +72,6 @@
             // Assert
             AssertExtension.Equal(expectedData, actualData);
         }
-
-        [Fact]
-        public void GetCustomerAllStatus_HasData_ReturnsCustomerStatusModel()
-        {
-            // Arrange
-            var criteria = new SelectCustomerAllStatusModelCriteria(1);
-            objectDb
-                .QueryMultipleAsync(Arg.Any<Hashtable>())
-                .Returns(Task.FromResult(multiResultReader));
-
-            var nonProduct = StubNonProductStatus();
-            multiResultReader
-                .ReadAsync<NonProductStatusModel>()
-                .Returns(Task.FromResult(new List<NonProductStatusModel> { nonProduct } as IEnumerable<NonProductStatusModel>));
-
-            var nonDCSProduct = StubNonDCSProduct();
-            multiResultReader
-                .ReadAsync<NonDCSProductStatusModel>()
-                .Returns(Task.FromResult(new List<NonDCSProductStatusModel> { nonDCSProduct } as IEnumerable<NonDCSProductStatusModel>));
-
-            var dcsProducts = StubDcsProducts();
-            multiResultReader
-               .ReadAsync<DCSProductStatusModel>()
-               .Returns(Task.FromResult(dcsProducts as IEnumerable<DCSProductStatusModel>));
-
-            // Act
-            var actualData = accountInfoDataAccessImpl
-                                .GetCustomerStatus(criteria)
-                                .GetAwaiter()
-                                .GetResult();
-
-            // Assert
-            AssertExtension.Equal(nonProduct, actualData.NonProduct);
-            AssertExtension.Equal(nonDCSProduct, actualData.NonDCSProduct);
-            AssertExtension.Equal(dcsProducts, actualData.DCSProducts);
-        }
-
-        private static NonDCSProductStatusModel StubNonDCSProduct()
-            => new NonDCSProductStatusModel(
-                             syncCasino: true,
-                             disableCasino: true,
-                             uplineDisableCS: true,
-                             disableNumber: true,
-                             uplineDisableNumber: true,
-                             disableEsports: true,
-                             uplineDisableEsports: true,
-                             hideKeno: true,
-                             uplineHideGoldDeluxe: true,
-                             uplineDisableGoldDeluxe: true,
-                             disableGoldDeluxe: true,
-                             hideGoldDeluxe: true);
-
-        private static NonProductStatusModel StubNonProductStatus()
-            => new NonProductStatusModel(
-                             hasDownline: true,
-                             disableAutoMPT: true,
-                             closed: true,
-                             uplineClosed: true,
-                             suspended: true,
-                             isDirectSuspend: true,
-                             uplineSuspend: true,
-                             transferOption: "00000000",
-                             doubleCommLosing: true,
-                             uplineDoubleCommLosing: true,
-                             disableOutright: true,
-                             uplineDisableOutright: true,
-                             isAllDayBalTransfer: false);
-
-        private static List<DCSProductStatusModel> StubDcsProducts()
-            => new List<DCSProductStatusModel>
-                 {
-                     new DCSProductStatusModel(
-                                  productId: 5,
-                                  sportType: 12,
-                                  betType: 24,
-                                  isSync: true,
-                                  isHidden: true,
-                                  isDisabled: true,
-                                  isSyncedUpline: true,
-                                  isHiddenUpline: true,
-                                  isDisabledUpline: true,
-                                  hasDownline: true),
-                     new DCSProductStatusModel(
-                                  productId: 6,
-                                  sportType: 13,
-                                  betType: 26,
-                                  isSync: true,
-                                  isHidden: true,
-                                  isDisabled: true,
-                                  isSyncedUpline: true,
-                                  isHiddenUpline: true,
-                                  isDisabledUpline: true,
-                                  hasDownline: true)
-                    };
 
         [Fact]
         public void UpdateCustomerStatus_UpdatedSuccessfully_ReturnSuccessResult()

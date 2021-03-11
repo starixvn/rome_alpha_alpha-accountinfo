@@ -38,17 +38,28 @@ const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
         }
     ];
 
+    if (loginInfo.AllowOpenInfoPopup) {
+        loginInfoPropsArray.push({
+            title: resources.LoginIP,
+            value: loginInfo.LoginIP
+        });
+    }
+
     return <div className='login-info'>
         {
             loginInfoPropsArray.map((loginInfoProps, index) => <LoginInfoRow {...loginInfoProps} key={index} />)
         }
-        <LoginInfoWithLinkRow
-            {...{
-                title: resources.LoginIP,
-                value: loginInfo.LoginIP,
-                handleOpenIPInfo
-            }}
-        />
+        {
+            loginInfo.AllowOpenInfoPopup ?
+                <LoginInfoRow {...{ title: resources.LoginIP, value: loginInfo.LoginIP }} /> :
+                <LoginInfoWithLinkRow
+                    {...{
+                        title: resources.LoginIP,
+                        value: loginInfo.LoginIP,
+                        handleOpenIPInfo
+                    }}
+                />
+        }
     </div>;
 };
 

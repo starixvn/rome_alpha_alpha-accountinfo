@@ -57,26 +57,6 @@
         }
 
         [Fact]
-        public void GetUsernamesSuggestion_Always_ReturnsCorrectModel()
-        {
-            var model = new List<UsernameSuggestion>
-            {
-                new UsernameSuggestion("UserName", "FirstName", "LastName", "UserName2")
-            };
-
-            dynamicRepository
-                .FetchAsync<UsernameSuggestion>(Arg.Any<SelectAutoSuggestionCriteria>())
-                .Returns(Task.FromResult(model as IEnumerable<UsernameSuggestion>));
-
-            var actualModel = accountInfoService
-                .GetUsernamesSuggestion(1, "test", false)
-                .GetAwaiter()
-                .GetResult();
-
-            AssertExtension.Equal(actualModel, model);
-        }
-
-        [Fact]
         public void GetCustomerInfoModel_Always_ReturnsCorrectModel()
         {
             var model = new CustomerInfoModel(
@@ -151,22 +131,6 @@
                 .GetResult();
 
             AssertExtension.Equal(masterBalanceInfoModel, actualModel);
-        }
-
-        [Fact]
-        public void GetCustomerStatus_Always_ReturnsCorrectModel()
-        {
-            var model = fixture.Create<CustomerStatusModel>();
-            accountInfoDataAccess
-                .GetCustomerStatus(Arg.Any<SelectCustomerAllStatusModelCriteria>())
-                .Returns(Task.FromResult(model));
-
-            var actualModel = accountInfoService
-                .GetCustomerStatus(1)
-                .GetAwaiter()
-                .GetResult();
-
-            AssertExtension.Equal(model, actualModel);
         }
 
         [Fact]

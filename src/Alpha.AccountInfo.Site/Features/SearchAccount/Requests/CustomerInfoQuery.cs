@@ -22,12 +22,13 @@
             CanUpdateAccount = viewer.CanUpdateAccount;
             CanCreateAccount = viewer.CanCreateAccount;
             CanViewMemberInfo = viewer.ViewMemberInfo;
+            IsAdminCanViewVNIP = viewer.IsAdminCanViewVNIP;
         }
 
         [AllowHtml]
         public string SearchAccountName { get; set; }
 
-        public int ActorId { get; } 
+        public int ActorId { get; }
 
         public string ActorName { get; }
 
@@ -35,7 +36,7 @@
 
         public bool AllDayBalTransfer { get; }
 
-        public bool AllowedTotalBalanceTransfer { get; } 
+        public bool AllowedTotalBalanceTransfer { get; }
 
         public bool AllowTransfer { get; }
 
@@ -48,6 +49,8 @@
         public bool CanCreateAccount { get; }
 
         public bool CanViewMemberInfo { get; }
+
+        public bool IsAdminCanViewVNIP { get; }
 
         public override bool IsValid() =>
             IsValidName(SearchAccountName) &&

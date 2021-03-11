@@ -37,6 +37,7 @@ export default class UnsuspendMultiple extends React.Component {
             .then(data => {
                 let isSuccess = true;
                 const timeoutDefault = 3000;
+
                 const message = <div className='msg-container'>
                     {
                         data.Results.map((result, index) => {
@@ -56,10 +57,15 @@ export default class UnsuspendMultiple extends React.Component {
                 });
 
                 if (isSuccess) {
-                    window.top.main.DelayReloadPage();
-                    setTimeout(() => {
-                        window.top.ageWnd.close();
-                    }, timeoutDefault);
+                    if (top.customerListNew) {
+                        top.successfulUpdatingCallbackAndReloadMainFrame(true);
+                    }
+                    else {
+                        window.top.main.DelayReloadPage();
+                        setTimeout(() => {
+                            window.top.ageWnd.close();
+                        }, timeoutDefault);
+                    }
                 }
 
                 $.unblockUI();
