@@ -1,25 +1,31 @@
 ﻿namespace Alpha.AccountInfo.Site
 {
-    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
-    using Alpha.Auth.Filters;
-    using Alpha.Logging;
-    using App_Start;
-    using CasinoLibrary.Model.UserException;
-    using Configurations;
-    using Fanex.Data;
-    using Fanex.Data.CrossCutting.WrappingException;
-    using Fanex.Data.OldConnectionStringProvider;
-    using Fanex.Logging.Extensions.Database;
-    using Fanex.Logging.Extensions.Web;
-    using Fanex.RemotingRef;
-    using ONEbook.UM.Filters;
-    using Sunplus.Agent.Model.Entities;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Alpha.AccountInfo.Site.Features.Shared.Helpers;
+    using Alpha.Auth.Filters;
+    using Alpha.Logging;
+    using App_Start;
+    using CasinoLibrary.Model.UserException;
+    using Configurations;
+    using Fanex.Caching;
+    using Fanex.Data;
+    using Fanex.Data.CrossCutting.WrappingException;
+    using Fanex.Data.OldConnectionStringProvider;
+    using Fanex.Logging.Extensions.Database;
+    using Fanex.Logging.Extensions.Web;
+    using Fanex.RemotingRef;
+    using ONEbook.UM;
+    using ONEbook.UM.AspNetMVC.Filters;
+    using ONEbook.UM.Configurations;
+    using ONEbook.UM.Helpers;
+    using ONEbook.UM.NETFramework;
+    using ONEbook.UM.Services;
+    using ONEbook.UM.Transport;
     using Web;
     using Web.Filters;
     using Web.Helpers;
@@ -47,7 +53,15 @@
 
             ShareSession.Init();
 
-            GlobalFilters.Filters.Add(new CheckUMFilter());
+            var umConfig = new UMClientConfiguration().Initialize();
+            UMClientManager
+                .UseConfig(umConfig)
+                .UseCacheService(new UMCacheService(new CacheService()))
+                .UseRestClient(new UMRestClient(umConfig))
+                .UseHttpContext(new HttpContextHelper());
+            GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
+                new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
+
             GlobalFilters.Filters.Add(new CheckBelongingFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
             GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
