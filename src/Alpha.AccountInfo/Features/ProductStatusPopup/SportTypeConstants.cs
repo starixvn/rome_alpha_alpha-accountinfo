@@ -14,5 +14,6 @@
         public const int WM = 233;
         public const int GDG = 236;
         public const int BigGame = 239;
+        public const int SportsLottery = 169;
     }
 }
