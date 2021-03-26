@@ -79,8 +79,8 @@ export default class ConfirmStatus extends React.Component {
             window.top.confirmPopupPopup = window.top.ageWnd.createInstance();
         }
 
-        const { username, status, mobileView, resources } = this.props;
-        const headerPopupText = usernameRegExp(resources.UnuspendStatusPopupHeader, username);
+        const { username, status, mobileView } = this.props;
+        const headerPopupText = usernameRegExp(status.PopupHeaderText, username);
 
         window.top.confirmPopupPopup.onClosing = this.confirmPopupOnclosing;
         window.top.popupManager.openWithHanlder(top.confirmPopupPopup, status.Url, headerPopupText, 700, 500);
