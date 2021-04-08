@@ -360,11 +360,11 @@
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>此賬號已被管理員關閉。</value>
   </data>
-  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>此户口因登錄失敗而被關閉。</value>
+  <data name="LockedByFalseInputPassword" xml:space="preserve">
+    <value>This account was locked by false inputs of password.</value>
   </data>
-  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>由於動態密碼輸入錯誤，該帳戶已被停用。</value>
+  <data name="LockedByFalseInputOTPSC" xml:space="preserve">
+    <value>This account was locked by false inputs of OTP/ Security Code.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>此賬號已被上線關閉。</value>

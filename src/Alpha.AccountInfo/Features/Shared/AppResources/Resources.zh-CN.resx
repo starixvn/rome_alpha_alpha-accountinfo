@@ -357,11 +357,11 @@
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>此账号已被管理员关闭。</value>
   </data>
-  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>此户口因登录失败而被关闭。</value>
+  <data name="LockedByFalseInputPassword" xml:space="preserve">
+    <value>This account was locked by false inputs of password.</value>
   </data>
-  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>由于动态密码输入错误，该帐户已被停用。</value>
+  <data name="LockedByFalseInputOTPSC" xml:space="preserve">
+    <value>This account was locked by false inputs of OTP/ Security Code.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>此账号已被上线关闭。</value>

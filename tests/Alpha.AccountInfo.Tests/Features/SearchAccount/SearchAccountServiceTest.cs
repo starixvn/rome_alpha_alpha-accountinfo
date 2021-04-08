@@ -86,7 +86,8 @@
                 masterId: 13,
                 masterName: "MasterTest",
                 superId: 14,
-                superName: "SuperTest");
+                superName: "SuperTest",
+                locked: 0);
 
             dynamicRepository
                 .GetAsync<CustomerInfoModel>(Arg.Any<SelectCustomerInfoCriteria>())

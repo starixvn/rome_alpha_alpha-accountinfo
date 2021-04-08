@@ -163,5 +163,7 @@
         {
             return string.IsNullOrEmpty(value) ? string.Empty : value;
         }
+
+        public byte Locked => customerInfo.Locked;
     }
 }

@@ -357,11 +357,11 @@
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>Tài khoản bị đóng bởi admin.</value>
   </data>
-  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
+  <data name="LockedByFalseInputPassword" xml:space="preserve">
     <value>Tài khoản này đã bị đóng do đăng nhập không thành công.</value>
   </data>
-  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>Tài khoản bị đóng do nhập sai mã OTP/mã bảo mật.</value>
+  <data name="LockedByFalseInputOTPSC" xml:space="preserve">
+    <value>This account was locked by false inputs of OTP/ Security Code.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>Tài khoản bị đóng bởi cấp trên.</value>

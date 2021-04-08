@@ -15,9 +15,10 @@
          {
                 { StatusNames.DisableAutoMasterPT, "Acc_CustomerUpdMaster_DisableAutoMPT" },
                 { StatusNames.Closed, "Acc_CustomerUpdClosed" },
+                { StatusNames.Unlock, "" },
                 { StatusNames.DoubleComm, "Acc_CustomerUpdDoubleCommLosing" },
                 { StatusNames.DisableOutright, "Acc_CustomerUpdDisableOutright" },
-                { StatusNames.Suspended, "Acc_CustomerUpdSuspended" },
+                { StatusNames.Suspended, "Acc_CustomerUpdSuspended" }
          };
 
         public UpdateCustomerStatusCommand(
@@ -73,9 +74,12 @@
         {
             var spParams = base.GetSpParams();
 
-            spParams.Add(StatusName, StatusValue);
+            if (!StatusName.Equals(StatusNames.Unlock))
+            {
+                spParams.Add(StatusName, StatusValue);
+            }
 
-            if(StatusName.Equals(StatusNames.Closed))
+            if (StatusName.Equals(StatusNames.Closed))
             {
                 spParams.Add("SystemID", AlphaSystemId);
             }

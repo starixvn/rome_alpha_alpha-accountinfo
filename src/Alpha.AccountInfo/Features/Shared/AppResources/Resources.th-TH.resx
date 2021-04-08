@@ -357,11 +357,11 @@
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>บัญชีนี้ถูกปิดโดยระบบ</value>
   </data>
-  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>บัญชีนี้ถูกปิดเนื่องจากการเข้าสู่ระบบล้มเหลว</value>
+  <data name="LockedByFalseInputPassword" xml:space="preserve">
+    <value>This account was locked by false inputs of password.</value>
   </data>
-  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>บัญชีนี้ถูกปิดเนื่องจากพิมพ์ รหัส OTP/Security Code ผิด</value>
+  <data name="LockedByFalseInputOTPSC" xml:space="preserve">
+    <value>This account was locked by false inputs of OTP/ Security Code.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>บัญชีนี้ถูกปิดโดยอับไลน์</value>

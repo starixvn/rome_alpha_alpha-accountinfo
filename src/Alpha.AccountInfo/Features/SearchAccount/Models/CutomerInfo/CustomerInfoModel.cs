@@ -35,7 +35,8 @@
          int masterId,
          string masterName,
          int superId,
-         string superName)
+         string superName,
+         byte locked)
         {
             CustId = custId;
             RoleId = roleId;
@@ -71,6 +72,8 @@
 
             SuperId = superId;
             SuperName = superName;
+
+            Locked = locked;
         }
 
         public int CustId { get; private set; }
@@ -128,5 +131,7 @@
         public int SuperId { get; private set; }
 
         public string SuperName { get; private set; }
+
+        public byte Locked { get; }
     }
 }

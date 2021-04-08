@@ -196,24 +196,6 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was closed by failed logins..
-        /// </summary>
-        public static string ClosedByFailedLoginOrAccountExpired {
-            get {
-                return ResourceManager.GetString("ClosedByFailedLoginOrAccountExpired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This account was closed due to failed OTP/Security Code attempts..
-        /// </summary>
-        public static string ClosedByFailedOTPOrSC {
-            get {
-                return ResourceManager.GetString("ClosedByFailedOTPOrSC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This account was closed by upline..
         /// </summary>
         public static string ClosedByUpline {
@@ -543,6 +525,24 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         public static string LastTxn {
             get {
                 return ResourceManager.GetString("LastTxn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account was locked by false inputs of OTP/ Security Code..
+        /// </summary>
+        public static string LockedByFalseInputOTPSC {
+            get {
+                return ResourceManager.GetString("LockedByFalseInputOTPSC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account was locked by false inputs of password..
+        /// </summary>
+        public static string LockedByFalseInputPassword {
+            get {
+                return ResourceManager.GetString("LockedByFalseInputPassword", resourceCulture);
             }
         }
         

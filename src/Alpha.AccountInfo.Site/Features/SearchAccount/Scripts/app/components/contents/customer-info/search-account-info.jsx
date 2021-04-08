@@ -5,11 +5,14 @@ import CustomAnchorTag from '../../common/custom-anchor-tag';
 import { buildTooltipProps } from '../../../helpers/accountinfo-helper';
 
 const ClosedReason = {
-    ByOtherReason: 0,
     ByAdmin: 1,
     ByUpline: 2,
-    ByWrongOTPSC: 3,
     ByArchive: 4
+};
+
+const LockedAccess = {
+    FalseInputOTPSC: 1,
+    FalseInputPassword: 2
 };
 
 export default class SearchAccountInfo extends React.Component {
@@ -38,11 +41,6 @@ export default class SearchAccountInfo extends React.Component {
         const statusInfo = {
             Closed: [
                 {
-                    Id: ClosedReason.ByOtherReason,
-                    Css: 'closed-wrongPwdOthers',
-                    Tootltip: resources.ClosedByFailedLoginOrAccountExpired
-                },
-                {
                     Id: ClosedReason.ByAdmin,
                     Css: 'closed-byAdmin',
                     Tootltip: resources.ClosedByAdmin
@@ -51,11 +49,6 @@ export default class SearchAccountInfo extends React.Component {
                     Id: ClosedReason.ByUpline,
                     Css: 'closed-byUpline',
                     Tootltip: resources.ClosedByUpline
-                },
-                {
-                    Id: ClosedReason.ByWrongOTPSC,
-                    Css: 'closed-wrongOTPSC',
-                    Tootltip: resources.ClosedByFailedOTPOrSC
                 },
                 {
                     Id: ClosedReason.ByArchive,
@@ -74,7 +67,19 @@ export default class SearchAccountInfo extends React.Component {
             Enabled: {
                 Css: 'enabled',
                 Tootltip: ''
-            }
+            },
+            Locked: [
+                {
+                    Id: LockedAccess.FalseInputOTPSC,
+                    Css: 'locked-falseOTPSC',
+                    Tootltip: resources.LockedByFalseInputOTPSC
+                },
+                {
+                    Id: LockedAccess.FalseInputPassword,
+                    Css: 'locked-falsePassword',
+                    Tootltip: resources.LockedByFalseInputPassword
+                },
+            ]
         };
 
         if (!customerInfo.Enabled) {
@@ -85,6 +90,9 @@ export default class SearchAccountInfo extends React.Component {
         }
         else if (customerInfo.Suspended) {
             return statusInfo.Suspended;
+        }
+        else if (customerInfo.Locked) {
+            return statusInfo.Locked.find(locked => customerInfo.Locked === locked.Id);
         }
         return statusInfo.Enabled;
     };
