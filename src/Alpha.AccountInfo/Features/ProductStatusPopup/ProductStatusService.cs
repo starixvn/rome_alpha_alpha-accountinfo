@@ -1,11 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml.Linq;
     using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
     using Alpha.AccountInfo.Features.ProductStatusPopup.Models;
@@ -19,6 +13,12 @@
     using Fanex.Logging;
     using Models.ProductStatus;
     using Params.ProductStatus;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml.Linq;
 
     public interface ProductStatusService
     {
@@ -152,7 +152,8 @@
                 SportTypeConstants.WM,
                 SportTypeConstants.GDG,
                 SportTypeConstants.BigGame,
-                SportTypeConstants.SportsLottery
+                SportTypeConstants.SportsLottery,
+                SportTypeConstants.PPLiveCasino
             };
 
             if (sportShowName.Contains(sportType))
