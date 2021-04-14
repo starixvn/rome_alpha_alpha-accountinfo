@@ -35,6 +35,7 @@
       <Mapping ObjectProperty="MemMaxCreditMax" DataField="memMaxCredit_Max" />
     </Setting>
     <Setting Key="Acc_CustomerUpdAllDayBalTransfer" SpName="Acc_CustomerUpdAllDayBalTransfer" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
   </Function>
 
   <Function Name="Unsuspend Downlines">
