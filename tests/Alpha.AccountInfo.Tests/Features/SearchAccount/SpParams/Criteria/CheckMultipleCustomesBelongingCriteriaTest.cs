@@ -1,6 +1,6 @@
-﻿namespace Alpha.AccountInfo.Tests.Features.UnsuspendDownlines.SpParams
+﻿namespace Alpha.AccountInfo.Tests.Features.SearchAccount.SpParams
 {
-    using Alpha.AccountInfo.Features.UnsuspendDownlines.Params.SPs.Criteria;
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Xunit;
 
     [Trait("Category", "UnsuspendDownlines")]

@@ -163,7 +163,7 @@
                 UnsuspendList = unsuspendCustomerInfoList
             };
 
-            unsuspendDownlinesService.CheckMultipleCustomesBelonging(
+            accountInfoService.CheckMultipleCustomesBelonging(
                 Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>(), Arg.Any<bool>()).Returns(true);
 
             var result = Result.CreateSuccessResult();
