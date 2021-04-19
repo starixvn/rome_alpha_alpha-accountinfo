@@ -384,6 +384,15 @@
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-api.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-helper.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-multiple\open-multiple-components.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-multiple\open-multiple-container.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-multiple\open-multiple.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-single\open-single-components.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-single\open-single-container.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-single\open-single.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-view-list.jsx" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.css" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.css" />
@@ -507,6 +516,9 @@
     <Content Include="Features\ProfilePicture\Views\web.config" />
     <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\index.scss" />
+    <Content Include="Features\OpenDownlines\Views\web.config" />
+    <Content Include="Features\OpenDownlines\Views\EditSingle.cshtml" />
+    <Content Include="Features\OpenDownlines\Views\EditMultiple.cshtml" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
@@ -595,6 +607,17 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Features\OpenDownlines\OpenDownlinesController.cs" />
+    <Compile Include="Features\OpenDownlines\OpenDownlinesHandler.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenMultipleCommand.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenMultipleRequest.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenSingleCommand.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenSingleRequest.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenViewListRequest.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenListViewModel.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenMultipleResultViewModel.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenMultipleViewModel.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenSingleViewModel.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureLibraryViewModel.cs" />
     <Compile Include="Features\SearchAccount\Requests\UpdateAllBalanceTransferCommand.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
@@ -731,6 +754,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Features\OpenDownlines\Bundles\" />
     <Folder Include="Features\ProfilePicture\Scripts\tests\" />
   </ItemGroup>
   <ItemGroup>

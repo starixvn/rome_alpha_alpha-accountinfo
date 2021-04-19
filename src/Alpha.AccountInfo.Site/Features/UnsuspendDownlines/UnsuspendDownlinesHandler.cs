@@ -72,7 +72,7 @@
         {
             var custIds = string.Join("^", message.UnsuspendList.Select(unspended => unspended.SearchAccountId));
 
-            var isValidCheckMultipleCustomesBelonging = await unsuspendDownlinesService.CheckMultipleCustomesBelonging(
+            var isValidCheckMultipleCustomesBelonging = await accountInfoService.CheckMultipleCustomesBelonging(
                 message.ActorId, message.SubAccountId, custIds, message.IsInternal);
 
             if (isValidCheckMultipleCustomesBelonging)

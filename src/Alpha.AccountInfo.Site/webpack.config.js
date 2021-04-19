@@ -37,6 +37,20 @@ module.exports = {
             "./node_modules/react-image-crop/dist/ReactCrop.css",
             "./Features/ProfilePicture/Styles/index.scss",
             "./Features/ProfilePicture/Scripts/app/index.jsx",
+        ],
+        "./OpenDownlines/Bundles/open-single": [
+            "babel-polyfill",
+            "./Features/OpenDownlines/Scripts/app/open-single/open-single-container.jsx",
+            "./Features/OpenDownlines/Scripts/app/open-view-list.jsx",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
+            "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
+        ],
+        "./OpenDownlines/Bundles/open-multiple": [
+            "babel-polyfill",
+            "./Features/OpenDownlines/Scripts/app/open-multiple/open-multiple-container.jsx",
+            "./Features/OpenDownlines/Scripts/app/open-view-list.jsx",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
+            "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
         ]
     },
 
