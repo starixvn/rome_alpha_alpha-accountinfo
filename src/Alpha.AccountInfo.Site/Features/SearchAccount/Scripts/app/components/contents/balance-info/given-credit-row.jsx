@@ -41,7 +41,7 @@ export default class GivenCreditRow extends React.Component {
             givenCreditUrl = `${top.alpha.urls.accountInfoRootPath}SearchAccount/GivenCredit` +
                 `?SearchAccountId=${customerInfo.CustId}&SearchAccountName=${customerInfo.UserName}` +
                 `&SearchAccountRoleId=${customerInfo.RoleId}`;
-        let width = 470, height = 300;
+        let width = 470, height = 360;
 
         if (mobileView) {
             width = mobileScale(width);
