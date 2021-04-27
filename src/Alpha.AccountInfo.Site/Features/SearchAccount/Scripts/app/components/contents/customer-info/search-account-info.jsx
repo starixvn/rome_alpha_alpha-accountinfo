@@ -11,8 +11,8 @@ const ClosedReason = {
 };
 
 const LockedAccess = {
-    FalseInputOTPSC: 1,
-    FalseInputPassword: 2
+    FalseOTPSC: 1,
+    FalsePassword: 2
 };
 
 export default class SearchAccountInfo extends React.Component {
@@ -70,14 +70,14 @@ export default class SearchAccountInfo extends React.Component {
             },
             Locked: [
                 {
-                    Id: LockedAccess.FalseInputOTPSC,
+                    Id: LockedAccess.FalseOTPSC,
                     Css: 'locked-falseOTPSC',
-                    Tootltip: resources.LockedByFalseInputOTPSC
+                    Tootltip: resources.LockedByFalseOTPSC
                 },
                 {
-                    Id: LockedAccess.FalseInputPassword,
+                    Id: LockedAccess.FalsePassword,
                     Css: 'locked-falsePassword',
-                    Tootltip: resources.LockedByFalseInputPassword
+                    Tootltip: resources.LockedByFalsePassword
                 },
             ]
         };

@@ -529,20 +529,20 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was locked by false inputs of OTP/ Security Code..
+        ///   Looks up a localized string similar to This account was locked by false inputs of OTP/Security Code..
         /// </summary>
-        public static string LockedByFalseInputOTPSC {
+        public static string LockedByFalseOTPSC {
             get {
-                return ResourceManager.GetString("LockedByFalseInputOTPSC", resourceCulture);
+                return ResourceManager.GetString("LockedByFalseOTPSC", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was locked by false inputs of password..
+        ///   Looks up a localized string similar to This account was locked by failed login..
         /// </summary>
-        public static string LockedByFalseInputPassword {
+        public static string LockedByFalsePassword {
             get {
-                return ResourceManager.GetString("LockedByFalseInputPassword", resourceCulture);
+                return ResourceManager.GetString("LockedByFalsePassword", resourceCulture);
             }
         }
         
