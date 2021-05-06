@@ -28,6 +28,6 @@
 
         public int TotalRows { get; set; }
 
-        public override string GetSettingKey() => "Acc_Customer_SuspendInfoDetailSel";
+        public override string GetSettingKey() => "Acc_Customer_CloseInfoDetailSel";
     }
 }
