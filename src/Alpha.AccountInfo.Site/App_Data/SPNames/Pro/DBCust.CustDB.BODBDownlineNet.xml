@@ -51,7 +51,17 @@
   </Function>
 
   <Function Name="Open Downlines">
+    <Setting Key="Acc_Customer_CloseInfoSel" SpName="Acc_Customer_CloseInfoSel_UAT4" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
+      <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
+      <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
+    </Setting>
     <Setting Key="Acc_Customer_CloseInfoDetailSel" SpName="Acc_Customer_CloseInfoDetailSel_UAT4" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerList_CloseInfoSel" SpName="Acc_CustomerList_CloseInfoSel_UAT4" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
+      <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
+      <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
+      <Mapping ObjectProperty="DownlineRoleId" DataField="roleid" />
+      <Mapping ObjectProperty="SearchAccountId" DataField="custid" />
+    </Setting>
   </Function>
   
   <Function Name="QR Code">

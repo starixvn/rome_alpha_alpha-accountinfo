@@ -8,6 +8,6 @@
         {
         }
 
-        public override string GetSettingKey() => "Acc_Customer_SuspendInfoSel";
+        public override string GetSettingKey() => "Acc_Customer_CloseInfoSel";
     }
 }

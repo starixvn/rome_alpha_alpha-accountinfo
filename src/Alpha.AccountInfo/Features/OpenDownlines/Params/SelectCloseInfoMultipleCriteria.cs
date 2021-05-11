@@ -16,7 +16,7 @@
 
         public byte RoleId { get; }
 
-        public override string GetSettingKey() => "Acc_CustomerList_SuspendInfoSel";
+        public override string GetSettingKey() => "Acc_CustomerList_CloseInfoSel";
 
         public override bool IsValid() => !string.IsNullOrEmpty(CustIds);
     }
