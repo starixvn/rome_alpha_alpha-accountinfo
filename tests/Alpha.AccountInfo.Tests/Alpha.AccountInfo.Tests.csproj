@@ -156,6 +156,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettingsTests.cs" />
+    <Compile Include="Features\OpenDownlines\OpenDownlinesDataAccessTest.cs" />
+    <Compile Include="Features\OpenDownlines\OpenDownlinesServiceTest.cs" />
+    <Compile Include="Features\OpenDownlines\SpParams\SelectCloseInfoCriteriaTest.cs" />
+    <Compile Include="Features\OpenDownlines\SpParams\SelectCloseInfoDetailCriteriaTest.cs" />
+    <Compile Include="Features\OpenDownlines\SpParams\SelectCloseInfoMultipleCriteriaTest.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\CheckProductStatusUMCriteriaTests.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureServicesTest.cs" />
     <Compile Include="Features\ProfilePicture\SPs\Commands\UpdateActorProfilePictureCommandBaseTest.cs" />

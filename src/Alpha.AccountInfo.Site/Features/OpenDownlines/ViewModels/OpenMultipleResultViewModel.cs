@@ -68,7 +68,7 @@
                 if (successfullyCloseUsernames.Count > 0)
                 {
                     successfullyResults.Add(BuildSussesfullyMessage(
-                        OpenDownlinesResources.OpenedSuccessfully,
+                        OpenDownlinesResources.ClosedSuccessfully,
                         successfullyCloseUsernames));
                 }
 

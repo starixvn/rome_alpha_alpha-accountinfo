@@ -220,6 +220,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\OpenDownlines\OpenDownlinesControllerTest.cs" />
+    <Compile Include="Features\OpenDownlines\OpenDownlinesHandlerTest.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenMultipleResultViewModelTest.cs" />
     <Compile Include="Features\ProductStatusPopup\ViewModel\ProductStatusViewModelTests.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureControllerTest.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureHandlerTest.cs" />
