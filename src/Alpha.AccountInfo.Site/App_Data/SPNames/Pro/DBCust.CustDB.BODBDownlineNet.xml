@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="" SiteName="Account Info">
   <Function Name="Customer Information">
-    <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo_UAT4" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Product Status">
     <Setting Key="Acc_AdminSelStatusByProductId" SpName="Acc_AdminSelStatusByProductId" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
@@ -42,7 +42,7 @@
       <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
     </Setting>
     <Setting Key="Acc_Customer_SuspendInfoDetailSel" SpName="Acc_Customer_SuspendInfoDetailSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel_UAT4" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
       <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
       <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
       <Mapping ObjectProperty="DownlineRoleId" DataField="roleid" />
