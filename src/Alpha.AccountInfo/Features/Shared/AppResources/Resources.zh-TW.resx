@@ -361,10 +361,10 @@
     <value>此賬號已被管理員關閉。</value>
   </data>
   <data name="LockedByFalsePassword" xml:space="preserve">
-    <value>This account was locked by failed login.</value>
+    <value>由於多次輸入錯誤密碼，導致此賬號已被鎖定，</value>
   </data>
   <data name="LockedByFalseOTPSC" xml:space="preserve">
-    <value>This account was locked by false inputs of OTP/Security Code.</value>
+    <value>由於一次性密碼/保安碼多次驗證失敗，導致此賬號已被鎖定。</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>此賬號已被上線關閉。</value>

@@ -358,10 +358,10 @@
     <value>此账号已被管理员关闭。</value>
   </data>
   <data name="LockedByFalsePassword" xml:space="preserve">
-    <value>This account was locked by failed login.</value>
+    <value>由于多次输入错误密码，导致此账号已被锁定，</value>
   </data>
   <data name="LockedByFalseOTPSC" xml:space="preserve">
-    <value>This account was locked by false inputs of OTP/Security Code.</value>
+    <value>由于一次性密码/保安码多次验证失败，导致此账号已被锁定。</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>此账号已被上线关闭。</value>

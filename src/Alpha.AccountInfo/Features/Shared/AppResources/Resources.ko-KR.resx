@@ -358,10 +358,10 @@
     <value>This account was closed by admin.</value>
   </data>
   <data name="LockedByFalsePassword" xml:space="preserve">
-    <value>This account was locked by failed login.</value>
+    <value>This account has been locked due to multiple failed password attempts.</value>
   </data>
   <data name="LockedByFalseOTPSC" xml:space="preserve">
-    <value>This account was locked by false inputs of OTP/Security Code.</value>
+    <value>This account has been locked due to multiple failed OTP/Security Code authentication attempts.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>This account was closed by upline.</value>

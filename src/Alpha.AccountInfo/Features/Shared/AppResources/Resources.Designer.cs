@@ -529,7 +529,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was locked by false inputs of OTP/Security Code..
+        ///   Looks up a localized string similar to This account has been locked due to multiple failed OTP/Security Code authentication attempts..
         /// </summary>
         public static string LockedByFalseOTPSC {
             get {
@@ -538,7 +538,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was locked by failed login..
+        ///   Looks up a localized string similar to This account has been locked due to multiple failed password attempts..
         /// </summary>
         public static string LockedByFalsePassword {
             get {
