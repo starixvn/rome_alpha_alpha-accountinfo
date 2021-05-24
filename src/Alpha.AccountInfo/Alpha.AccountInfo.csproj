@@ -294,9 +294,27 @@
     <None Include="Alpha.AccountInfo.Debug.ruleset" />
     <None Include="Alpha.AccountInfo.Release.ruleset" />
     <None Include="app.config" />
+    <EmbeddedResource Include="Features\OpenDownlines\AppResources\OpenDownlinesResources.ja-JP.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\OpenDownlines\AppResources\OpenDownlinesResources.ko-KR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\OpenDownlines\AppResources\OpenDownlinesResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>OpenDownlinesResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\OpenDownlines\AppResources\OpenDownlinesResources.vi-VN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\OpenDownlines\AppResources\OpenDownlinesResources.th-TH.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\OpenDownlines\AppResources\OpenDownlinesResources.zh-CN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\OpenDownlines\AppResources\OpenDownlinesResources.zh-TW.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\ProfilePicture\AppResources\ProfilePictureResources.ko-KR.resx">
