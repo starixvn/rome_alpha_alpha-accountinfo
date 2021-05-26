@@ -34,6 +34,8 @@
             }
         }
 
+        public static bool IsDisabledRecheckin => GetConfigValue("DisabledCheckDuplicationLogin") == "1";
+
         public static void Verify()
         {
             Require(StoredProcedurePath, nameof(StoredProcedurePath));
