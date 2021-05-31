@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
+    using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -16,6 +17,7 @@
     using Fanex.Data.Repository;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public interface SearchAccountService
@@ -109,8 +111,15 @@
               new SelectTotalDownlineSummaryCriteria(custId, roleId)).ConfigureAwait(false);
 
         public async Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid)
-            => await dynamicRepository.FetchAsync<OnlineUserModel>(
+        {
+            if (AppSettings.IsDisabledRecheckin)
+            {
+                return Enumerable.Empty<OnlineUserModel>();
+            }
+
+            return await dynamicRepository.FetchAsync<OnlineUserModel>(
                 new SelectOnlineListCriteria(custid)).ConfigureAwait(false);
+        }
 
         public async Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param)
         {
