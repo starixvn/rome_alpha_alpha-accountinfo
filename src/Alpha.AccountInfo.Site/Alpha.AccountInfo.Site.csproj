@@ -384,6 +384,10 @@
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="Features\OpenDownlines\Bundles\open-multiple.min.css" />
+    <Content Include="Features\OpenDownlines\Bundles\open-multiple.min.js" />
+    <Content Include="Features\OpenDownlines\Bundles\open-single.min.css" />
+    <Content Include="Features\OpenDownlines\Bundles\open-single.min.js" />
     <Content Include="Features\OpenDownlines\Scripts\app\open-api.jsx" />
     <Content Include="Features\OpenDownlines\Scripts\app\open-helper.jsx" />
     <Content Include="Features\OpenDownlines\Scripts\app\open-multiple\open-multiple-components.jsx" />
@@ -754,7 +758,6 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\OpenDownlines\Bundles\" />
     <Folder Include="Features\ProfilePicture\Scripts\tests\" />
   </ItemGroup>
   <ItemGroup>
