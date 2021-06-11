@@ -358,10 +358,10 @@
     <value>Tài khoản bị đóng bởi admin.</value>
   </data>
   <data name="LockedByFalsePassword" xml:space="preserve">
-    <value>This account was locked by failed login.</value>
+    <value>Tài khoản này đã bị khóa do nhiều lần nhập sai mật khẩu.</value>
   </data>
   <data name="LockedByFalseOTPSC" xml:space="preserve">
-    <value>This account was locked by false inputs of OTP/Security Code.</value>
+    <value>Tài khoản này đã bị khóa do nhiều lần nhập sai Mã OTP / Mã bảo mật.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>Tài khoản bị đóng bởi cấp trên.</value>
