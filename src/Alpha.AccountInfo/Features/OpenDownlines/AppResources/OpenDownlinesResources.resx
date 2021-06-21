@@ -144,20 +144,8 @@
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
-  <data name="Closed" xml:space="preserve">
-    <value>Closed</value>
-  </data>
-  <data name="CloseStatus" xml:space="preserve">
-    <value>Closed Status</value>
-  </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
-  </data>
-  <data name="Opened" xml:space="preserve">
-    <value>Opened</value>
-  </data>
-  <data name="OpenSingleNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to open &lt;username&gt;</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
@@ -168,9 +156,6 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="AffectedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are changed after going to open &lt;username&gt;</value>
-  </data>
   <data name="Displaying" xml:space="preserve">
     <value>Displaying</value>
   </data>
@@ -179,6 +164,42 @@
   </data>
   <data name="Page" xml:space="preserve">
     <value>Page</value>
+  </data>
+  <data name="AffectedDownlinesAgentMember" xml:space="preserve">
+    <value>Affected Downlines &lt;br/&gt;  (Agent/Member)</value>
+  </data>
+  <data name="AffectedDownlinesMember" xml:space="preserve">
+    <value>Affected Downlines &lt;br/&gt; (Member)</value>
+  </data>
+  <data name="RemainUnchangedDownlinesAgentMember" xml:space="preserve">
+    <value>Remain Unchanged Downlines &lt;br/&gt; (Agent/Member)</value>
+  </data>
+  <data name="RemainUnchangedDownlinesMember" xml:space="preserve">
+    <value>Remain Unchanged Downlines &lt;br/&gt; (Member)</value>
+  </data>
+  <data name="SubmitMultipleConfirm3" xml:space="preserve">
+    <value>Do you want to proceed?</value>
+  </data>
+  <data name="NumberColumn" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>There is no data.</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="CloseStatus" xml:space="preserve">
+    <value>Closed Status</value>
+  </data>
+  <data name="Opened" xml:space="preserve">
+    <value>Opened</value>
+  </data>
+  <data name="OpenSingleNote" xml:space="preserve">
+    <value>List of downlines whose status are changed/unchanged after going to open &lt;username&gt;</value>
+  </data>
+  <data name="AffectedViewListNote" xml:space="preserve">
+    <value>List of downlines whose status are changed after going to open &lt;username&gt;</value>
   </data>
   <data name="ClosedSuccessfully" xml:space="preserve">
     <value>{0} and their downlines have been closed successfully.</value>
@@ -204,18 +225,6 @@
   <data name="ViewInformation6" xml:space="preserve">
     <value>- Remain Unchanged Downlines: list of users whose status shall be kept after going to open upline.</value>
   </data>
-  <data name="AffectedDownlinesAgentMember" xml:space="preserve">
-    <value>Affected Downlines &lt;br/&gt;  (Agent/Member)</value>
-  </data>
-  <data name="AffectedDownlinesMember" xml:space="preserve">
-    <value>Affected Downlines &lt;br/&gt; (Member)</value>
-  </data>
-  <data name="RemainUnchangedDownlinesAgentMember" xml:space="preserve">
-    <value>Remain Unchanged Downlines &lt;br/&gt; (Agent/Member)</value>
-  </data>
-  <data name="RemainUnchangedDownlinesMember" xml:space="preserve">
-    <value>Remain Unchanged Downlines &lt;br/&gt; (Member)</value>
-  </data>
   <data name="UnchangedViewListNote" xml:space="preserve">
     <value>List of downlines whose status are unchanged after going to open &lt;username&gt;</value>
   </data>
@@ -228,17 +237,8 @@
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
     <value>&lt;username&gt; will be closed. Warning: they will not be able to place bet.</value>
   </data>
-  <data name="SubmitMultipleConfirm3" xml:space="preserve">
-    <value>Do you want to proceed?</value>
-  </data>
   <data name="MultipleConfirm" xml:space="preserve">
     <value>Are you sure you want to change Closed status? All affected downlines will be changed Closed status as well.</value>
-  </data>
-  <data name="NumberColumn" xml:space="preserve">
-    <value>No.</value>
-  </data>
-  <data name="NoData" xml:space="preserve">
-    <value>There is no data.</value>
   </data>
   <data name="OpenedWithNoDownlinesMessages" xml:space="preserve">
     <value>Are you sure you want to change Closed status for this customer?</value>
