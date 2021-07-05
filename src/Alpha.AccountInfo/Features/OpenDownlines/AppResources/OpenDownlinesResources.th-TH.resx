@@ -144,6 +144,9 @@
   <data name="Submit" xml:space="preserve">
     <value>ตกลง</value>
   </data>
+  <data name="To" xml:space="preserve">
+    <value>ถึง</value>
+  </data>
   <data name="Total" xml:space="preserve">
     <value>ทั้งหมด</value>
   </data>
@@ -187,63 +190,60 @@
     <value>ไม่พบข้อมูลเป็น</value>
   </data>
   <data name="Closed" xml:space="preserve">
-    <value>Closed</value>
-  </data>
+		<value>Closed</value>
+	</data>
   <data name="CloseStatus" xml:space="preserve">
-    <value>Closed Status</value>
-  </data>
+		<value>Closed Status</value>
+	</data>
   <data name="Opened" xml:space="preserve">
-    <value>Opened</value>
-  </data>
+		<value>Opened</value>
+	</data>
   <data name="OpenSingleNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to open &lt;username&gt;</value>
-  </data>
+		<value>รายชื่อดาวไลน์ สถานะหลังการเปิด &lt;username&gt;</value>
+	</data>
   <data name="AffectedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are changed after going to open &lt;username&gt;</value>
-  </data>
+		<value>รายชื่อดาวไลน์ที่สถานะเปลี่ยนแปลงหลังจากการเปิดบัญชี &lt;username&gt;</value>
+	</data>
   <data name="ClosedSuccessfully" xml:space="preserve">
-    <value>{0} and their downlines have been closed successfully.</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>to</value>
-  </data>
+		<value>{0} and their downlines have been closed successfully.</value>
+	</data>
   <data name="OpenedSuccessfully" xml:space="preserve">
-    <value>{0} and their affected downlines have been opened successfully.</value>
-  </data>
+		<value>{0} and their affected downlines have been opened successfully.</value>
+	</data>
   <data name="ViewInformation1" xml:space="preserve">
-    <value>- When a customer is closed, all his downlines shall be closed as well.</value>
-  </data>
+		<value>เมื่อปิดบัญชี ดาวน์ไลน์ของเขา/เธอทั้งหมดก็จะถูกปิดเช่นกัน</value>
+	</data>
   <data name="ViewInformation3" xml:space="preserve">
-    <value>+ Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; closed by upline shall be updated to opened. You can click on the number of affected downlines to view the list.</value>
-  </data>
+		<value>เฉพาะดาวน์ไลน์ที่ถูกปิดทางอ้อมโดยอัพไลน์เท่านั้นที่จะถูกเปิดกลับ คุณสามารถคลิกที่จำนวนดาวน์ไลน์ที่ได้รับผลกระทบเพื่อดูรายการ</value>
+	</data>
   <data name="ViewInformation4" xml:space="preserve">
-    <value>+ For the downline who were &lt;b&gt;directly&lt;/b&gt; closed by upline shall be kept, the current status shall not be updated. You can click on the number of remain unchanged downlines to view the list.</value>
-  </data>
+		<value>สำหรับบัญชีที่เหลือ สถานะจะไม่เปลี่ยนแปลง คุณสามารถคลิกที่จำนวนดาวน์ไลน์ที่ไม่ได้รับผลกระทบเพื่อดูรายการ</value>
+	</data>
   <data name="ViewInformation5" xml:space="preserve">
-    <value>- Affected Downlines: list of users whose status shall be changed after going to open upline.</value>
-  </data>
+		<value>ดาวไลน์ที่รับผลกระทบ : รายการสถานะของยูซเซอร์ที่มีการเปลี่ยนแปลงหลังจากอัพไลน์ทำการเปิดบัญชี</value>
+	</data>
   <data name="ViewInformation6" xml:space="preserve">
-    <value>- Remain Unchanged Downlines: list of users whose status shall be kept after going to open upline.</value>
-  </data>
+		<value>ดาวไลน์ที่ไม่ได้รับผลกระทบ : รายการสถานะของยูซเซอร์ที่ไม่มีการเปลี่ยนแปลงหลังจากอัพไลน์ทำการเปิดบัญชี</value>
+	</data>
   <data name="UnchangedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are unchanged after going to open &lt;username&gt;</value>
-  </data>
+		<value>รายชื่อดาวไลน์ที่สถานะไม่มีเปลี่ยนแปลงหลังจากการเปิดบัญชี &lt;username&gt;</value>
+	</data>
   <data name="ViewInformation2" xml:space="preserve">
-    <value>- When a customer is opened:</value>
-  </data>
+		<value>เมื่อบัญชีถูกเปิด</value>
+	</data>
   <data name="SubmitMultipleConfirm1" xml:space="preserve">
-    <value>&lt;username&gt; will be opened.</value>
-  </data>
+		<value>&lt;username&gt; will be opened.</value>
+	</data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-    <value>&lt;username&gt; will be closed. Warning: they will not be able to place bet.</value>
-  </data>
+		<value>&lt;username&gt; will be closed. Warning: they will not be able to place bet.</value>
+	</data>
   <data name="MultipleConfirm" xml:space="preserve">
-    <value>Are you sure you want to change Closed status? All affected downlines will be changed Closed status as well.</value>
-  </data>
+		<value>คุณแน่ใจที่จะเปิด/ปิดบัญชีนี้หรือไม่ บัญชีทั้งหมดของดาวไลน์จะถูกเปิด/ปิดทั้งหมดเช่นกัน</value>
+	</data>
   <data name="OpenedWithNoDownlinesMessages" xml:space="preserve">
-    <value>Are you sure you want to change Closed status for this customer?</value>
-  </data>
+		<value>คุณแน่ใจหรือไม่ว่าต้องการเปิดบัญชีนี้</value>
+	</data>
   <data name="Open" xml:space="preserve">
-    <value>Open</value>
-  </data>
+		<value>เปิด</value>
+	</data>
 </root>

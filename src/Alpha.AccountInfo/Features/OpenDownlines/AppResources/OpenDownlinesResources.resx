@@ -144,6 +144,9 @@
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="To" xml:space="preserve">
+    <value>to</value>
+  </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
@@ -203,9 +206,6 @@
   </data>
   <data name="ClosedSuccessfully" xml:space="preserve">
     <value>{0} and their downlines have been closed successfully.</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>to</value>
   </data>
   <data name="OpenedSuccessfully" xml:space="preserve">
     <value>{0} and their affected downlines have been opened successfully.</value>
