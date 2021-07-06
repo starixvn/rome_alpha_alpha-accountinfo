@@ -56,7 +56,7 @@ export default class OpenSingle extends React.Component {
         const { resources, viewModel } = this.props;
         const message = viewModel.AffectedDownlinesTotal + viewModel.UnchangedDownlinesTotal === 0 ?
             resources.OpenedWithNoDownlinesMessages :
-            resources.MultipleConfirm;
+            resources.SingleConfirm;
 
         window.top.bootboxConfirm(
             message,

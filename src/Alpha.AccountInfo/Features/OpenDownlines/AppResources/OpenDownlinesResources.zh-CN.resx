@@ -240,6 +240,9 @@
   <data name="MultipleConfirm" xml:space="preserve">
 		<value>您确定要开启/关闭这些账号？他们所有的下线将被开启/关闭。</value>
 	</data>
+  <data name="SingleConfirm" xml:space="preserve">
+    <value>您确定要开启此账号？他/她的所有下线账号将被开启。</value>
+  </data>
   <data name="OpenedWithNoDownlinesMessages" xml:space="preserve">
 		<value>您确定要开启此账号？</value>
 	</data>

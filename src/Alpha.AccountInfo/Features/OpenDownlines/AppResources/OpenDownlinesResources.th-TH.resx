@@ -240,6 +240,9 @@
   <data name="MultipleConfirm" xml:space="preserve">
 		<value>คุณแน่ใจที่จะเปิด/ปิดบัญชีนี้หรือไม่ บัญชีทั้งหมดของดาวไลน์จะถูกเปิด/ปิดทั้งหมดเช่นกัน</value>
 	</data>
+  <data name="SingleConfirm" xml:space="preserve">
+    <value>คุณแน่ใจที่จะเปิดบัญชีนี้หรือไม่ บัญชีทั้งหมดของเขา/เธอ จะถูกเปิดทั้งหมดเช่นกัน</value>
+  </data>
   <data name="OpenedWithNoDownlinesMessages" xml:space="preserve">
 		<value>คุณแน่ใจหรือไม่ว่าต้องการเปิดบัญชีนี้</value>
 	</data>

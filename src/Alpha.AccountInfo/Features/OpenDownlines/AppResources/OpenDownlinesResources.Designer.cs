@@ -313,6 +313,15 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to change Closed status for this customer? All affected downlines will be opened as well..
+        /// </summary>
+        public static string SingleConfirm {
+            get {
+                return ResourceManager.GetString("SingleConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {
