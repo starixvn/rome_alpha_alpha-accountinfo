@@ -44,14 +44,18 @@ export const RowContent = ({
                 </div>
             </td>
             {
-                isNotMember && [true, false].map((isAffected, key) =>
-                    <td className="text-center" key={key}>
-                        {
-                            showValue && (originaldataRow.IsClosed ?
-                                <ColumnContent {...{ dataRow, redirectViewListDetail, isAffected }} /> :
-                                <span>{resources.All}</span>)
-                        }
-                    </td>)
+                isNotMember && [true, false].map((isAffected, key) => {
+                    const text = isAffected ? resources.All : '';
+
+                    return (
+                        <td className="text-center" key={key}>
+                            {
+                                showValue && (originaldataRow.IsClosed ?
+                                    <ColumnContent {...{ dataRow, redirectViewListDetail, isAffected }} /> :
+                                    <span>{text}</span>)
+                            }
+                        </td>)
+                })
             }
         </tr>);
 };
