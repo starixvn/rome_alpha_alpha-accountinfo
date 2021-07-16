@@ -172,6 +172,7 @@
             .Returns(result);
 
             var expectedViewModel = new OpenMultipleResultViewModel(
+                UserLevel.Super.Value,
                 openCustomerInfoList.Select(
                 customerInfo => new OpenResult(customerInfo.Username, customerInfo.IsClosed, result)));
 

@@ -83,10 +83,11 @@
                     tasks.Add(UpdateSuspendAsync(message, customer));
                 }
 
-                return new UnsuspendMultipleResultViewModel(await Task.WhenAll(tasks).ConfigureAwait(false));
+                return new UnsuspendMultipleResultViewModel(message.RoleId, await Task.WhenAll(tasks).ConfigureAwait(false));
             }
 
             return new UnsuspendMultipleResultViewModel(
+                message.RoleId,
                 new List<UnsuspendResult> {
                     new UnsuspendResult("", true, Result.CreateForbiddenResult())
                 });

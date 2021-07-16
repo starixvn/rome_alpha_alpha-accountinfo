@@ -83,10 +83,11 @@
                     tasks.Add(UpdateCloseAsync(message, customer));
                 }
 
-                return new OpenMultipleResultViewModel(await Task.WhenAll(tasks).ConfigureAwait(false));
+                return new OpenMultipleResultViewModel(message.RoleId, await Task.WhenAll(tasks).ConfigureAwait(false));
             }
 
             return new OpenMultipleResultViewModel(
+                message.RoleId,
                 new List<OpenResult> {
                     new OpenResult("", true, Result.CreateForbiddenResult())
                 });

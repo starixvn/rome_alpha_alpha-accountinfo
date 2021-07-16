@@ -25,10 +25,14 @@
     {
         private readonly IEnumerable<OpenResult> openResults;
 
-        public OpenMultipleResultViewModel(IEnumerable<OpenResult> openResults)
+        public OpenMultipleResultViewModel(int roleId, IEnumerable<OpenResult> openResults)
         {
             this.openResults = openResults;
+
+            RoleId = roleId;
         }
+
+        public int RoleId { get; }
 
         public IEnumerable<Result> Results
         {
@@ -61,14 +65,18 @@
                 if (successfullyOpenUsernames.Count > 0)
                 {
                     successfullyResults.Add(BuildSussesfullyMessage(
-                        OpenDownlinesResources.OpenedSuccessfully,
+                        RoleId > UserLevel.Member.Value
+                        ? OpenDownlinesResources.OpenedSuccessfully
+                        : OpenDownlinesResources.OpenedMemberSuccessfully,
                         successfullyOpenUsernames));
                 }
 
                 if (successfullyCloseUsernames.Count > 0)
                 {
                     successfullyResults.Add(BuildSussesfullyMessage(
-                        OpenDownlinesResources.ClosedSuccessfully,
+                        RoleId > UserLevel.Member.Value
+                        ? OpenDownlinesResources.ClosedSuccessfully
+                        : OpenDownlinesResources.ClosedMemberSuccessfully,
                         successfullyCloseUsernames));
                 }
 

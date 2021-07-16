@@ -20,7 +20,7 @@ export default class UnsuspendMultiple extends React.Component {
     doUpdate() {
         $.blockUI();
         const self = this;
-        const { viewModel, originalViewModel } = this.props;
+        const { viewModel, originalViewModel, searchAccountRoleId } = this.props;
         const params = [];
 
         viewModel.map(function (item, index) {
@@ -33,7 +33,7 @@ export default class UnsuspendMultiple extends React.Component {
             }
         });
 
-        unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: params })
+        unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: params, RoleId: searchAccountRoleId })
             .then(data => {
                 let isSuccess = true;
                 const timeoutDefault = 3000;
@@ -73,9 +73,33 @@ export default class UnsuspendMultiple extends React.Component {
     }
 
     handleSubmit() {
-        const { resources } = this.props;
+        const { resources, searchAccountRoleId, viewModel, originalViewModel } = this.props;
+
+        let message = resources.MultipleConfirm;
+        if (searchAccountRoleId === 1) {
+            let unsuspendUserNames = [],
+                suspendUserNames = [];
+            viewModel.map(function (item, index) {
+                if (item.Suspended !== originalViewModel[index].Suspended) {
+                    if (item.Suspended) {
+                        suspendUserNames.push(item.Username);
+                    } else {
+                        unsuspendUserNames.push(item.Username);
+                    }
+                }
+            });
+
+            message = unsuspendUserNames.length > 0
+                ? `${resources.UnsuspendMultipleConfirmMessage.replace('custnames', unsuspendUserNames.join(', '))} <br />`
+                : '';
+            message += suspendUserNames.length > 0
+                ? `${resources.SuspendMultipleConfirmMessage.replace('custnames', suspendUserNames.join(', '))} <br />`
+                : '';
+            message += resources.SubmitMultipleConfirm3;
+        }
+
         window.top.bootboxConfirm(
-            resources.MultipleConfirm,
+            message,
             null,
             this.doUpdate
         );

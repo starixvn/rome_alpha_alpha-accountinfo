@@ -30,6 +30,8 @@
 
         public IEnumerable<OpenCustomerInfo> OpenList { get; set; }
 
+        public int RoleId { get; set; }
+
         public string ActorName { get; }
 
         public int ActorId { get; }

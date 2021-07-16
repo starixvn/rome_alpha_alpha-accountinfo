@@ -20,7 +20,7 @@ export default class OpenMultiple extends React.Component {
     doUpdate() {
         $.blockUI();
         const self = this;
-        const { viewModel, originalViewModel } = this.props;
+        const { viewModel, originalViewModel, searchAccountRoleId } = this.props;
         const params = [];
 
         viewModel.map(function (item, index) {
@@ -33,7 +33,7 @@ export default class OpenMultiple extends React.Component {
             }
         });
 
-        openAPI.updateClose('OpenDownlines/OpenMultiple', { OpenList: params })
+        openAPI.updateClose('OpenDownlines/OpenMultiple', { OpenList: params, RoleId: searchAccountRoleId })
             .then(data => {
                 let isSuccess = true;
                 const timeoutDefault = 3000;
@@ -73,9 +73,33 @@ export default class OpenMultiple extends React.Component {
     }
 
     handleSubmit() {
-        const { resources } = this.props;
+        const { resources, searchAccountRoleId, viewModel, originalViewModel } = this.props;
+
+        let message = resources.MultipleConfirm;
+        if (searchAccountRoleId === 1) {
+            let openUserNames = [],
+                closeUserNames = [];
+            viewModel.map(function (item, index) {
+                if (item.IsClosed !== originalViewModel[index].IsClosed) {
+                    if (item.IsClosed) {
+                        closeUserNames.push(item.Username);
+                    } else {
+                        openUserNames.push(item.Username);
+                    }
+                }
+            });
+            
+            message = openUserNames.length > 0
+                ? `${resources.OpenMultipleMemberConfirmMessage.replace('custnames', openUserNames.join(', '))} <br />`
+                : '';
+            message += closeUserNames.length > 0
+                ? `${resources.CloseMultipleMemberConfirmMessage.replace('custnames', closeUserNames.join(', '))} <br />`
+                : '';
+            message += resources.SubmitMultipleConfirm3;
+        }
+
         window.top.bootboxConfirm(
-            resources.MultipleConfirm,
+            message,
             null,
             this.doUpdate
         );

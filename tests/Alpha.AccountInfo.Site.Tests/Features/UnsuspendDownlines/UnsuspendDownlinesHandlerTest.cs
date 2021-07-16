@@ -172,6 +172,7 @@
             .Returns(result);
 
             var expectedViewModel = new UnsuspendMultipleResultViewModel(
+                UserLevel.Super.Value,
                 unsuspendCustomerInfoList.Select(
                 customerInfo => new UnsuspendResult(customerInfo.Username, customerInfo.Suspended, result)));
 

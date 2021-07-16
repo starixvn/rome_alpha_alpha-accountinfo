@@ -133,11 +133,29 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} have been successfully closed..
+        /// </summary>
+        public static string ClosedMemberSuccessfully {
+            get {
+                return ResourceManager.GetString("ClosedMemberSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} and their downlines have been closed successfully..
         /// </summary>
         public static string ClosedSuccessfully {
             get {
                 return ResourceManager.GetString("ClosedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status of custnames shall be changed to Closed. Warning, the customers can&apos;t place bet..
+        /// </summary>
+        public static string CloseMultipleMemberConfirmMessage {
+            get {
+                return ResourceManager.GetString("CloseMultipleMemberConfirmMessage", resourceCulture);
             }
         }
         
@@ -241,6 +259,15 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} have been successfully opened..
+        /// </summary>
+        public static string OpenedMemberSuccessfully {
+            get {
+                return ResourceManager.GetString("OpenedMemberSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} and their affected downlines have been opened successfully..
         /// </summary>
         public static string OpenedSuccessfully {
@@ -255,6 +282,15 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         public static string OpenedWithNoDownlinesMessages {
             get {
                 return ResourceManager.GetString("OpenedWithNoDownlinesMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status of custnames shall be changed to Opened..
+        /// </summary>
+        public static string OpenMultipleMemberConfirmMessage {
+            get {
+                return ResourceManager.GetString("OpenMultipleMemberConfirmMessage", resourceCulture);
             }
         }
         

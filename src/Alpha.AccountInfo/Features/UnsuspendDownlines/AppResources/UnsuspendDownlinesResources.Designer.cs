@@ -287,11 +287,29 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} have been successfully suspended..
+        /// </summary>
+        public static string SuspendedMemberSuccessfully {
+            get {
+                return ResourceManager.GetString("SuspendedMemberSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} and their downlines have been suspended successfully..
         /// </summary>
         public static string SuspendedSuccessfully {
             get {
                 return ResourceManager.GetString("SuspendedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status of custnames shall be changed to Suspended. Warning, the customers can&apos;t place bet..
+        /// </summary>
+        public static string SuspendMultipleConfirmMessage {
+            get {
+                return ResourceManager.GetString("SuspendMultipleConfirmMessage", resourceCulture);
             }
         }
         
@@ -341,6 +359,15 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} have been successfully unsuspended..
+        /// </summary>
+        public static string UnsuspendedMemberSuccessfully {
+            get {
+                return ResourceManager.GetString("UnsuspendedMemberSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} and their affected downlines have been unsuspended successfully..
         /// </summary>
         public static string UnsuspendedSuccessfully {
@@ -355,6 +382,15 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         public static string UnsuspendedWithNoDownlinesMessages {
             get {
                 return ResourceManager.GetString("UnsuspendedWithNoDownlinesMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status of custnames shall be changed to Unsuspended..
+        /// </summary>
+        public static string UnsuspendMultipleConfirmMessage {
+            get {
+                return ResourceManager.GetString("UnsuspendMultipleConfirmMessage", resourceCulture);
             }
         }
         

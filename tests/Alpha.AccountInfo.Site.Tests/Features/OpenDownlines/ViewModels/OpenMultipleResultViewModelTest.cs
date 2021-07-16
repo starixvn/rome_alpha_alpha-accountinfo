@@ -23,7 +23,7 @@
             };
 
             var expectedViewModel = Result.CreateSuccessResult(sucessfullyMessage);
-            var actualViewModel = new OpenMultipleResultViewModel(openSuccessfullyResults);
+            var actualViewModel = new OpenMultipleResultViewModel(UserLevel.Super.Value, openSuccessfullyResults);
             AssertExtension.Equal(actualViewModel.Results.FirstOrDefault(), expectedViewModel);
         }
 
@@ -44,7 +44,7 @@
                 Result.CreateErrorResult(100, "test2: Closed Error Result"),
             };
 
-            var actualViewModel = new OpenMultipleResultViewModel(openSuccessfullyResults);
+            var actualViewModel = new OpenMultipleResultViewModel(UserLevel.Super.Value, openSuccessfullyResults);
             AssertExtension.Equal(actualViewModel.Results.ToList(), expectedViewModel);
         }
     }

@@ -23,7 +23,7 @@
             };
 
             var expectedViewModel = Result.CreateSuccessResult(sucessfullyMessage);
-            var actualViewModel = new UnsuspendMultipleResultViewModel(unsuspendSuccessfullyResults);
+            var actualViewModel = new UnsuspendMultipleResultViewModel(UserLevel.Super.Value, unsuspendSuccessfullyResults);
             AssertExtension.Equal(actualViewModel.Results.FirstOrDefault(), expectedViewModel);
         }
 
@@ -44,7 +44,7 @@
                 Result.CreateErrorResult(100, "test2: Suspended Error Result"),
             };
                 
-            var actualViewModel = new UnsuspendMultipleResultViewModel(unsuspendSuccessfullyResults);
+            var actualViewModel = new UnsuspendMultipleResultViewModel(UserLevel.Super.Value, unsuspendSuccessfullyResults);
             AssertExtension.Equal(actualViewModel.Results.ToList(), expectedViewModel);
         }
     }
