@@ -243,4 +243,16 @@
   <data name="UnsuspendedWithNoDownlinesMessages" xml:space="preserve">
     <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?</value>
   </data>
+  <data name="UnsuspendMultipleConfirmMessage" xml:space="preserve">
+    <value>Status of &lt;username&gt; shall be changed to Unsuspended.</value>
+  </data>
+  <data name="SuspendMultipleConfirmMessage" xml:space="preserve">
+    <value>Status of &lt;username&gt; shall be changed to Suspended. Warning, the customers can't place bet.</value>
+  </data>
+  <data name="SuspendedMemberSuccessfully" xml:space="preserve">
+    <value>{0} have been successfully suspended.</value>
+  </data>
+  <data name="UnsuspendedMemberSuccessfully" xml:space="preserve">
+    <value>{0} have been successfully unsuspended.</value>
+  </data>
 </root>

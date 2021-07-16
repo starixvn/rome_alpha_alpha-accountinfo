@@ -90,10 +90,10 @@ export default class UnsuspendMultiple extends React.Component {
             });
 
             message = unsuspendUserNames.length > 0
-                ? `${resources.UnsuspendMultipleConfirmMessage.replace('custnames', unsuspendUserNames.join(', '))} <br />`
+                ? `${resources.UnsuspendMultipleConfirmMessage.replace('<username>', unsuspendUserNames.join(', '))} <br />`
                 : '';
             message += suspendUserNames.length > 0
-                ? `${resources.SuspendMultipleConfirmMessage.replace('custnames', suspendUserNames.join(', '))} <br />`
+                ? `${resources.SuspendMultipleConfirmMessage.replace('<username>', suspendUserNames.join(', '))} <br />`
                 : '';
             message += resources.SubmitMultipleConfirm3;
         }

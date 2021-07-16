@@ -90,10 +90,10 @@ export default class OpenMultiple extends React.Component {
             });
             
             message = openUserNames.length > 0
-                ? `${resources.OpenMultipleMemberConfirmMessage.replace('custnames', openUserNames.join(', '))} <br />`
+                ? `${resources.OpenMultipleMemberConfirmMessage.replace('<username>', openUserNames.join(', '))} <br />`
                 : '';
             message += closeUserNames.length > 0
-                ? `${resources.CloseMultipleMemberConfirmMessage.replace('custnames', closeUserNames.join(', '))} <br />`
+                ? `${resources.CloseMultipleMemberConfirmMessage.replace('<username>', closeUserNames.join(', '))} <br />`
                 : '';
             message += resources.SubmitMultipleConfirm3;
         }

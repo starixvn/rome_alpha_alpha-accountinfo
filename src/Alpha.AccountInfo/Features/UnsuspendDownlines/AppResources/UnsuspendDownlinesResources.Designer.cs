@@ -305,7 +305,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status of custnames shall be changed to Suspended. Warning, the customers can&apos;t place bet..
+        ///   Looks up a localized string similar to Status of &lt;username&gt; shall be changed to Suspended. Warning, the customers can&apos;t place bet..
         /// </summary>
         public static string SuspendMultipleConfirmMessage {
             get {
@@ -386,7 +386,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status of custnames shall be changed to Unsuspended..
+        ///   Looks up a localized string similar to Status of &lt;username&gt; shall be changed to Unsuspended..
         /// </summary>
         public static string UnsuspendMultipleConfirmMessage {
             get {

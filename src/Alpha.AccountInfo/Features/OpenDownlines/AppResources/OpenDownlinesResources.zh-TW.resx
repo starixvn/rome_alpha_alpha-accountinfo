@@ -190,13 +190,13 @@
     <value>沒有數據</value>
   </data>
   <data name="Closed" xml:space="preserve">
-		<value>Closed</value>
+		<value>關閉</value>
 	</data>
   <data name="CloseStatus" xml:space="preserve">
-		<value>Closed Status</value>
+		<value>關閉狀態</value>
 	</data>
   <data name="Opened" xml:space="preserve">
-		<value>Opened</value>
+		<value>開啟</value>
 	</data>
   <data name="OpenSingleNote" xml:space="preserve">
 		<value>開啟 &lt;username&gt; 後下線狀態列表。</value>
@@ -249,4 +249,16 @@
   <data name="Open" xml:space="preserve">
 		<value>開啟</value>
 	</data>
+  <data name="OpenMultipleMemberConfirmMessage" xml:space="preserve">
+    <value>Status of &lt;username&gt; shall be changed to Opened.</value>
+  </data>
+  <data name="CloseMultipleMemberConfirmMessage" xml:space="preserve">
+    <value>Status of &lt;username&gt; shall be changed to Closed. Warning, the customers can't place bet.</value>
+  </data>
+  <data name="ClosedMemberSuccessfully" xml:space="preserve">
+    <value>{0} have been successfully closed.</value>
+  </data>
+  <data name="OpenedMemberSuccessfully" xml:space="preserve">
+    <value>{0} have been successfully opened.</value>
+  </data>
 </root>
