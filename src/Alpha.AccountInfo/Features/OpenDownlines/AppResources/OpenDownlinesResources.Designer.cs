@@ -88,7 +88,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are changed after going to open &lt;username&gt;.
+        ///   Looks up a localized string similar to List of downlines whose statuses are changed after opening &lt;username&gt;.
         /// </summary>
         public static string AffectedViewListNote {
             get {
@@ -142,7 +142,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} and their downlines have been closed successfully..
+        ///   Looks up a localized string similar to {0} and their downlines have been successfully closed..
         /// </summary>
         public static string ClosedSuccessfully {
             get {
@@ -205,7 +205,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to change Closed status? All affected downlines will be changed Closed status as well..
+        ///   Looks up a localized string similar to Are you sure you want to open/close these accounts? All of their downlines will be open/closed as well..
         /// </summary>
         public static string MultipleConfirm {
             get {
@@ -268,7 +268,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} and their affected downlines have been opened successfully..
+        ///   Looks up a localized string similar to {0} and their affected downlines have been successfully opened..
         /// </summary>
         public static string OpenedSuccessfully {
             get {
@@ -277,7 +277,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to change Closed status for this customer?.
+        ///   Looks up a localized string similar to Are you sure you want to open this account?.
         /// </summary>
         public static string OpenedWithNoDownlinesMessages {
             get {
@@ -295,7 +295,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are changed/unchanged after going to open &lt;username&gt;.
+        ///   Looks up a localized string similar to List of downlines&apos; statuses after opening &lt;username&gt;.
         /// </summary>
         public static string OpenSingleNote {
             get {
@@ -349,7 +349,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to change Closed status for this customer? All affected downlines will be opened as well..
+        ///   Looks up a localized string similar to Are you sure you want to open this account? All of his/her downlines will be opened as well..
         /// </summary>
         public static string SingleConfirm {
             get {
@@ -376,7 +376,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;username&gt; will be closed. Warning: they will not be able to place bet..
+        ///   Looks up a localized string similar to &lt;username&gt; will be closed and cannot place bet..
         /// </summary>
         public static string SubmitMultipleConfirm2 {
             get {
@@ -385,7 +385,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to proceed?.
+        ///   Looks up a localized string similar to Are you sure you want to proceed?.
         /// </summary>
         public static string SubmitMultipleConfirm3 {
             get {
@@ -412,7 +412,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of downlines whose status are unchanged after going to open &lt;username&gt;.
+        ///   Looks up a localized string similar to List of downlines whose statuses remain unchanged after opening &lt;username&gt;.
         /// </summary>
         public static string UnchangedViewListNote {
             get {
@@ -439,7 +439,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - When a customer is closed, all his downlines shall be closed as well..
+        ///   Looks up a localized string similar to - When an account is closed, all his/her downlines will be closed as well..
         /// </summary>
         public static string ViewInformation1 {
             get {
@@ -448,7 +448,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - When a customer is opened:.
+        ///   Looks up a localized string similar to - When an account is opened:.
         /// </summary>
         public static string ViewInformation2 {
             get {
@@ -457,7 +457,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; closed by upline shall be updated to opened. You can click on the number of affected downlines to view the list..
+        ///   Looks up a localized string similar to + Only the downlines who are &lt;b&gt;indirectly&lt;/b&gt; closed by the upline will be opened. You can click on the number of affected downlines to view the list..
         /// </summary>
         public static string ViewInformation3 {
             get {
@@ -466,7 +466,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + For the downline who were &lt;b&gt;directly&lt;/b&gt; closed by upline shall be kept, the current status shall not be updated. You can click on the number of remain unchanged downlines to view the list..
+        ///   Looks up a localized string similar to + For the rest, their current statuses will not change. You can click on the number of unaffected downlines to view the list..
         /// </summary>
         public static string ViewInformation4 {
             get {
@@ -475,7 +475,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Affected Downlines: list of users whose status shall be changed after going to open upline..
+        ///   Looks up a localized string similar to - Affected Downlines: list of users whose statuses are changed after their upline is opened..
         /// </summary>
         public static string ViewInformation5 {
             get {
@@ -484,7 +484,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Remain Unchanged Downlines: list of users whose status shall be kept after going to open upline..
+        ///   Looks up a localized string similar to - Unaffected Downlines: list of users whose statuses remain unchanged after their upline is opened..
         /// </summary>
         public static string ViewInformation6 {
             get {

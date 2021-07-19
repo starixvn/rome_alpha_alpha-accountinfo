@@ -269,7 +269,7 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to proceed?.
+        ///   Looks up a localized string similar to Are you sure you want to proceed?.
         /// </summary>
         public static string SubmitMultipleConfirm3 {
             get {

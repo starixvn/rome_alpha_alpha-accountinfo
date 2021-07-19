@@ -144,6 +144,9 @@
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="To" xml:space="preserve">
+    <value>to</value>
+  </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
@@ -178,7 +181,7 @@
     <value>Remain Unchanged Downlines &lt;br/&gt; (Member)</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
-    <value>Do you want to proceed?</value>
+    <value>Are you sure you want to proceed?</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
     <value>No.</value>
@@ -187,65 +190,65 @@
     <value>There is no data.</value>
   </data>
   <data name="Closed" xml:space="preserve">
-    <value>Closed</value>
-  </data>
+		<value>Closed</value>
+	</data>
   <data name="CloseStatus" xml:space="preserve">
-    <value>Closed Status</value>
-  </data>
+		<value>Closed Status</value>
+	</data>
   <data name="Opened" xml:space="preserve">
-    <value>Opened</value>
-  </data>
+		<value>Opened</value>
+	</data>
   <data name="OpenSingleNote" xml:space="preserve">
-    <value>List of downlines whose status are changed/unchanged after going to open &lt;username&gt;</value>
-  </data>
+		<value>List of downlines' statuses after opening &lt;username&gt;</value>
+	</data>
   <data name="AffectedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are changed after going to open &lt;username&gt;</value>
-  </data>
+		<value>List of downlines whose statuses are changed after opening &lt;username&gt;</value>
+	</data>
   <data name="ClosedSuccessfully" xml:space="preserve">
-    <value>{0} and their downlines have been closed successfully.</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>to</value>
-  </data>
+		<value>{0} and their downlines have been successfully closed.</value>
+	</data>
   <data name="OpenedSuccessfully" xml:space="preserve">
-    <value>{0} and their affected downlines have been opened successfully.</value>
-  </data>
+		<value>{0} and their affected downlines have been successfully opened.</value>
+	</data>
   <data name="ViewInformation1" xml:space="preserve">
-    <value>- When a customer is closed, all his downlines shall be closed as well.</value>
-  </data>
+		<value>- When an account is closed, all his/her downlines will be closed as well.</value>
+	</data>
   <data name="ViewInformation3" xml:space="preserve">
-    <value>+ Only the downlines who were &lt;b&gt;indirectly&lt;/b&gt; closed by upline shall be updated to opened. You can click on the number of affected downlines to view the list.</value>
-  </data>
+		<value>+ Only the downlines who are &lt;b&gt;indirectly&lt;/b&gt; closed by the upline will be opened. You can click on the number of affected downlines to view the list.</value>
+	</data>
   <data name="ViewInformation4" xml:space="preserve">
-    <value>+ For the downline who were &lt;b&gt;directly&lt;/b&gt; closed by upline shall be kept, the current status shall not be updated. You can click on the number of remain unchanged downlines to view the list.</value>
-  </data>
+		<value>+ For the rest, their current statuses will not change. You can click on the number of unaffected downlines to view the list.</value>
+	</data>
   <data name="ViewInformation5" xml:space="preserve">
-    <value>- Affected Downlines: list of users whose status shall be changed after going to open upline.</value>
-  </data>
+		<value>- Affected Downlines: list of users whose statuses are changed after their upline is opened.</value>
+	</data>
   <data name="ViewInformation6" xml:space="preserve">
-    <value>- Remain Unchanged Downlines: list of users whose status shall be kept after going to open upline.</value>
-  </data>
+		<value>- Unaffected Downlines: list of users whose statuses remain unchanged after their upline is opened.</value>
+	</data>
   <data name="UnchangedViewListNote" xml:space="preserve">
-    <value>List of downlines whose status are unchanged after going to open &lt;username&gt;</value>
-  </data>
+		<value>List of downlines whose statuses remain unchanged after opening &lt;username&gt;</value>
+	</data>
   <data name="ViewInformation2" xml:space="preserve">
-    <value>- When a customer is opened:</value>
-  </data>
+		<value>- When an account is opened:</value>
+	</data>
   <data name="SubmitMultipleConfirm1" xml:space="preserve">
-    <value>&lt;username&gt; will be opened.</value>
-  </data>
+		<value>&lt;username&gt; will be opened.</value>
+	</data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-    <value>&lt;username&gt; will be closed. Warning: they will not be able to place bet.</value>
-  </data>
+		<value>&lt;username&gt; will be closed and cannot place bet.</value>
+	</data>
   <data name="MultipleConfirm" xml:space="preserve">
-    <value>Are you sure you want to change Closed status? All affected downlines will be changed Closed status as well.</value>
+		<value>Are you sure you want to open/close these accounts? All of their downlines will be open/closed as well.</value>
+	</data>
+  <data name="SingleConfirm" xml:space="preserve">
+    <value>Are you sure you want to open this account? All of his/her downlines will be opened as well.</value>
   </data>
   <data name="OpenedWithNoDownlinesMessages" xml:space="preserve">
-    <value>Are you sure you want to change Closed status for this customer?</value>
-  </data>
+		<value>Are you sure you want to open this account?</value>
+	</data>
   <data name="Open" xml:space="preserve">
-    <value>Open</value>
-  </data>
+		<value>Open</value>
+	</data>
   <data name="OpenMultipleMemberConfirmMessage" xml:space="preserve">
     <value>Status of &lt;username&gt; shall be changed to Opened.</value>
   </data>
