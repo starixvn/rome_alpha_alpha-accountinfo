@@ -205,10 +205,10 @@
 		<value>รายชื่อดาวไลน์ที่สถานะเปลี่ยนแปลงหลังจากการเปิดบัญชี &lt;username&gt;</value>
 	</data>
   <data name="ClosedSuccessfully" xml:space="preserve">
-		<value>{0} and their downlines have been closed successfully.</value>
+		<value>{0} และดาวน์ไลน์ของพวกเขาถูกปิดเรียบร้อยแล้ว</value>
 	</data>
   <data name="OpenedSuccessfully" xml:space="preserve">
-		<value>{0} and their affected downlines have been opened successfully.</value>
+		<value>{0} และดาวน์ไลน์ของพวกเขาที่ได้รับผลกระทบถูกเปิดสำเร็จแล้ว</value>
 	</data>
   <data name="ViewInformation1" xml:space="preserve">
 		<value>เมื่อปิดบัญชี ดาวน์ไลน์ของเขา/เธอทั้งหมดก็จะถูกปิดเช่นกัน</value>
@@ -232,10 +232,10 @@
 		<value>เมื่อบัญชีถูกเปิด</value>
 	</data>
   <data name="SubmitMultipleConfirm1" xml:space="preserve">
-		<value>&lt;username&gt; will be opened.</value>
+		<value>&lt;username&gt; จะถูกเปิด</value>
 	</data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-		<value>&lt;username&gt; will be closed. Warning: they will not be able to place bet.</value>
+		<value>&lt;username&gt; จะถูกปิดและไม่สามารถวางเดิมพันได้</value>
 	</data>
   <data name="MultipleConfirm" xml:space="preserve">
 		<value>คุณแน่ใจที่จะเปิด/ปิดบัญชีนี้หรือไม่ บัญชีทั้งหมดของดาวไลน์จะถูกเปิด/ปิดทั้งหมดเช่นกัน</value>
@@ -256,9 +256,9 @@
     <value>Status of &lt;username&gt; shall be changed to Closed. Warning, the customers can't place bet.</value>
   </data>
   <data name="ClosedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully closed.</value>
-  </data>
+		<value>{0} ปิดสำเร็จแล้ว</value>
+	</data>
   <data name="OpenedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully opened.</value>
-  </data>
+		<value>{0} เปิดสำเร็จแล้ว</value>
+	</data>
 </root>

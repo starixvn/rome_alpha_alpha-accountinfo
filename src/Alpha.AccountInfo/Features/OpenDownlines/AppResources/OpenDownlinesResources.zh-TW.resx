@@ -205,10 +205,10 @@
 		<value>開啟 &lt;username&gt; 後下線狀態會改變的列表。</value>
 	</data>
   <data name="ClosedSuccessfully" xml:space="preserve">
-		<value>{0} and their downlines have been closed successfully.</value>
+		<value>{0} 及那些下線已成功關閉。</value>
 	</data>
   <data name="OpenedSuccessfully" xml:space="preserve">
-		<value>{0} and their affected downlines have been opened successfully.</value>
+		<value>{0} 及那些受影響的下線已成功開啟。</value>
 	</data>
   <data name="ViewInformation1" xml:space="preserve">
 		<value>- 當一個賬號被關閉，他/她的所有下線賬號也將被關閉。</value>
@@ -232,10 +232,10 @@
 		<value>- 當一個賬號被開啟：</value>
 	</data>
   <data name="SubmitMultipleConfirm1" xml:space="preserve">
-		<value>&lt;username&gt; will be opened.</value>
+		<value>&lt;username&gt; 將被開啟。</value>
 	</data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-		<value>&lt;username&gt; will be closed. Warning: they will not be able to place bet.</value>
+		<value>&lt;username&gt; 將被關閉和無法下注。</value>
 	</data>
   <data name="MultipleConfirm" xml:space="preserve">
 		<value>您確定要開啟/關閉这些賬號？他们所有的下線將被開啟/關閉。</value>
@@ -256,9 +256,9 @@
     <value>Status of &lt;username&gt; shall be changed to Closed. Warning, the customers can't place bet.</value>
   </data>
   <data name="ClosedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully closed.</value>
-  </data>
+		<value>{0} 已經成功關閉。</value>
+	</data>
   <data name="OpenedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully opened.</value>
-  </data>
+		<value>{0} 已經成功開啟。</value>
+	</data>
 </root>
