@@ -3,7 +3,7 @@ import { isEqual } from 'lodash';
 import { openAPI } from '../open-api';
 import { RowContent } from './open-multiple-components';
 import { Markup } from 'interweave';
-import { viewInfomation } from '../open-helper';
+import { getMultipleConfirmMessage, viewInfomation } from '../open-helper';
 
 export default class OpenMultiple extends React.Component {
     constructor(props) {
@@ -75,29 +75,7 @@ export default class OpenMultiple extends React.Component {
     handleSubmit() {
         const { resources, searchAccountRoleId, viewModel, originalViewModel } = this.props;
 
-        let message = resources.MultipleConfirm;
-        if (searchAccountRoleId === 1) {
-            let openUserNames = [],
-                closeUserNames = [];
-            viewModel.map(function (item, index) {
-                if (item.IsClosed !== originalViewModel[index].IsClosed) {
-                    if (item.IsClosed) {
-                        closeUserNames.push(item.Username);
-                    } else {
-                        openUserNames.push(item.Username);
-                    }
-                }
-            });
-            
-            message = openUserNames.length > 0
-                ? `${resources.OpenMultipleMemberConfirmMessage.replace('<username>', openUserNames.join(', '))} <br />`
-                : '';
-            message += closeUserNames.length > 0
-                ? `${resources.CloseMultipleMemberConfirmMessage.replace('<username>', closeUserNames.join(', '))} <br />`
-                : '';
-            message += resources.SubmitMultipleConfirm3;
-        }
-
+        const message = getMultipleConfirmMessage(resources, searchAccountRoleId, viewModel, originalViewModel);
         window.top.bootboxConfirm(
             message,
             null,

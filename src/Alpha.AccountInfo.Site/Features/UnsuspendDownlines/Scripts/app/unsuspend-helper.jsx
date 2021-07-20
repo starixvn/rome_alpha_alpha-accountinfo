@@ -1,4 +1,5 @@
 ﻿import { UserLevel } from '../../../SearchAccount/Scripts/app/constants';
+import { usernameRegExp } from '../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 
 export const getUserLevelName = (levelRoleId, resources) => {
     const levelNames = [
@@ -32,4 +33,35 @@ export const viewInfomation = resources => {
         </div>`;
 
     window.top.bootboxAlert(messages);
+};
+
+export const getMultipleConfirmMessage = (resources, searchAccountRoleId, viewModel, originalViewModel) => {
+    if (searchAccountRoleId > 1) {
+        return resources.MultipleConfirm;
+    }
+
+    let unsuspendUsernames = [],
+        suspendUsernames = [];
+
+    viewModel.map(function (item, index) {
+        if (item.Suspended !== originalViewModel[index].Suspended) {
+            if (item.Suspended) {
+                suspendUsernames.push(item.Username);
+            } else {
+                unsuspendUsernames.push(item.Username);
+            }
+        }
+    });
+
+    let message = unsuspendUsernames.length > 0
+        ? usernameRegExp(resources.UnsuspendMultipleConfirmMessage, unsuspendUsernames.join(', ')) + '<br />'
+        : '';
+
+    message += suspendUsernames.length > 0
+        ? usernameRegExp(resources.SuspendMultipleConfirmMessage, suspendUsernames.join(', ')) + '<br />'
+        : '';
+
+    message += resources.SubmitMultipleConfirm3;
+
+    return message;
 };

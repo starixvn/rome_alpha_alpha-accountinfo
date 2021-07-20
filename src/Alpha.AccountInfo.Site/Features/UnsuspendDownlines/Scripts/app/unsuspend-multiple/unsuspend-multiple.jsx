@@ -3,7 +3,7 @@ import { isEqual } from 'lodash';
 import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
 import { Markup } from 'interweave';
-import { viewInfomation } from '../unsuspend-helper';
+import { getMultipleConfirmMessage, viewInfomation } from '../unsuspend-helper';
 
 export default class UnsuspendMultiple extends React.Component {
     constructor(props) {
@@ -75,29 +75,7 @@ export default class UnsuspendMultiple extends React.Component {
     handleSubmit() {
         const { resources, searchAccountRoleId, viewModel, originalViewModel } = this.props;
 
-        let message = resources.MultipleConfirm;
-        if (searchAccountRoleId === 1) {
-            let unsuspendUserNames = [],
-                suspendUserNames = [];
-            viewModel.map(function (item, index) {
-                if (item.Suspended !== originalViewModel[index].Suspended) {
-                    if (item.Suspended) {
-                        suspendUserNames.push(item.Username);
-                    } else {
-                        unsuspendUserNames.push(item.Username);
-                    }
-                }
-            });
-
-            message = unsuspendUserNames.length > 0
-                ? `${resources.UnsuspendMultipleConfirmMessage.replace('<username>', unsuspendUserNames.join(', '))} <br />`
-                : '';
-            message += suspendUserNames.length > 0
-                ? `${resources.SuspendMultipleConfirmMessage.replace('<username>', suspendUserNames.join(', '))} <br />`
-                : '';
-            message += resources.SubmitMultipleConfirm3;
-        }
-
+        const message = getMultipleConfirmMessage(resources, searchAccountRoleId, viewModel, originalViewModel);
         window.top.bootboxConfirm(
             message,
             null,
