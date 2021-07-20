@@ -151,7 +151,7 @@
     <value>ทั้งหมด</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>อัปเดตสำเร็จแล้ว!</value>
+    <value>สถานะของบัญชีที่ถูกเลือกและดาวน์ไลน์ของเขา/เธอได้รับการอัปเดตเรียบร้อยแล้ว</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>ชื่อผู้ใช้ระบบ</value>
@@ -181,7 +181,7 @@
     <value>สถานะดาวน์ไลน์ยังคงไมเปลี่ยน &lt;br/&gt; (สมาชิก)</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
-    <value>คุณแน่ใจหรือว่าต้องการดำเนินการต่อ?</value>
+    <value>คุณแน่ใจที่จะดำเนินการต่อหรือไม่?</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
     <value>No.</value>

@@ -151,7 +151,7 @@
     <value>Total</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>The statuses of the selected account and his/her downlines have been successfully updated.</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

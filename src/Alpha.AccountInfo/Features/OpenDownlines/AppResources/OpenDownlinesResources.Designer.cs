@@ -421,7 +421,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully updated!.
+        ///   Looks up a localized string similar to The statuses of the selected account and his/her downlines have been successfully updated..
         /// </summary>
         public static string UpdateSuccessfully {
             get {

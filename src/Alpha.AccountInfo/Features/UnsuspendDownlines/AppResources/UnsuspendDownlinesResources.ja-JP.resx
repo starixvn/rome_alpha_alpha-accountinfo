@@ -229,7 +229,7 @@
     <value>&lt;username&gt; will be suspended. Warning: they will not be able to place bet.</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
-    <value>Are you sure you want to proceed?</value>
+    <value>Do you want to proceed?</value>
   </data>
   <data name="MultipleConfirm" xml:space="preserve">
     <value>Are you sure you want to suspend/unsuspend selected account(s)? All affected downlines will be suspended/unsuspended as well.</value>

@@ -151,7 +151,7 @@
     <value>Tổng cộng</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Đã cập nhật thành công!</value>
+    <value>The statuses of the selected account and his/her downlines have been successfully updated.</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Tên đăng nhập</value>
@@ -181,7 +181,7 @@
     <value>Tài khoản không bị ảnh hưởng &lt;br/&gt; (Member)</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
-    <value>Bạn có chắc muốn tiến hành?</value>
+    <value>Bạn có chắc muốn tiếp tục?</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
     <value>No.</value>

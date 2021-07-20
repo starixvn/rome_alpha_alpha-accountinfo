@@ -151,7 +151,7 @@
     <value>总和</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>更新成功 !</value>
+    <value>所选账号及他/她下线的状态已成功更新。</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>用户名</value>
@@ -181,7 +181,7 @@
     <value>下线列表保持不变 &lt;br/&gt;  (会员</value>
   </data>
   <data name="SubmitMultipleConfirm3" xml:space="preserve">
-    <value>您确定要继续吗？</value>
+    <value>您确定要进行吗？</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
     <value>No.</value>
