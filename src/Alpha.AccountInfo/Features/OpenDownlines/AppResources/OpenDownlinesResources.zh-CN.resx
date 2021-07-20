@@ -205,10 +205,10 @@
 		<value>开启 &lt;username&gt; 后下线状态会改变的列表。</value>
 	</data>
   <data name="ClosedSuccessfully" xml:space="preserve">
-		<value>{0} 及那些下线已成功关闭。</value>
+		<value>{0} 和他/她的下线已成功关闭。</value>
 	</data>
   <data name="OpenedSuccessfully" xml:space="preserve">
-		<value>{0} 及那些受影响的下线已成功开启。</value>
+		<value>{0} 和他/她受影响的下线已成功开启。</value>
 	</data>
   <data name="ViewInformation1" xml:space="preserve">
 		<value>- 当一个账号被关闭，他/她的所有下线账号也将被关闭。</value>

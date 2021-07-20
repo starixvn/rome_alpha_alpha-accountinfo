@@ -142,7 +142,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} and their downlines have been successfully closed..
+        ///   Looks up a localized string similar to {0} and his/her downlines have been successfully closed..
         /// </summary>
         public static string ClosedSuccessfully {
             get {
@@ -268,7 +268,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} and their affected downlines have been successfully opened..
+        ///   Looks up a localized string similar to {0} and his/her affected downlines have been successfully opened..
         /// </summary>
         public static string OpenedSuccessfully {
             get {

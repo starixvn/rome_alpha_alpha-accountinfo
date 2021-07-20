@@ -205,10 +205,10 @@
 		<value>List of downlines whose statuses are changed after opening &lt;username&gt;</value>
 	</data>
   <data name="ClosedSuccessfully" xml:space="preserve">
-		<value>{0} and their downlines have been successfully closed.</value>
+		<value>{0} and his/her downlines have been successfully closed.</value>
 	</data>
   <data name="OpenedSuccessfully" xml:space="preserve">
-		<value>{0} and their affected downlines have been successfully opened.</value>
+		<value>{0} and his/her affected downlines have been successfully opened.</value>
 	</data>
   <data name="ViewInformation1" xml:space="preserve">
 		<value>- When an account is closed, all his/her downlines will be closed as well.</value>

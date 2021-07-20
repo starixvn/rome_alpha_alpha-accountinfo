@@ -205,10 +205,10 @@
 		<value>รายชื่อดาวไลน์ที่สถานะเปลี่ยนแปลงหลังจากการเปิดบัญชี &lt;username&gt;</value>
 	</data>
   <data name="ClosedSuccessfully" xml:space="preserve">
-		<value>{0} และดาวน์ไลน์ของพวกเขาถูกปิดเรียบร้อยแล้ว</value>
+		<value>{0} และดาวไลน์ที่ได้รับผลกระทบได้ทำการปิดสำเร็จแล้ว</value>
 	</data>
   <data name="OpenedSuccessfully" xml:space="preserve">
-		<value>{0} และดาวน์ไลน์ของพวกเขาที่ได้รับผลกระทบถูกเปิดสำเร็จแล้ว</value>
+		<value>{0} และดาวไลน์ที่ได้รับผลกระทบได้ทำการเปิดสำเร็จแล้ว</value>
 	</data>
   <data name="ViewInformation1" xml:space="preserve">
 		<value>เมื่อปิดบัญชี ดาวน์ไลน์ของเขา/เธอทั้งหมดก็จะถูกปิดเช่นกัน</value>
