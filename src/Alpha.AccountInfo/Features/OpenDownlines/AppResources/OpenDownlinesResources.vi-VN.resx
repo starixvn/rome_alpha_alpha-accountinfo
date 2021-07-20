@@ -190,19 +190,19 @@
     <value>Không có dữ liệu.</value>
   </data>
   <data name="Closed" xml:space="preserve">
-		<value>Closed</value>
+		<value>Đã Đóng</value>
 	</data>
   <data name="CloseStatus" xml:space="preserve">
-		<value>Closed Status</value>
+		<value>Trạng Thái Đóng</value>
 	</data>
   <data name="Opened" xml:space="preserve">
-		<value>Opened</value>
+		<value>Đã Mở</value>
 	</data>
   <data name="OpenSingleNote" xml:space="preserve">
 		<value>List of downlines' statuses after opening &lt;username&gt;</value>
 	</data>
   <data name="AffectedViewListNote" xml:space="preserve">
-		<value>List of downlines whose statuses are changed after opening &lt;username&gt;</value>
+		<value>Danh sách cấp dưới bị thay đổi trạng thái sau khi mở &lt;username&gt;</value>
 	</data>
   <data name="ClosedSuccessfully" xml:space="preserve">
 		<value>{0} và cấp dưới trực thuộc đã được đóng thành công.</value>
@@ -211,43 +211,43 @@
 		<value>{0} và cấp dưới trực thuộc bị ảnh hưởng đã được mở thành công.</value>
 	</data>
   <data name="ViewInformation1" xml:space="preserve">
-		<value>- When an account is closed, all his/her downlines will be closed as well.</value>
+		<value>- Khi tài khoản bị đóng, tất cả cấp dưới trực thuộc cũng sẽ bị đóng.</value>
 	</data>
   <data name="ViewInformation3" xml:space="preserve">
-		<value>+ Only the downlines who are &lt;b&gt;indirectly&lt;/b&gt; closed by the upline will be opened. You can click on the number of affected downlines to view the list.</value>
+		<value>+ Chỉ có cấp dưới bị đóng &lt;b&gt;gián tiếp&lt;/b&gt; bởi cấp trên mới được mở. Bạn có thể nhấn vào số cấp dưới bị ảnh hưởng để xem danh sách.</value>
 	</data>
   <data name="ViewInformation4" xml:space="preserve">
-		<value>+ For the rest, their current statuses will not change. You can click on the number of unaffected downlines to view the list.</value>
+		<value>+ Trạng thái của các tài khoản còn lại sẽ không thay đổi. Bạn có thể nhấn vào số cấp dưới không bị ảnh hưởng để xem danh sách.</value>
 	</data>
   <data name="ViewInformation5" xml:space="preserve">
-		<value>- Affected Downlines: list of users whose statuses are changed after their upline is opened.</value>
+		<value>- Cấp dưới bị ảnh hưởng: danh sách người dùng bị thay đổi trạng thái sau khi cấp trên của họ được mở.</value>
 	</data>
   <data name="ViewInformation6" xml:space="preserve">
-		<value>- Unaffected Downlines: list of users whose statuses remain unchanged after their upline is opened.</value>
+		<value>- Cấp dưới không bị ảnh hưởng: danh sách người dùng không bị thay đổi trạng thái sau khi cấp trên của họ được mở.</value>
 	</data>
   <data name="UnchangedViewListNote" xml:space="preserve">
-		<value>List of downlines whose statuses remain unchanged after opening &lt;username&gt;</value>
+		<value>Danh sách cấp dưới không bị thay đổi trạng thái sau khi mở &lt;username&gt;</value>
 	</data>
   <data name="ViewInformation2" xml:space="preserve">
-		<value>- When an account is opened:</value>
+		<value>- Khi tài khoản được mở:</value>
 	</data>
   <data name="SubmitMultipleConfirm1" xml:space="preserve">
-		<value>&lt;username&gt; will be opened.</value>
+		<value>&lt;username&gt; sẽ được mở.</value>
 	</data>
   <data name="SubmitMultipleConfirm2" xml:space="preserve">
-		<value>&lt;username&gt; will be closed and cannot place bet.</value>
+		<value>&lt;username&gt; sẽ bị đóng và không được đặt cược.</value>
 	</data>
   <data name="MultipleConfirm" xml:space="preserve">
-		<value>Are you sure you want to open/close these accounts? All of their downlines will be open/closed as well.</value>
+		<value>Bạn có chắc muốn mở/đóng các tài khoản này? Tất cả cấp dưới bị ảnh hưởng sẽ được mở/đóng theo.</value>
 	</data>
   <data name="SingleConfirm" xml:space="preserve">
-		<value>Are you sure you want to open this account? All of his/her downlines will be opened as well.</value>
+		<value>Bạn có chắc muốn mở tài khoản này? Tất cả tài khoản cấp dưới trực thuộc cũng sẽ được mở.</value>
 	</data>
   <data name="OpenedWithNoDownlinesMessages" xml:space="preserve">
-		<value>Are you sure you want to open this account?</value>
+		<value>Bạn có chắc muốn mở tài khoản này?</value>
 	</data>
   <data name="Open" xml:space="preserve">
-		<value>Open</value>
+		<value>Mở</value>
 	</data>
   <data name="OpenMultipleMemberConfirmMessage" xml:space="preserve">
     <value>Status of &lt;username&gt; shall be changed to Opened.</value>
@@ -256,9 +256,9 @@
     <value>Status of &lt;username&gt; shall be changed to Closed. Warning, the customers can't place bet.</value>
   </data>
   <data name="ClosedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully closed.</value>
+    <value>{0} đã được đóng thành công.</value>
   </data>
   <data name="OpenedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully opened.</value>
+    <value>{0} đã được mở thành công.</value>
   </data>
 </root>
