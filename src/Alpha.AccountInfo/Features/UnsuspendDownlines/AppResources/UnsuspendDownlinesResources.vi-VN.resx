@@ -244,15 +244,15 @@
     <value>Bạn có chắc muốn thay đổi trạng thái "Đình Chỉ" cho thành viên này không?</value>
   </data>
   <data name="UnsuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; will be unsuspended.</value>
+    <value>&lt;username&gt; sẽ được huỷ đình chỉ.</value>
   </data>
   <data name="SuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; will be suspended and cannot place bet.</value>
+    <value>&lt;username&gt; sẽ bị đình chỉ và không được đặt cược.</value>
   </data>
   <data name="SuspendedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully suspended.</value>
+    <value>{0} đã bị đình chỉ thành công.</value>
   </data>
   <data name="UnsuspendedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully unsuspended.</value>
+    <value>{0} đã được huỷ đình chỉ thành công.</value>
   </data>
 </root>

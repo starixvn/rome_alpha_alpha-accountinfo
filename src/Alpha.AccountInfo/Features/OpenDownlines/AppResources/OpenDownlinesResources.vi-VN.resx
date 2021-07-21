@@ -199,7 +199,7 @@
 		<value>Đã Mở</value>
 	</data>
   <data name="OpenSingleNote" xml:space="preserve">
-		<value>List of downlines' statuses after opening &lt;username&gt;</value>
+		<value>Danh sách trạng thái của cấp dưới sau khi mở &lt;username&gt;</value>
 	</data>
   <data name="AffectedViewListNote" xml:space="preserve">
 		<value>Danh sách cấp dưới bị thay đổi trạng thái sau khi mở &lt;username&gt;</value>
@@ -250,10 +250,10 @@
 		<value>Mở</value>
 	</data>
   <data name="OpenMultipleMemberConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; will be opened.</value>
+    <value>&lt;username&gt; sẽ được mở.</value>
   </data>
   <data name="CloseMultipleMemberConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; will be closed and cannot place bet.</value>
+    <value>&lt;username&gt; sẽ bị đóng và không được đặt cược.</value>
   </data>
   <data name="ClosedMemberSuccessfully" xml:space="preserve">
     <value>{0} đã được đóng thành công.</value>
