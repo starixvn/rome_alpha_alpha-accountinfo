@@ -250,10 +250,10 @@
 		<value>เปิด</value>
 	</data>
   <data name="OpenMultipleMemberConfirmMessage" xml:space="preserve">
-    <value>Status of &lt;username&gt; shall be changed to Opened.</value>
+    <value>&lt;username&gt; จะถูกเปิด</value>
   </data>
   <data name="CloseMultipleMemberConfirmMessage" xml:space="preserve">
-    <value>Status of &lt;username&gt; shall be changed to Closed. Warning, the customers can't place bet.</value>
+    <value>&lt;username&gt; จะถูกปิดและไม่สามารถวางเดิมพันได้</value>
   </data>
   <data name="ClosedMemberSuccessfully" xml:space="preserve">
 		<value>{0} ปิดสำเร็จแล้ว</value>

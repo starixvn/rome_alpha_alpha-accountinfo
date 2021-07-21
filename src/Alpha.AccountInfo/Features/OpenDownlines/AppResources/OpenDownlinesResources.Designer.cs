@@ -151,7 +151,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status of &lt;username&gt; shall be changed to Closed. Warning, the customers can&apos;t place bet..
+        ///   Looks up a localized string similar to &lt;username&gt; will be closed and cannot place bet..
         /// </summary>
         public static string CloseMultipleMemberConfirmMessage {
             get {
@@ -286,7 +286,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status of &lt;username&gt; shall be changed to Opened..
+        ///   Looks up a localized string similar to &lt;username&gt; will be opened..
         /// </summary>
         public static string OpenMultipleMemberConfirmMessage {
             get {

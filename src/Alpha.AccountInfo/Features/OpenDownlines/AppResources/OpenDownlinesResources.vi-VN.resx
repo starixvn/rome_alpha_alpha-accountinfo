@@ -250,10 +250,10 @@
 		<value>Mở</value>
 	</data>
   <data name="OpenMultipleMemberConfirmMessage" xml:space="preserve">
-    <value>Status of &lt;username&gt; shall be changed to Opened.</value>
+    <value>&lt;username&gt; will be opened.</value>
   </data>
   <data name="CloseMultipleMemberConfirmMessage" xml:space="preserve">
-    <value>Status of &lt;username&gt; shall be changed to Closed. Warning, the customers can't place bet.</value>
+    <value>&lt;username&gt; will be closed and cannot place bet.</value>
   </data>
   <data name="ClosedMemberSuccessfully" xml:space="preserve">
     <value>{0} đã được đóng thành công.</value>

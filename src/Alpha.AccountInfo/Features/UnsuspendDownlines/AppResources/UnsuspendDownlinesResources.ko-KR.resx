@@ -244,10 +244,10 @@
     <value>이 고객의 계정을 일시정지로 바꾸시겠습니까?</value>
   </data>
   <data name="UnsuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>Status of &lt;username&gt; shall be changed to Unsuspended.</value>
+    <value>&lt;username&gt; will be unsuspended.</value>
   </data>
   <data name="SuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>Status of &lt;username&gt; shall be changed to Suspended. Warning, the customers can't place bet.</value>
+    <value>&lt;username&gt; will be suspended and cannot place bet.</value>
   </data>
   <data name="SuspendedMemberSuccessfully" xml:space="preserve">
     <value>{0} have been successfully suspended.</value>
