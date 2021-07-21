@@ -168,6 +168,9 @@
   <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
     <value>Bạn có chắc muốn đóng thành viên này?\nKhuyến cáo: tất cả cấp dưới của tài khoản này cũng sẽ bị đóng!</value>
   </data>
+  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
+    <value>Bạn có chắc muốn mở tài khoản này?</value>
+  </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>Bạn có chắc muốn khóa chức năng Nhân đôi hoa hồng với những cá cược bị thua trong Sportbooks của tài khoản này không? Cảnh báo, tất cả những thành viên cấp dưới trực thuộc tài khoản này sẽ đều bị khóa chức năng đó!</value>
   </data>

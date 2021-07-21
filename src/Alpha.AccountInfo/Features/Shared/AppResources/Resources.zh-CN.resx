@@ -168,6 +168,9 @@
   <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
     <value>您确定要更改这个客户的关闭状态？警告！所有下线将被关闭！</value>
   </data>
+  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
+    <value>您确定要开启此账号？</value>
+  </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>您确定要禁止此客户的双倍佣金功能于体育博彩之输额注单? 警告, 所有附属此代理之会员也将被禁止!</value>
   </data>
