@@ -238,7 +238,7 @@
 		<value>&lt;username&gt; 将被关闭和无法下注。</value>
 	</data>
   <data name="MultipleConfirm" xml:space="preserve">
-		<value>您确定要开启/关闭这些账号？他们所有的下线将被开启/关闭。</value>
+		<value>Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well.</value>
 	</data>
   <data name="SingleConfirm" xml:space="preserve">
     <value>您确定要开启此账号？他/她的所有下线账号将被开启。</value>

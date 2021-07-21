@@ -238,7 +238,7 @@
 		<value>&lt;username&gt; sẽ bị đóng và không được đặt cược.</value>
 	</data>
   <data name="MultipleConfirm" xml:space="preserve">
-		<value>Bạn có chắc muốn mở/đóng các tài khoản này? Tất cả cấp dưới bị ảnh hưởng sẽ được mở/đóng theo.</value>
+		<value>Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well.</value>
 	</data>
   <data name="SingleConfirm" xml:space="preserve">
 		<value>Bạn có chắc muốn mở tài khoản này? Tất cả tài khoản cấp dưới trực thuộc cũng sẽ được mở.</value>

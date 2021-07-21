@@ -205,7 +205,7 @@ namespace Alpha.AccountInfo.Features.OpenDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to open/close these accounts? All of their downlines will be open/closed as well..
+        ///   Looks up a localized string similar to Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well..
         /// </summary>
         public static string MultipleConfirm {
             get {

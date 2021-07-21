@@ -238,7 +238,7 @@
 		<value>&lt;username&gt; will be closed and cannot place bet.</value>
 	</data>
   <data name="MultipleConfirm" xml:space="preserve">
-		<value>Are you sure you want to open/close these accounts? All of their downlines will be open/closed as well.</value>
+		<value>Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well.</value>
 	</data>
   <data name="SingleConfirm" xml:space="preserve">
     <value>Are you sure you want to open this account? All of his/her downlines will be opened as well.</value>

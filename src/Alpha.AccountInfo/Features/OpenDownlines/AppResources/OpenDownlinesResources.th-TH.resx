@@ -238,7 +238,7 @@
 		<value>&lt;username&gt; จะถูกปิดและไม่สามารถวางเดิมพันได้</value>
 	</data>
   <data name="MultipleConfirm" xml:space="preserve">
-		<value>คุณแน่ใจที่จะเปิด/ปิดบัญชีนี้หรือไม่ บัญชีทั้งหมดของดาวไลน์จะถูกเปิด/ปิดทั้งหมดเช่นกัน</value>
+		<value>Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well.</value>
 	</data>
   <data name="SingleConfirm" xml:space="preserve">
     <value>คุณแน่ใจที่จะเปิดบัญชีนี้หรือไม่ บัญชีทั้งหมดของเขา/เธอ จะถูกเปิดทั้งหมดเช่นกัน</value>
