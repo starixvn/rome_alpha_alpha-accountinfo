@@ -168,6 +168,9 @@
   <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
     <value>이 고객의 계정을 비활성화 상태로 바꾸시겠습니까? 주의!! 모든 하부라인의 계정도 비활성화 되어집니다.</value>
   </data>
+  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to open this account?</value>
+  </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>고객님의 스포츠 북에 해당하는 진 티켓에 대한 더블 커미션 기능을 허용하지 않겠습니까 ? 알림 :  에이젼트에 해당하는 모든 회원 또한 허용되지 않습니다.</value>
   </data>
@@ -357,11 +360,11 @@
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>This account was closed by admin.</value>
   </data>
-  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>This account was closed by failed logins.</value>
+  <data name="LockedByFalsePassword" xml:space="preserve">
+    <value>This account has been locked due to multiple failed password attempts.</value>
   </data>
-  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>This account was closed due to failed OTP/Security Code attempts.</value>
+  <data name="LockedByFalseOTPSC" xml:space="preserve">
+    <value>This account has been locked due to multiple failed OTP/Security Code authentication attempts.</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>This account was closed by upline.</value>

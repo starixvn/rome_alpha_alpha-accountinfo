@@ -43,6 +43,8 @@
         Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param);
 
         Task<bool> CheckFirstLoginByQRCode(int custId);
+
+        Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal);
     }
 
     public class SearchAccountServiceImpl : SearchAccountService
@@ -232,6 +234,15 @@
             const int AlphaSystem = 2;
             var casinoApi = new Customer();
             casinoApi.UpdateMasterDisableAutoMPT(custid, !disable, ip, userid, username, AlphaSystem);
+        }
+
+        public async Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal)
+        {
+            var criteria = new CheckMultipleCustomesBelongingCriteria(actorId, subAccountId, custIds);
+
+            await dynamicRepository.ExecuteAsync(criteria).ConfigureAwait(false);
+
+            return criteria.RoleId > 0 && (isInternal || criteria.IsActive);
         }
     }
 }

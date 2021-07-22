@@ -3,7 +3,7 @@ import { isEqual } from 'lodash';
 import { unsuspendAPI } from '../unsuspend-api';
 import { RowContent } from './unsuspend-multiple-components';
 import { Markup } from 'interweave';
-import { viewInfomation } from '../unsuspend-helper';
+import { getMultipleConfirmMessage, viewInfomation } from '../unsuspend-helper';
 
 export default class UnsuspendMultiple extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export default class UnsuspendMultiple extends React.Component {
     doUpdate() {
         $.blockUI();
         const self = this;
-        const { viewModel, originalViewModel } = this.props;
+        const { viewModel, originalViewModel, searchAccountRoleId } = this.props;
         const params = [];
 
         viewModel.map(function (item, index) {
@@ -33,7 +33,7 @@ export default class UnsuspendMultiple extends React.Component {
             }
         });
 
-        unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: params })
+        unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: params, RoleId: searchAccountRoleId })
             .then(data => {
                 let isSuccess = true;
                 const timeoutDefault = 3000;
@@ -73,9 +73,11 @@ export default class UnsuspendMultiple extends React.Component {
     }
 
     handleSubmit() {
-        const { resources } = this.props;
+        const { resources, searchAccountRoleId, viewModel, originalViewModel } = this.props;
+
+        const message = getMultipleConfirmMessage(resources, searchAccountRoleId, viewModel, originalViewModel);
         window.top.bootboxConfirm(
-            resources.MultipleConfirm,
+            message,
             null,
             this.doUpdate
         );

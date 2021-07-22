@@ -168,6 +168,9 @@
   <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
     <value>您确定要更改这个客户的关闭状态？警告！所有下线将被关闭！</value>
   </data>
+  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
+    <value>您确定要开启此账号？</value>
+  </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>您确定要禁止此客户的双倍佣金功能于体育博彩之输额注单? 警告, 所有附属此代理之会员也将被禁止!</value>
   </data>
@@ -357,11 +360,11 @@
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>此账号已被管理员关闭。</value>
   </data>
-  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>此户口因登录失败而被关闭。</value>
+  <data name="LockedByFalsePassword" xml:space="preserve">
+    <value>由于多次输入错误密码，导致此账号已被锁定，</value>
   </data>
-  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>由于动态密码输入错误，该帐户已被停用。</value>
+  <data name="LockedByFalseOTPSC" xml:space="preserve">
+    <value>由于一次性密码/保安码多次验证失败，导致此账号已被锁定。</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>此账号已被上线关闭。</value>

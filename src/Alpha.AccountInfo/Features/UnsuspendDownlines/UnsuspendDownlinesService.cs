@@ -18,8 +18,6 @@
             int pageIndex);
 
         Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendMultipleModel(string custIds, byte roleId);
-
-        Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal);
     }
 
     public class UnsuspendDownlinesServiceImpl : UnsuspendDownlinesService
@@ -58,14 +56,5 @@
             => await unsuspendDownlinesDataAccess
             .GetUnsuspendMultipleModel(new SelectSuspendInfoMultipleCriteria(custIds, roleId))
             .ConfigureAwait(false);
-
-        public async Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal)
-        {
-            var criteria = new CheckMultipleCustomesBelongingCriteria(actorId, subAccountId, custIds);
-
-            await dynamicRepository.ExecuteAsync(criteria).ConfigureAwait(false);
-
-            return criteria.RoleId > 0 && (isInternal || criteria.IsActive);
-        }
     }
 }

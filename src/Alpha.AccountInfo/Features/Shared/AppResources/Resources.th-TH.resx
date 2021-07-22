@@ -168,6 +168,9 @@
   <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
     <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นปิดให้กับลูกค้าท่านนี้? คำเตือน : ดาวน์ไลน์ทั้งหมดจะถูกปิดลงเช่นกัน</value>
   </data>
+  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าต้องการเปิดบัญชีนี้</value>
+  </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>ท่านแน่ใจหรือไม่ที่จะไม่อนุญาติการใช้งานรูปแบบดับเบิลคอมมิชชั่น สำหรับตั๋วต่างๆ ตั๋วที่เสียการทายผลหน้ากีฬาของลูกค้าท่านนี้? คำเตือน ลูกค้าทั้งหมดภายใต้เอเย่นต์ท่านนี้จะไม่ได้รับอนุญาติเช่นเดียวกัน</value>
   </data>
@@ -357,11 +360,11 @@
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>บัญชีนี้ถูกปิดโดยระบบ</value>
   </data>
-  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
-    <value>บัญชีนี้ถูกปิดเนื่องจากการเข้าสู่ระบบล้มเหลว</value>
+  <data name="LockedByFalsePassword" xml:space="preserve">
+    <value>บัญชีนี้ถูกล็อกเนื่องจากป้อนรหัสผ่านไม่ถูกต้องหลายครั้ง</value>
   </data>
-  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
-    <value>บัญชีนี้ถูกปิดเนื่องจากพิมพ์ รหัส OTP/Security Code ผิด</value>
+  <data name="LockedByFalseOTPSC" xml:space="preserve">
+    <value>บัญชีนี้ถูกล็อกเนื่องจากการตรวจสอบล้มเหลวหลายครั้งของรหัสผ่านครั้งเดียว / รหัสความปลอดภัย</value>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>บัญชีนี้ถูกปิดโดยอับไลน์</value>

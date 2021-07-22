@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site.App_Start
 {
     using Alpha.AccountInfo.DataAccess;
+    using Alpha.AccountInfo.Features.OpenDownlines;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Helpers;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -116,6 +117,8 @@
             container.Register<SearchAccountDataAccess, SearchAccountDataAccessImpl>(Lifestyle.Scoped);
             container.Register<UnsuspendDownlinesService, UnsuspendDownlinesServiceImpl>(Lifestyle.Scoped);
             container.Register<UnsuspendDownlinesDataAccess, UnsuspendDownlinesDataAccessImpl>(Lifestyle.Scoped);
+            container.Register<OpenDownlinesService, OpenDownlinesServiceImpl>(Lifestyle.Scoped);
+            container.Register<OpenDownlinesDataAccess, OpenDownlinesDataAccessImpl>(Lifestyle.Scoped);
 
             container.Register<ProfilePictureServices, ProfilePictureServicesImpl>(Lifestyle.Scoped);
         }

@@ -48,9 +48,8 @@
     <CodeAnalysisRuleSet>Alpha.AccountInfo.Site.Release.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Auth, Version=3.0.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Auth.3.0.2.2\lib\net461\Alpha.Auth.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Alpha.Auth, Version=3.0.2.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Auth.3.0.2.6\lib\net461\Alpha.Auth.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Logging.1.0.1\lib\net461\Alpha.Logging.dll</HintPath>
@@ -71,17 +70,14 @@
     <Reference Include="Alpha.Web, Version=1.0.8.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Web.1.0.8.1-CustomerList1\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
-    <Reference Include="CasinoLibrary, Version=2.0.3.38621, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CasinoLibrary.2.0.3.38621\lib\net40\CasinoLibrary.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="CasinoLibrary, Version=2.1.0.18354, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary.2.1.0.18354\lib\net40\CasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="CasinoSetting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CasinoLibrary.2.0.3.38621\lib\net40\CasinoSetting.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\CasinoLibrary.2.1.0.18354\lib\net40\CasinoSetting.dll</HintPath>
     </Reference>
     <Reference Include="CasinoUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CasinoLibrary.2.0.3.38621\lib\net40\CasinoUtility.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\CasinoLibrary.2.1.0.18354\lib\net40\CasinoUtility.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -150,8 +146,7 @@
       <HintPath>..\..\packages\Fanex.RemotingRef.1.3.0\lib\net461\Fanex.RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="HandHistoryLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CasinoLibrary.2.0.3.38621\lib\net40\HandHistoryLibrary.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\CasinoLibrary.2.1.0.18354\lib\net40\HandHistoryLibrary.dll</HintPath>
     </Reference>
     <Reference Include="IBCCrypt, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\IBCCrypt.1.1.0.0\lib\IBCCrypt.dll</HintPath>
@@ -384,6 +379,19 @@
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="Features\OpenDownlines\Bundles\open-multiple.min.css" />
+    <Content Include="Features\OpenDownlines\Bundles\open-multiple.min.js" />
+    <Content Include="Features\OpenDownlines\Bundles\open-single.min.css" />
+    <Content Include="Features\OpenDownlines\Bundles\open-single.min.js" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-api.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-helper.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-multiple\open-multiple-components.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-multiple\open-multiple-container.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-multiple\open-multiple.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-single\open-single-components.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-single\open-single-container.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-single\open-single.jsx" />
+    <Content Include="Features\OpenDownlines\Scripts\app\open-view-list.jsx" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.css" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.css" />
@@ -507,6 +515,9 @@
     <Content Include="Features\ProfilePicture\Views\web.config" />
     <Content Include="Features\ProfilePicture\Views\Index.cshtml" />
     <Content Include="Features\ProfilePicture\Styles\index.scss" />
+    <Content Include="Features\OpenDownlines\Views\web.config" />
+    <Content Include="Features\OpenDownlines\Views\EditSingle.cshtml" />
+    <Content Include="Features\OpenDownlines\Views\EditMultiple.cshtml" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
@@ -595,6 +606,17 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Features\OpenDownlines\OpenDownlinesController.cs" />
+    <Compile Include="Features\OpenDownlines\OpenDownlinesHandler.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenMultipleCommand.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenMultipleRequest.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenSingleCommand.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenSingleRequest.cs" />
+    <Compile Include="Features\OpenDownlines\Requests\OpenViewListRequest.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenListViewModel.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenMultipleResultViewModel.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenMultipleViewModel.cs" />
+    <Compile Include="Features\OpenDownlines\ViewModels\OpenSingleViewModel.cs" />
     <Compile Include="Features\ProfilePicture\ViewModels\ProfielPictureLibraryViewModel.cs" />
     <Compile Include="Features\SearchAccount\Requests\UpdateAllBalanceTransferCommand.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />

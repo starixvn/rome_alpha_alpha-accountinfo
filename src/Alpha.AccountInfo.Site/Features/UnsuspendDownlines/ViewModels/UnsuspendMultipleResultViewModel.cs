@@ -26,12 +26,17 @@
     {
         private readonly IEnumerable<UnsuspendResult> unsuspendResults;
 
-        public UnsuspendMultipleResultViewModel(IEnumerable<UnsuspendResult> unsuspendResults)
+        public UnsuspendMultipleResultViewModel(int roleId, IEnumerable<UnsuspendResult> unsuspendResults)
         {
             this.unsuspendResults = unsuspendResults;
+
+            RoleId = roleId;
         }
 
-        public IEnumerable<Result> Results {
+        public int RoleId { get; }
+
+        public IEnumerable<Result> Results
+        {
             get
             {
                 var failedResults = new List<Result>();
@@ -60,12 +65,20 @@
                 var successfullyResults = new List<Result>();
                 if (successfullyUnSusependUsernames.Count > 0)
                 {
-                    successfullyResults.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.UnsuspendedSuccessfully, successfullyUnSusependUsernames));
+                    successfullyResults.Add(BuildSussesfullyMessage(
+                        RoleId > UserLevel.Member.Value
+                        ? UnsuspendDownlinesResources.UnsuspendedSuccessfully
+                        : UnsuspendDownlinesResources.UnsuspendedMemberSuccessfully,
+                        successfullyUnSusependUsernames));
                 }
 
                 if (successfullySusependUsernames.Count > 0)
                 {
-                    successfullyResults.Add(BuildSussesfullyMessage(UnsuspendDownlinesResources.SuspendedSuccessfully, successfullySusependUsernames));
+                    successfullyResults.Add(BuildSussesfullyMessage(
+                        RoleId > UserLevel.Member.Value
+                        ? UnsuspendDownlinesResources.SuspendedSuccessfully
+                        : UnsuspendDownlinesResources.SuspendedMemberSuccessfully,
+                        successfullySusependUsernames));
                 }
 
                 return successfullyResults.Concat(failedResults);
@@ -75,5 +88,4 @@
         private static Result BuildSussesfullyMessage(string formatedMessages, IEnumerable<string> usernames)
             => Result.CreateSuccessResult(String.Format(formatedMessages, string.Join(", ", usernames)));
     }
-
 }

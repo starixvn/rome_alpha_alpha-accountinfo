@@ -18,6 +18,7 @@
                 { StatusNames.DoubleComm, "Acc_CustomerUpdDoubleCommLosing" },
                 { StatusNames.DisableOutright, "Acc_CustomerUpdDisableOutright" },
                 { StatusNames.Suspended, "Acc_CustomerUpdSuspended" },
+                { StatusNames.Unlock, "Acc_CustomerUpdLocked" }
          };
 
         public UpdateCustomerStatusCommand(
@@ -73,9 +74,13 @@
         {
             var spParams = base.GetSpParams();
 
-            spParams.Add(StatusName, StatusValue);
+            if (!StatusName.Equals(StatusNames.Unlock))
+            {
+                spParams.Add(StatusName, StatusValue);
+            }
 
-            if(StatusName.Equals(StatusNames.Closed))
+            if (StatusName.Equals(StatusNames.Closed)
+                || StatusName.Equals(StatusNames.Unlock))
             {
                 spParams.Add("SystemID", AlphaSystemId);
             }

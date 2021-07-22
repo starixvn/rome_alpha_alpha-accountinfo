@@ -163,7 +163,7 @@
                 UnsuspendList = unsuspendCustomerInfoList
             };
 
-            unsuspendDownlinesService.CheckMultipleCustomesBelonging(
+            accountInfoService.CheckMultipleCustomesBelonging(
                 Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>(), Arg.Any<bool>()).Returns(true);
 
             var result = Result.CreateSuccessResult();
@@ -172,6 +172,7 @@
             .Returns(result);
 
             var expectedViewModel = new UnsuspendMultipleResultViewModel(
+                UserLevel.Super.Value,
                 unsuspendCustomerInfoList.Select(
                 customerInfo => new UnsuspendResult(customerInfo.Username, customerInfo.Suspended, result)));
 

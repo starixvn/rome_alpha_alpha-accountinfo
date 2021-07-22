@@ -35,6 +35,7 @@
         [InlineData(StatusNames.DoubleComm, "Acc_CustomerUpdDoubleCommLosing")]
         [InlineData(StatusNames.DisableOutright, "Acc_CustomerUpdDisableOutright")]
         [InlineData(StatusNames.Suspended, "Acc_CustomerUpdSuspended")]
+        [InlineData(StatusNames.Unlock, "Acc_CustomerUpdLocked")]
         public void GetSettingKey_Always_ReturnsValidSettingKey(string statusName, string expectedSettingKey)
         {
             var criteria = new UpdateCustomerStatusCommand(1, 2, 0, "E", "192.168.1.1", statusName, true,

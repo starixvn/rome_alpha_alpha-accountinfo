@@ -1,4 +1,4 @@
-﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines.Params.SPs.Criteria
+﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria
 {
     using Fanex.Data;
     using Fanex.Data.Repository;

@@ -176,15 +176,19 @@ hr {
         font-weight: bold;
     }
 
-    .closed-wrongPwdOthers,
+    .locked-falseOTPSC,
+    .locked-falsePassword,
     .closed-byAdmin,
-    .closed-byUpline,
-    .closed-wrongOTPSC {
+    .closed-byUpline {
         color: #B50000 !important;
         font-weight: bold;
     }
 
-    .closed-wrongPwdOthers {
+    .locked-falseOTPSC {
+        background-color: #86c5e4;
+    }
+
+    .locked-falsePassword {
         background-color: #ccc7ba;
     }
 
@@ -194,10 +198,6 @@ hr {
 
     .closed-byUpline {
         background-color: #f79646;
-    }
-
-    .closed-wrongOTPSC {
-        background-color: #86c5e4;
     }
 
     .closed-byArchive {

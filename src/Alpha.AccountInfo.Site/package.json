@@ -83,6 +83,15 @@
       "UnsuspendMultiple": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple.jsx",
       "UnsuspendAPI": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-api.jsx",
       "UnsuspendHelper": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-helper.jsx",
+      "OpenViewList": "<rootDir>/Features/OpenDownlines/Scripts/app/open-view-list.jsx",
+      "OpenSingleComponent": "<rootDir>/Features/OpenDownlines/Scripts/app/open-single/open-single-components.jsx",
+      "OpenSingleContainer": "<rootDir>/Features/OpenDownlines/Scripts/app/open-single/open-single-container.jsx",
+      "OpenSingle": "<rootDir>/Features/OpenDownlines/Scripts/app/open-single/open-single.jsx",
+      "OpenMultipleComponent": "<rootDir>/Features/OpenDownlines/Scripts/app/open-multiple/open-multiple-components.jsx",
+      "OpenMultipleContainer": "<rootDir>/Features/OpenDownlines/Scripts/app/open-multiple/open-multiple-container.jsx",
+      "OpenMultiple": "<rootDir>/Features/OpenDownlines/Scripts/app/open-multiple/open-multiple.jsx",
+      "OpenAPI": "<rootDir>/Features/OpenDownlines/Scripts/app/open-api.jsx",
+      "OpenHelper": "<rootDir>/Features/OpenDownlines/Scripts/app/open-helper.jsx",
       "APIClient": "<rootDir>/Features/Shared/Scripts/api-client.jsx"
     }
   },

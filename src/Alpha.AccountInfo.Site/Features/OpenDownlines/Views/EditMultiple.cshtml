@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@model OpenMultipleViewModel
+
+@section Styles {
+    @StaticResources.RenderStyles("~/Features/OpenDownlines/Bundles/open-multiple")
+}
+
+@Html.AntiForgeryToken()
+@Html.Hidden("NotAuthorized", Resources.NotAuthorized)
+
+<div id="container" class="unsuspend-container" />
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/OpenDownlines/Bundles/open-multiple")
+
+    <script>
+        renderOpenMultiple(
+            @Html.Raw(JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.Indented)),
+            @Html.Raw(Model.Resources));
+    </script>
+}

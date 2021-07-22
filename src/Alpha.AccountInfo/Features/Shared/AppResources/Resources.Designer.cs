@@ -196,24 +196,6 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account was closed by failed logins..
-        /// </summary>
-        public static string ClosedByFailedLoginOrAccountExpired {
-            get {
-                return ResourceManager.GetString("ClosedByFailedLoginOrAccountExpired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This account was closed due to failed OTP/Security Code attempts..
-        /// </summary>
-        public static string ClosedByFailedOTPOrSC {
-            get {
-                return ResourceManager.GetString("ClosedByFailedOTPOrSC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This account was closed by upline..
         /// </summary>
         public static string ClosedByUpline {
@@ -286,7 +268,7 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to change Close status for this customer?.
+        ///   Looks up a localized string similar to Are you sure you want to change Closed status for this customer?.
         /// </summary>
         public static string ConfirmClosedViewModelInCaseChangeClosedStatusMessage {
             get {
@@ -295,11 +277,20 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to change Close status for this customer? Warning, all downlines will be closed as well!.
+        ///   Looks up a localized string similar to Are you sure you want to change Closed status for this customer? Warning, all downlines will be closed as well!.
         /// </summary>
         public static string ConfirmClosedViewModelInCaseClosedDownlinesMessage {
             get {
                 return ResourceManager.GetString("ConfirmClosedViewModelInCaseClosedDownlinesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to open this account?.
+        /// </summary>
+        public static string ConfirmClosedViewModelInCaseOpenedMemberMessage {
+            get {
+                return ResourceManager.GetString("ConfirmClosedViewModelInCaseOpenedMemberMessage", resourceCulture);
             }
         }
         
@@ -543,6 +534,24 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         public static string LastTxn {
             get {
                 return ResourceManager.GetString("LastTxn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account has been locked due to multiple failed OTP/Security Code authentication attempts..
+        /// </summary>
+        public static string LockedByFalseOTPSC {
+            get {
+                return ResourceManager.GetString("LockedByFalseOTPSC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account has been locked due to multiple failed password attempts..
+        /// </summary>
+        public static string LockedByFalsePassword {
+            get {
+                return ResourceManager.GetString("LockedByFalsePassword", resourceCulture);
             }
         }
         

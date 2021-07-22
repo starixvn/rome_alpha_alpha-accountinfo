@@ -72,7 +72,7 @@
         {
             var custIds = string.Join("^", message.UnsuspendList.Select(unspended => unspended.SearchAccountId));
 
-            var isValidCheckMultipleCustomesBelonging = await unsuspendDownlinesService.CheckMultipleCustomesBelonging(
+            var isValidCheckMultipleCustomesBelonging = await accountInfoService.CheckMultipleCustomesBelonging(
                 message.ActorId, message.SubAccountId, custIds, message.IsInternal);
 
             if (isValidCheckMultipleCustomesBelonging)
@@ -83,10 +83,11 @@
                     tasks.Add(UpdateSuspendAsync(message, customer));
                 }
 
-                return new UnsuspendMultipleResultViewModel(await Task.WhenAll(tasks).ConfigureAwait(false));
+                return new UnsuspendMultipleResultViewModel(message.RoleId, await Task.WhenAll(tasks).ConfigureAwait(false));
             }
 
             return new UnsuspendMultipleResultViewModel(
+                message.RoleId,
                 new List<UnsuspendResult> {
                     new UnsuspendResult("", true, Result.CreateForbiddenResult())
                 });

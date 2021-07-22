@@ -34,6 +34,7 @@
       <Mapping ObjectProperty="MemMaxCreditMax" DataField="memMaxCredit_Max" />
     </Setting>
     <Setting Key="Acc_CustomerUpdAllDayBalTransfer" SpName="Acc_CustomerUpdAllDayBalTransfer" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Unsuspend Downlines">
     <Setting Key="Acc_Customer_SuspendInfoSel" SpName="Acc_Customer_SuspendInfoSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
@@ -48,6 +49,22 @@
       <Mapping ObjectProperty="SearchAccountId" DataField="custid" />
     </Setting>
   </Function>
+
+  <Function Name="Open Downlines">
+    <Setting Key="Acc_Customer_CloseInfoSel" SpName="Acc_Customer_CloseInfoSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
+      <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
+      <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
+    </Setting>
+    <Setting Key="Acc_Customer_CloseInfoDetailSel" SpName="Acc_Customer_CloseInfoDetailSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerList_CloseInfoSel" SpName="Acc_CustomerList_CloseInfoSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0">
+      <Mapping ObjectProperty="IsClosed" DataField="closed" />
+      <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
+      <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
+      <Mapping ObjectProperty="DownlineRoleId" DataField="roleid" />
+      <Mapping ObjectProperty="SearchAccountId" DataField="custid" />
+    </Setting>
+  </Function>
+  
   <Function Name="QR Code">
     <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
