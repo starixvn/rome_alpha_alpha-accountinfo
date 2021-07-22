@@ -244,15 +244,15 @@
     <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?</value>
   </data>
   <data name="UnsuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; จะถูกยกเลิกการระงับ</value>
+    <value>&lt;username&gt; จะยกเลิกการระงับ</value>
   </data>
   <data name="SuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; will be suspended and cannot place bet.</value>
+    <value>&lt;username&gt; จะถูกระงับและไม่สามารถวางเดิมพันได้</value>
   </data>
   <data name="SuspendedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully suspended.</value>
+    <value>{0} ถูกระงับเรียบร้อยแล้ว</value>
   </data>
   <data name="UnsuspendedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully unsuspended.</value>
+    <value>{0} ยกเลิกการระงับเรียบร้อยแล้ว</value>
   </data>
 </root>

@@ -244,15 +244,15 @@
     <value>您确定要更改这个客户暂停状态吗？</value>
   </data>
   <data name="UnsuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; 已被取消暂停。</value>
+    <value>&lt;username&gt; 将会取消暂停。</value>
   </data>
   <data name="SuspendMultipleConfirmMessage" xml:space="preserve">
-    <value>&lt;username&gt; will be suspended and cannot place bet.</value>
+    <value>&lt;username&gt; 将会被暂停及无法进行投注。</value>
   </data>
   <data name="SuspendedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully suspended.</value>
+    <value>{0} 已成功暂停。</value>
   </data>
   <data name="UnsuspendedMemberSuccessfully" xml:space="preserve">
-    <value>{0} have been successfully unsuspended.</value>
+    <value>{0} 已成功取消暂停。</value>
   </data>
 </root>
