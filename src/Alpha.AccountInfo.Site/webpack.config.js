@@ -57,6 +57,37 @@ module.exports = {
             "./Features/ProtectedStatus/Scripts/app/protected-multiple-container.jsx",
             "./Features/ProtectedStatus/Styles/protected-status.scss"
         ],
+        "./SearchAccount/Bundles/index-dark": [
+            "babel-polyfill",
+            "./Features/SearchAccount/Styles/account-info-dark.scss"
+        ],
+        "./ProfilePicture/Bundles/index-dark": [
+            "./node_modules/react-image-crop/dist/ReactCrop.css",
+            "./Features/ProfilePicture/Styles/index-dark.scss",
+        ],
+        "./UnsuspendDownlines/Bundles/unsuspend-single-dark": [
+            "babel-polyfill",
+            "./Features/Shared/Scripts/react-paginations/table-pagination.scss",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines-dark.scss",
+        ],
+        "./SearchAccount/Bundles/given-credit-dark": [
+            "babel-polyfill",
+            "./Features/SearchAccount/Styles/given-credit-dark.scss"
+        ],
+        "./UnsuspendDownlines/Bundles/unsuspend-multiple-dark": [
+            "babel-polyfill",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines-dark.scss",
+            "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
+        ],
+        "./OpenDownlines/Bundles/open-single-dark": [
+            "babel-polyfill",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines-dark.scss",
+            "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
+        ],
+        "./OpenDownlines/Bundles/open-multiple-dark": [
+            "babel-polyfill",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines-dark.scss",
+            "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
     },
 
     resolve: {

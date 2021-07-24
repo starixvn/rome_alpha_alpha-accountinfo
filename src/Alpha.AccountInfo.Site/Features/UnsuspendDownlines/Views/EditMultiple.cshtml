@@ -5,7 +5,7 @@
 @model UnsuspendMultipleViewModel
 
 @section Styles {
-    @StaticResources.RenderStyles("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple")
+    @StaticResources.RenderStyles($"~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple{ViewData["DarkModeName"]}")
 }
 
 @Html.AntiForgeryToken()

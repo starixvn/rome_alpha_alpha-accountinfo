@@ -5,7 +5,7 @@
 }
 
 @section Styles {
-    @StaticResources.RenderStyles("~/Features/UnsuspendDownlines/Bundles/unsuspend-single")
+    @StaticResources.RenderStyles($"~/Features/UnsuspendDownlines/Bundles/unsuspend-single{ViewData["DarkModeName"]}")
 }
 
 @Html.AntiForgeryToken()

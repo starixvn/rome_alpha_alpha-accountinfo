@@ -1,18 +1,18 @@
 ﻿@{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
-
+    var darkModeName = ViewData["DarkModeName"];
 }
 @model AccountInfoViewModel
 
 @section Styles {
-    @StaticResources.RenderStyles("/assets/bundles/common/common-" + Model.ActorLevel)
-    @StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
+    @StaticResources.RenderStyles($"/assets/bundles/common/common-{Model.ActorLevel}{darkModeName}")
+    @StaticResources.RenderStyles($"~/Features/SearchAccount/Bundles/index{darkModeName}")
     @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
 }
 
 @Html.AntiForgeryToken()
 @Html.Hidden("NotAuthorized", Resources.NotAuthorized)
-@Html.Hidden("AssetCommonCssLink", StaticResources.AssetStyles.RenderCommon("/bundles/common/common"))
+@Html.Hidden("AssetCommonCssLink", StaticResources.AssetStyles.RenderCommon($"/bundles/common/common{darkModeName}"))
 
 <div id="account-info" />
 
