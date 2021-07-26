@@ -160,7 +160,8 @@
             var openCustomerInfoList = fixture.Create<IEnumerable<OpenCustomerInfo>>();
             var message = new OpenMultipleCommand(viewer)
             {
-                OpenList = openCustomerInfoList
+                OpenList = openCustomerInfoList,
+                RoleId = UserLevel.Super.Value
             };
 
             accountInfoService.CheckMultipleCustomesBelonging(

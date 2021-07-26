@@ -160,7 +160,8 @@
             var unsuspendCustomerInfoList = fixture.Create<IEnumerable<UnsuspendCustomerInfo>>();
             var message = new UnsuspendMultipleCommand(viewer)
             {
-                UnsuspendList = unsuspendCustomerInfoList
+                UnsuspendList = unsuspendCustomerInfoList,
+                RoleId = UserLevel.Super.Value
             };
 
             accountInfoService.CheckMultipleCustomesBelonging(

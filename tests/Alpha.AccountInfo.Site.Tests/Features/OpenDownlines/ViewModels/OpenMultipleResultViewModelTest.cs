@@ -11,8 +11,8 @@
     public class OpenMultipleResultViewModelTest
     {
         [Theory]
-        [InlineData(false, "test1, test2 and their affected downlines have been opened successfully.")]
-        [InlineData(true, "test1, test2 and their downlines have been closed successfully.")]
+        [InlineData(false, "test1, test2 and his/her affected downlines have been successfully opened.")]
+        [InlineData(true, "test1, test2 and his/her downlines have been successfully closed.")]
         public void Results_SuccessfullyOpenMultiple_ReturnSuccessfullyResult(bool isClosed, string sucessfullyMessage)
         {
             var result = Result.CreateSuccessResult();
