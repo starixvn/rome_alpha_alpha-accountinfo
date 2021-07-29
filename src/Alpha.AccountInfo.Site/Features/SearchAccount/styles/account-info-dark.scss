@@ -154,6 +154,18 @@ hr {
 
     .icon-clone-account {
         padding-left: 5px;
+        font-size: 15px;
+        position: relative;
+        top: 2px;
+
+        &:before {
+            color: #56D6FF;
+        }
+        &:hover{
+            &:before {
+                color: #F60;
+            }
+        }
     }
     // User status for business
     .actived, .closed, .suspended {
