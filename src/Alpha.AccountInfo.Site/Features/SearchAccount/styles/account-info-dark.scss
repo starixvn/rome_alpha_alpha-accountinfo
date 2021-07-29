@@ -161,7 +161,8 @@ hr {
         &:before {
             color: #56D6FF;
         }
-        &:hover{
+
+        &:hover {
             &:before {
                 color: #F60;
             }
@@ -189,15 +190,19 @@ hr {
         font-weight: bold;
     }
 
-    .closed-wrongPwdOthers,
+    .locked-falseOTPSC,
+    .locked-falsePassword,
     .closed-byAdmin,
-    .closed-byUpline,
-    .closed-wrongOTPSC {
+    .closed-byUpline {
         color: $closed-color !important;
         font-weight: bold;
     }
 
-    .closed-wrongPwdOthers {
+    .locked-falseOTPSC {
+        background-color: $closed-otpsc-bgcolor;
+    }
+
+    .locked-falsePassword {
         background-color: $closed-pwdothers-bgcolor;
     }
 
@@ -207,10 +212,6 @@ hr {
 
     .closed-byUpline {
         background-color: $closed-upline-bgcolor;
-    }
-
-    .closed-wrongOTPSC {
-        background-color: $closed-otpsc-bgcolor;
     }
 
     .closed-byArchive {

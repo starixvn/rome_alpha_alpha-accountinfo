@@ -28,3 +28,17 @@ $paging-border: #666;
 $screen-device-lower768: 767px;
 $screen-device-greater768: 768px;
 $screen-device-greater1024: 1024px;
+
+// Account status colors
+$disabled-color: #045ace;
+$disabled-bgcolor: #a0a97a;
+
+$closed-color: #B50000;
+$closed-pwdothers-bgcolor: #ccc7ba;
+$closed-admin-bgcolor: #b3a2c7;
+$closed-upline-bgcolor: #f79646;
+$closed-otpsc-bgcolor: #86c5e4;
+$closed-archive-bgcolor: #969696;
+
+$suspended-color: #d45f12;
+$suspended-bgcolor: #f8ded7;
