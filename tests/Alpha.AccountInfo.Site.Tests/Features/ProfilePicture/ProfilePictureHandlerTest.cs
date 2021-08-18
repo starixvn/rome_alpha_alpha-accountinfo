@@ -64,7 +64,8 @@
                 model,
                 message.ActorRoleId, 
                 message.Language,
-                message.AllowUpdate);
+                message.AllowUpdate,
+                message.IsOfferProtectedMode);
 
             var actualViewModel =
                 handler.Handle(message)

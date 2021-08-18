@@ -1,8 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.Shared.Models
 {
+    using System;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Sunplus.Agent.Model.Entities;
-    using System;
 
     public class User : IUser
     {
@@ -90,5 +90,9 @@
         public int Arecommend => userSession.ARecommendId;
 
         public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
+
+        public bool IsOfferProtectedMode => userSession.IsOfferProtectedMode;
+
+        public int ServerId => userSession.ServerId;
     }
 }

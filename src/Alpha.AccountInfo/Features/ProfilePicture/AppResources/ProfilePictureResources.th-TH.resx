@@ -123,6 +123,9 @@
   <data name="FailByFileType" xml:space="preserve">
     <value>ไฟล์ที่ทำการอัพโหลดไม่ใช่ไฟร์รูปภาพ กรุณาลองอีกครั้ง!</value>
   </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
+  </data>
   <data name="OrChooseFromOurGallery" xml:space="preserve">
     <value>หรือเลือกจากแกลเลอรี่ของเรา</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="ProfilePictureUpdatedSuccessfully" xml:space="preserve">
     <value>ทำการอัพโหลดรายละเอียดรูปภาพเป็นที่เรียบร้อยแล้ว</value>
+  </data>
+  <data name="ProtectionCode" xml:space="preserve">
+    <value>รหัสป้องกัน</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>ตั้งค่าใหม่</value>
@@ -155,8 +161,5 @@
   </data>
   <data name="ViewAll" xml:space="preserve">
     <value>ดูทั้งหมด</value>
-  </data>
-  <data name="notAuthorized" xml:space="preserve">
-    <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
   </data>
 </root>

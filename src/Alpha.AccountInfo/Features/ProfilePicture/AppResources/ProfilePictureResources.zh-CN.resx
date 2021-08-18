@@ -123,6 +123,9 @@
   <data name="FailByFileType" xml:space="preserve">
     <value>上传的文件不是图片, 请重试!</value>
   </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>您没有使用此功能的权限</value>
+  </data>
   <data name="OrChooseFromOurGallery" xml:space="preserve">
     <value>或从我们的图库中选择</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="ProfilePictureUpdatedSuccessfully" xml:space="preserve">
     <value>您的个人头像已成功上传.</value>
+  </data>
+  <data name="ProtectionCode" xml:space="preserve">
+    <value>保护码</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>重填</value>
@@ -155,8 +161,5 @@
   </data>
   <data name="ViewAll" xml:space="preserve">
     <value>查看全部</value>
-  </data>
-  <data name="notAuthorized" xml:space="preserve">
-    <value>您没有使用此功能的权限</value>
   </data>
 </root>

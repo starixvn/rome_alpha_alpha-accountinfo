@@ -51,7 +51,12 @@ module.exports = {
             "./Features/OpenDownlines/Scripts/app/open-view-list.jsx",
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
-        ]
+        ],
+        "./ProtectedStatus/Bundles/protected-multiple": [
+            "babel-polyfill",
+            "./Features/ProtectedStatus/Scripts/app/protected-multiple-container.jsx",
+            "./Features/ProtectedStatus/Styles/protected-status.scss"
+        ],
     },
 
     resolve: {

@@ -1,7 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Site.App_Start
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Resources;
+    using System.Web.Mvc;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.OpenDownlines;
+    using Alpha.AccountInfo.Features.ProtectedStatus;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Helpers;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -28,11 +34,6 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Resources;
-    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
@@ -121,6 +122,8 @@
             container.Register<OpenDownlinesDataAccess, OpenDownlinesDataAccessImpl>(Lifestyle.Scoped);
 
             container.Register<ProfilePictureServices, ProfilePictureServicesImpl>(Lifestyle.Scoped);
+            container.Register<ProtectedStatusService, ProtectedStatusServiceImpl>(Lifestyle.Scoped);
+            container.Register<KickoutCustomerService, KickoutCustomerServiceImpl>(Lifestyle.Scoped);
         }
 
         private static void StartConfiguration(Container container)

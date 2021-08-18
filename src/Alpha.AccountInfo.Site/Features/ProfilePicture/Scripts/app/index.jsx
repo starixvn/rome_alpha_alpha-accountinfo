@@ -172,7 +172,7 @@ class App extends PureComponent {
 
     render() {
         const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
-            { resources, setUpOTPLink, allowUpdate } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
+            { resources, setUpOTPLink, protectionCodeLink, allowUpdate } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
         return (
@@ -188,6 +188,13 @@ class App extends PureComponent {
                             <span>OTP</span>
                         </a>
                     </li>
+                    {protectionCodeLink.length > 0 && (
+                        <li className='tab-item'>
+                            <a href={protectionCodeLink}>
+                                <span>{resources.ProtectionCode}</span>
+                            </a>
+                        </li>)
+                    }
                 </ul>
                 <div className='profile-picture'>
                     {!allowUpdate && (
@@ -267,9 +274,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = ( imagesList, resources, setUpOTPLink, allowUpdate) => {
+export const renderApp = (imagesList, resources, setUpOTPLink, protectionCodeLink, allowUpdate) => {
     ReactDOM.render(
-        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, allowUpdate }} />,
+        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, protectionCodeLink, allowUpdate }} />,
         document.getElementById('root')
     );
 };

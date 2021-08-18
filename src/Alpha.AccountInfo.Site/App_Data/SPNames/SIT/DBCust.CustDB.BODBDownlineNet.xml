@@ -73,4 +73,8 @@
   <Function Name="UM Message">
     <Setting Key="Acc_CheckUM_MultipleCustProductStatus" SpName="Acc_CheckUM_MultipleCustProductStatus" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
+  <Function Name="Protected Mode">
+    <Setting Key="Age_CustomerUpdProtectedMode" SpName="Age_CustomerUpdProtectedMode" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelProtectionModeList" SpName="Age_CustomerSelProtectionModeList" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
 </Functions>

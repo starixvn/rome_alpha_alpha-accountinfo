@@ -123,6 +123,9 @@
   <data name="FailByFileType" xml:space="preserve">
     <value>Tập tin đang tải lên không phải là một hình ảnh, vui lòng thử lại !</value>
   </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này.</value>
+  </data>
   <data name="OrChooseFromOurGallery" xml:space="preserve">
     <value>hoặc chọn từ thư viện</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="ProfilePictureUpdatedSuccessfully" xml:space="preserve">
     <value>Hình đại diện của bạn đã được tải lên thành công.</value>
+  </data>
+  <data name="ProtectionCode" xml:space="preserve">
+    <value>Mã Bảo Vệ</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Làm lại</value>
@@ -155,8 +161,5 @@
   </data>
   <data name="ViewAll" xml:space="preserve">
     <value>Xem tất cả</value>
-  </data>
-  <data name="notAuthorized" xml:space="preserve">
-    <value>Bạn không được cho phép sử dụng chức năng này.</value>
   </data>
 </root>

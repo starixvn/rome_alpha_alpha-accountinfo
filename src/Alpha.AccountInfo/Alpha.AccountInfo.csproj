@@ -186,6 +186,16 @@
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateProductStatusForSettingType4Criteria.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductIdConstants.cs" />
     <Compile Include="Features\ProductStatusPopup\SportTypeConstants.cs" />
+    <Compile Include="Features\ProtectedStatus\AppResources\ProtectedStatusResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProtectedStatusResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ProtectedStatus\Models\CustomerProtectedStatus.cs" />
+    <Compile Include="Features\ProtectedStatus\Params\UpdateMultipleProtectedStatusParam.cs" />
+    <Compile Include="Features\ProtectedStatus\Params\GetProtectedStatusParam.cs" />
+    <Compile Include="Features\ProtectedStatus\Params\SPs\GetProtectedStatusCriteria.cs" />
+    <Compile Include="Features\ProtectedStatus\ProtectedStatusService.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
@@ -244,6 +254,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Features\Shared\Helpers\ExceptionHandlerWrapper.cs" />
+    <Compile Include="Features\Shared\Params\KickoutCustomerParam.cs" />
+    <Compile Include="Features\Shared\Params\SPs\KickoutCustomerCriteria.cs" />
+    <Compile Include="Features\Shared\Services\KickoutCustomerService.cs" />
     <Compile Include="Features\Shared\StatusNames.cs" />
     <Compile Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -332,6 +345,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProfilePictureResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\ProtectedStatus\AppResources\ProtectedStatusResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProtectedStatusResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ProtectedStatus\AppResources\ProtectedStatusResources.th-TH.resx" />
+    <EmbeddedResource Include="Features\ProtectedStatus\AppResources\ProtectedStatusResources.vi-VN.resx" />
+    <EmbeddedResource Include="Features\ProtectedStatus\AppResources\ProtectedStatusResources.zh-CN.resx" />
+    <EmbeddedResource Include="Features\ProtectedStatus\AppResources\ProtectedStatusResources.zh-TW.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.ko-KR.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.th-TH.resx" />
     <EmbeddedResource Include="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.vi-VN.resx" />

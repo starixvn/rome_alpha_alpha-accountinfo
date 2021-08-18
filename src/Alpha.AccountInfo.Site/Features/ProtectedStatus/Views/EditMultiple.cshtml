@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@model EditMultipleViewModel
+
+@section Styles {
+    @StaticResources.RenderStyles("~/Features/ProtectedStatus/Bundles/protected-multiple")
+}
+
+@Html.AntiForgeryToken()
+<div id="container" class="protected-status-container" />
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/ProtectedStatus/Bundles/protected-multiple")
+
+    <script type="text/javascript">
+        renderProtectedMultiple(
+            @Html.Raw(JsonConvert.SerializeObject(Model.ProtectedStatus, Newtonsoft.Json.Formatting.None)),
+            @Html.Raw(Model.Resources));
+    </script>
+}

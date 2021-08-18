@@ -133,6 +133,15 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Protection Code.
+        /// </summary>
+        public static string ProtectionCode {
+            get {
+                return ResourceManager.GetString("ProtectionCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         public static string Reset {
