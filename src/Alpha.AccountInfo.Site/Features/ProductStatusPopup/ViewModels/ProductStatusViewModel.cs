@@ -45,11 +45,6 @@
 
         public bool IsDisabledEditCustStatus(ProductStatusModel productStatus)
         {
-            if (AppSettings.IsIBCIndo && ProductId == ProductIdConstants.SabaVirtualSports)
-            {
-                return !IsDirectDownline;
-            }
-
             return !IsDirectDownline
                 || productStatus.IsDisabledUpline
                 || (!IsAgentUpdateMember && !productStatus.IsDisabled);
@@ -57,11 +52,6 @@
 
         public bool IsEnabledSubmitButton(ProductStatusModel productStatus)
         {
-            if(AppSettings.IsIBCIndo && ProductId == ProductIdConstants.SabaVirtualSports)
-            {
-                return IsDirectDownline;
-            }
-
             return IsAgentUpdateMember
             ? !productStatus.IsDisabledUpline
             : !productStatus.IsDisabledUpline && productStatus.IsDisabled;
