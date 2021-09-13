@@ -26,7 +26,7 @@ body {
 a, .link {
     @extend %linkColor;
     cursor: pointer;
-
+    color: #41A4FF;
     &:hover, &:active, &:focus {
         text-decoration: none;
     }
@@ -105,7 +105,7 @@ hr {
 
     .txt-search {
         border: none;
-        border-bottom: 1px solid #BABABA;
+        border-bottom: 1px solid #919191;
         font-style: italic;
         height: 30px;
         margin-left: 0;
@@ -146,6 +146,9 @@ hr {
     .enabled {
         @extend %linkColor;
         cursor: pointer;
+        background: #315063;
+        padding: 2px 5px;
+        color: #41A4FF;
     }
 
     .icon-viewlog {
@@ -238,7 +241,8 @@ hr {
         margin-right: 0;
         padding-left: calculateScale(6px);
         padding-right: calculateScale(6px);
-
+        background-color: #36587D;
+        color : #fff;
         &:last-child {
             margin-left: 4%;
         }
@@ -375,6 +379,7 @@ hr {
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
+    color : #919191;
 
     &:hover {
         background-color: #3a3a3a;
@@ -568,7 +573,7 @@ hr {
             float: left;
             margin-right: 8px;
             line-height: 20px;
-            color: #56D6FF;
+            color: #41A4FF;
             font-size: 15px;
         }
     }
