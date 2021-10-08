@@ -283,11 +283,12 @@ hr {
 
 .tippy-popper .tippy-tooltip.light-theme {
     @include box-shadow-multiple(none);
-    border: 1px solid #ccc;
     min-width: 106px;
-    background-color: #f2f2f2;
-    color: $text-color;
+    background: #2E2E2E;
+    border: 1px solid #9F9F9F;
+    color: #EDEDED;
     text-align: left;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
 .tippy-popper[x-placement^=bottom] .tippy-tooltip.dark-theme [x-arrow] {
