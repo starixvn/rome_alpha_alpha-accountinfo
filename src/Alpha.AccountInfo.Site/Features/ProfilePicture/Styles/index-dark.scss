@@ -37,7 +37,7 @@
 }
 
 .profile-picture {
-    padding: 24px 4px 12px;
+    padding: 32px 12px 0 12px;
     display: inline-block;
     font-size: 14px;
 
@@ -52,17 +52,17 @@
         border-radius: 50%;
         border: 3px solid #fff;
         box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
-        margin-right: 24px;
+        margin-right: 22px;
     }
 
     .wrapper-right {
         position: relative;
-        bottom: -16px;
+        bottom: 0;
     }
 
     .btn-from-device {
         height: 32px;
-        color: #fff;
+        color: #EDEDED;
         border: 1px solid #474747;
         background-color: #313131;
         padding: 0 12px;
@@ -77,12 +77,16 @@
     }
 
     .choose-picture {
-        margin: 32px 0 24px;
+        margin: 32px 0 10px;
         position: relative;
 
         .extend-section {
             display: flex;
             justify-content: space-between;
+            margin-bottom: 10px;
+            .txt {
+                color: #EDEDED;
+            }
         }
 
         .image-item {
@@ -104,7 +108,7 @@
         }
 
         .selected-image {
-            border: 3px solid #FFB800;
+            border: 3px solid #FF4D00;
         }
 
         .list-picture {
@@ -115,7 +119,7 @@
     .view-all {
         float: right;
         cursor: pointer;
-        color: #56D6FF;
+        color: #EDEDED;
         position: absolute;
         white-space: nowrap;
         right: 0;
