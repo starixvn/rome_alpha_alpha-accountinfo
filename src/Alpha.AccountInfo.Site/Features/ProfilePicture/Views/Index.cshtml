@@ -3,12 +3,11 @@
 @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
     var imagesLibrary = JsonConvert.SerializeObject(Model.Images);
-    var darkModeName = ViewData["DarkModeName"];
 }
 
 @section Styles {
-    @StaticResources.AssetStyles.Render($"/bundles/site-accountinfo/profilepicture/profilepicture-{Model.ActorLevel}{darkModeName}")
-    @StaticResources.RenderStyles($"~/Features/ProfilePicture/Bundles/index{darkModeName}")
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-accountinfo/profilepicture/profilepicture-{Model.ActorLevel}")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/ProfilePicture/Bundles/index")
 }
 
 @Html.AntiForgeryToken()

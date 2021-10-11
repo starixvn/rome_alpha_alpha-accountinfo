@@ -6,7 +6,7 @@
 @model GivenCreditViewModel
 
 @section Styles {
-    @StaticResources.RenderStyles($"~/Features/SearchAccount/Bundles/given-credit{ViewData["DarkModeName"]}")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/SearchAccount/Bundles/given-credit")
 }
 
 @Html.AntiForgeryToken()
