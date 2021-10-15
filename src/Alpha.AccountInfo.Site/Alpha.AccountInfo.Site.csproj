@@ -571,6 +571,9 @@
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
     <Content Include="Features\Shared\Styles\_variables-dark.scss" />
     <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines-dark.scss" />
+    <Content Include="Features\Shared\Styles\tippy.scss">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />

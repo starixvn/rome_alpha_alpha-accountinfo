@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 
 export const StatusInfo = ({ classNames, value, slash }) => {

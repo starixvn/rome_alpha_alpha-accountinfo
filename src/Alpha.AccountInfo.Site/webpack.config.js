@@ -5,6 +5,7 @@ module.exports = {
         "./SearchAccount/Bundles/index": [
             "babel-polyfill",
             "./Features/SearchAccount/Scripts/app/index.jsx",
+            "./Features/Shared/Styles/tippy.scss",
             "./Features/SearchAccount/Styles/account-info.scss"
         ],
         "./SearchAccount/Bundles/given-credit": [
@@ -59,6 +60,7 @@ module.exports = {
         ],
         "./SearchAccount/Bundles/index-dark": [
             "babel-polyfill",
+            "./Features/Shared/Styles/tippy.scss",
             "./Features/SearchAccount/Styles/account-info-dark.scss"
         ],
         "./ProfilePicture/Bundles/index-dark": [
