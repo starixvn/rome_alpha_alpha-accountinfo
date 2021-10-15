@@ -285,7 +285,7 @@ hr {
     @include box-shadow-multiple(none);
     min-width: 106px;
     background: #2E2E2E;
-    border: 1px solid #9F9F9F;
+    border: 1px solid #2E2E2E;
     color: #EDEDED;
     text-align: left;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -297,7 +297,7 @@ hr {
     bottom: 0;
 
     &:after, &:before {
-        top: -14px;
+        top: -9px;
         left: 74%;
         border: solid transparent;
         content: " ";
@@ -679,4 +679,7 @@ input[type="search"]:focus
 
 .blockMsg {
     left: 25% !important;
+}
+.tippy-popper[x-placement^=top] .tippy-tooltip.light-theme [x-arrow] {
+    border-top: 7px solid #2E2E2E;
 }
