@@ -4,7 +4,7 @@
 @model AccountInfoViewModel
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode($"/assets/bundles/common/common-{Model.ActorLevel}")
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/common/common-{Model.ActorLevel}")
     @StaticResources.RenderStylesWithDarkMode("~/Features/SearchAccount/Bundles/index")
     @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
 }

@@ -1,7 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: { 
+    entry: {
         "./SearchAccount/Bundles/index": [
             "babel-polyfill",
             "./Features/SearchAccount/Scripts/app/index.jsx",
@@ -90,6 +90,7 @@ module.exports = {
             "babel-polyfill",
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines-dark.scss",
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
+        ]
     },
 
     resolve: {
