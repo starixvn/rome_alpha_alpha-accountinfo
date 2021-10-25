@@ -5,6 +5,7 @@
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.Products.Core.Services;
@@ -32,21 +33,24 @@
         private readonly Func<bool> getUpdateCreditReplicateServer;
         private readonly Func<Alpha.Web.Models.AppSettingEnum, bool> getAppSettingBooleanKey;
         private readonly IPService ipService;
+        private readonly KickoutCustomerService kickoutCustomerService;
 
-        public SearchAccountHandler(SearchAccountService accountInfoService, IPService ipService)
-            : this(accountInfoService, ipService, null, null, null)
+        public SearchAccountHandler(SearchAccountService accountInfoService, IPService ipService, KickoutCustomerService kickoutCustomerService)
+            : this(accountInfoService, ipService, kickoutCustomerService, null, null, null)
         {
         }
 
         internal SearchAccountHandler(
             SearchAccountService accountInfoService,
             IPService ipService,
+            KickoutCustomerService kickoutCustomerService,
             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
             Func<bool> getUpdateCreditReplicateServer,
             Func<Alpha.Web.Models.AppSettingEnum, bool> getAppSettingBooleanKey)
         {
             this.accountInfoService = accountInfoService;
             this.ipService = ipService;
+            this.kickoutCustomerService = kickoutCustomerService;
 
             this.getBalanceInfoViewModelByLevel = getBalanceInfoViewModelByLevel ??
                 new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>>
@@ -150,17 +154,30 @@
                     message.LangKey,
                     message.IP));
 
-        public Task<Result> Handle(CustomerNonProductStatusCommand message)
-           => accountInfoService.UpdateCustomerStatus(
-               new UpdateCustomerStatusParam(
-                   message.SearchAccountId,
-                   message.ActorId,
-                   message.SubAccountId,
-                   message.Language,
-                   message.IP,
-                   message.StatusValue,
-                   message.StatusName,
-                   message.ActorName));
+        public async Task<Result> Handle(CustomerNonProductStatusCommand message)
+        {
+            var result = await accountInfoService.UpdateCustomerStatus(
+                 new UpdateCustomerStatusParam(
+                     message.SearchAccountId,
+                     message.ActorId,
+                     message.SubAccountId,
+                     message.Language,
+                     message.IP,
+                     message.StatusValue,
+                     message.StatusName,
+                     message.ActorName));
+
+            if (result.IsSuccess && message.StatusValue)
+            {
+                await kickoutCustomerService.KickoutDueToProtectedStatusAsync(
+                    message.SearchAccountId,
+                    message.SearchAccountRoleId,
+                    message.ServerId,
+                    message.IP);
+            }
+
+            return result;
+        }
 
         public Task<Result> Handle(UpdateAllBalanceTransferCommand message)
            => accountInfoService.UpdateAllDayBalanceTransfer(

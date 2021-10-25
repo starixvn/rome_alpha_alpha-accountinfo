@@ -1,5 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
@@ -15,10 +19,6 @@
     using CasinoLibrary.SBAgent;
     using Fanex.Caching;
     using Fanex.Data.Repository;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public interface SearchAccountService
     {
@@ -101,8 +101,6 @@
         public async Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId)
            => await getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](
                new SelectBalanceInfoCriteria(custId, roleId)).ConfigureAwait(false);
-
-
 
         public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
             => await accountInfoDataAccess.GetDownlineList(

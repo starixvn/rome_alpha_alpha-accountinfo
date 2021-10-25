@@ -71,5 +71,9 @@
         int Arecommend { get; }
 
         bool IsAdminCanViewVNIP { get; }
+
+        bool IsOfferProtectedMode { get; }
+
+        int ServerId { get; }
     }
 }

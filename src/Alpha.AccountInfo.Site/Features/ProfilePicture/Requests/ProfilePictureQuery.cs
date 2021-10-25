@@ -13,6 +13,7 @@
             ActorRoleId = viewer.LevelId;
             Language = viewer.Language;
             AllowUpdate = viewer.CanUpdateAccount && !viewer.IsSubAcc && !viewer.IsInternal;
+            IsOfferProtectedMode = viewer.IsOfferProtectedMode;
         }
 
         public int ActorId { get;}
@@ -22,6 +23,8 @@
         public string Language { get; private set; }
 
         public bool AllowUpdate { get; private set; }
+
+        public bool IsOfferProtectedMode { get; }
 
         public override bool IsValid() => ActorId > 0;
     }

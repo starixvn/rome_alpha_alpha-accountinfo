@@ -47,7 +47,8 @@
                 imageLibrary.OrderBy(n => Guid.NewGuid()).Take(NumerousOfDefaultPictures),
                 message.ActorRoleId,
                 message.Language,
-                message.AllowUpdate);
+                message.AllowUpdate,
+                message.IsOfferProtectedMode);
         }
 
         public async Task<ProfielPictureLibraryViewModel> Handle(ProfilePictureLibraryQuery message)

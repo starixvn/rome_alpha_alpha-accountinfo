@@ -5,6 +5,7 @@
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params;
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
@@ -33,6 +34,7 @@
         private readonly CustomerInfoQuery customerInfoQuery;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly IPService ipService;
+        private readonly KickoutCustomerService kickoutCustomerService;
 
         public SearchAccountHandlerTest()
         {
@@ -56,7 +58,8 @@
 
             accountInfoService = Substitute.For<SearchAccountService>();
             ipService = Substitute.For<IPService>();
-            accountInfoHandler = new SearchAccountHandler(accountInfoService, ipService, getBalanceInfoViewModelByLevel, null, null);
+            kickoutCustomerService= Substitute.For<KickoutCustomerService>();
+            accountInfoHandler = new SearchAccountHandler(accountInfoService, ipService, kickoutCustomerService, getBalanceInfoViewModelByLevel, null, null);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {

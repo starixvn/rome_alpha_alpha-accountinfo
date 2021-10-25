@@ -9,5 +9,6 @@
         public const string Suspended = "Suspended";
         public const string EnableRnGCasino3rd = "EnableRnGCasino3rd";
         public const string Unlock = "Unlock";
+        public const string Protected = "IsProtectionMode";
     }
 }

@@ -1,10 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using Alpha.AccountInfo.Features.Shared;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using System.Collections;
-    using System.Collections.Generic;
 
     public class UpdateCustomerStatusCommand : NonQueryCommand
     {
@@ -18,7 +18,8 @@
                 { StatusNames.DoubleComm, "Acc_CustomerUpdDoubleCommLosing" },
                 { StatusNames.DisableOutright, "Acc_CustomerUpdDisableOutright" },
                 { StatusNames.Suspended, "Acc_CustomerUpdSuspended" },
-                { StatusNames.Unlock, "Acc_CustomerUpdLocked" }
+                { StatusNames.Unlock, "Acc_CustomerUpdLocked" },
+                { StatusNames.Protected, "Age_CustomerUpdProtectedMode" }
          };
 
         public UpdateCustomerStatusCommand(

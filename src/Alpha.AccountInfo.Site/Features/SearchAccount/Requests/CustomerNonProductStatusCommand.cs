@@ -11,6 +11,8 @@
         public CustomerNonProductStatusCommand(IUser viewer) : base(viewer)
         {
             this.viewer = viewer;
+            IP = viewer.IP;
+            ServerId = viewer.ServerId;
         }
 
         public string ActorName => viewer.Name;
@@ -29,7 +31,9 @@
 
         public string Language => viewer.LangKey;
 
-        public string IP => viewer.IP;
+        public string IP { get; }
+
+        public int ServerId { get; }
 
         public override bool IsValid()
         {

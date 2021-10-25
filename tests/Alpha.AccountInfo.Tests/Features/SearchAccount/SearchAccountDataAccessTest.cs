@@ -1,5 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.SearchAccount
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
@@ -9,9 +12,6 @@
     using Alpha.AccountInfo.Tests.Extensions;
     using Fanex.Data;
     using NSubstitute;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]

@@ -18,9 +18,10 @@
 
     <script>
         renderApp(
-             @Html.Raw(imagesLibrary),
+            @Html.Raw(imagesLibrary),
             @Html.Raw(Model.Resources),
             '@Model.SetUpOTPLink',
+            '@Model.ProtectionCodeLink',
             JSON.parse('@Model.AllowUpdate'.toLowerCase()),);
     </script>
 }
