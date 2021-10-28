@@ -9,6 +9,9 @@
     {
         public OnlineListQuery(IUser viewer) : base(viewer)
         {
+            IsAdminCanViewVNIP = viewer.IsAdminCanViewVNIP;
         }
+
+        public bool IsAdminCanViewVNIP { get; }
     }
 }

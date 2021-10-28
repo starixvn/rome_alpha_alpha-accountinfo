@@ -205,7 +205,7 @@
             };
 
             var model = Enumerable.Empty<OnlineUserModel>();
-            accountInfoService.GetOnlineList(1).Returns(model);
+            accountInfoService.GetOnlineList(1, true).Returns(model);
 
             var actualViewModel = accountInfoHandler.Handle(message).GetAwaiter().GetResult();
 

@@ -14,7 +14,7 @@
             LoginTime = loginTime;
         }
 
-        public string IP { get; private set; }
+        public string IP { get; set; }
 
         public DateTime LoginTime { get; private set; }
 

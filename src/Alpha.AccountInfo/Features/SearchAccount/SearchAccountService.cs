@@ -16,6 +16,7 @@
     using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
+    using Alpha.Utilities.IP;
     using CasinoLibrary.SBAgent;
     using Fanex.Caching;
     using Fanex.Data.Repository;
@@ -32,7 +33,7 @@
 
         Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId);
 
-        Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid);
+        Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid, bool adminCanViewVNIP);
 
         Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param);
 
@@ -55,21 +56,25 @@
         private readonly SearchAccountDataAccess accountInfoDataAccess;
         private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
         private readonly ICacheService cacheService = new CacheService();
+        private readonly IPService ipService;
 
         public SearchAccountServiceImpl(
             IDynamicRepository dynamicRepository,
-            SearchAccountDataAccess accountInfoDataAccess)
-            : this(dynamicRepository, accountInfoDataAccess, null)
+            SearchAccountDataAccess accountInfoDataAccess,
+            IPService ipService)
+            : this(dynamicRepository, accountInfoDataAccess, ipService, null)
         {
         }
 
         internal SearchAccountServiceImpl(
             IDynamicRepository dynamicRepository,
             SearchAccountDataAccess accountInfoDataAccess,
+            IPService ipService,
             IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel)
         {
             this.dynamicRepository = dynamicRepository;
             this.accountInfoDataAccess = accountInfoDataAccess;
+            this.ipService = ipService;
 
             this.getBalanceInfoModelByLevel = getBalanceInfoModelByLevel ??
                 new Dictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>>
@@ -110,15 +115,25 @@
           => await dynamicRepository.FetchAsync<TotalDownlinesSummary>(
               new SelectTotalDownlineSummaryCriteria(custId, roleId)).ConfigureAwait(false);
 
-        public async Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid)
+        public async Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid, bool adminCanViewVNIP)
         {
             if (AppSettings.IsDisabledRecheckin)
             {
                 return Enumerable.Empty<OnlineUserModel>();
             }
 
-            return await dynamicRepository.FetchAsync<OnlineUserModel>(
+            var onlineUsers = await dynamicRepository.FetchAsync<OnlineUserModel>(
                 new SelectOnlineListCriteria(custid)).ConfigureAwait(false);
+
+            if (!adminCanViewVNIP)
+            {
+                foreach (var item in onlineUsers)
+                {
+                    item.IP = ipService.IsVNIP(item.IP) ? string.Empty : item.IP;
+                }
+            }
+
+            return onlineUsers;
         }
 
         public async Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param)

@@ -119,7 +119,7 @@
         }
 
         public async Task<IEnumerable<OnlineUserModel>> Handle(OnlineListQuery message)
-            => await accountInfoService.GetOnlineList(message.SearchAccountId).ConfigureAwait(false);
+            => await accountInfoService.GetOnlineList(message.SearchAccountId, message.IsAdminCanViewVNIP).ConfigureAwait(false);
 
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
         {
