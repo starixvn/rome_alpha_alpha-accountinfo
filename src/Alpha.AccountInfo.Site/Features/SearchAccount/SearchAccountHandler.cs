@@ -31,7 +31,6 @@
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly Func<bool> getUpdateCreditReplicateServer;
-        private readonly Func<Alpha.Web.Models.AppSettingEnum, bool> getAppSettingBooleanKey;
         private readonly IPService ipService;
         private readonly KickoutCustomerService kickoutCustomerService;
 
@@ -62,9 +61,6 @@
 
             this.getUpdateCreditReplicateServer = getUpdateCreditReplicateServer ??
                 SimpleServiceLocator.GetService<Func<bool>>();
-
-            this.getAppSettingBooleanKey = getAppSettingBooleanKey ??
-             SimpleServiceLocator.GetService<Func<Alpha.Web.Models.AppSettingEnum, bool>>();
         }
 
         public Task<AccountInfoViewModel> Handle(SearchAccountQuery message)
@@ -94,8 +90,7 @@
                     customerInfo,
                     balanceInfo,
                     await accountInfoService.CheckFirstLoginByQRCode(customerInfo.CustId).ConfigureAwait(false),
-                    message.CanCreateAccount,
-                    getAppSettingBooleanKey(Alpha.Web.Models.AppSettingEnum.ShowOldCustomerList));
+                    message.CanCreateAccount);
             }
 
             return null;

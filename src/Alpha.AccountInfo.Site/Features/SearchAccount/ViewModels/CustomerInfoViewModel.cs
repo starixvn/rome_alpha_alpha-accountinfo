@@ -14,7 +14,6 @@
         private readonly CustomerInfoModel customerInfo;
         private readonly bool showQRCode;
         private readonly bool canCreateAccount;
-        private readonly bool showOldCustomerList;
 
         public CustomerInfoViewModel(
             CustomerInfoQuery message,
@@ -22,7 +21,6 @@
             IBalanceInfoViewModel balanceInfo,
             bool showQRCode,
             bool canCreateAccount,
-            bool showOldCustomerList,
             Func<string, string, string> getMicroSiteUrl = null) : base(getMicroSiteUrl)
         {
             this.message = message;
@@ -30,7 +28,6 @@
             BalanceInfo = balanceInfo;
             this.showQRCode = showQRCode;
             this.canCreateAccount = canCreateAccount;
-            this.showOldCustomerList = showOldCustomerList;
         }
 
         private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(RoleId);
@@ -98,8 +95,6 @@
 
         internal Link CustomerListLink =>
             new Link(SearchAccountLevel.IsMasterLevel() ? Resources.AgentList : Resources.MemberList,
-            this.showOldCustomerList ?
-                $"{OldMainUrl}_MemberInfo/CustomerList/{ActorLevel.DisplayName}/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}List.aspx?custid={CustId}" :
                 $"{MemberInfoUrl}CustomerList/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}?CustId={CustId}&CustName={UserName}&CustLevelId={RoleId}");
 
         internal Link BetListLink =>

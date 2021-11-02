@@ -142,8 +142,7 @@
               .Instance
               .Register<Func<int>>(AppSettingsHelper.GetInsertProfilePictureSiteMode)
               .Register<Func<bool>>(AppSettingsHelper.GetUpdateCreditReplicateServer)
-              .Register<Func<string, bool>>(AppSettingsHelper.HideProductStatusBySites)
-              .Register<Func<AppSettingEnum, bool>>(AppSettingsHelper.GetAppSettingBooleanKey);
+              .Register<Func<string, bool>>(AppSettingsHelper.HideProductStatusBySites);
         }
     }
 }
