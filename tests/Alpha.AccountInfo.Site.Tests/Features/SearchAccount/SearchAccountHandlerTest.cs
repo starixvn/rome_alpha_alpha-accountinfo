@@ -178,7 +178,6 @@
                 customerInfo,
                 memberBalanceInfoViewModel,
                 false,
-                true,
                 true);
 
             var actualViewModel = accountInfoHandler.Handle(customerInfoQuery).GetAwaiter().GetResult();
