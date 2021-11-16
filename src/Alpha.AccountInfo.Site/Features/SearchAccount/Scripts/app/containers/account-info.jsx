@@ -229,7 +229,7 @@ export default class AccountInfo extends React.Component {
 
     handleOpenIPInfo(e) {
         const IPInfoPath = `${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`;
-        window.top.ageWnd.open(IPInfoPath);
+        window.top.ageWnd.open(IPInfoPath, "IP Details", 400, 400);
 
         resizePopupOnMobile();
     }

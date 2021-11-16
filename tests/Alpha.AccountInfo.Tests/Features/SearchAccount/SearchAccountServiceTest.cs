@@ -14,6 +14,7 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Tests.Extensions;
+    using Alpha.Utilities.IP;
     using AutoFixture;
     using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
@@ -25,6 +26,7 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
+        private readonly IPService ipService;
         private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
         private readonly SearchAccountServiceImpl accountInfoService;
         private readonly CompareLogic compareLogic = new CompareLogic();
@@ -37,7 +39,7 @@
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
             accountInfoDataAccess = Substitute.For<SearchAccountDataAccess>();
-
+            ipService = Substitute.For<IPService>();
             memberBalanceInfoModel = fixture.Create<MemberBalanceInfoModel>();
             agentBalanceInfoModel = fixture.Create<AgentBalanceInfoModel>();
             masterBalanceInfoModel = fixture.Create<MasterBalanceInfoModel>();
@@ -53,6 +55,7 @@
                 new SearchAccountServiceImpl(
                 dynamicRepository,
                 accountInfoDataAccess,
+                ipService,
                 getBalanceInfoModelByLevel);
         }
 
@@ -143,7 +146,7 @@
                 .Returns(Task.FromResult(model));
 
             var actualModel = accountInfoService
-                .GetOnlineList(1)
+                .GetOnlineList(1, true)
                 .GetAwaiter()
                 .GetResult();
 
@@ -164,6 +167,56 @@
                 .GetResult();
 
             Assert.True(compareLogic.Compare(actualModel, model).AreEqual);
+        }
+
+        [Fact]
+        public void GetOnlineList_AdminCanViewIp_ReturnsIP()
+        {
+            var model = Enumerable.Empty<OnlineUserModel>();
+            dynamicRepository
+                .FetchAsync<OnlineUserModel>(Arg.Any<SelectOnlineListCriteria>())
+                .Returns(Task.FromResult(model));
+
+            var actualModel = accountInfoService
+                .GetOnlineList(1, true)
+                .GetAwaiter()
+                .GetResult();
+
+            AssertExtension.Equal(model, actualModel);
+        }
+
+        [Fact]
+        public void GetOnlineList_AdminCantViewIp_IPVN_ReturnsEmpty()
+        {
+            IEnumerable<OnlineUserModel> model = new List<OnlineUserModel> { new OnlineUserModel("127.0.0.0", DateTime.Now) };
+            dynamicRepository
+                .FetchAsync<OnlineUserModel>(Arg.Any<SelectOnlineListCriteria>())
+                .Returns(Task.FromResult(model));
+            ipService.IsVNIP(Arg.Any<string>()).Returns(true);
+
+            var actualModel = accountInfoService
+                .GetOnlineList(1, false)
+                .GetAwaiter()
+                .GetResult();
+
+            Assert.Empty(actualModel.First().IP);
+        }
+
+        [Fact]
+        public void GetOnlineList_AdminCantViewIp_NotIPVN_ReturnsIP()
+        {
+            IEnumerable<OnlineUserModel> model = new List<OnlineUserModel> { new OnlineUserModel("127.0.0.0", DateTime.Now) };
+            dynamicRepository
+                .FetchAsync<OnlineUserModel>(Arg.Any<SelectOnlineListCriteria>())
+                .Returns(Task.FromResult(model));
+            ipService.IsVNIP(Arg.Any<string>()).Returns(false);
+
+            var actualModel = accountInfoService
+                .GetOnlineList(1, false)
+                .GetAwaiter()
+                .GetResult();
+
+            Assert.Equal("127.0.0.0", actualModel.First().IP);
         }
 
         [Fact]
