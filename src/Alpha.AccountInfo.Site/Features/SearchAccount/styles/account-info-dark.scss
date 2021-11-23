@@ -331,15 +331,15 @@ hr {
 // Total Downline
 .status {
     &-active {
-        color: #56D6FF;
+        color: #41A4FF;
     }
 
     &-closed {
-        color: #FF4F50;
+        color: #E54748;
     }
 
     &-suspended {
-        color: #FF8932;
+        color: #E57B2D;
     }
 }
 
@@ -538,7 +538,7 @@ hr {
         color: #0F7DDB;
 
         &-red {
-            color: #FF4F50;
+            color: #E54748;
         }
 
         &-link {
