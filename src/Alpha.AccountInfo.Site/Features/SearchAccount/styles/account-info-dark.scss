@@ -76,9 +76,6 @@ hr {
     text-align: right;
     font-weight: bold;
 }
-.custom-col {
-    margin-left: -20px;
-}
 
 .highlight .col-right {
     font-family: "Roboto Bold", sans-serif !important;
@@ -149,7 +146,6 @@ hr {
     .enabled {
         @extend %linkColor;
         cursor: pointer;
-        padding: 2px 5px;
         color: #41A4FF;
     }
 
