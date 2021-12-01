@@ -60,7 +60,7 @@ const CustomerInfo = ({
                             <div className='col-xs-5'>
                                 {userLevelInfo.LevelName}
                             </div>
-                            <div className='col-xs-7 col-right'>
+                            <div className='col-xs-7 col-right custom-col'>
                                 {
                                     customerInfo.RoleId === userLevelInfo.LevelId ?
                                         <SearchAccountInfo {...searchAccountInfoProps} /> :
