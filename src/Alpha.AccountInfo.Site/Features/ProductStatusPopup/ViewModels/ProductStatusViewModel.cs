@@ -68,6 +68,8 @@
         }
 
         public bool IsShowMessageWarnning
-            => !IsAgentUpdateMember && ProductId != ProductIdConstants.SabaVirtualSports;
+            => !IsAgentUpdateMember
+            && ProductId != ProductIdConstants.SabaVirtualSports
+            && ProductId != ProductIdConstants.Cashout;
     }
 }
