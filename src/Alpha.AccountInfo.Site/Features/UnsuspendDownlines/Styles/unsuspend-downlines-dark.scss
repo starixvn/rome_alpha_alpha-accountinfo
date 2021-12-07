@@ -140,6 +140,10 @@
         color: $component-color;
     }
 }
+.table-pagination .table-pagination-block .pagination-records {
+    color: inherit;
+}
+
 .table-pagination .table-pagination-block .pagination-page-list {
     border-color: $component-border-color;
 }
