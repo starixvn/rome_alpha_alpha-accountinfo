@@ -132,7 +132,7 @@
 }
 
 .table-pagination .table-pagination-block .pagination-input {
-    color: inherit;
+    color: inherit !important;
 
     input {
         background-color: $component-bg-color;
@@ -141,7 +141,7 @@
     }
 }
 .table-pagination .table-pagination-block .pagination-records {
-    color: inherit;
+    color: inherit !important;
 }
 
 .table-pagination .table-pagination-block .pagination-page-list {
