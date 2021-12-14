@@ -45,7 +45,8 @@
 
         public bool IsDisabledEditCustStatus(ProductStatusModel productStatus)
         {
-            if (ProductId == ProductIdConstants.SabaVirtualSports)
+            if (ProductId == ProductIdConstants.SabaVirtualSports
+                || ProductId == ProductIdConstants.Cashout)
             {
                 return !IsDirectDownline;
             }
@@ -57,7 +58,8 @@
 
         public bool IsEnabledSubmitButton(ProductStatusModel productStatus)
         {
-            if(ProductId == ProductIdConstants.SabaVirtualSports)
+            if (ProductId == ProductIdConstants.SabaVirtualSports
+                || ProductId == ProductIdConstants.Cashout)
             {
                 return IsDirectDownline;
             }

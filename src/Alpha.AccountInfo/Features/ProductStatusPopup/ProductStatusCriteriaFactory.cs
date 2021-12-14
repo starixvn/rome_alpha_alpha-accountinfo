@@ -34,6 +34,9 @@
                 case ProductIdConstants.SabaVirtualSports:
                     return new SelectDCSProductStatusFor4Criteria(productId, customerId);
 
+                case ProductIdConstants.Cashout:
+                    return new SelectCashoutStatusCriteria(productId, customerId, roleId);
+
                 default:
                     return new SelectDCSProductStatusCriteria(productId, customerId, roleId);
             }

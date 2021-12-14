@@ -189,6 +189,7 @@
     <Compile Include="Features\OpenDownlines\Params\SelectCloseInfoMultipleCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Models\ProductStatusUM.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\CheckProductStatusUMCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectCashoutStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectDCSProductStatusFor4Criteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateProductStatusForSettingType4Criteria.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductIdConstants.cs" />
