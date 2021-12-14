@@ -402,17 +402,8 @@
   <data name="Back" xml:space="preserve">
     <value>กลับ</value>
   </data>
-  <data name="GoldDeluxeViewModelText" xml:space="preserve">
-    <value>Gold Deluxe</value>
-  </data>
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>กีฬ่า 2</value>
-  </data>
-  <data name="RNGCasinoViewModelText" xml:space="preserve">
-    <value>คาสิโน</value>
-  </data>
-  <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
-    <value>คาสิโนตรงกัน</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>ยกเลิกการระงับ &lt;username&gt;</value>

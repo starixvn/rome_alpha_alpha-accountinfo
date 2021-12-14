@@ -202,7 +202,6 @@
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectDCSProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectNG2ProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectProductStatusCriteriaTests.cs" />
-    <Compile Include="Features\ProductStatusPopup\SpParams\UpdateCasinoStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateDCSProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateKenoStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateNG2StatusCriteriaTests.cs" />

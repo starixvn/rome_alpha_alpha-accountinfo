@@ -11,15 +11,13 @@
             byte roleId,
             int superId,
             int masterId,
-            int agentId,
-            bool syncCasino)
+            int agentId)
         {
             CustId = custId;
             RoleId = roleId;
             SuperId = superId;
             MasterId = masterId;
             AgentId = agentId;
-            SyncCasino = syncCasino;
         }
 
         public int CustId { get; }
@@ -31,7 +29,5 @@
         public int MasterId { get; }
 
         public int AgentId { get; }
-
-        public bool SyncCasino { get; }
     }
 }

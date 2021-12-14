@@ -402,17 +402,8 @@
   <data name="Back" xml:space="preserve">
     <value>戻る</value>
   </data>
-  <data name="GoldDeluxeViewModelText" xml:space="preserve">
-    <value>Gold Deluxe</value>
-  </data>
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>Sportsbook 2</value>
-  </data>
-  <data name="RNGCasinoViewModelText" xml:space="preserve">
-    <value>Casino</value>
-  </data>
-  <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
-    <value>Sync Casino</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>Unsuspend &lt;username&gt;</value>

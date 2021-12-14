@@ -66,17 +66,9 @@
 
         public bool IsHideKeno => userSession.IsHideKeno;
 
-        public bool IsCasinoSync => userSession.IsCasinoSync;
-
-        public bool IsCasinoDisabled => userSession.IsCasinoDisabled;
-
         public bool IsDisabledESports => userSession.IsDisabledESports;
 
         public bool IsNumberGameDisabled => userSession.IsNumberGameDisabled;
-
-        public bool IsHideGoldDeluxe => userSession.IsHideGoldDeluxe;
-
-        public bool DisableGoldDeluxe => userSession.DisableGoldDeluxe;
 
         public string Site => userSession.Site;
 

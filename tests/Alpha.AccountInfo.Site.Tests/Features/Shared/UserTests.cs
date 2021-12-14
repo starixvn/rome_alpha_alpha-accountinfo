@@ -32,8 +32,6 @@
             userSession.GetHideProduct(Arg.Any<int>()).Returns(true);
             userSession.GetSyncedProduct(Arg.Any<int>()).Returns(true);
             userSession.IsHideKeno.Returns(true);
-            userSession.IsCasinoSync.Returns(true);
-            userSession.IsCasinoDisabled.Returns(true);
             userSession.IsDisabledESports.Returns(true);
             userSession.IsNumberGameDisabled.Returns(true);
 
@@ -60,8 +58,6 @@
                 user.GetHideProduct(1) &&
                 user.GetSyncedProduct(1) &&
                 user.IsHideKeno &&
-                user.IsCasinoSync &&
-                user.IsCasinoDisabled &&
                 user.IsDisabledESports &&
                 user.IsNumberGameDisabled);
         }

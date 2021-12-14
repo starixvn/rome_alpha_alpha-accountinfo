@@ -19,8 +19,6 @@
 
         public byte SearchAccountRoleId { get; set; }
 
-        public bool SyncedCasino3rd { get; set; }
-
         public bool StatusValue { get; set; }
 
         public string StatusName { get; set; }

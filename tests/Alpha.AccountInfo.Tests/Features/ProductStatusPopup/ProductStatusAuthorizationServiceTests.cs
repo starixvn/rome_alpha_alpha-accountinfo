@@ -39,7 +39,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086, true);
+            var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086);
             var param = new ProductStatusAuthorizationParam(
                 ProductIdTest,
                 custId,
@@ -66,7 +66,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086, true);
+            var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086);
             var param = new ProductStatusAuthorizationParam(
                 ProductConstants.Keno,
                 custId,
@@ -109,7 +109,7 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
@@ -128,7 +128,7 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0);
             var param = new ProductStatusAuthorizationParam(
                 ProductIdTest,
                 CustIdTest,
@@ -155,7 +155,7 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
@@ -167,33 +167,14 @@
 
             // Assert
             Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Fact]
-        public void CanView_CasinoNotSync_ReturnsFalse()
-        {
-            // Arrange
-            var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0, false);
-            var param = new ProductStatusAuthorizationParam(ProductConstants.RNGCasino, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
-
-            repository
-                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
-                .Returns(customerInformation);
-
-            // Act
-            var actualResult = authorizationService.CanView(param);
-
-            // Assert
-            Assert.Equal(expectedResult, actualResult);
-        }
+        }       
 
         [Fact]
         public void CanUpdate_DirectDownline_ReturnsTrue()
         {
             // Arrange
             var expectedResult = true;
-            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
@@ -215,7 +196,7 @@
         {
             // Arrange
             var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0, true);
+            var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0);
             var param = new ProductStatusAuthorizationParam(ProductConstants.Keno, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository

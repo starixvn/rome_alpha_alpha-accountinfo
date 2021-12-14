@@ -38,7 +38,7 @@
                 canView = IsDirectDownlineOfViewerUser(customerInformation, param.UplineLevel);
             }
 
-            return canView && CanViewProduct(param.ProductId, customerInformation.SyncCasino);
+            return canView && canViewProduct(param.ProductId);
         }
 
         public bool CanUpdate(ProductStatusAuthorizationParam param)
@@ -47,7 +47,7 @@
 
             return IsMasterAgentMemberOfViewerUser(customerInformation, param.UplineId, param.UplineLevel) &&
                 IsDirectDownlineOfViewerUser(customerInformation, param.UplineLevel) &&
-                CanViewProduct(param.ProductId, customerInformation.SyncCasino);
+                canViewProduct(param.ProductId);
         }
 
         private static bool IsMasterAgentMemberOfViewerUser(
@@ -94,13 +94,6 @@
             }
 
             return isValidRole;
-        }
-
-        private bool CanViewProduct(int productId, bool syncCasino)
-        {
-            var canView = canViewProduct(productId);
-
-            return canView && productId == ProductConstants.RNGCasino ? syncCasino : canView;
         }
 
         private CustomerInformation GetCustomerInformation(int custId)

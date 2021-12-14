@@ -47,18 +47,10 @@
         bool GetSyncedProduct(int productId);
 
         bool IsHideKeno { get; }
-
-        bool IsCasinoSync { get; }
-
-        bool IsCasinoDisabled { get; }
-
+      
         bool IsDisabledESports { get; }
 
-        bool IsNumberGameDisabled { get; }
-
-        bool IsHideGoldDeluxe { get; }
-
-        bool DisableGoldDeluxe { get; }
+        bool IsNumberGameDisabled { get; }      
 
         bool IsEnabledCustomerDateLimit { get; }
 

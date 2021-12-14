@@ -113,7 +113,6 @@
 
             container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Singleton);
             container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
-            container.Register<RnGCasinoService, RnGCasinoServiceImpl>(Lifestyle.Scoped);
             container.Register<SearchAccountService, SearchAccountServiceImpl>(Lifestyle.Scoped);
             container.Register<SearchAccountDataAccess, SearchAccountDataAccessImpl>(Lifestyle.Scoped);
             container.Register<UnsuspendDownlinesService, UnsuspendDownlinesServiceImpl>(Lifestyle.Scoped);

@@ -502,15 +502,6 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gold Deluxe.
-        /// </summary>
-        public static string GoldDeluxeViewModelText {
-            get {
-                return ResourceManager.GetString("GoldDeluxeViewModelText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
         public static string IP {
@@ -790,15 +781,6 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Casino.
-        /// </summary>
-        public static string RNGCasinoViewModelText {
-            get {
-                return ResourceManager.GetString("RNGCasinoViewModelText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Setting.
         /// </summary>
         public static string Setting {
@@ -876,15 +858,6 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         public static string SuspendedByUplineTooltip {
             get {
                 return ResourceManager.GetString("SuspendedByUplineTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sync Casino.
-        /// </summary>
-        public static string SyncRNGCasinoViewModelText {
-            get {
-                return ResourceManager.GetString("SyncRNGCasinoViewModelText", resourceCulture);
             }
         }
         
