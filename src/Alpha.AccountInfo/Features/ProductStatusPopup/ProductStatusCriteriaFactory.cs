@@ -53,6 +53,10 @@
                     return CreateUpdateNG2StatusCriteria(param);
                 case ProductIdConstants.SabaVirtualSports:
                     return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
+
+                case ProductIdConstants.Cashout:
+                    return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
+
                 default:
                     return CreateUpdateDCSProductStatusCriteria(param);
             }
