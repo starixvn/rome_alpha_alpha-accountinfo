@@ -34,6 +34,9 @@
                 case ProductIdConstants.SabaVirtualSports:
                     return new SelectDCSProductStatusFor4Criteria(productId, customerId);
 
+                case ProductIdConstants.Cashout:
+                    return new SelectCashoutStatusCriteria(productId, customerId, roleId);
+
                 default:
                     return new SelectDCSProductStatusCriteria(productId, customerId, roleId);
             }
@@ -50,6 +53,10 @@
                     return CreateUpdateNG2StatusCriteria(param);
                 case ProductIdConstants.SabaVirtualSports:
                     return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
+
+                case ProductIdConstants.Cashout:
+                    return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
+
                 default:
                     return CreateUpdateDCSProductStatusCriteria(param);
             }
