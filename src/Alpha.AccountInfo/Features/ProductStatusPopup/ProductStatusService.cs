@@ -153,7 +153,9 @@
                 SportTypeConstants.GDG,
                 SportTypeConstants.BigGame,
                 SportTypeConstants.SportsLottery,
-                SportTypeConstants.PPLiveCasino
+                SportTypeConstants.PPLiveCasino,
+                SportTypeConstants.MacauGames,
+                SportTypeConstants.Jackpot
             };
 
             if (sportShowName.Contains(sportType))

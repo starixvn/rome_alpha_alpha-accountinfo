@@ -16,5 +16,7 @@
         public const int BigGame = 239;
         public const int SportsLottery = 169;
         public const int PPLiveCasino = 170;
+        public const int MacauGames = 212;
+        public const int Jackpot = 9904;
     }
 }
