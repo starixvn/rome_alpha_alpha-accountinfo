@@ -37,7 +37,11 @@
                 string.Empty);
 
         public string GetSportTypeName(int sportTypeId)
-           => remotingRefService.GetSportName(sportTypeId.ToString(), LanguageCode);
+            => remotingRefService.GetSportName(sportTypeId.ToString(), LanguageCode, null) ?? remotingRefService.GetResourceDataByRefIdAndResourceId(
+                "DummySport",
+                sportTypeId.ToString(),
+                LanguageCode,
+                string.Empty);
 
         private static string LanguageCode
             => Thread.CurrentThread.CurrentCulture.Name;
