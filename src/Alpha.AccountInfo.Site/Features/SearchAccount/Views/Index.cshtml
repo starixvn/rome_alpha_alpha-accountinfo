@@ -1,18 +1,17 @@
 ﻿@{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
-
 }
 @model AccountInfoViewModel
 
 @section Styles {
-    @StaticResources.RenderStyles("/assets/bundles/common/common-" + Model.ActorLevel)
-    @StaticResources.RenderStyles("~/Features/SearchAccount/Bundles/index")
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/common/common-{Model.ActorLevel}")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/SearchAccount/Bundles/index")
     @StaticResources.RenderStylesWithMedia(767, "~/Features/SearchAccount/Bundles/account-info-mobile-calculate-07")
 }
 
 @Html.AntiForgeryToken()
 @Html.Hidden("NotAuthorized", Resources.NotAuthorized)
-@Html.Hidden("AssetCommonCssLink", StaticResources.AssetStyles.RenderCommon("/bundles/common/common"))
+@Html.Hidden("AssetCommonCssLink", StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common"))
 
 <div id="account-info" />
 

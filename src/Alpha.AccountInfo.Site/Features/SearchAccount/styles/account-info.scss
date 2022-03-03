@@ -153,6 +153,9 @@ hr {
 
     .icon-clone-account {
         padding-left: 5px;
+        font-size: 15px;
+        position: relative;
+        top: 2px;
     }
     // User status for business
     .actived, .closed, .suspended {
@@ -165,14 +168,14 @@ hr {
     }
 
     .suspended {
-        color: #d45f12;
-        background-color: #f8ded7;
+        color: $suspended-color;
+        background-color: $suspended-bgcolor;
         font-weight: bold;
     }
 
     .disabled {
-        color: #045ace;
-        background-color: #a0a97a;
+        color: $disabled-color;
+        background-color: $disabled-bgcolor;
         font-weight: bold;
     }
 
@@ -180,28 +183,28 @@ hr {
     .locked-falsePassword,
     .closed-byAdmin,
     .closed-byUpline {
-        color: #B50000 !important;
+        color: $closed-color !important;
         font-weight: bold;
     }
 
     .locked-falseOTPSC {
-        background-color: #86c5e4;
+        background-color: $closed-otpsc-bgcolor;
     }
 
     .locked-falsePassword {
-        background-color: #ccc7ba;
+        background-color: $closed-pwdothers-bgcolor;
     }
 
     .closed-byAdmin {
-        background-color: #b3a2c7;
+        background-color: $closed-admin-bgcolor;
     }
 
     .closed-byUpline {
-        background-color: #f79646;
+        background-color: $closed-upline-bgcolor;
     }
 
     .closed-byArchive {
-        background-color: #969696;
+        background-color: $closed-archive-bgcolor;
     }
 }
 

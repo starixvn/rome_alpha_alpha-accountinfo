@@ -67,8 +67,8 @@
     <Reference Include="Alpha.Utilities.IP, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Utilities.IP.1.0.3.2\lib\net461\Alpha.Utilities.IP.dll</HintPath>
     </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.8.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.8.7\lib\net461\Alpha.Web.dll</HintPath>
+    <Reference Include="Alpha.Web, Version=1.0.8.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.8.8\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="CasinoLibrary, Version=2.1.0.18354, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.2.1.0.18354\lib\net40\CasinoLibrary.dll</HintPath>
@@ -256,8 +256,8 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.5.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.5.8\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.5.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.5.9\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.8\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
@@ -410,8 +410,10 @@
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="Features\OpenDownlines\Bundles\open-multiple-dark.min.css" />
     <Content Include="Features\OpenDownlines\Bundles\open-multiple.min.css" />
     <Content Include="Features\OpenDownlines\Bundles\open-multiple.min.js" />
+    <Content Include="Features\OpenDownlines\Bundles\open-single-dark.min.css" />
     <Content Include="Features\OpenDownlines\Bundles\open-single.min.css" />
     <Content Include="Features\OpenDownlines\Bundles\open-single.min.js" />
     <Content Include="Features\OpenDownlines\Scripts\app\open-api.jsx" />
@@ -425,6 +427,7 @@
     <Content Include="Features\OpenDownlines\Scripts\app\open-view-list.jsx" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.css" />
     <Content Include="Features\ProductStatusPopup\Bundles\index.min.js" />
+    <Content Include="Features\ProfilePicture\Bundles\index-dark.min.css" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.css" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.js" />
     <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture-modal.jsx" />
@@ -438,8 +441,10 @@
     <Content Include="Features\ProtectedStatus\Styles\Images\unprotected.png" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.css" />
     <Content Include="Features\SearchAccount\Bundles\account-info-mobile-calculate-07.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\given-credit-dark.min.css" />
     <Content Include="Features\SearchAccount\Bundles\given-credit.min.css" />
     <Content Include="Features\SearchAccount\Bundles\given-credit.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\index-dark.min.css" />
     <Content Include="Features\SearchAccount\Bundles\index.min.css" />
     <Content Include="Features\SearchAccount\Bundles\index.min.js" />
     <Content Include="Features\SearchAccount\Scripts\tests\common\cell-contain-number-format.test.jsx" />
@@ -511,8 +516,10 @@
     <Content Include="Features\Shared\Scripts\Array.from.js" />
     <Content Include="Features\Shared\Scripts\react-paginations\autosize-input.jsx" />
     <Content Include="Features\Shared\Scripts\react-paginations\react-pagination.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple-dark.min.css" />
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.css" />
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.js" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single-dark.min.css" />
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single.min.css" />
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single.min.js" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-helper.jsx" />
@@ -556,9 +563,17 @@
     <Content Include="Features\ProtectedStatus\Views\EditMultiple.cshtml" />
     <Content Include="Features\ProtectedStatus\Views\web.config" />
     <Content Include="Features\ProtectedStatus\Styles\protected-status.scss" />
+    <Content Include="Features\ProfilePicture\Styles\index-dark.scss" />
+    <Content Include="Features\SearchAccount\Styles\account-info-dark.scss" />
+    <Content Include="Features\SearchAccount\Styles\given-credit-dark.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
+    <Content Include="Features\Shared\Styles\_variables-dark.scss" />
+    <Content Include="Features\UnsuspendDownlines\Styles\unsuspend-downlines-dark.scss" />
+    <Content Include="Features\Shared\Styles\tippy.scss">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />

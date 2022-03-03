@@ -6,8 +6,8 @@
 }
 
 @section Styles {
-    @StaticResources.AssetStyles.Render($"/bundles/site-accountinfo/profilepicture/profilepicture-" + Model.ActorLevel)
-    @StaticResources.RenderStyles("~/Features/ProfilePicture/Bundles/index")
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-accountinfo/profilepicture/profilepicture-{Model.ActorLevel}")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/ProfilePicture/Bundles/index")
 }
 
 @Html.AntiForgeryToken()

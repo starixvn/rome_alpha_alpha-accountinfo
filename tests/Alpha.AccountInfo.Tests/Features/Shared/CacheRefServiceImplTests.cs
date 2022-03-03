@@ -62,9 +62,7 @@
             var expectedResult = "SportBook";
 
             remotingRefService
-                .GetSportName(
-                Arg.Any<string>(),
-                Arg.Any<string>())
+                .GetSportName("1", "en-US", null)
                 .Returns(expectedResult);
 
             // Act

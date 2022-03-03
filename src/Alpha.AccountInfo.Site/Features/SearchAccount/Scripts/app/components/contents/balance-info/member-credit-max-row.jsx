@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import CellContainNumberFormat from '../../common/cell-contain-number-format';
-import 'react-tippy/dist/tippy.css';
 import { Tooltip } from 'react-tippy';
 
 const MemberCreditMaxRow = ({ resources, balanceInfo }) => {
