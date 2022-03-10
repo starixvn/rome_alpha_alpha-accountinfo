@@ -155,7 +155,9 @@
                 SportTypeConstants.SportsLottery,
                 SportTypeConstants.PPLiveCasino,
                 SportTypeConstants.MacauGames,
-                SportTypeConstants.Jackpot
+                SportTypeConstants.Jackpot,
+                SportTypeConstants.VirtualGames,
+                SportTypeConstants.FGG
             };
 
             if (sportShowName.Contains(sportType))
