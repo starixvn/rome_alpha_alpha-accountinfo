@@ -31,7 +31,7 @@
 
         private static string ReportDomainUrl =>
             AppSettings.ReportDomain.IndexOf("{0}", StringComparison.OrdinalIgnoreCase) != -1 ?
-            string.Format(AppSettings.ReportDomain, HttpContext.Current.Request.Headers["Host"].Replace("mb.", string.Empty).Replace("mb2.", string.Empty)) :
+            string.Format(AppSettings.ReportDomain, HttpContext.Current.Request.Headers["Host"]) :
             AppSettings.ReportDomain;
     }
 }
