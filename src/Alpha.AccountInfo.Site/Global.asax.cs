@@ -1,16 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Site
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Routing;
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Alpha.Auth.Filters;
     using Alpha.Logging;
     using App_Start;
-    using CasinoLibrary.Model.UserException;
     using Configurations;
     using Fanex.Caching;
     using Fanex.Data;
@@ -26,6 +19,12 @@
     using ONEbook.UM.NETFramework;
     using ONEbook.UM.Services;
     using ONEbook.UM.Transport;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Routing;
     using Web;
     using Web.Filters;
     using Web.Helpers;
@@ -93,7 +92,7 @@
                     ["SubAccountName"] = currentCustomer?.SubUserName,
                     ["AdminName"] = currentCustomer?.AdminName
                 },
-                exception.GetType() == typeof(ErrorException) ? TraceEventType.Information : TraceEventType.Error);
+                TraceEventType.Error);
         }
 
         private static string GetBuildVersion()

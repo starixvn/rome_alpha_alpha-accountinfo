@@ -298,7 +298,6 @@
             var message = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = 2,
-                SyncedCasino3rd = true,
                 StatusName = "outright",
                 StatusValue = true
             };
@@ -316,7 +315,6 @@
             var message = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = searchAccountId,
-                SyncedCasino3rd = true,
                 StatusName = "outright",
                 StatusValue = true
             };
@@ -332,7 +330,6 @@
             var message = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = 1,
-                SyncedCasino3rd = true,
                 StatusName = string.Empty,
                 StatusValue = true
             };

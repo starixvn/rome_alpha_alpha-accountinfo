@@ -1,9 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
@@ -17,9 +13,12 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
     using Alpha.Utilities.IP;
-    using CasinoLibrary.SBAgent;
     using Fanex.Caching;
     using Fanex.Data.Repository;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public interface SearchAccountService
     {
@@ -206,14 +205,7 @@
 
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
         {
-            var result = await accountInfoDataAccess.UpdateCustomerStatus(command).ConfigureAwait(false);
-            bool isSyncCasino = cacheService.Get<bool>($"SyncCasino_{command.SearchAccountId}");
-
-            if (result.IsSuccess && command.StatusName.Equals(StatusNames.DisableAutoMasterPT) && isSyncCasino)
-            {
-                UpdateDisableAutoPtCasino(command.SearchAccountId, command.StatusValue, command.IP, command.ActorId, command.ActorName);
-            }
-
+            var result = await accountInfoDataAccess.UpdateCustomerStatus(command).ConfigureAwait(false);          
             return result.IsSuccess
                 ? Result.CreateSuccessResult()
                 : result;
@@ -242,12 +234,6 @@
             => await dynamicRepository.GetAsync<bool>(
                 new SelectFirstLoginByQRCodeCriteria(custId)).ConfigureAwait(false);
 
-        private static void UpdateDisableAutoPtCasino(int custid, bool disable, string ip, int userid, string username)
-        {
-            const int AlphaSystem = 2;
-            var casinoApi = new Customer();
-            casinoApi.UpdateMasterDisableAutoMPT(custid, !disable, ip, userid, username, AlphaSystem);
-        }
 
         public async Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal)
         {

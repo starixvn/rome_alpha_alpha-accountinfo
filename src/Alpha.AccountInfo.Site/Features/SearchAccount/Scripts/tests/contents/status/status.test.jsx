@@ -32,26 +32,8 @@ describe('Status', () => {
     });
 
     test.each([
-        [{}, 0],
-        [{
-            'Disabled': false,
-            'Checked': false,
-            'Url': '/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus',
-            'JsonParams': '{\'SearchAccountId\':\'1382145\',\'SyncedCasino3rd\':\'True\',\'StatusName\':\'Closed\',\'StatusValue\':\'True\'}',
-            'Text': 'Closed',
-            'DisplayOrder': 2,
-            'Visible': true
-          }, 0],
-        [{
-            'ConfirmMessage': 'Are you sure you want to change Close status for this customer?',
-            'Disabled': false,
-            'Checked': false,
-            'Url': '/site-accountinfo/(S(nycmx2rjfmd5hmyywrpmvhzc))/SearchAccount/UpdateCustomerStatus',
-            'JsonParams': '{\'SearchAccountId\':\'1382145\',\'SyncedCasino3rd\':\'True\',\'StatusName\':\'Closed\',\'StatusValue\':\'True\'}',
-            'Text': 'Closed',
-            'DisplayOrder': 2,
-            'Visible': true
-          }, 1]])(
+        [{}, 0],       
+        ])(
         'correct render ConfirmStatus',
         (status, expectedCallTimes) => {
             props.statusData.push(status);
@@ -62,26 +44,7 @@ describe('Status', () => {
 
     test.each([
         [{}, 0],
-        [{
-            'Text': 'Casino',
-            'DisplayOrder': 60,
-            'ProductId': 6,
-            'Url': '/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3',
-            'Disabled': false,
-            'Visible': true,
-            'IsEditOnProductLevel': false,
-            'Checked': true
-        }, 0],
-        [{
-            'Text': 'Casino',
-            'DisplayOrder': 60,
-            'ProductId': 6,
-            'Url': '/ProductStatus?productid=6&custId=1382145&custName=ACGUUS38&custRoleId=3',
-            'Disabled': false,
-            'Visible': true,
-            'IsEditOnProductLevel': true,
-            'Checked': true
-        }, 1]])(
+        ])(
         'correct render ProductLevelStatus',
         (status, expectedCallTimes) => {
             props.statusData.push(status);

@@ -4,8 +4,6 @@
     using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
     using Alpha.AccountInfo.Features.ProductStatusPopup.Models;
     using Alpha.AccountInfo.Features.ProductStatusPopup.Params.SPs;
-    using Alpha.AccountInfo.Features.SearchAccount.Params;
-    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.Products.Core.Shared;
@@ -43,7 +41,6 @@
         private readonly CacheRefService cacheRefService;
         private readonly ProductStatusCriteriaFactory criteriaFactory;
         private readonly ProductStatusAuthorizationService authorizationService;
-        private readonly RnGCasinoService rnGCasinoService;
         private readonly ILogger logger;
 
         public ProductStatusServiceImpl(
@@ -51,14 +48,12 @@
             CacheRefService cacheRefService,
             ProductStatusCriteriaFactory criteriaFactory,
             ProductStatusAuthorizationService authorizationService,
-            RnGCasinoService rnGCasinoService,
             ILogger logger)
         {
             repository = dynamicRepository;
             this.cacheRefService = cacheRefService;
             this.criteriaFactory = criteriaFactory;
             this.authorizationService = authorizationService;
-            this.rnGCasinoService = rnGCasinoService;
             this.logger = logger;
         }
 
@@ -101,11 +96,7 @@
             switch (commandParam.ProductId)
             {
                 case ProductConstants.Keno:
-                    return new[] { await UpdateKenoStatusAsync(commandParam).ConfigureAwait(false) };
-
-                case ProductConstants.RNGCasino:
-                    return new[] { await UpdateCasinoStatus(commandParam).ConfigureAwait(false) };
-
+                    return new[] { await UpdateKenoStatusAsync(commandParam).ConfigureAwait(false) };  
                 default:
                     return await UpdateStatusAsync(commandParam).ConfigureAwait(false);
             }
@@ -274,33 +265,6 @@
             }
 
             return GetProductStatusName(message.ProductId, message.SportType, 0, false);
-        }
-
-        private async Task<Result> UpdateCasinoStatus(ProductStatusCommandParam param)
-        {
-            var criteria = criteriaFactory.CreateUpdateCasinoStatusCriteria(param);
-
-            await repository.ExecuteAsync(criteria).ConfigureAwait(false);
-
-            if (criteria.Success)
-            {
-                rnGCasinoService.SyncedToRnGCasino3rdByStatus(
-                    new UpdateRnGCasino3rdParam(
-                        criteria.CustId,
-                        StatusNames.EnableRnGCasino3rd,
-                        !criteria.Disable,
-                        criteria.ActorId,
-                        param.ActorName,
-                        criteria.IP));
-
-                return Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language));
-            }
-
-            var errorMessage = criteria.ErrMsg.Contains("{0}")
-                ? string.Format(criteria.ErrMsg, cacheRefService.GetProductName(ProductConstants.RNGCasino, param.Language))
-                : criteria.ErrMsg;
-
-            return Result.CreateErrorResult(criteria.ErrCode, errorMessage);
         }
 
         private string ParseDCSXmlErrorMessage(string errMsg, string language)

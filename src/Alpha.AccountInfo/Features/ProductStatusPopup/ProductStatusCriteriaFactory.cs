@@ -15,8 +15,6 @@
         NonQueryProductStatusCriteria CreateUpdateCriteria(ProductStatusCommandParam param);
 
         IEnumerable<UpdateKenoStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param);
-
-        UpdateCasinoStatusCriteria CreateUpdateCasinoStatusCriteria(ProductStatusCommandParam param);
     }
 
     public class ProductStatusCriteriaFactoryImpl : ProductStatusCriteriaFactory
@@ -24,11 +22,9 @@
         public ICriteria CreateSelectCriteria(int productId, int customerId, byte roleId)
         {
             switch (productId)
-            {
-                case ProductConstants.RNGCasino:
+            {             
                 case ProductConstants.Keno:
                     return new SelectProductStatusCriteria(productId, customerId);
-
                 case ProductConstants.NG2:
                     return new SelectNG2StatusCriteria(productId, customerId);
                 case ProductIdConstants.SabaVirtualSports:
@@ -45,10 +41,7 @@
         public NonQueryProductStatusCriteria CreateUpdateCriteria(ProductStatusCommandParam param)
         {
             switch (param.ProductId)
-            {
-                case ProductConstants.RNGCasino:
-                    return CreateUpdateCasinoStatusCriteria(param);
-
+            {              
                 case ProductConstants.NG2:
                     return CreateUpdateNG2StatusCriteria(param);
                 case ProductIdConstants.SabaVirtualSports:
@@ -76,19 +69,6 @@
                     item.IsDisabled,
                     param.UplineId);
             }
-        }
-
-        public UpdateCasinoStatusCriteria CreateUpdateCasinoStatusCriteria(ProductStatusCommandParam param)
-        {
-            var disable = param.ProductStatusParams.First().IsDisabled;
-
-            return new UpdateCasinoStatusCriteria(
-                param.CustId,
-                param.SubAccId,
-                param.ActorId,
-                param.IP,
-                param.LangKey,
-                disable);
         }
 
         private static NonQueryProductStatusCriteria CreateUpdateNG2StatusCriteria(ProductStatusCommandParam param)

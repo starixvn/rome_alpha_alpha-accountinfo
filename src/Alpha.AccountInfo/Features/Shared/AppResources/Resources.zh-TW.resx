@@ -405,17 +405,8 @@
   <data name="Back" xml:space="preserve">
     <value>退回</value>
   </data>
-  <data name="GoldDeluxeViewModelText" xml:space="preserve">
-    <value>GD真人娛樂場</value>
-  </data>
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>體育博彩 2</value>
-  </data>
-  <data name="RNGCasinoViewModelText" xml:space="preserve">
-    <value>娛樂城</value>
-  </data>
-  <data name="SyncRNGCasinoViewModelText" xml:space="preserve">
-    <value>娛樂城同步校準</value>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>&lt;username&gt; 取消暫停</value>

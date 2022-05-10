@@ -16,7 +16,6 @@
             var messages = new CustomerNonProductStatusCommand(viewer)
             {
                 SearchAccountId = 1,
-                SyncedCasino3rd = true,
                 StatusName = "outright",
                 StatusValue = true
             };
@@ -24,7 +23,6 @@
             Assert.True(
                 messages.ActorName == "ActorName" &&
                 messages.ActorId == 1 &&
-                messages.SyncedCasino3rd &&
                 messages.SearchAccountId == 1 &&
                 messages.StatusName == "outright" &&
                 messages.StatusValue &&

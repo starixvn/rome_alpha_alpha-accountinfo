@@ -31,7 +31,6 @@
         private readonly CacheRefService cacheRefService;
         private readonly ProductStatusCriteriaFactory criteriaFactory;
         private readonly ProductStatusAuthorizationService authorizationService;
-        private readonly RnGCasinoService rnGCasinoService;
         private readonly ProductStatusServiceImpl productStatusServiceImpl;
         private readonly ILogger logger;
 
@@ -41,64 +40,13 @@
             cacheRefService = Substitute.For<CacheRefService>();
             criteriaFactory = Substitute.For<ProductStatusCriteriaFactory>();
             authorizationService = Substitute.For<ProductStatusAuthorizationService>();
-            rnGCasinoService = Substitute.For<RnGCasinoService>();
             logger = Substitute.For<ILogger>();
             productStatusServiceImpl = new ProductStatusServiceImpl(
                 dynamicRepository,
                 cacheRefService,
                 criteriaFactory,
                 authorizationService,
-                rnGCasinoService,
-                logger);
-
-            rnGCasinoService.SyncedToRnGCasino3rdByStatus(
-                new UpdateRnGCasino3rdParam(
-                CustIdTest,
-                StatusNames.EnableRnGCasino3rd,
-                true,
-                1176070,
-                "User Test",
-                "127.0.0.1"));
-        }
-
-        [Theory]
-        [InlineData(ProductConstants.RNGCasino, "Casino")]
-        public async Task GetProductStatusAsync_CasinoColossusBets_ReturnsDataFromDynamicRepository(int productId, string productName)
-        {
-            // Arrange
-            var expectedResults = new List<ProductStatusModel>
-            {
-                new ProductStatusModel(productId, 208, 2101, false, false)
-                {
-                    Name = productName
-                }
-            };
-            var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
-            authorizationService
-                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
-                .Returns(criteria);
-            dynamicRepository
-                .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(expectedResults);
-            cacheRefService
-                .GetProductName(productId)
-                .Returns(productName);
-
-            // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
-            var actualResult = actualData.First();
-
-            // Assert
-            Assert.True(
-                expectedResults[0].ProductId == actualResult.ProductId &&
-                expectedResults[0].SportType == actualResult.SportType &&
-                expectedResults[0].BetType == actualResult.BetType &&
-                expectedResults[0].IsDisabled == actualResult.IsDisabled &&
-                expectedResults[0].IsDisabledUpline == actualResult.IsDisabledUpline &&
-                expectedResults[0].Name == actualResult.Name);
+                logger);          
         }
 
         [Fact]
@@ -265,46 +213,6 @@
         }
 
         [Fact]
-        public async Task GetProductStatusAsync_NoViewPermission_ReturnsEmptyModel()
-        {
-            // Arrange
-            authorizationService
-                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(false);
-
-            // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(ProductConstants.RNGCasino, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
-
-            // Assert
-            Assert.False(actualData.Any());
-        }
-
-        [Fact]
-        public async Task GetProductStatusAsync_NoData_ReturnsEmptyModel()
-        {
-            // Arrange
-            var productId = ProductConstants.RNGCasino;
-            var expectedResult = Enumerable.Empty<ProductStatusModel>();
-
-            var criteria = new SelectProductStatusCriteria(productId, CustIdTest);
-            authorizationService
-                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
-                .Returns(criteria);
-            dynamicRepository
-                .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(expectedResult);
-
-            // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
-
-            // Assert
-            Assert.Equal(expectedResult.Any(), actualData.Any());
-        }
-
-        [Fact]
         public async Task UpdateProductStatusAsync_Keno_ReturnsSucessfulResult()
         {
             // Arrange
@@ -392,82 +300,7 @@
             Assert.True(!actualResult.IsSuccess &&
                 actualResult.Code == 101 &&
                 actualResult.Message == "You are not allowed to disable for downlines.: Australia<br>You are not allowed to disable for downlines.: Slovakia");
-        }
-
-        [Fact]
-        public async Task UpdateProductStatusAsync_Casino_ReturnsSucessfulResult()
-        {
-            // Arrange
-            var commandParam = new ProductStatusCommandParam(
-                ProductConstants.RNGCasino,
-                CustIdTest,
-                CustRoleTest,
-                0,
-                UplineLevelTest,
-                0,
-                string.Empty,
-                0,
-                null,
-                null,
-                null,
-                "en-US");
-            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false);
-            authorizationService
-                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateUpdateCasinoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
-                .Returns(criteria);
-            dynamicRepository
-                .ExecuteAsync(Arg.Any<INonQueryCommand>())
-                .Returns(Task.CompletedTask);
-
-            // Act
-            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
-
-            // Assert
-            Assert.True(actualResult.IsSuccess);
-        }
-
-        [Fact]
-        public async Task UpdateProductStatusAsync_Casino_ReturnsErrorResult()
-        {
-            // Arrange
-            var commandParam = new ProductStatusCommandParam(
-                ProductConstants.RNGCasino,
-                CustIdTest,
-                CustRoleTest,
-                0,
-                UplineLevelTest,
-                0,
-                string.Empty,
-                0,
-                null,
-                null,
-                null,
-                "en-US");
-            var criteria = new UpdateCasinoStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", "E", false)
-            {
-                ErrCode = 102,
-                ErrMsg = "You are not allowed to disable for downlines."
-            };
-            authorizationService
-                .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateUpdateCasinoStatusCriteria(Arg.Any<ProductStatusCommandParam>())
-                .Returns(criteria);
-            dynamicRepository
-                .ExecuteAsync(Arg.Any<INonQueryCommand>())
-                .Returns(Task.CompletedTask);
-
-            // Act
-            var actualResult = (await productStatusServiceImpl.UpdateProductStatusAsync(commandParam)).FirstOrDefault();
-
-            // Assert
-            Assert.True(!actualResult.IsSuccess &&
-                actualResult.Message == "You are not allowed to disable for downlines.");
-        }
+        }        
 
         [Fact]
         public async Task UpdateProductStatusAsync_DSC_ReturnsSucessfulResult()

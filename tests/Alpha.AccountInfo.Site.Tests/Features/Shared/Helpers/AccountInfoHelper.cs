@@ -72,11 +72,7 @@
             viewer.GetHideProduct(Arg.Any<int>()).Returns(true);
             viewer.GetSyncedProduct(Arg.Any<int>()).Returns(true);
             viewer.IsHideKeno.Returns(true);
-            viewer.CanUpdateAccount.Returns(true);
-            viewer.IsCasinoSync.Returns(true);
-            viewer.IsCasinoDisabled.Returns(true);
-            viewer.DisableGoldDeluxe.Returns(true);
-            viewer.IsHideGoldDeluxe.Returns(true);
+            viewer.CanUpdateAccount.Returns(true);         
             viewer.IsDisabledESports.Returns(true);
             viewer.IsNumberGameDisabled.Returns(true);
             viewer.CanCreateAccount.Returns(true);

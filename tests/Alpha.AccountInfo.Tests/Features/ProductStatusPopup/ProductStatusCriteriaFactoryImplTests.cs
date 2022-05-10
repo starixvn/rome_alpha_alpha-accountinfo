@@ -29,8 +29,7 @@
             productStatusCriteriaFactoryImpl = new ProductStatusCriteriaFactoryImpl();
         }
 
-        [Theory]
-        [InlineData(ProductConstants.RNGCasino)]
+        [Theory]      
         [InlineData(ProductConstants.Keno)]
         public void CreateSelectCriteria_ValidProductId_ReturnsSelectProductStatusCriteria(int productId)
         {
@@ -91,33 +90,7 @@
             // Assert
             Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
         }
-
-        [Fact]
-        public void CreateUpdateCriteria_Casino_ReturnsUpdateCasinoStatusCriteria()
-        {
-            // Arrange
-            var expectedCriteria = new UpdateCasinoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, DisableTest);
-            var productStatus = new[] { new BetTypeStatusParam(208, 2101, false) };
-            var param = new ProductStatusCommandParam(
-                ProductConstants.RNGCasino,
-                CustIdTest,
-                CustRoleTest,
-                UplineIdTest,
-                UplineLevelTest,
-                UserIdTest,
-                UserNameTest,
-                SubAccIdTest,
-                LanguageTest,
-                IPTest,
-                productStatus,
-                "en-US");
-
-            // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);
-
-            // Assert
-            Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
-        }
+      
 
         [Fact]
         public void CreateUpdateCriteria_NG2_ReturnsUpdateNG2StatusCriteria()
