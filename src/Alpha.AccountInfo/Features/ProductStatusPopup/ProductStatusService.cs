@@ -93,13 +93,8 @@
                 return new[] { Result.CreateForbiddenResult() };
             }
 
-            switch (commandParam.ProductId)
-            {
-                case ProductConstants.Keno:
-                    return new[] { await UpdateKenoStatusAsync(commandParam).ConfigureAwait(false) };  
-                default:
-                    return await UpdateStatusAsync(commandParam).ConfigureAwait(false);
-            }
+            return commandParam.ProductId == ProductConstants.Keno ? new[] { await UpdateKenoStatusAsync(commandParam).ConfigureAwait(false) } :
+                await UpdateStatusAsync(commandParam).ConfigureAwait(false);
         }
 
         private async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(

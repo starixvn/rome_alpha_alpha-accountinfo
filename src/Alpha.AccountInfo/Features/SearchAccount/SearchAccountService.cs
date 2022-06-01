@@ -54,7 +54,6 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly SearchAccountDataAccess accountInfoDataAccess;
         private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
-        private readonly ICacheService cacheService = new CacheService();
         private readonly IPService ipService;
 
         public SearchAccountServiceImpl(
