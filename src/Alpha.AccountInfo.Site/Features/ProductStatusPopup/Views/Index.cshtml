@@ -46,13 +46,13 @@
                         <td>@item.Name</td>
                         <td>
                             <input type="checkbox"
-                                   id="checkbox-@item.BetType"
+                                   id="checkbox-@item.SportType-@item.BetType"
                                    data-sporttypeid="@item.SportType"
                                    data-bettypeid="@item.BetType"
                                    data-oldvalue="@item.IsDisabled.ToString().ToLowerInvariant()"
                                    @(item.IsDisabled ? string.Empty : "checked=checked")
                                    @(Model.IsDisabledEditCustStatus(item) ? "disabled=disabled" : string.Empty) />
-                            <label for="checkbox-@item.BetType">@userLevelDisplayName</label>
+                            <label for="checkbox-@item.SportType-@item.BetType">@userLevelDisplayName</label>
                         </td>
                     </tr>
                 }
