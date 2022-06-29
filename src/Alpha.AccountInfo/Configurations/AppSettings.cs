@@ -24,7 +24,7 @@
 
         public static bool IsIBCIndo => SiteGroup.Equals("IBCIndo", StringComparison.OrdinalIgnoreCase);
 
-        public static string ReportDomain => GetConfigValue("Report:Domain");
+        public static string ReportDomain => GetConfigValue("Report:Domain") ?? string.Empty;
 
         public static bool IsStandaloneReports => !string.IsNullOrWhiteSpace(ReportDomain);
 
