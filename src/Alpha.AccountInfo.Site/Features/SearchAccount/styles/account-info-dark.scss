@@ -98,38 +98,36 @@ hr {
     position: fixed;
     left: 0;
     right: 0;
-    top: -1px;
+    top: 6px;
     height: 40px;
     z-index: 1000;
     padding: 10px;
 
     .txt-search {
-        border: none;
-        border-bottom: 1px solid #919191;
+        border: 1px solid #3A3A3A; 
         font-style: italic;
         height: 30px;
         margin-left: 0;
-        padding: 10px 30px 4px 0;
+        padding: 3px 10px 4px 29px;
         width: 100%;
         @include transition('all .3s');
-        @include border-radius(0);
+        @include border-radius(5px);
         @include box-shadow-multiple(none);
-        background-color: #212223;
+        background-color: #2E2E2E;
         color: #fff;
 
         &:focus {
-            border-bottom: 2px solid #fff;
+            outline: none;
         }
     }
 
     .icon-search {
         @include ripple-effect-icon($top: 3px, $margin-left: -1px);
         position: absolute;
-        top: 9px;
-        right: 6px;
+        top: 13px;
+        left: 13px;
         padding: 6px;
-        cursor: pointer;
-        font-weight: bold;
+        cursor: pointer; 
     }
 }
 
@@ -231,6 +229,8 @@ hr {
         display: inline-block;
         width: 100%;
         margin-right: 0;
+        @include border-radius(3px);
+        box-shadow: none;
     }
 
     &.two-button [class^="btn"] {
@@ -241,6 +241,8 @@ hr {
         padding-right: calculateScale(6px);
         background-color: #36587D;
         color : #fff;
+        box-shadow: none;
+        @include border-radius(3px);
         &:last-child {
             margin-left: 4%;
         }
@@ -360,7 +362,7 @@ hr {
 
 .feature-list,
 .accordions {
-    position: relative;
+    position: relative;  
 
     &.translate-from-left {
         animation: TranslateFromLeft 0.3s;
@@ -370,26 +372,35 @@ hr {
         animation: TranslateFromRight 0.3s;
     }
 }
-
+.accordions{
+    padding: 0 10px;
+    
+}
 .feature-item {
     position: relative;
     width: 100%;
     display: block;
-    padding: 14px 25px 14px 10px;
-    text-transform: uppercase;
     font-weight: bold;
+    padding: 9px 25px 8px 39px;
+    text-transform: uppercase; 
+    border-radius: 5px;
     cursor: pointer;
     color : #919191;
 
     &:hover {
         background-color: #3a3a3a;
-        color: #fff;
+        color: #ededed;
+        [class^=icon]{
+            color: #ededed;
+            background: #585858;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        }
     }
 
     &:after {
         position: absolute;
-        top: 10px;
-        right: 4px;
+        top: 4px;
+        right: 5px;
         font-family: Iconalpha, sans-serif !important;
         font-size: 19px;
         font-weight: 400;
@@ -402,34 +413,19 @@ hr {
     }
 
     [class^=icon] {
-        position: relative;
-        top: 2px;
-        line-height: 0;
-    }
-
-    .icon-contact-info {
-        margin-right: 6px;
-        font-size: 16px;
-    }
-
-    .icon-balance {
-        font-size: 14px;
-        margin-right: 9px;
-        left: 1px;
-    }
-
-    .icon-status {
-        top: 4px;
-        margin-right: 5px;
-        font-size: 19px;
-    }
-
-    .icon-settings,
-    .icon-login,
-    .icon-downline,
-    .icon-onlinelist {
-        margin-right: 7px;
-        font-size: 16px;
+        position: absolute;
+        transform: translate(0, -50%);
+        top: 50%;
+        left: 8px;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        background: #2F2F2F;
+        color: #919191; 
+        border-radius: 5px;
+        font-size: 17px;
+        
     }
 }
 
@@ -620,9 +616,10 @@ hr {
 
 .accordion-item {
     transition: all 0.3s;
-    max-height: 46px;
+    max-height: 36px;
     overflow: hidden;
     transform-origin: top center;
+    margin-bottom: 9px;
 
     &.expanded {
         transition: all 0.4s;
@@ -630,7 +627,12 @@ hr {
 
         .feature-item {
             background-color: #3a3a3a;
-            color: #fff;
+            color: #ededed;
+            [class^=icon]{
+                color: #ededed;
+                background-color: #585858;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+            }
         }
 
         .feature-item:after {
