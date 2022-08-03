@@ -5,7 +5,7 @@
 
     public class UpdateMacauGamesStatusCriteria : UpdateDCSProductStatusCriteria
     {
-        private const int MacauGamesStatusSettingTypeId = 21;
+        private const short MacauGamesStatusSettingTypeId = 21;
 
         public short SettingType => MacauGamesStatusSettingTypeId;
 
