@@ -269,7 +269,7 @@
             {
                 if (msgType == ParentChildViolated)
                 {
-                    return ParseParentChildViolatedMessage(errMsg);
+                    return ParseParentChildViolatedMessage(errMsg, language);
                 }
 
                 var xmlRoot = XElement.Parse(errMsg);
@@ -311,13 +311,13 @@
         private static string ToUMDatetime(DateTime dateTime)
             => dateTime.ToString(UMDatetimeFormat);
 
-        private string ParseParentChildViolatedMessage(string message)
+        private string ParseParentChildViolatedMessage(string message, string language)
         {
             var xmlRoot = XElement.Parse(message);
             var errCode = xmlRoot.Attributes("MsgID").FirstOrDefault().Value;
             string parentSportType = string.Empty;
             string parentBetType = string.Empty;
-            var errMsgTemplate = ProductStatus.ResourceManager.GetString("Msg" + errCode);
+            var errMsgTemplate = GetResource("Msg" + errCode, language);
             List<string> childSportTypesNames = new List<string>();
             StringBuilder errorMessages = new StringBuilder();
             foreach (var xmlElement in xmlRoot.Elements())
