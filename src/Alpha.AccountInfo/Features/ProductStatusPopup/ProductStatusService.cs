@@ -337,7 +337,7 @@
                     childSportTypesNames = new List<string>();
                 }
 
-                childSportTypesNames.Add(cacheRefService.GetSportTypeName(Convert.ToInt32(currentSportType)));
+                childSportTypesNames.Add(cacheRefService.GetSportTypeName(Convert.ToInt32(currentSportType), language));
             }
 
             errorMessages.Append(string.Format(errMsgTemplate, string.Join(", ", childSportTypesNames), cacheRefService.GetSportTypeName(Convert.ToInt32(parentSportType))));
