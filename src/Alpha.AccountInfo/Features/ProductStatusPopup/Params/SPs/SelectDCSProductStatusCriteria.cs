@@ -5,7 +5,7 @@
 
     public class SelectDCSProductStatusCriteria : SelectProductStatusCriteria
     {
-        private const int NotNG2SettingType = 13;
+        private const short NotNG2SettingType = 13;
 
         public SelectDCSProductStatusCriteria(int productId, int custId, byte roleId)
             : base(productId, custId)
@@ -15,7 +15,7 @@
 
         public byte RoleId { get; }
 
-        public int SettingType { get; } = NotNG2SettingType;
+        public virtual short SettingType { get; } = NotNG2SettingType;
 
         public byte SettingStatus => AppSettings.SettingStatus;
 

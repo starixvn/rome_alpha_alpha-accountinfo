@@ -12,6 +12,8 @@
         string GetProductName(int productId, string languageCode);
 
         string GetSportTypeName(int sportTypeId);
+
+        string GetSportTypeName(int sportTypeId, string languageCode);
     }
 
     public class CacheRefServiceImpl : CacheRefService
@@ -33,6 +35,13 @@
             => remotingRefService.GetResourceDataByRefIdAndResourceId(
                 "Product",
                 productId.ToString(),
+                languageCode,
+                string.Empty);
+
+        public string GetSportTypeName(int sportTypeId, string languageCode)
+            => remotingRefService.GetSportName(sportTypeId.ToString(), languageCode, null) ?? remotingRefService.GetResourceDataByRefIdAndResourceId(
+                "DummySport",
+                sportTypeId.ToString(),
                 languageCode,
                 string.Empty);
 

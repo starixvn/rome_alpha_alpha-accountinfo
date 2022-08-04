@@ -15,6 +15,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using System.Xml.Linq;
 
@@ -36,7 +37,7 @@
         private const int UMKenoErrorCode = 90014;
         private const int DoNothingErrorCode = 90017;
         private const string UMDatetimeFormat = "dd/MM/yyyy HH:mm";
-
+        private const int ParentChildViolated = 92;
         private readonly IDynamicRepository repository;
         private readonly CacheRefService cacheRefService;
         private readonly ProductStatusCriteriaFactory criteriaFactory;
@@ -196,7 +197,7 @@
 
             if (!criteria.Success && criteria.ErrCode != DoNothingErrorCode)
             {
-                return new[] { Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.ErrMsg, param.Language)) };
+                return new[] { Result.CreateErrorResult(criteria.ErrCode, ParseDCSXmlErrorMessage(criteria.MsgType, criteria.ErrMsg, param.Language)) };
             }
 
             IList<Result> results = new List<Result>();
@@ -262,10 +263,15 @@
             return GetProductStatusName(message.ProductId, message.SportType, 0, false);
         }
 
-        private string ParseDCSXmlErrorMessage(string errMsg, string language)
+        private string ParseDCSXmlErrorMessage(int msgType, string errMsg, string language)
         {
             if (IsValidXml(errMsg))
             {
+                if (msgType == ParentChildViolated)
+                {
+                    return ParseParentChildViolatedMessage(errMsg, language);
+                }
+
                 var xmlRoot = XElement.Parse(errMsg);
                 var errCode = xmlRoot.Attributes("MsgID").FirstOrDefault().Value;
                 var errMsgFromResource = GetResource($"Msg{errCode}", language);
@@ -304,5 +310,38 @@
 
         private static string ToUMDatetime(DateTime dateTime)
             => dateTime.ToString(UMDatetimeFormat);
+
+        private string ParseParentChildViolatedMessage(string message, string language)
+        {
+            var xmlRoot = XElement.Parse(message);
+            var errCode = xmlRoot.Attributes("MsgID").FirstOrDefault().Value;
+            string parentSportType = string.Empty;
+            string parentBetType = string.Empty;
+            var errMsgTemplate = GetResource("Msg" + errCode, language);
+            List<string> childSportTypesNames = new List<string>();
+            StringBuilder errorMessages = new StringBuilder();
+            foreach (var xmlElement in xmlRoot.Elements())
+            {
+                var currentParentSportType = xmlElement.Attribute("ParentSportType").Value;
+                var currentParentBetType = xmlElement.Attribute("ParentBetType").Value;
+                var currentSportType = xmlElement.Attribute("SportType").Value;
+                if (currentParentSportType != parentSportType || currentParentBetType != parentBetType)
+                {
+                    if (!string.IsNullOrWhiteSpace(parentSportType))
+                    {
+                        errorMessages.Append(string.Format(errMsgTemplate, string.Join(", ", childSportTypesNames), cacheRefService.GetSportTypeName(Convert.ToInt32(parentSportType))));
+                    }
+
+                    parentSportType = currentParentSportType;
+                    parentBetType = currentParentBetType;
+                    childSportTypesNames = new List<string>();
+                }
+
+                childSportTypesNames.Add(cacheRefService.GetSportTypeName(Convert.ToInt32(currentSportType), language));
+            }
+
+            errorMessages.Append(string.Format(errMsgTemplate, string.Join(", ", childSportTypesNames), cacheRefService.GetSportTypeName(Convert.ToInt32(parentSportType))));
+            return errorMessages.ToString();
+        }
     }
 }

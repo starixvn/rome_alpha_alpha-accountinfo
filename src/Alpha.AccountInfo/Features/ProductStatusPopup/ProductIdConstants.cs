@@ -5,5 +5,7 @@
         public const int SabaVirtualSports = 54;
 
         public const int Cashout = 25;
+
+        public const int MacauGames = 22;
     }
 }
