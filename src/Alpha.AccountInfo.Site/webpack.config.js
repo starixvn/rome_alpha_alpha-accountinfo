@@ -90,6 +90,12 @@ module.exports = {
             "babel-polyfill",
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines-dark.scss",
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
+        ],
+        "./SearchAccount/Bundles/member-balance-info": [
+            "./Features/SearchAccount/Styles/member-balance-info.scss"
+        ],
+        "./SearchAccount/Bundles/member-balance-info-dark": [
+            "./Features/SearchAccount/Styles/member-balance-info-dark.scss"
         ]
     },
 

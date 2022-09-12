@@ -1,5 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
@@ -13,10 +17,6 @@
     using Alpha.Utilities.IP;
     using MediatR;
     using Services.AccountInfo;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class SearchAccountHandler :
         IAsyncRequestHandler<SearchAccountQuery, AccountInfoViewModel>,
@@ -26,7 +26,8 @@
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>,
         IAsyncRequestHandler<GivenCreditCommand, Result>,
-        IAsyncRequestHandler<UpdateAllBalanceTransferCommand, Result>
+        IAsyncRequestHandler<UpdateAllBalanceTransferCommand, Result>,
+        IAsyncRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>
     {
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
@@ -204,5 +205,28 @@
             CreditInfo creditInfo,
             IBalanceInfoModel balanceInfoModel)
             => new MemberBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel);
+
+        public async Task<IBalanceInfoViewModel> Handle(MemberBalanceInfoQuery message)
+        {
+            var customerInfoQuery = new CustomerInfoQuery(message.Viewer)
+            {
+                SearchAccountName = message.CustName
+            };
+            var customerInfo = await accountInfoService.GetCustomerInfo(
+                customerInfoQuery.SearchAccountName,
+                customerInfoQuery.ActorId,
+                customerInfoQuery.ActorRoleId).ConfigureAwait(false);
+
+            if (customerInfo != null && Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel())
+            {
+                var creditInfoTask = accountInfoService.GetCreditInfo(customerInfo.CustId);
+                var balanceInfoTask = accountInfoService.GetBalanceInfo(customerInfo.CustId, UserLevel.Member.Value);
+                await Task.WhenAll(creditInfoTask, balanceInfoTask).ConfigureAwait(false);
+
+                return BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo, await creditInfoTask, await balanceInfoTask);
+            }
+
+            return null;
+        }
     }
 }

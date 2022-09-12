@@ -1,0 +1,63 @@
+﻿@import '../../Shared/Styles/_variables-dark';
+@import '../../Shared/Styles/mixins';
+
+.member-balance-info {
+    padding: 20px 0;
+
+    .form-group {
+        line-height: 28px;
+        margin-bottom: 6px;
+        padding-left: 0;
+        padding-right: 0;
+
+        [class^="col"] {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .value {
+        padding-right: 8px;
+        text-align: right;
+    }
+
+    .list-button {
+        padding: 12px 0 20px;
+        text-align: center;
+
+        [class^='btn'] {
+            float: right;
+            line-height: 28px;
+        }
+    }
+
+    .number {
+        color: #0F7DDB;
+
+        &-red {
+            color: #E54748;
+        }
+    }
+}
+
+@media only screen and (max-device-width: $screen-device-lower768) {
+    body {
+        font-size: calculateScale($font-size);
+    }
+
+    .member-balance-info .form-group {
+        line-height: calculateScale(28px);
+        margin-bottom: calculateScale(6px);
+    }
+
+    .member-balance-info .list-button {
+        padding: calculateScale(12px) 0 calculateScale(20px);
+    }
+
+    [class^="btn"] {
+        height: calculateScale(28px);
+        margin-right: calculateScale(8px);
+        padding-left: calculateScale(16px);
+        padding-right: calculateScale(16px);
+    }
+}

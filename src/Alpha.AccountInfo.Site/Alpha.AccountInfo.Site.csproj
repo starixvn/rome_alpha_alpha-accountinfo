@@ -435,6 +435,8 @@
     <Content Include="Features\SearchAccount\Bundles\index-dark.min.css" />
     <Content Include="Features\SearchAccount\Bundles\index.min.css" />
     <Content Include="Features\SearchAccount\Bundles\index.min.js" />
+    <Content Include="Features\SearchAccount\Bundles\member-balance-info-dark.min.css" />
+    <Content Include="Features\SearchAccount\Bundles\member-balance-info.min.css" />
     <Content Include="Features\SearchAccount\Scripts\tests\common\cell-contain-number-format.test.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\common\custom-anchor-tag.test.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\balance-info.test.jsx" />
@@ -553,6 +555,9 @@
     <Content Include="Features\ProfilePicture\Styles\index-dark.scss" />
     <Content Include="Features\SearchAccount\Styles\account-info-dark.scss" />
     <Content Include="Features\SearchAccount\Styles\given-credit-dark.scss" />
+    <Content Include="Features\SearchAccount\Views\GetMemberBalanceInfo.cshtml" />
+    <Content Include="Features\SearchAccount\Styles\member-balance-info.scss" />
+    <Content Include="Features\SearchAccount\Styles\member-balance-info-dark.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\reset-context.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\table-pagination.scss" />
     <None Include="Features\Shared\Scripts\react-paginations\variables.scss" />
@@ -663,6 +668,7 @@
     <Compile Include="Features\ProtectedStatus\Requests\EditMultipleCommand.cs" />
     <Compile Include="Features\ProtectedStatus\Requests\EditMultipleRequest.cs" />
     <Compile Include="Features\ProtectedStatus\ViewModels\EditMultipleViewModel.cs" />
+    <Compile Include="Features\SearchAccount\Requests\MemberBalanceInfoQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\UpdateAllBalanceTransferCommand.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureController.cs" />
