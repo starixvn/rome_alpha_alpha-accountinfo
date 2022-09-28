@@ -18,8 +18,8 @@ hr {
 
 .row-info {
     line-height: calculateScale(30px);
-    padding-left: calculateScale(10px);
-    padding-right: calculateScale(10px);
+    padding-left: calculateScale(20px);
+    padding-right: calculateScale(20px);
 }
 
 
@@ -29,13 +29,14 @@ hr {
 
 // Search box
 .search-box {
-    height: calculateScale(40px);
-    padding: calculateScale(10px);
+    height: auto;
+    top: calculateScale(7px);
+    padding:0 calculateScale(20px);
 
     .txt-search {
-        height: calculateScale(30px);
-        padding: calculateScale(10px) calculateScale(30px) calculateScale(4px) 0;
-        font-size: calculateScale($font-size);
+        height: calculateScale(36px);
+        padding: 0px calculateScale(29px);
+        font-size: calculateScale(12px);
 
         &:focus {
             border-bottom: calculateScale(2px) solid #67151b;
@@ -43,10 +44,14 @@ hr {
     }
 
     .icon-search {
-        top: calculateScale(9px);
-        right: calculateScale(6px);
+        top: 50%;
+        transform: translate(0, -50%);
+        right:auto;
+        left: calculateScale(22px);
         padding: calculateScale(6px);
-
+        &:before{
+            font-size: calculateScale(12px);
+        }
         &:hover:after {
             top: calculateScale(3px);
             width: calculateScale(26px);
@@ -300,4 +305,34 @@ hr {
 
 .blockMsg {
     left: 35% !important;
+}
+// feature-detail
+.feature-list{
+    padding: 0 calculateScale(10px);
+}
+.feature-detail{
+    padding: 0 calculateScale(10px)
+}
+.feature-item{
+    padding: 0 calculateScale(30px) 0 calculateScale(40px);
+    font-size: calculateScale(13px);
+    margin-bottom: 9px;
+    height: calculateScale(36px);
+    line-height: calculateScale(36px);
+    &:after{
+        top: calculateScale(-2px);
+        right: calculateScale(3px);
+        font-size: calculateScale(22px);
+    }
+    [class^=icon]{
+        width: calculateScale(24px);
+        height: calculateScale(24px);
+        font-size: calculateScale(18px);
+        top: 50%;
+        text-align: center;
+        line-height: calculateScale(24px);
+        transform: translate(0, -50%);
+        left: calculateScale(8px);
+      
+    }
 }
