@@ -32,8 +32,8 @@
 
                 case ProductIdConstants.Cashout:
                     return new SelectCashoutStatusCriteria(productId, customerId, roleId);
-                case ProductIdConstants.MacauGames:
-                    return new SelectMacauGamesStatusCriteria(productId, customerId, roleId);
+                case ProductIdConstants.RNGSlot:
+                    return new SelectRNGSlotStatusCriteria(productId, customerId, roleId);
                 default:
                     return new SelectDCSProductStatusCriteria(productId, customerId, roleId);
             }
@@ -50,7 +50,7 @@
 
                 case ProductIdConstants.Cashout:
                     return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
-                case ProductIdConstants.MacauGames:
+                case ProductIdConstants.RNGSlot:
                     return CreateUpdateMacauGamesStatusCriteria(param);
                 default:
                     return CreateUpdateDCSProductStatusCriteria(param);

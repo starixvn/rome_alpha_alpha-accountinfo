@@ -18,6 +18,7 @@
         public const int PPLiveCasino = 170;
         public const int MacauGames = 212;
         public const int Jackpot = 9904;
+        public const int RNGSlot = 9906;
         public const int VirtualGames = 245;
         public const int FGG = 176;
     }

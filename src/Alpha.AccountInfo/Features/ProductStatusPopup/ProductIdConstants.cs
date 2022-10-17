@@ -6,6 +6,6 @@
 
         public const int Cashout = 25;
 
-        public const int MacauGames = 22;
+        public const int RNGSlot = 53;
     }
 }
