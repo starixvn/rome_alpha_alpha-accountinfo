@@ -34,7 +34,7 @@
 
         public string ErrMsg { get; set; }
 
-        public int MsgType { get; set; }
+        public virtual int MsgType { get; set; }
 
         [SpParam(Ignored = true)]
         public bool Success => ErrCode.Equals(0);
