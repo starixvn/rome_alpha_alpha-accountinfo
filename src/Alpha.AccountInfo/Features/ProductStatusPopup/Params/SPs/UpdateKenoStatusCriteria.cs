@@ -1,4 +1,6 @@
-﻿namespace Alpha.AccountInfo.Criteria.ProductStatus
+﻿using Fanex.Data;
+
+namespace Alpha.AccountInfo.Criteria.ProductStatus
 {
     public class UpdateKenoStatusCriteria : NonQueryProductStatusCriteria
     {
@@ -28,6 +30,9 @@
         public int UplineId { get; }
 
         public string Language { get; }
+
+        [SpParam(Ignored = true)]
+        public override int MsgType { get; set; }
 
         public override string GetSettingKey() => "Acc_CustomerUpdDisableKeno";
 
