@@ -7,8 +7,12 @@ const BalanceInfoRow = ({
     id = '',
     mobileView = false,
     hrefLink = null
-}) =>
-    <div className='row-info'>
+}) => {
+    if (hrefLink && hrefLink.indexOf(top.menuBar.domElements.reportDomain) !== -1 && hrefLink.indexOf('(S(') !== -1) {
+        hrefLink = hrefLink.replace(top.menuBar.domElements.sessionId, top.menuBar.domElements.reportSessionId);
+    }
+
+    return <div className='row-info'>
         <div className='col'>{title}</div>
         <CellContainNumberFormat
             {...{
@@ -20,5 +24,6 @@ const BalanceInfoRow = ({
             }}
         />
     </div>;
+}
 
 export default BalanceInfoRow;

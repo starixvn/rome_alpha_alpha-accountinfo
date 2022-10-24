@@ -74,6 +74,10 @@ const CustomerInfo = ({
             <div className={`col-xs-12 row-info text-center list-button ${customerInfo.Buttons.length === 2 ? 'two-button' : 'one-button'}`}>
                 {
                     customerInfo.Buttons.map((buton, index) => {
+                        if (buton.Url.indexOf(top.menuBar.domElements.reportDomain) !== -1 && buton.Url.indexOf('(S(') !== -1) {
+                            buton.Url = buton.Url.replace(top.menuBar.domElements.sessionId, top.menuBar.domElements.reportSessionId);
+                        }
+
                         const customAnchorTagProps = {
                             mobileView,
                             classNames: 'btn-default with-level',
