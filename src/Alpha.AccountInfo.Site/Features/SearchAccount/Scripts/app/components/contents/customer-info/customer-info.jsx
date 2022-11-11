@@ -78,6 +78,10 @@ const CustomerInfo = ({
                             buton.Url = buton.Url.replace(top.menuBar.domElements.sessionId, top.menuBar.domElements.reportSessionId);
                         }
 
+                        if (buton.Url.indexOf(top.menuBar.domElements.betlistDomain) !== -1 && buton.Url.indexOf('(S(') !== -1) {
+                            buton.Url = buton.Url.replace(top.menuBar.domElements.sessionId, top.menuBar.domElements.betlistSessionId);
+                        }
+
                         const customAnchorTagProps = {
                             mobileView,
                             classNames: 'btn-default with-level',
