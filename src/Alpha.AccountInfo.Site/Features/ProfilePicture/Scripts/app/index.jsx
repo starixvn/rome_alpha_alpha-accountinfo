@@ -172,12 +172,22 @@ class App extends PureComponent {
 
     render() {
         const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
-            { resources, setUpOTPLink, protectionCodeLink, allowUpdate } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
+            { resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
         return (
             <div>
                 <ul className='nav nav-tabs'>
+                    <li className='tab-item'>
+                        <a href={changePasswordLink}>
+                            <span>{resources.Password}</span>
+                        </a>
+                    </li>
+                    <li className='tab-item'>
+                        <a href={securityCodeLink}>
+                            <span>{resources.SecurityCode}</span>
+                        </a>
+                    </li>
                     <li className='tab-item active'>
                         <a>
                             <span>{resources.ProfilePicture}</span>
@@ -232,7 +242,7 @@ class App extends PureComponent {
                                         key={index}
                                     />
                                 )
-                            }                            
+                            }
                         </div>
                         {disabledButton ? resources.ViewAll : <a className='view-all'
                             onClick={this.handleViewLibrary}
@@ -274,9 +284,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = (imagesList, resources, setUpOTPLink, protectionCodeLink, allowUpdate) => {
+export const renderApp = (imagesList, resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink) => {
     ReactDOM.render(
-        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, protectionCodeLink, allowUpdate }} />,
+        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink }} />,
         document.getElementById('root')
     );
 };

@@ -22,6 +22,8 @@
             @Html.Raw(Model.Resources),
             '@Model.SetUpOTPLink',
             '@Model.ProtectionCodeLink',
-            JSON.parse('@Model.AllowUpdate'.toLowerCase()),);
+            JSON.parse('@Model.AllowUpdate'.toLowerCase()),
+            '@Model.ChangePasswordLink',
+            '@Model.SecurityCodeLink');
     </script>
 }
