@@ -159,4 +159,10 @@
   <data name="notAuthorized" xml:space="preserve">
     <value>해당 기능에 대한 권한이 없습니다.</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>비밀번호</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>Security Code</value>
+  </data>
 </root>

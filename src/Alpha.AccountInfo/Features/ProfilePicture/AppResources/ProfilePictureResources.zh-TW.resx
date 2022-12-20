@@ -129,6 +129,9 @@
   <data name="OrChooseFromOurGallery" xml:space="preserve">
     <value>或從我們的圖庫中選擇</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
   <data name="PictureLibrary" xml:space="preserve">
     <value>個人資料圖片庫</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Reset" xml:space="preserve">
     <value>重填</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>保安碼</value>
   </data>
   <data name="Selected" xml:space="preserve">
     <value>選擇</value>

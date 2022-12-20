@@ -43,6 +43,10 @@
 
         public string SetUpOTPLink => GetMicroSiteUrl(MicroSiteConstants.Main, "~/Otp/SetupOtp");
 
+        public string ChangePasswordLink => GetMicroSiteUrl(MicroSiteConstants.Main, "~/Password/ChangePassword");
+
+        public string SecurityCodeLink => GetMicroSiteUrl(MicroSiteConstants.Main, "~/SecurityCode/ChangeUserOwnSecurityCode");
+
         public string ProtectionCodeLink { get; }
     }
 }

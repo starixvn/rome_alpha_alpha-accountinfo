@@ -40,6 +40,8 @@
 
         public static bool IsDisabledRecheckin => GetConfigValue("DisabledCheckDuplicationLogin") == "1";
 
+        public static string JsVersion => GetConfigValue("JsVersion");
+
         public static void Verify()
         {
             Require(StoredProcedurePath, nameof(StoredProcedurePath));
