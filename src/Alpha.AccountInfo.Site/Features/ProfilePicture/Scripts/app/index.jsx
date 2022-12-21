@@ -183,7 +183,7 @@ class App extends PureComponent {
                             <span>{resources.Password}</span>
                         </a>
                     </li>
-                    {enableSecurityCode > 0 && (
+                    {enableSecurityCode && (
                         <li className='tab-item'>
                             <a href={securityCodeLink}>
                                 <span>{resources.SecurityCode}</span>
@@ -200,7 +200,7 @@ class App extends PureComponent {
                             <span>OTP</span>
                         </a>
                     </li>
-                    {isOfferProtectedMode > 0 && (
+                    {isOfferProtectedMode && (
                         <li className='tab-item'>
                             <a href={protectionCodeLink}>
                                 <span>{resources.ProtectionCode}</span>

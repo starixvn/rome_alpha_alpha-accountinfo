@@ -45,9 +45,9 @@
 
         public string ChangePasswordLink => MicroSites.MainUrl("~/Password/ChangePassword");
 
-        public string SecurityCodeLink => MicroSites.MainUrl("~/ProtectionCode/Setup");
+        public string SecurityCodeLink => MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode");
 
-        public string ProtectionCodeLink => MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode");
+        public string ProtectionCodeLink => MicroSites.MainUrl("~/ProtectionCode/Setup");
 
         public bool EnableSecurityCode { get; }
 
