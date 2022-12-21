@@ -143,6 +143,7 @@
                 SportTypeConstants.PPLiveCasino,
                 SportTypeConstants.MacauGames,
                 SportTypeConstants.Jackpot,
+                SportTypeConstants.RNGSlot,
                 SportTypeConstants.VirtualGames,
                 SportTypeConstants.FGG
             };
