@@ -572,15 +572,6 @@
     <Content Include="typings\globals\jquery\typings.json" />
     <Content Include="typings\globals\jquery.blockui\typings.json" />
     <Content Include="Features\ProductStatusPopup\Scripts\tests\chutzpah.json" />
-    <Content Include="Web.AppSettings.backupMNL.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.backupMNL2.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.backupMNLNap.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
     <Content Include="Features\SearchAccount\Styles\account-info.scss" />
     <Content Include="Features\Shared\Styles\_mixins.scss" />
     <Content Include="Features\SearchAccount\Views\Index.cshtml" />
@@ -591,9 +582,6 @@
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
     <Content Include="Features\SearchAccount\Views\GivenCredit.cshtml" />
-    <Content Include="Web.AppSettings.backupMNLNap2.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
     <Content Include="Web.AppSettings.config">
       <SubType>Designer</SubType>
     </Content>
@@ -645,6 +633,18 @@
     <Content Include="webpack.config.prod.js">
       <DependentUpon>webpack.config.js</DependentUpon>
     </Content>
+    <None Include="Web.AppSettings.backupMNL.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
+    <None Include="Web.AppSettings.backupMNL2.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
+    <None Include="Web.AppSettings.backupMNLNap.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
+    <None Include="Web.AppSettings.backupMNLNap2.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs">

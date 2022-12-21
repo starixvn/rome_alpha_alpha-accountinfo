@@ -75,9 +75,11 @@
                   getInsertProfilePictureSiteMode(),
                   message.IP));
 
-        internal async Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
-            => await await ConfiguredCacheService.GetOrSetAsync(
+        internal Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
+            =>  ConfiguredCacheService.GetOrSet(
                     ProfilePictureLibaryKey,
-                    async () => await profilePictureServices.FectchProfilePictureLibraryAsync(getInsertProfilePictureSiteMode()).ConfigureAwait(false)).ConfigureAwait(false);
+                    async()=> await profilePictureServices.FectchProfilePictureLibraryAsync(getInsertProfilePictureSiteMode()),
+                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(5))
+                );
     }
 }
