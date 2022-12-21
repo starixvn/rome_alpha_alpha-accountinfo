@@ -95,7 +95,7 @@
 #pragma warning restore CS0618 // Type or member is obsolete
             container.Register<IUser, User>(Lifestyle.Singleton);
 #pragma warning disable CS0618 // Type or member is obsolete
-            container.RegisterSingleton<SecurityCodeChecker, SecurityCodeCheckerImpl>();
+            container.Register<SecurityCodeChecker, SecurityCodeCheckerImpl>(Lifestyle.Scoped);
 #pragma warning restore CS0618 // Type or member is obsolete
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();

@@ -183,11 +183,13 @@ class App extends PureComponent {
                             <span>{resources.Password}</span>
                         </a>
                     </li>
-                    <li className='tab-item'>
-                        <a href={securityCodeLink}>
-                            <span>{resources.SecurityCode}</span>
-                        </a>
-                    </li>
+                    {securityCodeLink.length > 0 && (
+                        <li className='tab-item'>
+                            <a href={securityCodeLink}>
+                                <span>{resources.SecurityCode}</span>
+                            </a>
+                        </li>)
+                    }
                     <li className='tab-item active'>
                         <a>
                             <span>{resources.ProfilePicture}</span>

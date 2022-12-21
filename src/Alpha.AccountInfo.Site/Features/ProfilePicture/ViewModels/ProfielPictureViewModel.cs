@@ -8,10 +8,10 @@
     using Alpha.AccountInfo.ProfilePicture.Models;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
+    using Alpha.Web.Helpers;
 
     public class ProfielPictureViewModel
     {
-        private readonly Func<string, string, string> GetMicroSiteUrl;
         private readonly Func<string, ResourceManager, string> ConvertResourcesJson;
         private readonly string Language;
 
@@ -20,17 +20,17 @@
             byte actorRoleId,
             string language,
             bool allowUpdate,
+            bool enableSecurityCode,
             bool isOfferProtectedMode,
-            Func<string, ResourceManager, string> convertResourcesJson = null,
-            Func<string, string, string> getMicroSiteUrl = null)
+            Func<string, ResourceManager, string> convertResourcesJson = null)
         {
             Images = images;
             Language = language;
             AllowUpdate = allowUpdate;
             ActorLevel = Enumeration.FromValue<UserLevel>(actorRoleId).DisplayName;
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
-            GetMicroSiteUrl = getMicroSiteUrl ?? SimpleServiceLocator.GetService<Func<string, string, string>>();
-            ProtectionCodeLink = isOfferProtectedMode ? GetMicroSiteUrl(MicroSiteConstants.Main, "~/ProtectionCode/Setup") : string.Empty;
+            ProtectionCodeLink = isOfferProtectedMode ? MicroSites.MainUrl("~/ProtectionCode/Setup") : string.Empty;
+            SecurityCodeLink = enableSecurityCode ? MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode") : string.Empty;
         }
 
         public IEnumerable<ProfilePictureModel> Images { get; private set; }
@@ -41,11 +41,11 @@
 
         public string Resources => ConvertResourcesJson(Language, ProfilePictureResources.ResourceManager);
 
-        public string SetUpOTPLink => GetMicroSiteUrl(MicroSiteConstants.Main, "~/Otp/SetupOtp");
+        public string SetUpOTPLink => MicroSites.MainUrl("~/Otp/SetupOtp");
 
-        public string ChangePasswordLink => GetMicroSiteUrl(MicroSiteConstants.Main, "~/Password/ChangePassword");
+        public string ChangePasswordLink => MicroSites.MainUrl("~/Password/ChangePassword");
 
-        public string SecurityCodeLink => GetMicroSiteUrl(MicroSiteConstants.Main, "~/SecurityCode/ChangeUserOwnSecurityCode");
+        public string SecurityCodeLink { get; }
 
         public string ProtectionCodeLink { get; }
     }

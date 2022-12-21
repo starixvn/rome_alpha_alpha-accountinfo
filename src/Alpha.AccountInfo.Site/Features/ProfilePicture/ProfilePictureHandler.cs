@@ -7,6 +7,7 @@
     using Alpha.AccountInfo.Site.Features.ProfilePicture.Requests;
     using Alpha.AccountInfo.Site.Features.ProfilePicture.ViewModels;
     using Alpha.Products.Core.Services;
+    using Alpha.SecurityCode.Services;
     using Fanex.Caching;
     using JW;
     using MediatR;
@@ -24,16 +25,19 @@
         private const int NumerousOfDefaultPictures = 7;
         private readonly ProfilePictureServices profilePictureServices;
         private readonly Func<int> getInsertProfilePictureSiteMode;
+        private readonly SecurityCodeChecker securityCodeChecker;
 
-        public ProfilePictureHandler(ProfilePictureServices profilePictureServices)
-            : this(profilePictureServices, null)
+        public ProfilePictureHandler(SecurityCodeChecker securityCodeChecker,ProfilePictureServices profilePictureServices)
+            : this(securityCodeChecker,profilePictureServices, null)
         {
         }
 
         internal ProfilePictureHandler(
+            SecurityCodeChecker securityCodeChecker,
             ProfilePictureServices profilePictureServices,
             Func<int> getInsertProfilePictureSiteMode)
         {
+            this.securityCodeChecker = securityCodeChecker;
             this.profilePictureServices = profilePictureServices;
             this.getInsertProfilePictureSiteMode = getInsertProfilePictureSiteMode ??
              SimpleServiceLocator.GetService<Func<int>>();
@@ -41,6 +45,7 @@
 
         public async Task<ProfielPictureViewModel> Handle(ProfilePictureQuery message)
         {
+            var isEnableSecurityCode = securityCodeChecker.IsEnableSecurityCode();
             var imageLibrary = await GetProfilePictureLibraryAsync().ConfigureAwait(false);
 
             return new ProfielPictureViewModel(
@@ -48,6 +53,7 @@
                 message.ActorRoleId,
                 message.Language,
                 message.AllowUpdate,
+                isEnableSecurityCode,
                 message.IsOfferProtectedMode);
         }
 
