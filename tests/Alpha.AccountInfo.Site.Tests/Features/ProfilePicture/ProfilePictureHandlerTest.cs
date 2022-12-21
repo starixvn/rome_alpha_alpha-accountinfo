@@ -10,6 +10,7 @@
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers;
     using Alpha.Products.Core.Services;
+    using Alpha.SecurityCode.Services;
     using AutoFixture;
     using JW;
     using NSubstitute;
@@ -24,10 +25,10 @@
     public class ProfilePictureHandlerTest
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
-        private readonly Fixture fixture = new Fixture();
         private readonly ProfilePictureServices profilePictureServices;
         private readonly ProfilePictureHandler handler;
         private readonly IEnumerable<ProfilePictureModel> model;
+        private readonly SecurityCodeChecker securityCodeChecker;
         public ProfilePictureHandlerTest()
         {
             SimpleServiceLocator
@@ -37,7 +38,8 @@
                 .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/");
 
             profilePictureServices = Substitute.For<ProfilePictureServices>();
-            handler = new ProfilePictureHandler(profilePictureServices);
+            securityCodeChecker= Substitute.For<SecurityCodeChecker>();
+            handler = new ProfilePictureHandler(securityCodeChecker,profilePictureServices);
 
             model = new List<ProfilePictureModel>()
             {
@@ -65,12 +67,13 @@
                 message.ActorRoleId, 
                 message.Language,
                 message.AllowUpdate,
+                securityCodeChecker.IsEnableSecurityCode(),
                 message.IsOfferProtectedMode);
 
             var actualViewModel =
                 handler.Handle(message)
                 .GetAwaiter()
-                .GetResult(); ;
+                .GetResult();
 
             AssertExtension.Equal(actualViewModel.Images.OrderBy(image => image.ImageId), expectedViewModel.Images);
             AssertExtension.Equal(actualViewModel.ActorLevel, expectedViewModel.ActorLevel);
