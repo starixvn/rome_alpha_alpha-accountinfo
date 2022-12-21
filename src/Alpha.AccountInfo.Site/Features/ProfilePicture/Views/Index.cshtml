@@ -16,7 +16,7 @@
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/index")
 
-    <script>
+<script>
         renderApp(
             @Html.Raw(imagesLibrary),
             @Html.Raw(Model.Resources),
@@ -24,6 +24,8 @@
             '@Model.ProtectionCodeLink',
             JSON.parse('@Model.AllowUpdate'.toLowerCase()),
             '@Model.ChangePasswordLink',
-            '@Model.SecurityCodeLink');
-    </script>
+            '@Model.SecurityCodeLink',
+            JSON.parse('@Model.EnableSecurityCode'.toLowerCase()),
+            JSON.parse('@Model.IsOfferProtectedMode'.toLowerCase()));
+</script>
 }

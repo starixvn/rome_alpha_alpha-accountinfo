@@ -29,8 +29,8 @@
             AllowUpdate = allowUpdate;
             ActorLevel = Enumeration.FromValue<UserLevel>(actorRoleId).DisplayName;
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
-            ProtectionCodeLink = isOfferProtectedMode ? MicroSites.MainUrl("~/ProtectionCode/Setup") : string.Empty;
-            SecurityCodeLink = enableSecurityCode ? MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode") : string.Empty;
+            EnableSecurityCode = enableSecurityCode;
+            IsOfferProtectedMode = isOfferProtectedMode;
         }
 
         public IEnumerable<ProfilePictureModel> Images { get; private set; }
@@ -45,8 +45,12 @@
 
         public string ChangePasswordLink => MicroSites.MainUrl("~/Password/ChangePassword");
 
-        public string SecurityCodeLink { get; }
+        public string SecurityCodeLink => MicroSites.MainUrl("~/ProtectionCode/Setup");
 
-        public string ProtectionCodeLink { get; }
+        public string ProtectionCodeLink => MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode");
+
+        public bool EnableSecurityCode { get; }
+
+        public bool IsOfferProtectedMode { get; }
     }
 }

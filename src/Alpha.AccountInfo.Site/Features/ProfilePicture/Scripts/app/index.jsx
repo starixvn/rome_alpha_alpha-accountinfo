@@ -172,7 +172,7 @@ class App extends PureComponent {
 
     render() {
         const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
-            { resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
+            { resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
         return (
@@ -183,7 +183,7 @@ class App extends PureComponent {
                             <span>{resources.Password}</span>
                         </a>
                     </li>
-                    {securityCodeLink.length > 0 && (
+                    {enableSecurityCode > 0 && (
                         <li className='tab-item'>
                             <a href={securityCodeLink}>
                                 <span>{resources.SecurityCode}</span>
@@ -200,7 +200,7 @@ class App extends PureComponent {
                             <span>OTP</span>
                         </a>
                     </li>
-                    {protectionCodeLink.length > 0 && (
+                    {isOfferProtectedMode > 0 && (
                         <li className='tab-item'>
                             <a href={protectionCodeLink}>
                                 <span>{resources.ProtectionCode}</span>
@@ -286,9 +286,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = (imagesList, resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink) => {
+export const renderApp = (imagesList, resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode) => {
     ReactDOM.render(
-        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink }} />,
+        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode }} />,
         document.getElementById('root')
     );
 };
