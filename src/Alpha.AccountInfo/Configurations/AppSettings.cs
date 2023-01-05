@@ -20,9 +20,9 @@
 
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
 
-        public static string SiteGroup => GetConfigValue("SiteGroup");
+        public static string SiteLabel => GetConfigValue("SiteLabel");
 
-        public static bool IsIBCIndo => SiteGroup.Equals("IBCIndo", StringComparison.OrdinalIgnoreCase);
+        public static bool IsIBCIndo => SiteLabel.Equals("IBCIndo", StringComparison.OrdinalIgnoreCase);
 
         public static string ReportDomain => GetConfigValue("Report:Domain") ?? string.Empty;
 
