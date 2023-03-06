@@ -46,8 +46,6 @@
         public bool CanUpdateAccount
             => !userSession.IsSubAcc || (userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount);
 
-        public bool AllowedAllDayBalTransfer => userSession.IsAllDayBalTransfer;
-
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
         public bool AllowTransfer => userSession.SubPageAccess.Transfer;

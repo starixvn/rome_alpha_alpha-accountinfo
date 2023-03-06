@@ -11,8 +11,8 @@
 
     public static class AccountInfoHelper
     {
-        public static Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, BalanceInfoViewModelBase>> BalanceInfoViewModels
-            => new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, BalanceInfoViewModelBase>>
+        public static Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, bool, BalanceInfoViewModelBase>> BalanceInfoViewModels
+            => new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, bool, BalanceInfoViewModelBase>>
             {
                 { UserLevel.Master, BuildMasterBalanceInfoViewModel},
                 { UserLevel.Agent, BuildAgentBalanceInfoViewModel},
@@ -64,7 +64,6 @@
             viewer.Language.Returns("En");
             viewer.IsInternal.Returns(false);
             viewer.AllowedTotalBalanceTransfer.Returns(true);
-            viewer.AllowedAllDayBalTransfer.Returns(false);
             viewer.CanViewReports.Returns(true);
             viewer.ViewMemberInfo.Returns(true);
             viewer.AllowTransfer.Returns(true);
@@ -84,45 +83,53 @@
         public static MemberBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
             CustomerInfoQuery messages,
             CustomerInfoModel customerInfo,
-            CreditInfo creditInfo)
+            CreditInfo creditInfo,
+            bool isAllDayBalanceTransfer)
             => new MemberBalanceInfoViewModel(
                   AssignMessagesUsername(messages),
                   BuildCustomerInfo(),
                   creditInfo,
                   MemberBalanceInfo,
+                  isAllDayBalanceTransfer,
                   GetMicroSiteUrl);
 
         public static MemberBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
             CustomerInfoQuery messages,
             CreditInfo creditInfo,
-            IBalanceInfoModel balanceInfo)
+            IBalanceInfoModel balanceInfo,
+            bool isAllDayBalanceTransfer)
             => new MemberBalanceInfoViewModel(
                    AssignMessagesUsername(messages),
                    BuildCustomerInfo(),
                    creditInfo,
                    balanceInfo,
+                   isAllDayBalanceTransfer,
                    GetMicroSiteUrl);
 
         public static AgentBalanceInfoViewModel BuildAgentBalanceInfoViewModel(
             CustomerInfoQuery messages,
             CustomerInfoModel customerInfo,
-            CreditInfo creditInfo)
+            CreditInfo creditInfo,
+            bool isAllDayBalanceTransfer)
             => new AgentBalanceInfoViewModel(
                    AssignMessagesUsername(messages),
                    customerInfo,
                    creditInfo,
                    AgentBalanceInfo,
+                   isAllDayBalanceTransfer,
                    GetMicroSiteUrl);
 
         public static MasterBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery messages,
             CustomerInfoModel customerInfo,
-            CreditInfo creditInfo)
+            CreditInfo creditInfo,
+            bool isAllDayBalanceTransfer)
             => new MasterBalanceInfoViewModel(
                      AssignMessagesUsername(messages),
                      customerInfo,
                      creditInfo,
                      MasterBalanceInfo,
+                     isAllDayBalanceTransfer,
                      GetMicroSiteUrl);
 
         public static string GetMicroSiteUrl(string microSiteName, string virtualPath) => "MicroSiteUrl/";

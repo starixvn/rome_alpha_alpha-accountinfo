@@ -435,4 +435,7 @@
   <data name="ClosedByArchive" xml:space="preserve">
     <value>此户口因不活躍而被關閉。</value>
   </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>您的上線不允許您使用全天餘額轉賬。該頁面將自動刷新。</value>
+  </data>
 </root>

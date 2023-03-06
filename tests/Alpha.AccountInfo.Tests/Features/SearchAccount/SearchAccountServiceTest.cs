@@ -377,5 +377,18 @@
 
         private Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria)
              => Task.FromResult(masterBalanceInfoModel as IBalanceInfoModel);
+
+        [Fact]
+        public async Task IsAllDayBalanceTransfer_Always_CallsIsAllDayBalanceTransfer()
+        {
+            // Arrange
+            var custId = 1176086;
+
+            // Act
+            await accountInfoService.IsAllDayBalanceTransfer(custId);
+
+            // Assert
+            await accountInfoDataAccess.Received().IsAllDayBalanceTransfer(Arg.Is<SelectIsAllDayBalTransferCriteria>(c => c.CustId == custId));
+        }
     }
 }

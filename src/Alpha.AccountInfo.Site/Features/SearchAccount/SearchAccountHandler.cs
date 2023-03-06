@@ -30,7 +30,7 @@
         IAsyncRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>
     {
         private readonly SearchAccountService accountInfoService;
-        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
+        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly Func<bool> getUpdateCreditReplicateServer;
         private readonly IPService ipService;
         private readonly KickoutCustomerService kickoutCustomerService;
@@ -44,7 +44,7 @@
             SearchAccountService accountInfoService,
             IPService ipService,
             KickoutCustomerService kickoutCustomerService,
-            IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
+            IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
             Func<bool> getUpdateCreditReplicateServer,
             Func<Alpha.Web.Models.AppSettingEnum, bool> getAppSettingBooleanKey)
         {
@@ -53,7 +53,7 @@
             this.kickoutCustomerService = kickoutCustomerService;
 
             this.getBalanceInfoViewModelByLevel = getBalanceInfoViewModelByLevel ??
-                new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>>
+                new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>>
                 {
                     {UserLevel.Master, BuildMasterBalanceInfoViewModel},
                     {UserLevel.Agent, BuildAgentBalanceInfoViewModel},
@@ -79,7 +79,8 @@
                     message,
                     customerInfo,
                     await accountInfoService.GetCreditInfo(customerInfo.CustId).ConfigureAwait(false),
-                    await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false));
+                    await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false),
+                    await accountInfoService.IsAllDayBalanceTransfer(message.ActorId).ConfigureAwait(false));
 
                 var formatedIP = ipService.FormatIP(customerInfo.LastLoginIP, message.IsAdminCanViewVNIP);
 
@@ -189,22 +190,25 @@
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             CreditInfo creditInfo,
-            IBalanceInfoModel balanceInfoModel)
-            => new MasterBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel);
+            IBalanceInfoModel balanceInfoModel,
+            bool isAllDayBalanceInfo)
+            => new MasterBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel, isAllDayBalanceInfo);
 
         internal static IBalanceInfoViewModel BuildAgentBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             CreditInfo creditInfo,
-            IBalanceInfoModel balanceInfoModel)
-            => new AgentBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel);
+            IBalanceInfoModel balanceInfoModel,
+            bool isAllDayBalanceInfo)
+            => new AgentBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel, isAllDayBalanceInfo);
 
         internal static IBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             CreditInfo creditInfo,
-            IBalanceInfoModel balanceInfoModel)
-            => new MemberBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel);
+            IBalanceInfoModel balanceInfoModel,
+            bool isAllDayBalanceInfo)
+            => new MemberBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel, isAllDayBalanceInfo);
 
         public async Task<IBalanceInfoViewModel> Handle(MemberBalanceInfoQuery message)
         {
@@ -221,9 +225,10 @@
             {
                 var creditInfoTask = accountInfoService.GetCreditInfo(customerInfo.CustId);
                 var balanceInfoTask = accountInfoService.GetBalanceInfo(customerInfo.CustId, UserLevel.Member.Value);
-                await Task.WhenAll(creditInfoTask, balanceInfoTask).ConfigureAwait(false);
+                var isAllDayBalanceTransferTask = accountInfoService.IsAllDayBalanceTransfer(customerInfoQuery.ActorId);
+                await Task.WhenAll(creditInfoTask, balanceInfoTask, isAllDayBalanceTransferTask).ConfigureAwait(false);
 
-                return BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo, await creditInfoTask, await balanceInfoTask);
+                return BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo, await creditInfoTask, await balanceInfoTask, await isAllDayBalanceTransferTask);
             }
 
             return null;

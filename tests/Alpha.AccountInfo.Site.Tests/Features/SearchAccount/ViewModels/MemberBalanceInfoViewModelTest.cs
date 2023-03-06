@@ -14,6 +14,7 @@
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
         private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo();
         private readonly CreditInfo creditInfo = AccountInfoHelper.CreditInfo;
+        private readonly bool isAllDayBalanceTransfer = false;
 
         [Theory]
         [InlineData(4, false)]
@@ -24,7 +25,7 @@
             viewer.LevelId.Returns(actorLevel);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo, isAllDayBalanceTransfer);
 
             Assert.Equal(viewModel.ShowTransferLink, expectedShowTransferLink);
         }
@@ -33,7 +34,7 @@
         public void MemberBalanceInfoViewModel_Always_ReturnCorrectValue()
         {
             var messages = new CustomerInfoQuery(viewer);
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo, isAllDayBalanceTransfer);
 
             Assert.True(
                 viewModel.TotalBalance.Equals(55) &&

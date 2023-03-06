@@ -1,11 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.SearchAccount.Requests
 {
+    using System;
+    using System.Web.Mvc;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.AccountInfo.Site.Features.Shared;
     using MediatR;
-    using System;
-    using System.Web.Mvc;
 
     public class CustomerInfoQuery : BaseRequest, IRequest<CustomerInfoViewModel>
     {
@@ -14,7 +14,6 @@
             ActorId = viewer.Id;
             ActorName = viewer.Name;
             ActorRoleId = viewer.LevelId;
-            AllDayBalTransfer = viewer.AllowedAllDayBalTransfer;
             AllowedTotalBalanceTransfer = viewer.AllowedTotalBalanceTransfer;
             AllowTransfer = viewer.AllowTransfer;
             CanViewReports = viewer.CanViewReports;
@@ -33,8 +32,6 @@
         public string ActorName { get; }
 
         public byte ActorRoleId { get; }
-
-        public bool AllDayBalTransfer { get; }
 
         public bool AllowedTotalBalanceTransfer { get; }
 
