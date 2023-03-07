@@ -20,7 +20,17 @@
 
         protected string OldMainUrl => GetMicroSiteUrl(MicroSiteConstants.OldMain, "~/");
 
-        protected string BetListsUrl => GetMicroSiteUrl(MicroSiteConstants.BetLists, "~/");
+        protected string BetListsUrl
+        {
+            get
+            {
+                var cookieless = HttpContext.Current.Session.IsCookieless ? $"/(S({HttpContext.Current.Session.SessionID}))" : string.Empty;
+
+                return AppSettings.IsStandaloneReports ? $"{BetlistDomainUrl}{cookieless}/" :
+                GetMicroSiteUrl(MicroSiteConstants.BetLists, "~/");
+            }
+        }
+
 
         protected string ViewLogUrl => GetMicroSiteUrl(MicroSiteConstants.ViewLog, "~/");
 
@@ -50,6 +60,23 @@
                 return AppSettings.ReportDomain.IndexOf("{0}", StringComparison.OrdinalIgnoreCase) != -1 ?
                     string.Format(AppSettings.ReportDomain, mainDomain) :
                     AppSettings.ReportDomain;
+            }
+        }
+
+        private static string BetlistDomainUrl
+        {
+            get
+            {
+                var mainDomain = HttpContext.Current.Request.Headers["Host"];
+                if (HttpContext.Current.Session.IsCookieless)
+                {
+                    var subDomain = mainDomain.Split('.').ElementAt(0);
+                    mainDomain = mainDomain.Replace($"{subDomain}.", string.Empty);
+                }
+
+                return AppSettings.BetlistDomain.IndexOf("{0}", StringComparison.OrdinalIgnoreCase) != -1 ?
+                    string.Format(AppSettings.BetlistDomain, mainDomain) :
+                    AppSettings.BetlistDomain;
             }
         }
     }

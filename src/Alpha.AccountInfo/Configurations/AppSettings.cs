@@ -26,6 +26,8 @@
 
         public static string ReportDomain => GetConfigValue("Report:Domain") ?? string.Empty;
 
+        public static string BetlistDomain => GetConfigValue("Betlist:Domain") ?? string.Empty;
+
         public static bool IsStandaloneReports => !string.IsNullOrWhiteSpace(ReportDomain);
 
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
