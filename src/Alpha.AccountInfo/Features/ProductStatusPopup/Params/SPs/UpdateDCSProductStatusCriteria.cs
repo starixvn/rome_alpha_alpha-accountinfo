@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Alpha.AccountInfo.Configurations;
     using Fanex.Data;
     using Params.ProductStatus;
 
@@ -21,6 +22,8 @@
 
         [SpParam(SqlParamName = "IsDisabled")]
         public string ProductStatusXml { get; }
+
+        public byte SettingStatus => AppSettings.SettingStatus;
 
         public override string GetSettingKey() => "Acc_CustSetting_DisableNewProductStatusUpd";
 
