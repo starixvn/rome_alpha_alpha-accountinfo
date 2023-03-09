@@ -136,7 +136,7 @@
     <value>Profile picture gallery</value>
   </data>
   <data name="ProfilePicture" xml:space="preserve">
-    <value>Profile picture</value>
+    <value>Profile Settings</value>
   </data>
   <data name="ProfilePictureUpdatedFailed" xml:space="preserve">
     <value>Your profile picture has been uploaded failed !</value>
