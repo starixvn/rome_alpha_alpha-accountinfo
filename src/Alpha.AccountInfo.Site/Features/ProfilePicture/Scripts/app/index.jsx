@@ -28,7 +28,9 @@ class App extends PureComponent {
             originalAvatar: actorProfilePicture,
             croppedImage: actorProfilePicture,
             hideMessages: true,
-            message: ''
+            message: '',
+            openPanelLanguage: true,
+            openPanelPicture: true,
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -44,6 +46,9 @@ class App extends PureComponent {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.resetMessageContainer = this.resetMessageContainer.bind(this);
+
+        this.handleOpenPanelLanguage = this.handleOpenPanelLanguage.bind(this);
+        this.handleOpenPanelPicture = this.handleOpenPanelPicture.bind(this);
     }
 
     setCroppedImage(profilePicture) {
@@ -170,11 +175,21 @@ class App extends PureComponent {
         }
     }
 
+    handleOpenPanelLanguage() {
+        const { openPanelLanguage } = this.state;
+        this.setState({ openPanelLanguage: !openPanelLanguage });
+    }
+    handleOpenPanelPicture() {
+        const { openPanelPicture } = this.state;
+        this.setState({ openPanelPicture: !openPanelPicture });
+    }
+   
+
     render() {
-        const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen } = this.state,
+        const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen, openPanelLanguage, openPanelPicture } = this.state,
             { resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
-
+        console.log(openPanelLanguage,openPanelPicture);
         return (
             <div>
                 <ul className='nav nav-tabs'>
@@ -208,77 +223,112 @@ class App extends PureComponent {
                         </li>)
                     }
                 </ul>
-                <div className='profile-picture'>
-                    {!allowUpdate && (
-                        <div className='msg-container'>
-                            <div className='msg msg-error'>
-                                {resources.notAuthorized}
+                <div className='panel'>
+
+                    <div className={ openPanelLanguage ? "panel-heading open" : "panel-heading" }   onClick={this.handleOpenPanelLanguage}>                        
+                        <h4 className='panel-title'>
+                            DISPLAY LANGUAGE
+                        </h4>
+                    </div>               
+                    
+                    <div className='panel-content'>
+                        <p>Choose your preferred language for displaying pages after login</p>
+                        <div className='language'>
+                            <div className='block-language'>
+                                <label>Please select display language</label>
+                                <ul className='dropdown-menu'>
+                                    <li><span className='flag flag-en' data-language-code='en-US'></span>English</li>
+                                    <li><span className='flag flag-tw' data-language-code='zh-TW'></span>繁體中文</li>
+                                    <li><span className='flag flag-cn' data-language-code='zh-CN'></span>简体中文</li>
+                                    <li><span className='flag flag-jp' data-language-code='ja-JP'></span>日本語</li>
+                                    <li><span className='flag flag-th' data-language-code='th-TH'></span>ภาษาไทย</li>
+                                    <li><span className='flag flag-kr' data-language-code='ko-KR'></span>한국어</li>
+                                </ul>
                             </div>
-                        </div>)
-                    }
-                    <div className='crop-img-info'>
-                        <img alt='Crop' src={croppedImage.Image} className='cropped-image' />
-                        <div className='wrapper-right'>
-                            <label htmlFor='files' {...disabled} className='btn-from-device'> {resources.UploadFromYourDevice} </label>
-                            <input id='files' {...disabled} accept='image/png, image/jpeg, image/gif' type='file' onChange={this.onSelectFile} />
-                        </div>
+                            <button className='btn-submit'>Submit</button>
+                        </div>                               
                     </div>
-                    <div className='choose-picture'>
-                        <div className='extend-section'>
-                            <span className='txt'>{resources.OrChooseFromOurGallery}</span>
-                        </div>
-                        <div className='list-picture'>
-                            <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
-                                alt='Crop'
-                                onClick={() => this.handleOnClick(originalAvatar)}
-                                onTouchStart={() => this.handleOnClick(originalAvatar)}
-                                src={originalAvatar.Image}
-                            />
-                            {
-                                imagesList.map((profilePicture, index) =>
-                                    <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
-                                        alt='Crop'
-                                        onClick={() => this.handleOnClick(profilePicture)}
-                                        onTouchStart={() => this.handleOnClick(profilePicture)}
-                                        src={profilePicture.Image}
-                                        key={index}
-                                    />
-                                )
+                </div>
+                <div className='panel'>
+                    <div className={ openPanelPicture ? "panel-heading open" : "panel-heading" }   onClick={this.handleOpenPanelPicture}>
+                        <h4 className='panel-title'>
+                            PROFILE PICTURE
+                        </h4>
+                    </div>
+                    <div className='panel-content'>
+                        <div className='profile-picture'>
+                            {!allowUpdate && (
+                                <div className='msg-container'>
+                                    <div className='msg msg-error'>
+                                        {resources.notAuthorized}
+                                    </div>
+                                </div>)
                             }
-                        </div>
-                        {disabledButton ? resources.ViewAll : <a className='view-all'
-                            onClick={this.handleViewLibrary}
-                            onTouchStart={this.handleViewLibrary}
-                        >{resources.ViewAll}</a>}
+                            <div className='crop-img-info'>
+                                <img alt='Crop' src={croppedImage.Image} className='cropped-image' />
+                                <div className='wrapper-right'>
+                                    <label htmlFor='files' {...disabled} className='btn-from-device'> {resources.UploadFromYourDevice} </label>
+                                    <input id='files' {...disabled} accept='image/png, image/jpeg, image/gif' type='file' onChange={this.onSelectFile} />
+                                </div>
+                            </div>
+                            <div className='choose-picture'>
+                                <div className='extend-section'>
+                                    <span className='txt'>{resources.OrChooseFromOurGallery}</span>
+                                </div>
+                                <div className='list-picture'>
+                                    <img className={`image-item ${croppedImage.ImageId === originalAvatar.ImageId ? 'selected-image' : ''}`}
+                                        alt='Crop'
+                                        onClick={() => this.handleOnClick(originalAvatar)}
+                                        onTouchStart={() => this.handleOnClick(originalAvatar)}
+                                        src={originalAvatar.Image}
+                                    />
+                                    {
+                                        imagesList.map((profilePicture, index) =>
+                                            <img className={`image-item ${croppedImage.ImageId === profilePicture.ImageId ? 'selected-image' : ''}`}
+                                                alt='Crop'
+                                                onClick={() => this.handleOnClick(profilePicture)}
+                                                onTouchStart={() => this.handleOnClick(profilePicture)}
+                                                src={profilePicture.Image}
+                                                key={index}
+                                            />
+                                        )
+                                    }
+                                </div>
+                                {disabledButton ? resources.ViewAll : <a className='view-all'
+                                    onClick={this.handleViewLibrary}
+                                    onTouchStart={this.handleViewLibrary}
+                                >{resources.ViewAll}</a>}
+                            </div>
+
+                            {this.state.message}
+
+                            <div className='btn-group'>
+                                <button className='btn-submit' {...disabled} onClick={this.handleOnSubmit} onTouchStart={this.handleOnSubmit}>{resources.Submit}</button>
+                                <button className='btn-reset' {...disabled} onClick={this.handleOnReset} onTouchStart={this.handleOnReset}>{resources.Reset}</button>
+                            </div>
+
+                            <CreateProfilePictureModal
+                                modalIsOpen={uploadFromDeviceModalIsOpen}
+                                imageSrc={src}
+                                resources={resources}
+                                setCroppedImage={this.setCroppedImage}
+                                openModal={this.openModal}
+                                closeModal={this.closeModal}
+                                resetMessageContainer={this.resetMessageContainer}
+                                srcHeight={this.state.srcHeight}
+                                srcWidth={this.state.srcWidth}
+                            />
+
+                            <PictureLibraryModal
+                                modalIsOpen={pictureLibraryModalIsOpen}
+                                resources={resources}
+                                setCroppedImage={this.setCroppedImage}
+                                openModal={this.openModal}
+                                closeModal={this.closeModal}
+                            />
+                        </div >
                     </div>
-
-                    {this.state.message}
-
-                    <div className='btn-group'>
-                        <button className='btn-submit' {...disabled} onClick={this.handleOnSubmit} onTouchStart={this.handleOnSubmit}>{resources.Submit}</button>
-                        <button className='btn-reset' {...disabled} onClick={this.handleOnReset} onTouchStart={this.handleOnReset}>{resources.Reset}</button>
-                    </div>
-
-                    <CreateProfilePictureModal
-                        modalIsOpen={uploadFromDeviceModalIsOpen}
-                        imageSrc={src}
-                        resources={resources}
-                        setCroppedImage={this.setCroppedImage}
-                        openModal={this.openModal}
-                        closeModal={this.closeModal}
-                        resetMessageContainer={this.resetMessageContainer}
-                        srcHeight={this.state.srcHeight}
-                        srcWidth={this.state.srcWidth}
-                    />
-
-                    <PictureLibraryModal
-                        modalIsOpen={pictureLibraryModalIsOpen}
-                        resources={resources}
-                        setCroppedImage={this.setCroppedImage}
-                        openModal={this.openModal}
-                        closeModal={this.closeModal}
-                    />
-                </div >
+                </div>
             </div>
         );
     }
