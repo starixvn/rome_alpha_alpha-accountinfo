@@ -30,9 +30,7 @@
             userSession.GetDisabledProduct(Arg.Any<int>()).Returns(true);
             userSession.GetHideProduct(Arg.Any<int>()).Returns(true);
             userSession.GetSyncedProduct(Arg.Any<int>()).Returns(true);
-            userSession.IsHideKeno.Returns(true);
             userSession.IsDisabledESports.Returns(true);
-            userSession.IsNumberGameDisabled.Returns(true);
 
             // Act
             var user = new User(userSession);
@@ -55,9 +53,7 @@
                 user.GetDisabledProduct(1) &&
                 user.GetHideProduct(1) &&
                 user.GetSyncedProduct(1) &&
-                user.IsHideKeno &&
-                user.IsDisabledESports &&
-                user.IsNumberGameDisabled);
+                user.IsDisabledESports);
         }
 
         [Fact]

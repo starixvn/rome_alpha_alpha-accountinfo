@@ -70,10 +70,8 @@
             viewer.GetDisabledProduct(Arg.Any<int>()).Returns(true);
             viewer.GetHideProduct(Arg.Any<int>()).Returns(true);
             viewer.GetSyncedProduct(Arg.Any<int>()).Returns(true);
-            viewer.IsHideKeno.Returns(true);
             viewer.CanUpdateAccount.Returns(true);         
             viewer.IsDisabledESports.Returns(true);
-            viewer.IsNumberGameDisabled.Returns(true);
             viewer.CanCreateAccount.Returns(true);
             viewer.DisplayLanguage.Returns("en-US");
 
