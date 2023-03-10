@@ -234,7 +234,7 @@ class App extends PureComponent {
                     <div className='panel-content'>
                         <p>Choose your preferred language for displaying pages after login</p>
                         <div className='language'>
-                            <div className='block-language'>
+                            <div className='block-language open'>
                                 <label>Please select display language</label>
                                 <ul className='dropdown-menu'>
                                     <li><span className='flag flag-en' data-language-code='en-US'></span>English</li>

@@ -21,10 +21,11 @@
         font-weight: bold;
         font-size: 13px;
         cursor: pointer;
+        border-radius: 0;
         &.open{
             .panel-title{
                 &:before{
-                    transform: rotate(-90deg);
+                    transform: rotate(90deg);
                 }
             }
             + .panel-content{
@@ -44,14 +45,14 @@
             &:before{
                 position: absolute;
                 content: "";
-                top: 15px;
+                top: 11px;
                 left: 4px;
                 transition: 0.35s;
                 width: 0;
                 height: 0;
                 border-style: solid;
-                border-width: 5px 4px 0 4px;
-                border-color: #666666 transparent transparent transparent;
+                border-width: 5px 0 5px 6px;
+                border-color: transparent transparent transparent #666666;
             }
         }
     }
@@ -72,6 +73,11 @@
 .block-language{
     position: relative;
     border: 1px solid #dcdcdc;
+    &.open{
+        .dropdown-menu{
+            display: block;
+        }
+    }
     label{
         display: block;
         margin-bottom: 0;
@@ -99,7 +105,6 @@
         }
     }
     .dropdown-menu{
-        display: block;
         width: 100%;
         li{
             padding: 0 10px;
