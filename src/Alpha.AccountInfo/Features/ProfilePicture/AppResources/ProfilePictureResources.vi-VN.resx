@@ -168,4 +168,16 @@
   <data name="ViewAll" xml:space="preserve">
     <value>Xem tất cả</value>
   </data>
+  <data name="DisplayLanguage" xml:space="preserve">
+    <value>Display Language</value>
+  </data>
+  <data name="DisplayLanguageIntro" xml:space="preserve">
+    <value>Choose your preferred language for displaying pages after login.</value>
+  </data>
+  <data name="ProfileSettings" xml:space="preserve">
+    <value>Profile Settings</value>
+  </data>
+  <data name="PleaseSelectDisplayLanguage" xml:space="preserve">
+    <value>Please select display language</value>
+  </data>
 </root>

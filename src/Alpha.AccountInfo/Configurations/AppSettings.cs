@@ -44,6 +44,8 @@
 
         public static string JsVersion => GetConfigValue("JsVersion");
 
+        public static bool DisabledVietnamese => !SiteGroup.Equals("789y", StringComparison.OrdinalIgnoreCase);
+
         public static void Verify()
         {
             Require(StoredProcedurePath, nameof(StoredProcedurePath));

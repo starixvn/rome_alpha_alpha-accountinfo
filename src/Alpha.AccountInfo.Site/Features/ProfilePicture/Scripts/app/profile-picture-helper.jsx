@@ -5,3 +5,5 @@ export const urls = {
     UpdateActorProfilePicture: `${accountinfoControllerUrl}/UpdateActorProfilePicture`,
     GetPictureLibrary: `${accountinfoControllerUrl}/GetPictureLibrary`
 }
+
+export const changeDisplayLanguage = (languageCode) => window.top.headerNav.changeLanguage(languageCode, true);

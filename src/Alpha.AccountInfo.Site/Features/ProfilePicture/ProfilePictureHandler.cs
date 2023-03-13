@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProfilePicture
 {
+    using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.ProfilePicture.Models;
     using Alpha.AccountInfo.ProfilePicture.Params;
@@ -21,8 +22,19 @@
         IAsyncRequestHandler<ProfilePictureLibraryQuery, ProfielPictureLibraryViewModel>,
         IAsyncRequestHandler<UpdateActorProfilePictureRequest, Result>
     {
-        private const string ProfilePictureLibaryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
+        private const string ProfilePictureLibraryKey = "Alpha.AccountInfo.Site.Features.ProfilePicture.Library";
+        private const int ProfilePictureLibraryCacheInMinutes = 5;
         private const int NumerousOfDefaultPictures = 7;
+        private static KeyValuePair<string, string>[] Languages = new[]
+        {
+            new KeyValuePair<string, string>("en-US", "English"),
+            new KeyValuePair<string, string>("zh-TW", "繁體中文"),
+            new KeyValuePair<string, string>("zh-CN", "简体中文"),
+            new KeyValuePair<string, string>("ja-JP", "日本語"),
+            new KeyValuePair<string, string>("th-TH", "ภาษาไทย"),
+            new KeyValuePair<string, string>("ko-KR", "한국어"),
+            new KeyValuePair<string, string>("vi-VN", "Tiếng Việt")
+        };
         private readonly ProfilePictureServices profilePictureServices;
         private readonly Func<int> getInsertProfilePictureSiteMode;
         private readonly SecurityCodeChecker securityCodeChecker;
@@ -54,7 +66,11 @@
                 message.Language,
                 message.AllowUpdate,
                 isEnableSecurityCode,
-                message.IsOfferProtectedMode);
+                message.IsOfferProtectedMode,
+                message.DisplayLanguage,
+                AppSettings.DisabledVietnamese
+                    ? Languages.Where(l => l.Key != "vi-VN")
+                    : Languages);
         }
 
         public async Task<ProfielPictureLibraryViewModel> Handle(ProfilePictureLibraryQuery message)
@@ -77,9 +93,9 @@
 
         internal Task<IEnumerable<ProfilePictureModel>> GetProfilePictureLibraryAsync()
             =>  ConfiguredCacheService.GetOrSet(
-                    ProfilePictureLibaryKey,
+                    ProfilePictureLibraryKey,
                     async()=> await profilePictureServices.FectchProfilePictureLibraryAsync(getInsertProfilePictureSiteMode()),
-                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(5))
+                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProfilePictureLibraryCacheInMinutes))
                 );
     }
 }

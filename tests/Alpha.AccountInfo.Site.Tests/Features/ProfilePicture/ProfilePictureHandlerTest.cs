@@ -68,7 +68,9 @@
                 message.Language,
                 message.AllowUpdate,
                 securityCodeChecker.IsEnableSecurityCode(),
-                message.IsOfferProtectedMode);
+                message.IsOfferProtectedMode,
+                string.Empty,
+                Enumerable.Empty<KeyValuePair<string, string>>());
 
             var actualViewModel =
                 handler.Handle(message)
