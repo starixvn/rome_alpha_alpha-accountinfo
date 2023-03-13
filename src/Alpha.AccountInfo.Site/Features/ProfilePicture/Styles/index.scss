@@ -45,7 +45,7 @@
             &:before{
                 position: absolute;
                 content: "";
-                top: 11px;
+                top: 12px;
                 left: 4px;
                 transition: 0.35s;
                 width: 0;
@@ -128,16 +128,16 @@
                 background-position: -24px -38px;
         }
         &.flag-tw{
-                background-position: 0 -16px;
+                background-position: 0 -18px;
         }
         &.flag-cn{
-                background-position: 0 -16px;
+                background-position: 0 -18px;
         }
         &.flag-jp{
-                background-position: 0 0;
+                background-position: 0 -1px;
         }
         &.flag-th{
-                background-position: -24px -16px;
+                background-position: -24px -19px;
         }
         &.flag-kr{
                 background-position: -24px 0;
