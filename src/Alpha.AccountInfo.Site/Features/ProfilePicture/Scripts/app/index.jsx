@@ -243,6 +243,7 @@ class App extends PureComponent {
                                     <li><span className='flag flag-jp' data-language-code='ja-JP'></span>日本語</li>
                                     <li><span className='flag flag-th' data-language-code='th-TH'></span>ภาษาไทย</li>
                                     <li><span className='flag flag-kr' data-language-code='ko-KR'></span>한국어</li>
+                                    <li><span className='flag flag-vn' data-language-code='vi-VN'></span>Tiếng việt</li>
                                 </ul>
                             </div>
                             <button className='btn-submit'>Submit</button>

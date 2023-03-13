@@ -125,22 +125,25 @@
         display: inline-block;
         vertical-align: middle;
         &.flag-en{
-                background-position: -24px -38px;
+            background-position: -24px -38px;
         }
         &.flag-tw{
-                background-position: 0 -18px;
+            background-position: 0 -18px;
         }
         &.flag-cn{
-                background-position: 0 -18px;
+            background-position: 0 -18px;
         }
         &.flag-jp{
-                background-position: 0 -1px;
+            background-position: 0 -1px;
         }
         &.flag-th{
-                background-position: -24px -19px;
+            background-position: -24px -19px;
         }
         &.flag-kr{
-                background-position: -24px 0;
+            background-position: -24px 0;
+        }
+        &.flag-vn{
+            background-position: 0 -38px;
         }
     }
 }
@@ -181,7 +184,6 @@
 }
 
 .profile-picture {
-    padding: 24px 4px 12px;
     display: inline-block;
     font-size: 14px;
 
