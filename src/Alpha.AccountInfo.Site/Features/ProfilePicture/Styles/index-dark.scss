@@ -91,7 +91,8 @@
     }
 
     label {
-        display: block;
+        display: flex;
+        align-items: center;
         margin-bottom: 0;
         font-weight: normal;
         touch-action: manipulation;
@@ -121,9 +122,11 @@
         width: 100%;
 
         li {
-            padding: 4px 10px 0 10px;
+            padding: 0 10px;
             line-height: 28px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
 
             &:hover {
                 color: #e7e7e7;
@@ -135,13 +138,10 @@
     .flag {
         width: 24px;
         height: 16px;
-        position: relative;
         margin-right: 10px;
         background-image: url(../Styles/Images/flag.png);
         background-repeat: no-repeat;
-        display: inline-block;
-        vertical-align: middle;
-        top: -2px;
+     
 
         &.flag-en-US {
             background-position: -24px -38px;
