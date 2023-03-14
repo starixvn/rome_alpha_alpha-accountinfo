@@ -79,7 +79,7 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose your preferred language for displaying pages after login..
+        ///   Looks up a localized string similar to Choose your preferred language for displaying pages..
         /// </summary>
         public static string DisplayLanguageIntro {
             get {

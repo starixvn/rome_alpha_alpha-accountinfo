@@ -24,6 +24,7 @@
             bool isOfferProtectedMode,
             string displayLanguage,
             IEnumerable<KeyValuePair<string, string>> languages,
+            bool allowUpdateDisplayLanguage,
             Func<string, ResourceManager, string> convertResourcesJson = null)
         {
             Images = images;
@@ -35,6 +36,7 @@
             IsOfferProtectedMode = isOfferProtectedMode;
             DisplayLanguage = displayLanguage;
             Languages = languages;
+            AllowUpdateDisplayLanguage = allowUpdateDisplayLanguage;
         }
 
         public IEnumerable<ProfilePictureModel> Images { get; private set; }
@@ -60,5 +62,7 @@
         public string DisplayLanguage { get; }
 
         public IEnumerable<KeyValuePair<string, string>> Languages { get; }
+
+        public bool AllowUpdateDisplayLanguage { get; }
     }
 }

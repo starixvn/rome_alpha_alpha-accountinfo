@@ -181,7 +181,7 @@ class App extends PureComponent {
 
     render() {
         const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen, openProfilePicturePanel  } = this.state,
-            { resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode, displayLanguage, languages } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
+            { resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode, displayLanguage, languages, allowUpdateDisplayLanguage } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
 
         return (
@@ -217,7 +217,7 @@ class App extends PureComponent {
                         </li>)
                     }
                 </ul>
-                <DisplayLanguage resources={resources} displayLanguage={displayLanguage} languages={languages} />
+                <DisplayLanguage resources={resources} displayLanguage={displayLanguage} languages={languages} allowUpdate={allowUpdateDisplayLanguage} />
                 <div className='panel'>
                     <div className={openProfilePicturePanel ? "panel-heading open" : "panel-heading"} onClick={this.handleOpenProfilePicturePanel}>
                         <h4 className='panel-title'>
@@ -305,9 +305,9 @@ class App extends PureComponent {
 
 export default App;
 
-export const renderApp = (imagesList, resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode, displayLanguage, languages) => {
+export const renderApp = (imagesList, resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode, displayLanguage, languages, allowUpdateDisplayLanguage) => {
     ReactDOM.render(
-        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode, displayLanguage, languages }} />,
+        <App {...{ imagesList, resources: decodeResources(resources), setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode, displayLanguage, languages, allowUpdateDisplayLanguage }} />,
         document.getElementById('root')
     );
 };

@@ -15,6 +15,7 @@
             AllowUpdate = viewer.CanUpdateAccount && !viewer.IsSubAcc && !viewer.IsInternal;
             IsOfferProtectedMode = viewer.IsOfferProtectedMode;
             DisplayLanguage = viewer.DisplayLanguage;
+            AllowUpdateDisplayLanguage = !viewer.IsInternal;
         }
 
         public int ActorId { get;}
@@ -28,6 +29,8 @@
         public bool IsOfferProtectedMode { get; }
 
         public string DisplayLanguage { get; }
+
+        public bool AllowUpdateDisplayLanguage { get; }
 
         public override bool IsValid() => ActorId > 0;
     }

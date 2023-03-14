@@ -61,7 +61,7 @@ export default class DisplayLanguage extends PureComponent {
 
     render() {
         const { openDisplayLanguagePanel, openLanguageDropdown, displayLanguage } = this.state;
-        const { resources, languages } = this.props;
+        const { resources, languages, allowUpdate } = this.props;
         const renderDisplayLanguage = () => {
             if (displayLanguage) {
                 const matchedLanguage = languages.find(lang => lang.Key === displayLanguage);
@@ -86,7 +86,7 @@ export default class DisplayLanguage extends PureComponent {
                         {renderDisplayLanguage(displayLanguage, languages)}
                         <ul className='dropdown-menu'>{renderLanguageDropdown(languages)}</ul>
                     </div>
-                    <button className='btn-submit' onClick={this.handleOnSubmitChangeDisplayLanguage}>{resources.Submit}</button>
+                    <button className='btn-submit' onClick={this.handleOnSubmitChangeDisplayLanguage} disabled={!allowUpdate}>{resources.Submit}</button>
                 </div>
             </div>
         </div>)

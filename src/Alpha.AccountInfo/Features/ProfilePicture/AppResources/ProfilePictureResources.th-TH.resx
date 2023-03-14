@@ -169,15 +169,15 @@
     <value>ดูทั้งหมด</value>
   </data>
   <data name="DisplayLanguage" xml:space="preserve">
-    <value>Display Language</value>
+    <value>ภาษาสำหรับแสดงผล</value>
   </data>
   <data name="DisplayLanguageIntro" xml:space="preserve">
-    <value>Choose your preferred language for displaying pages after login.</value>
+    <value>เลือกภาษาที่คุณต้องการใช้งานเมื่อเข้าสู่ระบบ</value>
   </data>
   <data name="ProfileSettings" xml:space="preserve">
-    <value>Profile Settings</value>
+    <value>การตั้งค่าโปรไฟล์</value>
   </data>
   <data name="PleaseSelectDisplayLanguage" xml:space="preserve">
-    <value>Please select display language</value>
+    <value>กรุณาเลือกภาษาสำหรับแสดงผล</value>
   </data>
 </root>

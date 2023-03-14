@@ -70,7 +70,8 @@
                 message.DisplayLanguage,
                 AppSettings.DisabledVietnamese
                     ? Languages.Where(l => l.Key != "vi-VN")
-                    : Languages);
+                    : Languages,
+                message.AllowUpdateDisplayLanguage);
         }
 
         public async Task<ProfielPictureLibraryViewModel> Handle(ProfilePictureLibraryQuery message)

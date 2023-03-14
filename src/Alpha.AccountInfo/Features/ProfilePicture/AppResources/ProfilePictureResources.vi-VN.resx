@@ -169,15 +169,15 @@
     <value>Xem tất cả</value>
   </data>
   <data name="DisplayLanguage" xml:space="preserve">
-    <value>Display Language</value>
+    <value>Ngôn Ngữ Hiển Thị</value>
   </data>
   <data name="DisplayLanguageIntro" xml:space="preserve">
-    <value>Choose your preferred language for displaying pages after login.</value>
+    <value>Hãy chọn ngôn ngữ mà bạn ưa thích để hiển thị.</value>
   </data>
   <data name="ProfileSettings" xml:space="preserve">
-    <value>Profile Settings</value>
+    <value>Cài Đặt Hồ Sơ</value>
   </data>
   <data name="PleaseSelectDisplayLanguage" xml:space="preserve">
-    <value>Please select display language</value>
+    <value>Vui lòng chọn ngôn ngữ hiển thị</value>
   </data>
 </root>
