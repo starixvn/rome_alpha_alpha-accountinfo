@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Tests.Features.UnsuspendDownlines
 {
+    using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.ProfilePicture.Models;
     using Alpha.AccountInfo.ProfilePicture.Params;
@@ -16,6 +17,7 @@
     using NSubstitute;
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Linq;
     using System.Resources;
     using System.Threading.Tasks;
@@ -60,6 +62,10 @@
         [Fact]
         public void HandleProfilePictureQuery_Always_ReturnsCorrectViewModel()
         {
+            AppSettings.AppSettingValues = new NameValueCollection
+            {
+                ["SiteGroup"] = "MBCBet"
+            };
             var message = new ProfilePictureQuery(viewer);
 
             var expectedViewModel = new ProfielPictureViewModel(
@@ -69,7 +75,7 @@
                 message.AllowUpdate,
                 securityCodeChecker.IsEnableSecurityCode(),
                 message.IsOfferProtectedMode,
-                string.Empty,
+                "en-US",
                 Enumerable.Empty<KeyValuePair<string, string>>());
 
             var actualViewModel =
@@ -82,6 +88,7 @@
             AssertExtension.Equal(actualViewModel.AllowUpdate, expectedViewModel.AllowUpdate);
             AssertExtension.Equal(actualViewModel.Resources, expectedViewModel.Resources);
             AssertExtension.Equal(actualViewModel.SetUpOTPLink, expectedViewModel.SetUpOTPLink);
+            AssertExtension.Equal(actualViewModel.DisplayLanguage, expectedViewModel.DisplayLanguage);
         }
 
         [Fact]

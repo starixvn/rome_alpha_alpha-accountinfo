@@ -7,7 +7,7 @@
     public class User : IUser
     {
         private const string CustomerDateLimitSessionKey = "CustomerDateLimit";
-        private const string DisplayLanguageSessionKey = "LANGUAGEUSAGE";
+        private const string DisplayLanguageSessionKey = "languageusage";
 
 #pragma warning disable CS0618 // Type or member is obsolete
         private readonly IUserSession userSession;

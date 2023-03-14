@@ -419,6 +419,7 @@
     <Content Include="Features\ProfilePicture\Bundles\index.min.css" />
     <Content Include="Features\ProfilePicture\Bundles\index.min.js" />
     <Content Include="Features\ProfilePicture\Scripts\app\create-profile-picture-modal.jsx" />
+    <Content Include="Features\ProfilePicture\Scripts\app\display-language.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\profile-picture-helper.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\picture-library-modal.jsx" />
     <Content Include="Features\ProfilePicture\Scripts\app\index.jsx" />

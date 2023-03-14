@@ -82,6 +82,7 @@
 .block-language {
     position: relative;
     border: 1px solid #575757;
+    min-width: 160px;
 
     &.open {
         .dropdown-menu {
@@ -93,7 +94,6 @@
         display: block;
         margin-bottom: 0;
         font-weight: normal;
-        text-align: center;
         touch-action: manipulation;
         cursor: pointer;
         white-space: nowrap;

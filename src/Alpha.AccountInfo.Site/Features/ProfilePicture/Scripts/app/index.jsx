@@ -8,7 +8,8 @@ import { handleError, requests } from '../../../Shared/Scripts/api-client';
 import { decodeResources } from '../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
 import CreateProfilePictureModal from './create-profile-picture-modal';
 import PictureLibraryModal from './picture-library-modal';
-import { defaultImageId, croppedImageId, urls, changeDisplayLanguage } from './profile-picture-helper';
+import DisplayLanguage from './display-language';
+import { defaultImageId, croppedImageId, urls } from './profile-picture-helper';
 
 Modal.setAppElement('#root');
 
@@ -16,7 +17,7 @@ class App extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { imagesList, displayLanguage } = this.props, actorProfilePicture = JSON.parse(localStorage.getItem('actorProfilePicture'));
+        const { imagesList } = this.props, actorProfilePicture = JSON.parse(localStorage.getItem('actorProfilePicture'));
         this.state = {
             src: null,
             srcWidth: 0,
@@ -28,10 +29,7 @@ class App extends PureComponent {
             croppedImage: actorProfilePicture,
             hideMessages: true,
             message: '',
-            openPanelLanguage: true,
-            openPanelPicture: true,
-            displayLanguage: displayLanguage,
-            openLanguageDropdown: false
+            openProfilePicturePanel: true,
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -48,11 +46,7 @@ class App extends PureComponent {
         this.closeModal = this.closeModal.bind(this);
         this.resetMessageContainer = this.resetMessageContainer.bind(this);
 
-        this.handleOpenPanelLanguage = this.handleOpenPanelLanguage.bind(this);
-        this.handleOpenPanelPicture = this.handleOpenPanelPicture.bind(this);
-        this.handleOpenLanguageDropdown = this.handleOpenLanguageDropdown.bind(this);
-        this.handleChangeDisplayLanguage = this.handleChangeDisplayLanguage.bind(this);
-        this.handleOnSubmitChangeDisplayLanguage = this.handleOnSubmitChangeDisplayLanguage.bind(this);
+        this.handleOpenProfilePicturePanel = this.handleOpenProfilePicturePanel.bind(this);
     }
 
     setCroppedImage(profilePicture) {
@@ -179,47 +173,17 @@ class App extends PureComponent {
         }
     }
 
-    handleOpenPanelLanguage() {
-        const { openPanelLanguage } = this.state;
-        this.setState({ openPanelLanguage: !openPanelLanguage });
-    }
-
-    handleOpenPanelPicture() {
-        const { openPanelPicture } = this.state;
-        this.setState({ openPanelPicture: !openPanelPicture });
-    }
-
-    handleOpenLanguageDropdown() {
-        const { openLanguageDropdown } = this.state;
-        this.setState({ openLanguageDropdown: !openLanguageDropdown });
-    }
-
-    handleChangeDisplayLanguage(languageCode) {
-        this.setState({
-            displayLanguage: languageCode,
-            openLanguageDropdown: false
-        });
-    }
-
-    handleOnSubmitChangeDisplayLanguage() {
-        const { displayLanguage } = this.state;
-        changeDisplayLanguage(displayLanguage);
+    handleOpenProfilePicturePanel() {
+        this.setState((prevState) => ({
+            openProfilePicturePanel: !prevState.openProfilePicturePanel
+        }));
     }
 
     render() {
-        const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen, openPanelLanguage, openPanelPicture, displayLanguage, openLanguageDropdown } = this.state,
-            { resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode, languages } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
+        const { croppedImage, imagesList, originalAvatar, uploadFromDeviceModalIsOpen, src, pictureLibraryModalIsOpen, openProfilePicturePanel  } = this.state,
+            { resources, setUpOTPLink, protectionCodeLink, allowUpdate, changePasswordLink, securityCodeLink, enableSecurityCode, isOfferProtectedMode, displayLanguage, languages } = this.props, disabledButton = !allowUpdate || imagesList.length === 0,
             disabled = disabledButton ? { 'disabled': 'disabled' } : {};
-        const renderDisplayLanguage = () => {
-            if (displayLanguage.length === 0) {
-                return <label onClick={this.handleOpenLanguageDropdown}>{resources.PleaseSelectDisplayLanguage}</label>
-            }
 
-            const matchedLanguage = languages.find(lang => lang.Key === displayLanguage);
-            return <label onClick={this.handleOpenLanguageDropdown}><span className={'flag flag-' + displayLanguage}></span>{matchedLanguage.Value}</label>
-        };
-        const renderLanguageDropdown = () => languages.map((lang) =>
-            <li key={lang.Key} onClick={() => this.handleChangeDisplayLanguage(lang.Key)}><span className={'flag flag-' + lang.Key}></span>{lang.Value}</li>);
         return (
             <div>
                 <ul className='nav nav-tabs'>
@@ -253,25 +217,9 @@ class App extends PureComponent {
                         </li>)
                     }
                 </ul>
+                <DisplayLanguage resources={resources} displayLanguage={displayLanguage} languages={languages} />
                 <div className='panel'>
-                    <div className={openPanelLanguage ? "panel-heading open" : "panel-heading"} onClick={this.handleOpenPanelLanguage}>                        
-                        <h4 className='panel-title'>
-                            {resources.DisplayLanguage}
-                        </h4>
-                    </div>               
-                    <div className='panel-content'>
-                        <p>{resources.DisplayLanguageIntro}</p>
-                        <div className='language'>
-                            <div className={'block-language' + (openLanguageDropdown ? ' open' : '')}>
-                                {renderDisplayLanguage(displayLanguage, languages)}
-                                <ul className='dropdown-menu'>{renderLanguageDropdown(languages)}</ul>
-                            </div>
-                            <button className='btn-submit' onClick={this.handleOnSubmitChangeDisplayLanguage}>{resources.Submit}</button>
-                        </div>                               
-                    </div>
-                </div>
-                <div className='panel'>
-                    <div className={openPanelPicture ? "panel-heading open" : "panel-heading"} onClick={this.handleOpenPanelPicture}>
+                    <div className={openProfilePicturePanel ? "panel-heading open" : "panel-heading"} onClick={this.handleOpenProfilePicturePanel}>
                         <h4 className='panel-title'>
                             {resources.ProfilePicture}
                         </h4>

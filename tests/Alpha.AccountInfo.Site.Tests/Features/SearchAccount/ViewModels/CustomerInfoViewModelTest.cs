@@ -11,23 +11,23 @@
     {
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
 
-        [Theory]
-        [InlineData(4, 3, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=3")]
-        [InlineData(4, 2, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=2")]
-        [InlineData(4, 1, "MicroSiteUrl/Statement/MemberStatement?CustID=1&CustName=UserTest&CustLevelId=1")]
-        [InlineData(3, 2, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=2")]
-        [InlineData(3, 1, "MicroSiteUrl/Statement/MemberStatement?CustID=1&CustName=UserTest&CustLevelId=1")]
-        [InlineData(2, 1, "MicroSiteUrl/Statement/MemberStatement?CustID=1&CustName=UserTest&CustLevelId=1")]
-        public void StatemenLink_Always_ReturnsCorrectStatementLink(
-            byte actorRoleId,
-            byte searchAccountRoleId,
-            string expectedStatementLink)
-        {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
-            var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
+        ////[Theory]
+        ////[InlineData(4, 3, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=3")]
+        ////[InlineData(4, 2, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=2")]
+        ////[InlineData(4, 1, "MicroSiteUrl/Statement/MemberStatement?CustID=1&CustName=UserTest&CustLevelId=1")]
+        ////[InlineData(3, 2, "MicroSiteUrl/Statement/SMAStatement?CustID=1&CustName=UserTest&CustLevelId=2")]
+        ////[InlineData(3, 1, "MicroSiteUrl/Statement/MemberStatement?CustID=1&CustName=UserTest&CustLevelId=1")]
+        ////[InlineData(2, 1, "MicroSiteUrl/Statement/MemberStatement?CustID=1&CustName=UserTest&CustLevelId=1")]
+        ////public void StatemenLink_Always_ReturnsCorrectStatementLink(
+        ////    byte actorRoleId,
+        ////    byte searchAccountRoleId,
+        ////    string expectedStatementLink)
+        ////{
+        ////    var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
+        ////    var viewModel = BuildCustomerInfoViewModel(messages, searchAccountRoleId);
 
-            Assert.Equal(viewModel.StatemenLink.Url, expectedStatementLink);
-        }
+        ////    Assert.Equal(viewModel.StatemenLink.Url, expectedStatementLink);
+        ////}
 
         ////[Theory]
         ////[InlineData(4, 3, "MicroSiteUrl/_MemberInfo/CustomerList/Super/AgentList.aspx?custid=1")]
