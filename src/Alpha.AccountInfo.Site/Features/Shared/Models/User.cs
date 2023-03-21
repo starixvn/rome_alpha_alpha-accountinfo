@@ -7,6 +7,8 @@
     public class User : IUser
     {
         private const string CustomerDateLimitSessionKey = "CustomerDateLimit";
+        private const string DisplayLanguageSessionKey = "languageusage";
+
 #pragma warning disable CS0618 // Type or member is obsolete
         private readonly IUserSession userSession;
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -86,5 +88,7 @@
         public bool IsOfferProtectedMode => userSession.IsOfferProtectedMode;
 
         public int ServerId => userSession.ServerId;
+
+        public string DisplayLanguage => userSession.GetProperty<string>(DisplayLanguageSessionKey);
     }
 }

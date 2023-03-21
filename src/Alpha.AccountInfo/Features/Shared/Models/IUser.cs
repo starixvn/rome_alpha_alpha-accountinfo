@@ -67,5 +67,7 @@
         bool IsOfferProtectedMode { get; }
 
         int ServerId { get; }
+
+        string DisplayLanguage { get; }
     }
 }

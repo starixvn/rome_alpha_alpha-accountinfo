@@ -12,7 +12,7 @@
         private const string IndexViewPath = "~/Features/ProfilePicture/Views/Index.cshtml";
 
         public ProfilePictureController(IMediator mediator)
-         : base(mediator)
+            : base(mediator)
         {
         }
 

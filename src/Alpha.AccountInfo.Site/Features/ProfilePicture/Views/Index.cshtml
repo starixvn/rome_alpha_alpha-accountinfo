@@ -26,6 +26,9 @@
             '@Model.ChangePasswordLink',
             '@Model.SecurityCodeLink',
             JSON.parse('@Model.EnableSecurityCode'.toLowerCase()),
-            JSON.parse('@Model.IsOfferProtectedMode'.toLowerCase()));
+            JSON.parse('@Model.IsOfferProtectedMode'.toLowerCase()),
+            '@Model.DisplayLanguage',
+            @Html.Raw(JsonConvert.SerializeObject(Model.Languages, Newtonsoft.Json.Formatting.None)),
+            JSON.parse('@Model.AllowUpdateDisplayLanguage'.toLowerCase()));
 </script>
 }

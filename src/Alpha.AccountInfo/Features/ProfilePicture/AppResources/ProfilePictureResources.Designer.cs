@@ -19,7 +19,7 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ProfilePictureResources {
@@ -70,6 +70,24 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display Language.
+        /// </summary>
+        public static string DisplayLanguage {
+            get {
+                return ResourceManager.GetString("DisplayLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your preferred language for displaying pages..
+        /// </summary>
+        public static string DisplayLanguageIntro {
+            get {
+                return ResourceManager.GetString("DisplayLanguageIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The uploading file is not a picture, please try again!.
         /// </summary>
         public static string FailByFileType {
@@ -115,7 +133,16 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile picture.
+        ///   Looks up a localized string similar to Please select display language.
+        /// </summary>
+        public static string PleaseSelectDisplayLanguage {
+            get {
+                return ResourceManager.GetString("PleaseSelectDisplayLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile Picture.
         /// </summary>
         public static string ProfilePicture {
             get {
@@ -138,6 +165,15 @@ namespace Alpha.AccountInfo.Features.ProfilePicture.AppResources {
         public static string ProfilePictureUpdatedSuccessfully {
             get {
                 return ResourceManager.GetString("ProfilePictureUpdatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile Settings.
+        /// </summary>
+        public static string ProfileSettings {
+            get {
+                return ResourceManager.GetString("ProfileSettings", resourceCulture);
             }
         }
         

@@ -1,6 +1,178 @@
 ﻿@import '../../Shared/Styles/_variables';
 @import '../../Shared/Styles/mixins';
 
+.panel {
+    border: 1px solid transparent;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 5px 0;
+    background: none;
+    border-color: #dcdcdc;
+}
+
+.panel {
+    .panel-heading {
+        display: block;
+        height: 36px;
+        line-height: 30px;
+        padding: 0 6px;
+        border: none;
+        background-color: #f9f9f9;
+        color: #666;
+        font-weight: bold;
+        font-size: 13px;
+        cursor: pointer;
+        border-radius: 0;
+
+        &.open {
+            .panel-title {
+                &:before {
+                    transform: rotate(90deg);
+                }
+            }
+
+            + .panel-content {
+                display: block;
+            }
+        }
+
+        .panel-title {
+            padding: 0 20px;
+            position: relative;
+            background-color: #f9f9f9;
+            color: #666;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            height: 36px;
+            line-height: 36px;
+            text-transform: uppercase;
+
+            &:before {
+                position: absolute;
+                content: "";
+                top: 12px;
+                left: 4px;
+                transition: 0.35s;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 5px 0 5px 6px;
+                border-color: transparent transparent transparent #666666;
+            }
+        }
+    }
+
+    .panel-content {
+        display: none;
+        padding: 16px;
+        border-top: 1px solid #dcdcdc;
+        background-color: #fff;
+    }
+}
+
+.language {
+    display: flex;
+
+    .btn-submit {
+        height: 30px;
+        margin-left: 15px;
+    }
+}
+
+.block-language {
+    position: relative;
+    border: 1px solid #dcdcdc;
+    min-width: 160px;
+
+    &.open {
+        .dropdown-menu {
+            display: block;
+        }
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+        font-weight: normal;
+        touch-action: manipulation;
+        cursor: pointer;
+        white-space: nowrap;
+        padding: 0 20px 0 10px;
+        font-size: 14px;
+        height: 28px;
+        line-height: 28px;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            top: 12px;
+            right: 7px;
+            transition: 0.35s;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 5px 4px 0 4px;
+            border-color: #666666 transparent transparent transparent;
+        }
+    }
+
+    .dropdown-menu {
+        width: 100%;
+
+        li {
+            padding: 0 10px;
+            line-height: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                background: #ddd;
+            }
+        }
+    }
+
+    .flag {
+        width: 24px;
+        height: 16px;
+        margin-right: 10px;
+        background-image: url(../Styles/Images/flag.png);
+        background-repeat: no-repeat;
+        
+
+        &.flag-en-US {
+            background-position: -24px -38px;
+        }
+
+        &.flag-zh-TW {
+            background-position: 0 -18px;
+        }
+
+        &.flag-zh-CN {
+            background-position: 0 -18px;
+        }
+
+        &.flag-ja-JP {
+            background-position: 0 -1px;
+        }
+
+        &.flag-th-TH {
+            background-position: -24px -19px;
+        }
+
+        &.flag-ko-KR {
+            background-position: -24px 0;
+        }
+
+        &.flag-vi-VN {
+            background-position: 0 -38px;
+        }
+    }
+}
+
 .picture-library {
     height: 100%;
     background-color: #fff !important;
@@ -31,13 +203,12 @@
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
 
-    .blockMsg{
+    .blockMsg {
         display: inline-block;
     }
 }
 
 .profile-picture {
-    padding: 24px 4px 12px;
     display: inline-block;
     font-size: 14px;
 
@@ -312,6 +483,7 @@
         width: 140px;
         height: 140px;
     }
+
     .picture-library .library-image-item {
         width: 120px;
         height: 120px;

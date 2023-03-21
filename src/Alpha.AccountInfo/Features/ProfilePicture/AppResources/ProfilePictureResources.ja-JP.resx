@@ -120,8 +120,17 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="DisplayLanguage" xml:space="preserve">
+    <value>Display Language</value>
+  </data>
+  <data name="DisplayLanguageIntro" xml:space="preserve">
+    <value>Choose your preferred language for displaying pages.</value>
+  </data>
   <data name="FailByFileType" xml:space="preserve">
     <value>The uploading file is not a picture, please try again!</value>
+  </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>You are not authorized on this function.</value>
   </data>
   <data name="OrChooseFromOurGallery" xml:space="preserve">
     <value>or choose from our gallery</value>
@@ -133,10 +142,10 @@
     <value>Profile picture gallery</value>
   </data>
   <data name="ProfilePicture" xml:space="preserve">
-    <value>Profile picture</value>
+    <value>Profile Picture</value>
   </data>
   <data name="ProfilePictureUpdatedFailed" xml:space="preserve">
-    <value>Failed to upload photo!</value>
+    <value>Your profile picture has been uploaded failed !</value>
   </data>
   <data name="ProfilePictureUpdatedSuccessfully" xml:space="preserve">
     <value>Your profile picture has been uploaded successfully !</value>
@@ -161,5 +170,14 @@
   </data>
   <data name="ViewAll" xml:space="preserve">
     <value>View All</value>
+  </data>
+  <data name="PleaseSelectDisplayLanguage" xml:space="preserve">
+    <value>Please select display language</value>
+  </data>
+  <data name="ProfileSettings" xml:space="preserve">
+    <value>Profile Settings</value>
+  </data>
+  <data name="ProtectionCode" xml:space="preserve">
+    <value>Protection Code</value>
   </data>
 </root>

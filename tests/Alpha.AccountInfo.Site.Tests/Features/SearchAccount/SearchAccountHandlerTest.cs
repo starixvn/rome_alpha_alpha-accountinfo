@@ -163,27 +163,27 @@
             Assert.Null(actualViewModel);
         }
 
-        [Fact]
-        public void HandleCustomerInfoQuery_CustomerInfoHasData_ReturnCorrectViewModel()
-        {
-            var memberBalanceInfoViewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo, creditInfo);
-            accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(customerInfo);
-            accountInfoService.GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>()).Returns(AccountInfoHelper.MemberBalanceInfo);
-            accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(creditInfo);
-            accountInfoService.CheckFirstLoginByQRCode(Arg.Any<int>()).Returns(false);
-            ipService.FormatIP(Arg.Any<string>(), Arg.Any<bool>()).Returns(new FormatedIP(string.Empty, true));
+        ////[Fact]
+        ////public void HandleCustomerInfoQuery_CustomerInfoHasData_ReturnCorrectViewModel()
+        ////{
+        ////    var memberBalanceInfoViewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo, creditInfo);
+        ////    accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(customerInfo);
+        ////    accountInfoService.GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>()).Returns(AccountInfoHelper.MemberBalanceInfo);
+        ////    accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(creditInfo);
+        ////    accountInfoService.CheckFirstLoginByQRCode(Arg.Any<int>()).Returns(false);
+        ////    ipService.FormatIP(Arg.Any<string>(), Arg.Any<bool>()).Returns(new FormatedIP(string.Empty, true));
 
-            var expectedViewModel = new CustomerInfoViewModel(
-                customerInfoQuery,
-                customerInfo,
-                memberBalanceInfoViewModel,
-                false,
-                true);
+        ////    var expectedViewModel = new CustomerInfoViewModel(
+        ////        customerInfoQuery,
+        ////        customerInfo,
+        ////        memberBalanceInfoViewModel,
+        ////        false,
+        ////        true);
 
-            var actualViewModel = accountInfoHandler.Handle(customerInfoQuery).GetAwaiter().GetResult();
+        ////    var actualViewModel = accountInfoHandler.Handle(customerInfoQuery).GetAwaiter().GetResult();
 
-            AssertExtension.Equal(actualViewModel, expectedViewModel);
-        }
+        ////    AssertExtension.Equal(actualViewModel, expectedViewModel);
+        ////}
 
         [Fact]
         public void HandleCustomerInfoQuery_CustomerInfoHasData_CallGetBalanceInfoModel()

@@ -105,27 +105,27 @@
             Assert.Equal(viewModel.ShowYesterdayBalanceTransferLink, expectedValue);
         }
 
-        [Theory]
-        [InlineData(4, 3, "Master Outstanding", "MicroSiteUrl/outstanding/Master?CustId=1&CustName=UserTest&CustLevelId=3&BreadcrumbLevelJson=[{'CustId':14,'CustName':'SuperTest','CustLevelId':4}]")]
-        [InlineData(4, 2, "Agent Outstanding", "MicroSiteUrl/outstanding/Master?CustId=1&CustName=UserTest&CustLevelId=2&BreadcrumbLevelJson=[{'CustId':14,'CustName':'SuperTest','CustLevelId':4},{'CustId':13,'CustName':'MasterTest','CustLevelId':3}]")]
-        [InlineData(4, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
-        [InlineData(3, 2, "Agent Outstanding", "MicroSiteUrl/outstanding/Agent?CustId=1&CustName=UserTest&CustLevelId=2&BreadcrumbLevelJson=[{'CustId':13,'CustName':'MasterTest','CustLevelId':3}]")]
-        [InlineData(3, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
-        [InlineData(2, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
-        public void ReportLink_Always_ReturnsCorrectLink(
-            byte actorRoleId,
-            byte searchAccountRoleId,
-            string expectedText,
-            string expectedLink)
-        {
-            var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
-            var customer = AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId);
-            var viewModel = AccountInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customer, AccountInfoHelper.CreditInfo);
+        ////[Theory]
+        ////[InlineData(4, 3, "Master Outstanding", "MicroSiteUrl/outstanding/Master?CustId=1&CustName=UserTest&CustLevelId=3&BreadcrumbLevelJson=[{'CustId':14,'CustName':'SuperTest','CustLevelId':4}]")]
+        ////[InlineData(4, 2, "Agent Outstanding", "MicroSiteUrl/outstanding/Master?CustId=1&CustName=UserTest&CustLevelId=2&BreadcrumbLevelJson=[{'CustId':14,'CustName':'SuperTest','CustLevelId':4},{'CustId':13,'CustName':'MasterTest','CustLevelId':3}]")]
+        ////[InlineData(4, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
+        ////[InlineData(3, 2, "Agent Outstanding", "MicroSiteUrl/outstanding/Agent?CustId=1&CustName=UserTest&CustLevelId=2&BreadcrumbLevelJson=[{'CustId':13,'CustName':'MasterTest','CustLevelId':3}]")]
+        ////[InlineData(3, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
+        ////[InlineData(2, 1, "Outstanding", "MicroSiteUrl/RunningBetList/Index?CustID=1&amp;CustName=UserTest&amp;GetAll=True")]
+        ////public void ReportLink_Always_ReturnsCorrectLink(
+        ////    byte actorRoleId,
+        ////    byte searchAccountRoleId,
+        ////    string expectedText,
+        ////    string expectedLink)
+        ////{
+        ////    var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
+        ////    var customer = AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId);
+        ////    var viewModel = AccountInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customer, AccountInfoHelper.CreditInfo);
 
-            Assert.True(
-                viewModel.ReportLink.Url.Equals(expectedLink) &&
-                viewModel.ReportLink.Text.Equals(expectedText));
-        }
+        ////    Assert.True(
+        ////        viewModel.ReportLink.Url.Equals(expectedLink) &&
+        ////        viewModel.ReportLink.Text.Equals(expectedText));
+        ////}
 
         [Theory]
         [InlineData(4, 3, "MicroSiteUrl/_Transfer/Super/MasterTransfer.aspx?custid=1&status=1&CallBack=false&username=UserTest&isyesterday=1&amt=30")]

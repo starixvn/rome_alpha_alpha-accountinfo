@@ -76,6 +76,7 @@
             viewer.IsDisabledESports.Returns(true);
             viewer.IsNumberGameDisabled.Returns(true);
             viewer.CanCreateAccount.Returns(true);
+            viewer.DisplayLanguage.Returns("en-US");
 
             return viewer;
         }

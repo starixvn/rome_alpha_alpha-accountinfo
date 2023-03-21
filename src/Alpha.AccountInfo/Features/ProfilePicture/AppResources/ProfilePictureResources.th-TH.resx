@@ -168,4 +168,16 @@
   <data name="ViewAll" xml:space="preserve">
     <value>ดูทั้งหมด</value>
   </data>
+  <data name="DisplayLanguage" xml:space="preserve">
+    <value>ภาษาสำหรับแสดงผล</value>
+  </data>
+  <data name="DisplayLanguageIntro" xml:space="preserve">
+    <value>เลือกภาษาที่คุณต้องการใช้งานเมื่อเข้าสู่ระบบ</value>
+  </data>
+  <data name="ProfileSettings" xml:space="preserve">
+    <value>การตั้งค่าโปรไฟล์</value>
+  </data>
+  <data name="PleaseSelectDisplayLanguage" xml:space="preserve">
+    <value>กรุณาเลือกภาษาสำหรับแสดงผล</value>
+  </data>
 </root>

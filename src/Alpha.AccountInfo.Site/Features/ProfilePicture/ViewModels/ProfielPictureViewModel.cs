@@ -22,6 +22,9 @@
             bool allowUpdate,
             bool enableSecurityCode,
             bool isOfferProtectedMode,
+            string displayLanguage,
+            IEnumerable<KeyValuePair<string, string>> languages,
+            bool allowUpdateDisplayLanguage,
             Func<string, ResourceManager, string> convertResourcesJson = null)
         {
             Images = images;
@@ -31,6 +34,9 @@
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
             EnableSecurityCode = enableSecurityCode;
             IsOfferProtectedMode = isOfferProtectedMode;
+            DisplayLanguage = displayLanguage;
+            Languages = languages;
+            AllowUpdateDisplayLanguage = allowUpdateDisplayLanguage;
         }
 
         public IEnumerable<ProfilePictureModel> Images { get; private set; }
@@ -52,5 +58,11 @@
         public bool EnableSecurityCode { get; }
 
         public bool IsOfferProtectedMode { get; }
+
+        public string DisplayLanguage { get; }
+
+        public IEnumerable<KeyValuePair<string, string>> Languages { get; }
+
+        public bool AllowUpdateDisplayLanguage { get; }
     }
 }
