@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels
 {
+    using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -26,7 +27,7 @@
             this.message = message;
             this.customerInfo = customerInfo;
             BalanceInfo = balanceInfo;
-            this.showQRCode = showQRCode;
+            this.showQRCode = showQRCode && AppSettings.AppSettingValues["QRCode:Hide"] != "1";
             this.canCreateAccount = canCreateAccount;
         }
 
@@ -141,7 +142,7 @@
 
         public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
 
-        public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && canCreateAccount;
+        public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && canCreateAccount && showQRCode;
 
         public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
             $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
