@@ -21,5 +21,7 @@
         public const int RNGSlot = 9906;
         public const int VirtualGames = 245;
         public const int FGG = 176;
+        public const int NumberGame = 161;
+        public const int RNGKeno = 202;
     }
 }

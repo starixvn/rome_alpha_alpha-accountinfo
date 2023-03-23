@@ -143,7 +143,9 @@
                 SportTypeConstants.Jackpot,
                 SportTypeConstants.RNGSlot,
                 SportTypeConstants.VirtualGames,
-                SportTypeConstants.FGG
+                SportTypeConstants.FGG,
+                SportTypeConstants.NumberGame,
+                SportTypeConstants.RNGKeno
             };
 
             if (sportShowName.Contains(sportType))
