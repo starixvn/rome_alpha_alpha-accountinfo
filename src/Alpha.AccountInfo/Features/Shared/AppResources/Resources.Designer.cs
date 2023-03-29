@@ -448,6 +448,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed..
+        /// </summary>
+        public static string DisallowedAllDayBalanceTransferError {
+            get {
+                return ResourceManager.GetString("DisallowedAllDayBalanceTransferError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downline List.
         /// </summary>
         public static string DownlineList {

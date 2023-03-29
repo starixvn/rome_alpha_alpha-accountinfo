@@ -127,5 +127,19 @@
             // Assert
             AssertExtension.Equal(expectedResult, actualResult);
         }
+
+        [Fact]
+        public async Task IsAllDayBalanceTransfer_Always_CallsExecuteReaderAsync()
+        {
+            // Arrange
+            var custId = 1176086;
+            var criteria = new SelectIsAllDayBalTransferCriteria(custId);
+
+            // Act
+            await accountInfoDataAccessImpl.IsAllDayBalanceTransfer(criteria);
+
+            // Assert
+            await objectDb.Received().ExecuteReaderAsync(Arg.Any<Hashtable>());
+        }
     }
 }

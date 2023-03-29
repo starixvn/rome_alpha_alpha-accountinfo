@@ -14,7 +14,7 @@
             var viewer = AccountInfoHelper.ViewerFixture(UserLevel.Super.Value);
             var messages = new CustomerInfoQuery(viewer);
             var customerInfo = AccountInfoHelper.BuildCustomerInfo(UserLevel.Master.Value);
-            var viewModel = AccountInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo, AccountInfoHelper.CreditInfo);
+            var viewModel = AccountInfoHelper.BuildMasterBalanceInfoViewModel(messages, customerInfo, AccountInfoHelper.CreditInfo, false);
 
             Assert.True(
                 viewModel.TotalCash.Equals(13) &&

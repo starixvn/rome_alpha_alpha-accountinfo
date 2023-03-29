@@ -32,7 +32,7 @@
         private readonly SearchAccountService accountInfoService;
         private readonly SearchAccountHandler accountInfoHandler;
         private readonly CustomerInfoQuery customerInfoQuery;
-        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
+        private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
         private readonly IPService ipService;
         private readonly KickoutCustomerService kickoutCustomerService;
 
@@ -49,7 +49,7 @@
              .Register<Func<Alpha.Web.Models.AppSettingEnum, bool>>((appSettingKey) => true);
 
             getBalanceInfoViewModelByLevel =
-               new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, IBalanceInfoViewModel>>
+               new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>>
                {
                     {UserLevel.Master, BuildMemberBalanceInfoViewModel},
                     {UserLevel.Agent, BuildMemberBalanceInfoViewModel},
@@ -172,6 +172,7 @@
         ////    accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(creditInfo);
         ////    accountInfoService.CheckFirstLoginByQRCode(Arg.Any<int>()).Returns(false);
         ////    ipService.FormatIP(Arg.Any<string>(), Arg.Any<bool>()).Returns(new FormatedIP(string.Empty, true));
+        ////    accountInfoService.IsAllDayBalanceTransfer(Arg.Any<int>()).Returns(false);
 
         ////    var expectedViewModel = new CustomerInfoViewModel(
         ////        customerInfoQuery,
@@ -271,10 +272,12 @@
            CustomerInfoQuery message,
            CustomerInfoModel customerInfo,
            CreditInfo creditInfo,
-           IBalanceInfoModel balanceInfoModel)
+           IBalanceInfoModel balanceInfoModel,
+           bool isAllDayBalanceTransfer)
             => AccountInfoHelper.BuildMemberBalanceInfoViewModel(
                customerInfoQuery,
                customerInfo,
-               creditInfo);
+               creditInfo,
+               isAllDayBalanceTransfer);
     }
 }

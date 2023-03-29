@@ -432,4 +432,7 @@
   <data name="ClosedByArchive" xml:space="preserve">
     <value>This account was closed by inactivity.</value>
   </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+  </data>
 </root>

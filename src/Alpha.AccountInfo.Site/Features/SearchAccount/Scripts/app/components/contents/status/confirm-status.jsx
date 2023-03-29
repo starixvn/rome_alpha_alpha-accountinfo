@@ -61,6 +61,7 @@ export default class ConfirmStatus extends React.Component {
                 }
                 else {
                     window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
+                    data.Code === 6001 && this.reloadLeftPanel(username);
                     $.unblockUI();
                 }
             }).catch(handleError);

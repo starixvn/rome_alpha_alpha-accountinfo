@@ -22,7 +22,6 @@
                 messages.SearchAccountName == "SearchAccountName" &&
                 messages.ActorId == 1 &&
                 messages.ActorRoleId == 4 &&
-                !messages.AllDayBalTransfer &&
                 messages.AllowedTotalBalanceTransfer &&
                 messages.AllowTransfer &&
                 messages.CanViewReports);

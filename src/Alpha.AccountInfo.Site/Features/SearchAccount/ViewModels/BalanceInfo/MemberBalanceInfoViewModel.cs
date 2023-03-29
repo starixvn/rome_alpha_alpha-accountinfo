@@ -14,8 +14,9 @@
             CustomerInfoModel customerInfoModel,
             CreditInfo creditInfo,
             IBalanceInfoModel balanceInfoModel,
+            bool isAllDayBalanceInfo,
             Func<string, string, string> getMicroSiteUrl = null)
-            : base(message, customerInfoModel, creditInfo, getMicroSiteUrl)
+            : base(message, customerInfoModel, creditInfo, isAllDayBalanceInfo, getMicroSiteUrl)
         {
             this.balanceInfoModel = (MemberBalanceInfoModel)balanceInfoModel;
         }

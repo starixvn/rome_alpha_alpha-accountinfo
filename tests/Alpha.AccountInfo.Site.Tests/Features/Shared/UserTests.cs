@@ -23,7 +23,6 @@
             userSession.LangKey.Returns("E");
             userSession.Language.Returns("En");
             userSession.IsInternal.Returns(false);
-            userSession.IsAllDayBalTransfer.Returns(true);
             userSession.IsAllowedTotalBalanceTransfer.Returns(true);
 
             userSession.SubPageAccess.Returns(new PageAccess { Transfer = true, ViewReports = true });
@@ -50,7 +49,6 @@
                 user.LangKey == "E" &&
                 user.Language == "En" &&
                 !user.IsInternal &&
-                user.AllowedAllDayBalTransfer &&
                 user.AllowedTotalBalanceTransfer &&
                 user.CanViewReports &&
                 user.AllowTransfer &&

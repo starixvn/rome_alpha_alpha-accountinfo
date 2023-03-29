@@ -432,4 +432,7 @@
   <data name="ClosedByArchive" xml:space="preserve">
     <value>บัญชีนี้ถูกปิดเนื่องจากไม่มีการใช้งาน</value>
   </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>อัพไลน์ของคุณได้ปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ของคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
+  </data>
 </root>

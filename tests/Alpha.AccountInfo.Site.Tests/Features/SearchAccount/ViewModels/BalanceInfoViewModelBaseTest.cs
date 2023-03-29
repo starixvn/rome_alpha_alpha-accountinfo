@@ -15,14 +15,14 @@
         private readonly IUser viewer = AccountInfoHelper.ViewerFixture(UserLevel.Agent.Value);
         private readonly CustomerInfoModel customerInfo = AccountInfoHelper.BuildCustomerInfo();
         private readonly CreditInfo creditInfo = AccountInfoHelper.CreditInfo;
+        private readonly bool isAllDayBalanceTransfer = false;
 
         [Fact]
         public void ShowTransferLink_Allow_AllDay_Balance_Transfer_ReturnFalse()
         {
-            viewer.AllowedAllDayBalTransfer.Returns(true);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo, true);
 
             Assert.False(viewModel.ShowTransferLink);
         }
@@ -33,7 +33,7 @@
             viewer.AllowTransfer.Returns(false);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo, isAllDayBalanceTransfer);
 
             Assert.False(viewModel.ShowTransferLink);
         }
@@ -48,7 +48,7 @@
             viewer.AllowedTotalBalanceTransfer.Returns(allowedTotalBalanceTransfer);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo, isAllDayBalanceTransfer);
 
             Assert.Equal(viewModel.ShowTotalBalanceTransferLink, expectedValue);
         }
@@ -66,7 +66,7 @@
 
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, creditInfo, balanceInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, creditInfo, balanceInfo, isAllDayBalanceTransfer);
 
             Assert.Equal(viewModel.ShowTotalBalanceTransferLink, expectedValue);
         }
@@ -81,7 +81,7 @@
             viewer.AllowedTotalBalanceTransfer.Returns(allowedTotalBalanceTransfer);
             var messages = new CustomerInfoQuery(viewer);
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, customerInfo, creditInfo, isAllDayBalanceTransfer);
 
             Assert.Equal(viewModel.ShowYesterdayBalanceTransferLink, expectedValue);
         }
@@ -100,7 +100,7 @@
             var memberBalanceInfoDTO = new MemberBalanceInfoDTO(1, 12, yesterday_CustomerCash, 20);
             var balanceInfo = new MemberBalanceInfoModel(memberBalanceInfoDTO, 20, 16, 19, 10);
 
-            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, creditInfo, balanceInfo);
+            var viewModel = AccountInfoHelper.BuildMemberBalanceInfoViewModel(messages, creditInfo, balanceInfo, isAllDayBalanceTransfer);
 
             Assert.Equal(viewModel.ShowYesterdayBalanceTransferLink, expectedValue);
         }
@@ -120,7 +120,7 @@
         ////{
         ////    var messages = new CustomerInfoQuery(AccountInfoHelper.ViewerFixture(actorRoleId));
         ////    var customer = AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId);
-        ////    var viewModel = AccountInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customer, AccountInfoHelper.CreditInfo);
+        ////    var viewModel = AccountInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customer, AccountInfoHelper.CreditInfo, isAllDayBalanceTransfer);
 
         ////    Assert.True(
         ////        viewModel.ReportLink.Url.Equals(expectedLink) &&
@@ -140,7 +140,7 @@
             var customer = AccountInfoHelper.BuildCustomerInfo(searchAccountRoleId);
             var transferValue = 30;
 
-            var viewModel = AccountInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customer, AccountInfoHelper.CreditInfo);
+            var viewModel = AccountInfoHelper.BalanceInfoViewModels[Enumeration.FromValue<UserLevel>(searchAccountRoleId)](messages, customer, AccountInfoHelper.CreditInfo, isAllDayBalanceTransfer);
             var actualLink = viewModel.BuildTransferLink(transferValue);
 
             Assert.Equal(actualLink, expectedStatementLink);

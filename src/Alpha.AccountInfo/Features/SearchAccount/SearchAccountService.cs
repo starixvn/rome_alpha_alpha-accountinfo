@@ -1,5 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
@@ -9,16 +13,11 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
-    using Alpha.AccountInfo.Features.Shared;
+    using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
     using Alpha.Utilities.IP;
-    using Fanex.Caching;
     using Fanex.Data.Repository;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public interface SearchAccountService
     {
@@ -45,6 +44,8 @@
         Task<bool> CheckFirstLoginByQRCode(int custId);
 
         Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal);
+
+        Task<bool> IsAllDayBalanceTransfer(int custId);
     }
 
     public class SearchAccountServiceImpl : SearchAccountService
@@ -215,6 +216,12 @@
 
         public async Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param)
         {
+            if (!await IsAllDayBalanceTransfer(param.ActorId))
+            {
+                const int DisallowedAllDayBalanceTransferError = 6001;
+                return Result.CreateErrorResult(DisallowedAllDayBalanceTransferError, Resources.DisallowedAllDayBalanceTransferError);
+            }
+
             var command = new UpdateAllDayBalanceTransferCommand(
                 param.SearchAccountId,
                 param.ActorId,
@@ -233,7 +240,6 @@
             => await dynamicRepository.GetAsync<bool>(
                 new SelectFirstLoginByQRCodeCriteria(custId)).ConfigureAwait(false);
 
-
         public async Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal)
         {
             var criteria = new CheckMultipleCustomesBelongingCriteria(actorId, subAccountId, custIds);
@@ -242,5 +248,8 @@
 
             return criteria.RoleId > 0 && (isInternal || criteria.IsActive);
         }
+
+        public Task<bool> IsAllDayBalanceTransfer(int custId)
+            => accountInfoDataAccess.IsAllDayBalanceTransfer(new SelectIsAllDayBalTransferCriteria(custId));
     }
 }

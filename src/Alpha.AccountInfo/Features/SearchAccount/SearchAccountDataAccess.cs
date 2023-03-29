@@ -1,14 +1,13 @@
 ﻿namespace Alpha.AccountInfo.DataAccess
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
-    using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Fanex.Data;
-    using System.Data;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public interface SearchAccountDataAccess
     {
@@ -17,6 +16,8 @@
         Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command);
 
         Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferCommand command);
+
+        Task<bool> IsAllDayBalanceTransfer(SelectIsAllDayBalTransferCriteria criteria);
     }
 
     public class SearchAccountDataAccessImpl : SearchAccountDataAccess
@@ -65,6 +66,17 @@
                 return new Result(
                     int.Parse(outputParams["errcode"].ToString()),
                     outputParams["errmsg"]?.ToString());
+            }
+        }
+
+        public async Task<bool> IsAllDayBalanceTransfer(SelectIsAllDayBalTransferCriteria criteria)
+        {
+            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            {
+                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                {
+                    return reader.Read() && Convert.ToBoolean(reader["IsAllDayBalTransfer"]);
+                }
             }
         }
     }

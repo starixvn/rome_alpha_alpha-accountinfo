@@ -16,16 +16,19 @@
         protected readonly CustomerInfoQuery message;
         protected readonly CustomerInfoModel customerInfo;
         protected readonly CreditInfo creditInfo;
+        private readonly bool isAllDayBalanceInfo;
 
         protected BalanceInfoViewModelBase(
             CustomerInfoQuery message,
             CustomerInfoModel customerInfo,
             CreditInfo creditInfo,
+            bool isAllDayBalanceInfo,
             Func<string, string, string> getMicroSiteUrl = null) : base(getMicroSiteUrl)
         {
             this.message = message;
             this.customerInfo = customerInfo;
             this.creditInfo = creditInfo;
+            this.isAllDayBalanceInfo = isAllDayBalanceInfo;
         }
 
         public abstract decimal TotalBalance { get; }
@@ -42,7 +45,7 @@
 
         public abstract decimal PendingTransfer3rd { get; }
 
-        internal virtual bool ShowTransferLink => !message.AllDayBalTransfer && message.AllowTransfer;
+        internal virtual bool ShowTransferLink => !isAllDayBalanceInfo && message.AllowTransfer;
 
         public bool ShowOutstandingLink => message.CanViewReports && Outstanding > 0;
 
