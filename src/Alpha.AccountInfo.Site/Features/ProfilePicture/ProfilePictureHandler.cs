@@ -68,7 +68,7 @@
                 isEnableSecurityCode,
                 message.IsOfferProtectedMode,
                 message.DisplayLanguage,
-                AppSettings.DisabledVietnamese
+                AppSettings.SiteLabelIsNot789y
                     ? Languages.Where(l => l.Key != "vi-VN")
                     : Languages,
                 message.AllowUpdateDisplayLanguage);
