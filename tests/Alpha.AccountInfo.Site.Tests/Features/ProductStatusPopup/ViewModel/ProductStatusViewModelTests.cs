@@ -17,7 +17,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteGroup"] = "IBCIndo"
+                ["SiteLabel"] = "IBC"
             };
             var viewModel = new ProductStatusViewModel(
                 54,
@@ -41,7 +41,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteGroup"] = "IBCIndo"
+                ["SiteLabel"] = "IBC"
             };
             var viewModel = new ProductStatusViewModel(
                 54,
@@ -65,7 +65,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteGroup"] = "IBCIndo"
+                ["SiteLabel"] = "IBC"
             };
             var viewModel = new ProductStatusViewModel(
                 54,
@@ -89,7 +89,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteGroup"] = "IBCIndo"
+                ["SiteLabel"] = "IBC"
             };
             var viewModel = new ProductStatusViewModel(
                 54,
@@ -113,7 +113,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteGroup"] = "IBCIndo"
+                ["SiteLabel"] = "IBC"
             };
 
             var viewModel = new ProductStatusViewModel(
@@ -138,7 +138,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteGroup"] = "IBCBET"
+                ["SiteLabel"] = "Nova88"
             };
 
             var viewModel = new ProductStatusViewModel(
@@ -163,7 +163,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteGroup"] = "IBCBET"
+                ["SiteLabel"] = "Nova88"
             };
 
             var viewModel = new ProductStatusViewModel(

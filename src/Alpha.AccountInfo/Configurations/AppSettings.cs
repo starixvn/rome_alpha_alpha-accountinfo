@@ -20,10 +20,6 @@
 
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
 
-        public static string SiteGroup => GetConfigValue("SiteGroup");
-
-        public static bool IsIBCIndo => SiteGroup.Equals("IBCIndo", StringComparison.OrdinalIgnoreCase);
-
         public static string ReportDomain => GetConfigValue("Report:Domain") ?? string.Empty;
 
         public static string BetlistDomain => GetConfigValue("Betlist:Domain") ?? string.Empty;
@@ -44,7 +40,11 @@
 
         public static string JsVersion => GetConfigValue("JsVersion");
 
-        public static bool DisabledVietnamese => !SiteGroup.Equals("789y", StringComparison.OrdinalIgnoreCase);
+        public static string SiteLabel => GetConfigValue("SiteLabel");
+
+        public static string SiteLabel789y => GetConfigValue("SiteLabel789y");
+
+        public static bool DisabledVietnamese => !SiteLabel.Equals(SiteLabel789y, StringComparison.OrdinalIgnoreCase);
 
         public static void Verify()
         {

@@ -64,7 +64,7 @@
         {
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteGroup"] = "MBCBet"
+                ["SiteLabel"] = "MBCBet"
             };
             var message = new ProfilePictureQuery(viewer);
 
