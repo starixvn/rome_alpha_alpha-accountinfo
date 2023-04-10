@@ -44,7 +44,7 @@
 
         public static string SiteLabel789y => GetConfigValue("SiteLabel789y");
 
-        public static bool DisabledVietnamese => !SiteLabel.Equals(SiteLabel789y, StringComparison.OrdinalIgnoreCase);
+        public static bool SiteLabelIsNot789y => !SiteLabel.Equals(SiteLabel789y, StringComparison.OrdinalIgnoreCase);
 
         public static void Verify()
         {
