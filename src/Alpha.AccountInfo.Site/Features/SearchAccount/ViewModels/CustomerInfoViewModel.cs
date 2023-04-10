@@ -27,7 +27,7 @@
             this.message = message;
             this.customerInfo = customerInfo;
             BalanceInfo = balanceInfo;
-            this.showQRCode = showQRCode && AppSettings.AppSettingValues["QRCode:Hide"] != "1";
+            this.showQRCode = showQRCode;
             this.canCreateAccount = canCreateAccount;
         }
 
@@ -142,7 +142,7 @@
 
         public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
 
-        public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && canCreateAccount && showQRCode;
+        public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && canCreateAccount && AppSettings.GetConfigValue("QRCode:Hide") != "1";
 
         public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
             $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
