@@ -5,6 +5,7 @@
     using Alpha.AccountInfo.Site.Features.Shared;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
+    using Alpha.Web.Configurations;
     using MediatR;
     using System;
 
@@ -50,6 +51,6 @@
             && CustId > 0
             && UserLevel.Member.Value <= CustRoleId
             && CustRoleId <= UserLevel.Master.Value
-            && !hideProductStatusBySites(Site);
+            && !hideProductStatusBySites(AppSettings.SiteLabel);
     }
 }
