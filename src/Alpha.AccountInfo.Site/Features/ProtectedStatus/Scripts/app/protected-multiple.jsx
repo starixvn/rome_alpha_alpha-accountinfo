@@ -57,7 +57,7 @@ export default class ProtectedMultiple extends React.Component {
                 });
 
                 if (isSuccess) {
-                    if (top.customerListNew) {
+                    if (top.needReloadMainFrameAfterUpdating) {
                         top.successfulUpdatingCallbackAndReloadMainFrame(true);
                     } else {
                         window.top.main.DelayReloadPage();
