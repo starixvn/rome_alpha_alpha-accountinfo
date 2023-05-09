@@ -7,14 +7,13 @@
     [Trait("Category", "ProductStatus")]
     public class SelectProductStatusCriteriaTests
     {
-        private const int ProductIdTest = ProductConstants.Keno;
         private const int CustIdTest = 1176083;
 
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new SelectProductStatusCriteria(ProductIdTest, CustIdTest);
+            var criteria = new SelectProductStatusCriteria(1, CustIdTest);
             var expectedSettingKey = "Acc_AdminSelStatusByProductId";
 
             // Act
@@ -29,7 +28,7 @@
         {
             // Arrange
             var expectedResult = true;
-            var criteria = new SelectProductStatusCriteria(ProductIdTest, CustIdTest);
+            var criteria = new SelectProductStatusCriteria(1, CustIdTest);
 
             // Act
             var actualResult = criteria.IsValid();
@@ -42,7 +41,6 @@
         [InlineData(int.MinValue, false)]
         [InlineData(-1, false)]
         [InlineData(0, false)]
-        [InlineData(ProductIdTest, true)]
         [InlineData(int.MaxValue, true)]
         public void IsValid_ProductId_ReturnsExpectedResult(int productId, bool expectedResult)
         {
@@ -65,7 +63,7 @@
         public void IsValid_CustId_ReturnsExpectedResult(int custId, bool expectedResult)
         {
             // Arrange
-            var criteria = new SelectProductStatusCriteria(ProductIdTest, custId);
+            var criteria = new SelectProductStatusCriteria(1, custId);
 
             // Act
             var actualResult = criteria.IsValid();

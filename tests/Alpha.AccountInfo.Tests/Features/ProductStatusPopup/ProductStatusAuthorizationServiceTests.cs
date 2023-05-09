@@ -58,33 +58,6 @@
             Assert.Equal(expectedResult, actualResult);
         }
 
-        [Theory]
-        [InlineData(1176086, 1176070, 2, 4)]
-        [InlineData(1176092, 1176070, 1, 4)]
-        [InlineData(1176092, 1176083, 1, 3)]
-        public void CanView_KenoWithoutDirectDownline_ReturnsTrue(int custId, int uplineId, byte custRoleId, byte uplineRoleId)
-        {
-            // Arrange
-            var expectedResult = true;
-            var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086);
-            var param = new ProductStatusAuthorizationParam(
-                ProductConstants.Keno,
-                custId,
-                Enumeration.FromValue<UserLevel>(custRoleId),
-                uplineId,
-                Enumeration.FromValue<UserLevel>(uplineRoleId));
-
-            repository
-                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
-                .Returns(customerInformation);
-
-            // Act
-            var actualResult = authorizationService.CanView(param);
-
-            // Assert
-            Assert.Equal(expectedResult, actualResult);
-        }
-
         [Fact]
         public void CanView_CustomerInformationIsNull_ReturnsFalse()
         {
@@ -176,28 +149,6 @@
             var expectedResult = true;
             var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0);
             var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
-
-            repository
-                .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
-                .Returns(customerInformation);
-
-            // Act
-            var actualResult = authorizationService.CanUpdate(param);
-
-            // Assert
-            Assert.Equal(expectedResult, actualResult);
-        }
-
-        [Theory]
-        [InlineData(4)]
-        [InlineData(2)]
-        [InlineData(1)]
-        public void CanUpdate_KenoWithoutDirectDownline_ReturnsFalse(byte roleId)
-        {
-            // Arrange
-            var expectedResult = false;
-            var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0);
-            var param = new ProductStatusAuthorizationParam(ProductConstants.Keno, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())

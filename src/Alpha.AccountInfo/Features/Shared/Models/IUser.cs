@@ -44,11 +44,7 @@
 
         bool GetSyncedProduct(int productId);
 
-        bool IsHideKeno { get; }
-      
         bool IsDisabledESports { get; }
-
-        bool IsNumberGameDisabled { get; }      
 
         bool IsEnabledCustomerDateLimit { get; }
 

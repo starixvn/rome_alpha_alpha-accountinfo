@@ -29,20 +29,6 @@
             productStatusCriteriaFactoryImpl = new ProductStatusCriteriaFactoryImpl();
         }
 
-        [Theory]      
-        [InlineData(ProductConstants.Keno)]
-        public void CreateSelectCriteria_ValidProductId_ReturnsSelectProductStatusCriteria(int productId)
-        {
-            // Arrange
-            var expectedCriteria = new SelectProductStatusCriteria(productId, CustIdTest);
-
-            // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value);
-
-            // Assert
-            Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
-        }
-
         [Fact]
         public void CreateSelectCriteria_ValidProductId_ReturnsSelectNG2ProductStatusCriteria()
         {
@@ -146,37 +132,6 @@
 
             // Assert
             Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
-        }
-
-        [Fact]
-        public void CreateUpdateKenoStatusCriteria_Always_ReturnsCorrectCriteria()
-        {
-            // Arrange
-            var productStatus = new[]
-            {
-                new BetTypeStatusParam(202, 1501, false),
-                new BetTypeStatusParam(202, 1503, true)
-            };
-            var param = new ProductStatusCommandParam(
-                ProductConstants.NG2,
-                CustIdTest,
-                CustRoleTest,
-                UplineIdTest,
-                UplineLevelTest,
-                UserIdTest,
-                UserNameTest,
-                SubAccIdTest,
-                LanguageTest,
-                IPTest,
-                productStatus,
-                "en-US");
-            var expectedCriteria = new UpdateKenoStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, LanguageTest, 1501, false, UplineIdTest);
-
-            // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateKenoStatusCriteria(param);
-
-            // Assert
-            Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.First().GetSettingKey());
         }
     }
 }

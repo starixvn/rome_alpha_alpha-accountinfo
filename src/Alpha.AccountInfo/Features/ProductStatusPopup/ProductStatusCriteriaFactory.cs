@@ -13,8 +13,6 @@
         ICriteria CreateSelectCriteria(int productId, int customerId, byte roleId);
 
         NonQueryProductStatusCriteria CreateUpdateCriteria(ProductStatusCommandParam param);
-
-        IEnumerable<UpdateKenoStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param);
     }
 
     public class ProductStatusCriteriaFactoryImpl : ProductStatusCriteriaFactory
@@ -22,9 +20,7 @@
         public ICriteria CreateSelectCriteria(int productId, int customerId, byte roleId)
         {
             switch (productId)
-            {             
-                case ProductConstants.Keno:
-                    return new SelectProductStatusCriteria(productId, customerId);
+            {
                 case ProductConstants.NG2:
                     return new SelectNG2StatusCriteria(productId, customerId);
                 case ProductIdConstants.SabaVirtualSports:
@@ -54,22 +50,6 @@
                     return CreateUpdateMacauGamesStatusCriteria(param);
                 default:
                     return CreateUpdateDCSProductStatusCriteria(param);
-            }
-        }
-
-        public IEnumerable<UpdateKenoStatusCriteria> CreateUpdateKenoStatusCriteria(ProductStatusCommandParam param)
-        {
-            foreach (var item in param.ProductStatusParams)
-            {
-                yield return new UpdateKenoStatusCriteria(
-                    param.CustId,
-                    param.SubAccId,
-                    param.ActorId,
-                    param.IP,
-                    param.LangKey,
-                    item.BetType,
-                    item.IsDisabled,
-                    param.UplineId);
             }
         }
 

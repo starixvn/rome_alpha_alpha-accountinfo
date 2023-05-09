@@ -115,13 +115,9 @@
             user.LevelId.Returns(UplineLevelTest.Value);
             var message = new ProductStatusCommand(user)
             {
-                ProductId = ProductConstants.Keno,
+                ProductId = 1,
                 CustId = CustIdTest,
-                CustRoleId = CustRoleTest.Value,
-                BetTypeStatus = new[]
-                {
-                    new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
-                }
+                CustRoleId = CustRoleTest.Value
             };
             var expectedResult = new[] { Result.CreateSuccessResult() };
 
@@ -144,13 +140,9 @@
             user.LevelId.Returns(UplineLevelTest.Value);
             var message = new ProductStatusCommand(user)
             {
-                ProductId = ProductConstants.Keno,
+                ProductId = 1,
                 CustId = CustIdTest,
-                CustRoleId = CustRoleTest.Value,
-                BetTypeStatus = new[]
-                {
-                    new BetTypeStatus { SportType = 207, BetType = 1004, IsDisabled = true }
-                }
+                CustRoleId = CustRoleTest.Value
             };
             var expectedResult = new[] { Result.CreateForbiddenResult() };
 

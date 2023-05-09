@@ -38,8 +38,8 @@
     <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Products.Core, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Products.Core.1.0.1.3\lib\net461\Alpha.Products.Core.dll</HintPath>
+    <Reference Include="Alpha.Products.Core, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Products.Core.1.0.1.5\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.Utilities.IP, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Utilities.IP.1.0.3.2\lib\net461\Alpha.Utilities.IP.dll</HintPath>
@@ -204,7 +204,6 @@
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectNG2ProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateDCSProductStatusCriteriaTests.cs" />
-    <Compile Include="Features\ProductStatusPopup\SpParams\UpdateKenoStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateNG2StatusCriteriaTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCustomerInformationCriteriaTests.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountDataAccessTest.cs" />

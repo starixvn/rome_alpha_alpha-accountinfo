@@ -34,7 +34,6 @@
     public class ProductStatusServiceImpl : ProductStatusService
     {
         private const int DefaultErrorCode = 101;
-        private const int UMKenoErrorCode = 90014;
         private const int DoNothingErrorCode = 90017;
         private const string UMDatetimeFormat = "dd/MM/yyyy HH:mm";
         private const int ParentChildViolated = 92;
@@ -94,8 +93,7 @@
                 return new[] { Result.CreateForbiddenResult() };
             }
 
-            return commandParam.ProductId == ProductConstants.Keno ? new[] { await UpdateKenoStatusAsync(commandParam).ConfigureAwait(false) } :
-                await UpdateStatusAsync(commandParam).ConfigureAwait(false);
+            return await UpdateStatusAsync(commandParam).ConfigureAwait(false);
         }
 
         private async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -145,7 +143,9 @@
                 SportTypeConstants.Jackpot,
                 SportTypeConstants.RNGSlot,
                 SportTypeConstants.VirtualGames,
-                SportTypeConstants.FGG
+                SportTypeConstants.FGG,
+                SportTypeConstants.NumberGame,
+                SportTypeConstants.RNGKeno
             };
 
             if (sportShowName.Contains(sportType))
@@ -159,36 +159,6 @@
             }
 
             return cacheRefService.GetProductName(productId);
-        }
-
-        private async Task<Result> UpdateKenoStatusAsync(ProductStatusCommandParam param)
-        {
-            IList<string> errorMessages = new List<string>();
-            var criteria = criteriaFactory.CreateUpdateKenoStatusCriteria(param);
-
-            foreach (var item in criteria)
-            {
-                await repository.ExecuteAsync(item).ConfigureAwait(false);
-
-                if (!item.Success)
-                {
-                    if (item.ErrCode != UMKenoErrorCode)
-                    {
-                        errorMessages.Add($"{item.ErrMsg}: {cacheRefService.GetBetTypeName(item.BetType)}");
-                    }
-                    else if (errorMessages.Count == 0)
-                    {
-                        var errorMessage = item.ErrMsg.Contains("{0}")
-                            ? string.Format(item.ErrMsg, cacheRefService.GetProductName(ProductConstants.Keno, param.Language))
-                            : item.ErrMsg;
-                        errorMessages.Add(errorMessage);
-                    }
-                }
-            }
-
-            return errorMessages.Count == 0
-                ? Result.CreateSuccessResult(GetResource("StatusUpdatedSuccessfully", param.Language))
-                : Result.CreateErrorResult(DefaultErrorCode, string.Join("<br>", errorMessages));
         }
 
         private async Task<IEnumerable<Result>> UpdateStatusAsync(ProductStatusCommandParam param)

@@ -64,11 +64,7 @@
 
         public bool GetSyncedProduct(int productId) => userSession.GetSyncedProduct(productId);
 
-        public bool IsHideKeno => userSession.IsHideKeno;
-
         public bool IsDisabledESports => userSession.IsDisabledESports;
-
-        public bool IsNumberGameDisabled => userSession.IsNumberGameDisabled;
 
         public string Site => userSession.Site;
 

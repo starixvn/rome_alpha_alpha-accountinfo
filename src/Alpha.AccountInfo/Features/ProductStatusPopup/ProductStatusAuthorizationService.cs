@@ -28,18 +28,7 @@
             this.canViewProduct = canViewProduct;
         }
 
-        public bool CanView(ProductStatusAuthorizationParam param)
-        {
-            var customerInformation = GetCustomerInformation(param.CustId);
-            var canView = IsMasterAgentMemberOfViewerUser(customerInformation, param.UplineId, param.UplineLevel);
-
-            if (canView && param.ProductId != ProductConstants.Keno)
-            {
-                canView = IsDirectDownlineOfViewerUser(customerInformation, param.UplineLevel);
-            }
-
-            return canView && canViewProduct(param.ProductId);
-        }
+        public bool CanView(ProductStatusAuthorizationParam param) => CanUpdate(param);
 
         public bool CanUpdate(ProductStatusAuthorizationParam param)
         {
