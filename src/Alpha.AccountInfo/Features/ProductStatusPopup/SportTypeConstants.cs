@@ -23,5 +23,6 @@
         public const int FGG = 176;
         public const int NumberGame = 161;
         public const int RNGKeno = 202;
+        public const int YeeBet = 159;
     }
 }

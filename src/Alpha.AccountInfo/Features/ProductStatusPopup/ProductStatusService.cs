@@ -145,7 +145,8 @@
                 SportTypeConstants.VirtualGames,
                 SportTypeConstants.FGG,
                 SportTypeConstants.NumberGame,
-                SportTypeConstants.RNGKeno
+                SportTypeConstants.RNGKeno,
+                SportTypeConstants.YeeBet
             };
 
             if (sportShowName.Contains(sportType))
