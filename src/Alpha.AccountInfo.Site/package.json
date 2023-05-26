@@ -81,6 +81,7 @@
       "UnsuspendMultipleComponent": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-components.jsx",
       "UnsuspendMultipleContainer": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple-container.jsx",
       "UnsuspendMultiple": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-multiple/unsuspend-multiple.jsx",
+      "SuspendMultipleConfirm": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/suspend-multiple-confirm/suspend-multiple-confirm.jsx",
       "UnsuspendAPI": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-api.jsx",
       "UnsuspendHelper": "<rootDir>/Features/UnsuspendDownlines/Scripts/app/unsuspend-helper.jsx",
       "OpenViewList": "<rootDir>/Features/OpenDownlines/Scripts/app/open-view-list.jsx",

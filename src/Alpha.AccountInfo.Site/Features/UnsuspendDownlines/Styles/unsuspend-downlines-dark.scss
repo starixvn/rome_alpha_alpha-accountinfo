@@ -147,3 +147,23 @@
 .table-pagination .table-pagination-block .pagination-page-list {
     border-color: $component-border-color;
 }
+
+.review-content {
+    padding-bottom: 60px;
+}
+
+.more-content {
+    display: inline;
+}
+
+.suspend-confirm-container {
+    .list-button {
+        position: fixed;
+        right: 20px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #171717;
+        padding: 10px 10px 0px 0px;
+    }
+}

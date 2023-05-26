@@ -1,0 +1,176 @@
+﻿import React from 'react';
+import ReactDOM from 'react-dom';
+import { cloneDeep, forEach } from 'lodash';
+import { decodeResources } from '../../../../SearchAccount/Scripts/app/helpers/accountinfo-helper';
+import { unsuspendAPI } from '../unsuspend-api';
+
+class SuspendMultipleConfirmContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        const { viewModel, resources } = this.props;
+
+        this.state = {
+            resources: resources,
+            viewModel: viewModel,
+            hideMore: true,
+            hideMessages: true,
+            message: ''
+        };
+
+        this.showMore = this.showMore.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit() {
+        $.blockUI();
+        const self = this;
+        const { viewModel } = this.props;
+
+        unsuspendAPI.updateSuspend('UnsuspendDownlines/UnsuspendMultiple', { UnsuspendList: viewModel.UnsuspendList, RoleId: viewModel.RoleId })
+            .then(data => {
+                let isSuccess = true;
+                const timeoutDefault = 3000;
+
+                const message = <div className='msg-container'>
+                    {
+                        data.Results.map((result, index) => {
+                            if (!result.IsSuccess && isSuccess) {
+                                isSuccess = false;
+                            }
+
+                            return <div key={index} className={result.IsSuccess ? 'msg msg-success' : 'msg msg-error'}>
+                                {result.Message}
+                            </div>;
+                        })}
+                </div>;
+                self.setState({
+                    hideMessages: false,
+                    message: message
+                });
+
+                if (isSuccess) {
+                    if (top.needReloadMainFrameAfterUpdating) {
+                        top.successfulUpdatingCallbackAndReloadMainFrame(true);
+                    }
+                    else {
+                        window.top.main.DelayReloadPage();
+                        setTimeout(() => {
+                            window.top.ageWnd.close();
+                        }, timeoutDefault);
+                    }
+                }
+                $.unblockUI();
+            });
+    }
+
+    handleCancel() {
+        window.top["popupManager"].close();
+    }
+
+
+    showMore() {
+        this.setState(prevState => ({
+            hideMore: false
+        }));
+    }
+
+    handleReset() {
+        this.setState(prevState => ({
+            viewModel: prevState.originalViewModel
+        }));
+    }
+
+    toggleSuspendAll(suspendAll) {
+        const viewModelCopy = cloneDeep(this.state.viewModel);
+
+        viewModelCopy.forEach(item => { item.Suspended = suspendAll; });
+
+        this.setState({ viewModel: viewModelCopy });
+    }
+
+    handleChange(index, value) {
+        const { viewModel } = this.state;
+        const viewModelCopy = cloneDeep(viewModel);
+
+        viewModelCopy[index].Suspended = value;
+
+        this.setState({ viewModel: viewModelCopy });
+    }
+
+    redirectViewListDetail(searchAccountId, searchAccountName, downlineRoleId, isAffected) {
+        this.setState({
+            searchAccountId: searchAccountId,
+            searchAccountName: searchAccountName,
+            showViewList: true,
+            isAffected: isAffected,
+            downlineRoleId: downlineRoleId
+        });
+    }
+
+    redirectMainPage() {
+        this.setState({ showViewList: false });
+    }
+
+    render() {
+        const { viewModel, resources, hideMore, hideMessages, message } = this.state;
+
+        return (
+            <div className="content-page">
+                <div id="message-container" className="message-container">
+                    {hideMessages ? <div></div> : message}
+                </div>
+                <div className="review-content">
+                    {viewModel.DisplayShowAllAccountOption ?
+                        <div>
+                            {viewModel.ConfirmMessage}
+                            <span style={hideMore ? { display: "inline" } : { display: "none" }} className="more-ellipses">... </span>
+                            <div className="more-content">
+                                <span style={hideMore ? { display: "none" } : { display: "inline" }}>
+                                    , {viewModel.MoreDownlineUsernames.join(", ")}
+                                </span>
+                                <a href="#" className="more-link" style={hideMore ? { display: "inline" } : { display: "none" }} onClick={this.showMore} >
+                                    {viewModel.ShowMoreText}
+                                </a>
+                            </div>
+                        </div> :
+                        <div>{viewModel.ConfirmMessage}</div>}
+                </div>
+
+                <div className="list-button text-right">
+                    {
+                        [{
+                            text: resources.Cancel,
+                            class: `btn-cancel`,
+                            onclick: this.handleCancel
+                        },
+                        {
+                            text: resources.Submit,
+                            class: `btn-submit`,
+                            onclick: this.handleSubmit
+                        }].map((button, index) =>
+                            <button className={button.class} key={index} onClick={button.onclick}>
+                                {button.text}
+                            </button>
+                        )
+                    }
+                </div>
+
+            </div>
+        );
+    }
+}
+
+export default SuspendMultipleConfirmContainer;
+
+export const renderSuspendMultipeConfirm = (viewModel, resources) => {
+    ReactDOM.render(
+        <SuspendMultipleConfirmContainer {...{
+            viewModel: viewModel.Data,
+            resources: decodeResources(resources)
+        }} />,
+        document.getElementById('container')
+    );
+};
+
+window.renderSuspendMultipeConfirm = renderSuspendMultipeConfirm;

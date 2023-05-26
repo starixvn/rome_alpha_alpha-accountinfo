@@ -34,6 +34,11 @@ module.exports = {
             "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
             "./Features/Shared/Scripts/react-paginations/table-pagination.scss"
         ],
+        "./UnsuspendDownlines/Bundles/suspend-multiple-confirm": [
+            "babel-polyfill",
+            "./Features/UnsuspendDownlines/Scripts/app/suspend-multiple-confirm/suspend-multiple-confirm.jsx",
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines.scss",
+        ],
         "./ProfilePicture/Bundles/index": [
             "./node_modules/react-image-crop/dist/ReactCrop.css",
             "./Features/ProfilePicture/Styles/index.scss",
@@ -96,7 +101,10 @@ module.exports = {
         ],
         "./SearchAccount/Bundles/member-balance-info-dark": [
             "./Features/SearchAccount/Styles/member-balance-info-dark.scss"
-        ]
+        ],
+        "./UnsuspendDownlines/Bundles/suspend-multiple-confirm-dark": [
+            "./Features/UnsuspendDownlines/Styles/unsuspend-downlines-dark.scss",
+        ],
     },
 
     resolve: {
