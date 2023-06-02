@@ -68,11 +68,12 @@ class SuspendMultipleConfirmContainer extends React.Component {
         window.top["popupManager"].close();
     }
 
-
     showMore() {
-        this.setState(prevState => ({
-            hideMore: false
-        }));
+        this.state.hideMore ? (
+            this.setState({ hideMore: false })
+        ) : (
+            this.setState({ hideMore: true })
+        )
     }
 
     handleReset() {
@@ -123,18 +124,33 @@ class SuspendMultipleConfirmContainer extends React.Component {
                 <div className="review-content">
                     {viewModel.DisplayShowAllAccountOption ?
                         <div>
-                            {viewModel.ConfirmMessage}
+                            <div className="shorten-content">
+                                <span className="total">
+                                    {viewModel.TotalSelectedText}&nbsp;
+                                </span>
+                                {viewModel.ShortenUsernames.join(", ")}
+                            </div>
+
                             <span style={hideMore ? { display: "inline" } : { display: "none" }} className="more-ellipses">... </span>
                             <div className="more-content">
                                 <span style={hideMore ? { display: "none" } : { display: "inline" }}>
-                                    , {viewModel.MoreDownlineUsernames.join(", ")}
+                                    , {viewModel.MoreDownlineUsernames.join(", ")} &nbsp;
                                 </span>
-                                <a href="#" className="more-link" style={hideMore ? { display: "inline" } : { display: "none" }} onClick={this.showMore} >
-                                    {viewModel.ShowMoreText}
-                                </a>
                             </div>
+                            <a className="toggle" href='javascript:void(0)' onClick={this.showMore}>
+                                {this.state.hideMore ? 
+                                    (<span>{resources.ShowMore}</span>) :
+                                    (<span>{resources.ShowLess}</span>)
+                                }
+                            </a>
                         </div> :
-                        <div>{viewModel.ConfirmMessage}</div>}
+                        <div className="shorten-content">
+                            <span className="total">
+                                {viewModel.TotalSelectedText}
+                            </span>
+                            {viewModel.ShortenUsernames.join(", ")}
+                        </div>
+                    }
                 </div>
 
                 <div className="list-button text-right">

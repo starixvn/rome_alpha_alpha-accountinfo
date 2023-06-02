@@ -77,8 +77,10 @@
 // Update multiple Unsuspend Status
 .unsuspend-container {
     padding-top: 16px;
+
     .tblRpt a {
         color: $link-color;
+
         &:hover {
             color: $link-hover-color;
             text-decoration: none;
@@ -127,7 +129,7 @@
     }
 }
 
-.icon-information-outline{
+.icon-information-outline {
     float: right;
 }
 
@@ -140,6 +142,7 @@
         color: $component-color;
     }
 }
+
 .table-pagination .table-pagination-block .pagination-records {
     color: inherit !important;
 }
@@ -152,7 +155,16 @@
     padding-bottom: 60px;
 }
 
+.total {
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .more-content {
+    display: inline;
+}
+
+.shorten-content {
     display: inline;
 }
 
@@ -165,5 +177,35 @@
         width: 100%;
         background-color: #171717;
         padding: 10px 10px 0px 0px;
+    }
+}
+
+@media screen and (max-device-width: 767px) {
+    .list-button {
+        padding: 20px 16px;
+
+        .btn-cancel {
+            height: 45px;
+            margin-bottom: 16px;
+        }
+
+        .btn-submit {
+            height: 45px;
+            width: auto;
+        }
+    }
+
+    .flex-settings {
+        padding-top: 8px;
+        display: unset;
+        height: auto;
+    }
+
+    .total {
+        font-size: 21px;
+    }
+
+    body {
+        font-size: 18px;
     }
 }

@@ -435,4 +435,10 @@
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
   </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Show More</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>Show Less</value>
+  </data>
 </root>

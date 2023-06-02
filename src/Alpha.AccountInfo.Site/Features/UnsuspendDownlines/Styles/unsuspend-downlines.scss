@@ -124,10 +124,19 @@
 }
 
 .review-content {
-    padding-bottom: 60px;
+    padding: 10px 0 60px;
 }
 
-.more-content{
+.total {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.more-content {
+    display: inline;
+}
+
+.shorten-content {
     display: inline;
 }
 
@@ -140,5 +149,35 @@
         width: 100%;
         background-color: #fff;
         padding: 10px 10px 0px 0px;
+    }
+}
+
+@media screen and (max-device-width: 767px) {
+    .list-button {
+        padding: 20px 16px;
+
+        .btn-cancel {
+            height: 45px;
+            margin-bottom: 16px;
+        }
+
+        .btn-submit {
+            height: 45px;
+            width: auto;
+        }
+    }
+
+    .flex-settings {
+        padding-top: 8px;
+        display: unset;
+        height: auto;
+    }
+
+    .total {
+        font-size: 21px;
+    }
+
+    body {
+        font-size: 18px;
     }
 }

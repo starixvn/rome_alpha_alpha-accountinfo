@@ -8,7 +8,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Resources;
-
     public class SuspendMultipleConfirmViewModel
     {
 
@@ -16,10 +15,10 @@
         {
             Data = new SuspendMultipleConfirmDataViewModel(message);
             var ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
-            Resources = ConvertResourcesJson(message.Language, UnsuspendDownlinesResources.ResourceManager);
+            Resources = ConvertResourcesJson(message.Language, AccountInfo.Features.Shared.AppResources.Resources.ResourceManager);
         }
 
-        
+
         public string Resources { get; private set; }
         public SuspendMultipleConfirmDataViewModel Data { get; private set; }
 
@@ -34,10 +33,10 @@
             Ids = message.Ids;
             RoleId = message.RoleId;
             UserNames = message.UserNames;
-            selectedDownlineUsernames = message.UserNames.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            topDownlineUsernames = selectedDownlineUsernames.Take(numberOfDisplayDownlines);
-            DisplayShowAllAccountOption = selectedDownlineUsernames.Count() > numberOfDisplayDownlines;
-            MoreDownlineUsernames = selectedDownlineUsernames.Skip(numberOfDisplayDownlines);
+            selectedUsernames = message.UserNames.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            ShortenUsernames = selectedUsernames.Take(numberOfDisplayDownlines);
+            DisplayShowAllAccountOption = selectedUsernames.Count() > numberOfDisplayDownlines;
+            MoreDownlineUsernames = selectedUsernames.Skip(numberOfDisplayDownlines);
             UnsuspendList = getUnsuspends();
         }
 
@@ -46,7 +45,7 @@
             var idArray = Ids.Split(',');
             var userArray = UserNames.Split(',');
             var result = new List<UnsuspendCustomerInfo>();
-            for(var i=0; i<userArray.Length;i++)
+            for (var i = 0; i < userArray.Length; i++)
             {
                 result.Add(new UnsuspendCustomerInfo()
                 {
@@ -58,9 +57,9 @@
             return result;
         }
 
-        private IEnumerable<string> selectedDownlineUsernames { get; }
-        
-        private IEnumerable<string> topDownlineUsernames { get; }
+        private IEnumerable<string> selectedUsernames { get; }
+
+        public IEnumerable<string> ShortenUsernames { get; }
 
         public IEnumerable<UnsuspendCustomerInfo> UnsuspendList { get; set; }
 
@@ -69,15 +68,15 @@
         public IEnumerable<string> MoreDownlineUsernames { get; }
 
         public string Ids { get; }
-        
+
         public string UserNames { get; }
 
         public byte RoleId { get; }
 
         public UserLevel Role => Enumeration.FromValue<UserLevel>(RoleId);
 
-        public string ConfirmMessage => $"{UnsuspendDownlinesResources.SelectedAccounts} {string.Join(", ", topDownlineUsernames)}";
+        public string TotalSelectedText => $"{selectedUsernames.Count()} {UnsuspendDownlinesResources.SelectedAccounts}";
 
-        public string ShowMoreText => string.Format(UnsuspendDownlinesResources.ShowAllAccounts, selectedDownlineUsernames.Count());
+        public string ShowMoreText => string.Format(UnsuspendDownlinesResources.ShowAllAccounts, selectedUsernames.Count());
     }
 }
