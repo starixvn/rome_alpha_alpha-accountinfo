@@ -12,7 +12,7 @@
         [InlineData(3, "Age_CustomerUpdCredit_SAg")]
         public void GetSettingKey_Always_ReturnsValidSettingKey(byte searchAccountRoleId, string expectedSettingKey)
         {
-            var criteria = new UpdateGivenCreditCommand(
+            var criteria = new UpdateSMAGivenCreditCommand(
                 searchAccountId: 1,
                 searchAccountRoleId: searchAccountRoleId,
                 creditAmount: 999,
@@ -31,7 +31,7 @@
         [InlineData(1, true)]
         public void IsValid_CustId_Should_ReturnsValidSettingKey(int custid, bool expectedIsValid)
         {
-            var criteria = new UpdateGivenCreditCommand(
+            var criteria = new UpdateSMAGivenCreditCommand(
                searchAccountId: custid,
                searchAccountRoleId: 2,
                creditAmount: 999,
@@ -48,7 +48,7 @@
         [InlineData(-1, false)]
         public void IsValid_ActorId_Should_ReturnsCorrectValue(int actorId, bool expectedValue)
         {
-            var criteria = new UpdateGivenCreditCommand(
+            var criteria = new UpdateSMAGivenCreditCommand(
                   searchAccountId: 1,
                   searchAccountRoleId: 2,
                   creditAmount: 999,
@@ -65,7 +65,7 @@
         [InlineData(-1, false)]
         public void IsValid_CreditAmount_Should_ReturnsCorrectValue(int creditAmount, bool expectedValue)
         {
-            var criteria = new UpdateGivenCreditCommand(
+            var criteria = new UpdateSMAGivenCreditCommand(
                   searchAccountId: 1,
                   searchAccountRoleId: 2,
                   creditAmount: creditAmount,
@@ -80,7 +80,7 @@
         [Fact]
         public void Returns_CorrectProperties()
         {
-            var criteria = new UpdateGivenCreditCommand(
+            var criteria = new UpdateSMAGivenCreditCommand(
                   searchAccountId: 1,
                   searchAccountRoleId: 2,
                   creditAmount: 100,

@@ -137,7 +137,25 @@
 
         public async Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param)
         {
-            var command = new UpdateGivenCreditCommand(
+            UpdateSMAGivenCreditCommand command;
+            if (param.RoleId == UserLevel.Member.Value)
+            {
+                var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId);
+                await dynamicRepository.ExecuteAsync(totalAmtCommand);
+                command = new UpdateMemberGivenCreditCommand(
+                    param.SearchAccountId,
+                    param.RoleId,
+                    param.CreditAmount,
+                    param.ActorId,
+                    param.SubAccountId,
+                    param.Language,
+                    param.IP,
+                    totalAmtCommand.TotalAmt);
+                await dynamicRepository.ExecuteAsync(command);
+            }
+            else
+            {
+                command = new UpdateSMAGivenCreditCommand(
                     param.SearchAccountId,
                     param.RoleId,
                     param.CreditAmount,
@@ -146,7 +164,8 @@
                     param.Language,
                     param.IP);
 
-            await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
+                await dynamicRepository.ExecuteAsync(command);
+            }
 
             if (command.IsInvalid() || command.CreditProblem)
             {
@@ -205,7 +224,7 @@
 
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
         {
-            var result = await accountInfoDataAccess.UpdateCustomerStatus(command).ConfigureAwait(false);          
+            var result = await accountInfoDataAccess.UpdateCustomerStatus(command).ConfigureAwait(false);
             return result.IsSuccess
                 ? Result.CreateSuccessResult()
                 : result;

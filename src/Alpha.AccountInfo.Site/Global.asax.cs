@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Site
 {
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
+    using Alpha.AccountInfo.Site.Utilities;
     using Alpha.Auth.Filters;
     using Alpha.Logging;
     using App_Start;
@@ -47,7 +48,7 @@
                 .StartNewSession()
                 .Use(new OldConnectionStringProvider())
                 .UseDefaultDbSettingProvider(resourcePath: AppSettings.StoredProcedurePath, enableWatching: true)
-                .Use((settingKey, commandTimeout) => new WrappingExceptionObjectDb(settingKey, commandTimeout))
+                .UseShardDbSettingProvider()
                 .Run();
 
             ShareSession.Init();

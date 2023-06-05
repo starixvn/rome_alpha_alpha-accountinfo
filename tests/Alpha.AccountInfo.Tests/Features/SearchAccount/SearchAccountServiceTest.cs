@@ -20,6 +20,7 @@
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Xunit;
+    using Alpha.Products.Core;
 
     [Trait("Category", "AccountInfo")]
     public class SearchAccountServiceTest
@@ -226,12 +227,34 @@
             var param = fixture.Create<UpdateGivenCreditParam>();
 
             dynamicRepository
-                .ExecuteAsync(Arg.Any<UpdateGivenCreditCommand>())
+                .ExecuteAsync(Arg.Any<UpdateSMAGivenCreditCommand>())
                 .Returns(Task.FromResult(result));
 
             var actualResutl = accountInfoService.UpdateGivenCredit(param);
 
             Assert.True(compareLogic.Compare(actualResutl.Result, result).AreEqual);
+        }
+
+        [Fact]
+        public void UpdateGivenCredit_SearchAccountIsMember_GetTotalAmount()
+        {
+            var memberRoleId = UserLevel.Member.Value;
+            var param = new UpdateGivenCreditParam(1, memberRoleId, 100, false, 1, 1, "EN", "192.168.0.1");
+            
+            accountInfoService.UpdateGivenCredit(param).GetAwaiter().GetResult();
+
+            dynamicRepository.Received().ExecuteAsync(Arg.Any<GetTotalAmtCommand>());
+        }
+
+        [Fact]
+        public void UpdateGivenCredit_SearchAccountIsNotMember_NotGetTotalAmount()
+        {
+            var superRoleId = UserLevel.Super.Value;
+            var param = new UpdateGivenCreditParam(1, superRoleId, 100, false, 1, 1, "EN", "192.168.0.1");
+
+            accountInfoService.UpdateGivenCredit(param).GetAwaiter().GetResult();
+
+            dynamicRepository.DidNotReceive().ExecuteAsync(Arg.Any<GetTotalAmtCommand>());
         }
 
         [Fact]

@@ -1,12 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands
 {
-    using System.Collections.Generic;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
 
-    public class UpdateGivenCreditCommand : NonQueryCommand
+    public class UpdateSMAGivenCreditCommand : NonQueryCommand
     {
         private static readonly IDictionary<UserLevel, string> settingKeys =
             new Dictionary<UserLevel, string>
@@ -16,7 +16,7 @@
                 {UserLevel.Member, "Age_CustomerUpdCredit_Ag" }
             };
 
-        public UpdateGivenCreditCommand(
+        public UpdateSMAGivenCreditCommand(
             int searchAccountId,
             byte searchAccountRoleId,
             decimal creditAmount,
