@@ -258,9 +258,6 @@
   <data name="SelectedAccounts" xml:space="preserve">
     <value>所选账号：</value>
   </data>
-  <data name="ShowAllAccounts" xml:space="preserve">
-    <value>显示所有 {0} 账号？</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>

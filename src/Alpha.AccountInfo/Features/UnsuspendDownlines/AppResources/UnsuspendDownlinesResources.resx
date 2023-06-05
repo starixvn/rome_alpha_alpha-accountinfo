@@ -258,9 +258,6 @@
   <data name="SelectedAccounts" xml:space="preserve">
     <value>Selected account(s):</value>
   </data>
-  <data name="ShowAllAccounts" xml:space="preserve">
-    <value>Show all {0} accounts?</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>

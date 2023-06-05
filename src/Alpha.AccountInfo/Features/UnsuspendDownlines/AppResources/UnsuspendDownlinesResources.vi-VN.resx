@@ -261,7 +261,4 @@
   <data name="SelectedAccounts" xml:space="preserve">
     <value>Tài khoản đã chọn:</value>
   </data>
-  <data name="ShowAllAccounts" xml:space="preserve">
-    <value>Xem tất cả {0} tài khoản?</value>
-  </data>
 </root>

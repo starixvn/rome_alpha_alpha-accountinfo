@@ -258,9 +258,6 @@
   <data name="SelectedAccounts" xml:space="preserve">
     <value>เลือกบัญชี (s):</value>
   </data>
-  <data name="ShowAllAccounts" xml:space="preserve">
-    <value>แสดงบัญชี {0} ทั้งหมด?</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>ยกเลิก</value>
   </data>

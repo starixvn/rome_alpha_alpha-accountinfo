@@ -435,4 +435,10 @@
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>Cấp trên đã áp giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ tự động làm mới để cập nhật các cài đặt mới.</value>
   </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>Ẩn bớt</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Xem thêm</value>
+  </data>
 </root>

@@ -260,15 +260,6 @@ namespace Alpha.AccountInfo.Features.UnsuspendDownlines.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show all {0} accounts?.
-        /// </summary>
-        public static string ShowAllAccounts {
-            get {
-                return ResourceManager.GetString("ShowAllAccounts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {

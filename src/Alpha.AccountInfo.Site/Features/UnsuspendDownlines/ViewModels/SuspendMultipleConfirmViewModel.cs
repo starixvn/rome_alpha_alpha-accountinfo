@@ -77,6 +77,5 @@
 
         public string TotalSelectedText => $"{selectedUsernames.Count()} {UnsuspendDownlinesResources.SelectedAccounts}";
 
-        public string ShowMoreText => string.Format(UnsuspendDownlinesResources.ShowAllAccounts, selectedUsernames.Count());
     }
 }
