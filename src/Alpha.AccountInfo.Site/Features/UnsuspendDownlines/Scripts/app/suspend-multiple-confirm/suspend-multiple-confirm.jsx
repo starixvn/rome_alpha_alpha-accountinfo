@@ -76,43 +76,6 @@ class SuspendMultipleConfirmContainer extends React.Component {
         )
     }
 
-    handleReset() {
-        this.setState(prevState => ({
-            viewModel: prevState.originalViewModel
-        }));
-    }
-
-    toggleSuspendAll(suspendAll) {
-        const viewModelCopy = cloneDeep(this.state.viewModel);
-
-        viewModelCopy.forEach(item => { item.Suspended = suspendAll; });
-
-        this.setState({ viewModel: viewModelCopy });
-    }
-
-    handleChange(index, value) {
-        const { viewModel } = this.state;
-        const viewModelCopy = cloneDeep(viewModel);
-
-        viewModelCopy[index].Suspended = value;
-
-        this.setState({ viewModel: viewModelCopy });
-    }
-
-    redirectViewListDetail(searchAccountId, searchAccountName, downlineRoleId, isAffected) {
-        this.setState({
-            searchAccountId: searchAccountId,
-            searchAccountName: searchAccountName,
-            showViewList: true,
-            isAffected: isAffected,
-            downlineRoleId: downlineRoleId
-        });
-    }
-
-    redirectMainPage() {
-        this.setState({ showViewList: false });
-    }
-
     render() {
         const { viewModel, resources, hideMore, hideMessages, message } = this.state;
 

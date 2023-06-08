@@ -258,4 +258,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="SelectedAccounts" xml:space="preserve">
+    <value>Selected account(s):</value>
+  </data>
 </root>
