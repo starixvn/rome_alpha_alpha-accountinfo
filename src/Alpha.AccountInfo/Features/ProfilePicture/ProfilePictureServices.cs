@@ -49,32 +49,7 @@
 
             await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
 
-            if(command.ErrCode.Equals(0))
-            {
-                await UpdateActorProfilePictureStandbyServerAsync(param).ConfigureAwait(false);
-                return Result.CreateSuccessResult();
-            }
-
             return Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
-        }
-
-        internal async Task UpdateActorProfilePictureStandbyServerAsync(UpdateActorProfilePictureParam param)
-        {
-            try
-            {
-                var command = new UpdateActorProfilePictureStandbyServerCommand(
-                            param.ActorId,
-                            param.ImageId,
-                            param.Image,
-                            param.Mode,
-                            param.IP);
-
-                await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                exceptionHandlerWrapper.Handle(ex);
-            }
         }
     }
 }

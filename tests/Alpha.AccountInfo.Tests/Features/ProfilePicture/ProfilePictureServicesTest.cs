@@ -83,39 +83,5 @@
 
             Assert.True(compareLogic.Compare(actualResutl, result).AreEqual);
         }
-
-        [Fact]
-        public void UpdateActorProfilePictureStandbyServerAsync_Always_ReturnsCorrecResult()
-        {
-            var param = new UpdateActorProfilePictureParam(1, 109, null, 1, "192.168.1.1");
-
-            profilePictureServices
-                .UpdateActorProfilePictureStandbyServerAsync(param)
-                .GetAwaiter();
-
-            dynamicRepository.Received().ExecuteAsync(Arg.Is<UpdateActorProfilePictureStandbyServerCommand>(
-                command => command.ActorId == param.ActorId
-                        && command.Mode == param.Mode
-                        && command.Image == param.Image
-                        && command.ImageId == param.ImageId
-                        && command.IP == param.IP));
-        }
-
-        [Fact]
-        public void UpdateActorProfilePictureStandbyServerAsync_ThrowException_CallWriteLog()
-        {
-            dynamicRepository
-               .When(repo => repo.ExecuteAsync(Arg.Any<UpdateActorProfilePictureStandbyServerCommand>()))
-               .Do((callInfo) =>
-               {
-                   throw new Exception("DB eroor");
-               });
-
-            profilePictureServices.UpdateActorProfilePictureStandbyServerAsync(
-                new UpdateActorProfilePictureParam(1, 109, null, 1, "192.168.1.1"))
-                .GetAwaiter();
-
-            exceptionHandlerWrapper.Received().Handle(Arg.Any<Exception>());
-        }
     }
 }

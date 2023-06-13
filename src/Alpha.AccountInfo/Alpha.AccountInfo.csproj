@@ -207,7 +207,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfilePictureResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureStandbyServerCommand.cs" />
     <Compile Include="Features\ProfilePicture\Params\SPs\Commands\UpdateActorProfilePictureCommandBase.cs" />
     <Compile Include="Features\ProfilePicture\ProfilePictureServices.cs" />
     <Compile Include="Features\ProfilePicture\Models\ProfilePictureModel.cs" />

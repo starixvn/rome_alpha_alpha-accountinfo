@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="" SiteName="Account Info">
   <Function Name="Profile Picture">
-    <Setting Key="DBA_InsertProfilePictureLibrary" SpName="DBA_InsertProfilePictureLibrary" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustomerSelProfilePicture" SpName="Age_CustomerSelProfilePicture" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustomerProfilePictureLibrarySel" SpName="Age_CustomerProfilePictureLibrarySel" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustomerUpdProfilePicture" SpName="Age_CustomerUpdProfilePicture" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0" />
+    <Setting Key="DBA_InsertProfilePictureLibrary" SpName="DBA_InsertProfilePictureLibrary" DbName="DBCust.bodb_Credit.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelProfilePicture" SpName="Age_CustomerSelProfilePicture" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerProfilePictureLibrarySel" SpName="Age_CustomerProfilePictureLibrarySel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerUpdProfilePicture" SpName="Age_CustomerUpdProfilePicture" DbName="DBCust.bodb_Credit.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>
