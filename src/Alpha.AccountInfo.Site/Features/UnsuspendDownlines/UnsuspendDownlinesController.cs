@@ -11,6 +11,7 @@
     {
         private const string EditSinglePath = "~/Features/UnsuspendDownlines/Views/EditSingle.cshtml";
         private const string EditMultiplePath = "~/Features/UnsuspendDownlines/Views/EditMultiple.cshtml";
+        private const string EditMultipleConfirmPath = "~/Features/UnsuspendDownlines/Views/EditMultipleConfirm.cshtml";
         public UnsuspendDownlinesController(IMediator mediator)
             : base(mediator)
         {
@@ -32,5 +33,10 @@
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UnsuspendMultiple(UnsuspendMultipleCommand command)
           => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+
+        [HttpGet]
+        public async Task<ActionResult> MultipleSuspendConfirm(SuspendMultipleConfirmRequest  message)
+            => await ViewAsync(message, EditMultipleConfirmPath).ConfigureAwait(false);
+
     }
 }

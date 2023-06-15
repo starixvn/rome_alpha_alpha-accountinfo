@@ -506,6 +506,9 @@
     <Content Include="Features\Shared\Scripts\Array.from.js" />
     <Content Include="Features\Shared\Scripts\react-paginations\autosize-input.jsx" />
     <Content Include="Features\Shared\Scripts\react-paginations\react-pagination.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\suspend-multiple-confirm-dark.min.css" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\suspend-multiple-confirm.min.css" />
+    <Content Include="Features\UnsuspendDownlines\Bundles\suspend-multiple-confirm.min.js" />
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple-dark.min.css" />
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.css" />
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-multiple.min.js" />
@@ -514,6 +517,7 @@
     <Content Include="Features\UnsuspendDownlines\Bundles\unsuspend-single.min.js" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-helper.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-api.jsx" />
+    <Content Include="Features\UnsuspendDownlines\Scripts\app\suspend-multiple-confirm\suspend-multiple-confirm.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-view-list.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple\unsuspend-multiple-components.jsx" />
     <Content Include="Features\UnsuspendDownlines\Scripts\app\unsuspend-multiple\unsuspend-multiple-container.jsx" />
@@ -567,6 +571,7 @@
     <Content Include="Features\Shared\Styles\tippy.scss">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Features\UnsuspendDownlines\Views\EditMultipleConfirm.cshtml" />
     <None Include="jest.config.json" />
     <Content Include="typings\globals\jasmine\typings.json" />
     <Content Include="typings\globals\jasmine-jquery\typings.json" />
@@ -687,8 +692,10 @@
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendMultipleRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendSingleRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\Requests\UnsuspendViewListRequest.cs" />
+    <Compile Include="Features\UnsuspendDownlines\Requests\SuspendMultipleConfirmRequest.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesController.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesHandler.cs" />
+    <Compile Include="Features\UnsuspendDownlines\ViewModels\SuspendMultipleConfirmViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendMultipleViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendMultipleResultViewModel.cs" />
     <Compile Include="Features\UnsuspendDownlines\ViewModels\UnsuspendListViewModel.cs" />

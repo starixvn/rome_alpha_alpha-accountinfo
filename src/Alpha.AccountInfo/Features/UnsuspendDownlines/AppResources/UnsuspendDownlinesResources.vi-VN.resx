@@ -255,4 +255,10 @@
   <data name="UnsuspendedMemberSuccessfully" xml:space="preserve">
     <value>{0} đã được huỷ đình chỉ thành công.</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="SelectedAccounts" xml:space="preserve">
+    <value>Tài khoản đã chọn:</value>
+  </data>
 </root>

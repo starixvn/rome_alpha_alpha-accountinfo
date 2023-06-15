@@ -435,4 +435,10 @@
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>อัพไลน์ของคุณได้ปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ของคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
   </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>แสดงน้อยลง</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>แสดงมากขึ้น</value>
+  </data>
 </root>

@@ -17,7 +17,8 @@
         IAsyncRequestHandler<UnsuspendSingleRequest, UnsuspendSingleViewModel>,
         IAsyncRequestHandler<UnsuspendMultipleRequest, UnsuspendMultipleViewModel>,
         IAsyncRequestHandler<UnsuspendSingleCommand, Result>,
-        IAsyncRequestHandler<UnsuspendMultipleCommand, UnsuspendMultipleResultViewModel>
+        IAsyncRequestHandler<UnsuspendMultipleCommand, UnsuspendMultipleResultViewModel>,
+        IAsyncRequestHandler<SuspendMultipleConfirmRequest , SuspendMultipleConfirmViewModel>
     {
         private readonly UnsuspendDownlinesService unsuspendDownlinesService;
         private readonly SearchAccountService accountInfoService;
@@ -92,6 +93,9 @@
                     new UnsuspendResult("", true, Result.CreateForbiddenResult())
                 });
         }
+
+        public Task<SuspendMultipleConfirmViewModel> Handle(SuspendMultipleConfirmRequest  message)
+            => Task.FromResult(new SuspendMultipleConfirmViewModel(message));
 
         internal async Task<UnsuspendResult> UpdateSuspendAsync(UnsuspendMultipleCommand message, UnsuspendCustomerInfo customer)
         => new UnsuspendResult(

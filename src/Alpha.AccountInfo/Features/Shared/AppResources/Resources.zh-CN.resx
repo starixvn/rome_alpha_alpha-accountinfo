@@ -435,4 +435,10 @@
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>您的上线不允许您使用全天余额转账。该页面将自动刷新。</value>
   </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>显示更多</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>显示更少</value>
+  </data>
 </root>

@@ -12,7 +12,7 @@
         {
             Username = username;
             Suspended = suspended;
-            Result = Result.CreateErrorResult(result.Code, $"{username}: {result.Message}");
+            Result = Result.CreateErrorResult(result.Code, $"{(!string.IsNullOrEmpty(username) ? username + ": " : "")}{result.Message}");
         }
 
         public string Username { get; private set; }
