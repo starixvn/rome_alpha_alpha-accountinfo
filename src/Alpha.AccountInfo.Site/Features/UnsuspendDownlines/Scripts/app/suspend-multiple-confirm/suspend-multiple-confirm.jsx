@@ -31,10 +31,11 @@ class SuspendMultipleConfirmContainer extends React.Component {
             .then(data => {
                 let isSuccess = true;
                 const timeoutDefault = 3000;
+                const results = data.Results ? data.Results : [data];
 
                 const message = <div className='msg-container'>
                     {
-                        data.Results.map((result, index) => {
+                        results.map((result, index) => {
                             if (!result.IsSuccess && isSuccess) {
                                 isSuccess = false;
                             }
