@@ -57,7 +57,7 @@ export default class OpenMultiple extends React.Component {
                 });
 
                 if (isSuccess) {
-                    if (top.needReloadMainFrameAfterUpdating) {
+                    if (top.customerListNew) {
                         top.successfulUpdatingCallbackAndReloadMainFrame(true);
                     }
                     else {

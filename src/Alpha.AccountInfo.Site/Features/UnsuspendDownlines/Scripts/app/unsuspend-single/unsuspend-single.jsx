@@ -35,7 +35,7 @@ export default class UnsuspendSingle extends React.Component {
                 });
 
                 if (data.IsSuccess) {
-                    if (top.needReloadMainFrameAfterUpdating) {
+                    if (top.customerListNew) {
                         top.successfulUpdatingCallbackAndReloadMainFrame(true);
                     }
 
