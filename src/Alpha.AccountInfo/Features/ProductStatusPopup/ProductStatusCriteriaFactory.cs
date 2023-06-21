@@ -21,8 +21,6 @@
         {
             switch (productId)
             {
-                case ProductConstants.NG2:
-                    return new SelectNG2StatusCriteria(productId, customerId);
                 case ProductIdConstants.SabaVirtualSports:
                     return new SelectDCSProductStatusFor4Criteria(productId, customerId);
 
@@ -38,9 +36,7 @@
         public NonQueryProductStatusCriteria CreateUpdateCriteria(ProductStatusCommandParam param)
         {
             switch (param.ProductId)
-            {              
-                case ProductConstants.NG2:
-                    return CreateUpdateNG2StatusCriteria(param);
+            {
                 case ProductIdConstants.SabaVirtualSports:
                     return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
 
@@ -52,14 +48,6 @@
                     return CreateUpdateDCSProductStatusCriteria(param);
             }
         }
-
-        private static NonQueryProductStatusCriteria CreateUpdateNG2StatusCriteria(ProductStatusCommandParam param)
-            => new UpdateNG2StatusCriteria(
-                param.CustId,
-                param.SubAccId,
-                param.ActorId,
-                param.IP,
-                param.ProductStatusParams);
 
         private static NonQueryProductStatusCriteria CreateUpdateDCSProductStatusCriteria(ProductStatusCommandParam param)
             => new UpdateDCSProductStatusCriteria(

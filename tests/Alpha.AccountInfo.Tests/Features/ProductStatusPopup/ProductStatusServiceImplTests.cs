@@ -50,44 +50,6 @@
         }
 
         [Fact]
-        public async Task GetProductStatusAsync_NG2_ReturnsDataFromDynamicRepository()
-        {
-            // Arrange
-            var productId = ProductConstants.NG2;
-            var productName = "NG2";
-            var expectedResults = new List<ProductStatusModel>
-            {
-                new ProductStatusModel(productId, 212, 4001, false, false)
-            };
-            var criteria = new SelectNG2StatusCriteria(productId, CustIdTest);
-            authorizationService
-                .CanView(Arg.Any<ProductStatusAuthorizationParam>())
-                .Returns(true);
-            criteriaFactory
-                .CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value)
-                .Returns(criteria);
-            dynamicRepository
-                .FetchAsync<ProductStatusModel>(criteria)
-                .Returns(expectedResults);
-            cacheRefService
-                .GetProductName(productId)
-                .Returns(productName);
-
-            // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
-            var actualResult = actualData.First();
-
-            // Assert
-            Assert.True(
-                expectedResults[0].ProductId == actualResult.ProductId &&
-                expectedResults[0].SportType == actualResult.SportType &&
-                expectedResults[0].BetType == actualResult.BetType &&
-                expectedResults[0].IsDisabled == actualResult.IsDisabled &&
-                expectedResults[0].IsDisabledUpline == actualResult.IsDisabledUpline &&
-                expectedResults[0].Name == actualResult.Name);
-        }
-
-        [Fact]
         public async Task GetProductStatusAsync_DCSSingleBetType_ReturnsDataFromDynamicRepository()
         {
             // Arrange

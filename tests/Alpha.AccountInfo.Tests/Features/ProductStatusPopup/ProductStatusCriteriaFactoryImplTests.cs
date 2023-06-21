@@ -29,19 +29,6 @@
             productStatusCriteriaFactoryImpl = new ProductStatusCriteriaFactoryImpl();
         }
 
-        [Fact]
-        public void CreateSelectCriteria_ValidProductId_ReturnsSelectNG2ProductStatusCriteria()
-        {
-            // Arrange
-            var expectedCriteria = new SelectNG2StatusCriteria(ProductConstants.NG2, CustIdTest);
-
-            // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(ProductConstants.NG2, CustIdTest, CustRoleTest.Value);
-
-            // Assert
-            Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
-        }
-
         [Theory]
         [InlineData(21)]
         [InlineData(22)]
@@ -72,34 +59,6 @@
 
             // Act
             var actualCriteria = productStatusCriteriaFactoryImpl.CreateSelectCriteria(productId, CustIdTest, CustRoleTest.Value);
-
-            // Assert
-            Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
-        }
-      
-
-        [Fact]
-        public void CreateUpdateCriteria_NG2_ReturnsUpdateNG2StatusCriteria()
-        {
-            // Arrange
-            var productStatus = new[] { new BetTypeStatusParam(213, 2501, false) };
-            var param = new ProductStatusCommandParam(
-                ProductConstants.NG2,
-                CustIdTest,
-                CustRoleTest,
-                UplineIdTest,
-                UplineLevelTest,
-                UserIdTest,
-                UserNameTest,
-                SubAccIdTest,
-                LanguageTest,
-                IPTest,
-                productStatus,
-                "en-US");
-            var expectedCriteria = new UpdateNG2StatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, productStatus);
-
-            // Act
-            var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);
 
             // Assert
             Assert.Equal(expectedCriteria.GetSettingKey(), actualCriteria.GetSettingKey());
