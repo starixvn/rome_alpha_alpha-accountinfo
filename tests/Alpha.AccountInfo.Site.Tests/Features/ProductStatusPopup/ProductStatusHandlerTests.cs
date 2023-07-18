@@ -117,7 +117,8 @@
             {
                 ProductId = 1,
                 CustId = CustIdTest,
-                CustRoleId = CustRoleTest.Value
+                CustRoleId = CustRoleTest.Value,
+                BetTypeStatus = Enumerable.Empty<BetTypeStatus>().ToArray()
             };
             var expectedResult = new[] { Result.CreateSuccessResult() };
 
@@ -142,7 +143,8 @@
             {
                 ProductId = 1,
                 CustId = CustIdTest,
-                CustRoleId = CustRoleTest.Value
+                CustRoleId = CustRoleTest.Value,
+                BetTypeStatus = Enumerable.Empty<BetTypeStatus>().ToArray()
             };
             var expectedResult = new[] { Result.CreateForbiddenResult() };
 

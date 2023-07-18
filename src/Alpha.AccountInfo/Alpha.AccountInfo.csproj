@@ -235,12 +235,8 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCustomerInfoCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\NonQueryProductStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateDCSProductStatusCriteria.cs" />
-    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateNG2StatusCriteria.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectCustomerInformationCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectDCSProductStatusCriteria.cs" />
-    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectNG2StatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectProductStatusCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\UpdateAllDayBalanceTransferParam.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountDataAccess.cs" />

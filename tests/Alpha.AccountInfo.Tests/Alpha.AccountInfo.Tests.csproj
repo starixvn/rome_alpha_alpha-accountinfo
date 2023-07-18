@@ -200,10 +200,8 @@
     <Compile Include="Features\ProductStatusPopup\SpParams\NonQueryProductStatusCriteriaForTesting.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\NonQueryProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectDCSProductStatusCriteriaTests.cs" />
-    <Compile Include="Features\ProductStatusPopup\SpParams\SelectNG2ProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateDCSProductStatusCriteriaTests.cs" />
-    <Compile Include="Features\ProductStatusPopup\SpParams\UpdateNG2StatusCriteriaTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCustomerInformationCriteriaTests.cs" />
     <Compile Include="Features\SearchAccount\SearchAccountDataAccessTest.cs" />
     <Compile Include="Enumerations\EnumerationTests.cs" />
