@@ -26,10 +26,10 @@
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()))
                 {
-                    var downlineListModel = (await multiResultReader.ReadAsync<DownlineListModel>().ConfigureAwait(false)).FirstOrDefault();
-                    var downlines = await multiResultReader.ReadAsync<DownlineDto>().ConfigureAwait(false);
+                    var downlineListModel = (await multiResultReader.ReadAsync<DownlineListModel>()).FirstOrDefault();
+                    var downlines = await multiResultReader.ReadAsync<DownlineDto>();
                   
                     if (downlineListModel != null)
                     {
@@ -45,7 +45,7 @@
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
             {
-                await objectDb.ExecuteNonQueryAsync(command.GetSpParams()).ConfigureAwait(false);
+                await objectDb.ExecuteNonQueryAsync(command.GetSpParams());
 
                 var outputParams = objectDb.GetOuputParams();
 
@@ -59,7 +59,7 @@
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
             {
-                await objectDb.ExecuteNonQueryAsync(command.GetSpParams()).ConfigureAwait(false);
+                await objectDb.ExecuteNonQueryAsync(command.GetSpParams());
 
                 var outputParams = objectDb.GetOuputParams();
 
@@ -73,7 +73,7 @@
         {
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
                 {
                     return reader.Read() && Convert.ToBoolean(reader["IsAllDayBalTransfer"]);
                 }
