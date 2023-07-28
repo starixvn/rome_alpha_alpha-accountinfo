@@ -103,10 +103,6 @@
     <Reference Include="Fare, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ea68d375bf33a7c8, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fare.2.1.1\lib\net35\Fare.dll</HintPath>
     </Reference>
-    <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="JW.Pager, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JW.Pager.1.0.1\lib\netstandard2.0\JW.Pager.dll</HintPath>
     </Reference>
