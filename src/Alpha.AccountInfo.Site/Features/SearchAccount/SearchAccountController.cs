@@ -21,33 +21,33 @@
         }
 
         public async Task<ActionResult> Index(SearchAccountQuery message)
-          => await ViewAsync(message, SearchAccountViewPath).ConfigureAwait(false);
+          => await ViewAsync(message, SearchAccountViewPath);
 
         public async Task<ActionResult> GetCustomerInfo(CustomerInfoQuery message)
-            => await JsonDataAsync(message).ConfigureAwait(false);
+            => await JsonDataAsync(message);
 
         public async Task<ActionResult> GetDownlineList(DownlineListQuery message)
-            => await JsonDataAsync(message).ConfigureAwait(false);
+            => await JsonDataAsync(message);
 
         public async Task<ActionResult> GetOnlineList(OnlineListQuery message)
-           => await JsonDataAsync(message).ConfigureAwait(false);
+           => await JsonDataAsync(message);
 
         public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
-           => await ViewAsync(message, GiventCreditViewPath).ConfigureAwait(false);
+           => await ViewAsync(message, GiventCreditViewPath);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UpdateGivenCredit(GivenCreditCommand command)
-          => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+          => await JsonDataAsync(command, JsonRequestBehavior.DenyGet);
 
         [HttpPost]
         public async Task<ActionResult> UpdateCustomerStatus(CustomerNonProductStatusCommand command)
-           => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+           => await JsonDataAsync(command, JsonRequestBehavior.DenyGet);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UpdateAllDayBalanceTransfer(UpdateAllBalanceTransferCommand command)
-           => await JsonDataAsync(command, JsonRequestBehavior.DenyGet).ConfigureAwait(false);
+           => await JsonDataAsync(command, JsonRequestBehavior.DenyGet);
 
         public async Task<ActionResult> GetMemberBalanceInfo(MemberBalanceInfoQuery message)
-            => await ViewAsync(message, MemberBalanceInfoViewPath).ConfigureAwait(false);
+            => await ViewAsync(message, MemberBalanceInfoViewPath);
     }
 }

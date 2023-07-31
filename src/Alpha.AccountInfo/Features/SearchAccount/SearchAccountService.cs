@@ -87,12 +87,12 @@
         public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId)
         {
             var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId))
-                .ConfigureAwait(false);
+                ;
             if (customerInfo != null)
             {
                 var nickname = roleId - customerInfo.RoleId == 1 ? customerInfo.UserName2 : string.Empty;
                 await UpdateUserSearch(uplineId, customerInfo.UserName, customerInfo.FirstName, customerInfo.LastName, nickname)
-                    .ConfigureAwait(false);
+                    ;
             }
 
             return customerInfo;
@@ -100,19 +100,19 @@
 
         public async Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
             => await dynamicRepository.GetAsync<bool>(
-                new UpdateUserSearchCriteria(userId, search, firstName, lastName, nickname)).ConfigureAwait(false);
+                new UpdateUserSearchCriteria(userId, search, firstName, lastName, nickname));
 
         public async Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId)
            => await getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](
-               new SelectBalanceInfoCriteria(custId, roleId)).ConfigureAwait(false);
+               new SelectBalanceInfoCriteria(custId, roleId));
 
         public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
             => await accountInfoDataAccess.GetDownlineList(
-                new SelectDownlineListByStatusCriteria(custId, pageIndex, roleId, statusId, totalPages)).ConfigureAwait(false);
+                new SelectDownlineListByStatusCriteria(custId, pageIndex, roleId, statusId, totalPages));
 
         public async Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId)
           => await dynamicRepository.FetchAsync<TotalDownlinesSummary>(
-              new SelectTotalDownlineSummaryCriteria(custId, roleId)).ConfigureAwait(false);
+              new SelectTotalDownlineSummaryCriteria(custId, roleId));
 
         public async Task<IEnumerable<OnlineUserModel>> GetOnlineList(int custid, bool adminCanViewVNIP)
         {
@@ -122,7 +122,7 @@
             }
 
             var onlineUsers = await dynamicRepository.FetchAsync<OnlineUserModel>(
-                new SelectOnlineListCriteria(custid)).ConfigureAwait(false);
+                new SelectOnlineListCriteria(custid));
 
             if (!adminCanViewVNIP)
             {
@@ -137,7 +137,25 @@
 
         public async Task<Result> UpdateGivenCredit(UpdateGivenCreditParam param)
         {
-            var command = new UpdateGivenCreditCommand(
+            UpdateSMAGivenCreditCommand command;
+            if (param.RoleId == UserLevel.Member.Value)
+            {
+                var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId);
+                await dynamicRepository.ExecuteAsync(totalAmtCommand);
+                command = new UpdateMemberGivenCreditCommand(
+                    param.SearchAccountId,
+                    param.RoleId,
+                    param.CreditAmount,
+                    param.ActorId,
+                    param.SubAccountId,
+                    param.Language,
+                    param.IP,
+                    totalAmtCommand.TotalAmt);
+                await dynamicRepository.ExecuteAsync(command);
+            }
+            else
+            {
+                command = new UpdateSMAGivenCreditCommand(
                     param.SearchAccountId,
                     param.RoleId,
                     param.CreditAmount,
@@ -146,7 +164,8 @@
                     param.Language,
                     param.IP);
 
-            await dynamicRepository.ExecuteAsync(command).ConfigureAwait(false);
+                await dynamicRepository.ExecuteAsync(command);
+            }
 
             if (command.IsInvalid() || command.CreditProblem)
             {
@@ -157,7 +176,7 @@
                 if (param.UpdateCreditReplicateServer)
                 {
                     var replicateServerCommand = new UpdateGivenCreditReplicateServerCommand(param.SearchAccountId, param.CreditAmount);
-                    await dynamicRepository.ExecuteAsync(replicateServerCommand).ConfigureAwait(false);
+                    await dynamicRepository.ExecuteAsync(replicateServerCommand);
                 }
 
                 return Result.CreateSuccessResult();
@@ -173,13 +192,13 @@
                    param.IP,
                    param.StatusName,
                    param.StatusValue,
-                   param.ActorName)).ConfigureAwait(false);
+                   param.ActorName));
 
         internal async Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria)
-          => await dynamicRepository.GetAsync<MasterBalanceInfoModel>(criteria).ConfigureAwait(false);
+          => await dynamicRepository.GetAsync<MasterBalanceInfoModel>(criteria);
 
         internal async Task<IBalanceInfoModel> GetAgentBalanceInfoModel(ICriteria criteria)
-          => await dynamicRepository.GetAsync<AgentBalanceInfoModel>(criteria).ConfigureAwait(false);
+          => await dynamicRepository.GetAsync<AgentBalanceInfoModel>(criteria);
 
         internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria)
         {
@@ -205,7 +224,7 @@
 
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
         {
-            var result = await accountInfoDataAccess.UpdateCustomerStatus(command).ConfigureAwait(false);          
+            var result = await accountInfoDataAccess.UpdateCustomerStatus(command);
             return result.IsSuccess
                 ? Result.CreateSuccessResult()
                 : result;
@@ -238,13 +257,13 @@
 
         public async Task<bool> CheckFirstLoginByQRCode(int custId)
             => await dynamicRepository.GetAsync<bool>(
-                new SelectFirstLoginByQRCodeCriteria(custId)).ConfigureAwait(false);
+                new SelectFirstLoginByQRCodeCriteria(custId));
 
         public async Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal)
         {
             var criteria = new CheckMultipleCustomesBelongingCriteria(actorId, subAccountId, custIds);
 
-            await dynamicRepository.ExecuteAsync(criteria).ConfigureAwait(false);
+            await dynamicRepository.ExecuteAsync(criteria);
 
             return criteria.RoleId > 0 && (isInternal || criteria.IsActive);
         }

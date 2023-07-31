@@ -10,7 +10,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             var criteria = new SelectMemberBalanceCriteria(1);
-            var expectedSettingKey = "Acc_BalanceMemberSel";
+            var expectedSettingKey = "SiteDB_Acc_BalanceMemberSel";
 
             var actualSettingKey = criteria.GetSettingKey();
 

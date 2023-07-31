@@ -195,6 +195,8 @@
     <Compile Include="Features\ProtectedStatus\Params\SPs\GetProtectedStatusCriteria.cs" />
     <Compile Include="Features\ProtectedStatus\ProtectedStatusService.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\GetTotalAmtCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateMemberGivenCreditCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -226,7 +228,7 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberBalanceCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectMemberOutstandingCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateCustomerStatusCommand.cs" />
-    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateSMAGivenCreditCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\AccountInfoCriteriaBase.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectTotalDownlineSummaryCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectOnlineListCriteria.cs" />

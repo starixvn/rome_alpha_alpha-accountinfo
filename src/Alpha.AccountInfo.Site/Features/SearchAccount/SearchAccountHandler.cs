@@ -69,7 +69,7 @@
 
         public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery message)
         {
-            var customerInfo = await accountInfoService.GetCustomerInfo(message.SearchAccountName, message.ActorId, message.ActorRoleId).ConfigureAwait(false);
+            var customerInfo = await accountInfoService.GetCustomerInfo(message.SearchAccountName, message.ActorId, message.ActorRoleId);
 
             if (customerInfo != null)
             {
@@ -78,9 +78,9 @@
                 var balanceInfo = getBalanceInfoViewModelByLevel[searchAccountLevel](
                     message,
                     customerInfo,
-                    await accountInfoService.GetCreditInfo(customerInfo.CustId).ConfigureAwait(false),
-                    await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId).ConfigureAwait(false),
-                    await accountInfoService.IsAllDayBalanceTransfer(message.ActorId).ConfigureAwait(false));
+                    await accountInfoService.GetCreditInfo(customerInfo.CustId),
+                    await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId),
+                    await accountInfoService.IsAllDayBalanceTransfer(message.ActorId));
 
                 var formatedIP = ipService.FormatIP(customerInfo.LastLoginIP, message.IsAdminCanViewVNIP);
 
@@ -91,7 +91,7 @@
                     message,
                     customerInfo,
                     balanceInfo,
-                    await accountInfoService.CheckFirstLoginByQRCode(customerInfo.CustId).ConfigureAwait(false),
+                    await accountInfoService.CheckFirstLoginByQRCode(customerInfo.CustId),
                     message.CanCreateAccount);
             }
 
@@ -108,34 +108,34 @@
                     message.RoleId,
                     message.StatusId,
                     message.TotalPages)
-                .ConfigureAwait(false);
+                ;
 
             var totalDownlinesSummarys =
                 message.TotalPages.Equals(0) ?
                await accountInfoService
                .GetTotalDownlinesSummary(message.SearchAccountId, message.RoleId)
-               .ConfigureAwait(false) :
+                :
                Enumerable.Empty<TotalDownlinesSummary>();
 
             return new DownlineListViewModel(downlineList, totalDownlinesSummarys);
         }
 
         public async Task<IEnumerable<OnlineUserModel>> Handle(OnlineListQuery message)
-            => await accountInfoService.GetOnlineList(message.SearchAccountId, message.IsAdminCanViewVNIP).ConfigureAwait(false);
+            => await accountInfoService.GetOnlineList(message.SearchAccountId, message.IsAdminCanViewVNIP);
 
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery message)
         {
             decimal memberCreditMin = 0;
             if (Enumeration.FromValue<UserLevel>(message.SearchAccountRoleId).IsMemberLevel())
             {
-                var balanceInfo = (MemberBalanceInfoModel)await accountInfoService.GetBalanceInfo(message.SearchAccountId, message.SearchAccountRoleId).ConfigureAwait(false);
+                var balanceInfo = (MemberBalanceInfoModel)await accountInfoService.GetBalanceInfo(message.SearchAccountId, message.SearchAccountRoleId);
 
                 memberCreditMin = Math.Max(0, balanceInfo.CustomerOutstanding - balanceInfo.CustomerCash + balanceInfo.PendingTransfer3rd);
             }
 
             return new GivenCreditViewModel(
                 message,
-                await accountInfoService.GetCreditInfo(message.SearchAccountId).ConfigureAwait(false),
+                await accountInfoService.GetCreditInfo(message.SearchAccountId),
                 memberCreditMin);
         }
 
@@ -219,14 +219,14 @@
             var customerInfo = await accountInfoService.GetCustomerInfo(
                 customerInfoQuery.SearchAccountName,
                 customerInfoQuery.ActorId,
-                customerInfoQuery.ActorRoleId).ConfigureAwait(false);
+                customerInfoQuery.ActorRoleId);
 
             if (customerInfo != null && Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel())
             {
                 var creditInfoTask = accountInfoService.GetCreditInfo(customerInfo.CustId);
                 var balanceInfoTask = accountInfoService.GetBalanceInfo(customerInfo.CustId, UserLevel.Member.Value);
                 var isAllDayBalanceTransferTask = accountInfoService.IsAllDayBalanceTransfer(customerInfoQuery.ActorId);
-                await Task.WhenAll(creditInfoTask, balanceInfoTask, isAllDayBalanceTransferTask).ConfigureAwait(false);
+                await Task.WhenAll(creditInfoTask, balanceInfoTask, isAllDayBalanceTransferTask);
 
                 return BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo, await creditInfoTask, await balanceInfoTask, await isAllDayBalanceTransferTask);
             }

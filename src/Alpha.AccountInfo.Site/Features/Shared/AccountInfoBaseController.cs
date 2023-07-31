@@ -22,7 +22,7 @@
 
         protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message, string viewPath)
             => (message as BaseRequest).IsValid()
-               ? View(viewPath, await mediator.Send(message).ConfigureAwait(false))
+               ? View(viewPath, await mediator.Send(message))
                : View(NoInformationPageViewPath);
 
         protected ActionResult JsonData<TResponse>(
@@ -46,7 +46,7 @@
                 return Json(Result.CreateForbiddenResult(), jsonRequestBehavior);
             }
 
-            return Json(await mediator.Send(message).ConfigureAwait(false), jsonRequestBehavior);
+            return Json(await mediator.Send(message), jsonRequestBehavior);
         }
     }
 }

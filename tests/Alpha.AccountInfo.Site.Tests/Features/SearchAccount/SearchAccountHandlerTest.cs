@@ -142,7 +142,7 @@
         [Fact]
         public void HandleCustomerInfoQuery_Always_CallGetCustomerInfoModel()
         {
-            accountInfoHandler.Handle(customerInfoQuery).ConfigureAwait(false);
+            accountInfoHandler.Handle(customerInfoQuery);
 
             accountInfoService.Received().GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>());
         }
@@ -192,7 +192,7 @@
             accountInfoService.GetCustomerInfo(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(customerInfo);
             accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(creditInfo);
 
-            accountInfoHandler.Handle(customerInfoQuery).ConfigureAwait(false);
+            accountInfoHandler.Handle(customerInfoQuery);
 
             accountInfoService.Received().GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>());
         }
