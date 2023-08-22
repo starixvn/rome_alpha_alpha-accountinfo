@@ -17,7 +17,7 @@ export default class ConfirmStatus extends React.Component {
         this.reloadLeftPanel = this.reloadLeftPanel.bind(this);
     }
 
-   confirmPopupOnclosing(username = null, updateSuccessfully = false) {
+    confirmPopupOnclosing(username = null, updateSuccessfully = false) {
         if (updateSuccessfully === true) {
             const autoClosePopupTimeOut = 1000;
             this.reloadLeftPanel(username);
@@ -47,10 +47,17 @@ export default class ConfirmStatus extends React.Component {
         $.blockUI();
         const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
 
-        accountInfoAPI
-            .updateCustomerStatus(status.Url, JSON.parse(status.JsonParams))
+        const params = JSON.parse(status.JsonParams);
+
+        (params.UseDifferentSite
+            ? accountInfoAPI.updateCustomerStatusFromDifferentSite(status.Url, params)
+            : accountInfoAPI.updateCustomerStatus(status.Url, params))
             .then(data => {
-                if (data.IsSuccess) {
+                if (params.UseDifferentSite) {
+                    window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
+                }
+
+                if (data.IsSuccess || data.IsSuccessful) {
                     setTimeout(() => {
                         if (status.ReloadCustomerInfo) {
                             fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
@@ -58,10 +65,8 @@ export default class ConfirmStatus extends React.Component {
 
                         fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
                     }, 1500);
-                }
-                else {
-                    window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
-                    data.Code === 6001 && this.reloadLeftPanel(username);
+                } else {
+                    this.reloadLeftPanel(username);
                     $.unblockUI();
                 }
             }).catch(handleError);
