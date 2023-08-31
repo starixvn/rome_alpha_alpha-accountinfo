@@ -3,20 +3,20 @@
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
     using Alpha.AccountInfo.Site.Utilities;
     using Alpha.Auth.Filters;
-    using Alpha.Logging;
+    using AlphaPlus.Logging;
+    using AlphaPlus.Logging.Web;
+    using AlphaPlus.User.Models;
     using App_Start;
     using Configurations;
     using Fanex.Caching;
     using Fanex.Data;
-    using Fanex.Data.CrossCutting.WrappingException;
-    using Fanex.Data.OldConnectionStringProvider;
-    using Fanex.Logging.Extensions.Database;
+    using Fanex.Data.SqlServer;
     using Fanex.Logging.Extensions.Web;
+    using Fanex.Logging.Extensions.Database;
     using Fanex.RemotingRef;
     using ONEbook.UM;
     using ONEbook.UM.AspNetMVC.Filters;
     using ONEbook.UM.Configurations;
-    using ONEbook.UM.Helpers;
     using ONEbook.UM.NETFramework;
     using ONEbook.UM.Services;
     using ONEbook.UM.Transport;
@@ -34,6 +34,9 @@
     {
         protected void Application_Start()
         {
+            AlphaPlus.Configurations.ConfigurationManager.Init(new ConfigurationHelper());
+            UserSession.Init(new Web.Helpers.HttpContextHelper());
+            LoggingConfig.ExceptionHandler = new ExceptionHandlerAdapter();
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
             MvcHandler.DisableMvcResponseHeader = true;
@@ -46,10 +49,8 @@
 
             DbSettingProviderManager
                 .StartNewSession()
-                .Use(new OldConnectionStringProvider())
-                .UseDefaultDbSettingProvider(resourcePath: AppSettings.StoredProcedurePath, enableWatching: true)
-                .Use((settingKey, commandTimeout) => new WrappingExceptionObjectDb(settingKey, commandTimeout))
-                .UseShardDbSettingProvider()
+                .WithSqlServer(resourcePath: AppSettings.StoredProcedurePath)
+                .UseShardDbSettingProvider()                
                 .Run();
 
             ShareSession.Init();
@@ -59,7 +60,7 @@
                 .UseConfig(umConfig)
                 .UseCacheService(new UMCacheService(new CacheService()))
                 .UseRestClient(new UMRestClient(umConfig))
-                .UseHttpContext(new HttpContextHelper());
+                .UseHttpContext(new ONEbook.UM.Helpers.HttpContextHelper());
             GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
                 new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
 
@@ -81,7 +82,7 @@
 
         protected void Application_Error()
         {
-            var currentCustomer = new Sunplus.Agent.Model.Base.UserSessionExt();
+            var currentCustomer = UserSession.Current;
 
             Exception exception = Server.GetLastError().GetBaseException();
 

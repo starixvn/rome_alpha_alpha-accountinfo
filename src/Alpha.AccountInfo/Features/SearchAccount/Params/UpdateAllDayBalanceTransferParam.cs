@@ -7,6 +7,7 @@
             int actorId,
             string language,
             string ip,
+            bool isAllDayBalTransfer
             bool statusValue,
             string statusName,
             string currency)
@@ -15,6 +16,7 @@
             ActorId = actorId;
             Language = language;
             IP = ip;
+            IsAllDayBalTransfer = isAllDayBalTransfer;
             StatusValue = statusValue;
             StatusName = statusName;
             Currency = currency;
@@ -28,6 +30,8 @@
 
         public string IP { get; }
 
+        public bool IsAllDayBalTransfer { get; }
+        
         public bool StatusValue { get; }
 
         public string StatusName { get; }

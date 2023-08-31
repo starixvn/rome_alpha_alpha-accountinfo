@@ -21,12 +21,12 @@
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
                 IEnumerable<UnsuspendDownlineDto> downlines;
-                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria).ConfigureAwait(false))
                 {
                     downlines = await multiResultReader.ReadAsync<UnsuspendDownlineDto>().ConfigureAwait(false);
                 }
 
-                var outputParams = objectDb.GetOuputParams();
+                var outputParams = objectDb.GetOutputParams();
                 return new UnsuspendViewListModel(downlines.GroupBy(item => item.RoleId).Select(group =>
                 {
                     return new UnsuspendDownlineByLevelModel(group.Key, group);
@@ -38,7 +38,7 @@
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria).ConfigureAwait(false))
                 {
                     var searchAccounts = (await multiResultReader.ReadAsync<UnsuspendSearchAccountModel>().ConfigureAwait(false));
                     var downlines = (await multiResultReader.ReadAsync<UnsuspendDownlineModel>().ConfigureAwait(false));

@@ -82,13 +82,12 @@
                 actorId: 2,
                 subAccountId: 0,
                 statusName: StatusNames.Closed,
-                statusValue: true,
                 language: "E",
                 ip: "192.168.1.1",
                 actorName: "abc");
 
             var expectedResult = Result.CreateSuccessResult();
-            objectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 0 }, { "errmsg", string.Empty } });
+            objectDb.GetOutputParams().Returns(new Hashtable { { "errcode", 0 }, { "errmsg", string.Empty } });
 
             // Act
             var actualResult = accountInfoDataAccessImpl
@@ -109,14 +108,13 @@
                 actorId: 2,
                 subAccountId: 0,
                 statusName: StatusNames.Closed,
-                statusValue: true,
                 language: "E",
                 ip: "192.168.1.1",
                 actorName: "abc");
 
             var errorMsg = "Update Failed !";
             var expectedResult = Result.CreateErrorResult(100, errorMsg);
-            objectDb.GetOuputParams().Returns(new Hashtable { { "errcode", 100 }, { "errmsg", errorMsg } });
+            objectDb.GetOutputParams().Returns(new Hashtable { { "errcode", 100 }, { "errmsg", errorMsg } });
 
             // Act
             var actualResult = accountInfoDataAccessImpl

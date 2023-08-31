@@ -1,9 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
@@ -14,9 +10,13 @@
     using Alpha.AccountInfo.Site.Features.SearchAccount.ViewModels;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
-    using Alpha.Utilities.IP;
+    using AlphaPlus.Utilities.IP;
     using MediatR;
     using Services.AccountInfo;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class SearchAccountHandler :
         IAsyncRequestHandler<SearchAccountQuery, AccountInfoViewModel>,
@@ -37,7 +37,7 @@
         private readonly KickoutCustomerService kickoutCustomerService;
 
         public SearchAccountHandler(SearchAccountService accountInfoService, IPService ipService, KickoutCustomerService kickoutCustomerService)
-            : this(accountInfoService, ipService, kickoutCustomerService, null, null, null)
+            : this(accountInfoService, ipService, kickoutCustomerService, null, null)
         {
         }
 
@@ -46,8 +46,7 @@
             IPService ipService,
             KickoutCustomerService kickoutCustomerService,
             IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel,
-            Func<bool> getUpdateCreditReplicateServer,
-            Func<Alpha.Web.Models.AppSettingEnum, bool> getAppSettingBooleanKey)
+            Func<bool> getUpdateCreditReplicateServer)
         {
             this.accountInfoService = accountInfoService;
             this.ipService = ipService;
@@ -184,7 +183,7 @@
                    message.ActorId,
                    message.Language,
                    message.IP,
-                   message.StatusValue,
+                   message.StatusValue
                    message.StatusName,
                    message.Currency));
 

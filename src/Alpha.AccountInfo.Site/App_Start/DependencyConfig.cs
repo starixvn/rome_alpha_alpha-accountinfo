@@ -1,10 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Site.App_Start
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Resources;
-    using System.Web.Mvc;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.OpenDownlines;
     using Alpha.AccountInfo.Features.ProtectedStatus;
@@ -20,9 +15,9 @@
     using Alpha.AccountInfo.Site.Features.Shared.Models;
     using Alpha.Products.Core.Services;
     using Alpha.SecurityCode.Services;
-    using Alpha.Utilities.IP;
     using Alpha.Web.Helpers;
-    using Alpha.Web.Models;
+    using AlphaPlus.User.Models;
+    using AlphaPlus.Utilities.IP;
     using Fanex.Data.Repository;
     using Fanex.Logging;
     using Fanex.RemotingRef;
@@ -31,9 +26,11 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    using Sunplus.Agent.Model.Base;
-    using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Model.Entities.Permission;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Resources;
+    using System.Web.Mvc;
 
     public static class DependencyConfig
     {

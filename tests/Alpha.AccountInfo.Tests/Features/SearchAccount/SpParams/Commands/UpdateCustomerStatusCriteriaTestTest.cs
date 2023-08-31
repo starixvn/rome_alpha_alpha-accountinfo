@@ -19,7 +19,6 @@
                 "E",
                 "192.168.1.1",
                 StatusNames.Closed,
-                true,
                 actorName: "abc");
 
             Assert.Equal(expectedValue, criteria.IsValid());
@@ -37,7 +36,6 @@
                 "E",
                 "192.168.1.1",
                 StatusNames.Closed,
-                true,
                 actorName: "abc");
 
             Assert.Equal(expectedValue, criteria.IsValid());
@@ -60,7 +58,6 @@
                 "E",
                 "192.168.1.1",
                 statusName,
-                true,
                 actorName: "abc");
             var actualSettingKey = criteria.GetSettingKey();
 

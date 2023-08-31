@@ -8,9 +8,7 @@
 
     public class UpdateCustomerStatusCommand : NonQueryCommand
     {
-        private const byte AlphaSystemId = 2;
-
-        private static readonly IDictionary<string, string> CustomerStatusSettingKeys =
+         private static readonly IDictionary<string, string> CustomerStatusSettingKeys =
          new Dictionary<string, string>
          {
                 { StatusNames.DisableAutoMasterPT, "Acc_CustomerUpdMaster_DisableAutoMPT" },
@@ -29,7 +27,6 @@
             string language,
             string ip,
             string statusName,
-            bool statusValue,
             string actorName)
         {
             SearchAccountId = searchAccountId;
@@ -38,7 +35,6 @@
             Language = language;
             IP = ip;
             StatusName = statusName;
-            StatusValue = statusValue;
             ActorName = actorName;
         }
 
@@ -60,34 +56,13 @@
         public string ErrMsg { get; set; }
 
         [SpParam(Ignored = true)]
-        public string StatusName { get; }
-
-        [SpParam(Ignored = true)]
-        public bool StatusValue { get; }
+        public string StatusName { get; }       
 
         [SpParam(Ignored = true)]
         public string ActorName { get; }
 
         public override string GetSettingKey()
-            => CustomerStatusSettingKeys[StatusName];
-
-        public override Hashtable GetSpParams()
-        {
-            var spParams = base.GetSpParams();
-
-            if (!StatusName.Equals(StatusNames.Unlock))
-            {
-                spParams.Add(StatusName, StatusValue);
-            }
-
-            if (StatusName.Equals(StatusNames.Closed)
-                || StatusName.Equals(StatusNames.Unlock))
-            {
-                spParams.Add("SystemID", AlphaSystemId);
-            }
-
-            return spParams;
-        }
+            => CustomerStatusSettingKeys[StatusName];      
 
         public override bool IsValid()
             => SearchAccountId > 0

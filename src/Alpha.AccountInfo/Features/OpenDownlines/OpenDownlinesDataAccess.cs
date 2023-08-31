@@ -21,12 +21,12 @@
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
                 IEnumerable<OpenDownlineDto> downlines;
-                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria).ConfigureAwait(false))
                 {
                     downlines = await multiResultReader.ReadAsync<OpenDownlineDto>().ConfigureAwait(false);
                 }
 
-                var outputParams = objectDb.GetOuputParams();
+               var outputParams = objectDb.GetOutputParams();
                 return new OpenViewListModel(downlines.GroupBy(item => item.RoleId).Select(group =>
                 {
                     return new OpenDownlineByLevelModel(group.Key, group);
@@ -38,7 +38,7 @@
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()).ConfigureAwait(false))
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria).ConfigureAwait(false))
                 {
                     var searchAccounts = (await multiResultReader.ReadAsync<OpenSearchAccountModel>().ConfigureAwait(false));
                     var downlines = (await multiResultReader.ReadAsync<OpenDownlineModel>().ConfigureAwait(false));
