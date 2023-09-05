@@ -1,10 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using Alpha.AccountInfo.Features.Shared;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
 
     public class UpdateCustomerStatusCommand : NonQueryCommand
     {
@@ -26,8 +25,8 @@
             int subAccountId,
             string language,
             string ip,
-            string statusName,
-            string actorName)
+            string statusName
+           )
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
@@ -35,7 +34,6 @@
             Language = language;
             IP = ip;
             StatusName = statusName;
-            ActorName = actorName;
         }
 
         [SpParam(SqlParamName = "CustId")]
@@ -56,10 +54,8 @@
         public string ErrMsg { get; set; }
 
         [SpParam(Ignored = true)]
-        public string StatusName { get; }       
-
-        [SpParam(Ignored = true)]
-        public string ActorName { get; }
+        public string StatusName { get; }    
+     
 
         public override string GetSettingKey()
             => CustomerStatusSettingKeys[StatusName];      

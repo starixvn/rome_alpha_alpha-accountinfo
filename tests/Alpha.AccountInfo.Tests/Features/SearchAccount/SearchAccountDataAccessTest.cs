@@ -83,8 +83,7 @@
                 subAccountId: 0,
                 statusName: StatusNames.Closed,
                 language: "E",
-                ip: "192.168.1.1",
-                actorName: "abc");
+                ip: "192.168.1.1");
 
             var expectedResult = Result.CreateSuccessResult();
             objectDb.GetOutputParams().Returns(new Hashtable { { "errcode", 0 }, { "errmsg", string.Empty } });
@@ -109,8 +108,8 @@
                 subAccountId: 0,
                 statusName: StatusNames.Closed,
                 language: "E",
-                ip: "192.168.1.1",
-                actorName: "abc");
+                ip: "192.168.1.1"
+               );
 
             var errorMsg = "Update Failed !";
             var expectedResult = Result.CreateErrorResult(100, errorMsg);

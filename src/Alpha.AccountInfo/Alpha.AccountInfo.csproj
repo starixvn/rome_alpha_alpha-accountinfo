@@ -176,7 +176,14 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\TurnOffAutoTransferCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\GetTotalAmtCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllowAutoTransferStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateClosedStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateDisableAutoMPTStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateDisableOutrightStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateDoubleCommLosingStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateMemberGivenCreditCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateSuspendedStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUnlockerdCommandy.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateUserSearchCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\AppResources\ProductStatus.Designer.cs">
       <AutoGen>True</AutoGen>

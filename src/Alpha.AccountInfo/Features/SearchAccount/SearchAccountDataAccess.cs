@@ -8,12 +8,13 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Fanex.Data;
+    using Fanex.Data.Repository;
 
     public interface SearchAccountDataAccess
     {
         Task<DownlineListModel> GetDownlineList(SelectDownlineListByStatusCriteria criteria);
 
-        Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command);
+        Task<Result> UpdateCustomerStatus(NonQueryCommand command);
 
         Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferCommand command);
 
@@ -45,7 +46,7 @@
             }
         }
 
-        public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
+        public async Task<Result> UpdateCustomerStatus(NonQueryCommand command)
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
             {
