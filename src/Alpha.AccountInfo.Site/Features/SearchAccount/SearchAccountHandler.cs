@@ -185,7 +185,8 @@
                    message.Language,
                    message.IP,
                    message.StatusValue,
-                   message.StatusName));
+                   message.StatusName,
+                   message.Currency));
 
         internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery message,

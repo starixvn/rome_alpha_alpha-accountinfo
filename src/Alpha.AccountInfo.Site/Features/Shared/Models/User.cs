@@ -83,6 +83,8 @@
 
         public int ServerId => userSession.ServerId;
 
+        public string Currency => userSession.Currency;
+
         public string DisplayLanguage => userSession.GetProperty<string>(DisplayLanguageSessionKey);
     }
 }

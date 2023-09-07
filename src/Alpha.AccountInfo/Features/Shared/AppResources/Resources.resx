@@ -441,4 +441,13 @@
   <data name="ShowLess" xml:space="preserve">
     <value>Show Less</value>
   </data>
+  <data name="ADBTChangeToastMessage" xml:space="preserve">
+    <value>Your account has been enabled for All Day Balance Transfer. The Auto Transfer configuration you set for downlines will be disabled to ensure data accuracy.</value>
+  </data>
+  <data name="ADBTChangeToastTitle" xml:space="preserve">
+    <value>Auto Transfer Config</value>
+  </data>
+  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>The Auto Transfer process is currently taking place. Kindly wait for the process to complete within a few minutes before changing the Transfer Mode.</value>
+  </data>
 </root>

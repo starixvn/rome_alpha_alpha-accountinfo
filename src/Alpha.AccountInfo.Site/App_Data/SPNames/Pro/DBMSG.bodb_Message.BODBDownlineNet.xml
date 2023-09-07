@@ -1,0 +1,5 @@
+﻿<Functions>
+  <Function Name="Toast Message">
+    <Setting Key="Age_ToastMessage_Ins" SpName="Age_ToastMessage_Ins" DbName="DBMSG.bodb_Message.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>

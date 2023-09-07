@@ -441,4 +441,13 @@
   <data name="ShowLess" xml:space="preserve">
     <value>显示更少</value>
   </data>
+  <data name="ADBTChangeToastMessage" xml:space="preserve">
+    <value>您的账号已启用全天余额转账。以确保数据准确性，您为下线设置的自动转账配置将被禁用。</value>
+  </data>
+  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>当前正在进行自动转账的过程。请等待过程在几分钟后完成，再更改转账模式。</value>
+  </data>
+  <data name="ADBTChangeToastTitle" xml:space="preserve">
+    <value>自动转账配置</value>
+  </data>
 </root>

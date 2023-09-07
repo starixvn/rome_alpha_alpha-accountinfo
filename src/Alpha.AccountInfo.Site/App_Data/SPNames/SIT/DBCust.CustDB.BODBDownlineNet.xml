@@ -37,6 +37,7 @@
     <Setting Key="Acc_CustomerUpdAllDayBalTransfer" SpName="Acc_CustomerUpdAllDayBalTransfer" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_ClearBalanceCust_SettingUpdate_Downline" SpName="Age_ClearBalanceCust_SettingUpdate_Downline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
 
   <Function Name="Unsuspend Downlines">
@@ -67,7 +68,7 @@
       <Mapping ObjectProperty="SearchAccountId" DataField="custid" />
     </Setting>
   </Function>
-  
+
   <Function Name="QR Code">
     <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0"/>
   </Function>

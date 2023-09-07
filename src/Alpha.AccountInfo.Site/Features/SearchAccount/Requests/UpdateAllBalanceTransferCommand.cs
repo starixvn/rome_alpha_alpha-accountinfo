@@ -22,6 +22,8 @@
 
         public string IP => viewer.IP;
 
+        public string Currency => viewer.Currency;
+
         public override bool IsValid()
         {
             var isValid = base.IsValid() && IsValidName(StatusName) && CanUpdateAccount && !IsInternal;

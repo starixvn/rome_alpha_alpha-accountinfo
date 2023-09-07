@@ -54,10 +54,18 @@ export default class ConfirmStatus extends React.Component {
             : accountInfoAPI.updateCustomerStatus(status.Url, params))
             .then(data => {
                 if (params.UseDifferentSite) {
-                    window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
+                    if (data.Code === 100) {
+                        window.top.indexManager.addCustomCookies('messageForReloadSite', data.Message);
+                        window.top.location.reload();
+                        return;
+                    }
                 }
 
                 if (data.IsSuccess || data.IsSuccessful) {
+                    if (params.UseDifferentSite) {
+                        window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
+                    }
+
                     setTimeout(() => {
                         if (status.ReloadCustomerInfo) {
                             fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
@@ -67,8 +75,10 @@ export default class ConfirmStatus extends React.Component {
                     }, 1500);
                 } else {
                     this.reloadLeftPanel(username);
+                    window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
                     $.unblockUI();
                 }
+
             }).catch(handleError);
     }
 

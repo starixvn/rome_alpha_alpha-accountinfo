@@ -244,6 +244,15 @@
                 return Result.CreateErrorResult(DisallowedAllDayBalanceTransferError, Resources.DisallowedAllDayBalanceTransferError);
             }
 
+            if (IsAutoTransferAffect(param.Currency))
+            {
+                var autoTransferStatus = await GetAutoTransferJobStatus();
+                if (autoTransferStatus)
+                {
+                    return Result.CreateErrorResult(1, Resources.ADBTChangeFailed_AutoJobRunning);
+                }
+            }
+
             var command = new UpdateAllDayBalanceTransferCommand(
                 param.SearchAccountId,
                 param.ActorId,
@@ -253,9 +262,14 @@
                 param.StatusValue);
             var result = await accountInfoDataAccess.UpdateAllDayBalanceTransfer(command);
 
+            if (result.IsSuccess)
+            {
+                TurnOffAutoTransfer(param);
+            }
+
             return result.IsSuccess ?
-                Result.CreateSuccessResult() :
-                result;
+                      Result.CreateSuccessResult() :
+                      result;
         }
 
         public async Task<bool> CheckFirstLoginByQRCode(int custId)
@@ -276,5 +290,63 @@
 
         public Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal)
             => accountInfoDataAccess.GetLastTxn(new SelectLastTxnCriteria(username, uplineId, isInternal));
+
+        private void TurnOffAutoTransfer(UpdateAllDayBalanceTransferParam param)
+        {
+            if (!param.StatusValue)
+            {
+                return;
+            }
+
+            var turnOffCriteria = new TurnOffAutoTransferCriteria
+            {
+                UplineId = param.SearchAccountId,
+                Creator = param.ActorId,
+                IsAllDownline = true,
+                IP = param.IP
+            };
+
+            dynamicRepository.Execute(turnOffCriteria);
+
+            if (string.IsNullOrWhiteSpace(turnOffCriteria.TargetIds))
+            {
+                return;
+            }
+
+            var ids = turnOffCriteria.TargetIds.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(i => int.Parse(i));
+
+            foreach (var id in ids)
+            {
+                var toastMessageCriteria = new InsertToastMessageCriteria(id, param.ActorId);
+                dynamicRepository.Execute(toastMessageCriteria);
+            }
+        }
+
+        private async Task<bool> GetAutoTransferJobStatus()
+        {
+            var criteria = new GetAutoTransferJobStatusCriteria();
+
+            await dynamicRepository.ExecuteAsync(criteria);
+
+            return criteria.IsAutoJobRunning;
+        }
+
+        private bool IsAutoTransferAffect(string currency)
+        {
+            var s = AppSettings.GetConfigValue("OfferAutoTransfer.Currencies");
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                return false;
+            }
+
+            if (s == "*")
+            {
+                return true;
+            }
+
+            return s.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                .Any(c => string.Equals(currency, c.Trim(), StringComparison.OrdinalIgnoreCase));
+        }
     }
 }

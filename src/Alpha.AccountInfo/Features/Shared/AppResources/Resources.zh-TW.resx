@@ -444,4 +444,13 @@
   <data name="ShowLess" xml:space="preserve">
     <value>顯示更少</value>
   </data>
+  <data name="ADBTChangeToastMessage" xml:space="preserve">
+    <value>您的賬號已啟用全天餘額轉賬。以確保數據準確性，您為下線設置的自動轉賬配置將被禁用。</value>
+  </data>
+  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>當前正在進行自動轉賬的過程。請等待過程在幾分鐘後完成，再更改轉賬模式。</value>
+  </data>
+  <data name="ADBTChangeToastTitle" xml:space="preserve">
+    <value>自動轉賬配置</value>
+  </data>
 </root>
