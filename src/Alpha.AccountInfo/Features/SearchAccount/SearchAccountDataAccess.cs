@@ -18,6 +18,10 @@
         Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferCommand command);
 
         Task<bool> IsAllDayBalanceTransfer(SelectIsAllDayBalTransferCriteria criteria);
+
+        Task<DateTime> GetLastTxn(SelectLastTxnCriteria criteria);
+
+        Task<byte> GetClosedReason(SelectClosedReasonCriteria criteria);
     }
 
     public class SearchAccountDataAccessImpl : SearchAccountDataAccess
@@ -78,6 +82,46 @@
                     return reader.Read() && Convert.ToBoolean(reader["IsAllDayBalTransfer"]);
                 }
             }
+        }
+
+        public async Task<DateTime> GetLastTxn(SelectLastTxnCriteria criteria)
+        {
+            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            {
+                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                {
+                    if (reader.Read())
+                    {
+                        var lastTxn = reader["MaxTransDate"];
+
+                        return lastTxn == null || lastTxn == DBNull.Value
+                            ? DateTime.MinValue
+                            : Convert.ToDateTime(lastTxn);
+                    }
+                }
+            }
+
+            return DateTime.MinValue;
+        }
+
+        public async Task<byte> GetClosedReason(SelectClosedReasonCriteria criteria)
+        {
+            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
+            {
+                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                {
+                    if (reader.Read())
+                    {
+                        var closedReason = reader["ClosedReason"];
+
+                        return closedReason == null || closedReason == DBNull.Value
+                            ? (byte)0
+                            : Convert.ToByte(closedReason);
+                    }
+                }
+            }
+
+            return 0;
         }
     }
 }

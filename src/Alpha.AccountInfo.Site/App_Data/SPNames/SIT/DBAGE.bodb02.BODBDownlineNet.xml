@@ -26,6 +26,7 @@
       <Mapping ObjectProperty="CustomerCash" DataField="Cash" />
       <Mapping ObjectProperty="CustomerOutstanding" DataField="outstanding" />
     </Setting>
+    <Setting Key="Age_CustomerSelMaxTransDate" SpName="Age_CustomerSelMaxTransDate" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Given Credit">
     <Setting Key="Acc_CustomerUpdCreditOnReplicateServer" SpName="Acc_CustomerUpdCreditOnReplicateServer" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />

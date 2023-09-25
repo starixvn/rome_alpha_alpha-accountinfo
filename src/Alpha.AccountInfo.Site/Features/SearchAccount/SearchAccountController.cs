@@ -49,5 +49,8 @@
 
         public async Task<ActionResult> GetMemberBalanceInfo(MemberBalanceInfoQuery message)
             => await ViewAsync(message, MemberBalanceInfoViewPath);
+
+        public Task<ActionResult> GetLastTxn(GetLastTxnQuery message)
+            => JsonDataAsync(message);
     }
 }

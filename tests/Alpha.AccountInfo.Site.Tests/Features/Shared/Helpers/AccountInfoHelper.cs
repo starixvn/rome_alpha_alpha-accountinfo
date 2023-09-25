@@ -19,8 +19,9 @@
                 { UserLevel.Member, BuildMemberBalanceInfoViewModel}
             };
 
-        public static CustomerInfoModel BuildCustomerInfo(byte searchAccountRoleId = 1) =>
-            new CustomerInfoModel(
+        public static CustomerInfoModel BuildCustomerInfo(byte searchAccountRoleId = 1)
+        {
+            var model = new CustomerInfoModel(
                 custId: 1,
                 roleId: searchAccountRoleId,
                 userName: "UserTest",
@@ -30,14 +31,12 @@
                 phone: "+896245361",
                 mobilePhone: "+963256475",
                 fax: "456795312",
-                closedReason: 2,
                 enabled: true,
                 uplineEnabled: true,
                 closed: true,
                 suspended: true,
                 creatDate: DateTime.Now,
                 lastLogged: DateTime.Now,
-                lastTxn: DateTime.Now,
                 lastLoginIP: string.Empty,
                 pwdExpiry: DateTime.Now,
                 memberId: 11,
@@ -49,6 +48,9 @@
                 superId: 14,
                 superName: "SuperTest",
                 locked: 0);
+            model.ClosedReason = 2;
+            return model;
+        }
 
         public static IUser ViewerFixture(byte actorRoleId)
         {

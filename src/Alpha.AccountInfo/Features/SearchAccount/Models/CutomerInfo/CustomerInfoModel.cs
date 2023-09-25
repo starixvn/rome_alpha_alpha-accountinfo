@@ -9,34 +9,32 @@
         }
 
         public CustomerInfoModel(
-         int custId,
-         byte roleId,
-         string userName,
-         string userName2,
-         string firstName,
-         string lastName,
-         string phone,
-         string mobilePhone,
-         string fax,
-         byte closedReason,
-         bool enabled,
-         bool uplineEnabled,
-         bool closed,
-         bool suspended,
-         DateTime creatDate,
-         DateTime lastLogged,
-         DateTime lastTxn,
-         string lastLoginIP,
-         DateTime pwdExpiry,
-         int memberId,
-         string memberName,
-         int agentId,
-         string agentName,
-         int masterId,
-         string masterName,
-         int superId,
-         string superName,
-         byte locked)
+            int custId,
+            byte roleId,
+            string userName,
+            string userName2,
+            string firstName,
+            string lastName,
+            string phone,
+            string mobilePhone,
+            string fax,
+            bool enabled,
+            bool uplineEnabled,
+            bool closed,
+            bool suspended,
+            DateTime creatDate,
+            DateTime lastLogged,
+            string lastLoginIP,
+            DateTime pwdExpiry,
+            int memberId,
+            string memberName,
+            int agentId,
+            string agentName,
+            int masterId,
+            string masterName,
+            int superId,
+            string superName,
+            byte locked)
         {
             CustId = custId;
             RoleId = roleId;
@@ -49,7 +47,6 @@
             MobilePhone = mobilePhone;
             Fax = fax;
 
-            ClosedReason = closedReason;
             Enabled = enabled;
             UplineEnabled = uplineEnabled;
             Closed = closed;
@@ -57,7 +54,6 @@
 
             CreatDate = creatDate;
             LastLogged = lastLogged;
-            LastTxn = lastTxn;
             LastLoginIP = lastLoginIP;
             PwdExpiry = pwdExpiry;
 
@@ -94,7 +90,7 @@
 
         public string Fax { get; private set; }
 
-        public byte ClosedReason { get; private set; }
+        public byte ClosedReason { get; set; }
 
         public bool Enabled { get; private set; }
 
@@ -107,8 +103,6 @@
         public DateTime CreatDate { get; private set; }
 
         public DateTime LastLogged { get; private set; }
-
-        public DateTime LastTxn { get; private set; }
 
         public bool AllowOpenInfoPopup { get; set; }
 

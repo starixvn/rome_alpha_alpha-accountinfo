@@ -27,7 +27,8 @@
         IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>,
         IAsyncRequestHandler<GivenCreditCommand, Result>,
         IAsyncRequestHandler<UpdateAllBalanceTransferCommand, Result>,
-        IAsyncRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>
+        IAsyncRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>,
+        IAsyncRequestHandler<GetLastTxnQuery, string>
     {
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
@@ -232,6 +233,13 @@
             }
 
             return null;
+        }
+
+        public async Task<string> Handle(GetLastTxnQuery message)
+        {
+            var lastTxn = await accountInfoService.GetLastTxn(message.Username, message.UplineId, message.IsInternal);
+
+            return DateTime.MinValue == lastTxn ? string.Empty : lastTxn.ToString();
         }
     }
 }

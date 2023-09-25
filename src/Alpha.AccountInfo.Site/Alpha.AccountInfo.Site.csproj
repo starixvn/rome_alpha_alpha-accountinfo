@@ -668,6 +668,7 @@
     <Compile Include="Features\ProtectedStatus\Requests\EditMultipleCommand.cs" />
     <Compile Include="Features\ProtectedStatus\Requests\EditMultipleRequest.cs" />
     <Compile Include="Features\ProtectedStatus\ViewModels\EditMultipleViewModel.cs" />
+    <Compile Include="Features\SearchAccount\Requests\GetLastTxnQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\MemberBalanceInfoQuery.cs" />
     <Compile Include="Features\SearchAccount\Requests\UpdateAllBalanceTransferCommand.cs" />
     <Compile Include="Features\Shared\Helpers\ImageConverter.cs" />

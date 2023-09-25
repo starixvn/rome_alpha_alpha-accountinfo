@@ -46,6 +46,8 @@
         Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal);
 
         Task<bool> IsAllDayBalanceTransfer(int custId);
+
+        Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal);
     }
 
     public class SearchAccountServiceImpl : SearchAccountService
@@ -86,13 +88,14 @@
 
         public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId)
         {
-            var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId))
-                ;
+            var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
             if (customerInfo != null)
             {
+                customerInfo.ClosedReason = await accountInfoDataAccess.GetClosedReason(
+                    new SelectClosedReasonCriteria(customerInfo.CustId, customerInfo.RoleId));
+
                 var nickname = roleId - customerInfo.RoleId == 1 ? customerInfo.UserName2 : string.Empty;
-                await UpdateUserSearch(uplineId, customerInfo.UserName, customerInfo.FirstName, customerInfo.LastName, nickname)
-                    ;
+                await UpdateUserSearch(uplineId, customerInfo.UserName, customerInfo.FirstName, customerInfo.LastName, nickname);
             }
 
             return customerInfo;
@@ -270,5 +273,8 @@
 
         public Task<bool> IsAllDayBalanceTransfer(int custId)
             => accountInfoDataAccess.IsAllDayBalanceTransfer(new SelectIsAllDayBalTransferCriteria(custId));
+
+        public Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal)
+            => accountInfoDataAccess.GetLastTxn(new SelectLastTxnCriteria(username, uplineId, isInternal));
     }
 }
