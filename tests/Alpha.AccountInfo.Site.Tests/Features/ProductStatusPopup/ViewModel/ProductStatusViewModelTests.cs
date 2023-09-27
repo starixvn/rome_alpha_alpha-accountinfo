@@ -138,7 +138,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteLabel"] = "Nova88"
+                ["SiteLabel"] = "MBC"
             };
 
             var viewModel = new ProductStatusViewModel(
@@ -163,7 +163,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["SiteLabel"] = "Nova88"
+                ["SiteLabel"] = "MBC"
             };
 
             var viewModel = new ProductStatusViewModel(
