@@ -89,7 +89,6 @@
             new LoginInfoViewModel(
                 customerInfo.CreatDate,
                 customerInfo.LastLogged,
-                customerInfo.LastTxn,
                 customerInfo.LastLoginIP);
 
         public IBalanceInfoViewModel BalanceInfo { get; }

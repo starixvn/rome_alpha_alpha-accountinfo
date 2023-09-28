@@ -45,7 +45,8 @@ export default class AccountInfo extends React.Component {
             settingData: null,
             downlineListPageIndex: 1,
             downlineListData: null,
-            onlineListData: null
+            onlineListData: null,
+            lastTxn: null
         };
 
         this.fetchCustomerInfoFromServer = this.fetchCustomerInfoFromServer.bind(this);
@@ -54,6 +55,7 @@ export default class AccountInfo extends React.Component {
         this.fetchOnlineListFromServer = this.fetchOnlineListFromServer.bind(this);
         this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
         this.handleOpenShowQRCode = this.handleOpenShowQRCode.bind(this);
+        this.fetchLastTxnFromServer = this.fetchLastTxnFromServer.bind(this);
 
         $(window).on({
             orientationchange: function () {
@@ -104,7 +106,8 @@ export default class AccountInfo extends React.Component {
                             onlineListData: null,
                             downlineListData: null,
                             statusData: resetSetting ? null : prevState.statusData,
-                            settingData: resetSetting ? null : prevState.settingData
+                            settingData: resetSetting ? null : prevState.settingData,
+                            lastTxn: null
                         }));
 
                         localStorage.setItem('lastSearchUsername', username);
@@ -118,7 +121,8 @@ export default class AccountInfo extends React.Component {
                             onlineListData: null,
                             downlineListData: null,
                             statusData: null,
-                            settingData: null
+                            settingData: null,
+                            lastTxn: null
                         }));
 
                         localStorage.removeItem('lastSearchUsername');
@@ -227,6 +231,22 @@ export default class AccountInfo extends React.Component {
         }
     }
 
+    fetchLastTxnFromServer() {
+        let { custId, username, lastTxn } = this.state;
+        if (custId > 0 && lastTxn === null) {
+            $.blockUI();
+            accountInfoAPI.getLastTxn({ username: username }).then(
+                responeData => {
+                    this.setState({
+                        lastTxn: responeData,
+                        redirectToBalanceInfoPage: false
+                    });
+
+                    $.unblockUI();
+                }).catch(handleError);
+        }
+    }
+
     handleOpenIPInfo(e) {
         const IPInfoPath = `${this.state.customerInfo.ViewLoginIPLink}?ip=${e.currentTarget.dataset.ip}`;
         window.top.ageWnd.open(IPInfoPath);
@@ -258,7 +278,8 @@ export default class AccountInfo extends React.Component {
             downlineListData,
             onlineListData,
             statusData,
-            settingData
+            settingData,
+            lastTxn
         } = this.state;
 
         const {
@@ -266,7 +287,8 @@ export default class AccountInfo extends React.Component {
             fetchCustomerAllStatusFromServer,
             fetchCustomerInfoFromServer,
             fetchDownlineListFromServer,
-            fetchOnlineListFromServer
+            fetchOnlineListFromServer,
+            fetchLastTxnFromServer
         } = this;
 
         let loginInfo = null, searchAccountRoleId = actorRoleId - 1, username = '';
@@ -341,7 +363,8 @@ export default class AccountInfo extends React.Component {
                 featureText: resources.LoginInfo,
                 pathname: '/loginInfo',
                 visible: showLoginInfo,
-                children: <LoginInfo {...{ resources, loginInfo, handleOpenIPInfo }} />
+                fetchDataFromServer: fetchLastTxnFromServer,
+                children: <LoginInfo {...{ resources, loginInfo, lastTxn, handleOpenIPInfo }} />
             },
             onlineListProps: {
                 iconClass: 'icon-onlinelist',

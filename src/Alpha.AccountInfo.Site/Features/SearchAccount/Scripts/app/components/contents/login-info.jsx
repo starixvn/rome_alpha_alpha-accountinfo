@@ -18,7 +18,7 @@ export const LoginInfoWithLinkRow = ({ title, value, handleOpenIPInfo }) => {
     </div>;
 };
 
-const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
+const LoginInfo = ({ resources, loginInfo, lastTxn, handleOpenIPInfo }) => {
     if (loginInfo === null) {
         return <div className='no-information'>{resources.NoInfo}</div>;
     }
@@ -34,7 +34,7 @@ const LoginInfo = ({ resources, loginInfo, handleOpenIPInfo }) => {
         },
         {
             title: resources.LastTxn,
-            value: loginInfo.LastTxn
+            value: lastTxn
         }
     ];
 

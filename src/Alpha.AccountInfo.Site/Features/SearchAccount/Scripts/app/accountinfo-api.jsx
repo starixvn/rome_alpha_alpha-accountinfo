@@ -10,5 +10,6 @@ export const accountInfoAPI = {
     getOnlineList: data => requests.get(accountinfoUrl + 'SearchAccount/GetOnlineList', data),
     updateGivenCredit: data => requests.post(accountinfoUrl + 'SearchAccount/UpdateGivenCredit', data),
     updateCustomerStatus: (action, data) => requests.post(accountinfoUrl + 'SearchAccount/' + action, data),
-    updateCustomerStatusFromDifferentSite: (action, data) => requests.post(action, data)
+    updateCustomerStatusFromDifferentSite: (action, data) => requests.post(action, data),
+    getLastTxn: (data) => requests.get(accountinfoUrl + 'SearchAccount/GetLastTxn', data)
 };
