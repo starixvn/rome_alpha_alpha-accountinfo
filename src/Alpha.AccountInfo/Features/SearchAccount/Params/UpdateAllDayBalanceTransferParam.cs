@@ -8,7 +8,8 @@
             string language,
             string ip,
             bool statusValue,
-            string statusName)
+            string statusName,
+            string currency)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
@@ -16,6 +17,7 @@
             IP = ip;
             StatusValue = statusValue;
             StatusName = statusName;
+            Currency = currency;
         }
 
         public int SearchAccountId { get; }
@@ -29,5 +31,7 @@
         public bool StatusValue { get; }
 
         public string StatusName { get; }
+
+        public string Currency { get; }
     }
 }

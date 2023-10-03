@@ -79,6 +79,33 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Auto Transfer process is currently taking place. Kindly wait for the process to complete within a few minutes before changing the Transfer Mode..
+        /// </summary>
+        public static string ADBTChangeFailed_AutoJobRunning {
+            get {
+                return ResourceManager.GetString("ADBTChangeFailed_AutoJobRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account has been enabled for All Day Balance Transfer. The Auto Transfer configuration you set for downlines will be disabled to ensure data accuracy..
+        /// </summary>
+        public static string ADBTChangeToastMessage {
+            get {
+                return ResourceManager.GetString("ADBTChangeToastMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Transfer Config.
+        /// </summary>
+        public static string ADBTChangeToastTitle {
+            get {
+                return ResourceManager.GetString("ADBTChangeToastTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         public static string Agent {

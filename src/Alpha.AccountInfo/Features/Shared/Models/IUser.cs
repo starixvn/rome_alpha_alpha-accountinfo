@@ -63,5 +63,7 @@
         int ServerId { get; }
 
         string DisplayLanguage { get; }
+
+        string Currency { get; }
     }
 }

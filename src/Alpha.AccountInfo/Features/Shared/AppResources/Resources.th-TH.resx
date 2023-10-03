@@ -441,4 +441,13 @@
   <data name="ShowMore" xml:space="preserve">
     <value>แสดงมากขึ้น</value>
   </data>
+  <data name="ADBTChangeToastMessage" xml:space="preserve">
+    <value>บัญชีของคุณได้เปิดใช้งานการโอนยอดคงเหลือทั้งวันแล้ว การโอนอัตโนมัติสำหรับดาวน์ไลน์ของคุณจะถูกปิดใช้งานเพื่อความถูกต้องของการดำเนินงาน</value>
+  </data>
+  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>ขณะนี้ระบบโอนอัตโนมัติกำลังดำเนินงานอยู่ กรุณารอสักครู่เพื่อให้ดำเนินการแล้วเสร็จ ก่อนลองเปลี่ยนโหมดการโอนอีกครั้ง</value>
+  </data>
+  <data name="ADBTChangeToastTitle" xml:space="preserve">
+    <value>ตั้งค่าโอนอัตโนมัติ</value>
+  </data>
 </root>

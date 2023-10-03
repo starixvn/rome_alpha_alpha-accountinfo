@@ -111,6 +111,9 @@
       <HintPath>..\..\packages\NetUtility.4.5.6325.30210\lib\net40\NetUtility.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
@@ -194,6 +197,9 @@
     <Compile Include="Features\ProtectedStatus\Params\GetProtectedStatusParam.cs" />
     <Compile Include="Features\ProtectedStatus\Params\SPs\GetProtectedStatusCriteria.cs" />
     <Compile Include="Features\ProtectedStatus\ProtectedStatusService.cs" />
+    <Compile Include="Features\SearchAccount\Models\ToastContentModel.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\InsertToastMessageCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\TurnOffAutoTransferCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\GetTotalAmtCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateMemberGivenCreditCommand.cs" />
@@ -223,6 +229,7 @@
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\CreditInfo.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditReplicateServerCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectClosedReasonCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\GetAutoTransferJobStatusCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectFirstLoginByQRCodeCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectCreditInfoCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectIsAllDayBalTransferCriteria.cs" />

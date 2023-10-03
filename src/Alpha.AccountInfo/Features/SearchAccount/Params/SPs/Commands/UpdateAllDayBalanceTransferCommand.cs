@@ -22,8 +22,6 @@
             StatusValue = statusValue;
         }
 
-        
-
         [SpParam(SqlParamName = "CustId")]
         public int SearchAccountId { get; }
 

@@ -358,6 +358,7 @@
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data\SPNames\Internal\DBMSG.bodb_Message.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.IPDB.xml" />
     <Content Include="App_Data\SPNames\Internal\DBTXN.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DB042.bodb02.BODBDownlineNetView.xml" />
@@ -370,6 +371,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\Pro\DBCust.IPDB.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBMSG.bodb_Message.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBTXN.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DB042.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBACC.bodb02.BODBDownlineNet.xml" />
@@ -385,6 +387,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\SIT\DBCust.IPDB.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBMSG.bodb_Message.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\SiteDB.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBTXN.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DB042.bodb02.BODBDownlineNet.xml" />
