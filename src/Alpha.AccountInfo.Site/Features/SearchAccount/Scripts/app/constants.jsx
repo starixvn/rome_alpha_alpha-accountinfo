@@ -8,13 +8,11 @@
 export const ProductConstants = {
     Sportsbook: 1,
     RNGLottery: 44,
-    FishingWorld: 24,
     VoidBridge: 22,
     LiveCasino: 41,
     ProgressiveBonus: 10,
     RNGCasino: 6,
     Sportsbook2: 16,
-    GoldDeluxe: 12,
     ESport: 11,
     Keno: 8,
     VirtualSports: 5,
