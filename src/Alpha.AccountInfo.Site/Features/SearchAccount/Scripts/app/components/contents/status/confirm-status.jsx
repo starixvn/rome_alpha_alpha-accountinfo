@@ -56,6 +56,7 @@ export default class ConfirmStatus extends React.Component {
                 if (params.UseDifferentSite) {
                     if (data.Code === 100) {
                         window.top.indexManager.addCustomCookies('messageForReloadSite', data.Message);
+                        window.top.indexManager.updateCurrentUrl("adbt=True");
                         window.top.location.reload();
                         return;
                     }
