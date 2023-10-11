@@ -274,11 +274,9 @@
                 param.SearchAccountId,
                 param.ActorId,
                 param.Language,
-                param.IP,
-                param.IsAllDayBalTransfer);
+                param.IP);
+            var result = await accountInfoDataAccess.UpdateAllDayBalanceTransfer(command);
 
-            await dynamicRepository.ExecuteAsync(command);
-            
             if (result.IsSuccess)
             {
                 TurnOffAutoTransfer(param);

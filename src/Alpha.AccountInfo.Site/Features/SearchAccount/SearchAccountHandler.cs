@@ -183,7 +183,7 @@
                    message.ActorId,
                    message.Language,
                    message.IP,
-                   message.StatusValue
+                   message.StatusValue,
                    message.StatusName,
                    message.Currency));
 

@@ -6,7 +6,7 @@
     using Alpha.AccountInfo.Configurations;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
-    using Sunplus.Agent.Model.Entities;
+    using AlphaPlus.User.Models;
     using Sunplus.Agent.Utilities;
 
     public class AccountInfoViewModelBase

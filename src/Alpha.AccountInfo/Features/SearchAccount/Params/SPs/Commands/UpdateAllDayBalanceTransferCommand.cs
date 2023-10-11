@@ -9,14 +9,12 @@
             int searchAccountId,
             int actorId,
             string language,
-            string ip,
-            bool isAllDayBalTransfer)
+            string ip)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
             Language = language;
             IP = ip;
-            IsAllDayBalTransfer = isAllDayBalTransfer;
         }
 
         [SpParam(SqlParamName = "CustId")]
@@ -33,8 +31,6 @@
 
         public string ErrMsg { get; set; }
       
-        public bool IsAllDayBalTransfer { get; }      
-
         public override string GetSettingKey()
             => "Acc_CustomerUpdAllDayBalTransfer";
 

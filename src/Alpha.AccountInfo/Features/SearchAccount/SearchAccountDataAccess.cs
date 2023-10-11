@@ -84,7 +84,7 @@
         {
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                using (var reader = await db.ExecuteReaderAsync(criteria))
                 {
                     if (reader.Read())
                     {
@@ -104,7 +104,7 @@
         {
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                using (var reader = await db.ExecuteReaderAsync(criteria))
                 {
                     if (reader.Read())
                     {

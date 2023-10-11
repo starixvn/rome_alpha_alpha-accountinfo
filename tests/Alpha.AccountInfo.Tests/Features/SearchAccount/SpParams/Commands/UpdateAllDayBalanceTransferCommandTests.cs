@@ -13,7 +13,7 @@
         public void IsValid_SearchAccountId_Should_ReturnsCorrectValue(int searchAccountId, bool expectedValue)
         {
             // Arrange
-            var criteria = new UpdateAllDayBalanceTransferCommand(searchAccountId, 1462, "E", "192.168.1.1", true);
+            var criteria = new UpdateAllDayBalanceTransferCommand(searchAccountId, 1462, "E", "192.168.1.1");
 
             // Act
             var act = criteria.IsValid();
