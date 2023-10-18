@@ -6,6 +6,8 @@
     using Alpha.AccountInfo.Configurations;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
+    using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.Utilities;
 
     public class AccountInfoViewModelBase
     {
@@ -24,7 +26,11 @@
         {
             get
             {
-                var cookieless = HttpContext.Current.Session.IsCookieless ? $"/(S({HttpContext.Current.Session.SessionID}))" : string.Empty;
+                var Current = UserSession.Current;
+                var cookieNameCurrentPage = GetCookieNameOfCurrentPage(Current.CustId, Current.SubAccId, Encryption.PearsonEncode);
+                var cookieless = HttpContext.Current.Session.IsCookieless ?
+                    $"/(S({HttpContext.Current.Request.Cookies[$"{cookieNameCurrentPage}-betlist-{HttpContext.Current.Session.SessionID}"].Value}))" :
+                    string.Empty;
 
                 return AppSettings.IsStandaloneReports ? $"{BetlistDomainUrl}{cookieless}/" :
                 GetMicroSiteUrl(MicroSiteConstants.BetLists, "~/");
@@ -38,7 +44,11 @@
         {
             get
             {
-                var cookieless = HttpContext.Current.Session.IsCookieless ? $"/(S({HttpContext.Current.Session.SessionID}))" : string.Empty;
+                var Current = UserSession.Current;
+                var cookieNameCurrentPage = GetCookieNameOfCurrentPage(Current.CustId, Current.SubAccId, Encryption.PearsonEncode);
+                var cookieless = HttpContext.Current.Session.IsCookieless ?
+                    $"/(S({HttpContext.Current.Request.Cookies[$"{cookieNameCurrentPage}-{HttpContext.Current.Session.SessionID}"].Value}))" :
+                    string.Empty;
 
                 return AppSettings.IsStandaloneReports ? $"{ReportDomainUrl}{cookieless}/" :
                 GetMicroSiteUrl(MicroSiteConstants.Reports, "~/");
@@ -78,6 +88,23 @@
                     string.Format(AppSettings.BetlistDomain, mainDomain) :
                     AppSettings.BetlistDomain;
             }
+        }
+
+        internal static string GetCookieNameOfCurrentPage(
+            int custId,
+            int subAccId,
+            Func<string, string> encodeDataFunction)
+        {
+            var joinStrings = new[]
+            {
+                custId.ToString(),
+                subAccId.ToString(),
+                "NewMain"
+            };
+
+            var cacheUrlCookieName = string.Join("_", joinStrings);
+
+            return encodeDataFunction?.Invoke(cacheUrlCookieName) ?? cacheUrlCookieName;
         }
     }
 }
