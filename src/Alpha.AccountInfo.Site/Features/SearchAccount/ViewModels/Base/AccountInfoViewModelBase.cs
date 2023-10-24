@@ -29,7 +29,7 @@
                 var Current = UserSession.Current;
                 var cookieNameCurrentPage = GetCookieNameOfCurrentPage(Current.CustId, Current.SubAccId, Encryption.PearsonEncode);
                 var cookieless = HttpContext.Current.Session.IsCookieless ?
-                    $"/(S({HttpContext.Current.Request.Cookies[$"{cookieNameCurrentPage}-betlist-{HttpContext.Current.Session.SessionID}"].Value}))" :
+                    $"/(S({HttpContext.Current.Request.Cookies[$"DFFKDHFJKLDHFJDH-betlist-{HttpContext.Current.Session.SessionID}"].Value}))" :
                     string.Empty;
 
                 return AppSettings.IsStandaloneReports ? $"{BetlistDomainUrl}{cookieless}/" :
@@ -47,7 +47,7 @@
                 var Current = UserSession.Current;
                 var cookieNameCurrentPage = GetCookieNameOfCurrentPage(Current.CustId, Current.SubAccId, Encryption.PearsonEncode);
                 var cookieless = HttpContext.Current.Session.IsCookieless ?
-                    $"/(S({HttpContext.Current.Request.Cookies[$"{cookieNameCurrentPage}-{HttpContext.Current.Session.SessionID}"].Value}))" :
+                    $"/(S({HttpContext.Current.Request.Cookies[$"DFFKDHFJKLDHFJDH-{HttpContext.Current.Session.SessionID}"].Value}))" :
                     string.Empty;
 
                 return AppSettings.IsStandaloneReports ? $"{ReportDomainUrl}{cookieless}/" :
