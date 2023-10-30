@@ -274,7 +274,8 @@
                 param.SearchAccountId,
                 param.ActorId,
                 param.Language,
-                param.IP);
+                param.IP,
+                param.StatusValue);
             var result = await accountInfoDataAccess.UpdateAllDayBalanceTransfer(command);
 
             if (result.IsSuccess)

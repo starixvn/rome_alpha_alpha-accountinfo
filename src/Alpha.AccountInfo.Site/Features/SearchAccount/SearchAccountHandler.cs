@@ -184,7 +184,6 @@
                    message.Language,
                    message.IP,
                    message.StatusValue,
-                   message.StatusName,
                    message.Currency));
 
         internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
