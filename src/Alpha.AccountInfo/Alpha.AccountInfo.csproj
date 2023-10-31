@@ -190,6 +190,7 @@
     <Compile Include="Features\ProtectedStatus\Params\GetProtectedStatusParam.cs" />
     <Compile Include="Features\ProtectedStatus\Params\SPs\GetProtectedStatusCriteria.cs" />
     <Compile Include="Features\ProtectedStatus\ProtectedStatusService.cs" />
+    <Compile Include="Features\SearchAccount\Models\AffectedDownlinesInfoModel.cs" />
     <Compile Include="Features\SearchAccount\Models\ToastContentModel.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\InsertToastMessageCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\TurnOffAutoTransferCriteria.cs" />
@@ -229,6 +230,8 @@
     </Compile>
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\CreditInfo.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateGivenCreditReplicateServerCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\AssignPersonalMessageCriteria.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Criteria\InsertPersonalMessageCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectClosedReasonCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\GetAutoTransferJobStatusCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Criteria\SelectFirstLoginByQRCodeCriteria.cs" />
