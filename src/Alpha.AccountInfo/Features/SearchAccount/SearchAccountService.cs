@@ -213,6 +213,7 @@
                         command = new UpdateSuspendedStatusCommand(param);
                         break;
                     default:
+                        command = new UpdateDisableProtectedStatusCommand(param);
                         break;
                 }
                 var result = await accountInfoDataAccess.UpdateCustomerStatus(command);

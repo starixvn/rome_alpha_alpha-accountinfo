@@ -202,6 +202,7 @@
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllowAutoTransferStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateClosedStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateDisableAutoMPTStatusCommand.cs" />
+    <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateDisableProtectedStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateDisableOutrightStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateDoubleCommLosingStatusCommand.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateMemberGivenCreditCommand.cs" />
