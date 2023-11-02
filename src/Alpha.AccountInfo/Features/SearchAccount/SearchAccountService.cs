@@ -210,7 +210,7 @@
                         command = new UpdateSuspendedStatusCommand(param);
                         break;
                     case StatusNames.Unlock:
-                        command = new UpdateSuspendedStatusCommand(param);
+                        command = new UpdateUnlockedCommand(param);
                         break;
                     default:
                         command = new UpdateDisableProtectedStatusCommand(param);
