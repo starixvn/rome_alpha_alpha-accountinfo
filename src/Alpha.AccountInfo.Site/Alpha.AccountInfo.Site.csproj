@@ -126,7 +126,7 @@
       <HintPath>..\..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1.2\lib\netstandard2.0\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.RemotingRef, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.RemotingRef.1.5.1-beta-03\lib\net461\Fanex.RemotingRef.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.RemotingRef.1.5.1\lib\net461\Fanex.RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="JW.Pager, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JW.Pager.1.0.1\lib\netstandard2.0\JW.Pager.dll</HintPath>
