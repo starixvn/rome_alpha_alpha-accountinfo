@@ -1,9 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.SearchAccount
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
@@ -14,13 +10,16 @@
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Services.AccountInfo;
     using Alpha.AccountInfo.Tests.Extensions;
-    using Alpha.Utilities.IP;
+    using AlphaPlus.Utilities.IP;
     using AutoFixture;
     using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Xunit;
-    using Alpha.Products.Core;
 
     [Trait("Category", "AccountInfo")]
     public class SearchAccountServiceTest
@@ -227,7 +226,7 @@
 
             dynamicRepository
                 .ExecuteAsync(Arg.Any<UpdateSMAGivenCreditCommand>())
-                .Returns(Task.FromResult(result));
+                .Returns(Task.FromResult(1));
 
             var actualResutl = accountInfoService.UpdateGivenCredit(param);
 

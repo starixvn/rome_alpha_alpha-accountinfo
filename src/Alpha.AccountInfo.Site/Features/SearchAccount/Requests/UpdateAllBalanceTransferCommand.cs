@@ -14,8 +14,6 @@
 
         public bool StatusValue { get; set; }
 
-        public string StatusName { get; set; }
-
         public int ActorId => viewer.Id;
 
         public string Language => viewer.LangKey;
@@ -26,7 +24,7 @@
 
         public override bool IsValid()
         {
-            var isValid = base.IsValid() && IsValidName(StatusName) && CanUpdateAccount && !IsInternal;
+            var isValid = base.IsValid() && CanUpdateAccount && !IsInternal;
             return isValid;
         }
     }

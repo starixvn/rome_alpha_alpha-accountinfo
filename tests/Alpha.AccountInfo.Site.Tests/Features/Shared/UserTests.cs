@@ -2,7 +2,7 @@
 {
     using Alpha.AccountInfo.Site.Features.Shared.Models;
     using NSubstitute;
-    using Sunplus.Agent.Model.Entities;
+    using AlphaPlus.User.Models;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]

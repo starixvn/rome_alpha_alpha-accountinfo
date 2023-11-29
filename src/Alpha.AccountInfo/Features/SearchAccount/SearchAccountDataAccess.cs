@@ -8,12 +8,13 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Fanex.Data;
+    using Fanex.Data.Repository;
 
     public interface SearchAccountDataAccess
     {
         Task<DownlineListModel> GetDownlineList(SelectDownlineListByStatusCriteria criteria);
 
-        Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command);
+        Task<Result> UpdateCustomerStatus(NonQueryCommand command);
 
         Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferCommand command);
 
@@ -30,7 +31,7 @@
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria.GetSpParams()))
+                using (var multiResultReader = await objectDb.QueryMultipleAsync(criteria))
                 {
                     var downlineListModel = (await multiResultReader.ReadAsync<DownlineListModel>()).FirstOrDefault();
                     var downlines = await multiResultReader.ReadAsync<DownlineDto>();
@@ -45,13 +46,13 @@
             }
         }
 
-        public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
+        public async Task<Result> UpdateCustomerStatus(NonQueryCommand command)
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
             {
-                await objectDb.ExecuteNonQueryAsync(command.GetSpParams());
+                await objectDb.ExecuteNonQueryAsync(command);
 
-                var outputParams = objectDb.GetOuputParams();
+                var outputParams = objectDb.GetOutputParams();
 
                 return new Result(
                     int.Parse(outputParams["errcode"].ToString()),
@@ -63,13 +64,8 @@
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
             {
-                await objectDb.ExecuteNonQueryAsync(command.GetSpParams());
-
-                var outputParams = objectDb.GetOuputParams();
-
-                return new Result(
-                    int.Parse(outputParams["errcode"].ToString()),
-                    outputParams["errmsg"]?.ToString());
+                await objectDb.ExecuteNonQueryAsync(command);
+                return new Result(int.Parse(command.ErrCode), command.ErrMsg);
             }
         }
 
@@ -77,7 +73,7 @@
         {
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                using (var reader = await db.ExecuteReaderAsync(criteria))
                 {
                     return reader.Read() && Convert.ToBoolean(reader["IsAllDayBalTransfer"]);
                 }
@@ -88,7 +84,7 @@
         {
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                using (var reader = await db.ExecuteReaderAsync(criteria))
                 {
                     if (reader.Read())
                     {
@@ -108,7 +104,7 @@
         {
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var reader = await db.ExecuteReaderAsync(criteria.GetSpParams()))
+                using (var reader = await db.ExecuteReaderAsync(criteria))
                 {
                     if (reader.Read())
                     {

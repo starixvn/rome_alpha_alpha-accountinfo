@@ -13,8 +13,7 @@
     using Alpha.AccountInfo.Site.Tests.Extensions;
     using Alpha.AccountInfo.Site.Tests.Features.Shared.Helpers;
     using Alpha.Products.Core.Services;
-    using Alpha.Utilities.IP;
-    using Alpha.Utilities.IP.Model;
+    using AlphaPlus.Utilities.IP;
     using NSubstitute;
     using System;
     using System.Collections.Generic;
@@ -45,8 +44,7 @@
              .Register<Func<int, string>>((productId) => $"Product Name of {productId}")
              .Register<Func<string, string>>(key => $"value of {key}")
              .Register<Func<bool>>(() => false)
-             .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/")
-             .Register<Func<Alpha.Web.Models.AppSettingEnum, bool>>((appSettingKey) => true);
+             .Register<Func<string, string, string>>((microSiteName, virtualPath) => $"microSiteName/");
 
             getBalanceInfoViewModelByLevel =
                new Dictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>>
@@ -59,7 +57,7 @@
             accountInfoService = Substitute.For<SearchAccountService>();
             ipService = Substitute.For<IPService>();
             kickoutCustomerService= Substitute.For<KickoutCustomerService>();
-            accountInfoHandler = new SearchAccountHandler(accountInfoService, ipService, kickoutCustomerService, getBalanceInfoViewModelByLevel, null, null);
+            accountInfoHandler = new SearchAccountHandler(accountInfoService, ipService, kickoutCustomerService, getBalanceInfoViewModelByLevel, null);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
             {

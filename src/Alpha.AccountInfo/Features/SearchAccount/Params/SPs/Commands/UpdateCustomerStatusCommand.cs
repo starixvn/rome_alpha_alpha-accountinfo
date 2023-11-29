@@ -1,16 +1,13 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using Alpha.AccountInfo.Features.Shared;
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using System.Collections.Generic;
 
     public class UpdateCustomerStatusCommand : NonQueryCommand
     {
-        private const byte AlphaSystemId = 2;
-
-        private static readonly IDictionary<string, string> CustomerStatusSettingKeys =
+         private static readonly IDictionary<string, string> CustomerStatusSettingKeys =
          new Dictionary<string, string>
          {
                 { StatusNames.DisableAutoMasterPT, "Acc_CustomerUpdMaster_DisableAutoMPT" },
@@ -28,9 +25,8 @@
             int subAccountId,
             string language,
             string ip,
-            string statusName,
-            bool statusValue,
-            string actorName)
+            string statusName
+           )
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
@@ -38,8 +34,6 @@
             Language = language;
             IP = ip;
             StatusName = statusName;
-            StatusValue = statusValue;
-            ActorName = actorName;
         }
 
         [SpParam(SqlParamName = "CustId")]
@@ -60,34 +54,11 @@
         public string ErrMsg { get; set; }
 
         [SpParam(Ignored = true)]
-        public string StatusName { get; }
-
-        [SpParam(Ignored = true)]
-        public bool StatusValue { get; }
-
-        [SpParam(Ignored = true)]
-        public string ActorName { get; }
+        public string StatusName { get; }    
+     
 
         public override string GetSettingKey()
-            => CustomerStatusSettingKeys[StatusName];
-
-        public override Hashtable GetSpParams()
-        {
-            var spParams = base.GetSpParams();
-
-            if (!StatusName.Equals(StatusNames.Unlock))
-            {
-                spParams.Add(StatusName, StatusValue);
-            }
-
-            if (StatusName.Equals(StatusNames.Closed)
-                || StatusName.Equals(StatusNames.Unlock))
-            {
-                spParams.Add("SystemID", AlphaSystemId);
-            }
-
-            return spParams;
-        }
+            => CustomerStatusSettingKeys[StatusName];      
 
         public override bool IsValid()
             => SearchAccountId > 0

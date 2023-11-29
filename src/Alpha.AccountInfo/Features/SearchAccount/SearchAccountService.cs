@@ -1,9 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
@@ -13,11 +9,17 @@
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
     using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Criteria;
+    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.MemberInfo.Features.CustomerList.Criteria;
     using Alpha.Products.Core.Shared;
-    using Alpha.Utilities.IP;
+    using AlphaPlus.Utilities.IP;
     using Fanex.Data.Repository;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public interface SearchAccountService
     {
@@ -187,16 +189,39 @@
         }
 
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param)
-            => await UpdateCustomerStatus(new UpdateCustomerStatusCommand(
-                   param.SearchAccountId,
-                   param.ActorId,
-                   param.SubAccountId,
-                   param.Language,
-                   param.IP,
-                   param.StatusName,
-                   param.StatusValue,
-                   param.ActorName));
-
+        {
+            {
+                NonQueryCommand command = null;
+                switch (param.StatusName)
+                {
+                    case StatusNames.Closed:
+                        command = new UpdateClosedStatusCommand(param);
+                        break;
+                    case StatusNames.DisableAutoMasterPT:
+                        command = new UpdateDisableAutoMPTStatusCommand(param);
+                        break;
+                    case StatusNames.DoubleComm:
+                        command = new UpdateDoubleCommLosingStatusCommand(param);
+                        break;
+                    case StatusNames.DisableOutright:
+                        command = new UpdateDisableOutrightStatusCommand(param);
+                        break;
+                    case StatusNames.Suspended:
+                        command = new UpdateSuspendedStatusCommand(param);
+                        break;
+                    case StatusNames.Unlock:
+                        command = new UpdateUnlockedCommand(param);
+                        break;
+                    default:
+                        command = new UpdateDisableProtectedStatusCommand(param);
+                        break;
+                }
+                var result = await accountInfoDataAccess.UpdateCustomerStatus(command);
+                return result.IsSuccess
+                    ? Result.CreateSuccessResult()
+                    : result;
+            }
+        }
         internal async Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria)
           => await dynamicRepository.GetAsync<MasterBalanceInfoModel>(criteria);
 
@@ -225,13 +250,6 @@
                 memberBalanceCriteria.NetPosition);
         }
 
-        public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusCommand command)
-        {
-            var result = await accountInfoDataAccess.UpdateCustomerStatus(command);
-            return result.IsSuccess
-                ? Result.CreateSuccessResult()
-                : result;
-        }
 
         public async Task<CreditInfo> GetCreditInfo(int custId)
             => await dynamicRepository.GetAsync<CreditInfo>(new SelectCreditInfoCriteria(custId));
@@ -258,7 +276,6 @@
                 param.ActorId,
                 param.Language,
                 param.IP,
-                param.StatusName,
                 param.StatusValue);
             var result = await accountInfoDataAccess.UpdateAllDayBalanceTransfer(command);
 

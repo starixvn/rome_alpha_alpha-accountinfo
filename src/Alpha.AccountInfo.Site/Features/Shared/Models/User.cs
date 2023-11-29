@@ -2,7 +2,7 @@
 {
     using System;
     using Alpha.AccountInfo.Features.Shared.Models;
-    using Sunplus.Agent.Model.Entities;
+    using AlphaPlus.User.Models;
 
     public class User : IUser
     {

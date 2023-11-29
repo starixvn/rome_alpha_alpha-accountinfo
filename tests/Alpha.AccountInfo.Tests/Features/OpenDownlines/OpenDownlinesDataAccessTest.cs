@@ -47,7 +47,7 @@
             {
                 { "totalrows", 4 }
             };
-            objectDb.GetOuputParams().Returns(outputParams);
+            objectDb.GetOutputParams().Returns(outputParams);
 
             var downlines = new List<OpenDownlineDto>
             {
