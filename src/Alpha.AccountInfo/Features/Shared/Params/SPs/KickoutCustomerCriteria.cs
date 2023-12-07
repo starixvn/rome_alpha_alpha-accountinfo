@@ -4,14 +4,20 @@
 
     public class KickoutCustomerCriteria : NonQueryCommand
     {
-        public KickoutCustomerCriteria(KickoutCustomerParam param)
+        public KickoutCustomerCriteria(
+            int custId,
+            byte roleId,
+            int serverId,
+            string ip,
+            int subAccId,
+            string mode)
         {
-            CustId = param.CustId;
-            RoleId = param.CustLevelId;
-            ServerId = param.ServerId;
-            IP = param.IP;
-            SubAccId = param.SubAccId;
-            Mode = param.Mode;
+            CustId = custId;
+            RoleId = roleId;
+            ServerId = serverId;
+            IP = ip;
+            SubAccId = subAccId;
+            Mode = mode;
         }
 
         public int CustId { get; }

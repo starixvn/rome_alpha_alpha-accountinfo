@@ -9,8 +9,7 @@
             byte downlineRoleId,
             bool isAffected,
             int pageSize,
-            int pageIndex)
-            : base(searchAccountId)
+            int pageIndex) : base(searchAccountId)
         {
             IsAffected = isAffected;
             PageSize = pageSize;

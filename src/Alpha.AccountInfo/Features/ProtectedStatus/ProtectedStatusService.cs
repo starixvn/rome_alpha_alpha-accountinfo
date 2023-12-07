@@ -38,7 +38,8 @@
         }
 
         public Task<IEnumerable<CustomerProtectedStatus>> GetProtectedStatusAsync(GetProtectedStatusParam param)
-            => dynamicRepository.FetchAsync<CustomerProtectedStatus>(new GetProtectedStatusCriteria(param));
+            => dynamicRepository.FetchAsync<CustomerProtectedStatus>(
+                new GetProtectedStatusCriteria(param.ViewerId, param.ViewerLevelId, param.CustIds));
 
         public async Task<IEnumerable<Result>> UpdateMultipleAsync(UpdateMultipleProtectedStatusParam param)
         {

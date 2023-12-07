@@ -1,8 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Criteria.ProductStatus
 {
-    using System.Collections.Generic;
-    using Params.ProductStatus;
-
     public class UpdateProductStatusForSettingType4Criteria : UpdateDCSProductStatusCriteria
     {
         public UpdateProductStatusForSettingType4Criteria(
@@ -10,7 +7,7 @@
             int subAccId,
             int userId,
             string ip,
-            IEnumerable<BetTypeStatusParam> productStatusParams) : base(custId, subAccId, userId, ip, productStatusParams)
+            string productStatusXml) : base(custId, subAccId, userId, ip, productStatusXml)
         {
         }
 

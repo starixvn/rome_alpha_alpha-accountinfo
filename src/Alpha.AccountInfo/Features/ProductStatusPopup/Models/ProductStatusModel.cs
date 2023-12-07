@@ -20,15 +20,15 @@
             IsDisabledUpline = isDisabledUpline;
         }
 
-        public int ProductId { get; }
+        public int ProductId { get; set; }
 
-        public int SportType { get; }
+        public int SportType { get; set; }
 
-        public int BetType { get; }
+        public int BetType { get; set; }
 
-        public bool IsDisabled { get; }
+        public bool IsDisabled { get; set; }
 
-        public bool IsDisabledUpline { get; }
+        public bool IsDisabledUpline { get; set; }
 
         public string Name { get; set; }
     }

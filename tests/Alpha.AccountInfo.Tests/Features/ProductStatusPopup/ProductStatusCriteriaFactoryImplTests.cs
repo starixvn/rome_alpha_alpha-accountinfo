@@ -84,7 +84,7 @@
                 IPTest,
                 productStatus,
                 "en-US");
-            var expectedCriteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, productStatus);
+            var expectedCriteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, string.Empty);
 
             // Act
             var actualCriteria = productStatusCriteriaFactoryImpl.CreateUpdateCriteria(param);

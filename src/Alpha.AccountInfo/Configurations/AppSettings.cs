@@ -18,6 +18,8 @@
 
         public static string StoredProcedurePath => GetConfigValue("StoredProcedurePath");
 
+        public static string FanexDataServiceApi => GetConfigValue("FanexDataServiceApi");
+
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
 
         public static string ReportDomain => GetConfigValue("Report:Domain") ?? string.Empty;

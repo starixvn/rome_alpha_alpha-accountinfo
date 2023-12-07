@@ -25,8 +25,7 @@
             int subAccountId,
             string language,
             string ip,
-            string statusName
-           )
+            string statusName)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
@@ -56,7 +55,6 @@
         [SpParam(Ignored = true)]
         public string StatusName { get; }    
      
-
         public override string GetSettingKey()
             => CustomerStatusSettingKeys[StatusName];      
 

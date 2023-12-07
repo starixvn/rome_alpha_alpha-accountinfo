@@ -5,16 +5,18 @@
 
     public class UnsuspendDownlineDto
     {
-        public UnsuspendDownlineDto() { }
+        public UnsuspendDownlineDto()
+        {
+        }
 
         public UnsuspendDownlineDto(string username, byte roleId) {
             Username = username;
             RoleId = roleId;
         }
 
-        public string Username { get; private set; }
+        public string Username { get; set; }
 
-        public byte RoleId { get; private set; }
+        public byte RoleId { get; set; }
     }
 
     public class UnsuspendDownlineByLevelModel

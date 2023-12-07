@@ -2,19 +2,10 @@
 {
     public class UnsuspendSingleModel
     {
-        public UnsuspendSingleModel() { }
+        public byte RoleId { get; set; }
 
-        public UnsuspendSingleModel(byte roleId, int affectedDownlines, int unchangedDownlines)
-        {
-            RoleId = roleId;
-            AffectedDownlines = affectedDownlines;
-            UnchangedDownlines = unchangedDownlines;
-        }
+        public int AffectedDownlines { get; set; }
 
-        public byte RoleId { get; private set; }
-
-        public int AffectedDownlines { get; private set; }
-
-        public int UnchangedDownlines { get; private set; }
+        public int UnchangedDownlines { get; set; }
     }
 }

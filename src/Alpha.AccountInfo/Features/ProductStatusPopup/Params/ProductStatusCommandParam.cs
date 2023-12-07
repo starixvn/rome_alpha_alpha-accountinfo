@@ -6,7 +6,6 @@
     public class ProductStatusCommandParam
     {
 #pragma warning disable S107 // Methods should not have too many parameters
-
         public ProductStatusCommandParam(
             int productId,
             int custId,

@@ -50,8 +50,8 @@
             YesterdayCustomerCash = yesterdayCustomerCash;
         }
 
-        public int CustId { get; private set; }
+        public int CustId { get; set; }
 
-        public decimal YesterdayCustomerCash { get; private set; }
+        public decimal YesterdayCustomerCash { get; set; }
     }
 }

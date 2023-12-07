@@ -27,8 +27,8 @@
             Image = image;
         }
 
-        public int ImageId { get; private set; }
+        public int ImageId { get; set; }
 
-        public byte[] Image { get; private set; }
+        public byte[] Image { get; set; }
     }
 }

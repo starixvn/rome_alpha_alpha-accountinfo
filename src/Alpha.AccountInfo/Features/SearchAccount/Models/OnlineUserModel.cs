@@ -16,7 +16,7 @@
 
         public string IP { get; set; }
 
-        public DateTime LoginTime { get; private set; }
+        public DateTime LoginTime { get; set; }
 
         public string FormattedLoginTime => LoginTime.ToString("dd MMM hh:mm tt");
     }

@@ -1,28 +1,32 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands
 {
-    using System.Globalization;
-    using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using Newtonsoft.Json;
 
     public sealed class InsertToastMessageCriteria : NonQueryCommand
     {
         private const int WarningTypeId = 3;
         private const int SiteFunctionId_ADBTChange = 2;
 
-        public InsertToastMessageCriteria(int targetId, int creator)
+        public InsertToastMessageCriteria(
+            int targetId,
+            int creator,
+            string contentEN,
+            string contentCS,
+            string contentCH,
+            string contentTH,
+            string contentVN)
         {
             TypeId = WarningTypeId;
             SiteFunctionId = SiteFunctionId_ADBTChange;
             TargetId = targetId;
             Creator = creator;
 
-            ContentEN = GetContent("en-US");
-            ContentCS = GetContent("zh-CN");
-            ContentCH = GetContent("zh-TW");
-            ContentTH = GetContent("th-TH");
-            ContentVN = GetContent("vi-VN");
+            ContentEN = contentEN;
+            ContentCS = contentCS;
+            ContentCH = contentCH;
+            ContentTH = contentTH;
+            ContentVN = contentVN;
         }
 
         public int TypeId { get; set; }
@@ -69,18 +73,5 @@
         public override string GetSettingKey() => "Age_ToastMessage_Ins";
 
         public override bool IsValid() => true;
-
-        private string GetContent(string langue)
-        {
-            var culture = CultureInfo.GetCultureInfo(langue);
-
-            var content = new ToastContentModel
-            {
-                Title = Shared.AppResources.Resources.ResourceManager.GetString("ADBTChangeToastTitle", culture),
-                Body = Shared.AppResources.Resources.ResourceManager.GetString("ADBTChangeToastMessage", culture)
-            };
-
-            return JsonConvert.SerializeObject(content, Formatting.None);
-        }
     }
 }

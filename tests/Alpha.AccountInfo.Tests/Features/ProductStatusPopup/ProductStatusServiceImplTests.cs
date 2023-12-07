@@ -6,8 +6,6 @@
     using Alpha.AccountInfo.Criteria.ProductStatus;
     using Alpha.AccountInfo.Features.ProductStatusPopup.Models;
     using Alpha.AccountInfo.Features.ProductStatusPopup.Params.SPs;
-    using Alpha.AccountInfo.Features.SearchAccount.Params;
-    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.Services;
     using Alpha.AccountInfo.Models.ProductStatus;
@@ -144,11 +142,7 @@
                 null,
                 Enumerable.Empty<BetTypeStatusParam>(),
                 "en-US");
-            var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
-            {
-                new BetTypeStatusParam(211, 2401, false),
-                new BetTypeStatusParam(211, 2402, false)
-            });
+            var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", string.Empty);
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(true);
@@ -186,11 +180,7 @@
                 null,
                 null,
                 "en-US");
-            var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", new[]
-            {
-                new BetTypeStatusParam(211, 2401, false),
-                new BetTypeStatusParam(211, 2402, false)
-            })
+            var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", string.Empty)
             {
                 ErrCode = 102,
                 ErrMsg = "<Root MsgID=\"60035\" Msg=\"You are not allowed to disable downline's product.\"><Row SportType=\"211\" BetType=\"2401\"/></Root>"

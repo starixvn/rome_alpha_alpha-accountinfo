@@ -1,11 +1,16 @@
-﻿using Alpha.AccountInfo.Features.SearchAccount.Params;
-using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
-
-namespace Alpha.MemberInfo.Features.CustomerList.Criteria
+﻿namespace Alpha.MemberInfo.Features.CustomerList.Criteria
 {
+    using Alpha.AccountInfo.Features.SearchAccount.Params.SPs.Commands;
+
     public class UpdateUnlockedCommand : UpdateCustomerStatusCommand
     {
-        public UpdateUnlockedCommand(UpdateCustomerStatusParam param) : base( param.SearchAccountId, param.ActorId, param.SubAccountId, param.Language, param.IP, param.StatusName)
+        public UpdateUnlockedCommand(
+            int searchAccountId,
+            int actorId,
+            int subAccountId,
+            string language,
+            string ip,
+            string statusName) : base(searchAccountId, actorId, subAccountId, language, ip, statusName)
         {
         }
     }

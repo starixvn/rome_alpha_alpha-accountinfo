@@ -72,59 +72,59 @@
             Locked = locked;
         }
 
-        public int CustId { get; private set; }
+        public int CustId { get; set; }
 
-        public byte RoleId { get; private set; }
+        public byte RoleId { get; set; }
 
-        public string UserName { get; private set; }
+        public string UserName { get; set; }
 
-        public string UserName2 { get; private set; }
+        public string UserName2 { get; set; }
 
-        public string FirstName { get; private set; }
+        public string FirstName { get; set; }
 
-        public string LastName { get; private set; }
+        public string LastName { get; set; }
 
-        public string Phone { get; private set; }
+        public string Phone { get; set; }
 
-        public string MobilePhone { get; private set; }
+        public string MobilePhone { get; set; }
 
-        public string Fax { get; private set; }
+        public string Fax { get; set; }
 
         public byte ClosedReason { get; set; }
 
-        public bool Enabled { get; private set; }
+        public bool Enabled { get; set; }
 
-        public bool UplineEnabled { get; private set; }
+        public bool UplineEnabled { get; set; }
 
-        public bool Closed { get; private set; }
+        public bool Closed { get; set; }
 
-        public bool Suspended { get; private set; }
+        public bool Suspended { get; set; }
 
-        public DateTime CreatDate { get; private set; }
+        public DateTime CreatDate { get; set; }
 
-        public DateTime LastLogged { get; private set; }
+        public DateTime LastLogged { get; set; }
 
         public bool AllowOpenInfoPopup { get; set; }
 
         public string LastLoginIP { get; set; }
 
-        public DateTime PwdExpiry { get; private set; }
+        public DateTime PwdExpiry { get; set; }
 
-        public int MemberId { get; private set; }
+        public int MemberId { get; set; }
 
-        public string MemberName { get; private set; }
+        public string MemberName { get; set; }
 
-        public int AgentId { get; private set; }
+        public int AgentId { get; set; }
 
-        public string AgentName { get; private set; }
+        public string AgentName { get; set; }
 
-        public int MasterId { get; private set; }
+        public int MasterId { get; set; }
 
-        public string MasterName { get; private set; }
+        public string MasterName { get; set; }
 
-        public int SuperId { get; private set; }
+        public int SuperId { get; set; }
 
-        public string SuperName { get; private set; }
+        public string SuperName { get; set; }
 
         public byte Locked { get; }
     }

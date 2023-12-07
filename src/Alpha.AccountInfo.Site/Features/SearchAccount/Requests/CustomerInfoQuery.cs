@@ -22,6 +22,7 @@
             CanCreateAccount = viewer.CanCreateAccount;
             CanViewMemberInfo = viewer.ViewMemberInfo;
             IsAdminCanViewVNIP = viewer.IsAdminCanViewVNIP;
+            AGIP = viewer.AGIP;
         }
 
         [AllowHtml]
@@ -48,6 +49,8 @@
         public bool CanViewMemberInfo { get; }
 
         public bool IsAdminCanViewVNIP { get; }
+
+        public string AGIP { get; }
 
         public override bool IsValid() =>
             IsValidName(SearchAccountName) &&
