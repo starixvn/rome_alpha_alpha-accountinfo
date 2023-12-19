@@ -19,9 +19,10 @@
             Creator = creator;
 
             ContentEN = GetContent("en-US");
-            ContentCH = GetContent("zh-CN");
-            ContentCS = GetContent("zh-TW");
+            ContentCS = GetContent("zh-CN");
+            ContentCH = GetContent("zh-TW");
             ContentTH = GetContent("th-TH");
+            ContentVN = GetContent("vi-VN");
         }
 
         public int TypeId { get; set; }

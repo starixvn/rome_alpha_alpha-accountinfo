@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
+    using System.Globalization;
     using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
@@ -323,20 +324,35 @@
                 IP = param.IP
             };
 
-            dynamicRepository.Execute(turnOffCriteria);
+            var affects = dynamicRepository.Fetch<AffectedDownlinesInfoModel>(turnOffCriteria);
 
-            if (string.IsNullOrWhiteSpace(turnOffCriteria.TargetIds))
+            if (!affects.Any())
             {
                 return;
             }
 
-            var ids = turnOffCriteria.TargetIds.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(i => int.Parse(i));
-
-            foreach (var id in ids)
+            foreach (var row in affects)
             {
-                var toastMessageCriteria = new InsertToastMessageCriteria(id, param.ActorId);
+                var uplineId = row.CustId;
+
+                var toastMessageCriteria = new InsertToastMessageCriteria(uplineId, param.ActorId);
                 dynamicRepository.Execute(toastMessageCriteria);
+
+                var uplineName = row.Username;
+                var dowlines = row.Names;
+                var personalMessageCriteria = new InsertPersonalMessageCriteria(
+                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("en-US")), dowlines),
+                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("zh-TW")), dowlines),
+                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("zh-CN")), dowlines),
+                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("th-TH")), dowlines),
+                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("vi-VN")), dowlines));
+
+                dynamicRepository.Execute(personalMessageCriteria);
+
+                if (personalMessageCriteria.MessageIDOutput != 0)
+                {
+                    dynamicRepository.Execute(new AssignPersonalMessageCriteria(personalMessageCriteria.MessageIDOutput, uplineId, uplineName));
+                }
             }
         }
 

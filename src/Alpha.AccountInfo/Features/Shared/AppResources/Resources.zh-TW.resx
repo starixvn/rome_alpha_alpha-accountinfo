@@ -445,12 +445,15 @@
     <value>顯示更少</value>
   </data>
   <data name="ADBTChangeToastMessage" xml:space="preserve">
-    <value>您的賬號已啟用全天餘額轉賬。以確保數據準確性，您為下線設置的自動轉賬配置將被禁用。</value>
+    <value>您的賬號現已啓用全天余額轉賬。 因此，自動轉賬日程已被清除，並且您爲下線設置的自動轉賬配置將被禁用，以確保數據准確性。</value>
   </data>
   <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
     <value>當前正在進行自動轉賬的過程。請等待過程在幾分鐘後完成，再更改轉賬模式。</value>
   </data>
   <data name="ADBTChangeToastTitle" xml:space="preserve">
     <value>自動轉賬配置</value>
+  </data>
+  <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
+    <value>您的帳號現已啟用全天餘額轉帳。 因此，自動轉帳日程已被清除，並且以下客戶：{0} 的下線自動轉帳已禁用。 內容可以在轉帳功能查詢。</value>
   </data>
 </root>

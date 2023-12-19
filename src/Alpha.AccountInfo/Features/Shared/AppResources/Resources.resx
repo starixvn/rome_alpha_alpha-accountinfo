@@ -442,12 +442,15 @@
     <value>Show Less</value>
   </data>
   <data name="ADBTChangeToastMessage" xml:space="preserve">
-    <value>Your account has been enabled for All Day Balance Transfer. The Auto Transfer configuration you set for downlines will be disabled to ensure data accuracy.</value>
+    <value>All Day Balance Transfer is now enabled for your account. As a result, Auto Transfer schedule has been cleared, and the Auto Transfer configuration you set for downlines will be disabled to ensure data accuracy.</value>
   </data>
   <data name="ADBTChangeToastTitle" xml:space="preserve">
     <value>Auto Transfer Config</value>
   </data>
   <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
     <value>The Auto Transfer process is currently taking place. Kindly wait for the process to complete within a few minutes before changing the Transfer Mode.</value>
+  </data>
+  <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
+    <value>All Day Balance Transfer is now enabled for your account. As a result, Auto Transfer schedule has been cleared, and the Auto Transfer for downlines will be disabled for the following customers: {0}. Details can be found in Transfer function.</value>
   </data>
 </root>
