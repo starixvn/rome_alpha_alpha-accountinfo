@@ -20,14 +20,14 @@
             AgentId = agentId;
         }
 
-        public int CustId { get; }
+        public int CustId { get; set; }
         
-        public byte RoleId { get; }
+        public byte RoleId { get; set; }
 
-        public int SuperId { get; }
+        public int SuperId { get; set; }
 
-        public int MasterId { get; }
+        public int MasterId { get; set; }
 
-        public int AgentId { get; }
+        public int AgentId { get; set; }
     }
 }

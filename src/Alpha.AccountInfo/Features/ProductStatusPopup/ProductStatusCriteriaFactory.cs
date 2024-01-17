@@ -1,9 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using Alpha.AccountInfo.Features.ProductStatusPopup;
-    using Alpha.Products.Core.Shared;
     using Criteria.ProductStatus;
     using Fanex.Data.Repository;
     using Params.ProductStatus;
@@ -38,10 +39,10 @@
             switch (param.ProductId)
             {
                 case ProductIdConstants.SabaVirtualSports:
-                    return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
+                    return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, BuildProductStatusXml(param.ProductStatusParams));
 
                 case ProductIdConstants.Cashout:
-                    return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, param.ProductStatusParams);
+                    return new UpdateProductStatusForSettingType4Criteria(param.CustId, param.SubAccId, param.ActorId, param.IP, BuildProductStatusXml(param.ProductStatusParams));
                 case ProductIdConstants.RNGSlot:
                     return CreateUpdateMacauGamesStatusCriteria(param);
                 default:
@@ -55,7 +56,7 @@
                 param.SubAccId,
                 param.ActorId,
                 param.IP,
-                param.ProductStatusParams);
+                BuildProductStatusXml(param.ProductStatusParams));
 
         private static NonQueryProductStatusCriteria CreateUpdateMacauGamesStatusCriteria(ProductStatusCommandParam param)
             => new UpdateMacauGamesStatusCriteria(
@@ -63,7 +64,26 @@
                 param.SubAccId,
                 param.ActorId,
                 param.IP,
-                param.ProductStatusParams);
+                BuildProductStatusXml(param.ProductStatusParams));
 
+        private static string BuildProductStatusXml(IEnumerable<BetTypeStatusParam> statusParams)
+        {
+            if (statusParams != null && statusParams.Any())
+            {
+                var builder = new StringBuilder();
+
+                foreach (var item in statusParams)
+                {
+                    builder.Append(BuildProductStatusElement(item));
+                }
+
+                return $"<ROOT>{builder.ToString()}</ROOT>";
+            }
+
+            return string.Empty;
+        }
+
+        private static string BuildProductStatusElement(BetTypeStatusParam param)
+            => $"<ProductStatus SportType=\"{param.SportType}\" BetType=\"{param.BetType}\" IsDisabled=\"{Convert.ToInt32(param.IsDisabled)}\"/>";
     }
 }

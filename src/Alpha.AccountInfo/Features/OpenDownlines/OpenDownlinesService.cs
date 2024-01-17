@@ -1,10 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Features.OpenDownlines
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Fanex.Data.Repository;
     using Models;
     using Params;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public interface OpenDownlinesService
     {
@@ -23,15 +24,9 @@
     public class OpenDownlinesServiceImpl : OpenDownlinesService
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly OpenDownlinesDataAccess openDownlinesDataAccess;
 
-        public OpenDownlinesServiceImpl(
-            IDynamicRepository dynamicRepository,
-            OpenDownlinesDataAccess openDownlinesDataAccess)
-        {
-            this.dynamicRepository = dynamicRepository;
-            this.openDownlinesDataAccess = openDownlinesDataAccess;
-        }
+        public OpenDownlinesServiceImpl(IDynamicRepository dynamicRepository)
+            => this.dynamicRepository = dynamicRepository;
 
         public async Task<IEnumerable<OpenSingleModel>> GetOpenInfoModel(int searchAccountId)
             => await dynamicRepository
@@ -39,9 +34,18 @@
             .ConfigureAwait(false);
 
         public async Task<IEnumerable<OpenMultipleModel>> GetOpenMultipleModel(string custIds, byte roleId)
-        => await openDownlinesDataAccess
-            .GetOpenMultipleModel(new SelectCloseInfoMultipleCriteria(custIds, roleId))
-            .ConfigureAwait(false);
+        {
+            var (searchAccounts, downlines) = await dynamicRepository.FetchMultipleAsync<OpenSearchAccountModel, OpenDownlineModel>(
+                new SelectCloseInfoMultipleCriteria(custIds, roleId));
+
+            return searchAccounts.Select(searchAccount => new OpenMultipleModel(
+                searchAccount.SearchAccountId,
+                searchAccount.Username,
+                searchAccount.IsClosed,
+                downlines
+                    .Where(downline => downline.SearchAccountId == searchAccount.SearchAccountId)
+                    .OrderByDescending(downline => downline.DownlineRoleId).ToList()));
+        }
 
         public async Task<OpenViewListModel> GetOpenViewListModel(
             int custId,
@@ -49,12 +53,19 @@
             byte downlineRoleId,
             int pageSize,
             int pageIndex)
-        => await openDownlinesDataAccess.GetDownlinesInfoStatus(
-                new SelectCloseInfoDetailCriteria(
-                    custId,
-                    downlineRoleId,
-                    isAffected,
-                    pageSize,
-                    pageIndex)).ConfigureAwait(false);
+        {
+            var criteria = new SelectCloseInfoDetailCriteria(
+                custId,
+                downlineRoleId,
+                isAffected,
+                pageSize,
+                pageIndex);
+            var downlines = await dynamicRepository.FetchAsync<OpenDownlineDto>(criteria);
+
+            return new OpenViewListModel(
+                downlines.GroupBy(item => item.RoleId).Select(
+                    group => new OpenDownlineByLevelModel(group.Key, group)),
+                criteria.TotalRows);
+        }
     }
 }

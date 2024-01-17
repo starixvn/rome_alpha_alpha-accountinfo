@@ -13,10 +13,10 @@
             UnchangedDownlines = unchangedDownlines;
         }
 
-        public byte RoleId { get; }
+        public byte RoleId { get; set; }
 
-        public int AffectedDownlines { get; }
+        public int AffectedDownlines { get; set; }
 
-        public int UnchangedDownlines { get; }
+        public int UnchangedDownlines { get; set; }
     }
 }

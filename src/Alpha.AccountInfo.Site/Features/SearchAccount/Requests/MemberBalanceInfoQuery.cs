@@ -10,11 +10,14 @@
         public MemberBalanceInfoQuery(IUser viewer) : base(viewer)
         {
             Viewer = viewer;
+            AGIP = viewer.AGIP;
         }
 
         public IUser Viewer { get; }
 
         public string CustName { get; set; }
+
+        public string AGIP { get; }
 
         public override bool IsValid()
             => !string.IsNullOrWhiteSpace(CustName);

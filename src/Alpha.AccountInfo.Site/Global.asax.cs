@@ -1,7 +1,14 @@
 ﻿namespace Alpha.AccountInfo.Site
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Routing;
     using Alpha.AccountInfo.Site.Features.Shared.Helpers;
-    using Alpha.AccountInfo.Site.Utilities;
     using Alpha.Auth.Filters;
     using AlphaPlus.Logging;
     using AlphaPlus.Logging.Web;
@@ -10,9 +17,7 @@
     using Configurations;
     using Fanex.Caching;
     using Fanex.Data;
-    using Fanex.Data.SqlServer;
     using Fanex.Logging.Extensions.Web;
-    using Fanex.Logging.Extensions.Database;
     using Fanex.RemotingRef;
     using ONEbook.UM;
     using ONEbook.UM.AspNetMVC.Filters;
@@ -20,12 +25,6 @@
     using ONEbook.UM.NETFramework;
     using ONEbook.UM.Services;
     using ONEbook.UM.Transport;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Routing;
     using Web;
     using Web.Filters;
     using Web.Helpers;
@@ -34,9 +33,6 @@
     {
         protected void Application_Start()
         {
-            AlphaPlus.Configurations.ConfigurationManager.Init(new ConfigurationHelper());
-            UserSession.Init(new Web.Helpers.HttpContextHelper());
-            LoggingConfig.ExceptionHandler = new ExceptionHandlerAdapter();
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
             MvcHandler.DisableMvcResponseHeader = true;
@@ -44,15 +40,25 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
-            DependencyConfig.Init();
+            AlphaPlus.Configurations.ConfigurationManager.Init(new ConfigurationHelper());
+            LoggingConfig.ExceptionHandler = new ExceptionHandlerAdapter();
+            LoggingConfig.Init();
 
+            var connectionStrings = ConfigurationManager.ConnectionStrings
+                .Cast<ConnectionStringSettings>()
+                .ToDictionary(
+                    connection => connection.Name,
+                    connection => new ConnectionConfiguration(connection.Name, connection.ConnectionString, connection.ProviderName),
+                    StringComparer.OrdinalIgnoreCase);
             DbSettingProviderManager
                 .StartNewSession()
-                .WithSqlServer(resourcePath: AppSettings.StoredProcedurePath)
-                .UseShardDbSettingProvider()                
+                .Use(connectionStrings)
+                .Use(AppSettings.FanexDataServiceApi)
+                .Register(resourcePath: AppSettings.StoredProcedurePath)
                 .Run();
 
+            UserSession.Init(new HttpContextHelper());
+            DependencyConfig.Init();
             ShareSession.Init();
 
             var umConfig = new UMClientConfiguration().Initialize();

@@ -27,7 +27,9 @@
 
     public class UnsuspendSearchAccountModel
     { 
-        public UnsuspendSearchAccountModel() { }
+        public UnsuspendSearchAccountModel()
+        {
+        }
 
         public UnsuspendSearchAccountModel(
             int searchAccountId,
@@ -39,16 +41,18 @@
             Suspended = suspended;
         }
 
-        public int SearchAccountId { get; private set; }
+        public int SearchAccountId { get; set; }
 
-        public string Username { get; private set; }
+        public string Username { get; set; }
 
-        public bool Suspended { get; private set; }
+        public bool Suspended { get; set; }
     }
 
     public class UnsuspendDownlineModel
     {
-        public UnsuspendDownlineModel() { }
+        public UnsuspendDownlineModel()
+        {
+        }
 
         public UnsuspendDownlineModel(
             int searchAccountId,
@@ -62,12 +66,12 @@
             UnchangedDownlines = unchangedDownlines;
         }
 
-        public int SearchAccountId { get; private set; }
+        public int SearchAccountId { get; set; }
 
-        public byte DownlineRoleId { get; private set; }
+        public byte DownlineRoleId { get; set; }
 
-        public int AffectedDownlines { get; private set; }
+        public int AffectedDownlines { get; set; }
 
-        public int UnchangedDownlines { get; private set; }
+        public int UnchangedDownlines { get; set; }
     }
 }

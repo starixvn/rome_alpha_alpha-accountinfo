@@ -1,10 +1,11 @@
 ﻿namespace Alpha.AccountInfo.Features.UnsuspendDownlines
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.UnsuspendDownlines.Models;
     using Alpha.AccountInfo.Features.UnsuspendDownlines.Params.SPs.Criteria;
     using Fanex.Data.Repository;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public interface UnsuspendDownlinesService
     {
@@ -23,15 +24,9 @@
     public class UnsuspendDownlinesServiceImpl : UnsuspendDownlinesService
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly UnsuspendDownlinesDataAccess unsuspendDownlinesDataAccess;
 
-        public UnsuspendDownlinesServiceImpl(
-            IDynamicRepository dynamicRepository, 
-            UnsuspendDownlinesDataAccess unsuspendDownlinesDataAccess)
-        {
-            this.dynamicRepository = dynamicRepository;
-            this.unsuspendDownlinesDataAccess = unsuspendDownlinesDataAccess;
-        }
+        public UnsuspendDownlinesServiceImpl(IDynamicRepository dynamicRepository)
+            => this.dynamicRepository = dynamicRepository;
 
         public async Task<IEnumerable<UnsuspendSingleModel>> GetUnsuspendInfoModel(int searchAccountId)
             => await dynamicRepository
@@ -44,17 +39,34 @@
             byte downlineRoleId,
             int pageSize,
             int pageIndex)
-            => await unsuspendDownlinesDataAccess.GetDownlinesInfoStatus(
-                new SelectSuspendInfoDetailCriteria(
-                    custId, 
-                    downlineRoleId, 
-                    isAffected,
-                    pageSize,
-                    pageIndex)).ConfigureAwait(false);
+        {
+            var criteria = new SelectSuspendInfoDetailCriteria(
+                custId,
+                downlineRoleId,
+                isAffected,
+                pageSize,
+                pageIndex);
+            var downlines = await dynamicRepository.FetchAsync<UnsuspendDownlineDto>(criteria);
+
+            return new UnsuspendViewListModel(
+                downlines.GroupBy(item => item.RoleId).Select(group => new UnsuspendDownlineByLevelModel(group.Key, group)),
+                criteria.TotalRows);
+        }
 
         public async Task<IEnumerable<UnsuspendMultipleModel>> GetUnsuspendMultipleModel(string custIds, byte roleId)
-            => await unsuspendDownlinesDataAccess
-            .GetUnsuspendMultipleModel(new SelectSuspendInfoMultipleCriteria(custIds, roleId))
-            .ConfigureAwait(false);
+        {
+            var (searchAccounts, downlines) = await dynamicRepository
+                .FetchMultipleAsync<UnsuspendSearchAccountModel, UnsuspendDownlineModel>(
+                    new SelectSuspendInfoMultipleCriteria(custIds, roleId));
+
+            return searchAccounts.Select(searchAccount =>
+                new UnsuspendMultipleModel(
+                    searchAccount.SearchAccountId,
+                    searchAccount.Username,
+                    searchAccount.Suspended,
+                    downlines
+                        .Where(downline => downline.SearchAccountId == searchAccount.SearchAccountId)
+                        .OrderByDescending(downline => downline.DownlineRoleId).ToList()));
+        }
     }
 }

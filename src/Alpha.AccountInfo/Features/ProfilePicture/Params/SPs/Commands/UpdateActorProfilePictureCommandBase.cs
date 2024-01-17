@@ -13,8 +13,8 @@
             string ip,
             bool isMainServer)
         {
-            
-            if(imageId < 0)
+
+            if (imageId < 0)
             {
                 ImageId = null;
                 Image = image;
@@ -35,8 +35,9 @@
         [SpParam(SqlParamName = "CustId")]
         public int ActorId { get; }
 
-        public int? ImageId { get;}
+        public int? ImageId { get; }
 
+        [SpParam(IsSpecialType = true)]
         public byte[] Image { get; }
 
         public bool IsDefault { get; }

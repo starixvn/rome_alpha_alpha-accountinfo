@@ -10,7 +10,8 @@
             int actorId,
             int subAccountId,
             string language,
-            string ip) 
+            string ip,
+            string agIP) 
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
@@ -20,6 +21,7 @@
             RoleId = roleId;
             CreditAmount = creditAmount;
             UpdateCreditReplicateServer = updateCreditReplicateServer;
+            AGIP = agIP;
         }
 
         public int SearchAccountId { get; }
@@ -37,5 +39,7 @@
         public decimal CreditAmount { get; }
 
         public bool UpdateCreditReplicateServer { get; }
+
+        public string AGIP { get; }
     }
 }

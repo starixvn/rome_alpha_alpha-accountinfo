@@ -79,7 +79,7 @@
                     message,
                     customerInfo,
                     await accountInfoService.GetCreditInfo(customerInfo.CustId),
-                    await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId),
+                    await accountInfoService.GetBalanceInfo(customerInfo.CustId, customerInfo.RoleId, message.AGIP),
                     await accountInfoService.IsAllDayBalanceTransfer(message.ActorId));
 
                 var formatedIP = ipService.FormatIP(customerInfo.LastLoginIP, message.IsAdminCanViewVNIP);
@@ -128,7 +128,7 @@
             decimal memberCreditMin = 0;
             if (Enumeration.FromValue<UserLevel>(message.SearchAccountRoleId).IsMemberLevel())
             {
-                var balanceInfo = (MemberBalanceInfoModel)await accountInfoService.GetBalanceInfo(message.SearchAccountId, message.SearchAccountRoleId);
+                var balanceInfo = (MemberBalanceInfoModel)await accountInfoService.GetBalanceInfo(message.SearchAccountId, message.SearchAccountRoleId, message.AGIP);
 
                 memberCreditMin = Math.Max(0, balanceInfo.CustomerOutstanding - balanceInfo.CustomerCash + balanceInfo.PendingTransfer3rd);
             }
@@ -149,7 +149,8 @@
                     message.ActorId,
                     message.SubAccountId,
                     message.LangKey,
-                    message.IP));
+                    message.IP,
+                    message.AGIP));
 
         public async Task<Result> Handle(CustomerNonProductStatusCommand message)
         {
@@ -184,7 +185,8 @@
                    message.Language,
                    message.IP,
                    message.StatusValue,
-                   message.Currency));
+                   message.Currency,
+                   message.AGIP));
 
         internal static IBalanceInfoViewModel BuildMasterBalanceInfoViewModel(
             CustomerInfoQuery message,
@@ -224,7 +226,7 @@
             if (customerInfo != null && Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel())
             {
                 var creditInfoTask = accountInfoService.GetCreditInfo(customerInfo.CustId);
-                var balanceInfoTask = accountInfoService.GetBalanceInfo(customerInfo.CustId, UserLevel.Member.Value);
+                var balanceInfoTask = accountInfoService.GetBalanceInfo(customerInfo.CustId, UserLevel.Member.Value, message.AGIP);
                 var isAllDayBalanceTransferTask = accountInfoService.IsAllDayBalanceTransfer(customerInfoQuery.ActorId);
                 await Task.WhenAll(creditInfoTask, balanceInfoTask, isAllDayBalanceTransferTask);
 

@@ -33,7 +33,13 @@
             {
                 if (!AppSettings.IsDisabledRecheckin)
                 {
-                    await dynamicRepository.ExecuteAsync(new KickoutCustomerCriteria(param));
+                    await dynamicRepository.ExecuteAsync(new KickoutCustomerCriteria(
+                        param.CustId,
+                        param.CustLevelId,
+                        param.ServerId,
+                        param.IP,
+                        param.SubAccId,
+                        param.Mode));
                 }
             }
             catch (Exception ex)

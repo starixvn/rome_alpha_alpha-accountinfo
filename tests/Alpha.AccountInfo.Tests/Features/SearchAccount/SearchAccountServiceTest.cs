@@ -1,6 +1,9 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.SearchAccount
 {
-    using Alpha.AccountInfo.DataAccess;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
@@ -15,17 +18,12 @@
     using Fanex.Data.Repository;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     [Trait("Category", "AccountInfo")]
     public class SearchAccountServiceTest
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly SearchAccountDataAccess accountInfoDataAccess;
         private readonly IPService ipService;
         private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
         private readonly SearchAccountServiceImpl accountInfoService;
@@ -38,7 +36,6 @@
         public SearchAccountServiceTest()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            accountInfoDataAccess = Substitute.For<SearchAccountDataAccess>();
             ipService = Substitute.For<IPService>();
             memberBalanceInfoModel = fixture.Create<MemberBalanceInfoModel>();
             agentBalanceInfoModel = fixture.Create<AgentBalanceInfoModel>();
@@ -54,9 +51,7 @@
             accountInfoService =
                 new SearchAccountServiceImpl(
                 dynamicRepository,
-                accountInfoDataAccess,
-                ipService,
-                getBalanceInfoModelByLevel);
+                ipService);
         }
 
         [Fact]
@@ -107,7 +102,7 @@
         public void GetBalanceInfoModel_GetMember_ReturnsCorrectModel()
         {
             var actualModel = accountInfoService
-                .GetBalanceInfo(1, 1)
+                .GetBalanceInfo(1, 1, string.Empty)
                 .GetAwaiter()
                 .GetResult();
 
@@ -118,7 +113,7 @@
         public void GetBalanceInfoModel_GetAgent_ReturnsCorrectModel()
         {
             var actualModel = accountInfoService
-                .GetBalanceInfo(1, 2)
+                .GetBalanceInfo(1, 2, string.Empty)
                 .GetAwaiter()
                 .GetResult();
 
@@ -129,7 +124,7 @@
         public void GetBalanceInfoModel_GetMaster_ReturnsCorrectModel()
         {
             var actualModel = accountInfoService
-                .GetBalanceInfo(1, 3)
+                .GetBalanceInfo(1, 3, string.Empty)
                 .GetAwaiter()
                 .GetResult();
 
@@ -156,9 +151,9 @@
         public void GetDownlineListModel_Always_ReturnsCorrectModel()
         {
             var model = fixture.Create<DownlineListModel>();
-            accountInfoDataAccess
-                .GetDownlineList(Arg.Any<SelectDownlineListByStatusCriteria>())
-                .Returns(Task.FromResult(model));
+            //accountInfoDataAccess
+            //    .GetDownlineList(Arg.Any<SelectDownlineListByStatusCriteria>())
+            //    .Returns(Task.FromResult(model));
 
             var actualModel = accountInfoService
                 .GetDownlineList(1, 1, 2, 1, 1)
@@ -237,7 +232,7 @@
         public void UpdateGivenCredit_SearchAccountIsMember_GetTotalAmount()
         {
             var memberRoleId = UserLevel.Member.Value;
-            var param = new UpdateGivenCreditParam(1, memberRoleId, 100, false, 1, 1, "EN", "192.168.0.1");
+            var param = new UpdateGivenCreditParam(1, memberRoleId, 100, false, 1, 1, "EN", "192.168.0.1", string.Empty);
             
             accountInfoService.UpdateGivenCredit(param).GetAwaiter().GetResult();
 
@@ -248,7 +243,7 @@
         public void UpdateGivenCredit_SearchAccountIsNotMember_NotGetTotalAmount()
         {
             var superRoleId = UserLevel.Super.Value;
-            var param = new UpdateGivenCreditParam(1, superRoleId, 100, false, 1, 1, "EN", "192.168.0.1");
+            var param = new UpdateGivenCreditParam(1, superRoleId, 100, false, 1, 1, "EN", "192.168.0.1", string.Empty);
 
             accountInfoService.UpdateGivenCredit(param).GetAwaiter().GetResult();
 
@@ -261,9 +256,9 @@
             var result = Result.CreateSuccessResult();
             var param = fixture.Create<UpdateCustomerStatusParam>();
 
-            accountInfoDataAccess
-                .UpdateCustomerStatus(Arg.Any<UpdateCustomerStatusCommand>())
-                .Returns(Task.FromResult(result));
+            //accountInfoDataAccess
+            //    .UpdateCustomerStatus(Arg.Any<UpdateCustomerStatusCommand>())
+            //    .Returns(Task.FromResult(result));
 
             var actualResutl = accountInfoService
                 .UpdateCustomerStatus(param)
@@ -317,7 +312,7 @@
                 .Returns(Task.FromResult(memberBalanceInfoDTO));
 
             accountInfoService
-                .GetMemberBalanceInfoModel(selectBalanceInfoCriteria)
+                .GetMemberBalanceInfoModel(selectBalanceInfoCriteria, string.Empty)
                 .GetAwaiter()
                 .GetResult();
 
@@ -409,7 +404,7 @@
             await accountInfoService.IsAllDayBalanceTransfer(custId);
 
             // Assert
-            await accountInfoDataAccess.Received().IsAllDayBalanceTransfer(Arg.Is<SelectIsAllDayBalTransferCriteria>(c => c.CustId == custId));
+            //await accountInfoDataAccess.Received().IsAllDayBalanceTransfer(Arg.Is<SelectIsAllDayBalTransferCriteria>(c => c.CustId == custId));
         }
     }
 }

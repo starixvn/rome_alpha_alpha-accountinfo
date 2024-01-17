@@ -38,7 +38,7 @@
       <HintPath>..\..\packages\Alpha.Products.Core.1.0.1.5\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.Utilities.IP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.Utilities.IP.1.0.0\lib\netstandard2.0\AlphaPlus.Utilities.IP.dll</HintPath>
+      <HintPath>..\..\packages\AlphaPlus.Utilities.IP.1.0.0.1\lib\netstandard2.0\AlphaPlus.Utilities.IP.dll</HintPath>
     </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
@@ -49,14 +49,8 @@
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Data, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.4.2.2\lib\net461\Fanex.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Data.Repository, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.Repository.4.2.2\lib\net461\Fanex.Data.Repository.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Data.SqlServer, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.SqlServer.4.2.2\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
+    <Reference Include="Fanex.Data.ProxyClient, Version=0.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.ProxyClient.0.0.3-alpha01\lib\netstandard2.0\Fanex.Data.ProxyClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1.1\lib\net461\Fanex.Logging.dll</HintPath>
@@ -98,8 +92,8 @@
       <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -166,7 +160,6 @@
     <Compile Include="Features\OpenDownlines\Models\OpenMultipleModel.cs" />
     <Compile Include="Features\OpenDownlines\Models\OpenSingleModel.cs" />
     <Compile Include="Features\OpenDownlines\Models\OpenDownlinesModel.cs" />
-    <Compile Include="Features\OpenDownlines\OpenDownlinesDataAccess.cs" />
     <Compile Include="Features\OpenDownlines\OpenDownlinesService.cs" />
     <Compile Include="Features\OpenDownlines\Params\SelectCloseInfoCriteria.cs" />
     <Compile Include="Features\OpenDownlines\Params\SelectCloseInfoDetailCriteria.cs" />
@@ -191,7 +184,9 @@
     <Compile Include="Features\ProtectedStatus\Params\SPs\GetProtectedStatusCriteria.cs" />
     <Compile Include="Features\ProtectedStatus\ProtectedStatusService.cs" />
     <Compile Include="Features\SearchAccount\Models\AffectedDownlinesInfoModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\CustomerClosedReasonModel.cs" />
     <Compile Include="Features\SearchAccount\Models\ToastContentModel.cs" />
+    <Compile Include="Features\SearchAccount\Models\TransferModel.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\InsertToastMessageCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\TurnOffAutoTransferCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\SPs\Commands\UpdateAllDayBalanceTransferCommand.cs" />
@@ -254,7 +249,6 @@
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectDCSProductStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectProductStatusCriteria.cs" />
     <Compile Include="Features\SearchAccount\Params\UpdateAllDayBalanceTransferParam.cs" />
-    <Compile Include="Features\SearchAccount\SearchAccountDataAccess.cs" />
     <Compile Include="Features\Shared\AppResources\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -277,7 +271,6 @@
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoMultipleCriteria.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoDetailCriteria.cs" />
     <Compile Include="Features\UnsuspendDownlines\Params\SPs\SelectSuspendInfoCriteria.cs" />
-    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesDataAccess.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesService.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Features\SearchAccount\Models\BalanceInfo\AgentBalanceInfoModel.cs" />

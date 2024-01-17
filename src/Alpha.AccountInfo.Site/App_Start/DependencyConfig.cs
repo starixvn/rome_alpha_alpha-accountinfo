@@ -1,6 +1,10 @@
 ﻿namespace Alpha.AccountInfo.Site.App_Start
 {
-    using Alpha.AccountInfo.DataAccess;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Resources;
+    using System.Web.Mvc;
     using Alpha.AccountInfo.Features.OpenDownlines;
     using Alpha.AccountInfo.Features.ProtectedStatus;
     using Alpha.AccountInfo.Features.Shared.AppResources;
@@ -26,11 +30,6 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Resources;
-    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
@@ -111,11 +110,8 @@
             container.Register<ProductStatusCriteriaFactory, ProductStatusCriteriaFactoryImpl>(Lifestyle.Singleton);
             container.Register<ProductStatusService, ProductStatusServiceImpl>(Lifestyle.Scoped);
             container.Register<SearchAccountService, SearchAccountServiceImpl>(Lifestyle.Scoped);
-            container.Register<SearchAccountDataAccess, SearchAccountDataAccessImpl>(Lifestyle.Scoped);
             container.Register<UnsuspendDownlinesService, UnsuspendDownlinesServiceImpl>(Lifestyle.Scoped);
-            container.Register<UnsuspendDownlinesDataAccess, UnsuspendDownlinesDataAccessImpl>(Lifestyle.Scoped);
             container.Register<OpenDownlinesService, OpenDownlinesServiceImpl>(Lifestyle.Scoped);
-            container.Register<OpenDownlinesDataAccess, OpenDownlinesDataAccessImpl>(Lifestyle.Scoped);
 
             container.Register<ProfilePictureServices, ProfilePictureServicesImpl>(Lifestyle.Scoped);
             container.Register<ProtectedStatusService, ProtectedStatusServiceImpl>(Lifestyle.Scoped);

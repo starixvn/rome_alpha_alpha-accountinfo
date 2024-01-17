@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.Shared.SpParams
 {
-    using Alpha.AccountInfo.Features.Shared.Params;
     using Alpha.AccountInfo.Features.Shared.Params.SPs;
     using Xunit;
 
@@ -10,7 +9,8 @@
         public void GetSettingKey_Always_Return_CorrectSPName()
         {
             // Arrange
-            var criteria = new KickoutCustomerCriteria(GetKickoutCustomerParam());
+            var criteria = new KickoutCustomerCriteria(
+                1, 3, 90, "::1", 0, "ChangeProtectionMode");
 
             // Act
             var settingKey = criteria.GetSettingKey();
@@ -23,7 +23,8 @@
         public void Constructor_Always_SetCorrectProperties()
         {
             // Arrange
-            var criteria = new KickoutCustomerCriteria(GetKickoutCustomerParam());
+            var criteria = new KickoutCustomerCriteria(
+                1, 3, 90, "::1", 0, "ChangeProtectionMode");
 
             // Act & Assert
             Assert.True(
@@ -42,7 +43,8 @@
         public void IsValid_CustId_ReturnCorrectValue(int custId, bool expected)
         {
             // Arrange
-            var criteria = new KickoutCustomerCriteria(GetKickoutCustomerParam(custId: custId));
+            var criteria = new KickoutCustomerCriteria(
+                custId, 3, 90, "::1", 0, "ChangeProtectionMode");
 
             // Act
             var actual = criteria.IsValid();
@@ -58,7 +60,8 @@
         public void IsValid_ServerId_ReturnCorrectValue(int serverId, bool expected)
         {
             // Arrange
-            var criteria = new KickoutCustomerCriteria(GetKickoutCustomerParam(serverId: serverId));
+            var criteria = new KickoutCustomerCriteria(
+                1, 3, serverId, "::1", 0, "ChangeProtectionMode");
 
             // Act
             var actual = criteria.IsValid();
@@ -66,8 +69,5 @@
             // Assert
             Assert.Equal(expected, actual);
         }
-
-        private static KickoutCustomerParam GetKickoutCustomerParam(int custId = 1, int serverId = 90)
-            => new KickoutCustomerParam(custId, 3, serverId, "::1", 0, "ChangeProtectionMode");
     }
 }

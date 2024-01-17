@@ -86,5 +86,7 @@
         public string Currency => userSession.Currency;
 
         public string DisplayLanguage => userSession.GetProperty<string>(DisplayLanguageSessionKey);
+
+        public string AGIP => userSession.AGIP;
     }
 }

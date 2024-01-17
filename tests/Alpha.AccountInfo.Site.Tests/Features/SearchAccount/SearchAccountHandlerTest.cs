@@ -192,7 +192,7 @@
 
             accountInfoHandler.Handle(customerInfoQuery);
 
-            accountInfoService.Received().GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>());
+            accountInfoService.Received().GetBalanceInfo(Arg.Any<int>(), Arg.Any<byte>(), Arg.Any<string>());
         }
 
         [Fact]

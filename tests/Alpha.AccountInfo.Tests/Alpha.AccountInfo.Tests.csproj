@@ -42,7 +42,7 @@
       <HintPath>..\..\packages\Alpha.Products.Core.1.0.1.5\lib\net461\Alpha.Products.Core.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.Utilities.IP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.Utilities.IP.1.0.0\lib\netstandard2.0\AlphaPlus.Utilities.IP.dll</HintPath>
+      <HintPath>..\..\packages\AlphaPlus.Utilities.IP.1.0.0.1\lib\netstandard2.0\AlphaPlus.Utilities.IP.dll</HintPath>
     </Reference>
     <Reference Include="AutoFixture, Version=4.8.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoFixture.4.8.0\lib\net452\AutoFixture.dll</HintPath>
@@ -57,14 +57,8 @@
     <Reference Include="Fanex.Caching, Version=2.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.2.4\lib\netstandard2.0\Fanex.Caching.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Data, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.4.2.2\lib\net461\Fanex.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Data.Repository, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.Repository.4.2.2\lib\net461\Fanex.Data.Repository.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Data.SqlServer, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.SqlServer.4.2.2\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
+    <Reference Include="Fanex.Data.ProxyClient, Version=0.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.ProxyClient.0.0.3-alpha01\lib\netstandard2.0\Fanex.Data.ProxyClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1.1\lib\net461\Fanex.Logging.dll</HintPath>
@@ -102,8 +96,8 @@
     <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NSubstitute, Version=3.1.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NSubstitute.3.1.0\lib\net46\NSubstitute.dll</HintPath>
@@ -179,7 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettingsTests.cs" />
-    <Compile Include="Features\OpenDownlines\OpenDownlinesDataAccessTest.cs" />
     <Compile Include="Features\OpenDownlines\OpenDownlinesServiceTest.cs" />
     <Compile Include="Features\OpenDownlines\SpParams\SelectCloseInfoCriteriaTest.cs" />
     <Compile Include="Features\OpenDownlines\SpParams\SelectCloseInfoDetailCriteriaTest.cs" />
@@ -214,13 +207,11 @@
     <Compile Include="Features\ProductStatusPopup\SpParams\SelectProductStatusCriteriaTests.cs" />
     <Compile Include="Features\ProductStatusPopup\SpParams\UpdateDCSProductStatusCriteriaTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\SelectCustomerInformationCriteriaTests.cs" />
-    <Compile Include="Features\SearchAccount\SearchAccountDataAccessTest.cs" />
     <Compile Include="Enumerations\EnumerationTests.cs" />
     <Compile Include="Features\SearchAccount\SpParams\Criteria\CheckMultipleCustomesBelongingCriteriaTest.cs" />
     <Compile Include="Features\Shared\KickoutCustomerServiceTests.cs" />
     <Compile Include="Features\Shared\SpParams\KickoutCustomerCriteriaTests.cs" />
     <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesServiceTest.cs" />
-    <Compile Include="Features\UnsuspendDownlines\UnsuspendDownlinesDataAccessTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\SpParams\SelectSuspendInfoMultipleCriteriaTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\SpParams\SelectSuspendInfoDetailCriteriaTest.cs" />
     <Compile Include="Features\UnsuspendDownlines\SpParams\SelectSuspendInfoCriteriaTest.cs" />

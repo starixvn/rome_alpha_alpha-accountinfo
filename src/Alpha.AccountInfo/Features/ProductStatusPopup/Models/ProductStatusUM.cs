@@ -24,16 +24,16 @@
             EndTime = endTime;
         }
 
-        public int ProductId { get; }
+        public int ProductId { get; set; }
 
-        public int SportType { get; }
+        public int SportType { get; set; }
 
-        public int BetType { get; }
+        public int BetType { get; set; }
 
-        public byte SettingType { get; }
+        public byte SettingType { get; set; }
 
-        public DateTime BeginTime { get; }
+        public DateTime BeginTime { get; set; }
 
-        public DateTime EndTime { get; }
+        public DateTime EndTime { get; set; }
     }
 }

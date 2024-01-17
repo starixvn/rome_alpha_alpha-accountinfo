@@ -65,5 +65,7 @@
         string DisplayLanguage { get; }
 
         string Currency { get; }
+
+        string AGIP { get; }
     }
 }

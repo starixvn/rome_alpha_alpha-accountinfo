@@ -14,7 +14,7 @@
             Username = username;
         }
 
-        public string Username { get; private set; }
+        public string Username { get; set; }
     }
 
     public class DownlineListModel
@@ -31,9 +31,9 @@
             : this(downlines, model.TotalPages)
         { }
 
-        public IEnumerable<DownlineDto> Downlines { get; private set; }
+        public IEnumerable<DownlineDto> Downlines { get; set; }
 
-        public int TotalPages { get; private set; }
+        public int TotalPages { get; set; }
     }
 
     public class TotalDownlinesSummary
@@ -55,13 +55,13 @@
             RoleId = roleId;
         }
 
-        public int TotalActive { get; private set; }
+        public int TotalActive { get; set; }
 
-        public int TotalClosed { get; private set; }
+        public int TotalClosed { get; set; }
 
-        public int TotalSuspended { get; private set; }
+        public int TotalSuspended { get; set; }
 
-        public byte RoleId { get; private set; }
+        public byte RoleId { get; set; }
 
         public string LevelName => LevelNames[Enumeration.FromValue<UserLevel>(RoleId)];
     }

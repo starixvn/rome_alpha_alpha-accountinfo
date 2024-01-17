@@ -22,5 +22,7 @@
         internal bool CanUpdateAccount => viewer.CanUpdateAccount;
 
         internal bool IsInternal => viewer.IsInternal;
+
+        internal string AGIP => viewer.AGIP;
     }
 }

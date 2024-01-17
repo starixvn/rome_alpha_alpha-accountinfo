@@ -1,8 +1,12 @@
 ﻿namespace Alpha.AccountInfo.Services.AccountInfo
 {
+    using System;
+    using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
+    using System.Resources;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Configurations;
-    using Alpha.AccountInfo.DataAccess;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
@@ -17,10 +21,7 @@
     using Alpha.Products.Core.Shared;
     using AlphaPlus.Utilities.IP;
     using Fanex.Data.Repository;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using Newtonsoft.Json;
 
     public interface SearchAccountService
     {
@@ -28,7 +29,7 @@
 
         Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname);
 
-        Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId);
+        Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, string agIP);
 
         Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages);
 
@@ -55,38 +56,23 @@
 
     public class SearchAccountServiceImpl : SearchAccountService
     {
+        private const string English = "en-US";
+        private const string ChineseTraditional = "zh-TW";
+        private const string ChineseSimplified = "zh-CN";
+        private const string Thai = "th-TH";
+        private const string Vietnamese = "vi-VN";
+
         private readonly int failErrorCode = 100;
 
         private readonly IDynamicRepository dynamicRepository;
-        private readonly SearchAccountDataAccess accountInfoDataAccess;
-        private readonly IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel;
         private readonly IPService ipService;
 
         public SearchAccountServiceImpl(
             IDynamicRepository dynamicRepository,
-            SearchAccountDataAccess accountInfoDataAccess,
             IPService ipService)
-            : this(dynamicRepository, accountInfoDataAccess, ipService, null)
-        {
-        }
-
-        internal SearchAccountServiceImpl(
-            IDynamicRepository dynamicRepository,
-            SearchAccountDataAccess accountInfoDataAccess,
-            IPService ipService,
-            IDictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>> getBalanceInfoModelByLevel)
         {
             this.dynamicRepository = dynamicRepository;
-            this.accountInfoDataAccess = accountInfoDataAccess;
             this.ipService = ipService;
-
-            this.getBalanceInfoModelByLevel = getBalanceInfoModelByLevel ??
-                new Dictionary<UserLevel, Func<ICriteria, Task<IBalanceInfoModel>>>
-                {
-                    {UserLevel.Master, GetMasterBalanceInfoModel},
-                    {UserLevel.Agent, GetAgentBalanceInfoModel},
-                    {UserLevel.Member, GetMemberBalanceInfoModel}
-                };
         }
 
         public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId)
@@ -94,8 +80,9 @@
             var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
             if (customerInfo != null)
             {
-                customerInfo.ClosedReason = await accountInfoDataAccess.GetClosedReason(
+                var custClosedReason = await dynamicRepository.GetAsync<CustomerClosedReasonModel>(
                     new SelectClosedReasonCriteria(customerInfo.CustId, customerInfo.RoleId));
+                customerInfo.ClosedReason = custClosedReason?.ClosedReason ?? 0;
 
                 var nickname = roleId - customerInfo.RoleId == 1 ? customerInfo.UserName2 : string.Empty;
                 await UpdateUserSearch(uplineId, customerInfo.UserName, customerInfo.FirstName, customerInfo.LastName, nickname);
@@ -108,13 +95,40 @@
             => await dynamicRepository.GetAsync<bool>(
                 new UpdateUserSearchCriteria(userId, search, firstName, lastName, nickname));
 
-        public async Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId)
-           => await getBalanceInfoModelByLevel[Enumeration.FromValue<UserLevel>(roleId)](
-               new SelectBalanceInfoCriteria(custId, roleId));
+        public async Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, string agIP)
+        {
+            var userLevel = Enumeration.FromValue<UserLevel>(roleId);
+            var criteria = new SelectBalanceInfoCriteria(custId, roleId);
+
+            if (userLevel.IsMasterLevel())
+            {
+                return await GetMasterBalanceInfoModel(criteria);
+            }
+
+            if (userLevel.IsAgentLevel())
+            {
+                return await GetAgentBalanceInfoModel(criteria);
+            }
+
+            if (userLevel.IsMemberLevel())
+            {
+                return await GetMemberBalanceInfoModel(criteria, agIP);
+            }
+
+            return null;
+        }
+        
 
         public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
-            => await accountInfoDataAccess.GetDownlineList(
+        {
+            var (downlineListModel, downlines) = await dynamicRepository.FetchMultipleAsync<DownlineListModel, DownlineDto>(
                 new SelectDownlineListByStatusCriteria(custId, pageIndex, roleId, statusId, totalPages));
+            var downlineListFirst = downlineListModel.FirstOrDefault();
+
+            return downlineListFirst == null
+                ? downlineListFirst
+                : new DownlineListModel(downlines, downlineListFirst);
+        }
 
         public async Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId)
           => await dynamicRepository.FetchAsync<TotalDownlinesSummary>(
@@ -147,7 +161,7 @@
             if (param.RoleId == UserLevel.Member.Value)
             {
                 var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId);
-                await dynamicRepository.ExecuteAsync(totalAmtCommand);
+                await dynamicRepository.ExecuteAsync(totalAmtCommand, param.AGIP);
                 command = new UpdateMemberGivenCreditCommand(
                     param.SearchAccountId,
                     param.RoleId,
@@ -191,45 +205,91 @@
 
         public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
+            UpdateCustomerStatusCommand command = null;
+            switch (param.StatusName)
             {
-                NonQueryCommand command = null;
-                switch (param.StatusName)
-                {
-                    case StatusNames.Closed:
-                        command = new UpdateClosedStatusCommand(param);
-                        break;
-                    case StatusNames.DisableAutoMasterPT:
-                        command = new UpdateDisableAutoMPTStatusCommand(param);
-                        break;
-                    case StatusNames.DoubleComm:
-                        command = new UpdateDoubleCommLosingStatusCommand(param);
-                        break;
-                    case StatusNames.DisableOutright:
-                        command = new UpdateDisableOutrightStatusCommand(param);
-                        break;
-                    case StatusNames.Suspended:
-                        command = new UpdateSuspendedStatusCommand(param);
-                        break;
-                    case StatusNames.Unlock:
-                        command = new UpdateUnlockedCommand(param);
-                        break;
-                    default:
-                        command = new UpdateDisableProtectedStatusCommand(param);
-                        break;
-                }
-                var result = await accountInfoDataAccess.UpdateCustomerStatus(command);
-                return result.IsSuccess
-                    ? Result.CreateSuccessResult()
-                    : result;
+                case StatusNames.Closed:
+                    command = new UpdateClosedStatusCommand(
+                        param.SearchAccountId,
+                        param.ActorId,
+                        param.SubAccountId,
+                        param.Language,
+                        param.IP,
+                        param.StatusName,
+                        param.StatusValue);
+                    break;
+                case StatusNames.DisableAutoMasterPT:
+                    command = new UpdateDisableAutoMPTStatusCommand(
+                        param.SearchAccountId,
+                        param.ActorId,
+                        param.SubAccountId,
+                        param.Language,
+                        param.IP,
+                        param.StatusName,
+                        param.StatusValue);
+                    break;
+                case StatusNames.DoubleComm:
+                    command = new UpdateDoubleCommLosingStatusCommand(
+                        param.SearchAccountId,
+                        param.ActorId,
+                        param.SubAccountId,
+                        param.Language,
+                        param.IP,
+                        param.StatusName,
+                        param.StatusValue);
+                    break;
+                case StatusNames.DisableOutright:
+                    command = new UpdateDisableOutrightStatusCommand(
+                        param.SearchAccountId,
+                        param.ActorId,
+                        param.SubAccountId,
+                        param.Language,
+                        param.IP,
+                        param.StatusName,
+                        param.StatusValue);
+                    break;
+                case StatusNames.Suspended:
+                    command = new UpdateSuspendedStatusCommand(
+                        param.SearchAccountId,
+                        param.ActorId,
+                        param.SubAccountId,
+                        param.Language,
+                        param.IP,
+                        param.StatusName,
+                        param.StatusValue);
+                    break;
+                case StatusNames.Unlock:
+                    command = new UpdateUnlockedCommand(
+                        param.SearchAccountId,
+                        param.ActorId,
+                        param.SubAccountId,
+                        param.Language,
+                        param.IP,
+                        param.StatusName);
+                    break;
+                default:
+                    command = new UpdateDisableProtectedStatusCommand(
+                        param.SearchAccountId,
+                        param.ActorId,
+                        param.SubAccountId,
+                        param.Language,
+                        param.IP,
+                        param.StatusName,
+                        param.StatusValue);
+                    break;
             }
+
+            await dynamicRepository.ExecuteAsync(command);
+            return new Result(command.ErrCode, command.ErrMsg);
         }
+
         internal async Task<IBalanceInfoModel> GetMasterBalanceInfoModel(ICriteria criteria)
           => await dynamicRepository.GetAsync<MasterBalanceInfoModel>(criteria);
 
         internal async Task<IBalanceInfoModel> GetAgentBalanceInfoModel(ICriteria criteria)
           => await dynamicRepository.GetAsync<AgentBalanceInfoModel>(criteria);
 
-        internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria)
+        internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(ICriteria criteria, string agIP)
         {
             var tasks = new List<Task>();
 
@@ -238,7 +298,7 @@
             var memberBalanceInfoDTOTask = dynamicRepository.GetAsync<MemberBalanceInfoDTO>(criteria);
 
             tasks.Add(dynamicRepository.ExecuteAsync(memberOutstandingCriteria));
-            tasks.Add(dynamicRepository.ExecuteAsync(memberBalanceCriteria));
+            tasks.Add(dynamicRepository.ExecuteAsync(memberBalanceCriteria, agIP));
             tasks.Add(memberBalanceInfoDTOTask);
 
             await Task.WhenAll(tasks);
@@ -250,7 +310,6 @@
                 memberOutstandingCriteria.Outstanding,
                 memberBalanceCriteria.NetPosition);
         }
-
 
         public async Task<CreditInfo> GetCreditInfo(int custId)
             => await dynamicRepository.GetAsync<CreditInfo>(new SelectCreditInfoCriteria(custId));
@@ -265,7 +324,7 @@
 
             if (IsAutoTransferAffect(param.Currency))
             {
-                var autoTransferStatus = await GetAutoTransferJobStatus();
+                var autoTransferStatus = await GetAutoTransferJobStatus(param.AGIP);
                 if (autoTransferStatus)
                 {
                     return Result.CreateErrorResult(1, Resources.ADBTChangeFailed_AutoJobRunning);
@@ -278,16 +337,15 @@
                 param.Language,
                 param.IP,
                 param.StatusValue);
-            var result = await accountInfoDataAccess.UpdateAllDayBalanceTransfer(command);
+            await dynamicRepository.ExecuteAsync(command);
+            var result = new Result(int.Parse(command.ErrCode), command.ErrMsg);
 
             if (result.IsSuccess)
             {
                 TurnOffAutoTransfer(param);
             }
 
-            return result.IsSuccess ?
-                      Result.CreateSuccessResult() :
-                      result;
+            return result;
         }
 
         public async Task<bool> CheckFirstLoginByQRCode(int custId)
@@ -303,11 +361,20 @@
             return criteria.RoleId > 0 && (isInternal || criteria.IsActive);
         }
 
-        public Task<bool> IsAllDayBalanceTransfer(int custId)
-            => accountInfoDataAccess.IsAllDayBalanceTransfer(new SelectIsAllDayBalTransferCriteria(custId));
+        public async Task<bool> IsAllDayBalanceTransfer(int custId)
+        {
+            var transferModel = await dynamicRepository.GetAsync<TransferModel>(new SelectIsAllDayBalTransferCriteria(custId));
 
-        public Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal)
-            => accountInfoDataAccess.GetLastTxn(new SelectLastTxnCriteria(username, uplineId, isInternal));
+            return transferModel != null && transferModel.IsAllDayBalTransfer;
+        }
+
+        public async Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal)
+        {
+            var lastTxn = await dynamicRepository.GetAsync<DateTime?>(
+                new SelectLastTxnCriteria(username, uplineId, isInternal));
+
+            return lastTxn ?? DateTime.MinValue;
+        }
 
         private void TurnOffAutoTransfer(UpdateAllDayBalanceTransferParam param)
         {
@@ -331,21 +398,29 @@
                 return;
             }
 
+            var rm = Resources.ResourceManager;
             foreach (var row in affects)
             {
                 var uplineId = row.CustId;
 
-                var toastMessageCriteria = new InsertToastMessageCriteria(uplineId, param.ActorId);
+                var toastMessageCriteria = new InsertToastMessageCriteria(
+                    uplineId,
+                    param.ActorId,
+                    GetToastMessageContent(rm, English),
+                    GetToastMessageContent(rm, ChineseSimplified),
+                    GetToastMessageContent(rm, ChineseTraditional),
+                    GetToastMessageContent(rm, Thai),
+                    GetToastMessageContent(rm, Vietnamese));
                 dynamicRepository.Execute(toastMessageCriteria);
 
                 var uplineName = row.Username;
-                var dowlines = row.Names;
+                var downlines = row.Names;
                 var personalMessageCriteria = new InsertPersonalMessageCriteria(
-                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("en-US")), dowlines),
-                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("zh-TW")), dowlines),
-                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("zh-CN")), dowlines),
-                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("th-TH")), dowlines),
-                    string.Format(Resources.ResourceManager.GetString("ADBTConditionChange_PersonalMessage", new CultureInfo("vi-VN")), dowlines));
+                    GetPersonalMessage(rm, English, downlines),
+                    GetPersonalMessage(rm, ChineseTraditional, downlines),
+                    GetPersonalMessage(rm, ChineseSimplified, downlines),
+                    GetPersonalMessage(rm, Thai, downlines),
+                    GetPersonalMessage(rm, Vietnamese, downlines));
 
                 dynamicRepository.Execute(personalMessageCriteria);
 
@@ -356,11 +431,32 @@
             }
         }
 
-        private async Task<bool> GetAutoTransferJobStatus()
+        private static string GetToastMessageContent(ResourceManager rm, string languae)
+        {
+            var culture = CultureInfo.GetCultureInfo(languae);
+
+            var content = new ToastContentModel
+            {
+                Title = rm.GetString("ADBTChangeToastTitle", culture),
+                Body = rm.GetString("ADBTChangeToastMessage", culture)
+            };
+
+            return JsonConvert.SerializeObject(content, Formatting.None);
+        }
+
+        private static string GetPersonalMessage(ResourceManager rm, string languae, string downlines)
+        {
+            var culture = CultureInfo.GetCultureInfo(languae);
+
+            return string.Format(
+                rm.GetString("ADBTConditionChange_PersonalMessage", culture),
+                downlines);
+        }
+
+        private async Task<bool> GetAutoTransferJobStatus(string agIP)
         {
             var criteria = new GetAutoTransferJobStatusCriteria();
-
-            await dynamicRepository.ExecuteAsync(criteria);
+            await dynamicRepository.ExecuteAsync(criteria, agIP);
 
             return criteria.IsAutoJobRunning;
         }

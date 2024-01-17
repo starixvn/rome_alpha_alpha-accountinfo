@@ -5,11 +5,11 @@
 
     public class GetProtectedStatusCriteria : CriteriaBase
     {
-        public GetProtectedStatusCriteria(GetProtectedStatusParam param)
+        public GetProtectedStatusCriteria(int custId, byte roleId, string custList)
         {
-            CustId = param.ViewerId;
-            RoleId = param.ViewerLevelId;
-            CustList = param.CustIds;
+            CustId = custId;
+            RoleId = roleId;
+            CustList = custList;
         }
 
         public int CustId { get; }

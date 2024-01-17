@@ -1,16 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
-    using Alpha.AccountInfo.Features.ProductStatusPopup;
-    using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
-    using Alpha.AccountInfo.Features.ProductStatusPopup.Models;
-    using Alpha.AccountInfo.Features.ProductStatusPopup.Params.SPs;
-    using Alpha.AccountInfo.Features.Shared.Models;
-    using Alpha.AccountInfo.Features.Shared.Services;
-    using Alpha.Products.Core.Shared;
-    using Fanex.Data.Repository;
-    using Fanex.Logging;
-    using Models.ProductStatus;
-    using Params.ProductStatus;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -18,6 +7,16 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml.Linq;
+    using Alpha.AccountInfo.Features.ProductStatusPopup;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.AppResources;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.Models;
+    using Alpha.AccountInfo.Features.ProductStatusPopup.Params.SPs;
+    using Alpha.AccountInfo.Features.Shared.Models;
+    using Alpha.AccountInfo.Features.Shared.Services;
+    using Fanex.Data.Repository;
+    using Fanex.Logging;
+    using Models.ProductStatus;
+    using Params.ProductStatus;
 
     public interface ProductStatusService
     {
@@ -33,7 +32,6 @@
 
     public class ProductStatusServiceImpl : ProductStatusService
     {
-        private const int DefaultErrorCode = 101;
         private const int DoNothingErrorCode = 90017;
         private const string UMDatetimeFormat = "dd/MM/yyyy HH:mm";
         private const int ParentChildViolated = 92;

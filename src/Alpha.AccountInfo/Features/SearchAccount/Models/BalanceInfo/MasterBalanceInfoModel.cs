@@ -34,24 +34,24 @@
             PendingTransfer3rd = pendingTransfer3rd;
         }
 
-        public int CustId { get; private set; }
+        public int CustId { get; set; }
 
-        public decimal MasterCash { get; private set; }
+        public decimal MasterCash { get; set; }
 
-        public decimal YesterdayMasterCash { get; private set; }
+        public decimal YesterdayMasterCash { get; set; }
 
-        public decimal MasterPositionTaking { get; private set; }
+        public decimal MasterPositionTaking { get; set; }
 
-        public decimal AgentCash { get; private set; }
+        public decimal AgentCash { get; set; }
 
-        public decimal YesterdayAgentCash { get; private set; }
+        public decimal YesterdayAgentCash { get; set; }
 
-        public decimal CustomerCash { get; private set; }
+        public decimal CustomerCash { get; set; }
 
-        public decimal YesterdayCustomerCash { get; private set; }
+        public decimal YesterdayCustomerCash { get; set; }
 
-        public decimal CustomerOutstanding { get; private set; }
+        public decimal CustomerOutstanding { get; set; }
 
-        public decimal PendingTransfer3rd { get; private set; }
+        public decimal PendingTransfer3rd { get; set; }
     }
 }

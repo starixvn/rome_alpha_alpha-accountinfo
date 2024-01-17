@@ -41,11 +41,11 @@
             IsClosed = isClosed;
         }
 
-        public int SearchAccountId { get; }
+        public int SearchAccountId { get; set; }
 
-        public string Username { get; }
+        public string Username { get; set; }
 
-        public bool IsClosed { get; }
+        public bool IsClosed { get; set; }
     }
 
     public class OpenDownlineModel
@@ -66,12 +66,12 @@
             UnchangedDownlines = unchangedDownlines;
         }
 
-        public int SearchAccountId { get; }
+        public int SearchAccountId { get; set; }
 
-        public byte DownlineRoleId { get; }
+        public byte DownlineRoleId { get; set; }
 
-        public int AffectedDownlines { get; }
+        public int AffectedDownlines { get; set; }
 
-        public int UnchangedDownlines { get; }
+        public int UnchangedDownlines { get; set; }
     }
 }

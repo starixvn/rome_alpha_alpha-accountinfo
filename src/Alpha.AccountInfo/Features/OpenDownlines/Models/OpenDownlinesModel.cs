@@ -15,9 +15,9 @@
             RoleId = roleId;
         }
 
-        public string Username { get; }
+        public string Username { get; set; }
 
-        public byte RoleId { get; }
+        public byte RoleId { get; set; }
     }
 
     public class OpenDownlineByLevelModel

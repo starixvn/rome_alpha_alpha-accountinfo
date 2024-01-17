@@ -1,6 +1,5 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.ProtectedStatus.SpParams
 {
-    using Alpha.AccountInfo.Features.ProtectedStatus.Params;
     using Alpha.AccountInfo.Features.ProtectedStatus.Params.SPs;
     using Xunit;
 
@@ -11,8 +10,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var param = new GetProtectedStatusParam(1, 4, "2,3,4,5,6,7");
-            var criteria = new GetProtectedStatusCriteria(param);
+            var criteria = new GetProtectedStatusCriteria(1, 4, "2,3,4,5,6,7");
             var expectedSettingKey = "Age_CustomerSelProtectionModeList";
 
             // Act
@@ -29,8 +27,7 @@
         public void IsValid_CustId_ReturnsExpectedResult(int custId, bool expected)
         {
             // Arrange
-            var param = new GetProtectedStatusParam(custId, 4, "2,3,4,5,6,7");
-            var criteria = new GetProtectedStatusCriteria(param);
+            var criteria = new GetProtectedStatusCriteria(custId, 4, "2,3,4,5,6,7");
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -47,8 +44,7 @@
         public void IsValid_RoleId_ReturnsExpectedResult(byte roleId, bool expected)
         {
             // Arrange
-            var param = new GetProtectedStatusParam(1, roleId, "2,3,4,5,6,7");
-            var criteria = new GetProtectedStatusCriteria(param);
+            var criteria = new GetProtectedStatusCriteria(1, roleId, "2,3,4,5,6,7");
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -65,8 +61,7 @@
         public void IsValid_CustList_ReturnsExpectedResult(string custList, bool expected)
         {
             // Arrange
-            var param = new GetProtectedStatusParam(1, 4, custList);
-            var criteria = new GetProtectedStatusCriteria(param);
+            var criteria = new GetProtectedStatusCriteria(1, 4, custList);
 
             // Act
             var actualIsValid = criteria.IsValid();

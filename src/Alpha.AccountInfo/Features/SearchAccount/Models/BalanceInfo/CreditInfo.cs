@@ -30,24 +30,24 @@
             MemMaxCreditMax = memMaxCreditMax;
         }
 
-        public decimal Credit { get; }
+        public decimal Credit { get; set; }
 
-        public decimal MasterCreditMin { get; }
+        public decimal MasterCreditMin { get; set; }
 
-        public decimal MasterCreditMax { get; }
+        public decimal MasterCreditMax { get; set; }
 
-        public decimal MasterUsedCredit { get; }
+        public decimal MasterUsedCredit { get; set; }
 
-        public decimal AgentCreditMin { get; }
+        public decimal AgentCreditMin { get; set; }
 
-        public decimal AgentCreditMax { get; }
+        public decimal AgentCreditMax { get; set; }
 
-        public decimal AgentUsedCredit { get; }
+        public decimal AgentUsedCredit { get; set; }
 
-        public decimal MemberMaxCredit { get; }
+        public decimal MemberMaxCredit { get; set; }
 
-        public decimal MemMaxCreditMin { get; }
+        public decimal MemMaxCreditMin { get; set; }
 
-        public decimal MemMaxCreditMax { get; }
+        public decimal MemMaxCreditMax { get; set; }
     }
 }
