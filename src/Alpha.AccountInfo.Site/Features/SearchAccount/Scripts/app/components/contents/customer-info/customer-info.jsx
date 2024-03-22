@@ -57,10 +57,10 @@ const CustomerInfo = ({
 
                     return userLevelInfo.Visible &&
                         <div className='col-xs-12 row-info' key={index}>
-                            <div className='col-xs-5'>
+                            <div className='col-xs-4'>
                                 {userLevelInfo.LevelName}
                             </div>
-                            <div className='col-xs-7 col-right custom-col'>
+                            <div className='col-xs-8 col-right custom-col'>
                                 {
                                     customerInfo.RoleId === userLevelInfo.LevelId ?
                                         <SearchAccountInfo {...searchAccountInfoProps} /> :
