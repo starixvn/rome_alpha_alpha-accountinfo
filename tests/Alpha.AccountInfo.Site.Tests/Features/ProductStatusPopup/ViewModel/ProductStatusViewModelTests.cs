@@ -26,6 +26,7 @@
                 UserLevel.Master,
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
+                false,
                 false);
 
             // Act
@@ -50,6 +51,7 @@
                 UserLevel.Agent,
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
+                false,
                 false);
 
             // Act
@@ -74,6 +76,7 @@
                 UserLevel.Master,
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
+                false,
                 false);
 
             // Act
@@ -98,6 +101,7 @@
                 UserLevel.Agent,
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
+                false,
                 false);
 
             // Act
@@ -123,6 +127,7 @@
                 UserLevel.Agent,
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
+                false,
                 false);
 
             // Act
@@ -148,6 +153,7 @@
                 UserLevel.Member,
                 new List<ProductStatusModel>(),
                 UserLevel.Agent,
+                false,
                 false);
 
             // Act
@@ -173,6 +179,7 @@
                 UserLevel.Member,
                 new List<ProductStatusModel>(),
                 UserLevel.Master,
+                false,
                 false);
 
             // Act

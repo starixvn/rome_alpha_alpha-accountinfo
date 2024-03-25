@@ -60,10 +60,10 @@
             {
                 new ProductStatusModel(ProductIdTest, 207, 1004, false, false)
             };
-            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false);
+            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false, false);
 
             statusService
-                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
+                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest))
                 .Returns(productStatus);
 
             // Act
@@ -97,7 +97,7 @@
             };
 
             statusService
-                .GetProductStatusAsync(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest)
+                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest))
                 .Returns(Enumerable.Empty<ProductStatusModel>());
 
             // Act

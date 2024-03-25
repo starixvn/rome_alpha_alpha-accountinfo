@@ -41,6 +41,7 @@
             var expectedResult = true;
             var customerInformation = new CustomerInformation(custId, custRoleId, 1176070, 1176083, 1176086);
             var param = new ProductStatusAuthorizationParam(
+                false,
                 ProductIdTest,
                 custId,
                 Enumeration.FromValue<UserLevel>(custRoleId),
@@ -64,7 +65,7 @@
             // Arrange
             var expectedResult = false;
             CustomerInformation customerInformation = null;
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -83,7 +84,7 @@
             // Arrange
             var expectedResult = false;
             var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0);
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -103,6 +104,7 @@
             var expectedResult = false;
             var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0);
             var param = new ProductStatusAuthorizationParam(
+                false,
                 ProductIdTest,
                 CustIdTest,
                 CustRoleTest,
@@ -129,7 +131,7 @@
             // Arrange
             var expectedResult = false;
             var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0);
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -140,7 +142,7 @@
 
             // Assert
             Assert.Equal(expectedResult, actualResult);
-        }       
+        }
 
         [Fact]
         public void CanUpdate_DirectDownline_ReturnsTrue()
@@ -148,7 +150,7 @@
             // Arrange
             var expectedResult = true;
             var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0);
-            var param = new ProductStatusAuthorizationParam(ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())

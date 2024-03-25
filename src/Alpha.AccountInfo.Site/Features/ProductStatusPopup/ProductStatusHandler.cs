@@ -25,12 +25,13 @@
 
         public async Task<ProductStatusViewModel> Handle(ProductStatusQuery message)
         {
-            var model = await statusService.GetProductStatusAsync(
+            var model = await statusService.GetProductStatusAsync(new ProductStatusAuthorizationParam(
+                message.IsGroup,
                 message.ProductId,
                 message.CustId,
                 message.CustRole,
                 message.UplineId,
-                message.UplineLevel).ConfigureAwait(false);
+                message.UplineLevel)).ConfigureAwait(false);
 
             return ToProductStatusViewModel(message, model);
         }
@@ -52,11 +53,13 @@
                 Enumeration.FromValue<UserLevel>(message.CustRoleId),
                 productStatus,
                 message.UplineLevel,
-                message.IsViewOnly);
+                message.IsViewOnly,
+                message.IsGroup);
 
         private static ProductStatusCommandParam ToUpdateProductStatusParam(
             ProductStatusCommand message)
             => new ProductStatusCommandParam(
+                false,
                 message.ProductId,
                 message.CustId,
                 message.CustRole,

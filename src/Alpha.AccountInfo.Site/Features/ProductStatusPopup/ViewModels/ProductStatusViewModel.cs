@@ -1,7 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels
 {
     using System.Collections.Generic;
-    using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.ProductStatusPopup;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Models.ProductStatus;
@@ -15,7 +14,8 @@
             UserLevel custRole,
             IEnumerable<ProductStatusModel> productStatus,
             UserLevel loggedInUserRole,
-            bool isViewOnly)
+            bool isViewOnly,
+            bool isGroup)
         {
             ProductId = productId;
             CustId = custId;
@@ -25,6 +25,7 @@
             IsAgentUpdateMember = custRole.IsMemberLevel() && loggedInUserRole.IsAgentLevel();
             IsDirectDownline = custRole.IsDirectDownlineOf(loggedInUserRole);
             IsViewOnly = isViewOnly;
+            IsGroup = isGroup;
         }
 
         public int ProductId { get; }
@@ -42,6 +43,8 @@
         public bool IsDirectDownline { get; }
 
         public bool IsViewOnly { get; }
+
+        public bool IsGroup { get; }
 
         public bool IsDisabledEditCustStatus(ProductStatusModel productStatus)
         {

@@ -12,7 +12,7 @@
     {
         private readonly Func<string, bool> hideProductStatusBySites;
 
-        public ProductStatusQuery(IUser viewer): this(viewer,  null)
+        public ProductStatusQuery(IUser viewer) : this(viewer, null)
         {
         }
 
@@ -26,6 +26,8 @@
 
             this.hideProductStatusBySites = hideProductStatusBySites ?? SimpleServiceLocator.GetService<Func<string, bool>>();
         }
+
+        public bool IsGroup { get; set; }
 
         public int ProductId { get; set; }
 
