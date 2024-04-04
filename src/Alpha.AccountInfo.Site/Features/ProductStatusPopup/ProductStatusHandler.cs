@@ -59,7 +59,7 @@
         private static ProductStatusCommandParam ToUpdateProductStatusParam(
             ProductStatusCommand message)
             => new ProductStatusCommandParam(
-                false,
+                message.IsGroup,
                 message.ProductId,
                 message.CustId,
                 message.CustRole,
