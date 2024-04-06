@@ -203,14 +203,15 @@
         private async Task<string> GetProductStatusUMAsync(ProductStatusCommandParam param)
         {
             var umMessages = new List<string>();
-            var criteria = param.IsGroup ? new CheckProductStatusUMCriteria(param.CustId, functionType: 2, groupId: param.ProductId) : new CheckProductStatusUMCriteria(param.CustId, param.ProductId);
+            var criteria = param.IsGroup ? new CheckProductStatusUMCriteria(param.CustId, groupId: param.ProductId) : new CheckProductStatusUMCriteria(param.CustId, param.ProductId);
             var productStatusUM = await repository.FetchAsync<ProductStatusUM>(criteria);
 
             foreach (var item in productStatusUM)
             {
                 if (item.ProductId == 0 || item.SportType == 0)
                 {
-                    return $"{GetResource("ProductStatusUM", param.Language)}<br>{BuildProductStatusUMMessage(item, param.Language)}";
+                    umMessages.Add(BuildProductStatusUMMessage(item, param.Language));
+                    continue;
                 }
 
                 if (param.ProductStatusParams.Any(p => p.SportType == item.SportType))

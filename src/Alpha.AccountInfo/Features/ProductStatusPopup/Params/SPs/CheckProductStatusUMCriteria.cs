@@ -5,24 +5,21 @@
 
     public class CheckProductStatusUMCriteria : CriteriaBase
     {
-        public CheckProductStatusUMCriteria(int custId, int? productId = null, byte functionType = 1, int? groupId = null)
-            : this(custId.ToString(), productId, functionType, groupId)
+        public CheckProductStatusUMCriteria(int custId, int? productId = null, int? groupId = null)
+            : this(custId.ToString(), productId, groupId)
         {
         }
 
-        protected CheckProductStatusUMCriteria(string custIds, int? productId = null, byte functionType = 1, int? groupId = null)
+        protected CheckProductStatusUMCriteria(string custIds, int? productId = null, int? groupId = null)
         {
             ProductId = productId;
             CustIds = custIds;
-            FunctionType = functionType;
             GroupId = groupId;
         }
 
         public int? ProductId { get; }
 
         public string CustIds { get; }
-
-        public byte FunctionType { get; }
 
         public int? GroupId { get; }
 
