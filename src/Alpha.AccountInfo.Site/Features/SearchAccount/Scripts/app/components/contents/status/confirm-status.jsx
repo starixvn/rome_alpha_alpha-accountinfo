@@ -47,12 +47,7 @@ export default class ConfirmStatus extends React.Component {
         $.blockUI();
         const { status } = this.props;
         const params = JSON.parse(status.JsonParams);
-
-        if (params.Func === "UpdateAutoTransfer") {
-            this.updateAutoTransfer();
-        } else {
-            this.updateStatus();
-        }
+        this.updateStatus();
     }
 
     handleOpenPopup(e) {
@@ -90,11 +85,6 @@ export default class ConfirmStatus extends React.Component {
         if (mobileView) {
             resizeBootboxOnMobile();
         }
-
-        const params = JSON.parse(status.JsonParams);
-        if (params.Func === "UpdateAutoTransfer") {
-            this.bindEditAutoTransferEvents();
-        }
     }
 
     render() {
@@ -126,40 +116,6 @@ export default class ConfirmStatus extends React.Component {
         </div>);
     }
 
-    bindEditAutoTransferEvents() {
-        var self = this;
-        top.$("#opt-schedule-all").click(() => { this.checkAllAutoTransferSchedule(); });
-        top.$(".opt-schedule").click(function () { self.scheduleChanged(this); });
-        this.validateAutoTransferSchedule();
-    }
-
-    checkAllAutoTransferSchedule() {
-        var chkAll = top.$("#opt-schedule-all");
-        var isCheck = chkAll.is(":checked");
-
-        var chks = top.$('.opt-schedule');
-        chks.each((_, e) => {
-            top.$(e).prop("checked", isCheck);
-        });
-
-        this.validateAutoTransferSchedule();
-    };
-    scheduleChanged(elm) {
-        var $this = top.$(elm);
-        var checkedCount = top.$(".opt-schedule:checked").length;
-        top.$('.opt-schedule-all').prop("checked", checkedCount === top.$(".opt-schedule").length);
-        this.validateAutoTransferSchedule();
-    };
-    validateAutoTransferSchedule() {
-        var btnOk = top.$("#opt-schedule-all").closest('.modal-content').find(".btn-primary");
-
-        if (top.$(".opt-schedule:checked").length === 0) {
-            btnOk.attr('disabled', 'disabled');
-        } else {
-            btnOk.attr('disabled', null);
-        }
-    }
-
     updateStatus() {
         const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
         const params = JSON.parse(status.JsonParams);
@@ -178,50 +134,6 @@ export default class ConfirmStatus extends React.Component {
                     window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
                     $.unblockUI();
                 }
-            }).catch(handleError);
-    }
-
-    updateAutoTransfer() {
-        const { fetchCustomerAllStatusFromServer, fetchCustomerInfoFromServer, username, status, mobileView } = this.props;
-        const params = JSON.parse(status.JsonParams);
-
-        var schedule = [];
-        var chks = top.$('.opt-schedule:checked');
-        chks.each((_, e) => {
-            schedule.push(top.$(e).attr("data-val"));
-        });
-
-        params.Schedule = schedule.join(',');
-
-        accountInfoAPI.updateCustomerStatusFromDifferentSite(status.Url, params)
-            .then(data => {
-                switch (data.Code) {
-                    case 108:
-                        window.top.indexManager.updateCurrentUrl("adbt=False");
-                    case 105:
-                        window.top.indexManager.addCustomCookies('messageForReloadSite', data.Message);
-                        window.top.location.reload();
-                        return;
-                    default:
-                        break;
-                }
-
-                if (data.IsSuccessful) {
-                    window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
-
-                    setTimeout(() => {
-                        if (status.ReloadCustomerInfo) {
-                            fetchCustomerInfoFromServer(username, LoadCustomerInfo.ByUpdateStatus);
-                        }
-
-                        fetchCustomerAllStatusFromServer(LoadCustomerAllStatus.ByUpdateStatus);
-                    }, 1500);
-                } else {
-                    this.reloadLeftPanel(username);
-                    window.top.bootboxAlert(data.Message, mobileView ? null : $(`#confirm-${status.DisplayOrder}`)[0]);
-                    $.unblockUI();
-                }
-
             }).catch(handleError);
     }
 }
