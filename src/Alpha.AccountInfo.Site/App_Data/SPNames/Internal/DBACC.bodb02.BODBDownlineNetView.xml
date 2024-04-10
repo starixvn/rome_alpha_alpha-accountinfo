@@ -2,6 +2,6 @@
 <Functions>
   <Function Name="Account Info">
     <Setting Key="Age_CustomerSelListByStatus" SpName="Age_CustomerSelListByStatus" DbName="DBACC.bodb02.wsv_alpv" Plain="0" />
-    <Setting Key="Age_ClosedReasonSelByCust" SpName="Age_ClosedReasonSelByCust" DbName="DBACC.bodb02.wsv_alpv" Plain="0" />
+    <Setting Key="Age_ClosedReasonSelByCust" SpName="Age_ClosedReasonSelByCust" DbName="DBCUST.CustDB.wsv_alpv" Plain="0" />
   </Function>
 </Functions>
