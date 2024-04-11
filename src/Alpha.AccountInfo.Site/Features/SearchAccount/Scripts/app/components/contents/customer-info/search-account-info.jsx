@@ -22,20 +22,23 @@ const DefaultState = {
 export default class SearchAccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        const statusInfo = this.getStatusInfo(this.props.customerInfo) ?? DefaultState;
+
+        const statusInfo = this.getStatusInfo(this.props.customerInfo);
+        const newState = statusInfo ? statusInfo : DefaultState;;
         this.state = {
-            Css: statusInfo.Css,
-            Tootltip: statusInfo.Tootltip
+            Css: newState.Css,
+            Tootltip: newState.Tootltip
         };
     }
 
     componentWillReceiveProps(nextProps) {
         const { customerInfo } = this.props;
         if (nextProps.customerInfo !== customerInfo) {
-            const statusInfo = this.getStatusInfo(nextProps.customerInfo) ?? DefaultState;
+            const statusInfo = this.getStatusInfo(nextProps.customerInfo);
+            const newState = statusInfo ? statusInfo : DefaultState;
             this.state = {
-                Css: statusInfo.Css,
-                Tootltip: statusInfo.Tootltip
+                Css: newState.Css,
+                Tootltip: newState.Tootltip
             };
         }
     }
