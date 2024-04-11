@@ -14,10 +14,15 @@ const LockedAccess = {
     FalsePassword: 2
 };
 
+const DefaultState = {
+    Css: "",
+    Tootltip: ""
+}
+
 export default class SearchAccountInfo extends React.Component {
     constructor(props) {
         super(props);
-        const statusInfo = this.getStatusInfo(this.props.customerInfo);
+        const statusInfo = this.getStatusInfo(this.props.customerInfo) ?? DefaultState;
         this.state = {
             Css: statusInfo.Css,
             Tootltip: statusInfo.Tootltip
@@ -27,7 +32,7 @@ export default class SearchAccountInfo extends React.Component {
     componentWillReceiveProps(nextProps) {
         const { customerInfo } = this.props;
         if (nextProps.customerInfo !== customerInfo) {
-            const statusInfo = this.getStatusInfo(nextProps.customerInfo);
+            const statusInfo = this.getStatusInfo(nextProps.customerInfo) ?? DefaultState;
             this.state = {
                 Css: statusInfo.Css,
                 Tootltip: statusInfo.Tootltip
@@ -115,7 +120,6 @@ export default class SearchAccountInfo extends React.Component {
             mobileView
         };
 
-
         const createMemberAccountByQRCodeProps = {
             title: resources.CreateMemberWithQRCode,
             classNames: 'pointer',
@@ -124,12 +128,12 @@ export default class SearchAccountInfo extends React.Component {
         };
 
         const spanContent =
-        <span
-            className={Css}
-            id="search-account-id"
-            data-search-account-username={customerInfo.UserName}>
-            {isTruncate ? `${username.substring(0, maxLength)}...` : username}
-        </span>;
+            <span
+                className={Css}
+                id="search-account-id"
+                data-search-account-username={customerInfo.UserName}>
+                {isTruncate ? `${username.substring(0, maxLength)}...` : username}
+            </span>;
 
         const spanContentViewLog =
             <CustomAnchorTag {...customAnchorTagProps}>
@@ -144,12 +148,12 @@ export default class SearchAccountInfo extends React.Component {
                 {content}
             </Tooltip>;
 
-        return <div> 
+        return <div>
             {Tootltip === '' ? content : contentWithTooltip}
             {customerInfo.IsShowCreateMemberByQRCode &&
                 <CustomAnchorTag {...createMemberAccountByQRCodeProps}>
-                <span className='icon-clone-account' />
-            </CustomAnchorTag>}
-            </div>;
+                    <span className='icon-clone-account' />
+                </CustomAnchorTag>}
+        </div>;
     }
 }
