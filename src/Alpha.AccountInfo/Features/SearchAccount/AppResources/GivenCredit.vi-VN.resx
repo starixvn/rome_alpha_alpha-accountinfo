@@ -129,7 +129,7 @@
   <data name="InvalidValue" xml:space="preserve">
     <value>Hạn mức khả dụng mới vượt quá mức cho phép.</value>
   </data>
-  <data name="GivenCredit" xml:space="preserve">
+  <data name="NewGivenCredit" xml:space="preserve">
     <value>Hạn mức tín dụng mới</value>
   </data>
   <data name="Note" xml:space="preserve">

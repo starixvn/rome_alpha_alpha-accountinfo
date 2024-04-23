@@ -129,7 +129,7 @@
   <data name="InvalidValue" xml:space="preserve">
     <value>ยอดใหม่ของเครดิตสำหรับการวางเดิมพันอยู่นอกช่วงที่ใช้งานได้</value>
   </data>
-  <data name="GivenCredit" xml:space="preserve">
+  <data name="NewGivenCredit" xml:space="preserve">
     <value>เครดิตทั้งหมด</value>
   </data>
   <data name="Note" xml:space="preserve">

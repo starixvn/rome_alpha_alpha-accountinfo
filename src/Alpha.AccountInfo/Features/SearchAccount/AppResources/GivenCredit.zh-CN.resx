@@ -129,7 +129,7 @@
   <data name="InvalidValue" xml:space="preserve">
     <value>新设定的信用额度超出允许范围。</value>
   </data>
-  <data name="GivenCredit" xml:space="preserve">
+  <data name="NewGivenCredit" xml:space="preserve">
     <value>信用额度</value>
   </data>
   <data name="Note" xml:space="preserve">

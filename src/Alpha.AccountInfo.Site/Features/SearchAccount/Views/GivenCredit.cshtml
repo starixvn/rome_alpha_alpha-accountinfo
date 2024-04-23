@@ -17,7 +17,7 @@
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/SearchAccount/Bundles/given-credit")
     <script>
-   renderGivenCredit(
+        renderGivenCredit(
             "@Model.SearchAccountId",
             "@Model.SearchAccountName",
             "@Model.SearchAccountRoleId",
@@ -25,6 +25,7 @@
             "@Model.GivenCreditMin",
             "@Model.GivenCreditMax",
             @Html.Raw(Model.GivenCreditResources),
-            "@Model.MemberMaxCredit");
+            "@Model.MemberMaxCredit",
+            "@Model.AvailableCredit");
     </script>
 }

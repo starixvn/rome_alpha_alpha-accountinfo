@@ -5,9 +5,8 @@ import CellContainNumberFormat from './components/common/cell-contain-number-for
 import { handleError } from '../../../Shared/Scripts/api-client';
 import { accountInfoAPI } from './accountinfo-api';
 import { UserLevel } from './constants';
-import { decodeResources } from './helpers/accountinfo-helper';
+import { decodeResources, formatNumber } from './helpers/accountinfo-helper';
 import { Tooltip } from 'react-tippy';
-import { buildTooltipProps } from '../../../helpers/accountinfo-helper';
 
 class GivenCredit extends React.Component {
     constructor(props) {
@@ -102,7 +101,7 @@ class GivenCredit extends React.Component {
     }
 
     buildGivenCreditLimitNote() {
-        const { searchAccountRoleId, givenCreditMin, givenCreditMax, memberMaxCredit } = this.props;
+        const { searchAccountRoleId, givenCreditMin, givenCreditMax, memberMaxCredit, availableCredit } = this.props;
         const { resources } = this.state;
         const buildNumberFormat = value =>
             <NumberFormat
@@ -115,17 +114,15 @@ class GivenCredit extends React.Component {
             />;
 
         const renderTooltip = () => {
-            if (searchAccountRoleId == UserLevel.Member && memberMaxCredit) {
-                var value = `${resources.CreditHint.replace("{0}", buildNumberFormat(givenCreditMax))}<br>${resources.MemberMaxCreditHint.replace("{0}", buildNumberFormat(memberMaxCredit))}`;
-                return <Tooltip {...buildTooltipProps(value)}><span className="icon-credit"></span></Tooltip>;
-            }
-
-            return "";
+            var value = `${resources.CreditHint.replace("{0}", formatNumber(availableCredit))}<br>${resources.MemberMaxCreditHint.replace("{0}", formatNumber(memberMaxCredit))}`;
+            return <Tooltip title={value} position="left" trigger="mouseenter" arrow={true}><span className="icon-credit"></span></Tooltip>;
         }
 
         return (
-            <div className="col-xs-12 form-group">
-                <CellContainNumberFormat value={`${resources.Min}: ${buildNumberFormat(givenCreditMin)} - ${resources.Max}: ${buildNumberFormat(givenCreditMax)} ${renderTooltip()}`} classNames="value" />
+            <div className="col-xs-12 form-group note" >
+                <div className="value">
+                    {resources.Min}: {buildNumberFormat(givenCreditMin)} - {resources.Max}: {buildNumberFormat(givenCreditMax)}{searchAccountRoleId == UserLevel.Member && memberMaxCredit && renderTooltip()}
+                </div>
             </div>
         );
     }
@@ -182,7 +179,8 @@ export const renderGivenCredit = (searchAccountId,
     givenCreditMin,
     givenCreditMax,
     resources,
-    memberMaxCredit
+    memberMaxCredit,
+    availableCredit
 ) => {
     ReactDOM.render(
         <GivenCredit searchAccountId={searchAccountId}
@@ -193,6 +191,7 @@ export const renderGivenCredit = (searchAccountId,
             givenCreditMax={givenCreditMax}
             resources={decodeResources(resources)}
             memberMaxCredit={memberMaxCredit}
+            availableCredit={availableCredit}
         />,
         document.getElementById('given-credit')
     );
