@@ -129,8 +129,8 @@
   <data name="InvalidValue" xml:space="preserve">
     <value>ยอดใหม่ของเครดิตสำหรับการวางเดิมพันอยู่นอกช่วงที่ใช้งานได้</value>
   </data>
-  <data name="NewGivenCredit" xml:space="preserve">
-    <value>เครดิต ใหม่</value>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>เครดิตทั้งหมด</value>
   </data>
   <data name="Note" xml:space="preserve">
     <value>หมายเหตุ</value>
@@ -143,5 +143,14 @@
   </data>
   <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
     <value>อัปเดตเครดิตสำเร็จแล้ว!</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>ต่ำสุด</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>สูงสุด</value>
+  </data>
+  <data name="CreditHint" xml:space="preserve">
+    <value>ยอดคงเหลือที่ใช้ได้ : {0}</value>
   </data>
 </root>

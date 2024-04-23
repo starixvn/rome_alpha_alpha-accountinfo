@@ -129,7 +129,7 @@
   <data name="InvalidValue" xml:space="preserve">
     <value>Hạn mức khả dụng mới vượt quá mức cho phép.</value>
   </data>
-  <data name="NewGivenCredit" xml:space="preserve">
+  <data name="GivenCredit" xml:space="preserve">
     <value>Hạn mức tín dụng mới</value>
   </data>
   <data name="Note" xml:space="preserve">
@@ -143,5 +143,14 @@
   </data>
   <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
     <value>Đã cập nhật hạn mức tín dụng thành công!</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>Nhỏ nhất</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Lớn nhất</value>
+  </data>
+  <data name="CreditHint" xml:space="preserve">
+    <value>Hạn mức khả dụng: {0}</value>
   </data>
 </root>

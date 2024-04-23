@@ -34,7 +34,7 @@
                 GivenCreditMax = this.numberHelpers.RoundDown(creditInfo.MasterCreditMax);
                 GivenCreditMin = this.numberHelpers.RoundUp(creditInfo.MasterCreditMin);
             }
-            else if(level.IsAgentLevel())
+            else if (level.IsAgentLevel())
             {
                 GivenCreditMax = this.numberHelpers.RoundDown(creditInfo.AgentCreditMax);
                 GivenCreditMin = this.numberHelpers.RoundUp(creditInfo.AgentCreditMin);
@@ -56,9 +56,11 @@
 
         public decimal CurrentGivenCredit { get; }
 
-        public decimal GivenCreditMin { get;  }
+        public decimal GivenCreditMin { get; }
 
         public decimal GivenCreditMax { get; }
+
+        public decimal MemberMaxCredit { get; }
 
         public string GivenCreditResources => ConvertResourcesJson(message.Language, GivenCredit.ResourceManager);
     }

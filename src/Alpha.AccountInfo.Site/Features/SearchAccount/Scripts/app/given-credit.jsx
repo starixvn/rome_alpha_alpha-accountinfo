@@ -6,6 +6,8 @@ import { handleError } from '../../../Shared/Scripts/api-client';
 import { accountInfoAPI } from './accountinfo-api';
 import { UserLevel } from './constants';
 import { decodeResources } from './helpers/accountinfo-helper';
+import { Tooltip } from 'react-tippy';
+import { buildTooltipProps } from '../../../helpers/accountinfo-helper';
 
 class GivenCredit extends React.Component {
     constructor(props) {
@@ -15,7 +17,7 @@ class GivenCredit extends React.Component {
             hideMessages: true,
             updateSuccess: false,
             message: '',
-            resources: this.props.resources
+            resources: this.props.resources,
         };
 
         this.handleClose = this.handleClose.bind(this);
@@ -36,8 +38,8 @@ class GivenCredit extends React.Component {
             window.top.updateGivenCreditPopup.onClosing(
                 this.props.searchAccountName, // use for reload left panel
                 updateSuccessfully,
-				this.state.newGivenCredit, // use for update value on html Show QR code form
-				this.props.searchAccountId); // use for update value on html Credit Balance form
+                this.state.newGivenCredit, // use for update value on html Show QR code form
+                this.props.searchAccountId); // use for update value on html Credit Balance form
         }
     }
 
@@ -56,7 +58,7 @@ class GivenCredit extends React.Component {
             givenCreditMax = parseFloat(this.props.givenCreditMax),
             newGivenCredit = parseFloat(this.state.newGivenCredit);
 
-		if (newGivenCredit < 0 || newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
+        if (newGivenCredit < 0 || newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
             this.showErrorMessage(resources.InvalidValue);
             return;
         }
@@ -100,7 +102,7 @@ class GivenCredit extends React.Component {
     }
 
     buildGivenCreditLimitNote() {
-        const { searchAccountRoleId, givenCreditMin, givenCreditMax } = this.props;
+        const { searchAccountRoleId, givenCreditMin, givenCreditMax, memberMaxCredit } = this.props;
         const { resources } = this.state;
         const buildNumberFormat = value =>
             <NumberFormat
@@ -112,15 +114,18 @@ class GivenCredit extends React.Component {
                 thousandSeparator={true}
             />;
 
-		const noted = <div className="content">
-			{buildNumberFormat(givenCreditMin)} ≤  {resources.NewGivenCredit} ≤ {buildNumberFormat(givenCreditMax)}
-		</div>;
+        const renderTooltip = () => {
+            if (searchAccountRoleId == UserLevel.Member && memberMaxCredit) {
+                var value = `${resources.CreditHint.replace("{0}", buildNumberFormat(givenCreditMax))}<br>${resources.MemberMaxCreditHint.replace("{0}", buildNumberFormat(memberMaxCredit))}`;
+                return <Tooltip {...buildTooltipProps(value)}><span className="icon-credit"></span></Tooltip>;
+            }
+
+            return "";
+        }
 
         return (
-            <div className="note">
-                <span className="text-red">*</span>
-                <strong>{resources.Note}</strong>:
-                  {noted}
+            <div className="col-xs-12 form-group">
+                <CellContainNumberFormat value={`${resources.Min}: ${buildNumberFormat(givenCreditMin)} - ${resources.Max}: ${buildNumberFormat(givenCreditMax)} ${renderTooltip()}`} classNames="value" />
             </div>
         );
     }
@@ -143,8 +148,8 @@ class GivenCredit extends React.Component {
                     <NumberFormat className="textbox col-xs-5"
                         value={newGivenCredit}
                         fixedDecimalScale={true}
-						thousandSeparator={true}
-						allowNegative={false}
+                        thousandSeparator={true}
+                        allowNegative={false}
                         decimalScale={2}
                         onKeyPress={this.handleKeyPress}
                         onValueChange={values => {
@@ -154,6 +159,8 @@ class GivenCredit extends React.Component {
                     />
                 </div>
 
+                {this.buildGivenCreditLimitNote()}
+
                 {this.buildRow(resources.Difference, newGivenCredit - currentGivenCredit)}
 
                 <div className="col-xs-12 row-info popup-bottom list-button">
@@ -161,7 +168,6 @@ class GivenCredit extends React.Component {
                     <button className="btn-cancel" onClick={this.handleClose}>{resources.Cancel}</button>
                 </div>
 
-                {this.buildGivenCreditLimitNote()}
             </div>
         );
     }
@@ -175,7 +181,8 @@ export const renderGivenCredit = (searchAccountId,
     currentGivenCredit,
     givenCreditMin,
     givenCreditMax,
-    resources
+    resources,
+    memberMaxCredit
 ) => {
     ReactDOM.render(
         <GivenCredit searchAccountId={searchAccountId}
@@ -185,6 +192,7 @@ export const renderGivenCredit = (searchAccountId,
             givenCreditMin={givenCreditMin}
             givenCreditMax={givenCreditMax}
             resources={decodeResources(resources)}
+            memberMaxCredit={memberMaxCredit}
         />,
         document.getElementById('given-credit')
     );

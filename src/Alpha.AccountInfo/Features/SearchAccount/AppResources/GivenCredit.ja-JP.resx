@@ -129,8 +129,8 @@
   <data name="InvalidValue" xml:space="preserve">
     <value>The new bet credit is out of the available range.</value>
   </data>
-  <data name="NewGivenCredit" xml:space="preserve">
-    <value>New Given Credit</value>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>貸付金額</value>
   </data>
   <data name="Note" xml:space="preserve">
     <value>Note</value>
