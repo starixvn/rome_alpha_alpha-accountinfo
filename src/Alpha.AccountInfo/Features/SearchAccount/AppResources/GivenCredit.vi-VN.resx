@@ -153,4 +153,7 @@
   <data name="CreditHint" xml:space="preserve">
     <value>Hạn mức khả dụng: {0}</value>
   </data>
+  <data name="MemberMaxCreditHint" xml:space="preserve">
+    <value>Hạn Mức Tín Dụng Tối Đa Của Member Cấp Bởi Cấp Trên：{0}</value>
+  </data>
 </root>
