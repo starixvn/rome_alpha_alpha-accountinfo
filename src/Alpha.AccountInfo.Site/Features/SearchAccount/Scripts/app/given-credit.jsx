@@ -114,14 +114,18 @@ class GivenCredit extends React.Component {
             />;
 
         const renderTooltip = () => {
-            var value = `${resources.CreditHint.replace("{0}", formatNumber(availableCredit))}<br>${resources.MemberMaxCreditHint.replace("{0}", formatNumber(memberMaxCredit))}`;
-            return <Tooltip title={value} position="left" trigger="mouseenter" arrow={true}><span className="icon-credit"></span></Tooltip>;
+            if (searchAccountRoleId == UserLevel.Member && memberMaxCredit > 0) {
+                var value = `${resources.CreditHint.replace("{0}", formatNumber(availableCredit))}<br>${resources.MemberMaxCreditHint.replace("{0}", formatNumber(memberMaxCredit))}`;
+                return <Tooltip title={value} position="left" trigger="mouseenter" arrow={true}><span className="icon-credit"></span></Tooltip>;
+            }
+
+            return null;
         }
 
         return (
             <div className="col-xs-12 form-group note" >
                 <div className="value">
-                    {resources.Min}: {buildNumberFormat(givenCreditMin)} - {resources.Max}: {buildNumberFormat(givenCreditMax)}{searchAccountRoleId == UserLevel.Member && memberMaxCredit && renderTooltip()}
+                    {resources.Min}: {buildNumberFormat(givenCreditMin)} - {resources.Max}: {buildNumberFormat(givenCreditMax)}{renderTooltip()}
                 </div>
             </div>
         );
