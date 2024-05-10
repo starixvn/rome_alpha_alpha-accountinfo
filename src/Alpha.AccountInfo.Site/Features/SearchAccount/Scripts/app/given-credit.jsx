@@ -114,7 +114,7 @@ class GivenCredit extends React.Component {
             />;
 
         const renderTooltip = () => {
-            if (searchAccountRoleId == UserLevel.Member && memberMaxCredit > 0) {
+            if (searchAccountRoleId == UserLevel.Member && parseFloat(memberMaxCredit) > 0) {
                 var value = `${resources.CreditHint.replace("{0}", formatNumber(availableCredit))}<br>${resources.MemberMaxCreditHint.replace("{0}", formatNumber(memberMaxCredit))}`;
                 return <Tooltip title={value} position="left" trigger="mouseenter" arrow={true}><span className="icon-credit"></span></Tooltip>;
             }
