@@ -115,6 +115,7 @@
                 Enumeration.FromValue<UserLevel>(CustRoleIdTest),
                 null,
                 Enumeration.FromValue<UserLevel>(4),
+                false,
                 false);
             mediator
                 .Send(message)

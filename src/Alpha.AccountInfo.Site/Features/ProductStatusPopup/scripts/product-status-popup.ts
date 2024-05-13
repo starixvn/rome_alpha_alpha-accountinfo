@@ -10,7 +10,8 @@ interface ProductStatus {
     ProductId: number,
     CustId: number,
     CustRoleId: number,
-    BetTypeStatus: Array<BettypeStatus>
+    BetTypeStatus: Array<BettypeStatus>,
+    IsGroup: boolean
 }
 
 const ProductConstants = {
@@ -29,6 +30,7 @@ class ProductStatusPopup {
     custName: string;
     custRoleId: number;
     token: string;
+    isGroup: boolean;
 
     constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
@@ -48,6 +50,7 @@ class ProductStatusPopup {
         this.custName = this.$("#hiddenCustName").val();
         this.custRoleId = this.$("#hiddenCustRoleId").val();
         this.token = this.$("input[name=\"__RequestVerificationToken\"]", this.$formProductStatus).val();
+        this.isGroup = this.$("#hiddenIsGroup").val() == "1";
     };
 
     registerEvents = () => {
@@ -105,7 +108,8 @@ class ProductStatusPopup {
                 ProductId: this.productId,
                 CustId: this.custId,
                 CustRoleId: this.custRoleId,
-                BetTypeStatus: betTypeStatus
+                BetTypeStatus: betTypeStatus,
+                IsGroup: this.isGroup
             } : null;
     };
 

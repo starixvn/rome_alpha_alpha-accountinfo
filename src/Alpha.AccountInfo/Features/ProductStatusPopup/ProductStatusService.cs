@@ -16,16 +16,12 @@
     using Fanex.Data.Repository;
     using Fanex.Logging;
     using Models.ProductStatus;
+    using Newtonsoft.Json;
     using Params.ProductStatus;
 
     public interface ProductStatusService
     {
-        Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
-            int productId,
-            int custId,
-            UserLevel custRole,
-            int uplineId,
-            UserLevel uplineLevel);
+        Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(ProductStatusAuthorizationParam param);
 
         Task<IEnumerable<Result>> UpdateProductStatusAsync(ProductStatusCommandParam commandParam);
     }
@@ -55,43 +51,40 @@
             this.logger = logger;
         }
 
-        public async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
-            int productId,
-            int custId,
-            UserLevel custRole,
-            int uplineId,
-            UserLevel uplineLevel)
+        public Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(ProductStatusAuthorizationParam param)
         {
-            var authorizationParam = new ProductStatusAuthorizationParam(
-                productId,
-                custId,
-                custRole,
-                uplineId,
-                uplineLevel);
-
-            if (!authorizationService.CanView(authorizationParam))
+            if (!authorizationService.CanView(param))
             {
-                return Enumerable.Empty<ProductStatusModel>();
+                return Task.FromResult(Enumerable.Empty<ProductStatusModel>());
             }
 
-            return await GetProductStatusAsync(productId, custId, custRole).ConfigureAwait(false);
+            if (param.IsGroup)
+            {
+                return GetProductGroupStatusAsync(param.ProductId, param.CustId, param.CustRole.Value);
+            }
+
+            return GetProductStatusAsync(param.ProductId, param.CustId, param.CustRole);
         }
 
-        public async Task<IEnumerable<Result>> UpdateProductStatusAsync(ProductStatusCommandParam commandParam)
+        private async Task<IEnumerable<ProductStatusModel>> GetProductGroupStatusAsync(
+            int groupId,
+            int custId,
+            byte roleId)
         {
-            var authorizationParam = new ProductStatusAuthorizationParam(
-                   commandParam.ProductId,
-                   commandParam.CustId,
-                   commandParam.CustRole,
-                   commandParam.UplineId,
-                   commandParam.UplineLevel);
+            ICriteria criteria = new SelectProductGroupStatusCriteria(custId, roleId, groupId);
+            var rawData = await repository.FetchAsync<ProductStatusModel>(criteria).ConfigureAwait(false);
 
-            if (!authorizationService.CanUpdate(authorizationParam))
+            return SetProductGroupStatusName(rawData);
+        }
+
+        private IEnumerable<ProductStatusModel> SetProductGroupStatusName(IEnumerable<ProductStatusModel> rawData)
+        {
+            foreach (var item in rawData)
             {
-                return new[] { Result.CreateForbiddenResult() };
-            }
+                item.Name = cacheRefService.GetSportTypeName(item.SportType);
 
-            return await UpdateStatusAsync(commandParam).ConfigureAwait(false);
+                yield return item;
+            }
         }
 
         private async Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(
@@ -103,6 +96,24 @@
             var rawData = await repository.FetchAsync<ProductStatusModel>(criteria).ConfigureAwait(false);
 
             return SetProductStatusName(productId, rawData);
+        }
+
+        public async Task<IEnumerable<Result>> UpdateProductStatusAsync(ProductStatusCommandParam commandParam)
+        {
+            var authorizationParam = new ProductStatusAuthorizationParam(
+                commandParam.IsGroup,
+                commandParam.ProductId,
+                commandParam.CustId,
+                commandParam.CustRole,
+                commandParam.UplineId,
+                commandParam.UplineLevel);
+
+            if (!authorizationService.CanUpdate(authorizationParam))
+            {
+                return new[] { Result.CreateForbiddenResult() };
+            }
+
+            return await UpdateStatusAsync(commandParam).ConfigureAwait(false);
         }
 
         private IEnumerable<ProductStatusModel> SetProductStatusName(
@@ -162,7 +173,9 @@
 
         private async Task<IEnumerable<Result>> UpdateStatusAsync(ProductStatusCommandParam param)
         {
-            var criteria = criteriaFactory.CreateUpdateCriteria(param);
+            var criteria = param.IsGroup
+                ? new UpdateProductGroupStatusCriteria(param.CustId, param.ProductId, JsonConvert.SerializeObject(param.ProductStatusParams), param.SubAccId, param.ActorId, param.IP)
+                : criteriaFactory.CreateUpdateCriteria(param);
             await repository.ExecuteAsync(criteria).ConfigureAwait(false);
 
             if (!criteria.Success && criteria.ErrCode != DoNothingErrorCode)
@@ -190,13 +203,15 @@
         private async Task<string> GetProductStatusUMAsync(ProductStatusCommandParam param)
         {
             var umMessages = new List<string>();
-            var productStatusUM = await repository.FetchAsync<ProductStatusUM>(new CheckProductStatusUMCriteria(param.ProductId, param.CustId));
+            var criteria = param.IsGroup ? new CheckProductStatusUMCriteria(param.CustId, groupId: param.ProductId) : new CheckProductStatusUMCriteria(param.CustId, param.ProductId);
+            var productStatusUM = await repository.FetchAsync<ProductStatusUM>(criteria);
 
             foreach (var item in productStatusUM)
             {
                 if (item.ProductId == 0 || item.SportType == 0)
                 {
-                    return $"{GetResource("ProductStatusUM", param.Language)}<br>{BuildProductStatusUMMessage(item, param.Language)}";
+                    umMessages.Add(BuildProductStatusUMMessage(item, param.Language));
+                    continue;
                 }
 
                 if (param.ProductStatusParams.Any(p => p.SportType == item.SportType))

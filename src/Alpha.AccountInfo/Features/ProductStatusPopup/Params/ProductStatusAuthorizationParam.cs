@@ -5,18 +5,22 @@
     public class ProductStatusAuthorizationParam
     {
         public ProductStatusAuthorizationParam(
+            bool isGroup,
             int productId,
             int custId,
             UserLevel custRole,
             int uplineId,
             UserLevel uplineLevel)
         {
+            IsGroup = isGroup;
             ProductId = productId;
             CustId = custId;
             CustRole = custRole;
             UplineId = uplineId;
             UplineLevel = uplineLevel;
         }
+
+        public bool IsGroup { get; }
 
         public int ProductId { get; }
 

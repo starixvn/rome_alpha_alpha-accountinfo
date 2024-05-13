@@ -168,8 +168,9 @@
     <Compile Include="Features\ProductStatusPopup\Params\SPs\CheckProductStatusUMCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectCashoutStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectDCSProductStatusFor4Criteria.cs" />
-    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectRNGSlotStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\SelectProductGroupStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateMacauGamesStatusCriteria.cs" />
+    <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateProductGroupStatusCriteria.cs" />
     <Compile Include="Features\ProductStatusPopup\Params\SPs\UpdateProductStatusForSettingType4Criteria.cs" />
     <Compile Include="Features\ProductStatusPopup\ProductIdConstants.cs" />
     <Compile Include="Features\ProductStatusPopup\SportTypeConstants.cs" />

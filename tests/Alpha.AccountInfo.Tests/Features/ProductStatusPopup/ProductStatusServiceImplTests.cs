@@ -44,7 +44,7 @@
                 cacheRefService,
                 criteriaFactory,
                 authorizationService,
-                logger);          
+                logger);
         }
 
         [Fact]
@@ -72,7 +72,7 @@
                 .Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(new ProductStatusAuthorizationParam(false, productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest));
             var actualResult = actualData.First();
 
             // Assert
@@ -108,7 +108,7 @@
                 .Returns(expectedResults);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest);
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(new ProductStatusAuthorizationParam(false, productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest));
             var actualResults = actualData.ToList();
 
             // Assert
@@ -123,13 +123,14 @@
                 expectedResults[1].IsDisabled == actualResults[1].IsDisabled &&
                 expectedResults[1].IsDisabledUpline == actualResults[1].IsDisabledUpline &&
                 expectedResults[1].Name == actualResults[1].Name);
-        }     
+        }
 
         [Fact]
         public async Task UpdateProductStatusAsync_DSC_ReturnsSucessfulResult()
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
+                false,
                 30,
                 CustIdTest,
                 CustRoleTest,
@@ -168,6 +169,7 @@
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
+                false,
                 30,
                 CustIdTest,
                 CustRoleTest,
@@ -209,6 +211,7 @@
         {
             // Arrange
             var commandParam = new ProductStatusCommandParam(
+                false,
                 30,
                 CustIdTest,
                 CustRoleTest,

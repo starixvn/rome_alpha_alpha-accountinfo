@@ -72,6 +72,7 @@
             // Arrange
             var productStatus = new[] { new BetTypeStatusParam(0, 0, false) };
             var param = new ProductStatusCommandParam(
+                false,
                 productId,
                 CustIdTest,
                 CustRoleTest,

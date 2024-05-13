@@ -6,7 +6,9 @@
     public class ProductStatusCommandParam
     {
 #pragma warning disable S107 // Methods should not have too many parameters
+
         public ProductStatusCommandParam(
+            bool isGroup,
             int productId,
             int custId,
             UserLevel custRole,
@@ -21,6 +23,7 @@
             string language)
 #pragma warning restore S107 // Methods should not have too many parameters
         {
+            IsGroup = isGroup;
             ProductId = productId;
             CustId = custId;
             CustRole = custRole;
@@ -34,6 +37,8 @@
             ProductStatusParams = productStatusParams;
             Language = language;
         }
+
+        public bool IsGroup { get; }
 
         public int ProductId { get; }
 
