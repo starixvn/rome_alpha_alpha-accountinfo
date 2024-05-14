@@ -2,7 +2,7 @@
     ViewBag.Title = $"{Resources.GivenCreditPopupTitle} - {Model.SearchAccountName}";
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
-
+@using System.Globalization
 @model GivenCreditViewModel
 
 @section Styles {
@@ -17,6 +17,7 @@
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/SearchAccount/Bundles/given-credit")
     <script>
+
         renderGivenCredit(
             "@Model.SearchAccountId",
             "@Model.SearchAccountName",
@@ -25,7 +26,7 @@
             "@Model.GivenCreditMin",
             "@Model.GivenCreditMax",
             @Html.Raw(Model.GivenCreditResources),
-            @Model.MemberMaxCredit,
-            @Model.AvailableCredit);
+            @Model.MemberMaxCredit.ToString(CultureInfo.InvariantCulture),
+            @Model.AvailableCredit.ToString(CultureInfo.InvariantCulture));
     </script>
 }

@@ -12,7 +12,6 @@
 #pragma warning restore S1694 // An abstract class should have both abstract and concrete methods
     {
         private const string NoInformationPageViewPath = "~/Features/Shared/Views/NoInformation.cshtml";
-
         protected readonly IMediator mediator;
 
         protected AccountInfoBaseController(IMediator mediator)
