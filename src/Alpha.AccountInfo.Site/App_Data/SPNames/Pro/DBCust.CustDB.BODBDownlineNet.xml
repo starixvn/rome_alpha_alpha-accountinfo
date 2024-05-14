@@ -32,7 +32,8 @@
       <Mapping ObjectProperty="AgentCreditMin" DataField="agentCredit_Min" />
       <Mapping ObjectProperty="AgentCreditMax" DataField="agentCredit_Max" />
       <Mapping ObjectProperty="MemMaxCreditMin" DataField="memMaxCredit_Min" />
-      <Mapping ObjectProperty="MemMaxCreditMax" DataField="memMaxCredit_Max" />
+      <Mapping ObjectProperty="MemMaxCreditMax" DataField="MaxCredit_Mem" />
+      <Mapping ObjectProperty="AvailableCredit" DataField="Credit_Ag_Bal" />
     </Setting>
     <Setting Key="Acc_CustomerUpdAllDayBalTransfer" SpName="Acc_CustomerUpdAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCust.CustDB.wsv_alp" Plain="0" />

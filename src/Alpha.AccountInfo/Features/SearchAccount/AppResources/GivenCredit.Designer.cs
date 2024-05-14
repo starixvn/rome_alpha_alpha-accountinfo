@@ -70,6 +70,15 @@ namespace Alpha.AccountInfo.Features.SearchAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available Credit: {0}.
+        /// </summary>
+        public static string CreditHint {
+            get {
+                return ResourceManager.GetString("CreditHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Given Credit.
         /// </summary>
         public static string CurrentGivenCredit {
@@ -97,7 +106,34 @@ namespace Alpha.AccountInfo.Features.SearchAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Given Credit.
+        ///   Looks up a localized string similar to Max.
+        /// </summary>
+        public static string Max {
+            get {
+                return ResourceManager.GetString("Max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Maximum Member Credit set by your upline: {0}.
+        /// </summary>
+        public static string MemberMaxCreditHint {
+            get {
+                return ResourceManager.GetString("MemberMaxCreditHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min.
+        /// </summary>
+        public static string Min {
+            get {
+                return ResourceManager.GetString("Min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given Credit.
         /// </summary>
         public static string NewGivenCredit {
             get {

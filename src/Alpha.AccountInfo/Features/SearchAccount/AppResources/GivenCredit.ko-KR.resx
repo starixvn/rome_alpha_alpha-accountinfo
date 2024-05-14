@@ -130,7 +130,7 @@
     <value>The new bet credit is out of the available range.</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
-    <value>New Given Credit</value>
+    <value>주어진 크레딧</value>
   </data>
   <data name="Note" xml:space="preserve">
     <value>Note</value>

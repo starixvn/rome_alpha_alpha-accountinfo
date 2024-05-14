@@ -130,7 +130,7 @@
     <value>新设定的信用额度超出允许范围。</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
-    <value>新的信用额度</value>
+    <value>信用额度</value>
   </data>
   <data name="Note" xml:space="preserve">
     <value>注意</value>
@@ -143,5 +143,17 @@
   </data>
   <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
     <value>信用额度更新成功！</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>最低</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>最高</value>
+  </data>
+  <data name="CreditHint" xml:space="preserve">
+    <value>可用信用额: {0}</value>
+  </data>
+  <data name="MemberMaxCreditHint" xml:space="preserve">
+    <value>您的上线已设置会员最高信用：{0}</value>
   </data>
 </root>

@@ -72,7 +72,7 @@
             viewer.GetDisabledProduct(Arg.Any<int>()).Returns(true);
             viewer.GetHideProduct(Arg.Any<int>()).Returns(true);
             viewer.GetSyncedProduct(Arg.Any<int>()).Returns(true);
-            viewer.CanUpdateAccount.Returns(true);         
+            viewer.CanUpdateAccount.Returns(true);
             viewer.IsDisabledESports.Returns(true);
             viewer.CanCreateAccount.Returns(true);
             viewer.DisplayLanguage.Returns("en-US");
@@ -162,7 +162,7 @@
                     pendingTransfer3rd: 10);
 
         public static CreditInfo CreditInfo
-            => new CreditInfo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+            => new CreditInfo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10);
 
         private static CustomerInfoQuery AssignMessagesUsername(CustomerInfoQuery messages)
         {

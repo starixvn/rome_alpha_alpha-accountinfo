@@ -144,4 +144,16 @@
   <data name="UpdateGivenCreditSuccessfully" xml:space="preserve">
     <value>Đã cập nhật hạn mức tín dụng thành công!</value>
   </data>
+  <data name="Min" xml:space="preserve">
+    <value>Nhỏ nhất</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Lớn nhất</value>
+  </data>
+  <data name="CreditHint" xml:space="preserve">
+    <value>Hạn mức khả dụng: {0}</value>
+  </data>
+  <data name="MemberMaxCreditHint" xml:space="preserve">
+    <value>Hạn Mức Tín Dụng Tối Đa Của Member Cấp Bởi Cấp Trên：{0}</value>
+  </data>
 </root>

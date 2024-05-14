@@ -56,7 +56,7 @@
 
             accountInfoService = Substitute.For<SearchAccountService>();
             ipService = Substitute.For<IPService>();
-            kickoutCustomerService= Substitute.For<KickoutCustomerService>();
+            kickoutCustomerService = Substitute.For<KickoutCustomerService>();
             accountInfoHandler = new SearchAccountHandler(accountInfoService, ipService, kickoutCustomerService, getBalanceInfoViewModelByLevel, null);
 
             customerInfoQuery = new CustomerInfoQuery(viewer)
@@ -221,7 +221,7 @@
                 SearchAccountRoleId = 2
             };
 
-            var model = new CreditInfo(10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+            var model = new CreditInfo(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
             var expectedViewModel = new GivenCreditViewModel(message, model, 0);
             accountInfoService.GetCreditInfo(Arg.Any<int>()).Returns(model);
 

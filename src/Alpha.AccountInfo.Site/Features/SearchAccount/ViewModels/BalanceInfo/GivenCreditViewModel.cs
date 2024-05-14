@@ -34,15 +34,20 @@
                 GivenCreditMax = this.numberHelpers.RoundDown(creditInfo.MasterCreditMax);
                 GivenCreditMin = this.numberHelpers.RoundUp(creditInfo.MasterCreditMin);
             }
-            else if(level.IsAgentLevel())
+            else if (level.IsAgentLevel())
             {
                 GivenCreditMax = this.numberHelpers.RoundDown(creditInfo.AgentCreditMax);
                 GivenCreditMin = this.numberHelpers.RoundUp(creditInfo.AgentCreditMin);
             }
             else
             {
-                GivenCreditMax = this.numberHelpers.RoundDown(creditInfo.MemMaxCreditMax);
+                GivenCreditMax = creditInfo.MemMaxCreditMax > 0
+                    ? this.numberHelpers.RoundDown(Math.Min(creditInfo.MemMaxCreditMax, creditInfo.AvailableCredit))
+                    : this.numberHelpers.RoundDown(creditInfo.AvailableCredit);
+
                 GivenCreditMin = this.numberHelpers.RoundUp(memberCreditMin);
+                MemberMaxCredit = creditInfo.MemMaxCreditMax;
+                AvailableCredit = creditInfo.AvailableCredit;
             }
 
             ConvertResourcesJson = convertResourcesJson ?? SimpleServiceLocator.GetService<Func<string, ResourceManager, string>>();
@@ -56,9 +61,13 @@
 
         public decimal CurrentGivenCredit { get; }
 
-        public decimal GivenCreditMin { get;  }
+        public decimal GivenCreditMin { get; }
 
         public decimal GivenCreditMax { get; }
+
+        public decimal MemberMaxCredit { get; }
+
+        public decimal AvailableCredit { get; }
 
         public string GivenCreditResources => ConvertResourcesJson(message.Language, GivenCredit.ResourceManager);
     }

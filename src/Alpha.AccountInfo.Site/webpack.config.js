@@ -11,6 +11,7 @@ module.exports = {
         "./SearchAccount/Bundles/given-credit": [
             "babel-polyfill",
             "./Features/SearchAccount/Scripts/app/given-credit.jsx",
+            "./Features/Shared/Styles/tippy.scss",
             "./Features/SearchAccount/Styles/given-credit.scss"
         ],
         "./ProductStatusPopup/Bundles/index": [
@@ -79,6 +80,7 @@ module.exports = {
         ],
         "./SearchAccount/Bundles/given-credit-dark": [
             "babel-polyfill",
+            "./Features/Shared/Styles/tippy.scss",
             "./Features/SearchAccount/Styles/given-credit-dark.scss"
         ],
         "./UnsuspendDownlines/Bundles/unsuspend-multiple-dark": [

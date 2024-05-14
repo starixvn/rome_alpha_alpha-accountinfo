@@ -16,7 +16,8 @@
             decimal agentUsedCredit,
             decimal memberMaxCredit,
             decimal memMaxCreditMin,
-            decimal memMaxCreditMax)
+            decimal memMaxCreditMax,
+            decimal availableCredit)
         {
             Credit = credit;
             MasterCreditMin = masterCreditMin;
@@ -28,6 +29,7 @@
             MemberMaxCredit = memberMaxCredit;
             MemMaxCreditMin = memMaxCreditMin;
             MemMaxCreditMax = memMaxCreditMax;
+            AvailableCredit = availableCredit;
         }
 
         public decimal Credit { get; set; }
@@ -49,5 +51,7 @@
         public decimal MemMaxCreditMin { get; set; }
 
         public decimal MemMaxCreditMax { get; set; }
+
+        public decimal AvailableCredit { get; set; }
     }
 }
