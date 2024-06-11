@@ -20,7 +20,8 @@
             string langKey,
             string ip,
             IEnumerable<BetTypeStatusParam> productStatusParams,
-            string language)
+            string language,
+            int[] offeredProductGroupIds)
 #pragma warning restore S107 // Methods should not have too many parameters
         {
             IsGroup = isGroup;
@@ -36,6 +37,7 @@
             IP = ip;
             ProductStatusParams = productStatusParams;
             Language = language;
+            OfferedProductGroupIds = offeredProductGroupIds;
         }
 
         public bool IsGroup { get; }
@@ -63,5 +65,7 @@
         public IEnumerable<BetTypeStatusParam> ProductStatusParams { get; }
 
         public string Language { get; }
+
+        public int[] OfferedProductGroupIds { get; }
     }
 }

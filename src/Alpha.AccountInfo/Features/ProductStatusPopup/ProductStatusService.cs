@@ -106,7 +106,8 @@
                 commandParam.CustId,
                 commandParam.CustRole,
                 commandParam.UplineId,
-                commandParam.UplineLevel);
+                commandParam.UplineLevel,
+                commandParam.OfferedProductGroupIds);
 
             if (!authorizationService.CanUpdate(authorizationParam))
             {

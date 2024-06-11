@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Site.Features.ProductStatusPopup
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -31,7 +32,8 @@
                 message.CustId,
                 message.CustRole,
                 message.UplineId,
-                message.UplineLevel)).ConfigureAwait(false);
+                message.UplineLevel,
+                message.OfferedProductGroupIds)).ConfigureAwait(false);
 
             return ToProductStatusViewModel(message, model);
         }
@@ -71,6 +73,7 @@
                 message.LangKey,
                 message.IP,
                 message.BetTypeStatus.Select(status => new BetTypeStatusParam(status.SportType, status.BetType, status.IsDisabled)),
-                message.Language);
+                message.Language,
+                Array.Empty<int>());
     }
 }

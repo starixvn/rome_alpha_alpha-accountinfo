@@ -67,5 +67,7 @@
         string Currency { get; }
 
         string AGIP { get; }
+
+        int[] OfferedProductGroupIds { get; }
     }
 }

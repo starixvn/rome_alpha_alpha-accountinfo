@@ -8,17 +8,18 @@
     {
         private const string CustomerDateLimitSessionKey = "CustomerDateLimit";
         private const string DisplayLanguageSessionKey = "languageusage";
+        private const string OfferedProductGroupIdsKey = "OfferedProductGroupIds";
 
 #pragma warning disable CS0618 // Type or member is obsolete
         private readonly IUserSession userSession;
 #pragma warning restore CS0618 // Type or member is obsolete
 
 #pragma warning disable CS0618 // Type or member is obsolete
+
         public User(IUserSession userSession)
 #pragma warning restore CS0618 // Type or member is obsolete
         {
             this.userSession = userSession;
-
         }
 
         public int Id => userSession.CustId;
@@ -88,5 +89,7 @@
         public string DisplayLanguage => userSession.GetProperty<string>(DisplayLanguageSessionKey);
 
         public string AGIP => userSession.AGIP;
+
+        public int[] OfferedProductGroupIds => userSession.GetProperty<int[]>(OfferedProductGroupIdsKey, Array.Empty<int>());
     }
 }

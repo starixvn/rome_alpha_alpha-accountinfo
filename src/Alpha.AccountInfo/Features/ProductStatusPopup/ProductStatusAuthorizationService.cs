@@ -7,6 +7,7 @@
     using Models;
     using Params.ProductStatus;
     using System;
+    using System.Linq;
 
     public interface ProductStatusAuthorizationService
     {
@@ -36,7 +37,7 @@
 
             return IsMasterAgentMemberOfViewerUser(customerInformation, param.UplineId, param.UplineLevel) &&
                 IsDirectDownlineOfViewerUser(customerInformation, param.UplineLevel) &&
-                canViewProduct(param.ProductId);
+                (param.IsGroup ? param.OfferedProductGroupIds.Contains(param.ProductId) : canViewProduct(param.ProductId));
         }
 
         private static bool IsMasterAgentMemberOfViewerUser(

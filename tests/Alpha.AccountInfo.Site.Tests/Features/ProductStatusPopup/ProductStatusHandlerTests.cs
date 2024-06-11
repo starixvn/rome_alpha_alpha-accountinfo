@@ -63,7 +63,7 @@
             var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false, false);
 
             statusService
-                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest))
+                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest, Array.Empty<int>()))
                 .Returns(productStatus);
 
             // Act
@@ -97,7 +97,7 @@
             };
 
             statusService
-                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest))
+                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest, Array.Empty<int>()))
                 .Returns(Enumerable.Empty<ProductStatusModel>());
 
             // Act
