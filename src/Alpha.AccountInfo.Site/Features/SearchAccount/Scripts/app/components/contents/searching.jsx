@@ -65,7 +65,9 @@ export default class Searching extends React.Component {
         accountInfoAPI
             .getAutoUsernameSuggestion({ SuggestionQuery: input.value.trim() })
             .then(data => {
-                this.setState({ suggestions: data });
+                if (Array.isArray(data)) {
+                    this.setState({ suggestions: data });
+                }
             });
     }
 
