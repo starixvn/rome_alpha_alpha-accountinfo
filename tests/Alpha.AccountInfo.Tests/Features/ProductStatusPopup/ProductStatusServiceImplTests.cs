@@ -56,7 +56,7 @@
             var productName = "Macau Games";
             var expectedResults = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, 212, 4001, false, false)
+                new ProductStatusModel(productId, 212, 4001, false, false,false, null)
             };
             var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
             authorizationService
@@ -94,8 +94,8 @@
             var sportType = 211;
             var expectedResults = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, sportType, 2401, false, false),
-                new ProductStatusModel(productId, sportType, 2402, false, false)
+                new ProductStatusModel(productId, sportType, 2401, false, false,false, null),
+                new ProductStatusModel(productId, sportType, 2402, false, false,false, null)
             };
             var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
             authorizationService

@@ -20,6 +20,7 @@
     using Alpha.Products.Core.Services;
     using Alpha.SecurityCode.Services;
     using Alpha.Web.Helpers;
+    using Alpha.Web.Helpers.Impl;
     using AlphaPlus.User.Models;
     using AlphaPlus.Utilities.IP;
     using Fanex.Data.Repository;
@@ -98,6 +99,7 @@
             container.RegisterSingleton<IPService, IPServiceImpl>();
             container.RegisterSingleton(Logger.Log);
             container.RegisterSingleton<ExceptionHandlerWrapper, ExceptionHandlerWrapperImpl>();
+            container.Register<SessionManager, SessionManagerImpl>(Lifestyle.Scoped);
 
             container.Register<ProductStatusAuthorizationService>(
                 () => new ProductStatusAuthorizationServiceImpl(

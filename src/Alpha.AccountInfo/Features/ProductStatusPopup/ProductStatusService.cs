@@ -24,6 +24,8 @@
         Task<IEnumerable<ProductStatusModel>> GetProductStatusAsync(ProductStatusAuthorizationParam param);
 
         Task<IEnumerable<Result>> UpdateProductStatusAsync(ProductStatusCommandParam commandParam);
+
+        int[] GetOfferedProductGroupIds(int custId, int roleId);
     }
 
     public class ProductStatusServiceImpl : ProductStatusService
@@ -328,6 +330,18 @@
 
             errorMessages.Append(string.Format(errMsgTemplate, string.Join(", ", childSportTypesNames), cacheRefService.GetSportTypeName(Convert.ToInt32(parentSportType))));
             return errorMessages.ToString();
+        }
+
+        public int[] GetOfferedProductGroupIds(int custId, int roleId)
+        {
+            var data = repository.Fetch<ProductStatusModel>(new SelectAllProductStatusCriteria(custId, roleId))?.Where(x => x.GroupId != null && !x.IsHidden);
+
+            if (data == null || !data.Any())
+            {
+                return Array.Empty<int>();
+            }
+
+            return data.Select(x => x.GroupId).Distinct().Select(x => x.Value).ToArray();
         }
     }
 }
