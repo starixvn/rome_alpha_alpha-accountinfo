@@ -124,7 +124,7 @@
     <value>代理</value>
   </data>
   <data name="AgentList" xml:space="preserve">
-    <value>代理</value>
+    <value>代理名單</value>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>代理未結束交易</value>
@@ -235,7 +235,7 @@
     <value>會員</value>
   </data>
   <data name="MemberList" xml:space="preserve">
-    <value>會員</value>
+    <value>會員名單</value>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>會員最高信用額</value>
@@ -244,7 +244,7 @@
     <value>名</value>
   </data>
   <data name="NetPosition" xml:space="preserve">
-    <value>最低净赢</value>
+    <value>最低淨贏</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>沒有任何的變化更新</value>

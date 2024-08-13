@@ -235,7 +235,7 @@
     <value>您确定要暂停/取消暂停已选定的用户吗？ 所有受影响的下线也将被暂停/取消暂停。</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
-    <value>No.</value>
+    <value>编号</value>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>没有数据</value>

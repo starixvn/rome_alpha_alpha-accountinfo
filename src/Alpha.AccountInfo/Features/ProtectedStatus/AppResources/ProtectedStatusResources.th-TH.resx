@@ -136,12 +136,12 @@
     <value>ตั้งค่าใหม่</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="Unprotected" xml:space="preserve">
     <value>ไม่ได้รับการป้องกัน</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
 </root>
