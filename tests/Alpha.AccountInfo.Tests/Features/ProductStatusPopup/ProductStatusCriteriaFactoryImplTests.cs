@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.ProductStatusPopup
 {
+    using System;
     using System.Linq;
     using Alpha.AccountInfo.Criteria.ProductStatus;
     using Alpha.AccountInfo.Features.Shared.Models;
@@ -84,7 +85,8 @@
                 LanguageTest,
                 IPTest,
                 productStatus,
-                "en-US");
+                "en-US",
+                Array.Empty<int>());
             var expectedCriteria = new UpdateDCSProductStatusCriteria(CustIdTest, SubAccIdTest, UserIdTest, IPTest, string.Empty);
 
             // Act

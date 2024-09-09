@@ -8,6 +8,7 @@
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup.Requests;
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
     using Alpha.Products.Core.Shared;
+    using Alpha.Web.Helpers;
     using MediatR;
     using Params.ProductStatus;
     using Services.ProductStatus;
@@ -16,11 +17,14 @@
         IAsyncRequestHandler<ProductStatusQuery, ProductStatusViewModel>,
         IAsyncRequestHandler<ProductStatusCommand, IEnumerable<Result>>
     {
+        private const string OfferedProductGroupIdsKey = "OfferedProductGroupIds";
         private readonly ProductStatusService statusService;
+        private readonly SessionManager sessionManager;
 
-        public ProductStatusHandler(ProductStatusService statusService)
+        public ProductStatusHandler(ProductStatusService statusService, SessionManager sessionManager)
         {
             this.statusService = statusService;
+            this.sessionManager = sessionManager;
         }
 
         public async Task<ProductStatusViewModel> Handle(ProductStatusQuery message)
@@ -31,7 +35,8 @@
                 message.CustId,
                 message.CustRole,
                 message.UplineId,
-                message.UplineLevel)).ConfigureAwait(false);
+                message.UplineLevel,
+                GetOfferProductGroups(message.UplineId, message.UplineLevel.Value))).ConfigureAwait(false);
 
             return ToProductStatusViewModel(message, model);
         }
@@ -56,7 +61,7 @@
                 message.IsViewOnly,
                 message.IsGroup);
 
-        private static ProductStatusCommandParam ToUpdateProductStatusParam(
+        private ProductStatusCommandParam ToUpdateProductStatusParam(
             ProductStatusCommand message)
             => new ProductStatusCommandParam(
                 message.IsGroup,
@@ -71,6 +76,10 @@
                 message.LangKey,
                 message.IP,
                 message.BetTypeStatus.Select(status => new BetTypeStatusParam(status.SportType, status.BetType, status.IsDisabled)),
-                message.Language);
+                message.Language,
+                GetOfferProductGroups(message.UplineId, message.UplineLevel.Value));
+
+        private int[] GetOfferProductGroups(int custId, int roleId)
+            => sessionManager.GetOrAdd(OfferedProductGroupIdsKey, () => statusService.GetOfferedProductGroupIds(custId, roleId));
     }
 }

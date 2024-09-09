@@ -46,7 +46,8 @@
                 custId,
                 Enumeration.FromValue<UserLevel>(custRoleId),
                 uplineId,
-                Enumeration.FromValue<UserLevel>(uplineRoleId));
+                Enumeration.FromValue<UserLevel>(uplineRoleId),
+                Array.Empty<int>());
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -65,7 +66,7 @@
             // Arrange
             var expectedResult = false;
             CustomerInformation customerInformation = null;
-            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel, Array.Empty<int>());
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -84,7 +85,7 @@
             // Arrange
             var expectedResult = false;
             var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, 0, 0, 0);
-            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel, Array.Empty<int>());
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -109,7 +110,8 @@
                 CustIdTest,
                 CustRoleTest,
                 UplineIdTest,
-                Enumeration.FromValue<UserLevel>(1));
+                Enumeration.FromValue<UserLevel>(1),
+                Array.Empty<int>());
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -131,7 +133,7 @@
             // Arrange
             var expectedResult = false;
             var customerInformation = new CustomerInformation(CustIdTest, roleId, UplineIdTest, 0, 0);
-            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel, Array.Empty<int>());
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())
@@ -150,7 +152,7 @@
             // Arrange
             var expectedResult = true;
             var customerInformation = new CustomerInformation(CustIdTest, CustRoleTest.Value, UplineIdTest, 0, 0);
-            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel);
+            var param = new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevel, Array.Empty<int>());
 
             repository
                 .Get<CustomerInformation>(Arg.Any<SelectCustomerInformationCriteria>())

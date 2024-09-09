@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Tests.Features.ProductStatusPopup
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -55,7 +56,7 @@
             var productName = "Macau Games";
             var expectedResults = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, 212, 4001, false, false)
+                new ProductStatusModel(productId, 212, 4001, false, false,false, null)
             };
             var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
             authorizationService
@@ -72,7 +73,7 @@
                 .Returns(productName);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(new ProductStatusAuthorizationParam(false, productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest));
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(new ProductStatusAuthorizationParam(false, productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest, Array.Empty<int>()));
             var actualResult = actualData.First();
 
             // Assert
@@ -93,8 +94,8 @@
             var sportType = 211;
             var expectedResults = new List<ProductStatusModel>
             {
-                new ProductStatusModel(productId, sportType, 2401, false, false),
-                new ProductStatusModel(productId, sportType, 2402, false, false)
+                new ProductStatusModel(productId, sportType, 2401, false, false,false, null),
+                new ProductStatusModel(productId, sportType, 2402, false, false,false, null)
             };
             var criteria = new SelectDCSProductStatusCriteria(productId, CustIdTest, CustRoleTest.Value);
             authorizationService
@@ -108,7 +109,7 @@
                 .Returns(expectedResults);
 
             // Act
-            var actualData = await productStatusServiceImpl.GetProductStatusAsync(new ProductStatusAuthorizationParam(false, productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest));
+            var actualData = await productStatusServiceImpl.GetProductStatusAsync(new ProductStatusAuthorizationParam(false, productId, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest, Array.Empty<int>()));
             var actualResults = actualData.ToList();
 
             // Assert
@@ -142,7 +143,7 @@
                 null,
                 null,
                 Enumerable.Empty<BetTypeStatusParam>(),
-                "en-US");
+                "en-US", Array.Empty<int>());
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", string.Empty);
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
@@ -181,7 +182,8 @@
                 null,
                 null,
                 null,
-                "en-US");
+                "en-US",
+                Array.Empty<int>());
             var criteria = new UpdateDCSProductStatusCriteria(CustIdTest, 536751, 1176070, "127.0.0.1", string.Empty)
             {
                 ErrCode = 102,
@@ -223,7 +225,8 @@
                 null,
                 null,
                 null,
-                "en-US");
+                "en-US",
+                Array.Empty<int>());
             authorizationService
                 .CanUpdate(Arg.Any<ProductStatusAuthorizationParam>())
                 .Returns(false);

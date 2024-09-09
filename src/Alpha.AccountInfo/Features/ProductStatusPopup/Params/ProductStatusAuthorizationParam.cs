@@ -10,7 +10,8 @@
             int custId,
             UserLevel custRole,
             int uplineId,
-            UserLevel uplineLevel)
+            UserLevel uplineLevel,
+            int[] offeredProductGroupIds)
         {
             IsGroup = isGroup;
             ProductId = productId;
@@ -18,6 +19,7 @@
             CustRole = custRole;
             UplineId = uplineId;
             UplineLevel = uplineLevel;
+            OfferedProductGroupIds = offeredProductGroupIds;
         }
 
         public bool IsGroup { get; }
@@ -31,5 +33,7 @@
         public int UplineId { get; }
 
         public UserLevel UplineLevel { get; }
+
+        public int[] OfferedProductGroupIds { get; }
     }
 }

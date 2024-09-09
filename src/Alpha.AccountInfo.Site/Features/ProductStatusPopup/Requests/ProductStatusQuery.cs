@@ -23,7 +23,6 @@
             UplineLevel = Enumeration.FromValue<UserLevel>(viewer.LevelId);
             IsViewOnly = viewer.IsInternal || !viewer.CanUpdateAccount;
             Site = viewer.Site;
-
             this.hideProductStatusBySites = hideProductStatusBySites ?? SimpleServiceLocator.GetService<Func<string, bool>>();
         }
 

@@ -11,6 +11,7 @@
     using Alpha.AccountInfo.Site.Features.ProductStatusPopup.ViewModels;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;
+    using Alpha.Web.Helpers;
     using NSubstitute;
     using Params.ProductStatus;
     using Services.ProductStatus;
@@ -29,13 +30,15 @@
 
         private readonly IUser user;
         private readonly ProductStatusService statusService;
+        private readonly SessionManager sessionManager;
         private readonly ProductStatusHandler statusHandler;
 
         public ProductStatusHandlerTests()
         {
             user = Substitute.For<IUser>();
             statusService = Substitute.For<ProductStatusService>();
-            statusHandler = new ProductStatusHandler(statusService);
+            sessionManager = Substitute.For<SessionManager>();
+            statusHandler = new ProductStatusHandler(statusService, sessionManager);
 
             SimpleServiceLocator
                .Instance
@@ -58,12 +61,12 @@
             };
             var productStatus = new List<ProductStatusModel>
             {
-                new ProductStatusModel(ProductIdTest, 207, 1004, false, false)
+                new ProductStatusModel(ProductIdTest, 207, 1004, false, false,false,null)
             };
             var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false, false);
 
             statusService
-                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest))
+                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest, Array.Empty<int>()))
                 .Returns(productStatus);
 
             // Act
@@ -97,7 +100,7 @@
             };
 
             statusService
-                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest))
+                .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest, Array.Empty<int>()))
                 .Returns(Enumerable.Empty<ProductStatusModel>());
 
             // Act

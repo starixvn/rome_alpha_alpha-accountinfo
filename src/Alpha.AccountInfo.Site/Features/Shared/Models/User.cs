@@ -14,11 +14,11 @@
 #pragma warning restore CS0618 // Type or member is obsolete
 
 #pragma warning disable CS0618 // Type or member is obsolete
+
         public User(IUserSession userSession)
 #pragma warning restore CS0618 // Type or member is obsolete
         {
             this.userSession = userSession;
-
         }
 
         public int Id => userSession.CustId;
