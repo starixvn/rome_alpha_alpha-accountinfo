@@ -60,7 +60,7 @@
                     {UserLevel.Member, Resources.Outstanding },
                 };
 
-                var betListLink = $"{BetListsUrl}RunningBetList/Index?CustID={customerInfo.CustId}&amp;CustName={customerInfo.UserName}&amp;GetAll=True";
+                var betListLink = $"{BetListsUrl}RunningBetList/Index?CustID={customerInfo.CustId}&CustName={customerInfo.UserName}&GetAll=True";
 
                 var directDownlineLevelName = Enumeration.FromValue<UserLevel>((byte)(message.ActorRoleId - 1)).DisplayName;
                 var outstandingLink = $"{ReportsUrl}outstanding/{directDownlineLevelName}?" +
