@@ -453,4 +453,7 @@
   <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
     <value>All Day Balance Transfer is now enabled for your account. As a result, Auto Transfer schedule has been cleared, and the Auto Transfer for downlines will be disabled for the following customers: {0}. Details can be found in Transfer function.</value>
   </data>
+  <data name="Reward" xml:space="preserve">
+    <value>Reward</value>
+  </data>
 </root>

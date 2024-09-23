@@ -53,7 +53,8 @@ const BalanceInfo = ({
         <BalanceInfoRow id='yesterday-cash' title={resources.YesterdayCash} value={balanceInfo.YesterdayCash} />,
         ...sharedContents,
         <BalanceInfoRow id='used-credit' title={resources.UsedCredit} value={balanceInfo.UsedCredit} />,
-        givenCreditContent
+        givenCreditContent,
+        <BalanceInfoRow id='reward' title={resources.Reward} value={balanceInfo.Reward} />
     ];
 
     const balanceInfoByLevel = [
@@ -74,6 +75,7 @@ const BalanceInfo = ({
                 ...sharedContents,
                 givenCreditContent,
                 <BalanceInfoRow id='net-position' title={resources.NetPosition} value={balanceInfo.NetPosition} />,
+                <BalanceInfoRow id='reward' title={resources.Reward} value={balanceInfo.Reward} />,
                 <BalanceInfoRow id='bet-credit' title={resources.BetCredit} value={balanceInfo.BetCredit} />
             ]
         }

@@ -45,6 +45,8 @@
 
         public abstract decimal PendingTransfer3rd { get; }
 
+        public decimal Reward { get; } = 2000M;
+
         internal virtual bool ShowTransferLink => !isAllDayBalanceInfo && message.AllowTransfer;
 
         public bool ShowOutstandingLink => message.CanViewReports && Outstanding > 0;
