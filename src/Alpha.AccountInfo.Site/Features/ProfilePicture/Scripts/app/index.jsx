@@ -9,7 +9,7 @@ import { decodeResources } from '../../../SearchAccount/Scripts/app/helpers/acco
 import CreateProfilePictureModal from './create-profile-picture-modal';
 import PictureLibraryModal from './picture-library-modal';
 import DisplayLanguage from './display-language';
-import { defaultImageId, croppedImageId, urls } from './profile-picture-helper';
+import { defaultImageId, croppedImageId, urls, viewDataURL } from './profile-picture-helper';
 
 Modal.setAppElement('#root');
 
@@ -187,13 +187,13 @@ class App extends PureComponent {
             <div>
                 <ul className='nav nav-tabs'>
                     <li className='tab-item'>
-                        <a href={changePasswordLink}>
+                        <a data-url={changePasswordLink} onClick={(event) => viewDataURL(event)}>
                             <span>{resources.Password}</span>
                         </a>
                     </li>
                     {enableSecurityCode && (
                         <li className='tab-item'>
-                            <a href={securityCodeLink}>
+                            <a data-url={securityCodeLink} onClick={(event) => viewDataURL(event)}>
                                 <span>{resources.SecurityCode}</span>
                             </a>
                         </li>)
@@ -204,13 +204,13 @@ class App extends PureComponent {
                         </a>
                     </li>
                     <li className='tab-item'>
-                        <a href={setUpOTPLink}>
+                        <a data-url={setUpOTPLink} onClick={(event) => viewDataURL(event)}>
                             <span>OTP</span>
                         </a>
                     </li>
                     {isOfferProtectedMode && (
                         <li className='tab-item'>
-                            <a href={protectionCodeLink}>
+                            <a data-url={protectionCodeLink} onClick={(event) => viewDataURL(event)}>
                                 <span>{resources.ProtectionCode}</span>
                             </a>
                         </li>)

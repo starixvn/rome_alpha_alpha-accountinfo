@@ -7,3 +7,5 @@ export const urls = {
 }
 
 export const changeDisplayLanguage = (languageCode) => window.top.headerNav.changeLanguage(languageCode, true);
+
+export const viewDataURL = (event) => window.top.alpha.viewDataURL(event);
