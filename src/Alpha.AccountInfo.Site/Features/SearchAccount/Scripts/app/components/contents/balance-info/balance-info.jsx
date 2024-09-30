@@ -3,6 +3,7 @@ import { UserLevel } from '../../../constants';
 import BalanceInfoRow from './balance-info-row';
 import GivenCreditRow from './given-credit-row';
 import MemberCreditMaxRow from './member-credit-max-row';
+import RewardRow from './reward-row';
 
 const BalanceInfo = ({
     resources,
@@ -53,20 +54,25 @@ const BalanceInfo = ({
         <BalanceInfoRow id='yesterday-cash' title={resources.YesterdayCash} value={balanceInfo.YesterdayCash} />,
         ...sharedContents,
         <BalanceInfoRow id='used-credit' title={resources.UsedCredit} value={balanceInfo.UsedCredit} />,
-        givenCreditContent,
-        <BalanceInfoRow id='reward' title={resources.Reward} value={balanceInfo.Reward} />
+        givenCreditContent
     ];
 
     const balanceInfoByLevel = [
         {
             Id: UserLevel.Master,
-            Contents: masterContents
+            Contents: [
+                ...masterContents,
+                <RewardRow title={resources.RewardReceivable} value={balanceInfo.RewardReceivable} currency={balanceInfo.RewardCurrency} tooltip={resources.RewardReceivableTooltip} />,
+                <RewardRow title={resources.RewardPayable} value={balanceInfo.RewardPayable} currency={balanceInfo.RewardCurrency} tooltip={resources.RewardPayableTooltip} />
+            ]
         },
         {
             Id: UserLevel.Agent,
             Contents: [
                 ...masterContents,
-                <MemberCreditMaxRow {...{ resources, mobileView, balanceInfo }} />
+                <MemberCreditMaxRow {...{ resources, mobileView, balanceInfo }} />,
+                <RewardRow title={resources.RewardReceivable} value={balanceInfo.RewardReceivable} currency={balanceInfo.RewardCurrency} tooltip={resources.RewardReceivableTooltip} />,
+                <RewardRow title={resources.RewardPayable} value={balanceInfo.RewardPayable} currency={balanceInfo.RewardCurrency} tooltip={resources.RewardPayableTooltip} />
             ]
         },
         {
@@ -75,8 +81,8 @@ const BalanceInfo = ({
                 ...sharedContents,
                 givenCreditContent,
                 <BalanceInfoRow id='net-position' title={resources.NetPosition} value={balanceInfo.NetPosition} />,
-                <BalanceInfoRow id='reward' title={resources.Reward} value={balanceInfo.Reward} />,
-                <BalanceInfoRow id='bet-credit' title={resources.BetCredit} value={balanceInfo.BetCredit} />
+                <BalanceInfoRow id='bet-credit' title={resources.BetCredit} value={balanceInfo.BetCredit} />,
+                <RewardRow title={resources.RewardReceivable} value={balanceInfo.RewardReceivable} currency={balanceInfo.RewardCurrency} tooltip={resources.RewardReceivableTooltip} />
             ]
         }
     ];

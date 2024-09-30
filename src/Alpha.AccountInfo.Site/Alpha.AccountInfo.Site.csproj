@@ -407,6 +407,7 @@
     <Content Include="Features\SearchAccount\Bundles\index.min.js" />
     <Content Include="Features\SearchAccount\Bundles\member-balance-info-dark.min.css" />
     <Content Include="Features\SearchAccount\Bundles\member-balance-info.min.css" />
+    <Content Include="Features\SearchAccount\Scripts\app\components\contents\balance-info\reward-row.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\common\cell-contain-number-format.test.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\common\custom-anchor-tag.test.jsx" />
     <Content Include="Features\SearchAccount\Scripts\tests\contents\balance-info\balance-info.test.jsx" />

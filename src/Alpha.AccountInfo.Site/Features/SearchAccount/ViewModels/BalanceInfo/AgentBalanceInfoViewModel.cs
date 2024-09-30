@@ -51,5 +51,11 @@
         internal override bool ShowTransferLink => ActorLevel.IsMasterLevel() && base.ShowTransferLink;
 
         private decimal MemMaxCreditMin => creditInfo.MemMaxCreditMin;
+
+        public override decimal RewardReceivable => RoundUpNumber(balanceInfoModel.RewardReceivable ?? 0);
+
+        public decimal RewardPayable => RoundUpNumber(balanceInfoModel.RewardPayable ?? 0);
+
+        public override string RewardCurrency => balanceInfoModel.RewardCurrency;
     }
 }
