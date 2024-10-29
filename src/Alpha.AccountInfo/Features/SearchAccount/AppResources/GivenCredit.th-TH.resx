@@ -130,13 +130,13 @@
     <value>ยอดใหม่ของเครดิตสำหรับการวางเดิมพันอยู่นอกช่วงที่ใช้งานได้</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
-    <value>เครดิตทั้งหมด</value>
+    <value>เครดิตที่ได้รับ</value>
   </data>
   <data name="Note" xml:space="preserve">
     <value>หมายเหตุ</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="ThereIsNoChange" xml:space="preserve">
     <value>ไม่มีการเปลี่ยนแปลงการอัพเดท</value>
@@ -151,7 +151,7 @@
     <value>สูงสุด</value>
   </data>
   <data name="CreditHint" xml:space="preserve">
-    <value>ยอดคงเหลือที่ใช้ได้: {0}</value>
+    <value>เครดิตที่มีอยู่: {0}</value>
   </data>
   <data name="MemberMaxCreditHint" xml:space="preserve">
     <value>เครดิตสมาชิกสูงสุดที่กำหนดโดยอัพไลน์ของคุณ: {0}</value>

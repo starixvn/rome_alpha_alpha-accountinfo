@@ -121,7 +121,7 @@
     <value>ดาวน์ไลน์ที่ได้รับผลกระทบ</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>ทั้งหมด</value>
@@ -136,7 +136,7 @@
     <value>ระดับ</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>ตัวแทนหลัก</value>
+    <value>มาสเตอร์</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>สมาชิก</value>
@@ -154,7 +154,7 @@
     <value>ตั้งค่าใหม่</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="Suspended" xml:space="preserve">
     <value>ถูกระงับ</value>
@@ -169,7 +169,7 @@
     <value>ถึง</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>ทั้งหมด</value>
+    <value>ยอดรวม</value>
   </data>
   <data name="Unsuspended" xml:space="preserve">
     <value>ยกเลิกการระงับ</value>
@@ -184,7 +184,7 @@
     <value>อัปเดตสำเร็จแล้ว!</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="AffectedViewListNote" xml:space="preserve">
     <value>รายการสถานะดาวน์ไลน์ถูกเปลี่ยน &lt;username&gt; หลังยกเลิกการระงับ</value>
@@ -235,7 +235,7 @@
     <value>คุณแน่ใจหรือว่าต้องการระงับ/ยกเลิกการระงับบัญชี่ที่เลือก? ดาวน์ไลน์ที่ได้รับผลกระทบทั้งหมดจะถูกระงับ/ยกเลิกการระงับเช่นกัน</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
-    <value>No.</value>
+    <value>ลำดับที่ </value>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>ไม่พบข้อมูลเป็น</value>

@@ -184,7 +184,7 @@
     <value>您确定要进行吗？</value>
   </data>
   <data name="NumberColumn" xml:space="preserve">
-    <value>No.</value>
+    <value>编号</value>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>没有数据</value>
