@@ -456,4 +456,16 @@
   <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
     <value>您的帳號現已啟用全天餘額轉帳。 因此，自動轉帳日程已被清除，並且以下客戶：{0} 的下線自動轉帳已禁用。 內容可以在轉帳功能查詢。</value>
   </data>
+  <data name="RewardReceivable" xml:space="preserve">
+    <value>應收獎金</value>
+  </data>
+  <data name="RewardPayable" xml:space="preserve">
+    <value>獎金支付</value>
+  </data>
+  <data name="RewardPayableTooltip" xml:space="preserve">
+    <value>您可以分配給下線的金額。</value>
+  </data>
+  <data name="RewardReceivableTooltip" xml:space="preserve">
+    <value>您可以從上線收到的金額。</value>
+  </data>
 </root>

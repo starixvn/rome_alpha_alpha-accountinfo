@@ -447,4 +447,16 @@
   <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
     <value>Chuyển Khoản Tổng Số Dư đã bật cho tài khoản của bạn. Vì vậy, lịch Chuyển Khoản Tự Động đã bị xóa, và Chuyển Khoản Tự Động cho cấp dưới của bạn sẽ bị tắt cho các tài khoản sau: {0}. Chi tiết có thể được tìm thấy trong chức năng Chuyển Khoản.</value>
   </data>
+  <data name="RewardReceivable" xml:space="preserve">
+    <value>Tiền thưởng phải thu</value>
+  </data>
+  <data name="RewardPayable" xml:space="preserve">
+    <value>Tiền thưởng phải trả</value>
+  </data>
+  <data name="RewardPayableTooltip" xml:space="preserve">
+    <value>Số tiền bạn có thể phân phối cho các cấp dưới.</value>
+  </data>
+  <data name="RewardReceivableTooltip" xml:space="preserve">
+    <value>Số tiền bạn có thể nhận từ cấp trên.</value>
+  </data>
 </root>

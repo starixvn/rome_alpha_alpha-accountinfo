@@ -453,4 +453,16 @@
   <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
     <value>您的账号现已启用全天余额转账。 因此，自动转账日程已被清除，并且以下客户：{0} 的下线自动转账已禁用。內容可以在转账功能查询。</value>
   </data>
+  <data name="RewardReceivable" xml:space="preserve">
+    <value>应收奖金</value>
+  </data>
+  <data name="RewardPayable" xml:space="preserve">
+    <value>奖金支付</value>
+  </data>
+  <data name="RewardPayableTooltip" xml:space="preserve">
+    <value>您可以分配给下线的金额。</value>
+  </data>
+  <data name="RewardReceivableTooltip" xml:space="preserve">
+    <value>您可以从上线收到的金额。</value>
+  </data>
 </root>

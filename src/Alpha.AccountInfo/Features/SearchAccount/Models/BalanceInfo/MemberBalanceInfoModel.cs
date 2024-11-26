@@ -17,6 +17,8 @@
             CustId = memberBalanceInfoDTO.CustId;
             CustomerCash = balance + customerOutstanding + pendingTransfer3rd;
             YesterdayCustomerCash = memberBalanceInfoDTO.YesterdayCustomerCash;
+            RewardReceivable = memberBalanceInfoDTO.RewardReceivable;
+            RewardCurrency = memberBalanceInfoDTO.RewardCurrency;
         }
 
         public int CustId { get; private set; }
@@ -32,6 +34,10 @@
         public decimal CustomerOutstanding { get; private set; }
 
         public decimal PendingTransfer3rd { get; private set; }
+
+        public decimal? RewardReceivable { get; set; }
+
+        public string RewardCurrency { get; set; }
     }
 
     public class MemberBalanceInfoDTO
@@ -53,5 +59,9 @@
         public int CustId { get; set; }
 
         public decimal YesterdayCustomerCash { get; set; }
+
+        public decimal? RewardReceivable { get; set; }
+
+        public string RewardCurrency { get; set; }
     }
 }
