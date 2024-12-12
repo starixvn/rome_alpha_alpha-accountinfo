@@ -85,6 +85,8 @@
 
         public bool CanUpdateAccount => message.CanUpdateAccount;
 
+        public bool CanUpdateGivenCredit => message.CanUpdateAccount && Enumeration.FromValue<UserLevel>(message.ActorRoleId).IsAgentLevel();
+
         internal string BuildTransferLink(decimal transferValue)
             => SearchAccountLevel.IsMemberLevel() ?
              $"{OldMainUrl}_Transfer/Agent/MemberTransfer.aspx?custid={customerInfo.CustId}&CallBack=false" :

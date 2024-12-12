@@ -90,6 +90,6 @@ export default class GivenCreditRow extends React.Component {
                 value={balanceInfo.GivenCredit}
             />;
 
-        return balanceInfo.CanUpdateAccount ? editableGivenCredit : nonEditableGivenCredit;
+        return balanceInfo.CanUpdateGivenCredit ? editableGivenCredit : nonEditableGivenCredit;
     }
 }
