@@ -143,7 +143,7 @@ export default class AccountInfo extends React.Component {
 
             if (customerInfo.IsDirectMember) {
                 uplineId = customerInfo.IsDirectmemberOfSuper ? customerInfo.SuperId : customerInfo.MasterId;
-                uplineId = customerInfo.IsDirectmemberOfSuper ? customerInfo.SuperName : customerInfo.SuperName;
+                uplineName = customerInfo.IsDirectmemberOfSuper ? customerInfo.SuperName : customerInfo.SuperName;
             } else {
                 switch (customerInfo.RoleId) {
                     case UserLevel.Master:
