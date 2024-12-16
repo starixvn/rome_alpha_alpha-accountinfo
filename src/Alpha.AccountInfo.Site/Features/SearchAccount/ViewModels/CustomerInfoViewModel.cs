@@ -15,6 +15,8 @@
         private readonly CustomerInfoModel customerInfo;
         private readonly bool showQRCode;
         private readonly bool canCreateAccount;
+        private const int DirectMemberOfSuperAgentId = -4;
+        private const int DirectMemberOfMasterAgentId = -3;
 
         public CustomerInfoViewModel(
             CustomerInfoQuery message,
@@ -67,17 +69,21 @@
 
         public string MemberName => DefaultStringValueIfNull(customerInfo.MemberName);
 
-        public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel()
-            && SearchAccountLevel.IsDownlineOfMasterLevel();
+        public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel() && SearchAccountLevel.IsDownlineOfMasterLevel() && !IsDirectMember;
 
         public int AgentId => customerInfo.AgentId;
 
         public string AgentName => DefaultStringValueIfNull(customerInfo.AgentName);
 
-        public bool ShowMaster => ActorLevel.IsSuperLevel()
-            && SearchAccountLevel.IsDownlineOfSuperLevel();
+        public bool ShowMaster => ActorLevel.IsSuperLevel() && (IsDirectMember ? IsDirectMemberOfMaster : SearchAccountLevel.IsDownlineOfSuperLevel());
 
         public int MasterId => customerInfo.MasterId;
+
+        public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectmemberOfSuper;
+
+        public bool IsDirectMemberOfMaster => AgentId == DirectMemberOfMasterAgentId;
+
+        public bool IsDirectmemberOfSuper => AgentId == DirectMemberOfSuperAgentId;
 
         public string MasterName => DefaultStringValueIfNull(customerInfo.MasterName);
 

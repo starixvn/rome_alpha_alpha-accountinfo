@@ -146,7 +146,10 @@
                       yesterdayCustomerCash: 16,
                       customerOutstanding: 17,
                       agentPositionTaking: 19,
-                      pendingTransfer3rd: 10);
+                      pendingTransfer3rd: 10,
+                      rewardReceivable: 0,
+                      rewardPayable: 0,
+                      rewardCurrency: "UUS");
 
         public static MasterBalanceInfoModel MasterBalanceInfo
             => new MasterBalanceInfoModel(
@@ -159,7 +162,10 @@
                     customerCash: 18,
                     yesterdayCustomerCash: 19,
                     customerOutstanding: 20,
-                    pendingTransfer3rd: 10);
+                    pendingTransfer3rd: 10,
+                    rewardReceivable: 0,
+                    rewardPayable: 0,
+                    rewardCurrency: "UUS");
 
         public static CreditInfo CreditInfo
             => new CreditInfo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10);

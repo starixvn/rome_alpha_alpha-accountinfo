@@ -141,19 +141,24 @@ export default class AccountInfo extends React.Component {
         if (customerInfo !== null && (statusData === null || requestId === LoadCustomerAllStatus.ByUpdateStatus)) {
             this.blockUIWrapper();
 
-            switch (customerInfo.RoleId) {
-                case UserLevel.Master:
-                    uplineId = customerInfo.SuperId;
-                    uplineName = customerInfo.SuperName;
-                    break;
-                case UserLevel.Agent:
-                    uplineId = customerInfo.MasterId;
-                    uplineName = customerInfo.MasterName;
-                    break;
-                default:
-                    uplineId = customerInfo.AgentId;
-                    uplineName = customerInfo.AgentName;
-                    break;
+            if (customerInfo.IsDirectMember) {
+                uplineId = customerInfo.IsDirectmemberOfSuper ? customerInfo.SuperId : customerInfo.MasterId;
+                uplineId = customerInfo.IsDirectmemberOfSuper ? customerInfo.SuperName : customerInfo.SuperName;
+            } else {
+                switch (customerInfo.RoleId) {
+                    case UserLevel.Master:
+                        uplineId = customerInfo.SuperId;
+                        uplineName = customerInfo.SuperName;
+                        break;
+                    case UserLevel.Agent:
+                        uplineId = customerInfo.MasterId;
+                        uplineName = customerInfo.MasterName;
+                        break;
+                    default:
+                        uplineId = customerInfo.AgentId;
+                        uplineName = customerInfo.AgentName;
+                        break;
+                }
             }
 
             const params = {
@@ -194,23 +199,23 @@ export default class AccountInfo extends React.Component {
             };
 
             accountInfoAPI.getDownlineList(params).then(responeData => {
-                    responeData.PageIndex = pageIndex;
-                    responeData.StatusId = statusId;
+                responeData.PageIndex = pageIndex;
+                responeData.StatusId = statusId;
 
-                    responeData.DownlineList = (downlineListData === null || reloadByStatus) ?
-                        responeData.DownlineList :
-                        [...downlineListData.DownlineList, ...responeData.DownlineList];
+                responeData.DownlineList = (downlineListData === null || reloadByStatus) ?
+                    responeData.DownlineList :
+                    [...downlineListData.DownlineList, ...responeData.DownlineList];
 
-                    if (pageIndex > 1) {
-                        responeData.TotalDownlines = downlineListData.TotalDownlines;
-                    }
+                if (pageIndex > 1) {
+                    responeData.TotalDownlines = downlineListData.TotalDownlines;
+                }
 
-                    this.setState({
-                        downlineListData: responeData,
-                        redirectToBalanceInfoPage: false
-                    });
+                this.setState({
+                    downlineListData: responeData,
+                    redirectToBalanceInfoPage: false
+                });
 
-                    $.unblockUI();
+                $.unblockUI();
             }).catch(handleError);
         }
     }
