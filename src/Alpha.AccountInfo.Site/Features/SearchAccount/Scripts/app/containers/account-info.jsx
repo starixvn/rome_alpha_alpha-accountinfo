@@ -140,10 +140,12 @@ export default class AccountInfo extends React.Component {
 
         if (customerInfo !== null && (statusData === null || requestId === LoadCustomerAllStatus.ByUpdateStatus)) {
             this.blockUIWrapper();
+            let uplineRoleId = customerInfo.RoleId + 1;
 
             if (customerInfo.IsDirectMember) {
                 uplineId = customerInfo.IsDirectmemberOfSuper ? customerInfo.SuperId : customerInfo.MasterId;
                 uplineName = customerInfo.IsDirectmemberOfSuper ? customerInfo.SuperName : customerInfo.SuperName;
+                uplineRoleId = customerInfo.IsDirectmemberOfSuper ? UserLevel.Super : UserLevel.Master;
             } else {
                 switch (customerInfo.RoleId) {
                     case UserLevel.Master:
@@ -167,7 +169,8 @@ export default class AccountInfo extends React.Component {
                 SearchAccountRoleId: customerInfo.RoleId,
                 UplineId: uplineId,
                 UplineName: uplineName,
-                UplineRoleId: customerInfo.RoleId + 1
+                UplineRoleId: uplineRoleId,
+                AgentId: customerInfo.AgentId
             };
 
             accountInfoAPI.getCustomerAllStatus(params).then(
