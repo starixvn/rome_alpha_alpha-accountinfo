@@ -70,19 +70,19 @@
 
         public bool ShowAgent => ActorLevel.IsSuperOrMasterLevel() && SearchAccountLevel.IsDownlineOfMasterLevel() && !IsDirectMember;
 
-        public int AgentId => customerInfo.AgentId;
-
         public string AgentName => DefaultStringValueIfNull(customerInfo.AgentName);
 
         public bool ShowMaster => ActorLevel.IsSuperLevel() && (IsDirectMember ? IsDirectMemberOfMaster : SearchAccountLevel.IsDownlineOfSuperLevel());
 
         public int MasterId => customerInfo.MasterId;
 
+        public int AgentId => customerInfo.AgentId;
+
         public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectmemberOfSuper;
 
-        public bool IsDirectMemberOfMaster => AgentId == DirectMemberAgentIds.Master;
+        public bool IsDirectMemberOfMaster => customerInfo.IsDirectMemberOfMaster;
 
-        public bool IsDirectmemberOfSuper => AgentId == DirectMemberAgentIds.Super;
+        public bool IsDirectmemberOfSuper => customerInfo.IsDirectmemberOfSuper;
 
         public string MasterName => DefaultStringValueIfNull(customerInfo.MasterName);
 

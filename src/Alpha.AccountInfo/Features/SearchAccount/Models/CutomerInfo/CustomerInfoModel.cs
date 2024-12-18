@@ -1,6 +1,7 @@
 ﻿namespace Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo
 {
     using System;
+    using Alpha.AccountInfo.Features.Shared;
 
     public class CustomerInfoModel
     {
@@ -127,5 +128,11 @@
         public string SuperName { get; set; }
 
         public byte Locked { get; }
+
+        public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectmemberOfSuper;
+
+        public bool IsDirectMemberOfMaster => AgentId == DirectMemberAgentIds.Master;
+
+        public bool IsDirectmemberOfSuper => AgentId == DirectMemberAgentIds.Super;
     }
 }
