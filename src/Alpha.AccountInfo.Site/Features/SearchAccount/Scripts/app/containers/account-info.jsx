@@ -43,8 +43,9 @@ export default class AccountInfo extends React.Component {
             customerInfo: null,
             statusData: null,
             settingData: null,
-            downlineListPageIndex: 1,
+            totalDownlines: null,
             downlineListData: null,
+            directMembersData: null,
             onlineListData: null,
             lastTxn: null
         };
@@ -56,6 +57,8 @@ export default class AccountInfo extends React.Component {
         this.handleOpenIPInfo = this.handleOpenIPInfo.bind(this);
         this.handleOpenShowQRCode = this.handleOpenShowQRCode.bind(this);
         this.fetchLastTxnFromServer = this.fetchLastTxnFromServer.bind(this);
+        this.fetchDowlineListDataServer = this.fetchDowlineListDataServer.bind(this);
+        this.fetchDirectMembersFromServer = this.fetchDirectMembersFromServer.bind(this);
 
         $(window).on({
             orientationchange: function () {
@@ -104,7 +107,9 @@ export default class AccountInfo extends React.Component {
                             searchCounter: prevState.searchCounter + 1,
                             redirectToBalanceInfoPage: loadCustomerInfoByClick,
                             onlineListData: null,
+                            totalDownlines: null,
                             downlineListData: null,
+                            directMembersData: null,
                             statusData: resetSetting ? null : prevState.statusData,
                             settingData: resetSetting ? null : prevState.settingData,
                             lastTxn: null
@@ -119,7 +124,9 @@ export default class AccountInfo extends React.Component {
                             customerInfo: null,
                             searchCounter: prevState.searchCounter + 1,
                             onlineListData: null,
+                            totalDownlines: null,
                             downlineListData: null,
+                            directMembersData: null,
                             statusData: null,
                             settingData: null,
                             lastTxn: null
@@ -189,6 +196,29 @@ export default class AccountInfo extends React.Component {
         }
     }
 
+    fetchDowlineListDataServer() {
+        const { custId, customerInfo } = this.state;
+        if (custId > 0) {
+            $.blockUI();
+            const PageIndex = 1;
+            const StatusId = 1;
+            const params = { SearchAccountId: custId, PageIndex, StatusId, RoleId: customerInfo.RoleId, TotalPages: 0 };
+            Promise.all([
+                accountInfoAPI.getTotalDownlines({ SearchAccountId: custId, RoleId: customerInfo.RoleId }),
+                accountInfoAPI.getDownlineList(params),
+                accountInfoAPI.getDirectMembers(params)
+            ]).then((results) => {
+                this.setState({
+                    totalDownlines: results[0],
+                    downlineListData: { ...results[1], PageIndex, StatusId },
+                    directMembersData: { ...results[2], PageIndex, StatusId },
+                    redirectToBalanceInfoPage: false
+                });
+                $.unblockUI();
+            }).catch(handleError);;
+        }
+    }
+
     fetchDownlineListFromServer(pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) {
         let { custId, downlineListData, customerInfo } = this.state;
         if (custId > 0 && (downlineListData === null || pageIndex > 1 || reloadByStatus)) {
@@ -209,12 +239,38 @@ export default class AccountInfo extends React.Component {
                     responeData.DownlineList :
                     [...downlineListData.DownlineList, ...responeData.DownlineList];
 
-                if (pageIndex > 1) {
-                    responeData.TotalDownlines = downlineListData.TotalDownlines;
-                }
-
                 this.setState({
                     downlineListData: responeData,
+                    redirectToBalanceInfoPage: false
+                });
+
+                $.unblockUI();
+            }).catch(handleError);
+        }
+    }
+
+    fetchDirectMembersFromServer(pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) {
+        let { custId, directMembersData, customerInfo } = this.state;
+        if (custId > 0 && (directMembersData === null || pageIndex > 1 || reloadByStatus)) {
+            $.blockUI();
+            const params = {
+                SearchAccountId: custId,
+                PageIndex: pageIndex,
+                StatusId: statusId,
+                RoleId: customerInfo.RoleId,
+                TotalPages: totalPages
+            };
+
+            accountInfoAPI.getDirectMembers(params).then(responeData => {
+                responeData.PageIndex = pageIndex;
+                responeData.StatusId = statusId;
+
+                responeData.DownlineList = (directMembersData === null || reloadByStatus) ?
+                    responeData.DownlineList :
+                    [...directMembersData.DownlineList, ...responeData.DownlineList];
+
+                this.setState({
+                    directMembersData: responeData,
                     redirectToBalanceInfoPage: false
                 });
 
@@ -283,7 +339,9 @@ export default class AccountInfo extends React.Component {
             mobileView,
             showLoginInfo,
             customerInfo,
+            totalDownlines,
             downlineListData,
+            directMembersData,
             onlineListData,
             statusData,
             settingData,
@@ -296,7 +354,9 @@ export default class AccountInfo extends React.Component {
             fetchCustomerInfoFromServer,
             fetchDownlineListFromServer,
             fetchOnlineListFromServer,
-            fetchLastTxnFromServer
+            fetchLastTxnFromServer,
+            fetchDowlineListDataServer,
+            fetchDirectMembersFromServer
         } = this;
 
         let loginInfo = null, searchAccountRoleId = actorRoleId - 1, username = '';
@@ -327,15 +387,18 @@ export default class AccountInfo extends React.Component {
                 featureText: resources.DownlineList,
                 pathname: '/downlineList',
                 visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
-                fetchDataFromServer: fetchDownlineListFromServer,
+                fetchDataFromServer: fetchDowlineListDataServer,
                 children:
                     <DownlineList
                         {...{
                             resources,
+                            totalDownlines,
                             downlineListData,
+                            directMembersData,
                             mobileView,
                             searchAccountRoleId,
                             fetchDownlineListFromServer,
+                            fetchDirectMembersFromServer,
                             fetchCustomerInfoFromServer
                         }}
                     />

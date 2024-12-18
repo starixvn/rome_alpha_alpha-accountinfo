@@ -26,8 +26,14 @@
         public async Task<ActionResult> GetCustomerInfo(CustomerInfoQuery message)
             => await JsonDataAsync(message);
 
-        public async Task<ActionResult> GetDownlineList(DownlineListQuery message)
-            => await JsonDataAsync(message);
+        public Task<ActionResult> GetTotalDownlines(TotalDownlineQuery message)
+            => JsonDataAsync(message);
+
+        public Task<ActionResult> GetDownlineList(DownlineListQuery message)
+            => JsonDataAsync(message);
+
+        public Task<ActionResult> GetDirectMemers(DirectMemberListQuery message)
+            => JsonDataAsync(message);
 
         public async Task<ActionResult> GetOnlineList(OnlineListQuery message)
            => await JsonDataAsync(message);

@@ -18,4 +18,11 @@
 
         public int TotalPages { get; set; }
     }
+
+    public class DirectMemberListQuery : DownlineListQuery
+    {
+        public DirectMemberListQuery(IUser viewer) : base(viewer)
+        {
+        }
+    }
 }

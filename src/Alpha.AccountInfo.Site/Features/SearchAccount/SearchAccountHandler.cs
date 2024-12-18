@@ -1,5 +1,8 @@
 ﻿namespace Alpha.AccountInfo.Site.Handlers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Alpha.AccountInfo.Features.SearchAccount.Models;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
     using Alpha.AccountInfo.Features.SearchAccount.Models.BalanceInfo;
@@ -13,22 +16,20 @@
     using AlphaPlus.Utilities.IP;
     using MediatR;
     using Services.AccountInfo;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class SearchAccountHandler :
         IAsyncRequestHandler<SearchAccountQuery, AccountInfoViewModel>,
         IAsyncRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IAsyncRequestHandler<DownlineListQuery, DownlineListViewModel>,
+        IAsyncRequestHandler<DirectMemberListQuery, DownlineListViewModel>,
         IAsyncRequestHandler<OnlineListQuery, IEnumerable<OnlineUserModel>>,
         IAsyncRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IAsyncRequestHandler<CustomerNonProductStatusCommand, Result>,
         IAsyncRequestHandler<GivenCreditCommand, Result>,
         IAsyncRequestHandler<UpdateAllBalanceTransferCommand, Result>,
         IAsyncRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>,
-        IAsyncRequestHandler<GetLastTxnQuery, string>
+        IAsyncRequestHandler<GetLastTxnQuery, string>,
+        IAsyncRequestHandler<TotalDownlineQuery, IEnumerable<TotalDownlinesSummary>>
     {
         private readonly SearchAccountService accountInfoService;
         private readonly IDictionary<UserLevel, Func<CustomerInfoQuery, CustomerInfoModel, CreditInfo, IBalanceInfoModel, bool, IBalanceInfoViewModel>> getBalanceInfoViewModelByLevel;
@@ -110,14 +111,7 @@
                     message.TotalPages)
                 ;
 
-            var totalDownlinesSummarys =
-                message.TotalPages.Equals(0) ?
-               await accountInfoService
-               .GetTotalDownlinesSummary(message.SearchAccountId, message.RoleId)
-                :
-               Enumerable.Empty<TotalDownlinesSummary>();
-
-            return new DownlineListViewModel(downlineList, totalDownlinesSummarys);
+            return new DownlineListViewModel(downlineList);
         }
 
         public async Task<IEnumerable<OnlineUserModel>> Handle(OnlineListQuery message)
@@ -241,6 +235,22 @@
             var lastTxn = await accountInfoService.GetLastTxn(message.Username, message.UplineId, message.IsInternal);
 
             return DateTime.MinValue == lastTxn ? string.Empty : lastTxn.ToString();
+        }
+
+        public Task<IEnumerable<TotalDownlinesSummary>> Handle(TotalDownlineQuery message)
+            => accountInfoService.GetTotalDownlinesSummary(message.SearchAccountId, message.RoleId);
+
+        public async Task<DownlineListViewModel> Handle(DirectMemberListQuery message)
+        {
+            var directMembers = await accountInfoService.GetDownlineList(
+                message.SearchAccountId,
+                message.PageIndex,
+                message.RoleId,
+                message.StatusId,
+                message.TotalPages,
+                true);
+
+            return new DownlineListViewModel(directMembers);
         }
     }
 }

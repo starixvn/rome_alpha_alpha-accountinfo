@@ -465,4 +465,7 @@
   <data name="RewardPayableTooltip" xml:space="preserve">
     <value>Amount you can distribute to your downlines.</value>
   </data>
+  <data name="DirectMembers" xml:space="preserve">
+    <value>Direct Members (Active/Closed/Suspended)</value>
+  </data>
 </root>

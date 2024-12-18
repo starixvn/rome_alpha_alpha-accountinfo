@@ -256,6 +256,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Features\Shared\DirectMemberAgentIds.cs" />
     <Compile Include="Features\Shared\Helpers\ExceptionHandlerWrapper.cs" />
     <Compile Include="Features\Shared\Params\KickoutCustomerParam.cs" />
     <Compile Include="Features\Shared\Params\SPs\KickoutCustomerCriteria.cs" />

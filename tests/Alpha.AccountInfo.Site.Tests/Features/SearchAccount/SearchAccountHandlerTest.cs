@@ -93,13 +93,8 @@
                 new DownlineDto("Supertest1")
             };
 
-            var totalDownlines = new List<TotalDownlinesSummary>
-            {
-                new TotalDownlinesSummary(2, 1, 0, 2)
-            };
-
             var model = new DownlineListModel(downlineList, totalPages: 0);
-            var expectedViewModel = new DownlineListViewModel(model, totalDownlines);
+            var expectedViewModel = new DownlineListViewModel(model);
 
             accountInfoService.GetDownlineList(
                 Arg.Any<int>(),
@@ -107,10 +102,6 @@
                 Arg.Any<byte>(),
                 Arg.Any<byte>(),
                 Arg.Any<int>()).Returns(model);
-
-            accountInfoService
-             .GetTotalDownlinesSummary(Arg.Any<int>(), Arg.Any<byte>())
-             .Returns(totalDownlines);
 
             var actualViewModel = accountInfoHandler
                 .Handle(message)

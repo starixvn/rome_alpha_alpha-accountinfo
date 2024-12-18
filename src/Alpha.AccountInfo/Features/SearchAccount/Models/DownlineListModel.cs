@@ -4,10 +4,12 @@
     using Alpha.Products.Core.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Features.Shared.AppResources;
+    using Alpha.AccountInfo.Features.Shared;
 
     public class DownlineDto
     {
-        public DownlineDto() { }
+        public DownlineDto()
+        { }
 
         public DownlineDto(string username)
         {
@@ -19,7 +21,8 @@
 
     public class DownlineListModel
     {
-        public DownlineListModel() { }
+        public DownlineListModel()
+        { }
 
         public DownlineListModel(IEnumerable<DownlineDto> downlines, int totalPages)
         {
@@ -45,14 +48,16 @@
                 { UserLevel.Member,  Resources.Members}
          };
 
-        public TotalDownlinesSummary() { }
+        public TotalDownlinesSummary()
+        { }
 
-        public TotalDownlinesSummary(int totalActive, int totalClosed, int totalSuspended, byte roleId)
+        public TotalDownlinesSummary(int totalActive, int totalClosed, int totalSuspended, byte roleId, int agentId)
         {
             TotalActive = totalActive;
             TotalClosed = totalClosed;
             TotalSuspended = totalSuspended;
             RoleId = roleId;
+            AgentId = agentId;
         }
 
         public int TotalActive { get; set; }
@@ -62,6 +67,10 @@
         public int TotalSuspended { get; set; }
 
         public byte RoleId { get; set; }
+
+        public int AgentId { get; set; }
+
+        public bool IsDirectMember => AgentId == DirectMemberAgentIds.Super || AgentId == DirectMemberAgentIds.Master;
 
         public string LevelName => LevelNames[Enumeration.FromValue<UserLevel>(RoleId)];
     }

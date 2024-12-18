@@ -9,7 +9,7 @@
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
-            var criteria = new SelectDownlineListByStatusCriteria(1, 1, 2, 1, 1);
+            var criteria = new SelectDownlineListByStatusCriteria(1, 1, 2, 1, 1, false);
             var expectedSettingKey = "Age_CustomerSelListByStatus";
 
             var actualSettingKey = criteria.GetSettingKey();

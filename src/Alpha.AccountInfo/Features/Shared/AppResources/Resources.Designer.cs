@@ -484,6 +484,15 @@ namespace Alpha.AccountInfo.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct Members (Active/Closed/Suspended).
+        /// </summary>
+        public static string DirectMembers {
+            get {
+                return ResourceManager.GetString("DirectMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed..
         /// </summary>
         public static string DisallowedAllDayBalanceTransferError {

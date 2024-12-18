@@ -31,7 +31,7 @@
 
         Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, string agIP);
 
-        Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages);
+        Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages, bool isDirectMember = false);
 
         Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId);
 
@@ -117,12 +117,11 @@
 
             return null;
         }
-        
 
-        public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
+        public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages, bool isDirectMember = false)
         {
             var (downlineListModel, downlines) = await dynamicRepository.FetchMultipleAsync<DownlineListModel, DownlineDto>(
-                new SelectDownlineListByStatusCriteria(custId, pageIndex, roleId, statusId, totalPages));
+                new SelectDownlineListByStatusCriteria(custId, pageIndex, roleId, statusId, totalPages, isDirectMember));
             var downlineListFirst = downlineListModel.FirstOrDefault();
 
             return downlineListFirst == null
@@ -218,6 +217,7 @@
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.DisableAutoMasterPT:
                     command = new UpdateDisableAutoMPTStatusCommand(
                         param.SearchAccountId,
@@ -228,6 +228,7 @@
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.DoubleComm:
                     command = new UpdateDoubleCommLosingStatusCommand(
                         param.SearchAccountId,
@@ -238,6 +239,7 @@
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.DisableOutright:
                     command = new UpdateDisableOutrightStatusCommand(
                         param.SearchAccountId,
@@ -248,6 +250,7 @@
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.Suspended:
                     command = new UpdateSuspendedStatusCommand(
                         param.SearchAccountId,
@@ -258,6 +261,7 @@
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.Unlock:
                     command = new UpdateUnlockedCommand(
                         param.SearchAccountId,
@@ -267,6 +271,7 @@
                         param.IP,
                         param.StatusName);
                     break;
+
                 default:
                     command = new UpdateDisableProtectedStatusCommand(
                         param.SearchAccountId,

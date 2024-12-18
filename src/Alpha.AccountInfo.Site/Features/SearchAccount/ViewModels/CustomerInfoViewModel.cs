@@ -2,6 +2,7 @@
 {
     using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
+    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
@@ -15,8 +16,6 @@
         private readonly CustomerInfoModel customerInfo;
         private readonly bool showQRCode;
         private readonly bool canCreateAccount;
-        private const int DirectMemberOfSuperAgentId = -4;
-        private const int DirectMemberOfMasterAgentId = -3;
 
         public CustomerInfoViewModel(
             CustomerInfoQuery message,
@@ -81,9 +80,9 @@
 
         public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectmemberOfSuper;
 
-        public bool IsDirectMemberOfMaster => AgentId == DirectMemberOfMasterAgentId;
+        public bool IsDirectMemberOfMaster => AgentId == DirectMemberAgentIds.Master;
 
-        public bool IsDirectmemberOfSuper => AgentId == DirectMemberOfSuperAgentId;
+        public bool IsDirectmemberOfSuper => AgentId == DirectMemberAgentIds.Super;
 
         public string MasterName => DefaultStringValueIfNull(customerInfo.MasterName);
 
