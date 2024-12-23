@@ -16,7 +16,7 @@
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/ProfilePicture/Bundles/index")
 
-<script>
+    <script>
         renderApp(
             @Html.Raw(imagesLibrary),
             @Html.Raw(Model.Resources),
@@ -30,5 +30,5 @@
             '@Model.DisplayLanguage',
             @Html.Raw(JsonConvert.SerializeObject(Model.Languages, Newtonsoft.Json.Formatting.None)),
             JSON.parse('@Model.AllowUpdateDisplayLanguage'.toLowerCase()));
-</script>
+    </script>
 }
