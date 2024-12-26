@@ -2,7 +2,6 @@
 {
     using Alpha.AccountInfo.Configurations;
     using Alpha.AccountInfo.Features.SearchAccount.Models.AccountInfo;
-    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.AppResources;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.AccountInfo.Site.Features.SearchAccount.Requests;
@@ -111,6 +110,10 @@
             {
                 var actionName = SearchAccountLevel.IsMemberLevel() ? "MemberStatement" : "SMAStatement";
                 var link = $"{ReportsUrl}Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
+                if (IsDirectMember)
+                {
+                    link += "&IsDirectMember=true";
+                }
                 return new Link(Resources.Statement, link);
             }
         }
