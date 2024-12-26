@@ -63,7 +63,7 @@
             {
                 new ProductStatusModel(ProductIdTest, 207, 1004, false, false,false,null)
             };
-            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false, false);
+            var expectedViewModel = new ProductStatusViewModel(ProductIdTest, CustIdTest, null, CustRoleTest, productStatus, UplineLevelTest, false, false, 0);
 
             statusService
                 .GetProductStatusAsync(new ProductStatusAuthorizationParam(false, ProductIdTest, CustIdTest, CustRoleTest, UplineIdTest, UplineLevelTest, Array.Empty<int>()))

@@ -59,7 +59,8 @@
                 productStatus,
                 message.UplineLevel,
                 message.IsViewOnly,
-                message.IsGroup);
+                message.IsGroup,
+                message.AgentId);
 
         private ProductStatusCommandParam ToUpdateProductStatusParam(
             ProductStatusCommand message)

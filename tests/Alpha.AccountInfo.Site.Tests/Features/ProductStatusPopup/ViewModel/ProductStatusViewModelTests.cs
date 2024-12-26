@@ -27,7 +27,8 @@
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
                 false,
-                false);
+                false,
+                0);
 
             // Act
             var act = viewModel.IsDisabledEditCustStatus(new ProductStatusModel());
@@ -52,7 +53,8 @@
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
                 false,
-                false);
+                false,
+                0);
 
             // Act
             var act = viewModel.IsDisabledEditCustStatus(new ProductStatusModel());
@@ -77,7 +79,8 @@
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
                 false,
-                false);
+                false,
+                0);
 
             // Act
             var act = viewModel.IsEnabledSubmitButton(new ProductStatusModel());
@@ -102,7 +105,8 @@
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
                 false,
-                false);
+                false,
+                0);
 
             // Act
             var act = viewModel.IsEnabledSubmitButton(new ProductStatusModel());
@@ -128,7 +132,8 @@
                 new List<ProductStatusModel>(),
                 UserLevel.Super,
                 false,
-                false);
+                false,
+                0);
 
             // Act
             var act = viewModel.IsShowMessageWarnning;
@@ -154,7 +159,8 @@
                 new List<ProductStatusModel>(),
                 UserLevel.Agent,
                 false,
-                false);
+                false,
+                0);
 
             // Act
             var act = viewModel.IsShowMessageWarnning;
@@ -180,7 +186,8 @@
                 new List<ProductStatusModel>(),
                 UserLevel.Master,
                 false,
-                false);
+                false,
+                0);
 
             // Act
             var act = viewModel.IsShowMessageWarnning;

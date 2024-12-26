@@ -1,5 +1,6 @@
 ﻿namespace Alpha.AccountInfo.Services.ProductStatus
 {
+    using Alpha.AccountInfo.Features.Shared;
     using Alpha.AccountInfo.Features.Shared.Models;
     using Alpha.Products.Core.Shared;
     using Criteria;
@@ -80,7 +81,9 @@
             {
                 var custRole = Enumeration.FromValue<UserLevel>(customerInformation.RoleId);
 
-                isValidRole = custRole.IsDirectDownlineOf(uplineLevel);
+                isValidRole = custRole.IsDirectDownlineOf(uplineLevel)
+                    || (uplineLevel.IsSuperLevel() && customerInformation.AgentId == DirectMemberAgentIds.Super)
+                    || (uplineLevel.IsMasterLevel() && customerInformation.AgentId == DirectMemberAgentIds.Master);
             }
 
             return isValidRole;

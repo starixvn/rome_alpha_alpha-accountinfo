@@ -36,6 +36,8 @@
 
         public byte CustRoleId { get; set; }
 
+        public int AgentId { get; set; }
+
         public UserLevel CustRole => Enumeration.FromValue<UserLevel>(CustRoleId);
 
         public int UplineId { get; }

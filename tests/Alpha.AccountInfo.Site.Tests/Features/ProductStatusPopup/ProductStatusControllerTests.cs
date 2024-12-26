@@ -116,7 +116,8 @@
                 null,
                 Enumeration.FromValue<UserLevel>(4),
                 false,
-                false);
+                false,
+                0);
             mediator
                 .Send(message)
                 .Returns(Task.FromResult<ProductStatusViewModel>(viewModel));
