@@ -10,8 +10,10 @@
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-accountinfo/index")
     @RenderSection("Styles", required: false)
+    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript()
 </head>
 <body>
+    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @RenderSection("Scripts", required: false)
