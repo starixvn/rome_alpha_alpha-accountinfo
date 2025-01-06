@@ -23,10 +23,10 @@
             CustName = custName;
             CustRole = custRole;
             ProductStatus = productStatus;
-            IsAgentUpdateMember = custRole.IsMemberLevel() && loggedInUserRole.IsAgentLevel();
-            IsDirectDownline = custRole.IsDirectDownlineOf(loggedInUserRole)
-                || (loggedInUserRole.IsSuperLevel() || agentId == Shared.DirectMemberAgentIds.Super)
-                || (loggedInUserRole.IsMasterLevel() || agentId == Shared.DirectMemberAgentIds.Master);
+            var isDirectMember = (loggedInUserRole.IsSuperLevel() && agentId == Shared.DirectMemberAgentIds.Super)
+                    || (loggedInUserRole.IsMasterLevel() && agentId == Shared.DirectMemberAgentIds.Master);
+            IsDirectUplineUpdateMember = custRole.IsMemberLevel() && (loggedInUserRole.IsAgentLevel() || isDirectMember);
+            IsDirectDownline = custRole.IsDirectDownlineOf(loggedInUserRole) || isDirectMember;
             IsViewOnly = isViewOnly;
             IsGroup = isGroup;
         }
@@ -41,7 +41,7 @@
 
         public IEnumerable<ProductStatusModel> ProductStatus { get; }
 
-        public bool IsAgentUpdateMember { get; }
+        public bool IsDirectUplineUpdateMember { get; }
 
         public bool IsDirectDownline { get; }
 
@@ -59,7 +59,7 @@
 
             return !IsDirectDownline
                 || productStatus.IsDisabledUpline
-                || (!IsAgentUpdateMember && !productStatus.IsDisabled);
+                || (!IsDirectUplineUpdateMember && !productStatus.IsDisabled);
         }
 
         public bool IsEnabledSubmitButton(ProductStatusModel productStatus)
@@ -70,13 +70,13 @@
                 return IsDirectDownline;
             }
 
-            return IsAgentUpdateMember
+            return IsDirectUplineUpdateMember
             ? !productStatus.IsDisabledUpline
             : !productStatus.IsDisabledUpline && productStatus.IsDisabled;
         }
 
         public bool IsShowMessageWarnning
-            => !IsAgentUpdateMember
+            => !IsDirectUplineUpdateMember
             && ProductId != ProductIdConstants.SabaVirtualSports
             && ProductId != ProductIdConstants.Cashout;
     }

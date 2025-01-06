@@ -23,6 +23,8 @@
 
         public string StatusName { get; set; }
 
+        public int AgentId { get; set; }
+
         public int ActorId => viewer.Id;
 
         public int SubAccountId => viewer.SubAccId;
@@ -39,6 +41,10 @@
             return !StatusName.Equals(StatusNames.DoubleComm) ? isValid : isValid && IsValidDoubleComm;
         }
 
-        internal bool IsValidDoubleComm => viewer.LevelId == SearchAccountRoleId + 1;
+        private bool IsDirectMember
+            => (viewer.LevelId == UserLevel.Super.Value && AgentId == DirectMemberAgentIds.Super)
+            || (viewer.LevelId == UserLevel.Master.Value && AgentId == DirectMemberAgentIds.Master);
+
+        internal bool IsValidDoubleComm => IsDirectMember || viewer.LevelId == SearchAccountRoleId + 1;
     }
 }

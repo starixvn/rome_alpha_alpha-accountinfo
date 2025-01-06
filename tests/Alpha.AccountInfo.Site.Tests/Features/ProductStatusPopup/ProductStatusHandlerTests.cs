@@ -79,7 +79,7 @@
                 expectedViewModel.CustName == actualViewModel.CustName &&
                 expectedViewModel.CustRole == actualViewModel.CustRole &&
                 expectedViewModel.ProductStatus.Count() == actualViewModel.ProductStatus.Count() &&
-                expectedViewModel.IsAgentUpdateMember == actualViewModel.IsAgentUpdateMember &&
+                expectedViewModel.IsDirectUplineUpdateMember == actualViewModel.IsDirectUplineUpdateMember &&
                 expectedViewModel.IsDirectDownline == actualViewModel.IsDirectDownline &&
                 expectedViewModel.IsViewOnly == actualViewModel.IsViewOnly);
         }
