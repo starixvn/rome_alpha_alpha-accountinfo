@@ -177,7 +177,7 @@ export default class AccountInfo extends React.Component {
                 UplineId: uplineId,
                 UplineName: uplineName,
                 UplineRoleId: uplineRoleId,
-                AgentId: customerInfo.AgentId
+                IsDirectMember: customerInfo.IsDirectMember
             };
 
             accountInfoAPI.getCustomerAllStatus(params).then(
