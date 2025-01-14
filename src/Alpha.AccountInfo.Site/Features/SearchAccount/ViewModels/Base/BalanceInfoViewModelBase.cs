@@ -67,7 +67,7 @@
                 var betListLink = $"{BetListsUrl}RunningBetList/Index?CustID={customerInfo.CustId}&CustName={customerInfo.UserName}&GetAll=True";
 
                 var directDownlineLevelName = Enumeration.FromValue<UserLevel>((byte)(message.ActorRoleId - 1)).DisplayName;
-                var outstandingLink = $"{ReportsUrl}outstanding/{directDownlineLevelName}?" +
+                var outstandingLink = $"{ReportsUrl}outstanding/{directDownlineLevelName}new?" +
                         $"CustId={customerInfo.CustId}&CustName={message.SearchAccountName}" +
                         $"&CustLevelId={customerInfo.RoleId}&BreadcrumbLevelJson={BreadcrumbLevelJson}";
 
