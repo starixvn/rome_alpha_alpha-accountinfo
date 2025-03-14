@@ -56,7 +56,7 @@ export default class TotalDirectDownlines extends React.Component {
                 {
                     data.map((item, index) => {
                         const { statusId, title, className, value } = item;
-                        const id = `${title}-${statusId}`;
+                        const id = `${title}-${statusId}-${isDirectMember}`;
 
                         const inputProps = {
                             id,
